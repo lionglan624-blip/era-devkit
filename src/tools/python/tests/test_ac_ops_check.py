@@ -187,6 +187,28 @@ def test_n3_unbalanced_parens(feature_file, capsys):
     assert any("unbalanced parentheses" in i.lower() for i in issues)
 
 
+def test_n3_char_class_paren_not_false_positive(feature_file, capsys):
+    """N3: Paren inside character class [^)]+ should not trigger false positive."""
+    content = MINIMAL_FEATURE.replace(
+        "| matches | pattern |",
+        r"| matches | `\.NtrRevelation\([^,]+,\s*[^)]+\)` |"
+    )
+    feature_file("999", content)
+    issues = ac_check("999")
+    assert not any("unbalanced parentheses" in i.lower() for i in issues)
+
+
+def test_n3_real_unbalanced_with_char_class(feature_file, capsys):
+    """N3: Real unbalanced paren is still caught even with char classes present."""
+    content = MINIMAL_FEATURE.replace(
+        "| matches | pattern |",
+        "| matches | `([^)]+` |"
+    )
+    feature_file("999", content)
+    issues = ac_check("999")
+    assert any("unbalanced parentheses" in i.lower() for i in issues)
+
+
 # --- N4: Column swap detection ---
 
 def test_n4_matcher_looks_like_expected(feature_file, capsys):
@@ -443,6 +465,58 @@ FEATURE_GTE_WITH_DERIVATION = FEATURE_GTE_NO_DERIVATION.replace(
 def test_n12_gte_with_derivation(feature_file, capsys):
     """N12: gte matcher with derivation passes."""
     feature_file("999", FEATURE_GTE_WITH_DERIVATION)
+    issues = ac_check("999")
+    assert not any("derivation" in i.lower() for i in issues)
+
+
+FEATURE_GTE_ADJECTIVE_DERIVATION = FEATURE_GTE_NO_DERIVATION.replace(
+    "- **Expected**: 5",
+    "- **Expected**: 5\n- **Rationale**: 5 constructor-injected interfaces present in file"
+)
+
+
+def test_n12_derivation_with_adjective(feature_file, capsys):
+    """N12: Derivation with adjective between count and noun passes."""
+    feature_file("999", FEATURE_GTE_ADJECTIVE_DERIVATION)
+    issues = ac_check("999")
+    assert not any("derivation" in i.lower() for i in issues)
+
+
+FEATURE_GTE_COUNT_PATTERN = FEATURE_GTE_NO_DERIVATION.replace(
+    "- **Expected**: 5",
+    "- **Expected**: 5\n- **Rationale**: Count >= 5 (funcA, funcB, funcC, funcD, funcE)"
+)
+
+
+def test_n12_derivation_count_gte_pattern(feature_file, capsys):
+    """N12: Count >= N (list) pattern passes."""
+    feature_file("999", FEATURE_GTE_COUNT_PATTERN)
+    issues = ac_check("999")
+    assert not any("derivation" in i.lower() for i in issues)
+
+
+FEATURE_GTE_EXTENDED_NOUN = FEATURE_GTE_NO_DERIVATION.replace(
+    "- **Expected**: 5",
+    "- **Expected**: 5\n- **Rationale**: 5 constants defined for flags"
+)
+
+
+def test_n12_derivation_extended_nouns(feature_file, capsys):
+    """N12: Extended noun vocabulary (constants) passes."""
+    feature_file("999", FEATURE_GTE_EXTENDED_NOUN)
+    issues = ac_check("999")
+    assert not any("derivation" in i.lower() for i in issues)
+
+
+FEATURE_GTE_EXPLICIT_RATIONALE = FEATURE_GTE_NO_DERIVATION.replace(
+    "- **Expected**: 5",
+    "- **Expected**: 5\n- **Rationale**: Pairwise with AC#83. Covers visitor FLAG resets."
+)
+
+
+def test_n12_derivation_explicit_rationale(feature_file, capsys):
+    """N12: Explicit **Rationale**: marker passes regardless of content."""
+    feature_file("999", FEATURE_GTE_EXPLICIT_RATIONALE)
     issues = ac_check("999")
     assert not any("derivation" in i.lower() for i in issues)
 

@@ -954,13 +954,22 @@ def ac_check(fid: str, fix: bool = False, dry_run: bool = False,
             # Trailing unescaped pipe
             if pattern.endswith("|") or pattern.endswith("\\|"):
                 issues.append(f"AC#{row.number}: Regex has trailing pipe: '{row.expected}'.")
-            # Unbalanced parentheses (count unescaped parens)
+            # Unbalanced parentheses (count unescaped parens, skip char classes)
             depth = 0
+            in_char_class = False
             for ci, ch in enumerate(pattern):
-                if ch == '(' and (ci == 0 or pattern[ci - 1] != '\\'):
-                    depth += 1
-                elif ch == ')' and (ci == 0 or pattern[ci - 1] != '\\'):
-                    depth -= 1
+                escaped = ci > 0 and pattern[ci - 1] == '\\'
+                if escaped:
+                    continue
+                if ch == '[':
+                    in_char_class = True
+                elif ch == ']' and in_char_class:
+                    in_char_class = False
+                elif not in_char_class:
+                    if ch == '(':
+                        depth += 1
+                    elif ch == ')':
+                        depth -= 1
             if depth != 0:
                 issues.append(f"AC#{row.number}: Regex has unbalanced parentheses: '{row.expected}'.")
 
@@ -1024,7 +1033,18 @@ def ac_check(fid: str, fix: bool = False, dry_run: bool = False,
     if gte_ac_numbers:
         # Scan AC Details for derivation notes
         details_re = re.compile(r'^\*\*AC#(\d+):')
-        derivation_keywords = re.compile(r'\d+\s+(functions?|interfaces?|methods?|files?|items?|parameters?|entries|classes|types)', re.IGNORECASE)
+        derivation_keywords = re.compile(
+            r'\d+\s+(?:\S+\s+)*(?:'
+            r'functions?|interfaces?|methods?|files?|items?|parameters?|entries|classes|types|'
+            r'constants?|registrations?|occurrences?|calls?|signatures?|references?|paths?|'
+            r'names?|assertions?|rows?|patterns?|checks?|members?|properties?|fields?|'
+            r'tests?|values?|lines?|definitions?|declarations?|statements?|sections?|'
+            r'variables?|commands?|imports?|exports?|modules?|components?|elements?|'
+            r'attributes?|dependencies?|configurations?|operations?|handlers?|validators?|'
+            r'matchers?|conditions?'
+            r')', re.IGNORECASE)
+        count_gte_pattern = re.compile(r'Count\s*>=\s*\d+\s*\(', re.IGNORECASE)
+        explicit_derivation = re.compile(r'^\-\s*\*\*(?:Rationale|Derivation)\*\*:', re.IGNORECASE)
         current_ac_detail = None
         has_derivation = set()
         for line in lines:
@@ -1034,7 +1054,9 @@ def ac_check(fid: str, fix: bool = False, dry_run: bool = False,
                 current_ac_detail = int(m.group(1))
                 continue
             if current_ac_detail in gte_ac_numbers:
-                if derivation_keywords.search(stripped):
+                if (derivation_keywords.search(stripped)
+                        or count_gte_pattern.search(stripped)
+                        or explicit_derivation.match(stripped)):
                     has_derivation.add(current_ac_detail)
         missing_derivation = gte_ac_numbers - has_derivation
         for num in sorted(missing_derivation):

@@ -3,10 +3,10 @@ name: Test
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   test:
@@ -27,5 +27,8 @@ jobs:
       - name: Build
         run: dotnet build devkit.sln --no-restore --configuration Release
 
+      - name: Check formatting
+        run: dotnet format devkit.sln --verify-no-changes --no-restore
+
       - name: Run tests
-        run: dotnet test devkit.sln --no-build --configuration Release --verbosity normal
+        run: dotnet test devkit.sln --no-build --configuration Release --verbosity normal --blame-hang-timeout 10s --results-directory _out/test-results

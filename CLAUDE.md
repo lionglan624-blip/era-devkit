@@ -211,7 +211,7 @@ Type: engine  # -> uses implementer (sonnet)
 | `docs/reference/ntr-system-map.md` | NTR system reference |
 | `.claude/reference/ssot-update-rules.md` | SSOT update rules |
 | `NOTICE.md` | License |
-| `C:\Era\dashboard\HANDOFF.md` | Feature Dashboard spec (dashboard repo) |
+| `src/tools/node/feature-dashboard/HANDOFF.md` | Feature Dashboard spec (devkit内、PM2実行パス) |
 | `src/tools/python/session-search.py` | Session JSONL search (`--help`) |
 | `src/tools/python/feature-status.py` | Status/dependency sync (`--help`) |
 | `src/tools/python/ac_ops.py` | AC operations (`python src/tools/python/ac_ops.py --help`) |
@@ -296,6 +296,15 @@ Claude Code Bash = **Git Bash** (cwd: project root). User terminal = **cmd/Power
 **Command format**: Full path + `&&` chaining on **one line** for user commands.
 
 **CRLF**: Both root and engine/ `.gitattributes` set `* text=auto eol=lf`. Matches Write tool LF output.
+
+### CLI Shortcuts (`~/.local/bin/`)
+
+| Command | Description |
+|---------|-------------|
+| `dk` | Dashboard kill (pm2 stop + orphan cleanup) |
+| `dr` | Dashboard restart (pm2 restart all) |
+| `ds` | Dashboard start (pm2 start) |
+| `cl` | Claude direct (proxy bypass, fallback用) |
 
 ## WSL (dotnet execution)
 

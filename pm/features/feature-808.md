@@ -141,7 +141,7 @@ Migrate all 23 ERB functions (17 ITEM + 6 NTR public) from TOILET_COUNTER_MESSAG
 | Existing C# ITEM interfaces | ls Era.Core/Counter/IWcCounterMessageItem.cs 2>/dev/null | 0 (not found) | Must be created by F808 |
 | Existing C# NTR interfaces | ls Era.Core/Counter/IWcCounterMessageNtr.cs 2>/dev/null | 0 (not found) | Must be created by F808 |
 
-**Baseline File**: `.tmp/baseline-808.txt`
+**Baseline File**: `_out/tmp/baseline-808.txt`
 
 ---
 
@@ -242,7 +242,7 @@ Migrate all 23 ERB functions (17 ITEM + 6 NTR public) from TOILET_COUNTER_MESSAG
 **C15: NTR_NAME Stub via INtrUtilityService**
 - **Source**: TOILET_COUNTER_MESSAGE_NTR.ERB:850 calls NTR_NAME(0) for NTR character name display
 - **Verification**: INtrUtilityService declares GetNtrName default method; WcCounterMessageNtr calls _ntrUtility.GetNtrName()
-- **AC Impact**: AC#56 verifies method declaration; AC#57 verifies call site
+- **AC Impact**: AC#42 verifies method declaration; AC#43 verifies call site
 
 ---
 
@@ -292,7 +292,7 @@ Example:
 | "injectable C# services behind interfaces" | IWcCounterMessageItem + IWcCounterMessageNtr interfaces must exist with DI registration | AC#1, AC#2, AC#7, AC#8, AC#9 |
 | "enabling TDD" | Unit test files must exist for ITEM, NTR, and NtrRevelation handlers | AC#10, AC#11, AC#12 |
 | "enabling TDD" | Behavioral test scenarios must verify CFLAG mutations (C5), TALENT mutations (C5), SOURCE writes (C6), SETBIT operations (C7), and favor/surrender calculations (C12) | AC#34, AC#53, AC#35, AC#36, AC#39, AC#40, AC#41, AC#54, AC#44, AC#45, AC#46 |
-| "eliminating runtime TRYCALL coupling" | F808 creates injectable C# interfaces (IWcCounterMessageItem, IWcCounterMessageNtr) and DI registrations enabling F806/F807 to inject interfaces instead of TRYCALL; null sentinel replaced with concrete NtrRevelationHandler | AC#1, AC#2, AC#3, AC#4, AC#5, AC#6, AC#7, AC#8, AC#9 |
+| "eliminating runtime TRYCALL coupling" | F808 creates injectable C# interfaces (IWcCounterMessageItem, IWcCounterMessageNtr) and DI registrations enabling F806/F807 to inject interfaces instead of TRYCALL; null sentinel replaced with concrete NtrRevelationHandler. TRYCALL elimination completes when F806/F807 consume these interfaces — F808 provides the prerequisite infrastructure (interfaces + DI) verified by these ACs | AC#1, AC#2, AC#3, AC#4, AC#5, AC#6, AC#7, AC#8, AC#9 |
 | "F808 is Predecessor of F806 and F807" | F806/F807 dependency tables must list F808 as Predecessor | AC#15, AC#16 |
 
 ### AC Definition Table
@@ -562,11 +562,6 @@ Example:
 - **Expected**: Count >= 2 (both CFLAG constants: WC_管理人は誰 and WC_前任管理人)
 - **Rationale**: C5 requires two distinct NtrRevelation CFLAG writes (WC_管理人は誰=0 at NTR.ERB:918 and WC_前任管理人 at NTR.ERB:919). Pattern narrowed from `SetCharacterFlag|CflagWc` to `Kanrinin|管理人` to disambiguate from withPETTING SETBIT tests that also use SetCharacterFlag (via BitfieldUtility read-modify-write on WC_箇所埋まり). Requiring gte 2 ensures both CFLAG constants are referenced in the test file, not just one. (C5)
 
-**AC#53: WcCounterMessageNtrTests verifies TALENT state mutations**
-- **Test**: `Grep(Era.Core.Tests/Counter/WcCounterMessageNtrTests.cs, pattern="SetTalent|TalentIndex")` presence check
-- **Expected**: Pattern matches
-- **Rationale**: C5 requires NTRrevelation TALENT write (管理人=0 at NTR.ERB:920). TALENT uses a distinct setter (SetTalent) from CFLAG (SetCharacterFlag). Split from CFLAG (AC#47) to guarantee both mutation types are independently tested. (C5)
-
 **AC#35: WcCounterMessageNtrTests verifies SOURCE increments (multi-path)**
 - **Test**: `Grep(Era.Core.Tests/Counter/WcCounterMessageNtrTests.cs, pattern="SetSource|SourceIndex")` count occurrences
 - **Expected**: Count >= 3 (multi-path coverage of representative body-part SOURCE writes)
@@ -585,7 +580,7 @@ Example:
 **AC#38: F807 no longer lists F808 as Related**
 - **Test**: `Grep(pm/features/feature-807.md)` for `Related.*F808`
 - **Expected**: Pattern NOT found
-- **Rationale**: Same as AC#50. (C3)
+- **Rationale**: Same as AC#37 for F807 (parallel to F806 Related removal verification). (C3)
 
 **AC#39: WcCounterMessageItemTests verifies WC_応答分類 response branching**
 - **Test**: `Grep(Era.Core.Tests/Counter/WcCounterMessageItemTests.cs)` for `応答分類|ResponseCategory|WcResponseCategory`
@@ -636,27 +631,32 @@ Example:
 **AC#48: WcCounterMessageNtr implementation contains non-stub logic**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs, pattern="_variables\.|_console\.|_engine\.|_ntrUtility\.|_kojoMessage\.|_counterUtilities\.|_randomProvider\.")` count occurrences
 - **Expected**: Count >= 10 (6 public methods + 2 private helpers using all 9 injected services)
-- **Rationale**: Same as AC#61 for the NTR implementation. Pattern expanded to cover all injected services including _kojoMessage (C9 KOJO dispatch), _counterUtilities (DATETIME), _randomProvider (PRINTDATA). Prevents stub implementations that omit critical dependencies. (C4, C5, C6, C7, C9, C14)
+- **Rationale**: Same as AC#47 for the NTR implementation. Pattern expanded to cover all injected services including _kojoMessage (C9 KOJO dispatch), _counterUtilities (DATETIME), _randomProvider (PRINTDATA). Prevents stub implementations that omit critical dependencies. (C4, C5, C6, C7, C9, C14)
 
 **AC#49: WcCounterMessageNtr calls IKojoMessageService for KOJO dispatch with target**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs, pattern="_kojoMessage\.[A-Za-z]+.*target\.Value")` presence check
 - **Expected**: Pattern matches
-- **Rationale**: C9 requires NTRrevelation to dispatch KOJO via IKojoMessageService (NTR.ERB:898 TRYCALLFORM KOJO_WC_COUNTER_NTRrevelation_1_K{NO:TARGET}). IKojoMessageService takes int, so CharacterId→int unwrap via .Value is required (following AC#28 pattern). AC#35 verifies injection. This AC verifies the call site forwards target.Value to the KOJO dispatch method. (C9)
+- **Rationale**: C9 requires NTRrevelation to dispatch KOJO via IKojoMessageService (NTR.ERB:898 TRYCALLFORM KOJO_WC_COUNTER_NTRrevelation_1_K{NO:TARGET}). IKojoMessageService takes int, so CharacterId→int unwrap via .Value is required (following AC#19 pattern). AC#14 verifies injection. This AC verifies the call site forwards target.Value to the KOJO dispatch method. (C9)
 
 **AC#50: WcCounterMessageNtr calls GetDateTime for CFLAG timestamp**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs)` for `\.GetDateTime\(`
 - **Expected**: Pattern matches
-- **Rationale**: NTR.ERB:904,926 writes `CFLAG = DATETIME()` in NTRrevelation. ICounterUtilities.GetDateTime() is the C# equivalent. AC#26 verifies injection; this AC verifies the call site, following the AC#56+57 pairwise pattern for GetNtrName. (C14)
+- **Rationale**: NTR.ERB:904,926 writes `CFLAG = DATETIME()` in NTRrevelation. ICounterUtilities.GetDateTime() is the C# equivalent. AC#14 verifies injection; this AC verifies the call site, following the AC#42+43 pairwise pattern for GetNtrName. (C14)
 
 **AC#51: No NotImplementedException stubs in ITEM handler**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageItem.cs)` for `NotImplementedException`
 - **Expected**: Pattern NOT found
-- **Rationale**: Philosophy requires non-stub implementations. AC#41 catches TODO/FIXME/HACK but not NotImplementedException which is the codebase's established stub pattern (ShopSystem.NtrName). Combined with AC#61 (gte 10 service usage) provides comprehensive anti-stub gate.
+- **Rationale**: Philosophy requires non-stub implementations. AC#28 catches TODO/FIXME/HACK but not NotImplementedException which is the codebase's established stub pattern (ShopSystem.NtrName). Combined with AC#47 (gte 10 service usage) provides comprehensive anti-stub gate.
 
 **AC#52: No NotImplementedException stubs in NTR handler**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs)` for `NotImplementedException`
 - **Expected**: Pattern NOT found
-- **Rationale**: Same as AC#65 for the NTR implementation file. Combined with AC#62 (gte 10 service usage).
+- **Rationale**: Same as AC#51 for the NTR implementation file. Combined with AC#48 (gte 10 service usage).
+
+**AC#53: WcCounterMessageNtrTests verifies TALENT state mutations**
+- **Test**: `Grep(Era.Core.Tests/Counter/WcCounterMessageNtrTests.cs, pattern="SetTalent|TalentIndex")` presence check
+- **Expected**: Pattern matches
+- **Rationale**: C5 requires NTRrevelation TALENT write (管理人=0 at NTR.ERB:920). TALENT uses a distinct setter (SetTalent) from CFLAG (SetCharacterFlag). Split from CFLAG (AC#47) to guarantee both mutation types are independently tested. (C5)
 
 **AC#54: WcCounterMessageNtrTests covers favor/surrender calculation (C12)**
 - **Test**: `Grep(Era.Core.Tests/Counter/WcCounterMessageNtrTests.cs, pattern="Reversal|Agree|favor|surrender")` presence check
@@ -671,32 +671,32 @@ Example:
 **AC#56: WithPetting SETBIT uses GetMaster for CFLAG:MASTER:WC_箇所埋まり**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs, pattern="GetMaster")` presence check
 - **Expected**: Pattern matches
-- **Rationale**: ERB SETBIT operations target CFLAG:MASTER:WC_箇所埋まり (toilet manager character, confirmed NTR.ERB:374). The bitfield belongs to MASTER, not TARGET or offender. Using _engine.GetTarget() would mutate wrong character's bitfield. Parallel to AC#69 (SOURCE targets offender). (C7)
+- **Rationale**: ERB SETBIT operations target CFLAG:MASTER:WC_箇所埋まり (toilet manager character, confirmed NTR.ERB:374). The bitfield belongs to MASTER, not TARGET or offender. Using _engine.GetTarget() would mutate wrong character's bitfield. Parallel to AC#55 (SOURCE targets offender). (C7)
 
 **AC#57: WcCounterMessageItem reads WC_応答分類 for response branching**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageItem.cs)` for `応答分類|ResponseCategory|WcResponseCategory`
 - **Expected**: Pattern matches
-- **Rationale**: C13 requires each ITEM function to check WC_応答分類 for response branching. AC#52 verifies the test file references this concept; AC#71 verifies the implementation file actually reads the CFLAG. Prevents stub implementations that bypass response-category SELECTCASE branching. (C13)
+- **Rationale**: C13 requires each ITEM function to check WC_応答分類 for response branching. AC#39 verifies the test file references this concept; this AC verifies the implementation file actually reads the CFLAG. Prevents stub implementations that bypass response-category SELECTCASE branching. (C13)
 
 **AC#58: WcCounterMessageNtr implementation calls SetTalent (C5 TALENT mutation)**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs)` for `SetTalent`
 - **Expected**: Pattern matches
-- **Rationale**: C5 requires NtrRevelation to write TALENT:TARGET:管理人=0 (NTR.ERB:920). AC#67 verifies the test file references SetTalent, but no implementation-side AC existed. Following the AC#71 pattern (implementation + test pairwise coverage), this ensures WcCounterMessageNtr actually calls SetTalent. (C5)
+- **Rationale**: C5 requires NtrRevelation to write TALENT:TARGET:管理人=0 (NTR.ERB:920). AC#53 verifies the test file references SetTalent, but no implementation-side AC existed. Following the pairwise pattern (implementation + test coverage), this ensures WcCounterMessageNtr actually calls SetTalent. (C5)
 
 **AC#59: WithPetting does not use GetTarget for SetSource (wrong-character prevention)**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs, pattern="SetSource.*GetTarget")` negative check
 - **Expected**: Pattern NOT found
-- **Rationale**: AC#69 verifies SetSource(offender is called, but if the implementer writes `var offender = _engine.GetTarget()` then aliases target as offender, AC#69 passes while the wrong character is targeted. This not_matches AC catches direct GetTarget-to-SetSource chains. ERB confirms SOURCE:ARG writes use ARG=offender (NTR.ERB:210), not TARGET. (C6)
+- **Rationale**: AC#55 verifies SetSource(offender is called, but if the implementer writes `var offender = _engine.GetTarget()` then aliases target as offender, AC#55 passes while the wrong character is targeted. This not_matches AC catches direct GetTarget-to-SetSource chains. ERB confirms SOURCE:ARG writes use ARG=offender (NTR.ERB:210), not TARGET. (C6)
 
 **AC#60: WcCounterMessageNtr calls SetCharacterFlag for NtrRevelation CFLAG mutations (C5)**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs, pattern="SetCharacterFlag.*Kanrinin|SetCharacterFlag.*管理人")` count occurrences
 - **Expected**: Count >= 2 (both CFLAG constants: WC_管理人は誰 and WC_前任管理人)
-- **Rationale**: C5 requires NtrRevelation to write CFLAG:WC_管理人は誰=0 (NTR.ERB:918) and CFLAG:WC_前任管理人 (NTR.ERB:919). AC#47 verifies the test file references these constants (gte 2). AC#72 covers TALENT implementation-side. This AC completes the pairwise pattern for CFLAG: AC#47 (test-side) + AC#74 (impl-side). Dual-language pattern follows AC#47 convention. Requires gte 2 to ensure both CFLAG writes are implemented, paralleling AC#47's test-side gte 2. (C5)
+- **Rationale**: C5 requires NtrRevelation to write CFLAG:WC_管理人は誰=0 (NTR.ERB:918) and CFLAG:WC_前任管理人 (NTR.ERB:919). AC#34 verifies the test file references these constants (gte 2). AC#58 covers TALENT implementation-side. This AC completes the pairwise pattern for CFLAG: AC#34 (test-side) + AC#60 (impl-side). Dual-language pattern follows AC#34 convention. Requires gte 2 to ensure both CFLAG writes are implemented, paralleling AC#34's test-side gte 2. (C5)
 
 **AC#61: NtrRevelation CFLAG writes target MASTER character (not target/attacker)**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs, pattern="SetCharacterFlag.*master|SetCharacterFlag.*Master")` count occurrences
 - **Expected**: Count >= 2 (both CFLAG:MASTER writes: WC_管理人は誰 and WC_前任管理人 target master, not NtrRevelation's target parameter)
-- **Rationale**: C5 specifies CFLAG:MASTER:WC_管理人は誰 and CFLAG:MASTER:WC_前任管理人 (NTR.ERB:918-919). AC#70 verifies GetMaster for withPETTING SETBIT, but NtrRevelation's CFLAG writes also target MASTER. AC#70 could be satisfied by withPETTING alone. This AC ensures NtrRevelation's two SetCharacterFlag calls pass `master` (from GetMaster) rather than `target` parameter. (C5)
+- **Rationale**: C5 specifies CFLAG:MASTER:WC_管理人は誰 and CFLAG:MASTER:WC_前任管理人 (NTR.ERB:918-919). AC#56 verifies GetMaster for withPETTING SETBIT, but NtrRevelation's CFLAG writes also target MASTER. AC#56 could be satisfied by withPETTING alone. This AC ensures NtrRevelation's two SetCharacterFlag calls pass `master` (from GetMaster) rather than `target` parameter. (C5)
 
 **AC#62: IWcCounterMessageItem declares critical ERB-mapped methods by name**
 - **Test**: `Grep(Era.Core/Counter/IWcCounterMessageItem.cs, pattern="BottomClothOff\|BottomClothOut\|SetItems\|BottomItemShow\|ClothOut\|VibratorIn")` count occurrences
@@ -721,7 +721,7 @@ Example:
 **AC#66: WcCounterMessageNtrTests verifies WC_管理人は誰 is reset to 0**
 - **Test**: `Grep(Era.Core.Tests/Counter/WcCounterMessageNtrTests.cs, pattern="管理人は誰.*0\|Kanrinin.*0\|SetCharacterFlag.*管理人.*0")` presence check
 - **Expected**: Pattern matches
-- **Rationale**: C5 requires NtrRevelation to write CFLAG:MASTER:WC_管理人は誰=0. AC#47 and AC#75 don't verify the value 0. (C5)
+- **Rationale**: C5 requires NtrRevelation to write CFLAG:MASTER:WC_管理人は誰=0. AC#34 and AC#60 don't verify the value 0. (C5)
 
 **AC#67: NtrAgreeSource is called from NtrRevelation**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs, pattern="NtrAgreeSource\(")` presence check
@@ -741,7 +741,7 @@ Example:
 **AC#70: WcCounterMessageNtr.cs writes literal 0 for WC_管理人は誰 CFLAG reset**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs, pattern="SetCharacterFlag.*[Mm]aster.*[Kk]anrinin.*0\|SetCharacterFlag.*[Mm]aster.*管理人.*0")` presence check
 - **Expected**: Pattern matches
-- **Rationale**: AC#75 verifies SetCharacterFlag targets MASTER with Kanrinin, but not the literal value 0. (C5)
+- **Rationale**: AC#60 verifies SetCharacterFlag targets MASTER with Kanrinin, but not the literal value 0. (C5)
 
 **AC#71: WcCounterMessageNtr.cs implements NtrRevelationAttack attacker CFLAG writes**
 - **Test**: `Grep(Era.Core/Counter/WcCounterMessageNtr.cs, pattern="SetCharacterFlag.*attacker")` count occurrences
@@ -1272,7 +1272,7 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Mandatory: All [pending] items must be resolved before /run. -->
 <!-- Format: - [pending|resolved-applied|resolved-invalid|resolved-skipped|fix|problem-fix] {phase} {iter}: [{category-code}] {description} -->
 <!-- Tag rules: [pending] = awaiting user decision (POST-LOOP). [resolved-applied] = fix applied. [resolved-invalid] = validation rejected. [resolved-skipped] = user explicitly chose skip in POST-LOOP ONLY (orchestrator MUST NOT use autonomously). [fix] = applied fix history (immutable, used by is_loop() for A→B→A detection). -->
-<!-- Category codes: See pm/reference/error-taxonomy.md (AC-XXX, CON-XXX, DEP-XXX, etc.) -->
+<!-- Category codes: See docs/reference/error-taxonomy.md (AC-XXX, CON-XXX, DEP-XXX, etc.) -->
 
 - [fix] Phase2-Review iter1: Deferred Obligations section | Non-template section removed (template compliance)
 - [fix] Phase2-Review iter1: fc-phase markers | Reordered fc-phase completion comments to match template section ownership
@@ -1344,6 +1344,16 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 - [fix] Phase2-Review iter6: C5 MASTER targeting gap | Added AC#61 verifying NtrRevelation CFLAG writes use master variable (CFLAG:MASTER per NTR.ERB:918-919, parallel to AC#56 for withPETTING)
 - [fix] Phase2-Review iter6: Success Criteria count | Updated from 74 to 75
 - [fix] Recovery: AC#62-96 restored from session JSONL (d461a087, 6b4f7d0a, 63cab05e, 7b02e27c) after accidental git checkout -- wiped all FL session changes
+- [fix] Phase2-Review iter1: AC Details ordering | Moved AC#53 detail block from between AC#34/AC#35 to correct position between AC#52/AC#54 (ascending order compliance)
+- [fix] Phase2-Review iter1: Review Notes comment path | Changed pm/reference/error-taxonomy.md to docs/reference/error-taxonomy.md (SSOT path correction)
+- [fix] Phase2-Review iter1: Baseline File path | Changed .tmp/baseline-808.txt to _out/tmp/baseline-808.txt (CLAUDE.md file placement policy)
+- [fix] Phase2-Review iter2: C15 AC reference | Fixed C15 Constraint Details: AC#56/AC#57 → AC#42/AC#43 (GetNtrName declaration/call site)
+- [fix] Phase2-Review iter3: Philosophy Derivation scope | Clarified "eliminating runtime TRYCALL coupling" row: F808 provides prerequisite infrastructure, TRYCALL elimination completes when F806/F807 consume interfaces
+- [pending] Phase2-Pending iter4: AC#47/48 per-function non-stub coverage — gte 10 service usages can be concentrated in 1 method while 16 others are empty `{ }` bodies. Overlaps existing [pending] at iter4 (behavioral equivalence gap). Resolution requires threshold analysis of expected service calls per function group.
+- [fix] Phase3-Maintainability iter4: AC#38 stale ref | Changed "Same as AC#50" to "Same as AC#37" (AC#50 is GetDateTime, AC#37 is F806 Related removal)
+- [fix] Phase3-Maintainability iter4: Stale cross-references | Fixed AC#48 (AC#61→AC#47), AC#49 (AC#28→AC#19, AC#35→AC#14), AC#50 (AC#56+57→AC#42+43), AC#51 (AC#41→AC#28, AC#61→AC#47), AC#52 (AC#65→AC#51, AC#62→AC#48), AC#56 (AC#69→AC#55), AC#57 (AC#52→AC#39), AC#58 (AC#67→AC#53), AC#59 (AC#69→AC#55), AC#60 (AC#47→AC#34, AC#72→AC#58, AC#47+74→AC#34+60), AC#61 (AC#70→AC#56), AC#66 (AC#47+75→AC#34+60), AC#70 (AC#75→AC#60)
+- [pending] Phase4-ACLint iter5: AC#25 regex false positive — ac_ops reports unbalanced parentheses for `\.NtrRevelation\([^,]+,\s*[^)]+\)` but regex is valid (character class `[^)]+` contains literal `)`)
+- [pending] Phase4-ACLint iter5: 20 ACs (4,7,13,14,20,34,35,36,48,60,61,63,64,65,68,69,71,79,80,81) report "gte matcher lacks derivation" — AC Details DO contain threshold derivation text but ac_ops format pattern may not recognize it
 
 ---
 

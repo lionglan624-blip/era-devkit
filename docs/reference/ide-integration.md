@@ -108,7 +108,7 @@ If workspace configuration is not available:
 
 **Solutions**:
 1. **Schema mismatch**: Verify the YAML file should use the COM schema
-2. **Schema outdated**: Run `dotnet run --project tools/YamlSchemaGen` to regenerate schema
+2. **Schema outdated**: Run `dotnet run --project src/tools/dotnet/YamlSchemaGen` to regenerate schema
 3. **Cache issue**: Delete `.vscode/.yaml-cache` if it exists and reload window
 4. **Check schema version**: Ensure schema uses JSON Schema Draft 7 or compatible version
 

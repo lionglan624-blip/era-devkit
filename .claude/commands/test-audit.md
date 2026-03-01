@@ -44,7 +44,7 @@ Audit test quality for the specified target. Collects coverage, mutation scores,
 
 1. Parse `$ARGUMENTS` to determine targets
 2. If empty, build full target list:
-   - **C#**: `src/Era.Core.Tests/`, `src/engine.Tests/`, all `tools/*Tests/` directories (Glob for `tools/*Tests/*.csproj`)
+   - **C#**: `src/Era.Core.Tests/`, all `src/tools/dotnet/*Tests/` directories (Glob for `src/tools/dotnet/*Tests/*.csproj`)
    - **JS**: `src/tools/node/feature-dashboard/backend/`, `src/tools/node/feature-dashboard/frontend/`
 3. If keyword, use mapping table above
 4. If path, verify directory exists, detect type

@@ -93,14 +93,14 @@ Results:
 
 ## 6. Run Regression Tests
 
-Execute: `MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR && /home/siihe/.dotnet/dotnet test src/engine.Tests/uEmuera.Tests.csproj'`
+Execute: `MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR && /home/siihe/.dotnet/dotnet test devkit.sln --nologo --no-build --blame-hang-timeout 10s'`
 - If tests fail, report and STOP
 
 ## 7. Cleanup Test Logs
 
 Delete accumulated test log files:
 ```bash
-rm -f uEmuera/logs/*.trx
+rm -f _out/logs/*.trx
 ```
 
 ## 8. Update Status

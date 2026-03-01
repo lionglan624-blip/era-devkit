@@ -9,10 +9,10 @@ C# engine testing-specific reference. See [SKILL.md](SKILL.md) for common inform
 ## C# Unit Tests
 
 ```bash
-dotnet test src/engine.Tests/
+dotnet test src/engine.Tests/ --blame-hang-timeout 10s
 ```
 
-**Specific test**: `dotnet test src/engine.Tests/ --filter "FullyQualifiedName~CommandDispatcher"`
+**Specific test**: `dotnet test src/engine.Tests/ --blame-hang-timeout 10s --filter "FullyQualifiedName~CommandDispatcher"`
 
 ---
 

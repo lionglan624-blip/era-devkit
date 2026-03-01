@@ -8,7 +8,7 @@ WSL_DOTNET="/home/siihe/.dotnet/dotnet"
 WIN_REPO=$(git rev-parse --show-toplevel)
 WSL_REPO=$(echo "$WIN_REPO" | sed -E 's|^([a-zA-Z]):/|/mnt/\L\1/|')
 wsl_dotnet() {
-    MSYS_NO_PATHCONV=1 wsl -- bash -c "cd $WSL_REPO && $WSL_DOTNET $*"
+    MSYS_NO_PATHCONV=1 wsl -- bash -c "cd $WSL_REPO && DEVKIT_ROOT=$WSL_REPO $WSL_DOTNET $*"
 }
 
 # Log setup - timestamp generated once at top
@@ -46,13 +46,36 @@ if [ $BUILD_EXIT_CODE -ne 0 ]; then
   exit $BUILD_EXIT_CODE
 fi
 
-# Format check (only if C# files staged)
+# Format check (only if C# files staged, per-project for speed)
 CS_FILES=$(echo "$STAGED_FILES" | grep -E '\.cs$' || true)
 if [ -n "$CS_FILES" ]; then
-    echo "[2/5] dotnet format --verify-no-changes..." | tee -a "$LOG_FILE"
+    # Find unique .csproj files for staged C# files (walk up from each file)
+    FORMAT_PROJS=""
+    for f in $CS_FILES; do
+        d=$(dirname "$f")
+        while [ "$d" != "." ]; do
+            csproj=$(ls "$d"/*.csproj 2>/dev/null | head -1)
+            if [ -n "$csproj" ]; then
+                FORMAT_PROJS="$FORMAT_PROJS $csproj"
+                break
+            fi
+            d=$(dirname "$d")
+        done
+    done
+    FORMAT_PROJS=$(echo "$FORMAT_PROJS" | tr ' ' '\n' | sort -u | grep .)
+    PROJ_COUNT=$(echo "$FORMAT_PROJS" | wc -l | tr -d ' ')
+    echo "[2/5] dotnet format --verify-no-changes ($PROJ_COUNT projects)..." | tee -a "$LOG_FILE"
     set +e
-    wsl_dotnet format devkit.sln --verify-no-changes 2>&1 | tee -a "$LOG_FILE"
-    FORMAT_EXIT_CODE=${PIPESTATUS[0]}
+    FORMAT_EXIT_CODE=0
+    for proj in $FORMAT_PROJS; do
+        PROJ_DIR=$(dirname "$proj")
+        FILES_IN_PROJ=$(echo "$CS_FILES" | grep "^$PROJ_DIR/" || true)
+        INCLUDES=$(echo "$FILES_IN_PROJ" | sed 's/^/--include /' | tr '\n' ' ')
+        wsl_dotnet format "$proj" --verify-no-changes $INCLUDES 2>&1 | tee -a "$LOG_FILE"
+        if [ ${PIPESTATUS[0]} -ne 0 ]; then
+            FORMAT_EXIT_CODE=1
+        fi
+    done
     set -e
     if [ $FORMAT_EXIT_CODE -ne 0 ]; then
         echo "ERROR: Code formatting violations found. Run 'dotnet format devkit.sln' to fix." | tee -a "$LOG_FILE"
@@ -64,7 +87,7 @@ fi
 
 echo "[3/5] dotnet test devkit.sln..." | tee -a "$LOG_FILE"
 set +e
-wsl_dotnet test devkit.sln --nologo -v m --blame-hang-timeout 10s 2>&1 | tee -a "$LOG_FILE" "$TMP_OUTPUT"
+wsl_dotnet test devkit.sln --nologo -v m --no-build --blame-hang-timeout 10s 2>&1 | tee -a "$LOG_FILE" "$TMP_OUTPUT"
 TEST_EXIT_CODE=${PIPESTATUS[0]}
 set -e
 TEST_OUTPUT=$(cat "$TMP_OUTPUT" 2>/dev/null)

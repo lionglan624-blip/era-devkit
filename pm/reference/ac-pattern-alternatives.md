@@ -203,7 +203,7 @@ Alternative: Open file in VSCode, Ctrl+F search for "Skill(testing)"
 
 **Standard Method:**
 ```bash
-dotnet test Era.Core.Tests/ --logger "trx;LogFileName=test-result.trx"
+dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s --logger "trx;LogFileName=test-result.trx"
 ```
 
 **Alternative Method:**

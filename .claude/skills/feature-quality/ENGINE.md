@@ -76,7 +76,7 @@ public interface IEvaluationContext
 ```
 | AC# | Method | Matcher | Expected |
 | 1 | Grep(engine/Assets/Scripts/Path/File.cs) | not_contains | "pattern" |
-| 2 | dotnet test Era.Core.Tests | succeeds | - |
+| 2 | dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s | succeeds | - |
 ```
 
 **Fix**: Specify file path for Grep and exact command for test/build ACs.
@@ -1437,7 +1437,7 @@ Either keep original AC numbering with clear AC:Task mapping (shown above), or r
 
 **Example (Good)**:
 ```markdown
-| 22 | Unit tests pass | exit_code | dotnet test Era.Core.Tests --filter FullyQualifiedName~CharacterLoaderTests | succeeds | 0 | [ ] |
+| 22 | Unit tests pass | exit_code | dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s --filter FullyQualifiedName~CharacterLoaderTests | succeeds | 0 | [ ] |
 ```
 
 **Fix**: Specify explicit project path in test commands for clarity and environment independence.
@@ -1546,7 +1546,7 @@ public static List<ExpectCheckResult> Validate(
 internal sealed class EngineVariables : IEngineVariables { ... }
 ```
 
-| 5 | Delegation test | test | dotnet test Era.Core.Tests --filter ~EngineVariables | succeeds | - | [ ] |
+| 5 | Delegation test | test | dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s --filter ~EngineVariables | succeeds | - | [ ] |
 ```
 (Era.Core.csproj has no InternalsVisibleTo for Era.Core.Tests — test cannot access internal class)
 

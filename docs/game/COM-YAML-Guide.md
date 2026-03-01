@@ -780,7 +780,7 @@ The game engine performs additional validation at runtime:
 
 2. **Validate the schema** (if schema validator is available):
    ```bash
-   dotnet run --project tools/YamlValidator -- Game/data/coms/[Category]/[filename].yaml
+   dotnet run --project src/tools/dotnet/YamlValidator -- Game/data/coms/[Category]/[filename].yaml
    ```
 
 3. **Test in-game**:

@@ -57,13 +57,13 @@ These tools require .NET development environment and are designed for developers
 
 **Purpose:** Batch YAML validation for CI/CD and pre-commit hooks
 
-**Location:** `tools/YamlValidator/`
+**Location:** `src/tools/dotnet/YamlValidator/`
 
 **Usage:**
 ```bash
 # Requires .NET runtime
-dotnet run --project tools/YamlValidator/ -- \
-  --schema tools/YamlSchemaGen/dialogue-schema.json \
+dotnet run --project src/tools/dotnet/YamlValidator/ -- \
+  --schema src/tools/dotnet/YamlSchemaGen/dialogue-schema.json \
   --yaml Game/YAML/Kojo/COM_K1_0.yaml
 ```
 
@@ -82,7 +82,7 @@ dotnet run --project tools/YamlValidator/ -- \
 - You want to validate entire directories at once
 - You're comfortable with command-line tools
 
-**Documentation:** [tools/YamlValidator/README.md](../../../tools/YamlValidator/README.md)
+**Documentation:** [src/tools/dotnet/YamlValidator/README.md](../../../src/tools/dotnet/YamlValidator/README.md)
 
 **Related Feature:** [F590 - YAML Schema Validation Tools](../feature-590.md)
 
@@ -298,7 +298,7 @@ See [content-roadmap.md](../content-roadmap.md) for community tool development p
 ## References
 
 - [com-validator README](../../../tools/com-validator/README.md) - Detailed usage documentation
-- [YamlValidator README](../../../tools/YamlValidator/README.md) - Developer tool documentation
+- [YamlValidator README](../../../src/tools/dotnet/YamlValidator/README.md) - Developer tool documentation
 - [Feature F611](../feature-611.md) - COM YAML Linter with Japanese Support
 - [Feature F590](../feature-590.md) - YAML Schema Validation Tools
 - [Feature F599](../feature-599.md) - IDE/Editor Integration for YAML Schema

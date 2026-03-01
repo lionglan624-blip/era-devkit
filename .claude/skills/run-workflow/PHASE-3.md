@@ -67,7 +67,7 @@ Task(subagent_type: "implementer",
 ### Step 3.2: Confirm RED
 
 ```bash
-dotnet test --filter "FullyQualifiedName~{TestClass}"
+dotnet test --blame-hang-timeout 10s --filter "FullyQualifiedName~{TestClass}"
 ```
 
 **Expected**: FAIL (exit ≠ 0) - this is normal

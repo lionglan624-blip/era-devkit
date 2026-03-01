@@ -488,7 +488,7 @@ formula: "baseValue * (1 + (getPalamLv(lust) + getPalamLv(pleasure)) * 0.08)"
 **IMPORTANT**: Before using custom COMs, validate them with the YAML validator:
 
 ```bash
-dotnet run --project tools/YamlValidator -- \
+dotnet run --project src/tools/dotnet/YamlValidator -- \
   --schema src/tools/schemas/com.schema.json \
   --yaml Game/data/coms/training/touch/gentle-embrace.yaml
 ```
@@ -507,8 +507,8 @@ This enables real-time validation in editors that support the YAML Language Serv
 
 ### Cross-References
 
-- **Schema Validation**: [tools/YamlValidator/README.md](../../../tools/YamlValidator/README.md)
-- **Schema Generation**: [tools/YamlSchemaGen/README.md](../../../tools/YamlSchemaGen/README.md)
+- **Schema Validation**: [src/tools/dotnet/YamlValidator/README.md](../../../src/tools/dotnet/YamlValidator/README.md)
+- **Schema Generation**: [src/tools/dotnet/YamlSchemaGen/README.md](../../../src/tools/dotnet/YamlSchemaGen/README.md)
 - **Data Format Documentation**: [docs/game/data-formats/CSV-YAML-Mapping.md](../data-formats/CSV-YAML-Mapping.md)
 
 ---
@@ -979,12 +979,12 @@ Validate your custom COM files before using them in-game:
 
 ```bash
 # Single file validation
-dotnet run --project tools/YamlValidator -- \
+dotnet run --project src/tools/dotnet/YamlValidator -- \
   --schema src/tools/schemas/com.schema.json \
   --yaml Game/data/coms/training/touch/gentle-embrace.yaml
 
 # Directory validation (all COMs)
-dotnet run --project tools/YamlValidator -- \
+dotnet run --project src/tools/dotnet/YamlValidator -- \
   --schema src/tools/schemas/com.schema.json \
   --validate-all Game/data/coms/
 ```
@@ -1000,17 +1000,17 @@ FAIL: gentle-embrace.yaml
 Error at effects[0].parameters: Required property 'pleasure' is missing
 ```
 
-For detailed YamlValidator usage, see [tools/YamlValidator/README.md](../../../tools/YamlValidator/README.md).
+For detailed YamlValidator usage, see [src/tools/dotnet/YamlValidator/README.md](../../../src/tools/dotnet/YamlValidator/README.md).
 
 ### Schema Generation
 
 If you need to regenerate the COM schema (e.g., after engine updates):
 
 ```bash
-dotnet run --project tools/YamlSchemaGen/
+dotnet run --project src/tools/dotnet/YamlSchemaGen/
 ```
 
-For detailed schema generation information, see [tools/YamlSchemaGen/README.md](../../../tools/YamlSchemaGen/README.md).
+For detailed schema generation information, see [src/tools/dotnet/YamlSchemaGen/README.md](../../../src/tools/dotnet/YamlSchemaGen/README.md).
 
 ### Runtime Validation
 
@@ -1029,7 +1029,7 @@ The game engine performs additional validation at runtime:
 
 2. **Validate the schema**:
    ```bash
-   dotnet run --project tools/YamlValidator -- \
+   dotnet run --project src/tools/dotnet/YamlValidator -- \
      --schema src/tools/schemas/com.schema.json \
      --yaml Game/data/coms/[Category]/[filename].yaml
    ```
@@ -1081,8 +1081,8 @@ Fix: Use valid parameter names (pleasure, pain, fear, etc.)
 - **Effect Handlers Source**: `src/Era.Core/Effects/` - C# implementation details
 - **Runtime Executor**: `src/Era.Core/Commands/Com/YamlComExecutor.cs` - Execution logic
 - **Validation Tools**:
-  - [YamlValidator README](../../../tools/YamlValidator/README.md)
-  - [YamlSchemaGen README](../../../tools/YamlSchemaGen/README.md)
+  - [YamlValidator README](../../../src/tools/dotnet/YamlValidator/README.md)
+  - [YamlSchemaGen README](../../../src/tools/dotnet/YamlSchemaGen/README.md)
 - **Data Format Documentation**: [CSV-YAML Mapping](../data-formats/CSV-YAML-Mapping.md)
 - **System Architecture**: [System Overview](../architecture/System-Overview.md)
 

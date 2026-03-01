@@ -343,16 +343,16 @@ dotnet build devkit.sln
 GAME_PATH=/mnt/c/Era/game dotnet test devkit.sln --blame-hang-timeout 10s
 
 # Run a specific tool's tests
-dotnet test src/tools/dotnet/KojoComparer.Tests/
+dotnet test src/tools/dotnet/KojoComparer.Tests/ --blame-hang-timeout 10s
 
 # Run tests by class or method name
-dotnet test src/tools/dotnet/ErbParser.Tests/ --filter "FullyQualifiedName~ErbParserTests"
+dotnet test src/tools/dotnet/ErbParser.Tests/ --blame-hang-timeout 10s --filter "FullyQualifiedName~ErbParserTests"
 
 # Run tests by category trait (Unit, Integration, Schema)
-dotnet test src/tools/dotnet/KojoComparer.Tests/ --filter "Category=Unit"
+dotnet test src/tools/dotnet/KojoComparer.Tests/ --blame-hang-timeout 10s --filter "Category=Unit"
 
 # Code coverage
-GAME_PATH=/mnt/c/Era/game dotnet test devkit.sln --collect:"XPlat Code Coverage"
+GAME_PATH=/mnt/c/Era/game dotnet test devkit.sln --blame-hang-timeout 10s --collect:"XPlat Code Coverage"
 ```
 
 Note: All `dotnet` commands must be run via WSL (see WSL section above).

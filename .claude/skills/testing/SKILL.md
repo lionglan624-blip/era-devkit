@@ -21,10 +21,10 @@ description: Testing reference for ERA games. Use when running tests, writing te
 
 | Test Type | Command (inside WSL) | Use Case |
 |-----------|---------|----------|
-| **C# Unit (engine)** | `dotnet test src/engine.Tests/` | C# engine changes |
-| **C# Unit (Era.Core)** | `dotnet test src/Era.Core.Tests/` | YAML rendering, KojoEngine |
-| **C# Coverage (Era.Core)** | `dotnet test src/Era.Core.Tests/ --collect:"XPlat Code Coverage"` | Coverage measurement |
-| **C# Unit (tools)** | `dotnet test src/tools/dotnet/ErbParser.Tests/ src/tools/dotnet/ErbToYaml.Tests/ src/tools/dotnet/KojoComparer.Tests/` | ERB parser, converter, comparer tools |
+| **C# Unit (all)** | `dotnet test devkit.sln --no-build --blame-hang-timeout 10s` | Full regression |
+| **C# Unit (Era.Core)** | `dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s` | YAML rendering, KojoEngine |
+| **C# Coverage (Era.Core)** | `dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s --collect:"XPlat Code Coverage"` | Coverage measurement |
+| **C# Unit (tools)** | `dotnet test src/tools/dotnet/ErbParser.Tests/ --blame-hang-timeout 10s` | ERB parser (example; applies to any tool test project) |
 | **Kojo unit** | `--unit path/` or `--unit "path/*.json"` | Kojo function test |
 | **debug** | `--debug --char N` | Interactive debug |
 | **strict** | `--strict-warnings < /dev/null` | Parser warnings |
@@ -256,7 +256,7 @@ logs/
 
 | Test | Command |
 |------|---------|
-| C# Unit | `MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR && /home/siihe/.dotnet/dotnet test src/engine.Tests/ --logger "trx;LogFileName=test-result.trx" --results-directory _out/logs/prod/ac/engine'` |
+| C# Unit | `MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR && /home/siihe/.dotnet/dotnet test devkit.sln --no-build --blame-hang-timeout 10s --logger "trx;LogFileName=test-result.trx" --results-directory _out/logs/prod/ac/'` |
 | AC (kojo) | `--unit tests/ac/kojo/feature-{N}/` |
 <!-- Regression tests archived (2026-01-10) -->
 
@@ -391,11 +391,12 @@ python src/tools/python/verify-logs.py --scope feature:268
 Pre-commit hook runs **C# test gate** via WSL2 before each commit.
 
 ```bash
-[0/5] Schema synchronization check
-[1/5] Variable size validation
-[2/5] wsl_dotnet build Era.Core       # WSL2 経由
-[3/5] wsl_dotnet test Era.Core.Tests   # WSL2 経由
-[4/5] wsl_dotnet test engine.Tests     # WSL2 経由
+[0/7] Schema synchronization check
+[1/7] Variable size validation
+[2/7] Dashboard lint check (skip if no dashboard files)
+[3/7] wsl_dotnet build devkit.sln              # WSL2 経由
+[4/7] wsl_dotnet format (per-project, staged files only) # WSL2 経由
+[5/7] wsl_dotnet test devkit.sln --no-build    # WSL2 経由
 ```
 
 **Design philosophy**: Ensures C# code compiles and tests pass before commit. Uses WSL2 to bypass Smart App Control.
@@ -516,16 +517,16 @@ var context = TestHelpers.CreateContext(talent: talentDict, abl: ablDict);
 
 ```bash
 # 1. Quick full run with timeout (detect hang)
-timeout 15 dotnet test src/Era.Core.Tests/ --no-build --nologo -v q
+timeout 15 dotnet test src/Era.Core.Tests/ --no-build --blame-hang-timeout 10s --nologo -v q
 
 # 2. Binary search: exclude suspect group
-dotnet test --no-build --filter "FullyQualifiedName!~SuspectClass"
+dotnet test --no-build --blame-hang-timeout 10s --filter "FullyQualifiedName!~SuspectClass"
 
 # 3. Isolate single class
-dotnet test --no-build --filter "FullyQualifiedName~ExactClassName"
+dotnet test --no-build --blame-hang-timeout 10s --filter "FullyQualifiedName~ExactClassName"
 
 # 4. Pair test: run two classes together to detect parallel deadlock
-dotnet test --no-build --filter "FullyQualifiedName~ClassA|FullyQualifiedName~ClassB"
+dotnet test --no-build --blame-hang-timeout 10s --filter "FullyQualifiedName~ClassA|FullyQualifiedName~ClassB"
 ```
 
 ### Test Suite Performance Baseline (2026-02-26)

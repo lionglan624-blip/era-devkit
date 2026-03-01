@@ -56,7 +56,7 @@ MSYS_NO_PATHCONV=1 wsl -- bash -c '/home/siihe/.dotnet/dotnet --version'
 Windows ファイルシステムは `/mnt/c/` にマウント済み。ファイル転送不要。
 
 ```bash
-MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR && /home/siihe/.dotnet/dotnet test Era.Core.Tests/'
+MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR && /home/siihe/.dotnet/dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s'
 ```
 
 > **Note**: ハング防止フラグについては `Skill(testing)` "Hang Detection" セクション参照。
@@ -67,7 +67,8 @@ MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR && /home/siihe/.
 
 ```bash
 # .githooks/pre-commit uses wsl_dotnet() wrapper function
-wsl_dotnet test Era.Core.Tests/Era.Core.Tests.csproj --nologo -v m
+wsl_dotnet build devkit.sln --nologo -v q
+wsl_dotnet test devkit.sln --nologo --no-build --blame-hang-timeout 10s -v m
 ```
 
 ## Resource Impact

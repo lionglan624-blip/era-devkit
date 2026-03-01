@@ -54,7 +54,7 @@
 - Binary PASS/FAIL judgment only
 
 ### Regression Tests:
-- Execute: `dotnet test Era.Core.Tests`
+- Execute: `dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s`
 - All tests must PASS before commit
 - Immutable (protected by pre-commit hook)
 - 1019 tests across 89 test files (as of Phase 15)
@@ -192,7 +192,7 @@ python tools/verify-logs.py --scope all
 
 ### Execution Target (Future State)
 
-**Command**: `wsl_dotnet test Era.Core.Tests` (via WSL2)
+**Command**: `wsl_dotnet test devkit.sln --no-build --blame-hang-timeout 10s` (via WSL2)
 
 **Scope**: All Era.Core tests (unit + integration)
 
@@ -222,8 +222,8 @@ python tools/verify-logs.py --scope all
 
 ```bash
 # .githooks/pre-commit (WSL2 経由)
-wsl_dotnet build src/Era.Core/Era.Core.csproj --nologo -v q
-wsl_dotnet test src/Era.Core.Tests/Era.Core.Tests.csproj --nologo -v m
+wsl_dotnet build devkit.sln --nologo -v q
+wsl_dotnet test devkit.sln --nologo --no-build --blame-hang-timeout 10s -v m
 # Exit code: 0 (PASS) → Allow commit, Non-zero (FAIL) → Block commit
 ```
 

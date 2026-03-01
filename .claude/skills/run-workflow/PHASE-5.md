@@ -32,7 +32,7 @@ dotnet run --project engine/uEmuera.Headless.csproj -- Game --unit {test-file}
 ### For engine
 
 ```bash
-dotnet test --filter "FullyQualifiedName~{TestClass}"
+dotnet test --blame-hang-timeout 10s --filter "FullyQualifiedName~{TestClass}"
 ```
 
 | Result | Action |
@@ -76,7 +76,7 @@ dotnet run --project engine/uEmuera.Headless.csproj -- Game --unit {test-file}
 ### For engine
 
 ```bash
-dotnet test --filter "FullyQualifiedName~{TestClass}"
+dotnet test --blame-hang-timeout 10s --filter "FullyQualifiedName~{TestClass}"
 ```
 
 | Result | Action |

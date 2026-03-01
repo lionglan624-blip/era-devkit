@@ -89,16 +89,16 @@ CustomComLoader ┘                                        (modification time)
 
 ```bash
 # 1. Generate schema
-dotnet run --project tools/YamlSchemaGen/
+dotnet run --project src/tools/dotnet/YamlSchemaGen/
 
 # 2. Validate YAML files
-dotnet run --project tools/YamlValidator/ -- \
-  --schema tools/YamlSchemaGen/dialogue-schema.json \
+dotnet run --project src/tools/dotnet/YamlValidator/ -- \
+  --schema src/tools/dotnet/YamlSchemaGen/dialogue-schema.json \
   --yaml Game/YAML/Kojo/COM_K1_0.yaml
 
 # 3. Batch validation (CI mode)
-dotnet run --project tools/YamlValidator/ -- \
-  --schema tools/YamlSchemaGen/dialogue-schema.json \
+dotnet run --project src/tools/dotnet/YamlValidator/ -- \
+  --schema src/tools/dotnet/YamlSchemaGen/dialogue-schema.json \
   --validate-all Game/YAML/Kojo/
 ```
 
@@ -114,7 +114,7 @@ dotnet run --project tools/YamlValidator/ -- \
 - **Non-breaking changes:** Backward compatible (optional properties, new variable types)
 - Version control: Schema file checked into git with descriptive commit messages
 
-**Reference:** [feature-590.md](../../agents/feature-590.md), [YamlSchemaGen README](../../../tools/YamlSchemaGen/README.md), [YamlValidator README](../../../tools/YamlValidator/README.md)
+**Reference:** [feature-590.md](../../agents/feature-590.md), [YamlSchemaGen README](../../../src/tools/dotnet/YamlSchemaGen/README.md), [YamlValidator README](../../../src/tools/dotnet/YamlValidator/README.md)
 
 ## Runtime Architecture
 
@@ -197,15 +197,15 @@ The development workflow integrates schema generation, validation, and rapid ite
 
 **Workflow:**
 
-1. Modify `tools/YamlSchemaGen/Program.cs` (`GenerateDialogueSchema()` method)
+1. Modify `src/tools/dotnet/YamlSchemaGen/Program.cs` (`GenerateDialogueSchema()` method)
 2. Add unit tests in `tools/YamlSchemaGen.Tests/SchemaValidationTests.cs`
-3. Regenerate schema: `dotnet run --project tools/YamlSchemaGen/`
-4. Verify changes: `git diff tools/YamlSchemaGen/dialogue-schema.json`
+3. Regenerate schema: `dotnet run --project src/tools/dotnet/YamlSchemaGen/`
+4. Verify changes: `git diff src/tools/dotnet/YamlSchemaGen/dialogue-schema.json`
 5. Test validation: Run YamlValidator against existing files
 
-**Output:** `tools/YamlSchemaGen/dialogue-schema.json` (JSON Schema Draft-07)
+**Output:** `src/tools/dotnet/YamlSchemaGen/dialogue-schema.json` (JSON Schema Draft-07)
 
-**Reference:** [YamlSchemaGen README](../../../tools/YamlSchemaGen/README.md)
+**Reference:** [YamlSchemaGen README](../../../src/tools/dotnet/YamlSchemaGen/README.md)
 
 ### Validation (YamlValidator, com-validator)
 
@@ -226,18 +226,18 @@ The development workflow integrates schema generation, validation, and rapid ite
 
 ```bash
 # Pre-commit hook
-dotnet run --project tools/YamlSchemaGen/ && \
-  dotnet run --project tools/YamlValidator/ -- \
-    --schema tools/YamlSchemaGen/dialogue-schema.json \
+dotnet run --project src/tools/dotnet/YamlSchemaGen/ && \
+  dotnet run --project src/tools/dotnet/YamlValidator/ -- \
+    --schema src/tools/dotnet/YamlSchemaGen/dialogue-schema.json \
     --yaml "$staged_file"
 
 # GitHub Actions
-dotnet run --project tools/YamlValidator/ -- \
-  --schema tools/YamlSchemaGen/dialogue-schema.json \
+dotnet run --project src/tools/dotnet/YamlValidator/ -- \
+  --schema src/tools/dotnet/YamlSchemaGen/dialogue-schema.json \
   --validate-all Game/YAML/Kojo/
 ```
 
-**Reference:** [YamlValidator README](../../../tools/YamlValidator/README.md), [src/tools/go/com-validator/](../../../src/tools/go/com-validator/)
+**Reference:** [YamlValidator README](../../../src/tools/dotnet/YamlValidator/README.md), [src/tools/go/com-validator/](../../../src/tools/go/com-validator/)
 
 ### Hot Reload for Rapid Iteration
 
@@ -279,8 +279,8 @@ dotnet run --project tools/YamlValidator/ -- \
 
 ### Tool Documentation
 
-- [YamlSchemaGen README](../../../tools/YamlSchemaGen/README.md) - Schema generation tool
-- [YamlValidator README](../../../tools/YamlValidator/README.md) - Schema validation CLI
+- [YamlSchemaGen README](../../../src/tools/dotnet/YamlSchemaGen/README.md) - Schema generation tool
+- [YamlValidator README](../../../src/tools/dotnet/YamlValidator/README.md) - Schema validation CLI
 - [com-validator](../../../src/tools/go/com-validator/) - Community YAML validator
 
 ## Version History

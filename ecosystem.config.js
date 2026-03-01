@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "lsp-daemon",
       script: "src/tools/node/lsp-daemon-launcher.cjs",
-      cwd: process.env.DEVKIT_ROOT || "C:\\Era\\erakoumakanNTR",
+      cwd: process.env.DEVKIT_ROOT || "C:\\Era\\devkit",
       autorestart: true,
       max_restarts: 3,
       restart_delay: 5000,

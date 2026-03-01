@@ -10,7 +10,7 @@ This document provides a comprehensive architectural overview of the COM YAML sy
 - **Runtime Architecture** - Engine integration and runtime execution flow
 - **Development Workflow** - Tools for schema generation, validation, and rapid iteration
 
-For detailed modding capabilities, see [COM YAML Modding Guide](../modding/COM-YAML-Guide.md). For data format migration decisions, see [CSV-YAML Mapping](../data-formats/CSV-YAML-Mapping.md).
+For detailed modding capabilities, see [COM YAML Modding Guide](../modding/com-yaml-guide.md). For data format migration decisions, see [CSV-YAML Mapping](../data-formats/csv-yaml-mapping.md).
 
 ## COM YAML Infrastructure
 
@@ -180,7 +180,7 @@ YAML File ──> YamlComLoader ──> ComDefinitionCache ──> ComDefinition
 File Change ──> FileSystemWatcher ──> Debounce Timer ──> InvalidateCache ──> Reload
 ```
 
-**Reference:** [feature-565.md](../../agents/feature-565.md) (if exists), [COM YAML Guide](../modding/COM-YAML-Guide.md)
+**Reference:** [feature-565.md](../../agents/feature-565.md) (if exists), [COM YAML Guide](../modding/com-yaml-guide.md)
 
 ## Development Workflow
 
@@ -267,12 +267,12 @@ dotnet run --project src/tools/dotnet/YamlValidator/ -- \
 
 ### Modding and Content Creation
 
-- [COM YAML Modding Guide](../modding/COM-YAML-Guide.md) - Tier 1+2 moddability capabilities
-- [CSV-YAML Mapping](../data-formats/CSV-YAML-Mapping.md) - Migration decisions and Tier 3 rationale
+- [COM YAML Modding Guide](../modding/com-yaml-guide.md) - Tier 1+2 moddability capabilities
+- [CSV-YAML Mapping](../data-formats/csv-yaml-mapping.md) - Migration decisions and Tier 3 rationale
 
 ### Feature Documentation
 
-- [Feature Dependencies](Feature-Dependencies.md) - F563-F593 dependency graph
+- [Feature Dependencies](feature-dependencies.md) - F563-F593 dependency graph
 - [feature-580.md](../../agents/feature-580.md) - COM Loader Performance Optimization
 - [feature-581.md](../../agents/feature-581.md) - ComHotReload CI Integration
 - [feature-590.md](../../agents/feature-590.md) - YAML Schema Validation Tools

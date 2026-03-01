@@ -190,9 +190,9 @@ This ensures documentation accurately reflects the completed implementation stat
 
 ## Related Documentation
 
-- [System Overview](System-Overview.md) - High-level system architecture
-- [CSV-YAML Mapping](../data-formats/CSV-YAML-Mapping.md) - Data format migration decisions
-- [COM YAML Guide](../modding/COM-YAML-Guide.md) - Modding reference for Tier 1+2
+- [System Overview](system-overview.md) - High-level system architecture
+- [CSV-YAML Mapping](../data-formats/csv-yaml-mapping.md) - Data format migration decisions
+- [COM YAML Guide](../modding/com-yaml-guide.md) - Modding reference for Tier 1+2
 
 ---
 

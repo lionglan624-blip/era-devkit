@@ -509,7 +509,7 @@ This enables real-time validation in editors that support the YAML Language Serv
 
 - **Schema Validation**: [src/tools/dotnet/YamlValidator/README.md](../../../src/tools/dotnet/YamlValidator/README.md)
 - **Schema Generation**: [src/tools/dotnet/YamlSchemaGen/README.md](../../../src/tools/dotnet/YamlSchemaGen/README.md)
-- **Data Format Documentation**: [docs/game/data-formats/CSV-YAML-Mapping.md](../data-formats/CSV-YAML-Mapping.md)
+- **Data Format Documentation**: [docs/game/data-formats/csv-yaml-mapping.md](../data-formats/csv-yaml-mapping.md)
 
 ---
 
@@ -525,8 +525,8 @@ This enables real-time validation in editors that support the YAML Language Serv
 **Rationale**: Per the F562/F563 architecture decision, these modifications fall into the ERB domain and require engine-level development. The YAML system provides Tier 1 and Tier 2 moddability to cover the vast majority of content creation use cases without requiring C# knowledge.
 
 For information on why certain features are Tier 3, see:
-- [CSV-YAML Mapping Documentation](../data-formats/CSV-YAML-Mapping.md#tier-3-rationale)
-- [System Architecture Overview](../architecture/System-Overview.md)
+- [CSV-YAML Mapping Documentation](../data-formats/csv-yaml-mapping.md#tier-3-rationale)
+- [System Architecture Overview](../architecture/system-overview.md)
 
 ---
 
@@ -1083,8 +1083,8 @@ Fix: Use valid parameter names (pleasure, pain, fear, etc.)
 - **Validation Tools**:
   - [YamlValidator README](../../../src/tools/dotnet/YamlValidator/README.md)
   - [YamlSchemaGen README](../../../src/tools/dotnet/YamlSchemaGen/README.md)
-- **Data Format Documentation**: [CSV-YAML Mapping](../data-formats/CSV-YAML-Mapping.md)
-- **System Architecture**: [System Overview](../architecture/System-Overview.md)
+- **Data Format Documentation**: [CSV-YAML Mapping](../data-formats/csv-yaml-mapping.md)
+- **System Architecture**: [System Overview](../architecture/system-overview.md)
 
 ---
 

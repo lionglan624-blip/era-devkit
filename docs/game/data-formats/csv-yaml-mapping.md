@@ -111,7 +111,7 @@ YAML schema validation is provided by F590 (YAML Schema Validation Tools):
 For detailed usage of validation tools, see:
 - [YamlSchemaGen README](../../../tools/YamlSchemaGen/README.md)
 - [YamlValidator README](../../../tools/YamlValidator/README.md)
-- [COM YAML Modding Guide](../modding/COM-YAML-Guide.md)
+- [COM YAML Modding Guide](../modding/com-yaml-guide.md)
 
 ## Migration History
 
@@ -255,9 +255,9 @@ This boundary enables "ERA-style community participation" for Tier 1+2 content (
 
 For complete feature dependency graph and system architecture, see:
 
-- [Feature Dependencies](../architecture/Feature-Dependencies.md) - Visual dependency graph for F563-F593 migration chain
-- [System Overview](../architecture/System-Overview.md) - COM YAML infrastructure and development workflow
-- [COM YAML Modding Guide](../modding/COM-YAML-Guide.md) - Tier 1+2 moddability examples and validation workflow
+- [Feature Dependencies](../architecture/feature-dependencies.md) - Visual dependency graph for F563-F593 migration chain
+- [System Overview](../architecture/system-overview.md) - COM YAML infrastructure and development workflow
+- [COM YAML Modding Guide](../modding/com-yaml-guide.md) - Tier 1+2 moddability examples and validation workflow
 
 For migration implementation details, see individual feature files:
 

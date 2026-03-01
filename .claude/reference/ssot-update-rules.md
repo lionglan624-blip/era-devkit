@@ -10,10 +10,10 @@
 
 | Change Target | Required SSOT Update | Section |
 |---------------|---------------------|---------|
-| `src/Era.Core/Types/*.cs` (new) | `.claude/skills/engine-dev/SKILL.md` | Strongly Typed Variable Indices |
-| `src/Era.Core/Domain/**/*.cs` (new) | `.claude/skills/engine-dev/SKILL.md` | Phase 13 DDD Pattern |
-| `src/Era.Core/Interfaces/IVariableStore.cs` (new methods) | `.claude/skills/engine-dev/SKILL.md` | Variable Store Interface |
-| `src/Era.Core/Interfaces/*.cs` (new interface) | `.claude/skills/engine-dev/SKILL.md` | Core Interfaces or Phase N section |
+| `src/Era.Core/Types/*.cs` (new) | `.claude/skills/engine-dev/PATTERNS.md` | Strongly Typed Variable Indices |
+| `src/Era.Core/Domain/**/*.cs` (new) | `.claude/skills/engine-dev/PATTERNS.md` | Phase 13 DDD Pattern |
+| `src/Era.Core/Interfaces/IVariableStore.cs` (new methods) | `.claude/skills/engine-dev/PATTERNS.md` | Variable Store Interface |
+| `src/Era.Core/Interfaces/*.cs` (new interface) | `.claude/skills/engine-dev/INTERFACES.md` | Core Interfaces |
 | `engine/` ERB command | `.claude/skills/erb-syntax/SKILL.md` | Commands section |
 | `engine/` system function | `.claude/skills/engine-dev/SKILL.md` | Extension Points |
 | `Game/ERB/` new pattern | `.claude/skills/erb-syntax/SKILL.md` | Relevant pattern section |
@@ -29,14 +29,14 @@
 
 ### For Index Types (src/Era.Core/Types)
 
-Add to SKILL.md "Strongly Typed Variable Indices" section:
+Add to PATTERNS.md "Strongly Typed Variable Indices" section:
 ```csharp
 {TypeName} {varName} = {TypeName}.{WellKnownValue};  // {Array} array index (2D) - F{ID}
 ```
 
 ### For IVariableStore Methods
 
-Add to SKILL.md "Variable Store Interface" section:
+Add to PATTERNS.md "Variable Store Interface" section:
 ```csharp
 // F{ID}: {Description}
 Result<int> {varName} = store.Get{Array}(character, {IndexType}.{Value});
@@ -57,8 +57,8 @@ Add to CLAUDE.md table:
 
 Before finalizing a feature, verify:
 
-1. **New types created?** → Check engine-dev SKILL.md updated
-2. **New interface methods?** → Check relevant SKILL.md updated
+1. **New types created?** → Check engine-dev PATTERNS.md updated
+2. **New interface methods?** → Check engine-dev INTERFACES.md or PATTERNS.md updated
 3. **New slash command?** → Check CLAUDE.md table updated
 4. **New agent?** → Check `.claude/reference/agent-registry.md` Agent Table updated
 

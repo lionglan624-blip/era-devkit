@@ -75,9 +75,9 @@ Check `.claude/reference/ssot-update-rules.md`:
 
 | Change Type | Check |
 |-------------|-------|
-| New `src/Era.Core/Types/*.cs` | engine-dev SKILL updated? |
-| New `IVariableStore` methods | engine-dev SKILL updated? |
-| New interface | engine-dev SKILL updated? |
+| New `src/Era.Core/Types/*.cs` | engine-dev PATTERNS.md updated? |
+| New `IVariableStore` methods | engine-dev PATTERNS.md updated? |
+| New interface | engine-dev INTERFACES.md updated? |
 | New slash command | CLAUDE.md updated? |
 | New agent | CLAUDE.md updated? |
 

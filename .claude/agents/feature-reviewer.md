@@ -169,9 +169,9 @@ Documentation consistency check. Verify changed files have corresponding doc upd
    - Determine if it should be documented in related skill
    - Should be documented & not documented → NEEDS_REVISION
 5. **SSOT Update Rule Check** (see `.claude/reference/ssot-update-rules.md`):
-   - New `src/Era.Core/Types/*.cs` → engine-dev SKILL.md update required
-   - New `IVariableStore` method → engine-dev SKILL.md update required
-   - New interface → engine-dev SKILL.md update required
+   - New `src/Era.Core/Types/*.cs` → engine-dev PATTERNS.md update required
+   - New `IVariableStore` method → engine-dev PATTERNS.md update required
+   - New interface → engine-dev INTERFACES.md update required
    - New slash command → CLAUDE.md table update required
    - New agent → `.claude/reference/agent-registry.md` Agent Table update required
    - Not updated → NEEDS_REVISION
@@ -188,10 +188,10 @@ Check: testing/SKILL.md in changed files?
 **Example 2 (SSOT New Addition Check)**:
 ```
 Changed: src/Era.Core/Types/SourceIndex.cs (NEW)
-SSOT rule: New src/Era.Core/Types/*.cs requires engine-dev SKILL.md update
-Check: engine-dev/SKILL.md updated with SourceIndex?
+SSOT rule: New src/Era.Core/Types/*.cs requires engine-dev PATTERNS.md update
+Check: engine-dev/PATTERNS.md updated with SourceIndex?
   - Yes → OK
-  - No → NEEDS_REVISION: "New type SourceIndex.cs requires engine-dev SKILL.md update"
+  - No → NEEDS_REVISION: "New type SourceIndex.cs requires engine-dev PATTERNS.md update"
 ```
 
 ## Output (MANDATORY FORMAT)

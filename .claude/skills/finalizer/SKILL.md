@@ -114,6 +114,13 @@ rm -f _out/tmp/fl-{ID}-*.md
 
 **Note**: `{ID}` must be expanded to the actual feature ID at runtime. These are agent instructions — the implementing agent substitutes the real feature number.
 
+```bash
+# Remove feature-scoped PM intermediate files (gitignored)
+rm -f pm/status/{ID}_*.txt pm/status/F{ID}-*.txt
+rm -f pm/.fl-pending/f{ID}-*.md pm/.fl-pending/f{ID}-*.json
+rm -f pm/.fl-pending/feature-{ID}-*.md pm/.fl-pending/feature-{ID}-*.txt
+```
+
 **Error handling**: Non-blocking. If cleanup fails, log a warning but continue to next steps. Cleanup failure must NOT prevent dependent feature unblocking or commit.
 
 **Report**: Include cleanup result (success/warning/skipped) in the Final Report.

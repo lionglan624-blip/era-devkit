@@ -252,11 +252,14 @@ See `.claude/reference/email-notification.md` (user-requested task completion em
 
 | Target | Location | Lifecycle |
 |--------|----------|-----------|
-| Temporary files | `_out/tmp/` (Git Bash: `/dev/null`, NOT `NUL`) | 7-day rotation (pre-commit) |
+| Temporary files | `_out/tmp/` | 7-day rotation (pre-commit) |
 | Test results | `_out/test-results/` (use `--results-directory`) | 7-day rotation (pre-commit) |
-| Debug logs | `_out/logs/debug/` (gitignored) | manual |
-| CI logs | `_out/logs/ci/` (pre-commit, 30-day rotation) | 30-day rotation (pre-commit) |
-| AC logs | `_out/logs/prod/ac/` | per-feature (finalizer deletes on [DONE]) |
+| Debug logs | `_out/logs/debug/` | manual |
+| CI logs | `_out/logs/ci/` | 30-day rotation (pre-commit) |
+| AC logs | `_out/logs/prod/ac/` | per-feature (finalizer on [DONE]) |
+| Kojo progress | `pm/status/` (gitignored) | finalizer on [DONE] + 30-day rotation |
+| FL intermediates | `pm/.fl-pending/` (gitignored) | finalizer on [DONE] + 14-day rotation |
+| eraTW cache | `pm/cache/` (gitignored) | 90-day rotation (pre-commit) |
 
 ## Reference Distinction
 

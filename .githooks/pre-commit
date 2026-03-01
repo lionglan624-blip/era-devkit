@@ -102,6 +102,11 @@ find _out/tmp -type f -mtime +7 -delete 2>/dev/null || true
 # Test results rotation - delete files in _out/test-results older than 7 days
 find _out/test-results -type f -mtime +7 -delete 2>/dev/null || true
 
+# PM intermediate file rotation (gitignored, local only)
+find pm/status -type f -mtime +30 -delete 2>/dev/null || true
+find pm/.fl-pending -type f -mtime +14 -delete 2>/dev/null || true
+find pm/cache -type f ! -name '.gitkeep' ! -name 'README.md' -mtime +90 -delete 2>/dev/null || true
+
 # Check dotnet test exit code first (test failures take precedence)
 if [ $TEST_EXIT_CODE -ne 0 ]; then
   exit $TEST_EXIT_CODE

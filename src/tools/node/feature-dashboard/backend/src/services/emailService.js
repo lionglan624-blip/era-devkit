@@ -262,4 +262,22 @@ export class EmailService {
       this.logger.error(`Email failed: ${err.message}`);
     }
   }
+
+  async sendHtml(subject, html) {
+    if (!this.enabled || !this.transporter) {
+      this.logger.warn(`sendHtml skipped: enabled=${this.enabled}, hasTransporter=${!!this.transporter}`);
+      return;
+    }
+    try {
+      await this.transporter.sendMail({
+        from: this.user,
+        to: this.user,
+        subject,
+        html,
+      });
+      this.logger.info(`HTML email sent: ${subject}`);
+    } catch (err) {
+      this.logger.error(`HTML email failed: ${err.message}`);
+    }
+  }
 }

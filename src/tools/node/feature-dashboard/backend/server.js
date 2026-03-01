@@ -12,7 +12,9 @@ import { FileWatcher } from './src/services/fileWatcher.js';
 import { LogStreamer } from './src/websocket/logStreamer.js';
 import { RateLimitService } from './src/services/ratelimitService.js';
 import { StatusMailService } from './src/services/statusMailService.js';
+import { InsightsService } from './src/services/insightsService.js';
 import { CleanupService } from './src/services/cleanupService.js';
+import { EmailService } from './src/services/emailService.js';
 import { getCcsProfiles } from './src/services/ccsUtils.js';
 import { createFeaturesRouter } from './src/routes/features.js';
 import { createExecutionRouter } from './src/routes/execution.js';
@@ -74,6 +76,12 @@ const rateLimitService = new RateLimitService(PROJECT_ROOT, {
       timestamp: new Date().toISOString(),
     });
   },
+});
+
+const emailService = claudeService.emailService || new EmailService();
+const insightsService = new InsightsService(PROJECT_ROOT, {
+  getActiveProfile: () => claudeService.getCcsProfile(),
+  emailService,
 });
 
 // Wire fileWatcher status changes to claudeService for chain execution (fc→fl→run)
@@ -251,6 +259,26 @@ app.post('/api/ratelimit/:profile', (req, res) => {
   res.json({ ok: true, profile, data, cached });
 });
 
+// Insights: trigger /insights capture (fire-and-forget, client can poll status)
+app.post('/api/insights/capture', async (req, res) => {
+  if (insightsService.isRunning()) {
+    return res.status(409).json({ error: 'Insights capture already running' });
+  }
+  const sendEmail = req.body?.sendEmail !== false; // default true
+  insightsService.capture({ sendEmail }).catch((err) => {
+    serverLog.error(`[Insights] Unhandled: ${err.message}`);
+  });
+  res.json({ ok: true, message: 'Insights capture started', sendEmail });
+});
+
+// Insights: check running status and last result
+app.get('/api/insights/status', (req, res) => {
+  res.json({
+    running: insightsService.isRunning(),
+    lastResult: insightsService.getLastResult(),
+  });
+});
+
 // HTTP + WebSocket server
 const server = http.createServer(app);
 logStreamer.attach(server);
@@ -310,6 +338,8 @@ setTimeout(() => server.listen(PORT, () => {
   setInterval(() => rateLimitService.capture().catch(() => {}), RATE_LIMIT_POLL_INTERVAL_MS);
   statusMailService.start();
   cleanupService.start();
+  // Weekly insights report (email)
+  insightsService.startScheduler();
 }), startDelay);
 
 // Error handling

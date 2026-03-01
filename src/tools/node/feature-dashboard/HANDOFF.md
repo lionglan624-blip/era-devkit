@@ -4,6 +4,10 @@ A browser-based dashboard for managing Claude Code feature workflows with automa
 
 > **For Claude (orchestrator)**: This file is both documentation and a change checklist.
 > When modifying dashboard code, follow the **Orchestrator Workflow** below.
+>
+> **Source of truth**: `C:\Era\devkit\src\tools\node\feature-dashboard\` (inside devkit repo).
+> `C:\Era\dashboard\` is a **separate git repo** that tracks the same code independently — do NOT edit files there.
+> PM2 runs from the devkit path. All file creation and edits MUST target `C:\Era\devkit\src\tools\node\feature-dashboard\`.
 
 ### Orchestrator Workflow
 
@@ -14,6 +18,14 @@ A browser-based dashboard for managing Claude Code feature workflows with automa
 5. **Update coverage & mutation scores**: Update figures in the Reference section
 6. **Update HANDOFF.md**: Update affected sections (API Endpoints, WebSocket Events, File Structure, Design Decisions, etc.)
 7. **Commit**
+
+> **WARNING: Before `pm2 restart` or `dr`**: Check for running Claude executions via
+> `GET /api/health` → `claude.runningCount`. Restarting kills all child PTY processes
+> (active `/run`, `/fl`, `/fc` sessions). If executions are running, either wait for
+> completion or warn the user before restarting.
+>
+> **NEVER use `pm2 delete all` or restart the proxy.** The proxy carries the active Claude Code
+> session — killing it severs the conversation with no recovery. Use `pm2 restart dashboard-backend` only.
 
 ### Report Format
 
@@ -60,6 +72,7 @@ dr button                                   # pm2 restart all
 | FL incomplete retry | 3x (5s delay) | Retry FL when exit 0 + `subtype=success` but feature status didn't advance (still `[PROPOSED]`, not `[REVIEWED]`). Detects context/max_turns exhaustion mid-work where CLI reports success but FL didn't finish. Uses `fileWatcher.statusCache` for status check. Shares `retryCount` with FL auto-retry. Skips when status is `[BLOCKED]` (legitimate). WS event: `chain-retry` with `retryType: 'incomplete'`. On exhaustion: falls through to email notification |
 | Stale waiter → Auto-DR | 5min + 10min | Chain waiters older than `CHAIN_WAITER_TIMEOUT_MS` (5min) are cleaned by `_cleanupOldExecutions()` (runs every 10min). On cleanup, `onExecutionComplete()` is called to trigger deferred Auto-DR re-check |
 | Tmp cleanup interval | 6h | Purge old dashboard debug/daily logs (debug-*.log: 3 days, daily logs: 7 days) |
+| Insights capture | ~2min | `/insights` via node-pty ConPTY. Completion: dual detection (report.html mtime change + PTY `"report is ready"` pattern). Emails HTML report via `emailService.sendHtml()`. Scheduler: 7-day `setInterval`. API: `POST /api/insights/capture`, `GET /api/insights/status` |
 
 Full config: `backend/src/config.js`
 
@@ -82,6 +95,8 @@ Full config: `backend/src/config.js`
 | `/api/features` | GET | List features |
 | `/api/features/:id` | GET | Feature detail |
 | `/api/health` | GET | Health check |
+| `/api/insights/capture` | POST | Trigger `/insights` capture (fire-and-forget). Body: `{ sendEmail: bool }` (default true). Returns 409 if already running |
+| `/api/insights/status` | GET | Check capture status: `{ running, lastResult }` |
 
 ### WebSocket Events
 
@@ -206,6 +221,7 @@ backend/
 │   │   ├── statusMailService.js # IMAP IDLE status mail (auto-reply to empty emails)
 │   │   ├── emailService.js      # Email notification (handoff/completion)
 │   │   ├── cleanupService.js     # Tmp file cleanup (debug logs, daily logs, artifacts)
+│   │   ├── insightsService.js   # /insights PTY capture + email report (weekly scheduler)
 │   │   ├── usageService.js      # CCS usage tracking (not exposed via API)
 │   │   ├── inputPatterns.js     # Input wait patterns
 │   │   ├── phaseUtils.js        # Phase detection utilities
@@ -295,6 +311,14 @@ Linux/macOS: Limited support. Process termination (`SIGTERM`) works, but Termina
 pm2 start ecosystem.config.cjs    # proxy(8888) + backend(3001) + frontend(5173)
 pm2 save                          # Persist
 ```
+
+> **Caution**: `pm2 restart` kills all child processes including active Claude sessions.
+> Always verify no executions are running: `curl --noproxy localhost http://localhost:3001/api/health | jq '.claude.runningCount'`
+>
+> **CRITICAL: NEVER `pm2 delete` or restart the proxy process.** The proxy (port 8888) handles the
+> active Claude Code session's API connection. Killing it severs the current conversation immediately
+> with no recovery. Use `pm2 restart dashboard-backend` (NOT `pm2 restart all` or `pm2 delete all`)
+> when only the backend needs restarting. If a full restart is truly needed, warn the user first.
 
 **CCS Profile**: Set via `CLAUDE_CONFIG_DIR` env var. Points to `~/.ccs/instances/{profile}/`.
 

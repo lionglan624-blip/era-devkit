@@ -59,7 +59,7 @@ Audit test quality for the specified target. Collects coverage, mutation scores,
 For each C# test project:
 
 ```bash
-MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR && /home/siihe/.dotnet/dotnet test "{project.csproj}" --no-build --results-directory "_out/tmp/test-audit" /p:CollectCoverage=true /p:CoverageOutputFormat=cobertura /p:CoverageOutput="_out/tmp/test-audit/{project-name}.cobertura.xml"'
+MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/devkit && /home/siihe/.dotnet/dotnet test "{project.csproj}" --no-build --results-directory "_out/tmp/test-audit" /p:CollectCoverage=true /p:CoverageOutputFormat=cobertura /p:CoverageOutput="_out/tmp/test-audit/{project-name}.cobertura.xml"'
 ```
 
 **Pre-step**: Run `dotnet build` via WSL once for all targets before collecting coverage.

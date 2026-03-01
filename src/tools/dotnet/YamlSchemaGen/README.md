@@ -28,7 +28,7 @@ This creates `tools/YamlSchemaGen/dialogue-schema.json`.
 ### CLI Output
 
 ```
-Generated schema: C:\Era\erakoumakanNTR\tools\YamlSchemaGen\dialogue-schema.json
+Generated schema: C:\Era\devkit\src\tools\dotnet\YamlSchemaGen\dialogue-schema.json
 ```
 
 Exit codes:

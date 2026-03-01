@@ -45,6 +45,7 @@ git config core.hooksPath .githooks
 
 ```
 src/
+  .serena/            # Serena LSP project config
   scripts/            # Dev convenience scripts (fd-*.cmd)
   tools/
     dotnet/           # C# tools (ErbParser, KojoComparer, etc. + .Tests each)
@@ -54,22 +55,26 @@ src/
     kojo-mapper/      # Kojo mapper (standalone Python)
     schemas/          # JSON Schemas for validation
 test/
+  _archived/          # Archived regression scenarios
   ac/                 # Acceptance criteria
   configs/            # flow-test-detection.json etc.
   fixtures/           # yaml/, json/
   scripts/            # Test runner scripts
 docs/
   architecture/       # systems/, migration/, infrastructure/, analysis/
-  game/               # Game docs
-  reference/          # Generic references
+  game/               # Game docs (architecture/, data-formats/, modding/)
+  reference/          # Domain references (ERB, kojo, NTR, engine)
   tools/              # Tool docs (lsp-daemon.md)
-  strategy/           # Test strategy
+  strategy/           # Test strategy, naming, design
 pm/
   features/           # feature-{ID}.md (275+ files)
-  reference/          # feature-template, ac-matcher-mapping
+  reference/          # Workflow references (feature-template, ac-matcher, designs)
   audit/              # Audit reports
-  templates/          # Content creation templates
+  templates/          # Content creation templates (ERB kojo originals)
   provenance/         # Original source attribution
+  cache/              # (gitignored) eraTW COM extraction cache
+  status/             # (gitignored) Kojo progress tracking
+  .fl-pending/        # (gitignored) FL review intermediate state
   index-features.md
   content-roadmap.md
 _out/                 # Generated output (gitignored)
@@ -252,6 +257,15 @@ See `.claude/reference/email-notification.md` (user-requested task completion em
 | Debug logs | `_out/logs/debug/` (gitignored) | manual |
 | CI logs | `_out/logs/ci/` (pre-commit, 30-day rotation) | 30-day rotation (pre-commit) |
 | AC logs | `_out/logs/prod/ac/` | per-feature (finalizer deletes on [DONE]) |
+
+## Reference Distinction
+
+| Location | Content | Examples |
+|----------|---------|----------|
+| `docs/reference/` | **Domain knowledge** — game systems, ERB syntax, engine behavior | ntr-system-map, erb-reference, kojo-reference |
+| `pm/reference/` | **Workflow artifacts** — templates, mappings, design docs for features | feature-template, ac-matcher-mapping, design-template |
+
+Rule: "Would this exist without the PM system?" → Yes: `docs/reference/`. No: `pm/reference/`.
 
 ## LSP Daemon (C# Semantic Operations)
 

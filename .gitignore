@@ -66,5 +66,8 @@ src/tools/kojo-mapper/kojo-dashboard.html
 src/tools/kojo-mapper/com_file_map.json
 src/tools/kojo-mapper/test_branch_map.json
 
+# Dashboard build output
+src/tools/node/feature-dashboard/frontend/dist/
+
 # Stryker
 StrykerOutput/

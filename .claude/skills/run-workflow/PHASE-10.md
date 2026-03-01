@@ -178,7 +178,7 @@ EOF
 
 1. コミット完了後、CodeRabbit CLIを実行：
    ```bash
-   MSYS_NO_PATHCONV=1 wsl -- bash -c "cd /mnt/c/Era/erakoumakanNTR && \
+   MSYS_NO_PATHCONV=1 wsl -- bash -c "cd /mnt/c/Era/devkit && \
      /home/siihe/.local/bin/coderabbit review --plain --type committed --base-commit HEAD~1 2>&1"
    ```
 

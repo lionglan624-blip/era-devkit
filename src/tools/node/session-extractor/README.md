@@ -14,7 +14,7 @@ node tools/session-extractor/prompt-extractor.cjs
 
 ### Input
 
-Session JSONL files at `C:\Users\siihe\.claude\projects\C--Era-erakoumakanNTR\*.jsonl`
+Session JSONL files at `C:\Users\siihe\.claude\projects\C--Era-devkit\*.jsonl`
 
 ### Output
 

@@ -1,4 +1,4 @@
-module github.com/erakoumakanNTR/com-validator
+module github.com/era-devkit/com-validator
 
 go 1.23
 

@@ -10,8 +10,8 @@
  *   node index.js <session-dir> [base-path-prefix]
  *
  * Example:
- *   node index.js C:\Users\siihe\.ccs\shared\projects\C--Era-erakoumakanNTR
- *   node index.js /path/to/sessions "C:/Era/erakoumakanNTR/"
+ *   node index.js C:\Users\siihe\.ccs\shared\projects\C--Era-devkit
+ *   node index.js /path/to/sessions "C:/Era/devkit/"
  *
  * Output:
  *   .tmp/recovery/<relative-path>  (reconstructed files)
@@ -161,7 +161,7 @@ async function main() {
     console.error('');
     console.error('Example:');
     console.error('  node index.js C:\\Users\\user\\.ccs\\shared\\projects\\repo');
-    console.error('  node index.js /path/to/sessions "C:/Era/erakoumakanNTR/"');
+    console.error('  node index.js /path/to/sessions "C:/Era/devkit/"');
     process.exit(1);
   }
 

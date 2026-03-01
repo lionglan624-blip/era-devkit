@@ -24,9 +24,9 @@ const path = require('path');
 const readline = require('readline');
 
 // Configuration
-const SESSION_DIR = 'C:\\Users\\siihe\\.claude\\projects\\C--Era-erakoumakanNTR';
-const OUTPUT_FILE = 'C:\\Era\\erakoumakanNTR\\.tmp\\user-prompts-dashboard-v2.md';
-const OUTPUT_FILE_DESIGN_ONLY = 'C:\\Era\\erakoumakanNTR\\.tmp\\user-prompts-design-only.md';
+const SESSION_DIR = 'C:\\Users\\siihe\\.ccs\\shared\\context-groups\\default\\projects\\C--Era-devkit';
+const OUTPUT_FILE = 'C:\\Era\\devkit\\_out\\tmp\\user-prompts-dashboard-v2.md';
+const OUTPUT_FILE_DESIGN_ONLY = 'C:\\Era\\devkit\\_out\\tmp\\user-prompts-design-only.md';
 const RELEVANCE_KEYWORDS = ['dashboard', 'handoff', 'HANDOFF', 'feature-dashboard'];
 
 // Default date range (pre-incident period)

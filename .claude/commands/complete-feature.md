@@ -93,7 +93,7 @@ Results:
 
 ## 6. Run Regression Tests
 
-Execute: `MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR && /home/siihe/.dotnet/dotnet test devkit.sln --nologo --no-build --blame-hang-timeout 10s'`
+Execute: `MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/devkit && /home/siihe/.dotnet/dotnet test devkit.sln --nologo --no-build --blame-hang-timeout 10s'`
 - If tests fail, report and STOP
 
 ## 7. Cleanup Test Logs

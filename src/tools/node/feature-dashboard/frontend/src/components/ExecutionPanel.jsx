@@ -18,7 +18,7 @@ export default function ExecutionPanel({
 
   const handleCopyResumeCommand = (sessionId) => {
     if (!sessionId) return;
-    const rootPath = projectRoot || 'C:\\Era\\erakoumakanNTR'; // Fallback for initial load
+    const rootPath = projectRoot || 'C:\\Era\\devkit'; // Fallback for initial load
     const command = `cd "${rootPath}" && ccs -r ${sessionId}`;
     navigator.clipboard
       .writeText(command)
@@ -163,7 +163,7 @@ export default function ExecutionPanel({
             <button
               className="btn-copy-id"
               onClick={() => handleCopyResumeCommand(activeExec.sessionId)}
-              title={`Copy: cd "${projectRoot || 'C:\\Era\\erakoumakanNTR'}" && ccs -r ${activeExec.sessionId}`}
+              title={`Copy: cd "${projectRoot || 'C:\\Era\\devkit'}" && ccs -r ${activeExec.sessionId}`}
             >
               {copyFeedback || 'Copy ID'}
             </button>

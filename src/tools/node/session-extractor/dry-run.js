@@ -25,7 +25,7 @@
  *   node tools/session-extractor/dry-run.js <session-dir> [base-path-prefix]
  *
  * Example:
- *   node tools/session-extractor/dry-run.js C:\Users\siihe\.ccs\shared\projects\C--Era-erakoumakanNTR
+ *   node tools/session-extractor/dry-run.js C:\Users\siihe\.ccs\shared\projects\C--Era-devkit
  */
 
 import fs from 'fs';

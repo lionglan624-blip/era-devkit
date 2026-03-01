@@ -15,7 +15,7 @@ description: Testing reference for ERA games. Use when running tests, writing te
 
 > **Execution**: All `dotnet` commands execute via WSL2. See [wsl-dotnet-setup.md](../../../docs/reference/wsl-dotnet-setup.md).
 >
-> **Agent pattern**: `MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR && /home/siihe/.dotnet/dotnet <command>'`
+> **Agent pattern**: `MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/devkit && /home/siihe/.dotnet/dotnet <command>'`
 >
 > **Hang prevention**: All `dotnet test` invocations MUST include `--blame-hang-timeout 10s`. This kills any single test hanging beyond 10 seconds.
 
@@ -31,7 +31,7 @@ description: Testing reference for ERA games. Use when running tests, writing te
 
 **Base command** (execute from Game directory via WSL):
 ```bash
-MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR/Game && /home/siihe/.dotnet/dotnet run --project ../engine/uEmuera.Headless.csproj -- . [OPTIONS]'
+MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/game && /home/siihe/.dotnet/dotnet run --project ../engine/uEmuera.Headless.csproj -- . [OPTIONS]'
 ```
 
 ---
@@ -168,7 +168,7 @@ To flush out bugs, program-related features should test both positive (happy pat
 ## Loading Warning Detection (F101)
 
 ```bash
-MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR/Game && /home/siihe/.dotnet/dotnet run --project ../engine/uEmuera.Headless.csproj -- . --strict-warnings < /dev/null 2>&1'
+MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/game && /home/siihe/.dotnet/dotnet run --project ../engine/uEmuera.Headless.csproj -- . --strict-warnings < /dev/null 2>&1'
 ```
 
 **Output**: `[WARNING] file:line: message` → Exit code 1 when warnings exist.
@@ -181,7 +181,7 @@ MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR/Game && /home/si
 **File input (recommended)** - Avoids UTF-8 encoding issues:
 
 ```bash
-MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR/Game && /home/siihe/.dotnet/dotnet run --project ../engine/uEmuera.Headless.csproj -- . --debug --char 1 --input-file tests/test.txt'
+MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/game && /home/siihe/.dotnet/dotnet run --project ../engine/uEmuera.Headless.csproj -- . --debug --char 1 --input-file tests/test.txt'
 ```
 
 ### JSON Protocol Commands
@@ -256,7 +256,7 @@ logs/
 
 | Test | Command |
 |------|---------|
-| C# Unit | `MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/erakoumakanNTR && /home/siihe/.dotnet/dotnet test devkit.sln --no-build --blame-hang-timeout 10s --logger "trx;LogFileName=test-result.trx" --results-directory _out/logs/prod/ac/'` |
+| C# Unit | `MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/devkit && /home/siihe/.dotnet/dotnet test devkit.sln --no-build --blame-hang-timeout 10s --logger "trx;LogFileName=test-result.trx" --results-directory _out/logs/prod/ac/'` |
 | AC (kojo) | `--unit tests/ac/kojo/feature-{N}/` |
 <!-- Regression tests archived (2026-01-10) -->
 

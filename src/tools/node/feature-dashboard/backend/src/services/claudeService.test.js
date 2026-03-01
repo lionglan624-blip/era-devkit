@@ -3983,4 +3983,809 @@ describe('ClaudeService', () => {
       expect(service.streamParser.getRingBufferSnapshot(exec.id)).toEqual([]);
     });
   });
+
+  describe('_detectFlRerunRequest', () => {
+    it('returns false when lastAssistantText is empty', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.lastAssistantText = '';
+      expect(service._detectFlRerunRequest(execution)).toBe(false);
+    });
+
+    it('returns false when lastAssistantText is null', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.lastAssistantText = null;
+      expect(service._detectFlRerunRequest(execution)).toBe(false);
+    });
+
+    it('returns true for 再実行してください pattern', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.lastAssistantText = '修正完了しました。再実行してください。';
+      expect(service._detectFlRerunRequest(execution)).toBe(true);
+    });
+
+    it('returns true for /fl {ID} を再実行 pattern', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.lastAssistantText = '/fl 808 を再実行してください。';
+      expect(service._detectFlRerunRequest(execution)).toBe(true);
+    });
+
+    it('returns true for markdown /fl {ID} code pattern', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.lastAssistantText = '次のコマンドを実行してください: `/fl 808`';
+      expect(service._detectFlRerunRequest(execution)).toBe(true);
+    });
+
+    it('returns true for Forward-Only 再検証 pattern', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.lastAssistantText = 'Forward-Only Modeで再検証を行います。';
+      expect(service._detectFlRerunRequest(execution)).toBe(true);
+    });
+
+    it('returns false for unrelated text', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.lastAssistantText = '処理が完了しました。問題は見つかりませんでした。';
+      expect(service._detectFlRerunRequest(execution)).toBe(false);
+    });
+  });
+
+  describe('_saveSessionId', () => {
+    it('saves session ID to the session map', () => {
+      const { service } = createService();
+      service._saveSessionId('exec-1', 'session-abc', '100', 'fl');
+      expect(service._sessionMap['exec-1']).toMatchObject({
+        sessionId: 'session-abc',
+        featureId: '100',
+        command: 'fl',
+      });
+      expect(service._sessionMap['exec-1'].savedAt).toBeTruthy();
+    });
+
+    it('prunes entries older than 7 days', () => {
+      const { service } = createService();
+      // Inject a stale entry
+      const eightDaysAgo = new Date(Date.now() - 8 * 24 * 3600000).toISOString();
+      service._sessionMap['old-exec'] = {
+        sessionId: 'old-session',
+        featureId: '50',
+        command: 'fl',
+        savedAt: eightDaysAgo,
+      };
+
+      service._saveSessionId('new-exec', 'new-session', '100', 'run');
+
+      expect(service._sessionMap['old-exec']).toBeUndefined();
+      expect(service._sessionMap['new-exec']).toBeDefined();
+    });
+
+    it('keeps entries within 7 days', () => {
+      const { service } = createService();
+      const sixDaysAgo = new Date(Date.now() - 6 * 24 * 3600000).toISOString();
+      service._sessionMap['recent-exec'] = {
+        sessionId: 'recent-session',
+        featureId: '50',
+        command: 'fl',
+        savedAt: sixDaysAgo,
+      };
+
+      service._saveSessionId('new-exec', 'new-session', '100', 'run');
+
+      expect(service._sessionMap['recent-exec']).toBeDefined();
+    });
+  });
+
+  describe('_lookupSessionId', () => {
+    it('returns session info for known execution', () => {
+      const { service } = createService();
+      service._sessionMap['exec-1'] = {
+        sessionId: 'sess-abc',
+        featureId: '100',
+        command: 'fl',
+        savedAt: new Date().toISOString(),
+      };
+
+      const result = service._lookupSessionId('exec-1');
+      expect(result).toEqual({
+        sessionId: 'sess-abc',
+        featureId: '100',
+        command: 'fl',
+        savedAt: expect.any(String),
+      });
+    });
+
+    it('returns null for unknown execution', () => {
+      const { service } = createService();
+      expect(service._lookupSessionId('nonexistent')).toBeNull();
+    });
+  });
+
+  describe('_scanDebugLogForRateLimit', () => {
+    it('returns false when debugLogPath is not set on execution', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.debugLogPath = null;
+      // With null debugLogPath, existsSync won't be called → returns false
+      const result = service._scanDebugLogForRateLimit(execution);
+      expect(result).toBe(false);
+      expect(execution.accountLimitHit).toBe(false);
+    });
+
+    it('returns false when debug log file does not exist (nonexistent path)', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      // Use a path that definitely doesn't exist
+      execution.debugLogPath = '/nonexistent/path/that/does/not/exist/debug.log';
+      const result = service._scanDebugLogForRateLimit(execution);
+      expect(result).toBe(false);
+      expect(execution.accountLimitHit).toBe(false);
+    });
+
+    it('does not set accountLimitHit when returning false', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.debugLogPath = null;
+      execution.accountLimitHit = false;
+      service._scanDebugLogForRateLimit(execution);
+      expect(execution.accountLimitHit).toBe(false);
+    });
+  });
+
+  describe('_broadcastState - field values', () => {
+    it('broadcasts correct state fields for running execution', () => {
+      const { service, logStreamer } = createService();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.status = 'running';
+      execution.currentPhase = 3;
+      execution.currentPhaseName = 'Implementation';
+      execution.currentIteration = 2;
+      execution.sessionId = 'sess-123';
+      execution.isStalled = false;
+      execution.taskDepth = 1;
+      execution.contextPercent = 45;
+      execution.inputRequired = { toolUseId: 'ask-1', questions: [] };
+      execution.waitingForInput = false;
+      execution.waitingInputPattern = null;
+
+      service._broadcastState(execution);
+
+      expect(logStreamer.broadcast).toHaveBeenCalledWith(
+        execution.id,
+        expect.objectContaining({
+          type: 'state',
+          executionId: execution.id,
+          status: 'running',
+          phase: 3,
+          phaseName: 'Implementation',
+          totalPhases: 8, // fl has 8 phases
+          iteration: 2,
+          sessionId: 'sess-123',
+          inputRequired: true,
+          waitingForInput: false,
+          isStalled: false,
+          taskDepth: 1,
+          contextPercent: 45,
+        }),
+      );
+    });
+
+    it('broadcasts inputRequired as false when null', () => {
+      const { service, logStreamer } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'run' });
+      execution.status = 'running';
+      execution.inputRequired = null;
+
+      service._broadcastState(execution);
+
+      expect(logStreamer.broadcast).toHaveBeenCalledWith(
+        execution.id,
+        expect.objectContaining({
+          inputRequired: false,
+          totalPhases: 10, // run has 10 phases
+        }),
+      );
+    });
+
+    it('broadcasts pendingTool name when pendingToolUse is set', () => {
+      const { service, logStreamer } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.pendingToolUse = { name: 'AskUserQuestion', id: 'ask-1', input: {} };
+
+      service._broadcastState(execution);
+
+      expect(logStreamer.broadcast).toHaveBeenCalledWith(
+        execution.id,
+        expect.objectContaining({
+          pendingTool: 'AskUserQuestion',
+        }),
+      );
+    });
+
+    it('broadcasts null pendingTool when no pendingToolUse', () => {
+      const { service, logStreamer } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.pendingToolUse = null;
+
+      service._broadcastState(execution);
+
+      expect(logStreamer.broadcast).toHaveBeenCalledWith(
+        execution.id,
+        expect.objectContaining({
+          pendingTool: null,
+        }),
+      );
+    });
+  });
+
+  describe('_broadcastInputRequired - field values', () => {
+    it('broadcasts correct fields for input required event', () => {
+      const { service, logStreamer } = createService();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.inputRequired = { toolUseId: 'ask-1', questions: [{ question: 'Which option?' }] };
+      execution.inputContext = 'Some context for the user';
+
+      service._broadcastInputRequired(execution);
+
+      expect(logStreamer.broadcast).toHaveBeenCalledWith(
+        execution.id,
+        expect.objectContaining({
+          type: 'input-required',
+          executionId: execution.id,
+          context: 'Some context for the user',
+          questions: [{ question: 'Which option?' }],
+          toolUseId: 'ask-1',
+        }),
+      );
+    });
+
+    it('broadcasts empty questions array when inputRequired has none', () => {
+      const { service, logStreamer } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.inputRequired = { toolUseId: 'ask-1', questions: [] };
+      execution.inputContext = null;
+
+      service._broadcastInputRequired(execution);
+
+      expect(logStreamer.broadcast).toHaveBeenCalledWith(
+        execution.id,
+        expect.objectContaining({
+          questions: [],
+          context: null,
+        }),
+      );
+    });
+  });
+
+  describe('_handleCompletion - specific broadcast assertions', () => {
+    it('broadcasts status event with correct executionId and exitCode', () => {
+      const { service, logStreamer } = createService();
+      service._broadcastState = vi.fn();
+      service._dequeueNext = vi.fn();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.status = 'running';
+      execution.startedAt = new Date().toISOString();
+      execution.lastOutputTime = Date.now();
+      service.executions.set(execution.id, execution);
+
+      service._handleCompletion(execution, 0);
+
+      expect(logStreamer.broadcast).toHaveBeenCalledWith(
+        execution.id,
+        expect.objectContaining({
+          type: 'status',
+          executionId: execution.id,
+          status: 'completed',
+          exitCode: 0,
+        }),
+      );
+    });
+
+    it('broadcasts failed status for non-zero exit', () => {
+      const { service, logStreamer } = createService();
+      service._broadcastState = vi.fn();
+      service._dequeueNext = vi.fn();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.status = 'running';
+      execution.startedAt = new Date().toISOString();
+      execution.lastOutputTime = Date.now();
+      service.executions.set(execution.id, execution);
+
+      service._handleCompletion(execution, 1);
+
+      expect(logStreamer.broadcast).toHaveBeenCalledWith(
+        execution.id,
+        expect.objectContaining({
+          type: 'status',
+          status: 'failed',
+          exitCode: 1,
+        }),
+      );
+    });
+
+    it('sets completedAt timestamp on completion', () => {
+      const { service } = createService();
+      service._broadcastState = vi.fn();
+      service._dequeueNext = vi.fn();
+
+      const before = new Date().toISOString();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.status = 'running';
+      execution.startedAt = new Date().toISOString();
+      execution.lastOutputTime = Date.now();
+      service.executions.set(execution.id, execution);
+
+      service._handleCompletion(execution, 0);
+
+      expect(execution.completedAt).toBeTruthy();
+      expect(execution.completedAt >= before).toBe(true);
+    });
+
+    it('sets exitCode on execution', () => {
+      const { service } = createService();
+      service._broadcastState = vi.fn();
+      service._dequeueNext = vi.fn();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.status = 'running';
+      execution.startedAt = new Date().toISOString();
+      execution.lastOutputTime = Date.now();
+      service.executions.set(execution.id, execution);
+
+      service._handleCompletion(execution, 42);
+
+      expect(execution.exitCode).toBe(42);
+    });
+
+    it('fl-retry-exhausted event includes correct maxRetries', async () => {
+      vi.useFakeTimers();
+      const { service, logStreamer } = createService();
+      service._broadcastState = vi.fn();
+      service._dequeueNext = vi.fn();
+
+      const { MAX_FL_RETRIES } = await import('../config.js');
+      const execution = service._createExecution({
+        featureId: '100',
+        command: 'fl',
+        chain: true,
+        retryCount: MAX_FL_RETRIES, // exhausted
+      });
+      execution.status = 'running';
+      execution.startedAt = new Date().toISOString();
+      execution.lastOutputTime = Date.now();
+      service.executions.set(execution.id, execution);
+
+      service.executeCommand = vi.fn();
+
+      service._handleCompletion(execution, 1);
+
+      expect(logStreamer.broadcastAll).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: 'fl-retry-exhausted',
+          featureId: '100',
+          retryCount: MAX_FL_RETRIES,
+          maxRetries: MAX_FL_RETRIES,
+        }),
+      );
+
+      vi.useRealTimers();
+    });
+  });
+
+  describe('_checkStall - elapsed time boundary', () => {
+    it('does not stall before STALL_TIMEOUT_MS', async () => {
+      const { service } = createService();
+      service._broadcastState = vi.fn();
+      const { STALL_TIMEOUT_MS } = await import('../config.js');
+
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.status = 'running';
+      execution.lastOutputTime = Date.now() - (STALL_TIMEOUT_MS - 1000); // just under threshold
+
+      service._checkStall(execution);
+
+      expect(execution.isStalled).toBe(false);
+      expect(service._broadcastState).not.toHaveBeenCalled();
+    });
+
+    it('does not stall when taskDepth > 0 (subagent running)', () => {
+      const { service } = createService();
+      service._broadcastState = vi.fn();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.status = 'running';
+      execution.lastOutputTime = Date.now() - 120000;
+      execution.taskDepth = 1; // subagent running
+
+      service._checkStall(execution);
+
+      expect(execution.isStalled).toBe(false);
+    });
+
+    it('broadcasts stalled event with elapsed time', () => {
+      const { service, logStreamer } = createService();
+      service._broadcastState = vi.fn();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.status = 'running';
+      execution.lastOutputTime = Date.now() - 120000;
+
+      service._checkStall(execution);
+
+      expect(logStreamer.broadcast).toHaveBeenCalledWith(
+        execution.id,
+        expect.objectContaining({
+          type: 'stalled',
+          executionId: execution.id,
+          elapsed: expect.any(Number),
+        }),
+      );
+      const call = logStreamer.broadcast.mock.calls.find(([, msg]) => msg.type === 'stalled');
+      expect(call[1].elapsed).toBeGreaterThan(60000);
+    });
+  });
+
+  describe('getQueueStatus - detailed fields', () => {
+    it('returns correct queue status with all fields', () => {
+      const { service } = createService();
+      service._startExecution = vi.fn();
+
+      const exec1 = service._createExecution({ featureId: '100', command: 'fl' });
+      exec1.status = 'running';
+      exec1.currentPhase = 3;
+      exec1.currentPhaseName = 'Implementation';
+      exec1.currentIteration = 2;
+      exec1.contextPercent = 45;
+      exec1.startedAt = new Date().toISOString();
+      service.executions.set(exec1.id, exec1);
+
+      const exec2 = service._createExecution({ featureId: '101', command: 'fc' });
+      exec2.status = 'queued';
+      service.executions.set(exec2.id, exec2);
+      service.queue.push(exec2.id);
+
+      const status = service.getQueueStatus();
+
+      expect(status.maxConcurrent).toBe(99);
+      expect(status.runningCount).toBe(1);
+      expect(status.running).toHaveLength(1);
+      expect(status.running[0]).toMatchObject({
+        featureId: '100',
+        command: 'fl',
+        phase: 3,
+        phaseName: 'Implementation',
+      });
+      expect(status.queued).toHaveLength(1);
+      expect(status.queued[0].featureId).toBe('101');
+    });
+  });
+
+  describe('clearQueue - broadcast assertions', () => {
+    it('broadcasts queue-updated after clearing', () => {
+      const { service, logStreamer } = createService();
+
+      const exec1 = service._createExecution({ featureId: '100', command: 'fl' });
+      exec1.status = 'queued';
+      service.executions.set(exec1.id, exec1);
+      service.queue.push(exec1.id);
+
+      service.clearQueue();
+
+      expect(logStreamer.broadcastAll).toHaveBeenCalledWith(
+        expect.objectContaining({ type: 'queue-updated' }),
+      );
+    });
+  });
+
+  describe('executeCommand - queue broadcast', () => {
+    it('broadcasts queue-updated when execution is queued', () => {
+      const { service, logStreamer } = createService({ maxConcurrent: 1 });
+      service._startExecution = vi.fn();
+
+      // Create a running execution to fill the slot
+      const runningExec = service._createExecution({ featureId: '999', command: 'fl' });
+      runningExec.status = 'running';
+      service.executions.set(runningExec.id, runningExec);
+
+      service.executeCommand('101', 'fl');
+
+      expect(logStreamer.broadcastAll).toHaveBeenCalledWith(
+        expect.objectContaining({ type: 'queue-updated' }),
+      );
+    });
+
+    it('includes position in queued execution log', () => {
+      const { service } = createService({ maxConcurrent: 1 });
+      service._startExecution = vi.fn();
+
+      const runningExec = service._createExecution({ featureId: '999', command: 'fl' });
+      runningExec.status = 'running';
+      service.executions.set(runningExec.id, runningExec);
+
+      const execId = service.executeCommand('101', 'fl');
+      const exec = service.executions.get(execId);
+
+      expect(exec.logs[0].line).toContain('Queued');
+      expect(exec.logs[0].line).toContain('1'); // position 1
+    });
+  });
+
+  describe('_handleCompletion - chain state computation', () => {
+    it('sets completed status when exitCode 0 and no chain issues', () => {
+      const { service } = createService();
+      service._broadcastState = vi.fn();
+      service._dequeueNext = vi.fn();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fc' });
+      execution.status = 'running';
+      execution.startedAt = new Date().toISOString();
+      execution.lastOutputTime = Date.now();
+      execution.resultSubtype = 'success';
+      service.executions.set(execution.id, execution);
+
+      service._handleCompletion(execution, 0);
+
+      expect(execution.status).toBe('completed');
+      expect(execution.exitCode).toBe(0);
+      expect(execution.process).toBeNull();
+    });
+
+    it('sets failed status when exitCode non-zero without chain retry', () => {
+      const { service } = createService();
+      service._broadcastState = vi.fn();
+      service._dequeueNext = vi.fn();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fc' });
+      execution.status = 'running';
+      execution.startedAt = new Date().toISOString();
+      execution.lastOutputTime = Date.now();
+      service.executions.set(execution.id, execution);
+
+      service._handleCompletion(execution, 1);
+
+      expect(execution.status).toBe('failed');
+      expect(execution.exitCode).toBe(1);
+    });
+
+    it('calls dequeueNext after completion', () => {
+      const { service } = createService();
+      service._broadcastState = vi.fn();
+      const dequeueNext = vi.fn();
+      service._dequeueNext = dequeueNext;
+
+      const execution = service._createExecution({ featureId: '100', command: 'fc' });
+      execution.status = 'running';
+      execution.startedAt = new Date().toISOString();
+      execution.lastOutputTime = Date.now();
+      service.executions.set(execution.id, execution);
+
+      service._handleCompletion(execution, 0);
+
+      expect(dequeueNext).toHaveBeenCalled();
+    });
+
+    it('calls onExecutionComplete callback after completion', () => {
+      const { service } = createService();
+      service._broadcastState = vi.fn();
+      service._dequeueNext = vi.fn();
+      const onComplete = vi.fn();
+      service.onExecutionComplete = onComplete;
+
+      const execution = service._createExecution({ featureId: '100', command: 'fc' });
+      execution.status = 'running';
+      execution.startedAt = new Date().toISOString();
+      execution.lastOutputTime = Date.now();
+      service.executions.set(execution.id, execution);
+
+      service._handleCompletion(execution, 0);
+
+      expect(onComplete).toHaveBeenCalledWith(execution);
+    });
+
+    it('clears stallCheckInterval on completion', () => {
+      const { service } = createService();
+      service._broadcastState = vi.fn();
+      service._dequeueNext = vi.fn();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fc' });
+      execution.status = 'running';
+      execution.startedAt = new Date().toISOString();
+      execution.lastOutputTime = Date.now();
+      execution.stallCheckInterval = setInterval(() => {}, 999999);
+      service.executions.set(execution.id, execution);
+
+      service._handleCompletion(execution, 0);
+
+      expect(execution.stallCheckInterval).toBeNull();
+    });
+  });
+
+  describe('_createExecution - default values', () => {
+    it('creates execution with correct defaults', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+
+      expect(execution.featureId).toBe('100');
+      expect(execution.command).toBe('fl');
+      expect(execution.status).toBe('queued');
+      expect(execution.logs).toEqual([]);
+      expect(execution.currentPhase).toBeNull();
+      expect(execution.currentPhaseName).toBeNull();
+      expect(execution.currentIteration).toBeNull();
+      expect(execution.sessionId).toBeNull();
+      expect(execution.taskDepth).toBe(0);
+      expect(execution.isStalled).toBe(false);
+      expect(execution.killedByUser).toBe(false);
+      expect(execution.accountLimitHit).toBe(false);
+      expect(execution.promptTooLong).toBe(false);
+      expect(execution.chain).toBeNull();
+    });
+
+    it('creates execution with chain enabled', () => {
+      const { service } = createService();
+      const execution = service._createExecution({
+        featureId: '100',
+        command: 'fl',
+        chain: true,
+        retryCount: 2,
+        contextRetryCount: 1,
+        chainHistory: [{ command: 'fc', result: 'ok' }],
+      });
+
+      expect(execution.chain).toEqual({
+        enabled: true,
+        retryCount: 2,
+        contextRetryCount: 1,
+        history: [{ command: 'fc', result: 'ok' }],
+      });
+    });
+
+    it('creates execution with chainParentId', () => {
+      const { service } = createService();
+      const execution = service._createExecution({
+        featureId: '100',
+        command: 'fl',
+        chain: true,
+        chainParentId: 'parent-exec-id',
+      });
+
+      expect(execution.chainParentId).toBe('parent-exec-id');
+    });
+  });
+
+  describe('_attachStderrHandler - log level', () => {
+    it('logs stderr ERROR lines as error level', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+
+      const handlers = {};
+      const mockProc = {
+        stderr: { on: (event, handler) => { handlers[event] = handler; } },
+      };
+
+      service._attachStderrHandler(execution, mockProc);
+      handlers.data(Buffer.from('[ERROR] Something failed\n'));
+
+      const errLog = execution.logs.find((l) => l.level === 'error');
+      expect(errLog).toBeDefined();
+      expect(errLog.line).toContain('[stderr]');
+      expect(errLog.line).toContain('[ERROR] Something failed');
+    });
+
+    it('logs stderr non-ERROR lines as debug level', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+
+      const handlers = {};
+      const mockProc = {
+        stderr: { on: (event, handler) => { handlers[event] = handler; } },
+      };
+
+      service._attachStderrHandler(execution, mockProc);
+      handlers.data(Buffer.from('Debug info\n'));
+
+      const debugLog = execution.logs.find((l) => l.level === 'debug');
+      expect(debugLog).toBeDefined();
+      expect(debugLog.line).toContain('[stderr]');
+      expect(debugLog.line).toContain('Debug info');
+    });
+
+    it('updates lastOutputTime from stderr', () => {
+      const { service } = createService();
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.lastOutputTime = 0;
+
+      const handlers = {};
+      const mockProc = {
+        stderr: { on: (event, handler) => { handlers[event] = handler; } },
+      };
+
+      service._attachStderrHandler(execution, mockProc);
+      const before = Date.now();
+      handlers.data(Buffer.from('some output\n'));
+      expect(execution.lastOutputTime).toBeGreaterThanOrEqual(before);
+    });
+  });
+
+  describe('_handleStreamEvent - system events', () => {
+    it('does not set sessionId from system non-init event', () => {
+      const { service } = createService();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      expect(execution.sessionId).toBeNull();
+
+      service._handleStreamEvent(execution, {
+        type: 'system',
+        subtype: 'something-else',
+        session_id: 'should-not-be-set',
+      });
+
+      expect(execution.sessionId).toBeNull();
+    });
+
+    it('does not modify sessionId when init event has no session_id', () => {
+      const { service } = createService();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+
+      service._handleStreamEvent(execution, {
+        type: 'system',
+        subtype: 'init',
+        // no session_id field
+      });
+
+      expect(execution.sessionId).toBeNull();
+    });
+  });
+
+  describe('_handleStreamEvent - lastOutputTime update', () => {
+    it('does not update lastOutputTime on non-assistant events', () => {
+      const { service } = createService();
+      service._broadcastState = vi.fn();
+
+      const execution = service._createExecution({ featureId: '100', command: 'fl' });
+      execution.lastOutputTime = 12345; // fixed value
+
+      // system/init doesn't update lastOutputTime
+      service._handleStreamEvent(execution, {
+        type: 'system',
+        subtype: 'init',
+        session_id: 'abc',
+      });
+
+      // lastOutputTime should not have changed (only process stream does that)
+      expect(execution.lastOutputTime).toBe(12345);
+    });
+  });
+
+  describe('isIdle detection', () => {
+    it('reports idle when no running or queued executions', () => {
+      const { service } = createService();
+
+      const exec = service._createExecution({ featureId: '100', command: 'fl' });
+      exec.status = 'completed';
+      service.executions.set(exec.id, exec);
+
+      expect(service.runningCount).toBe(0);
+      expect(service.queue.length).toBe(0);
+    });
+
+    it('reports not idle when execution is running', () => {
+      const { service } = createService();
+
+      const exec = service._createExecution({ featureId: '100', command: 'fl' });
+      exec.status = 'running';
+      service.executions.set(exec.id, exec);
+
+      expect(service.runningCount).toBe(1);
+    });
+  });
 });

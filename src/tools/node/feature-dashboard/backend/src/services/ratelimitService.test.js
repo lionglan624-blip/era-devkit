@@ -824,4 +824,727 @@ describe('RateLimitService', () => {
       expect(execSync).toHaveBeenCalledWith('taskkill /F /T /PID 12345', { windowsHide: true });
     });
   });
+
+  describe('_mergeWithCached', () => {
+    beforeEach(() => {
+      service = new RateLimitService('/fake/root', {
+        getProfiles: () => ['test-profile'],
+      });
+    });
+
+    it('returns new data when newData is provided', () => {
+      const newData = { weekly: { percent: 75, resetsAt: 'Feb 9' } };
+      const result = service._mergeWithCached('test-profile', newData);
+      expect(result).toBe(newData);
+    });
+
+    it('returns cached data when newData is null and cache not expired', () => {
+      const existingData = { weekly: { percent: 80, resetsAt: 'Feb 8' } };
+      service._cache.set('test-profile', {
+        data: existingData,
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+
+      const result = service._mergeWithCached('test-profile', null);
+      expect(result).toBe(existingData);
+    });
+
+    it('returns null when newData is null and cache is expired', () => {
+      const existingData = { weekly: { percent: 80, resetsAt: 'Feb 8' } };
+      service._cache.set('test-profile', {
+        data: existingData,
+        timestamp: Date.now(),
+        expiresAt: Date.now() - 1000,
+        refreshAt: Date.now() - 2000,
+      });
+
+      const result = service._mergeWithCached('test-profile', null);
+      expect(result).toBeNull();
+    });
+
+    it('returns null when newData is null and no cache exists', () => {
+      const result = service._mergeWithCached('unknown-profile', null);
+      expect(result).toBeNull();
+    });
+  });
+
+  describe('setManualCache', () => {
+    beforeEach(() => {
+      service = new RateLimitService('/fake/root', {
+        getProfiles: () => ['test-profile'],
+      });
+    });
+
+    it('stores data in cache with expiry and refresh times', async () => {
+      const data = { weekly: { percent: 100, resetsAt: 'Feb 14, 6am' } };
+      service.setManualCache('test-profile', data);
+
+      const cached = service.getCached();
+      expect(cached).not.toBeNull();
+      expect(cached['test-profile']).toBe(data);
+    });
+
+    it('sets expiresAt based on reset time', async () => {
+      const { RATE_LIMIT_CACHE_MS } = await import('../config.js');
+      const data = { weekly: { percent: 100, resetsAt: 'Feb 14, 6am' } };
+      service.setManualCache('test-profile', data);
+
+      const entry = service._cache.get('test-profile');
+      expect(entry.expiresAt).toBeGreaterThan(Date.now());
+      expect(entry.refreshAt).toBeGreaterThan(Date.now());
+    });
+
+    it('stores null data with default expiry', async () => {
+      const { RATE_LIMIT_CACHE_MS } = await import('../config.js');
+      const before = Date.now();
+      service.setManualCache('test-profile', null);
+
+      const entry = service._cache.get('test-profile');
+      expect(entry.data).toBeNull();
+      expect(entry.expiresAt).toBeGreaterThanOrEqual(before + RATE_LIMIT_CACHE_MS - 1000);
+    });
+
+    it('stores timestamp on set', () => {
+      const before = Date.now();
+      service.setManualCache('test-profile', null);
+      const entry = service._cache.get('test-profile');
+      expect(entry.timestamp).toBeGreaterThanOrEqual(before);
+      expect(entry.timestamp).toBeLessThanOrEqual(Date.now());
+    });
+
+    it('saves cache to disk after setting', async () => {
+      const fs = await import('fs');
+      service.setManualCache('test-profile', { weekly: { percent: 50, resetsAt: 'Feb 9' } });
+      expect(fs.writeFileSync).toHaveBeenCalled();
+    });
+  });
+
+  describe('getSafeProfile', () => {
+    beforeEach(() => {
+      service = new RateLimitService('/fake/root', {
+        getProfiles: () => ['profile-a', 'profile-b', 'profile-c'],
+      });
+    });
+
+    it('returns null when no cached data exists', () => {
+      expect(service.getSafeProfile()).toBeNull();
+    });
+
+    it('returns profile with no data (below capture threshold = safe)', () => {
+      // profile-a has data above threshold, profile-b has no data (safe)
+      service._cache.set('profile-a', {
+        data: { weekly: { percent: 95, resetsAt: 'Feb 9' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+      service._cache.set('profile-b', {
+        data: null,
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+
+      const result = service.getSafeProfile('profile-a');
+      expect(result).toBe('profile-b');
+    });
+
+    it('returns profile below AUTO_SWITCH_THRESHOLD', async () => {
+      const { AUTO_SWITCH_THRESHOLD } = await import('../config.js');
+      service._cache.set('profile-a', {
+        data: { weekly: { percent: 95, resetsAt: 'Feb 9' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+      service._cache.set('profile-b', {
+        data: { weekly: { percent: AUTO_SWITCH_THRESHOLD - 1, resetsAt: 'Feb 9' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+
+      const result = service.getSafeProfile('profile-a');
+      expect(result).toBe('profile-b');
+    });
+
+    it('excludes the specified profile', () => {
+      service._cache.set('profile-a', {
+        data: null,
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+      service._cache.set('profile-b', {
+        data: null,
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+
+      const result = service.getSafeProfile('profile-a');
+      expect(result).toBe('profile-b');
+      expect(result).not.toBe('profile-a');
+    });
+
+    it('returns null when all cached profiles are at threshold or above and no uncached profiles', async () => {
+      // Service with only 2 profiles, both above threshold
+      const serviceTwo = new RateLimitService('/fake/root', {
+        getProfiles: () => ['profile-a', 'profile-b'],
+      });
+      const { AUTO_SWITCH_THRESHOLD } = await import('../config.js');
+      serviceTwo._cache.set('profile-a', {
+        data: { weekly: { percent: AUTO_SWITCH_THRESHOLD, resetsAt: 'Feb 9' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+      serviceTwo._cache.set('profile-b', {
+        data: { weekly: { percent: AUTO_SWITCH_THRESHOLD + 5, resetsAt: 'Feb 9' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+
+      expect(serviceTwo.getSafeProfile('profile-a')).toBeNull();
+    });
+
+    it('uses max of weekly/session/sonnet for threshold comparison', async () => {
+      const { AUTO_SWITCH_THRESHOLD } = await import('../config.js');
+      // Service with only profile-a and profile-b (no profile-c)
+      const serviceTwo = new RateLimitService('/fake/root', {
+        getProfiles: () => ['profile-a', 'profile-b'],
+      });
+      // profile-b: weekly low but session high - should NOT be safe
+      serviceTwo._cache.set('profile-b', {
+        data: {
+          weekly: { percent: 10, resetsAt: 'Feb 9' },
+          session: { percent: AUTO_SWITCH_THRESHOLD, resetsAt: '3pm' },
+        },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+
+      expect(serviceTwo.getSafeProfile('profile-a')).toBeNull();
+    });
+  });
+
+  describe('getEarliestResetTime', () => {
+    beforeEach(() => {
+      service = new RateLimitService('/fake/root', {
+        getProfiles: () => ['profile-a', 'profile-b'],
+      });
+    });
+
+    it('returns null when no cache entries exist', () => {
+      expect(service.getEarliestResetTime()).toBeNull();
+    });
+
+    it('returns null when no reset times are parseable', () => {
+      service._cache.set('profile-a', {
+        data: null,
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+      expect(service.getEarliestResetTime()).toBeNull();
+    });
+
+    it('returns earliest reset time across all profiles and types', () => {
+      service._cache.set('profile-a', {
+        data: {
+          weekly: { percent: 90, resetsAt: 'Feb 21, 6am' },
+          session: { percent: 80, resetsAt: '3pm' },
+        },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+
+      const result = service.getEarliestResetTime();
+      expect(result).toBeTypeOf('number');
+      expect(result).toBeGreaterThan(Date.now());
+    });
+
+    it('returns minimum of multiple reset dates', () => {
+      service._cache.set('profile-a', {
+        data: { weekly: { percent: 90, resetsAt: 'Feb 21, 6am' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+      service._cache.set('profile-b', {
+        data: { session: { percent: 50, resetsAt: '3pm' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 10000,
+        refreshAt: Date.now() + 5000,
+      });
+
+      const result = service.getEarliestResetTime();
+      const sessionParsed = service._parseResetsAt('3pm');
+      const weeklyParsed = service._parseResetsAt('Feb 21, 6am');
+      const expected = Math.min(sessionParsed.getTime(), weeklyParsed.getTime());
+      expect(result).toBe(expected);
+    });
+  });
+
+  describe('recomputeRefreshTimes', () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+      vi.setSystemTime(new Date(2026, 1, 21, 10, 0, 0, 0));
+      service = new RateLimitService('/fake/root', {
+        getProfiles: () => ['profile-a'],
+        isIdle: () => true, // starts idle (long refresh)
+      });
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('shortens refreshAt when new value is earlier', () => {
+      // Idle service: refreshAt set to 2h from now
+      const idleRefreshAt = Date.now() + 2 * 60 * 60 * 1000;
+      service._cache.set('profile-a', {
+        data: { weekly: { percent: 95, resetsAt: 'Feb 22' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        refreshAt: idleRefreshAt,
+      });
+
+      // Now service becomes busy
+      service._isIdle = () => false;
+      service.recomputeRefreshTimes();
+
+      const entry = service._cache.get('profile-a');
+      // Busy + 95% → 5min refresh, much less than 2h idle
+      expect(entry.refreshAt).toBeLessThan(idleRefreshAt);
+    });
+
+    it('does not update refreshAt when new value is not earlier', () => {
+      // Already has 5min refresh (busy, high percent)
+      const busyRefreshAt = Date.now() + 5 * 60 * 1000;
+      service._cache.set('profile-a', {
+        data: { weekly: { percent: 95, resetsAt: 'Feb 22' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        refreshAt: busyRefreshAt,
+      });
+
+      service.recomputeRefreshTimes();
+
+      const entry = service._cache.get('profile-a');
+      // Should remain unchanged since new value (2h idle) > existing (5min)
+      expect(entry.refreshAt).toBe(busyRefreshAt);
+    });
+
+    it('saves cache to disk when any refreshAt changes', async () => {
+      const fs = await import('fs');
+      vi.clearAllMocks();
+
+      const idleRefreshAt = Date.now() + 2 * 60 * 60 * 1000;
+      service._cache.set('profile-a', {
+        data: { weekly: { percent: 95, resetsAt: 'Feb 22' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        refreshAt: idleRefreshAt,
+      });
+
+      service._isIdle = () => false;
+      service.recomputeRefreshTimes();
+
+      expect(fs.writeFileSync).toHaveBeenCalled();
+    });
+
+    it('does not save when no refreshAt values changed', async () => {
+      const fs = await import('fs');
+      vi.clearAllMocks();
+
+      // Already at 5min refresh (lower than idle 2h), so no change
+      const busyRefreshAt = Date.now() + 5 * 60 * 1000;
+      service._cache.set('profile-a', {
+        data: { weekly: { percent: 95, resetsAt: 'Feb 22' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        refreshAt: busyRefreshAt,
+      });
+
+      // Stays idle → would produce 2h refresh, but existing is 5min → no change
+      service.recomputeRefreshTimes();
+
+      expect(fs.writeFileSync).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('_checkAutoSwitch', () => {
+    let onAutoSwitch;
+
+    beforeEach(() => {
+      onAutoSwitch = vi.fn();
+      service = new RateLimitService('/fake/root', {
+        getProfiles: () => ['profile-a', 'profile-b'],
+        getActiveProfile: () => 'profile-a',
+        onAutoSwitch,
+      });
+    });
+
+    it('does nothing when no callback provided', () => {
+      const serviceNoCallback = new RateLimitService('/fake/root', {
+        getProfiles: () => ['profile-a'],
+        getActiveProfile: () => 'profile-a',
+      });
+      // Should not throw
+      serviceNoCallback._checkAutoSwitch({ 'profile-a': { weekly: { percent: 95, resetsAt: 'Feb 9' } } });
+    });
+
+    it('does nothing when cached data is null', () => {
+      service._checkAutoSwitch(null);
+      expect(onAutoSwitch).not.toHaveBeenCalled();
+    });
+
+    it('does nothing when active profile has no data', () => {
+      const cached = { 'profile-a': null, 'profile-b': null };
+      service._checkAutoSwitch(cached);
+      expect(onAutoSwitch).not.toHaveBeenCalled();
+    });
+
+    it('does nothing when active profile is below threshold', async () => {
+      const { AUTO_SWITCH_THRESHOLD } = await import('../config.js');
+      const cached = {
+        'profile-a': { weekly: { percent: AUTO_SWITCH_THRESHOLD - 1, resetsAt: 'Feb 9' } },
+        'profile-b': null,
+      };
+      service._checkAutoSwitch(cached);
+      expect(onAutoSwitch).not.toHaveBeenCalled();
+    });
+
+    it('triggers auto-switch when active profile at threshold and safe profile exists', async () => {
+      const { AUTO_SWITCH_THRESHOLD } = await import('../config.js');
+      const cached = {
+        'profile-a': { weekly: { percent: AUTO_SWITCH_THRESHOLD, resetsAt: 'Feb 9' } },
+        'profile-b': null, // no data = below threshold = safe
+      };
+      service._checkAutoSwitch(cached);
+      expect(onAutoSwitch).toHaveBeenCalledWith('profile-b');
+    });
+
+    it('does not trigger auto-switch when no safe profile exists', async () => {
+      const { AUTO_SWITCH_THRESHOLD } = await import('../config.js');
+      const cached = {
+        'profile-a': { weekly: { percent: AUTO_SWITCH_THRESHOLD, resetsAt: 'Feb 9' } },
+        'profile-b': { weekly: { percent: AUTO_SWITCH_THRESHOLD, resetsAt: 'Feb 9' } },
+      };
+      service._checkAutoSwitch(cached);
+      expect(onAutoSwitch).not.toHaveBeenCalled();
+    });
+
+    it('does not switch when only the active profile exists in cache (no other safe profile)', async () => {
+      const { AUTO_SWITCH_THRESHOLD } = await import('../config.js');
+      // Service with only profile-a registered
+      const serviceOneProfile = new RateLimitService('/fake/root', {
+        getProfiles: () => ['profile-a'],
+        getActiveProfile: () => 'profile-a',
+        onAutoSwitch,
+      });
+      const cached = {
+        'profile-a': { weekly: { percent: AUTO_SWITCH_THRESHOLD, resetsAt: 'Feb 9' } },
+      };
+      serviceOneProfile._checkAutoSwitch(cached);
+      expect(onAutoSwitch).not.toHaveBeenCalled();
+    });
+
+    it('uses max of weekly/session/sonnet for threshold comparison', async () => {
+      const { AUTO_SWITCH_THRESHOLD } = await import('../config.js');
+      const cached = {
+        // profile-a: weekly low, session at threshold → should trigger
+        'profile-a': {
+          weekly: { percent: 10, resetsAt: 'Feb 9' },
+          session: { percent: AUTO_SWITCH_THRESHOLD, resetsAt: '3pm' },
+        },
+        'profile-b': null,
+      };
+      service._checkAutoSwitch(cached);
+      expect(onAutoSwitch).toHaveBeenCalledWith('profile-b');
+    });
+  });
+
+  describe('_parseUsageOutput - edge cases', () => {
+    beforeEach(() => {
+      service = new RateLimitService('/fake/root', {
+        getProfiles: () => ['test-profile'],
+      });
+    });
+
+    it('strips null bytes from input text', () => {
+      const text = 'Current session\n\x00██ 50% used\nResets 3pm (Asia/Tokyo)';
+      const result = service._parseUsageOutput(text);
+      expect(result).not.toBeNull();
+      expect(result.session.percent).toBe(50);
+    });
+
+    it('parses session with minutes in time (5:59am)', () => {
+      const text = [
+        'Current session',
+        '████████ 28% used',
+        'Resets 11am (Asia/Tokyo)',
+        'Current week (all models)',
+        '██ 4% used',
+        'Resets Feb 21, 5:59am (Asia/Tokyo)',
+      ].join('\n');
+      const result = service._parseUsageOutput(text);
+      expect(result.weekly.percent).toBe(4);
+      expect(result.weekly.resetsAt).toBe('Feb 21, 5:59am');
+    });
+
+    it('returns null when sections found but no percent matches', () => {
+      const text = 'Current session\nNo percentage here\nCurrent week (all models)\nAlso nothing';
+      const result = service._parseUsageOutput(text);
+      expect(result).toBeNull();
+    });
+
+    it('handles Sonnet only section with correct type key', () => {
+      const text = [
+        'Current week (Sonnet only)',
+        '                         15% used',
+        'Resets Feb 21, 6am (Asia/Tokyo)',
+      ].join('\n');
+      const result = service._parseUsageOutput(text);
+      expect(result).not.toBeNull();
+      expect(result.sonnet).toBeDefined();
+      expect(result.sonnet.percent).toBe(15);
+      expect(result.sonnet.resetsAt).toBe('Feb 21, 6am');
+    });
+  });
+
+  describe('_parseResetsAt - additional patterns', () => {
+    beforeEach(() => {
+      service = new RateLimitService('/fake/root', {
+        getProfiles: () => ['test-profile'],
+      });
+    });
+
+    it('parses "Feb 21, 5:59am" with minutes correctly', () => {
+      const result = service._parseResetsAt('Feb 21, 5:59am');
+      expect(result).toBeInstanceOf(Date);
+      expect(result.getMonth()).toBe(1); // Feb
+      expect(result.getDate()).toBe(21);
+      expect(result.getHours()).toBe(5);
+      expect(result.getMinutes()).toBe(59);
+    });
+
+    it('parses "12am" as midnight (hour=0)', () => {
+      const result = service._parseResetsAt('12am');
+      expect(result).toBeInstanceOf(Date);
+      expect(result.getHours()).toBe(0);
+    });
+
+    it('parses "12pm" as noon (hour=12)', () => {
+      const result = service._parseResetsAt('12pm');
+      expect(result).toBeInstanceOf(Date);
+      expect(result.getHours()).toBe(12);
+    });
+
+    it('parses "11pm" as hour 23', () => {
+      const result = service._parseResetsAt('11pm');
+      expect(result).toBeInstanceOf(Date);
+      expect(result.getHours()).toBe(23);
+    });
+
+    it('parses "Jan 1" with year rollover logic', () => {
+      const result = service._parseResetsAt('Jan 1');
+      expect(result).toBeInstanceOf(Date);
+      expect(result.getMonth()).toBe(0); // Jan
+      expect(result.getDate()).toBe(1);
+    });
+
+    it('returns null for non-string input (number)', () => {
+      expect(service._parseResetsAt(123)).toBeNull();
+    });
+  });
+
+  describe('capture - forceRefresh', () => {
+    it('refreshes all profiles when forceRefresh is true', async () => {
+      const { mockSpawn } = createMockPty('Context:50%\r\nCurrent session\r\n80% used\r\n', 0);
+      service = new RateLimitService('/fake/root', {
+        getProfiles: () => ['test-profile'],
+        ptySpawn: mockSpawn,
+      });
+
+      // Pre-populate cache with fresh data (would normally skip refresh)
+      service._cache.set('test-profile', {
+        data: { weekly: { percent: 50, resetsAt: 'Feb 9' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 100000,
+        refreshAt: Date.now() + 100000,
+      });
+
+      // With forceRefresh: should still call pty
+      await service.capture({ forceRefresh: true });
+      expect(mockSpawn).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not call pty when cache is fresh and forceRefresh is false', async () => {
+      const { mockSpawn } = createMockPty();
+      service = new RateLimitService('/fake/root', {
+        getProfiles: () => ['test-profile'],
+        ptySpawn: mockSpawn,
+      });
+
+      // Pre-populate fresh cache
+      service._cache.set('test-profile', {
+        data: { weekly: { percent: 50, resetsAt: 'Feb 9' } },
+        timestamp: Date.now(),
+        expiresAt: Date.now() + 100000,
+        refreshAt: Date.now() + 100000,
+      });
+
+      await service.capture({ forceRefresh: false });
+      expect(mockSpawn).not.toHaveBeenCalled();
+    });
+
+    it('returns null when no profiles are configured', async () => {
+      service = new RateLimitService('/fake/root', {
+        getProfiles: () => [],
+      });
+      const result = await service.capture();
+      expect(result).toBeNull();
+    });
+  });
+
+  describe('VtScreenBuffer - additional escape handling', () => {
+    let VtScreenBuffer;
+
+    beforeEach(async () => {
+      const mod = await import('./ratelimitService.js');
+      VtScreenBuffer = mod.VtScreenBuffer;
+    });
+
+    it('handles cursor up (CSI A)', () => {
+      const screen = new VtScreenBuffer(40, 10);
+      screen.feed('Line1\nLine2');
+      // cursor should now be on row 1; move up 1
+      screen.feed('\x1b[1A');
+      // Cursor is now at row 0
+      expect(screen.cy).toBe(0);
+    });
+
+    it('handles cursor down (CSI B)', () => {
+      const screen = new VtScreenBuffer(40, 10);
+      screen.cy = 2;
+      screen.feed('\x1b[2B');
+      expect(screen.cy).toBe(4);
+    });
+
+    it('handles cursor back (CSI D)', () => {
+      const screen = new VtScreenBuffer(40, 10);
+      screen.cx = 5;
+      screen.feed('\x1b[3D');
+      expect(screen.cx).toBe(2);
+    });
+
+    it('handles cursor to column (CSI G)', () => {
+      const screen = new VtScreenBuffer(40, 10);
+      screen.feed('\x1b[10G');
+      expect(screen.cx).toBe(9); // 1-based → 0-indexed
+    });
+
+    it('handles erase to end of line (CSI K with no param)', () => {
+      const screen = new VtScreenBuffer(20, 5);
+      screen.feed('Hello World');
+      screen.feed('\x1b[5G'); // move to col 5 (0-indexed: 4)
+      screen.feed('\x1b[K'); // erase to end
+      const text = screen.getText();
+      // Should have 'Hell' (cols 0-3) and rest erased
+      expect(text).toMatch(/^Hell\s*$/);
+    });
+
+    it('handles erase from start of line (CSI 1K)', () => {
+      const screen = new VtScreenBuffer(20, 5);
+      screen.feed('Hello World');
+      screen.cx = 5;
+      screen.feed('\x1b[1K'); // erase from beginning to cursor
+      const row = screen.buffer[0];
+      expect(row[0]).toBe(' ');
+      expect(row[1]).toBe(' ');
+      expect(row[2]).toBe(' ');
+      expect(row[3]).toBe(' ');
+      expect(row[4]).toBe(' ');
+    });
+
+    it('handles erase entire line (CSI 2K)', () => {
+      const screen = new VtScreenBuffer(20, 5);
+      screen.feed('Hello World');
+      screen.feed('\x1b[2K');
+      expect(screen.buffer[0].every((c) => c === ' ')).toBe(true);
+    });
+
+    it('handles erase from cursor to end of screen (CSI 0J)', () => {
+      const screen = new VtScreenBuffer(10, 3);
+      // Use \r\n to properly position cursor at col 0 after each line
+      screen.feed('ABC\r\nDEF\r\nGHI');
+      // After: row0='ABC...', row1='DEF...', row2='GHI...', cy=2, cx=3
+      // Move cursor to row1, col1 then erase to end
+      screen.cy = 1;
+      screen.cx = 1;
+      screen.feed('\x1b[J'); // erase from cursor to end
+      // Row 1 from col 1 onwards should be erased
+      expect(screen.buffer[1][0]).toBe('D'); // col 0 of row 1 preserved
+      expect(screen.buffer[1][1]).toBe(' '); // col 1+ erased
+      // Row 2 should be fully erased
+      expect(screen.buffer[2].every((c) => c === ' ')).toBe(true);
+    });
+
+    it('handles BEL (ignored) and BS (backspace)', () => {
+      const screen = new VtScreenBuffer(20, 5);
+      screen.feed('Hi\x07'); // BEL ignored
+      expect(screen.cx).toBe(2);
+      screen.feed('\x08'); // BS: move back
+      expect(screen.cx).toBe(1);
+    });
+
+    it('handles tab character advancing to next tab stop', () => {
+      const screen = new VtScreenBuffer(40, 5);
+      screen.feed('Hi\t!');
+      // Tab from position 2 → next multiple of 8 = 8
+      // Then writes '!' at position 8
+      const text = screen.getText();
+      expect(text).toContain('Hi');
+      expect(text).toContain('!');
+      expect(screen.cx).toBe(9); // after writing '!' at pos 8
+    });
+
+    it('handles OSC escape (title sequences)', () => {
+      const screen = new VtScreenBuffer(20, 5);
+      // OSC sequence ending in BEL: \x1b]0;title\x07
+      screen.feed('\x1b]0;some title\x07Hello');
+      const text = screen.getText();
+      expect(text).toContain('Hello');
+    });
+
+    it('handles single-char escape sequences (\x1b7 style)', () => {
+      const screen = new VtScreenBuffer(20, 5);
+      screen.feed('Hi\x1b7'); // \x1b7 = save cursor (should be ignored/skipped)
+      expect(screen.getText()).toContain('Hi');
+    });
+
+    it('clamps cursor position at boundaries', () => {
+      const screen = new VtScreenBuffer(10, 5);
+      screen.feed('\x1b[99A'); // try to move up 99 rows
+      expect(screen.cy).toBe(0);
+      screen.cy = 4;
+      screen.feed('\x1b[99B'); // try to move down 99 rows
+      expect(screen.cy).toBe(4); // clamped at rows-1
+    });
+
+    it('getText filters out empty lines', () => {
+      const screen = new VtScreenBuffer(20, 5);
+      screen.feed('Hello');
+      // rows 1-4 are empty
+      const text = screen.getText();
+      expect(text).toBe('Hello');
+    });
+  });
 });

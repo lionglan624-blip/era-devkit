@@ -1,0 +1,33 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ1-7
+entries:
+- id: fallback
+  content: >-
+    「ああ・・そこ、そこよっ・・あっ、あっ、ああああーーーーーーっ！！」
+
+    「ああっ・・も、もっと、もっと、つよ・・くっ、ああああああっ！！」
+
+    「んっ・・ん・・い、いかせて・・いかせてっ・・い、イくぅぅーーーーっ！！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・そこ、そこよっ・・あっ、あっ、ああああーーーーーーっ！！」
+
+    「ああっ・・も、もっと、もっと、つよ・・くっ、ああああああっ！！」
+
+    「んっ・・ん・・い、いかせて・・いかせてっ・・い、イくぅぅーーーーっ！！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: ぐったりと力なく身体を預けてくる%CALLNAME:奴隷%を抱きしめながら、%NTR_NAME(0)%はペニスを隆起させている。
+  priority: 2
+- id: fallback
+  content: >-
+    「いやっ・・や、めてっ、助けてっ、助けて%CALLNAME:MASTER%！！ あ、ああっ！！」
+
+    「た・・助けてっ、助けて%CALLNAME:MASTER%！！ あ、ああっ、い、イくっ！！」
+
+    「た・・助けて%CALLNAME:MASTER%！！ あ、ああっ、い、やあああ！！」
+  priority: 1
+  displayMode: newline

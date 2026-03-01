@@ -1,0 +1,232 @@
+{
+  "name": "Feature 181: K8 COM_47",
+  "defaults": {
+    "character": "8"
+  },
+  "tests": [
+    {
+      "name": "恋人_pattern0",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [0],
+      "state": {"TALENT:TARGET:16": 1},
+      "expect": {
+        "output_contains": [
+          "「なにそれ?　小さいキャップみたいなの」",
+          "チルノはニプルキャップを興味深そうに見つめた。",
+          "「乳首につけるの?　あなたって変なもの好きよね」",
+          "呆れながらも、氷の妖精は胸を差し出した。",
+          "「最強のあたいの乳首に、そんなの付けたいんだ」",
+          "恋人を信頼しているから、チルノは大人しくしている。",
+          "「……あなたがしたいなら、いいわよ」"
+        ]
+      }
+    },
+    {
+      "name": "恋人_pattern1",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [1],
+      "state": {"TALENT:TARGET:16": 1},
+      "expect": {
+        "output_contains": [
+          "「んっ……冷たい……あ、あたいより冷たい……」",
+          "ニプルキャップが乳首に装着され、チルノは小さく声を上げた。",
+          "「はぅ……きゅって……挟まれてる感じ……」",
+          "氷の妖精でも、この刺激には慣れないようだ。",
+          "「あなた、これ……結構、すごい……」",
+          "恋人の前だから正直に感想を言っている。",
+          "「……あたいの乳首、変になっちゃうかも……」"
+        ]
+      }
+    },
+    {
+      "name": "恋人_pattern2",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [2],
+      "state": {"TALENT:TARGET:16": 1},
+      "expect": {
+        "output_contains": [
+          "「またこれ?　あなたったら本当に好きね」",
+          "チルノは覚えているらしく、少し恥ずかしそうだ。",
+          "「前も付けたでしょ……乳首がきゅってなるやつ」",
+          "それでも拒否せず、チルノは胸を突き出した。",
+          "「んっ……やっぱり、挟まれると……ひゃぅ……」",
+          "装着されると、氷の妖精は小さく震えた。",
+          "「……あなたに見られると、恥ずかしい……」"
+        ]
+      }
+    },
+    {
+      "name": "恋人_pattern3",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [3],
+      "state": {"TALENT:TARGET:16": 1},
+      "expect": {
+        "output_contains": [
+          "「もう、あなたはあたいの乳首が好きすぎでしょ」",
+          "チルノは呆れたふりをしながらも嬉しそうだ。",
+          "「こうやって挟まれるの、結構クセになりそう……」",
+          "恋人に甘えるように、チルノは身を寄せた。",
+          "「んっ……あっ……あなたのせいよ……」",
+          "乳首への刺激に、チルノは息を荒くした。",
+          "「……あたいの乳首、あなた専用よ」"
+        ]
+      }
+    },
+    {
+      "name": "恋慕_pattern0",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [0],
+      "state": {"TALENT:TARGET:3": 1},
+      "expect": {
+        "output_contains": [
+          "「え!?　な、なにそれ……乳首につけるの!?」",
+          "チルノはニプルキャップを見て顔を赤くした。",
+          "「そんな変なの……あなたって変態じゃないの!」",
+          "文句を言いつつも、好きな人には逆らえない。",
+          "「……しょ、しょうがないわね!　最強のあたいが付き合ってあげる!」",
+          "恥ずかしそうに胸を差し出しながら、チルノは震えていた。",
+          "「……や、優しくしなさいよね……」"
+        ]
+      }
+    },
+    {
+      "name": "恋慕_pattern1",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [1],
+      "state": {"TALENT:TARGET:3": 1},
+      "expect": {
+        "output_contains": [
+          "「ひゃぅっ!?　つ、冷たっ……挟まれ……てる……」",
+          "ニプルキャップが装着され、チルノは悲鳴を上げた。",
+          "「な、なによこれ……乳首がきゅって……」",
+          "恥ずかしさと未知の感覚に、頬が真っ赤になっている。",
+          "「あなた……こんなの、恥ずかしいってば……」",
+          "好きな人の前でこんな姿を見せるのが堪らないようだ。",
+          "「……でも、あたいは逃げない……最強だから……!」"
+        ]
+      }
+    },
+    {
+      "name": "恋慕_pattern2",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [2],
+      "state": {"TALENT:TARGET:3": 1},
+      "expect": {
+        "output_contains": [
+          "「ま、また乳首に付けるの……あれ……」",
+          "チルノは恥ずかしそうに俯いた。",
+          "「……あなたがしたいなら……あたいは……」",
+          "好きな人のためなら、という想いが伝わってくる。",
+          "「んっ……挟まれると……やっぱり……ひゃぅ……」",
+          "ニプルキャップの刺激に、チルノは声を堪えた。",
+          "「あなたに……こんな顔、見せたくないのに……」"
+        ]
+      }
+    },
+    {
+      "name": "恋慕_pattern3",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [3],
+      "state": {"TALENT:TARGET:3": 1},
+      "expect": {
+        "output_contains": [
+          "「あなた……あたいの乳首、変になってない……?」",
+          "チルノは不安げに見上げてきた。",
+          "「こんなの挟まれて……平気でいられる方がおかしいわよ……」",
+          "恥ずかしさを隠しきれず、目を逸らしている。",
+          "「……んっ……あなたのせいで……敏感に……」",
+          "好きな人に翻弄される自分に、チルノは戸惑っていた。",
+          "「……あたいのこと……嫌いに、ならないでよね……」"
+        ]
+      }
+    },
+    {
+      "name": "思慕_pattern0",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [0],
+      "state": {"TALENT:TARGET:17": 1},
+      "expect": {
+        "output_contains": [
+          "最強のあたいの乳首にそれ使う気"
+        ]
+      }
+    },
+    {
+      "name": "思慕_pattern1",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [1],
+      "state": {"TALENT:TARGET:17": 1},
+      "expect": {
+        "output_contains": [
+          "あなた、やっぱり変態なんじゃないの"
+        ]
+      }
+    },
+    {
+      "name": "思慕_pattern2",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [2],
+      "state": {"TALENT:TARGET:17": 1},
+      "expect": {
+        "output_contains": [
+          "やっぱり挟まれると……変な感じ"
+        ]
+      }
+    },
+    {
+      "name": "思慕_pattern3",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [3],
+      "state": {"TALENT:TARGET:17": 1},
+      "expect": {
+        "output_contains": [
+          "あなたが楽しいなら……いいけどさ"
+        ]
+      }
+    },
+    {
+      "name": "なし_pattern0",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [0],
+      "state": {},
+      "expect": {
+        "output_contains": [
+          "最強のあたいにそんな変なことする気"
+        ]
+      }
+    },
+    {
+      "name": "なし_pattern1",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [1],
+      "state": {},
+      "expect": {
+        "output_contains": [
+          "こんなの最強のあたいに対する侮辱よ"
+        ]
+      }
+    },
+    {
+      "name": "なし_pattern2",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [2],
+      "state": {},
+      "expect": {
+        "output_contains": [
+          "さっさと終わらせなさいよ、気分悪いんだから"
+        ]
+      }
+    },
+    {
+      "name": "なし_pattern3",
+      "call": "KOJO_MESSAGE_COM_K8_47",
+      "mock_rand": [3],
+      "state": {},
+      "expect": {
+        "output_contains": [
+          "好きにすればいいわよ、もう"
+        ]
+      }
+    }
+  ]
+}

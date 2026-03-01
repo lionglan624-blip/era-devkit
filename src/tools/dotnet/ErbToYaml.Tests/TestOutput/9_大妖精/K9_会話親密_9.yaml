@@ -1,0 +1,211 @@
+﻿character: 大妖精
+situation: K9_会話親密
+entries:
+- id: fallback
+  content: >-
+    「あっ……%CALLNAME:MASTER%の指……中に……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の指が自分の中に入ってくる感覚に、甘い息を漏らした。
+
+    「ん……奥まで……感じるの……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸にしがみつきながら、身を委ねている。
+
+    「……わたしの中……全部、%CALLNAME:MASTER%のものだよ……」
+
+    小さな羽がぴくぴくと震え、%CALLNAME:TARGET%は幸せそうに微笑んだ。
+
+    「ひゃっ……んんっ……そこ……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の膣壁をゆっくりと撫でている。
+
+    「%CALLNAME:MASTER%の指……わたしのこと……覚えてくれてるんだね……」
+
+    %CALLNAME:TARGET%は潤んだ瞳で%CALLNAME:MASTER%を見上げた。
+
+    「……もっと奥……触って……ね……？」
+
+    %CALLNAME:TARGET%は自分から腰を押し付けるように動いた。
+
+    「あぁっ……指が……動いてる……」
+
+    %CALLNAME:TARGET%の体が小さく震え、背中の羽が揺れている。
+
+    「%CALLNAME:MASTER%……そこ……気持ちいいの……」
+
+    %CALLNAME:MASTER%が指を曲げて内壁を刺激すると、%CALLNAME:TARGET%はより大きく反応した。
+
+    「……チルノちゃんには……絶対秘密……だよ……？」
+
+    %CALLNAME:TARGET%は恥ずかしそうに笑いながら、%CALLNAME:MASTER%の腕に縋りついた。
+
+    「んっ……あ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の指の動きに身を任せている。
+
+    「……わたし……%CALLNAME:MASTER%の指だけで……こんなに……」
+
+    %CALLNAME:TARGET%は熱い息を吐きながら、恥ずかしそうに顔を赤らめた。
+
+    「……もっと深くまで……知ってほしいの……」
+
+    「……愛してるから……全部……あげるね……」
+
+    %CALLNAME:TARGET%は陶然とした表情で囁いた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ひゃっ……！　な、中に……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の指が挿入される感覚に驚いた。
+
+    「そ、そんな……いきなり中は……恥ずかしいよぅ……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして俯いた。
+
+    「……でも……%CALLNAME:MASTER%だから……いい、の……」
+
+    恥ずかしさの中に、どこか嬉しそうな色が滲んでいた。
+
+    「あ……んっ……指が……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の指の動きに身を委ねている。
+
+    「%CALLNAME:MASTER%……そんなところ触られたら……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を伏せた。
+
+    「……変な声……出ちゃうよ……」
+
+    %CALLNAME:TARGET%の羽が落ち着きなく震えている。
+
+    「んっ……あぅ……」
+
+    %CALLNAME:TARGET%は甘い声を抑えきれなかった。
+
+    「こんなこと……妖精がするなんて……」
+
+    %CALLNAME:TARGET%は自分の立場を思い出して躊躇った。
+
+    「……でも……%CALLNAME:MASTER%と一緒なら……怖くない……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「やっ……そこ、奥……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の奥を探っている。
+
+    「%CALLNAME:MASTER%……わたし……慣れてなくて……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに%CALLNAME:MASTER%の服を掴んだ。
+
+    「……でも……嫌じゃないの……」
+
+    「……%CALLNAME:MASTER%になら……教えてもらいたい……」
+
+    小声で、%CALLNAME:TARGET%はそう告げた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「えっ……！　ちょ、ちょっと……！」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の指が入ってきて驚いた。
+
+    「な、中は……さすがに恥ずかしいです……」
+
+    %CALLNAME:TARGET%は真っ赤な顔で俯いた。
+
+    「……%CALLNAME:MASTER%さん……わたしのこと、どう思ってるんですか……」
+
+    戸惑いながらも、%CALLNAME:TARGET%は抵抗しなかった。
+
+    「ひゃぁっ……んっ……」
+
+    %CALLNAME:TARGET%の体が小さく震えた。
+
+    「そ、そんな……指を動かさないで……」
+
+    %CALLNAME:TARGET%は抗議しながらも、声は甘く響いた。
+
+    「……あぅ……変な感じ……するの……」
+
+    %CALLNAME:TARGET%は困惑した表情を浮かべた。
+
+    「あ……んっ……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の中を探っている。
+
+    「%CALLNAME:MASTER%さん……こういうの、急にされると……」
+
+    %CALLNAME:TARGET%は戸惑いを隠せない様子だった。
+
+    「……でも……もう少しだけなら……いい、です……」
+
+    小さく、%CALLNAME:TARGET%は許可を出した。
+
+    「やっ……そこ……」
+
+    %CALLNAME:TARGET%は声を抑えようと唇を噛んだ。
+
+    「%CALLNAME:MASTER%さん……わたし、まだ心の準備が……」
+
+    %CALLNAME:TARGET%は期待と不安の間で揺れていた。
+
+    「……嫌ってわけじゃ……ないんですけど……」
+
+    消え入りそうな声で、%CALLNAME:TARGET%は呟いた。
+  priority: 2
+- id: fallback
+  content: >-
+    「っ……！　な、何するんですか……！」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の指が入ってきて驚愕した。
+
+    「い、いきなり中に指を入れるなんて……」
+
+    %CALLNAME:TARGET%は戸惑いを隠せない様子だった。
+
+    「……わたし……こういうの……分からないです……」
+
+    %CALLNAME:TARGET%は怯えた目で%CALLNAME:MASTER%を見ている。
+
+    「ひゃっ……！」
+
+    %CALLNAME:TARGET%の体がビクンと跳ねた。
+
+    「あ、あの……そんなところを……」
+
+    %CALLNAME:TARGET%は困惑した表情を浮かべた。
+
+    「……チルノちゃん……助けて……」
+
+    小さく、%CALLNAME:TARGET%は友達の名前を呟いた。
+
+    「ん……くぅ……」
+
+    %CALLNAME:TARGET%は声を抑えようとしている。
+
+    「%CALLNAME:MASTER%さん……こういうこと、急にされると困ります……」
+
+    %CALLNAME:TARGET%は複雑な表情を浮かべた。
+
+    「……妖精は……こういうの……あまりしないんです……」
+
+    弱々しく、%CALLNAME:TARGET%は訴えた。
+
+    「あ……やぁ……」
+
+    %CALLNAME:TARGET%は不意を突かれて声が漏れた。
+
+    「……%CALLNAME:MASTER%さん……これは……」
+
+    %CALLNAME:TARGET%は少し非難がましい目で%CALLNAME:MASTER%を見た。
+
+    「……お願い……優しく……してください……」
+
+    %CALLNAME:TARGET%は小さな声で懇願した。
+  priority: 1

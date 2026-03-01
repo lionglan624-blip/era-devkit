@@ -1,0 +1,11 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: fallback
+  content: >-
+    「さすがに元気ね。
+
+    「元気いっぱいね。
+
+    「ヒクヒクさせちゃって。
+  priority: 1

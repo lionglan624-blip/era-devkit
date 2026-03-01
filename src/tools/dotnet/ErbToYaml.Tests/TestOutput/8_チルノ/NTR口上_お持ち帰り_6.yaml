@@ -1,0 +1,77 @@
+﻿character: チルノ
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「やだ・・やだよぉ・・いやああ・・！！」
+
+    「やだ！ やだ！ 出しちゃ、やだああああ！！」
+
+    「ああっ！ やめ、やめてっ！ いやああああっ！！」
+  priority: 8
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「いっ、いやああっ！ 中は、中はだめええええっ！！」
+
+    「やだ！ やだ！ 出しちゃ、やだああああ！！」
+
+    「ああっ！ やめ、やめてっ！ いやああああっ！！」
+  priority: 7
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ひゃぁあああぅっ・・あっ・・あつぅい・・・」
+
+    %CALLNAME:奴隷%の小さな身体に深々と突き入れた客は彼女の奥の奥で射精した。
+
+    子宮を満たしてなお余りある大量の精液で胎内を灼かれ、%CALLNAME:奴隷%は恍惚としている。
+  priority: 6
+- id: fallback
+  content: >-
+    「ひゃぁあああぅっ・・あっ・・あつぅい・・・」
+
+    %CALLNAME:奴隷%の小さな身体に深々と突き入れた客は彼女の奥の奥で射精した。
+
+    子宮を満たしてなお余りある大量の精液で胎内を灼かれ、%CALLNAME:奴隷%は恍惚としている。
+  priority: 5
+- id: fallback
+  content: >-
+    「ひゃぁあああぅっ・・あっ・・びくびくって・・すごい・・・」
+
+    %NTR_NAME(0)%が膣内で射精を始めると、%CALLNAME:奴隷%は腹に手を当てて精液が子宮を叩く感覚に浸った
+
+    どろりとした%NTR_NAME(0)%の精液が%CALLNAME:奴隷%の胎内を埋め尽くし、入りきらなかったモノが音を立てながら漏れ出してきた
+  priority: 4
+- id: fallback
+  content: >-
+    「ひゃぁあああぅっ・・あっ・・びくびくって・・すごい・・・」
+
+    %NTR_NAME(0)%が膣内で射精を始めると、%CALLNAME:奴隷%は腹に手を当てて精液が子宮を叩く感覚に浸った
+
+    どろりとした%NTR_NAME(0)%の精液が%CALLNAME:奴隷%の胎内を埋め尽くし、入りきらなかったモノが音を立てながら漏れ出してきた
+
+    「ねぇ・・あたい、ご主人様のオンナになるんだよね？」
+  priority: 3
+- id: fallback
+  content: >-
+    「ひゃぁあああぅっ・・あっ・・びくびくって・・すごい・・・」
+
+    %NTR_NAME(0)%が膣内で射精を始めると、%CALLNAME:奴隷%は腹に手を当てて精液が子宮を叩く感覚に浸った
+
+    どろりとした%NTR_NAME(0)%の精液が%CALLNAME:奴隷%の胎内を埋め尽くし、入りきらなかったモノが音を立てながら漏れ出してきた
+
+    %NTR_NAME(0)%は脚を開いたまま茫然自失となった%CALLNAME:奴隷%の姿をニヤつきながら撮影している。
+  priority: 2
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は%CALLNAME:奴隷%の膣奥にペニスを押し付けると、そのまま大量に射精した。
+
+    「あっ・・あっ・・お腹・・熱い・・よぅ・・・」
+
+    %NTR_NAME(0)%は脚を開いたまま茫然自失となった%CALLNAME:奴隷%の姿をニヤつきながら撮影している。
+  priority: 1

@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    「だから、相手をしなさい。これも、%CALLNAME:MASTER%の仕事の内でしょう？」
+
+    「だから、目の前にある便器で用を足すのよ。ふふっ、当然でしょう？」
+
+    「そういうことで、%CALLNAME:MASTER%のお仕事よ。わかっているわね？」
+  priority: 1
+  displayMode: newline

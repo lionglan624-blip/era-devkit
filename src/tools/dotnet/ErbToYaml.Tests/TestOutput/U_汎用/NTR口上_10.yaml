@@ -1,0 +1,54 @@
+﻿character: 汎用
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んっ・・ふっ・・んんっ・・・ふぁあ・・%MSG_HEART()%」
+
+    「うん・・あん・・あ・・さきっぽぉ・・%MSG_HEART()%」
+
+    「ん・・やぁん・・いい・・%MSG_HEART()%」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ふっ・・んんっ・・・ふぁあ・・%MSG_HEART()%」
+
+    「うん・・あん・・あ・・さきっぽぉ・・%MSG_HEART()%」
+
+    「ん・・やぁん・・いい・・%MSG_HEART()%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ふっ・・んんっ・・・ふぁあ・・♪」
+
+    「うん・・あん・・あ・・さきっぽぉ・・♪」
+
+    「ん・・やぁん・・いい・・♪」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「こんなっ、ああ・・いやぁ・・」
+
+    「だ、だめ・・こんな、ところで・・」
+
+    「ん・・やぁ・・だ・・め・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「こんなっ、事し・・て、いやっ・・い？」
+
+    「だ、だめよ・・こんな、ところで・・ん！」
+
+    「ん・・や・・だ、だめっ・・！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「いっ、痛っ！！やめっ、強くしないで」
+
+    もがくことをやめない%CALLNAME:奴隷%に対し、%NTR_NAME(0)%は痕が残りそうなほど強く胸を握った。
+  priority: 1

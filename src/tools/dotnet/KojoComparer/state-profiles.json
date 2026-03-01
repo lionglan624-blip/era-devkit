@@ -1,0 +1,24 @@
+{
+  "profiles": [
+    {
+      "name": "default",
+      "description": "Empty state - ELSE/fallback branches",
+      "state": {}
+    },
+    {
+      "name": "恋人",
+      "description": "TALENT:恋人 branch",
+      "state": { "TALENT:TARGET:16": 1 }
+    },
+    {
+      "name": "恋慕",
+      "description": "TALENT:恋慕 branch",
+      "state": { "TALENT:TARGET:3": 1 }
+    },
+    {
+      "name": "思慕",
+      "description": "TALENT:思慕 branch",
+      "state": { "TALENT:TARGET:17": 1 }
+    }
+  ]
+}

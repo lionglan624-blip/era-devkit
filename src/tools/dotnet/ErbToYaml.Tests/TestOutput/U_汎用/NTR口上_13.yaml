@@ -1,0 +1,48 @@
+﻿character: 汎用
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んちゅっ・・ちゅっくちゅっ・・んふっ・・れるっ・・」
+
+    「んん・・じゅっ・・もっと・・んんっ・・ちゅぱ・・」
+
+    「あん・・ん・・うふ・・おいしい・・ん・・ちゅぷっ・・」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んちゅっ・・ちゅっくちゅっ・・んふっ・・れるっ・・」
+
+    「んん・・じゅっ・・もっと・・んんっ・・ちゅぱ・・」
+
+    「あん・・ん・・うふ・・おいしい・・ん・・ちゅぷっ・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んちゅ、ぷちゅっっ・・んはぁっ・・はぁ・・れろ、じゅるる・・」
+
+    「んん・・ああ・・んんっ・・ちゅ・・ちゅぷっ・・」
+
+    「あん・・ん・・おいしい・・ん・・くちゅっ・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んちゅ、ぷちゅっっ・・ん・・はぁ・・れろっ・・」
+
+    「んっ・・ん・・うん・・ちゅぷっ・・」
+
+    「う・・んっ・・くちゅっ・・ちゅっ・・じゅぷっ・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んーっ！んーっ！・・い、いやあっ！ ううっ！！」
+
+    「んんっ・・けほっ・・ちゅぷっ・・れろ・・」
+
+    「ううんっ！ も、もうやめっ・・ううっ！」
+  priority: 1
+  displayMode: newline

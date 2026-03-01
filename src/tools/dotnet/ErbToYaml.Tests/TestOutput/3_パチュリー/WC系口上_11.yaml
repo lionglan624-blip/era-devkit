@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    そこまで敏感に反応するのね」
+
+    %CALLNAME:MASTER%の体は喜ぶのね」
+
+    すぐ淫らに応じるのね」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,28 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「艶かしくていいわね。こんな玩具で悪いけど、愉しみなさい」%CALLNAME:加害者%は%CALLNAME:被害者%を嗜虐心に染まった眼で見つめている
+
+    そして%CALLNAME:加害者%はペニスバンドを装着して後ろから押し倒し、
+
+    黒光りするボディースーツの感触を堪能しながら、秘部をディルドで貫こうとした
+  priority: 3
+- id: fallback
+  content: >-
+    「滑らかでいいわね。こんな玩具で悪いけど、愉しみなさい」%CALLNAME:加害者%は%CALLNAME:被害者%を嗜虐心に染まった眼で見つめている
+
+    そして%CALLNAME:加害者%はペニスバンドを装着して後ろから押し倒し、
+
+    きわどく切り上がり小さく秘所を隠すレオタードの股布をずらした
+  priority: 2
+- id: fallback
+  content: >-
+    「こんな玩具で悪いけど、愉しみなさい」
+
+    「ふふっ、玩具で遊んであげるわ」
+
+    「嫌ですって？ 何を言っているの、便器に拒否権なんてないのよ？」
+  priority: 1
+  displayMode: newline

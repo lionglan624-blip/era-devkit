@@ -1,0 +1,239 @@
+﻿character: 子悪魔
+situation: K7_口挿入
+entries:
+- id: fallback
+  content: >-
+    「えへへ……%CALLNAME:MASTER%の中に、入れていい……？」
+
+    %CALLNAME:TARGET%は嬉しそうに%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    小さな体が%CALLNAME:MASTER%を押さえつけ、ゆっくりと腰を進めていく。
+
+    「んっ……%CALLNAME:MASTER%の中……あったかい……」
+
+    %CALLNAME:TARGET%は幸せそうな表情で腰を動かし始めた。
+
+    「あたし、%CALLNAME:MASTER%の中にいると……すごく気持ちいいの」
+
+    妖精の小さな腰が、懸命に%CALLNAME:MASTER%の奥を突いていく……
+
+    「今日もあたしにさせてくれるの？　やったぁ！」
+
+    %CALLNAME:TARGET%は満面の笑みで%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    「%CALLNAME:MASTER%の中、いっぱい気持ちよくしてあげるね」
+
+    %CALLNAME:TARGET%は慣れた様子で%CALLNAME:MASTER%の中に入り、腰を動かし始めた。
+
+    「んっ……はぁ……%CALLNAME:MASTER%の中……ぎゅって締まってきた……」
+
+    嬉しそうに%CALLNAME:TARGET%は腰の動きを速めた。
+
+    「えへへ、あたしが動くと%CALLNAME:MASTER%の顔、とろけてくるね……？」
+
+    「%CALLNAME:MASTER%……あたし、もっと上手になりたいの」
+
+    %CALLNAME:TARGET%は真剣な表情で%CALLNAME:MASTER%の上にまたがった。
+
+    「だから……いっぱい練習させてね？」
+
+    小さな腰が%CALLNAME:MASTER%の中で動き始める。
+
+    「こうやって奥まで届くと気持ちいいって……咲夜さんが言ってた……」
+
+    %CALLNAME:TARGET%は一生懸命に腰を使いながら、期待に満ちた目で見下ろした。
+
+    「……ね、あたし、ちゃんと%CALLNAME:MASTER%の中に届いてる……？」
+
+    「あ……%CALLNAME:MASTER%の中、あたしを包んでくれてる……感じる……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の上で幸せそうに微笑んだ。
+
+    「あたしが奥まで入れると、%CALLNAME:MASTER%の顔、変わるんだね……えへへ」
+
+    %CALLNAME:TARGET%は愛おしそうに腰を揺らし続けた。
+
+    「ふふっ……びくってした……かわいい」
+
+    %CALLNAME:TARGET%はくすくす笑いながら、優しく%CALLNAME:MASTER%の中を突いている。
+
+    「%CALLNAME:MASTER%……大好き。いっぱい気持ちよくしてあげるね……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「え、えっと……こ、こうやって入れればいいの……？」
+
+    %CALLNAME:TARGET%は真っ赤になりながら、おずおずと%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    初めての体勢に緊張しながらも、そっと%CALLNAME:MASTER%の中に入っていく。
+
+    「わぁ……%CALLNAME:MASTER%の中……あたしを包んでる……」
+
+    %CALLNAME:TARGET%は困惑しながらも、見よう見まねで腰を動かし始めた。
+
+    「……%CALLNAME:MASTER%、気持ちいいですか……？」
+
+    心配そうに%CALLNAME:TARGET%は%CALLNAME:MASTER%の顔を窺っている。
+
+    「あの……%CALLNAME:MASTER%のために……頑張ります……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    「こういうの、あたし初めてだから……下手でごめんね……」
+
+    ぎこちない動きで、%CALLNAME:TARGET%は懸命に%CALLNAME:MASTER%の中を突き始めた。
+
+    「んっ……はぁ……こう……？　奥まで届いてる……？」
+
+    一生懸命な%CALLNAME:TARGET%の姿は、どこか健気だった。
+
+    「……気持ちよくなって、くれたら……嬉しいな……」
+
+    「は、恥ずかしいよぅ……でも……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、%CALLNAME:MASTER%の中で腰を揺らした。
+
+    「%CALLNAME:MASTER%が気持ちよくなるなら……あたし、頑張る……」
+
+    小さな腰が%CALLNAME:MASTER%の中でゆっくりと動いていく。
+
+    「……んっ……%CALLNAME:MASTER%の中……熱い……締まってきた……」
+
+    %CALLNAME:TARGET%は繋がった感触に驚きながらも、腰を止めなかった。
+
+    「……%CALLNAME:MASTER%……あたしのこと、好き……？」
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は上目遣いに%CALLNAME:MASTER%を見つめた。
+
+    「あたし……%CALLNAME:MASTER%のこと、好きだから……」
+
+    恥ずかしそうに俯きながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%の中で腰を動かし始めた。
+
+    「だから……%CALLNAME:MASTER%の中に……入れさせて……ね……？」
+
+    小さな腰がたどたどしく動き、%CALLNAME:MASTER%の奥を突こうと頑張っている。
+
+    %CALLNAME:TARGET%は真剣な表情で、%CALLNAME:MASTER%の反応を見守っていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え……あたしが……%CALLNAME:MASTER%の中に……入れるの……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見つめて固まっている。
+
+    「その……こういうこと、したことないです……」
+
+    おずおずと%CALLNAME:MASTER%の上に覆いかぶさり、恐る恐る中に入っていく。
+
+    「わっ……入った……び、びっくりした……」
+
+    %CALLNAME:TARGET%は驚きながらも、言われた通りに腰を動かし始めた。
+
+    「……こう……ですか……？　ちゃんと届いてますか……？」
+
+    「あの……%CALLNAME:MASTER%……これって……」
+
+    %CALLNAME:TARGET%は戸惑いながら、%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    「えっと……%CALLNAME:MASTER%の中で腰を振ればいいんですよね……？」
+
+    ぎこちない動きで、%CALLNAME:TARGET%は見よう見まねで%CALLNAME:MASTER%の中を突き始めた。
+
+    「……んっ……なんか、すごい……%CALLNAME:MASTER%の中、ぎゅって……」
+
+    初めての感触に%CALLNAME:TARGET%は困惑しながらも、腰を動かし続けている。
+
+    「……%CALLNAME:MASTER%……あたし、ちゃんとできてますか……？」
+
+    「……はい……やります……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    「あの……優しくしてくださいね……？　あたし、怖いので……」
+
+    小さな腰が震えながら%CALLNAME:MASTER%の中に入っていった。
+
+    「……んっ……はぁ……こう……？」
+
+    %CALLNAME:TARGET%は不安そうに%CALLNAME:MASTER%の顔色を窺いながら、腰を動かしている。
+
+    「……%CALLNAME:MASTER%が満足してくれたら……嬉しいです……」
+
+    「……えっと……%CALLNAME:MASTER%のお手伝い……ですか？」
+
+    %CALLNAME:TARGET%は首を傾げながら、%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    「妖精メイドのお仕事……なのかな……」
+
+    %CALLNAME:TARGET%は困惑しながらも、言われるがままに%CALLNAME:MASTER%の中に入っていった。
+
+    「……んしょ……こうかな……」
+
+    たどたどしい動きで、%CALLNAME:TARGET%は懸命に%CALLNAME:MASTER%の中を突き始めた。
+
+    「……咲夜さんには、内緒ですよ……？」
+  priority: 2
+- id: fallback
+  content: >-
+    「え……えっ……な、何を……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見つめて顔を青くした。
+
+    「あの……こういうの、あたしにはわからないです……」
+
+    困惑した表情で、%CALLNAME:TARGET%は後ずさりしようとした。
+
+    「……で、でも……やらないとダメ……ですか……」
+
+    観念したように、%CALLNAME:TARGET%は恐る恐る%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    「……う……怖いです……」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    「……あたし、こういうの、どうすればいいかわからないです……」
+
+    仕方なさそうに%CALLNAME:MASTER%の中に入り、ぎこちなく動き始めた。
+
+    「……んっ……こう……ですか……」
+
+    機械的に腰を動かしながら、%CALLNAME:TARGET%は視線を逸らしている。
+
+    「……早く終わってほしいな……」
+
+    「ひっ……こ、こういうこと……あたしが……するの……？」
+
+    %CALLNAME:TARGET%は怯えた表情で%CALLNAME:MASTER%を見つめた。
+
+    「あの……お仕事なら他のことの方が……」
+
+    %CALLNAME:TARGET%は逃げ出したそうな顔をしているが、従わざるを得ない。
+
+    「……う……入れます……」
+
+    嫌々ながら%CALLNAME:TARGET%は%CALLNAME:MASTER%の中で腰を動かし始めた。
+
+    「……こういうの、苦手なんです……ごめんなさい……」
+
+    「……%CALLNAME:MASTER%……なんでこんなこと……」
+
+    %CALLNAME:TARGET%は困惑と戸惑いの表情を浮かべている。
+
+    「あたし、お掃除とかお茶汲みの方が得意なんですけど……」
+
+    渋々と%CALLNAME:TARGET%は%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    「……んっ……はぁ……こう……？」
+
+    不慣れな動きで、%CALLNAME:TARGET%は%CALLNAME:MASTER%の中を突き始めた。
+
+    「……咲夜さんに見つかったら、怒られちゃいます……」
+  priority: 1

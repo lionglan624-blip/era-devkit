@@ -1,0 +1,62 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた
+
+    「はぁ…はぁ…ふふっ…」
+
+    「はぁ…ん…うふっ…」
+
+    「んっ…ん…気持ちいい…」
+  priority: 7
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はぁ…はぁ…ふふっ…」
+
+    「はぁ…ん…うふっ…」
+
+    「んっ…ん…」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: '%NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた'
+  priority: 5
+- id: fallback
+  content: '%NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた'
+  priority: 4
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた
+
+    「だめだ…」
+
+    「もう…やめてくれ…」
+
+    「…もう…」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた
+
+    「だめだ…」
+
+    「もう…やめてくれ…」
+
+    「…もう…」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた
+
+    「なんっ…で、こ…んなこと」
+
+    「こ、こういうのは、やめろ」
+
+    「や、やめろって、言ってるだろ！？」
+  priority: 1
+  displayMode: newline

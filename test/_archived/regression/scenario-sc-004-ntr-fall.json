@@ -1,0 +1,21 @@
+{
+  "name": "sc-004: NTR陥落 通常パス",
+  "description": "好感度<1000 かつ 屈服度>2000 でTALENT:陥落(NTR)=1になることを確認",
+  "add_characters": [1],
+  "characters": {
+    "紅美鈴": {
+      "CFLAG:2": 500,
+      "CFLAG:21": 2500,
+      "TALENT:6": 0
+    }
+  },
+  "copy": [
+    {"from": "紅美鈴", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]", "[NTR]を得た"],
+    "var_equals": {
+      "TALENT:1:6": 1
+    }
+  }
+}

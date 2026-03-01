@@ -1,0 +1,76 @@
+﻿character: 大妖精
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「や、やめてくださいっ」
+
+    「そ、そんなっ・・他の人に聞かれたらっ・・」
+
+    「お願いです・・後にしてください」
+  priority: 9
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「え・・次の『お仕事』ですか・・はい、お引き受けします」
+
+    「また『お仕事』ですか？ 今度はどんな服を着ればいいんでしょう？」
+
+    「はい・・お待ちしています」
+  priority: 8
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はい・・いつでも構いませんよ」
+
+    「私なら、いつでも暇ですから」
+
+    「また・・呼んでください」
+  priority: 7
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えへへ、とっても面白いです」
+
+    「今度、どこかに行きましょうか？」
+
+    「とっておきの場所があるんですよ」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「え？そうなんですか？面白そうですね」
+
+    「はい、それなら知っています」
+
+    「あ、この間のお話の続きですか？」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「え？ そうなんですか？」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の話に興味を抱いたようだ。
+  priority: 4
+- id: fallback
+  content: >-
+    「え？ そうなんですか？」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の話に興味を抱いたようだ。
+  priority: 3
+- id: fallback
+  content: >-
+    「そうなんですか」
+
+    %CALLNAME:奴隷%は興味がなさそうだ。
+  priority: 2
+- id: fallback
+  content: >-
+    「そうなんですか」
+
+    %CALLNAME:奴隷%は興味がなさそうだ。
+  priority: 1

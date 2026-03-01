@@ -1,0 +1,12 @@
+﻿character: 美鈴
+situation: K1_日常
+entries:
+- id: fallback
+  content: >-
+    「お、お断りしますっ」
+
+    「あ、%CALLNAME:人物_咲夜%さんが呼んでますっ」
+
+    「あっ、侵入者がっ！！」
+  priority: 1
+  displayMode: newline

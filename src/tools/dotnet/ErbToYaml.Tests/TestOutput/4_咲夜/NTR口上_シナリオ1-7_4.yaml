@@ -1,0 +1,48 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ1-7
+entries:
+- id: fallback
+  content: >-
+    「はぁ・・はぁ・・ふふっ・・%S_HEART%」
+
+    「はぁ・・ん・・うふっ・・%S_HEART%」
+
+    「んっ・・ん・・素敵ね・・%S_HEART%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はぁ・・はぁ・・ふふっ・・%S_HEART%」
+
+    「はぁ・・ん・・うふっ・・%S_HEART%」
+
+    「んっ・・ん・・素敵ね・・%S_HEART%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「だめよ・・いけないわ・・%S_HEART%」
+
+    「もう・・いきなりなんだから・・%S_HEART%」
+
+    「・・もう・・%S_HEART%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「だめよ・・いけないわ・・」
+
+    「もう・・いきなりなんだから・・」
+
+    「・・もう・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「なんっ・・で、こ・・んなこと」
+
+    「こ、こういうのは、やめてちょうだい」
+
+    「や、やめてって、いったでしょう？」
+  priority: 1
+  displayMode: newline

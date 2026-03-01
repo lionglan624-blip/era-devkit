@@ -1,0 +1,25 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: talent_7_0
+  content: >-
+    「もしかしたら、お客様に種付けされちゃうかしら・・？」
+
+    「お客様にたっぷり中出しされてくるわ・・どう？ゾクゾクする？」
+
+    「どれだけ注がれちゃうかしら・・%CALLNAME:MASTER%以外の人に、妊娠させられちゃうわ・・%MSG_HEART()%」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「もしかしたら、%NTR_KARE()%に種付けされちゃうかしら・・%MSG_HEART()%」
+
+    「%NTR_KARE()%にたっぷり中出しされてくるわ・・どう？ゾクゾクする？」
+
+    「どれだけ注がれちゃうかしら・・%CALLNAME:MASTER%以外の人に、妊娠させられちゃうわ・・%MSG_HEART()%」
+  priority: 1
+  displayMode: newline

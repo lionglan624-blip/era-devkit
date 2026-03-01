@@ -1,0 +1,72 @@
+﻿character: 美鈴
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%はいつもの部屋へと連行された。
+
+    %NTR_NAME(0)%は%CALLNAME:奴隷%の首輪に部屋の壁から伸びた鎖を繋ぎ鍵をかける。
+
+    %CALLNAME:奴隷%を繋ぎ止めた%NTR_NAME(0)%は部屋を去り、入れ替わりに男が入ってくる。
+  priority: 7
+- id: talent_148_1
+  content: >-
+    「いっ、いやですっ！ 助けて、助けて%CALLNAME:MASTER%！！」
+
+    「いっ、いやですっ！ 離してっ、離してくださいっ！」
+
+    「いやですっ！ くっ、このっ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: talent_7_2
+  content: >-
+    首輪から伸びる鎖を%NTR_NAME(0)%に引かれ、%CALLNAME:奴隷%はいつもの部屋へと連行された。
+
+    %NTR_NAME(0)%はその鎖を部屋の壁に繋ぎ鍵をかける。
+
+    %CALLNAME:奴隷%を繋ぎ止めた%NTR_NAME(0)%は部屋を去り、入れ替わりに男が入ってくる。
+
+    「いらっしゃいませ。本日お客様のお相手を勤めさせていただきます、%CALLNAME:奴隷%と申します」
+
+    %CALLNAME:奴隷%は彼女を買った男の前に跪いて挨拶をした。
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+- id: fallback
+  content: >-
+    「はい・・かしこまりました・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に手渡された首輪を自ら身につけ、そこから伸びる鎖を彼に手渡した。
+
+    性奴隷として身も心も%NTR_NAME(0)%にゆだねて過ごす甘美な一時が始まるのだ。
+  priority: 4
+- id: fallback
+  content: >-
+    「はい・・かしこまりました・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に手渡された首輪を自ら身につけ、そこから伸びる鎖を彼に手渡した。
+
+    性奴隷として身も心も%NTR_NAME(0)%にゆだねて過ごす甘美な一時が始まるのだ。
+  priority: 3
+- id: fallback
+  content: >-
+    「・・せめて、痕がのこらないように・・してください・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に肩を抱かれながら彼の家の門をくぐった。
+
+    気丈な彼女でもはや抵抗できないほど、%NTR_NAME(0)%の手によって与えられる快楽の記憶は大きなものとなっていた。
+  priority: 2
+- id: fallback
+  content: >-
+    「くっ・・離してくださいっ・・どうしてっ・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に腕を掴まれながら彼の家の門をくぐった。
+
+    気丈な彼女ですら満足に抵抗できないほど、%NTR_NAME(0)%の手によって与えられる快楽の記憶は大きなものとなっていた。
+  priority: 1

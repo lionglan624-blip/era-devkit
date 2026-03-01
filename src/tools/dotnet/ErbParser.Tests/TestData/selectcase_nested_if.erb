@@ -1,0 +1,13 @@
+@TEST_SELECTCASE_NESTED_IF
+	SELECTCASE ARG
+		CASE 13,25
+			PRINTFORML 「……なんですか、それ？」
+		CASE 21
+			PRINTFORML 「……なんですか、これ？」
+		CASEELSE
+			IF EQUIP:MASTER:下半身上着１ != 0 || EQUIP:MASTER:下半身上着２ != 0
+				PRINTFORML 「……なんですか、これ？」
+			ELSE
+				PRINTFORML 「……なんですか、それ？」
+			ENDIF
+	ENDSELECT

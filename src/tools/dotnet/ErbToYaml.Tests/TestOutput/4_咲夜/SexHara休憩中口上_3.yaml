@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「くっ・・」
+
+    「また後で来るわ」
+
+    「『仕事』を続けなさい」
+  priority: 1
+  displayMode: newline

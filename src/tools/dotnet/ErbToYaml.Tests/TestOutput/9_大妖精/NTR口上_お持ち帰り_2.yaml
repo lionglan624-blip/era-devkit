@@ -1,0 +1,46 @@
+﻿character: 大妖精
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「んっ！ん・・んっ、んっ・・やあ・・」
+
+    「いっ、いや・・んっ、んっ・・」
+
+    「んんっ！ は、はなして・・んんっ！」
+  priority: 6
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「んっ！んむぅ！・・んっ、んっ・・いやああっ・・んぅ！」
+
+    「いっ、いやあっ・・んっ、んんっ・・むうっ！」
+
+    「んんっ！ は、はなしてぇ・・んんんっ！」
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: 「んっ・・んっ・・んちゅっ・・」
+  priority: 4
+- id: fallback
+  content: >-
+    「んっ・・んっ・・んちゅっ・・」
+
+    %CALLNAME:奴隷%は客と互いに舌を使いながらキスをしている。
+  priority: 3
+- id: fallback
+  content: >-
+    「あ・・んっ・・んぅ・・」
+
+    %NTR_NAME(0)%に抱き寄せられた%CALLNAME:奴隷%は逆らうことなく彼の唇を受け入れた。
+  priority: 2
+- id: fallback
+  content: >-
+    「あ・・んっ・・んぅ・・」
+
+    %NTR_NAME(0)%に抱き寄せられた%CALLNAME:奴隷%は一瞬身を堅くしたが彼の唇を受け入れた。
+  priority: 1

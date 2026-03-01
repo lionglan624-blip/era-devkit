@@ -1,0 +1,30 @@
+﻿character: フラン
+situation: K6_会話親密
+entries:
+- id: fallback
+  content: >-
+    「ごめんね・・指輪は今はつけてないの。だって、私は『公衆便所』だから誰かのお嫁さんじゃないの・・」
+
+    「お金を払ってくれたお客様みんなのお嫁さんだから・・」
+
+    「いつか解放されたら、胸を張ってあの指輪を着けるね」
+  priority: 3
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「指輪？もうつけてないよ。だって、お客様が邪魔だって言うんだもん」
+
+    「それより見て。この首輪、私の名前が彫ってあるんだよ？」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: talent_6_2
+  content: '%"もう"+CALLNAME:MASTER+"のものではないのだから指輪をする必要は無いと言い切られた。"%'
+  priority: 1
+  condition:
+    type: Talent
+    talentType: 6
+    threshold: 1

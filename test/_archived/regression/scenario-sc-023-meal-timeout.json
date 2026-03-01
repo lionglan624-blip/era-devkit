@@ -1,0 +1,18 @@
+{
+  "name": "sc-023: 食事タイムアウト",
+  "description": "食事後2時間以内は再実行不可（クールダウン）を確認。TCVAR:300=飲茶日時, TCVAR:304=食事内容",
+  "add_characters": [1],
+  "characters": {
+    "紅美鈴": {
+      "CFLAG:2": 1500,
+      "TCVAR:300": 1,
+      "TCVAR:304": 1
+    }
+  },
+  "copy": [
+    {"from": "紅美鈴", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]"]
+  }
+}

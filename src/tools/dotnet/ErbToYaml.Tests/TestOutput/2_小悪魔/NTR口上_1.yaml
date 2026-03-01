@@ -1,0 +1,30 @@
+﻿character: 小悪魔
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ん・・んぅ・・・・・」
+
+    「んっ・・ん・・うん・・」
+
+    「う・・んっ・・くちゅっ・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ん・・んぅ・・・・・」
+
+    「んっ・・ん・・うん・・」
+
+    「う・・んっ・・くちゅっ・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んーっ！んーっ！・・んぅっ！？・・・・・」
+
+    「んんっ！ んっ！ う・・ううっ・・」
+
+    「ううんっ！ うっ・・う・・ちゅ・・」
+  priority: 1
+  displayMode: newline

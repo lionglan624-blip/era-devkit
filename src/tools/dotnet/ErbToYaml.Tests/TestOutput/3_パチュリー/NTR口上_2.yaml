@@ -1,0 +1,57 @@
+﻿character: パチュリー
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ちゅっ・・ちゅっ・・んんっ・・こく、こく・・%MSG_HEART()%」
+
+    「んん・・ああ・・ちゅ・・こくんっ・・%MSG_HEART()%」
+
+    「あん・・ん・・うふ・・こくっ・・くちゅっ・・%MSG_HEART()%」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ちゅっ・・ちゅっ・・んんっ・・こく、こく・・%MSG_HEART()%」
+
+    「んん・・ああ・・ちゅ・・こくんっ・・%MSG_HEART()%」
+
+    「あん・・ん・・うふ・・こくっ・・くちゅっ・・%MSG_HEART()%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・くちゅっ・・んんっ・・ちゅっ・・♪」
+
+    「んん・・ああ・・くちゅっ・・ちゅ・・♪」
+
+    「あん・・ん・・うふ・・ちゅぱっ・・くちゅっ・・♪」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・んん・・」
+
+    「・ん・・うん・・」
+
+    「・・んっ・・くちゅっ・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんーっ！んっ・・んん・・」
+
+    「んーっ！・・ん・・うん・・」
+
+    「ううーっ！・・んっ・・くちゅっ・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんーっ！んっ・・んんっ！？」
+
+    「んーっ！・・ん・・うんっ！？」
+
+    「ううーっ！・・んっ・・くちゅっ・・ううっ！」
+  priority: 1
+  displayMode: newline

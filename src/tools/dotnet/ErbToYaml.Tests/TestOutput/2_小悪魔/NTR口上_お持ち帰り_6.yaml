@@ -1,0 +1,43 @@
+﻿character: 小悪魔
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: 「んっ・・ちゅく・・ちゅく・・ちゅく・・」
+  priority: 7
+- id: talent_148_1
+  content: >-
+    「うっ・・うぐっ・・んんっ・・ううっ！！」
+
+    「ううっ・・い、いやっ・・んぐうっ！ んむうっ！」
+
+    「んっ・・んむっ・・だ、だめですっ・・ああっ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: 「んっ・・ちゅく・・ちゅく・・ちゅく・・」
+  priority: 5
+- id: fallback
+  content: >-
+    「んっ・・ちゅく・・ちゅく・・ちゅく・・」
+
+    %CALLNAME:奴隷%は口いっぱいに客のペニスを頬張りながら秘所を濡らした。
+  priority: 4
+- id: fallback
+  content: >-
+    「んっ・・ちゅく・・ちゅく・・ちゅく・・」
+
+    %CALLNAME:奴隷%は愛しげに%NTR_NAME(0)%のペニスを頬張りながら秘所を濡らした。
+  priority: 3
+- id: fallback
+  content: >-
+    「んっ・・ちゅく・・ちゅく・・ちゅく・・」
+
+    %CALLNAME:奴隷%は愛しげに%NTR_NAME(0)%のペニスを頬張りながら秘所を濡らした。
+  priority: 2
+- id: fallback
+  content: '%CALLNAME:奴隷%は%NTR_NAME(0)%のペニスを頬張りながら秘所を濡らした。'
+  priority: 1

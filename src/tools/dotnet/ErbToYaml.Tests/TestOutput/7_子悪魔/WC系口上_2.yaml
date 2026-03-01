@@ -1,0 +1,12 @@
+﻿character: 子悪魔
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    もっとピクピク震えてよ」
+
+    エッチな声も聞かせてよ」
+
+    自分でもお尻を振ってよ」
+  priority: 1
+  displayMode: newline

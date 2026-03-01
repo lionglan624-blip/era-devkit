@@ -1,0 +1,32 @@
+﻿character: レミリア
+situation: WC系口上
+entries:
+- id: talent_3_0
+  content: >-
+    「なぁに？　これは私のものなんだから、別に構わないでしょう？」
+
+    「ちょっと触りたくなったの。もちろん、いいわよね？」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+  displayMode: newline
+- id: talent_38_1
+  content: >-
+    「これも、健康具合のチェックのうちかしら？　あっ、便器なんだから、使い勝手の確認？」
+
+    「ほらほら、私自らが管理のために触ってあげてるんだから、もっと嬉しそうにしなさい」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 38
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「なぁに？　まさか、嫌だなんて言わないわよね？　ふふふ」
+
+    「考えてみれば、便器に触ってるのよねぇ。変な感じだわ」
+  priority: 1
+  displayMode: newline

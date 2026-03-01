@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「ただいま。今帰ったわ」
+
+    「今帰ったわ」
+
+    「今帰ったわ。私がいないからって、サボってなかったでしょうね？」
+  priority: 1
+  displayMode: newline

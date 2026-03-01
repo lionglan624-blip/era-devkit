@@ -1,0 +1,16 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: talent_159_0
+  content: >-
+    「これで安心して%NTR_KARE()%のところに行けるわ」
+
+    「私は%NTR_KARE()%のところに行ってくるわ。ふふっ、お望みどおりに、愉しんでくるわね」
+
+    「これなら浮気もできないわね・・私は%NTR_KARE()%と愉しんでるわ」
+  priority: 1
+  condition:
+    type: Talent
+    talentType: 159
+    threshold: 1
+  displayMode: newline

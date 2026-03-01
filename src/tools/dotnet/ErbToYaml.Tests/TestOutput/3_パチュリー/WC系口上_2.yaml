@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    ふぅ……お、驚かせないでちょうだい」
+
+    き、気をつけなさい、まったく……」
+
+    か……軽く触っただけのつもりだったのに……」
+  priority: 1
+  displayMode: newline

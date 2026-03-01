@@ -1,0 +1,52 @@
+﻿character: 小悪魔
+situation: K2_会話親密
+entries:
+- id: talent_7_0
+  content: >-
+    「それに、お客様もよろこんでくださいます%MSG_HEART()%」
+
+    「何より、お客様がよろこんでくださいます%MSG_HEART()%」
+
+    「お客様からのプレゼントもあるんですよ%MSG_HEART()%」
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「それに、あのお方もよろこんでくださいます%MSG_HEART()%」
+
+    「何より、あのお方がよろこんでくださいます%MSG_HEART()%」
+
+    「あのお方からのプレゼントもあるんですよ%MSG_HEART()%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「それに、あのお方もよろこんでくださいます%MSG_HEART()%」
+
+    「何より、あのお方がよろこんでくださいます%MSG_HEART()%」
+
+    「あのお方からのプレゼントもあるんですよ%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「それに、%CALLNAME:MASTER%だけじゃなくてあの人もよろこんでくださいます%MSG_HEART()%」
+
+    「%CALLNAME:MASTER%だけじゃなくてあの人もよろこんでくださいますし%MSG_HEART()%」
+
+    「%CALLNAME:MASTER%だけじゃなくてあの人にも好評なんです%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「それに、%CALLNAME:MASTER%だけじゃなくてあの人もよろこんでくださいます♪」
+
+    「%CALLNAME:MASTER%だけじゃなくてあの人もよろこんでくださいますし♪」
+
+    「%CALLNAME:MASTER%だけじゃなくてあの人にも好評なんです♪」
+  priority: 1
+  displayMode: newline

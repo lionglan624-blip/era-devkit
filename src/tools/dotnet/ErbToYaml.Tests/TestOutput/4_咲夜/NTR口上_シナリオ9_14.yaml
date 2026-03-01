@@ -1,0 +1,55 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ9
+entries:
+- id: fallback
+  content: >-
+    「んんっ・・あっ・・太いっ%S_HEART%・・い、いいっ・・！」
+
+    「くっ・・ああっ%S_HEART%・・太いっ！」
+
+    「んんっ・・くうっ・・い、いいっ・・！」
+
+    ペニスを根元まで打ち込まれ、
+
+    肉棒を根元まで飲み込み、
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんっ・・あっ・・太いっ%S_HEART%・・い、いいっ・・！」
+
+    「くっ・・ああっ%S_HEART%・・太いっ！」
+
+    「んんっ・・くうっ・・い、いいっ・・！」
+
+    ペニスを根元まで打ち込まれ、
+
+    肉棒を根元まで飲み込み、
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんっ・・あっ・・太いっ%S_HEART%・・い、いいっ・・！」
+
+    「くっ・・ああっ%S_HEART%・・太いっ！」
+
+    「んんっ・・くうっ・・い、いいっ・・！」
+
+    ペニスを根元まで打ち込まれ、
+
+    肉棒を根元まで受け入れ、
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんっ・・あっ・・ん・・！」
+
+    「くっ・・ああっ！！」
+
+    「んんっ・・くうっ・・！！」
+
+    ペニスを根元まで打ち込まれ、
+
+    肉棒を根元まで突き込まれ、
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,227 @@
+﻿character: レミリア
+situation: K5_会話親密
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%をそっと抱きしめた。
+
+    「……ん」
+
+    %CALLNAME:TARGET%は抵抗もせず、その腕の中に収まった。
+
+    「ククク……お前の体温、温かいわね」
+
+    %CALLNAME:TARGET%は紅い瞳を細め、%CALLNAME:MASTER%の胸に頬を寄せた。
+
+    「500年生きてきて、こうして抱きしめられるのを心地よいと思ったのは初めてよ」
+
+    「……もう少しだけ、このままでいさせて。紅魔館の主としてではなく、ただの私として……」
+
+    「――%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を迎え入れるように両腕を広げた。
+
+    ぎゅっと抱きしめ合う二人。
+
+    「……ふふ、お前の心臓の音が聞こえるわ。温かいわね」
+
+    %CALLNAME:TARGET%は吸血鬼らしからぬ穏やかな笑みを浮かべている。
+
+    「この温もりは、私だけのものよ。誰にも渡さないわ」
+
+    %CALLNAME:TARGET%の小さな体が、%CALLNAME:MASTER%にぴったりと寄り添っていた。
+
+    %CALLNAME:MASTER%が腕を広げると、%CALLNAME:TARGET%は小さく微笑んだ。
+
+    「ふふ……いいわ、おいで」
+
+    %CALLNAME:TARGET%は自分から%CALLNAME:MASTER%の胸に飛び込んだ。
+
+    「……こうしていると、運命なんてどうでもよくなるわね」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の首に腕を回し、頬をすり寄せた。
+
+    「お前の傍にいると、500年という歳月が嘘みたいに温かいの」
+
+    紅い瞳が潤んでいるように見えた。
+
+    「あら……」
+
+    %CALLNAME:MASTER%に抱きしめられ、%CALLNAME:TARGET%は嬉しそうに目を細めた。
+
+    「ククク、甘えん坊ね。私がいないと寂しいの？」
+
+    そう言いながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%の背中にそっと爪を立てた。
+
+    「……冗談よ。私だって、お前がいないと寂しいもの」
+
+    %CALLNAME:TARGET%は恥ずかしそうに顔を埋め、小さく笑った。
+
+    「……これ、誰にも言っちゃ駄目よ？ 紅魔館の主としての威厳が……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついた。
+
+    「……っ！ な、何よ急に……」
+
+    %CALLNAME:TARGET%は驚いたように身を強張らせたが、振りほどこうとはしなかった。
+
+    「……ふん、使用人のくせに大胆ね。でも……温かいわね」
+
+    %CALLNAME:TARGET%は頬をわずかに染めながら、威厳を保とうとしている。
+
+    「……まあ、特別に許してあげるわ。感謝しなさい」
+
+    そう言いながらも、%CALLNAME:TARGET%の手は%CALLNAME:MASTER%の背に回されていた。
+
+    「あっ……」
+
+    %CALLNAME:MASTER%に抱きしめられ、%CALLNAME:TARGET%は小さく声を漏らした。
+
+    「……何のつもり？ 私は紅魔館の主なのよ……温かいわね、お前って」
+
+    %CALLNAME:TARGET%は抵抗する素振りを見せながらも、体は逃げていない。
+
+    「……ククク、甘えん坊ね。でも、悪くないわ」
+
+    %CALLNAME:TARGET%は照れ隠しのように笑いながら、%CALLNAME:MASTER%の温もりを受け入れていた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の小さな体を包み込むように抱きしめた。
+
+    「んっ……！ ちょ、ちょっと……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、その場に留まった。
+
+    「……ふぅん、私を抱きしめたいの？ 光栄に思いなさい」
+
+    そう言いながらも、%CALLNAME:TARGET%の耳が赤く染まっている。
+
+    「……もう少しだけ、このままでいてもいいわ」
+
+    %CALLNAME:TARGET%は俯きながら、小さく呟いた。
+
+    「……来たわね」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の接近を予期していたかのように微笑んだ。
+
+    %CALLNAME:MASTER%に抱きしめられると、%CALLNAME:TARGET%は小さく息を吐いた。
+
+    「……500年生きてきて、人間に抱きしめられて嬉しいなんて……おかしな話ね」
+
+    %CALLNAME:TARGET%は自嘲気味に笑いながらも、%CALLNAME:MASTER%から離れようとしない。
+
+    「……今だけは、カリスマとか忘れていいかしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に顔を埋めた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついた。
+
+    「なっ……！？ い、いきなり何をするの……！？」
+
+    %CALLNAME:TARGET%は驚いて目を見開いたが、振りほどきはしなかった。
+
+    「……抱きつくなんて、身の程知らずね……温かいわね、でも」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%を押し退けようとはしなかった。
+
+    「……今回だけよ。次は作法を弁えなさい」
+
+    そう言いながらも、%CALLNAME:TARGET%の声はどこか嬉しそうだった。
+
+    「……っ！」
+
+    突然の抱擁に、%CALLNAME:TARGET%は一瞬固まった。
+
+    「お、お前……この私に抱きつくなんて……温かい、わね……」
+
+    %CALLNAME:TARGET%は困惑した表情を浮かべながらも、抵抗しなかった。
+
+    「……まあ、紅魔館の主として、部下の甘えを許すのも務めかしら」
+
+    %CALLNAME:TARGET%は威厳を保とうとしながら、そう呟いた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に近づき、抱きしめた。
+
+    「……っ！ な、何を……」
+
+    %CALLNAME:TARGET%は顔を赤くして、%CALLNAME:MASTER%を睨んだ。
+
+    「使用人のくせに、主人に抱きつくなんて……不敬よ」
+
+    だが、その声には怒りよりも戸惑いが滲んでいた。
+
+    「……はぁ。今回だけ、見逃してあげるわ」
+
+    %CALLNAME:TARGET%は呆れた顔をしながらも、%CALLNAME:MASTER%を押し退けなかった。
+
+    「あら……」
+
+    %CALLNAME:MASTER%が腕を回すと、%CALLNAME:TARGET%は目を瞬かせた。
+
+    「……抱きつきたいの？ 仕方のない子ね」
+
+    %CALLNAME:TARGET%は溜息をつきながらも、抵抗はしなかった。
+
+    「紅魔館の主に触れられるなんて、光栄に思いなさい」
+
+    そう言いながら、%CALLNAME:TARGET%の頬はわずかに染まっていた。
+
+    「……少しだけよ。長いと、咲夜に見られるわ」
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きつこうとした。
+
+    「……何のつもり？」
+
+    %CALLNAME:TARGET%は冷たい瞳で%CALLNAME:MASTER%を見据えた。
+
+    「この私に抱きつく許可を与えた覚えはないのだけれど」
+
+    「紅魔館の主に馴れ馴れしくするなんて、身の程知らずね」
+
+    %CALLNAME:TARGET%は傲然とそう告げ、距離を取った。
+
+    「……ふぅん？」
+
+    %CALLNAME:MASTER%が近づくと、%CALLNAME:TARGET%は鼻で笑った。
+
+    「使用人が主に抱きつくなんて、礼儀がなっていないわね」
+
+    「500年生きてきて、こんな無礼は久しぶりだわ」
+
+    %CALLNAME:TARGET%は退屈そうに視線を逸らした。
+
+    「……もっと気の利いた奉仕を期待しているわ」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に腕を伸ばした。
+
+    「やめなさい」
+
+    %CALLNAME:TARGET%は冷ややかな視線で%CALLNAME:MASTER%を制した。
+
+    「紅魔館の主の体に、許可なく触れるなんて……」
+
+    「お前には礼儀というものを教える必要があるようね」
+
+    %CALLNAME:TARGET%は高飛車な態度で%CALLNAME:MASTER%を見下ろした。
+
+    「……何？」
+
+    %CALLNAME:MASTER%が近づくと、%CALLNAME:TARGET%は眉を顰めた。
+
+    「抱きつきたい？ ……図々しいにも程があるわ」
+
+    「私に触れていいのは、咲夜くらいなものよ」
+
+    %CALLNAME:TARGET%は傲然と腕を組み、%CALLNAME:MASTER%を睨んだ。
+
+    「……まず、その無礼な態度を改めなさい」
+  priority: 1

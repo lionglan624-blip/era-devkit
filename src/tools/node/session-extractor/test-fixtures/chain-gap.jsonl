@@ -1,0 +1,4 @@
+{"type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_write2","name":"Write","input":{"file_path":"C:\\Era\\erakoumakanNTR\\test-output\\chain-gap-file.txt","content":"some file content"}}]}
+{"type":"message","role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_write2","content":"File created successfully","is_error":false}]}
+{"type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_edit2","name":"Edit","input":{"file_path":"C:\\Era\\erakoumakanNTR\\test-output\\chain-gap-file.txt","old_string":"text that does not exist","new_string":"replacement text"}}]}
+{"type":"message","role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_edit2","content":"Edit applied successfully","is_error":false}]}

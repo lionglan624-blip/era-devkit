@@ -1,0 +1,30 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ1-7
+entries:
+- id: fallback
+  content: >-
+    「ふふっ・・悪趣味ね・・いいわ・・ああ・・%S_HEART%」
+
+    「ふふ・・そうね、見せつけてあげましょう・・あ・・ん・・%S_HEART%」
+
+    「見られていると思うとドキドキするわね・・あ・・あんっ・・%S_HEART%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふふっ・・悪趣味ね・・いいわ・・ああ・・%S_HEART%」
+
+    「ふふ・・そうね、見せつけてあげましょう・・あ・・ん・・%S_HEART%」
+
+    「見られていると思うとドキドキするわね・・あ・・あんっ・・%S_HEART%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「なっ・・やめっ・・さわらないで・・」
+
+    「いやっ・・たすけて・・たすけて%CALLNAME:MASTER%・・！」
+
+    「ああ・・た、たすけてっ・・！」
+  priority: 1
+  displayMode: newline

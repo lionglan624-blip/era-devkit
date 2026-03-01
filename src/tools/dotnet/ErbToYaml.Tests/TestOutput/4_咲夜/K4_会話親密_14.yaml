@@ -1,0 +1,25 @@
+﻿character: 咲夜
+situation: K4_会話親密
+entries:
+- id: fallback
+  content: >-
+    「ふふっ、そうくると思ったわ」
+
+    「うふふっ、思ってたとおりね」
+
+    「それなら、今度%NTR_KARE()%の家に泊まってくるわ・・もちろん、一晩中、セックスするために」
+
+    「お望みのようだから、%NTR_KARE()%の家に泊まってくるわ・・もちろん、セックスするために」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そうくると思ったわ」
+
+    「思ってたとおりね」
+
+    「それなら、今度%NTR_KARE()%の家に泊まってくるわ・・もちろん、セックスするために」
+
+    「お望みのようだから、%NTR_KARE()%の家に泊まってくるわ・・もちろん、セックスするために」
+  priority: 1
+  displayMode: newline

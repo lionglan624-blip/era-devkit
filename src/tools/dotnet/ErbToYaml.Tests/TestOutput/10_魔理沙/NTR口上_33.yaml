@@ -1,0 +1,45 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%に目配せされた%CALLNAME:奴隷%はうつむき加減で%CALLNAME:MASTER%に声をかけた。
+
+    「…悪い、%NTR_KARE()%が呼んでいる」
+
+    「…悪い、お呼びがかかった」
+
+    「%NTR_KARE()%が呼んでいるみたいだから…悪い」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%に目配せされた%CALLNAME:奴隷%は頬を染めた。
+
+    「ああ、呼んだか？」
+
+    「ああ、分かった」
+
+    「ああ、来たぜ」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%に目配せされた%CALLNAME:奴隷%は頬を染めた。
+
+    「ああ、呼んだか？」
+
+    「ああ、分かった」
+
+    「ああ、来たぜ」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「悪い、用事を思い出したわ」
+
+    「あれ、こんな所にいたのか」
+
+    「うん、何か用か？」
+  priority: 1
+  displayMode: newline

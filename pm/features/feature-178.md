@@ -1,0 +1,69 @@
+# Feature 178: COM_43 繧ｪ繝翫・繝ｼ繝ｫ 蜿｣荳・(Phase 8d)
+
+## Status: [DONE]
+
+## Type: kojo
+
+## Background
+
+### Problem
+COM_43 (繧ｪ繝翫・繝ｼ繝ｫ) lacks Phase 8d quality dialogue for all characters.
+
+### Goal
+Create 8d quality kojo dialogue for K1-K10 (4 TALENT branches, 4 patterns each).
+
+### Context
+- Phase 8d: 蜈ｨCOM邯ｲ鄒・+ 蜩∬ｳｪ謾ｹ菫ｮ
+- Quality reference: eraTW髴雁､｢
+- Structure: 4蛻・ｲ・ﾃ・4繝代ち繝ｼ繝ｳ per character
+
+---
+
+## Acceptance Criteria
+
+| AC# | Char | Type | Matcher | Expected | MockRand | Status |
+|:---:|------|------|---------|----------|:--------:|:------:|
+| 1 | K1鄒朱斡 | output | contains | "繧ｪ繝翫・繝ｼ繝ｫ繧定ｦ九※縲・ｩ壹＞縺ｦ蠕後★縺輔▲縺・ | [0] | [x] |
+| 2 | K2蟆乗が鬲・| output | contains | "繧ｪ繝翫・繝ｼ繝ｫ縺ｧ縺吶ｏ縺ｭ" | [0] | [x] |
+| 3 | K3繝代メ繝･繝ｪ繝ｼ | output | contains | "縺薙ｌ縺ｧ窶ｦ窶ｦ縺・＞縺ｮ縺九＠繧・ | [0] | [x] |
+| 4 | K4蜥ｲ螟・| output | contains | "繧ｪ繝翫・繝ｼ繝ｫ" | [0] | [x] |
+| 5 | K5繝ｬ繝溘Μ繧｢ | output | contains | "遘√・莉｣繧上ｊ縺ｫ縺昴ｌ繧剃ｽｿ縺・・" | [0] | [x] |
+| 6 | K6繝輔Λ繝ｳ | output | contains | "遨ｴ縺碁幕縺・※繧九・" | [0] | [x] |
+| 7 | K7蟄先が鬲・| output | contains | "縺ゅ◆縺励・菴薙〒" | [0] | [x] |
+| 8 | K8繝√Ν繝・| output | contains | "螟峨↑蠖｢縺励※繧・ | [0] | [x] |
+| 9 | K9螟ｧ螯也ｲｾ | output | contains | "荳ｭ縺ｧ蜍輔＞縺ｦ繧・ | [0] | [x] |
+| 10 | K10鬲皮炊豐・| output | contains | "繧ｪ繝翫・繝ｼ繝ｫ" | [0] | [x] |
+| 11 | Build | build | succeeds | - | - | [x] |
+| 12 | Regression | output | contains | "passed (100%)" | - | [x] |
+
+---
+
+## Tasks
+
+| Task# | AC# | Description | Status |
+|:-----:|:---:|-------------|:------:|
+| 1 | 1-10 | K1-K10 COM_43 蜿｣荳贋ｽ懈・ (4蛻・ｲ静・繝代ち繝ｼ繝ｳ) | [x] |
+| 2 | 11 | 繝薙Ν繝臥｢ｺ隱・| [x] |
+| 3 | 12 | 蝗槫ｸｰ繝・せ繝・| [x] |
+| 4 | 1-10 | AC讀懆ｨｼ | [x] |
+
+---
+
+## Execution Log
+
+| Date | Agent | Action | Result |
+|------|-------|--------|--------|
+| 2025-12-22 | initializer | Initialize feature 178 | READY |
+| 2025-12-22 | explorer | Investigate COM_43 patterns | READY |
+| 2025-12-22 | eratw-reader | Extract COM_43 cache | OK |
+| 2025-12-22 | kojo-writerﾃ・0 | K1-K10 COM_43 dialogue | OK:ALL |
+| 2025-12-22 | - | Smoke test (40/40) | PASS |
+| 2025-12-22 | - | Build check | PASS |
+| 2025-12-22 | regression-tester | Full regression suite | PASS |
+
+---
+
+## Links
+
+- [index-features.md](../index-features.md)
+- [kojo-reference.md](../reference/kojo-reference.md)

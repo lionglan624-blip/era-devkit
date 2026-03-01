@@ -1,0 +1,18 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「指の動きえっちすぎるよぉ♪ もっとさわってぇ・・・・♪」
+
+    「あン・・そこぉ・・撫でてぇ・・%MSG_HEART()%」
+
+    「んふ・・いいよ・・摘んで・・」
+
+    %NTR_NAME(0)%に触れられる度に、少女は甘く上擦った声を上げた。
+
+    すっかり開発され手なずけられた身体が疼くのか、少女は自ら求めるかのように%NTR_OTOKO()%の手に身をゆだねた。
+
+    %NTR_NAME(0)%に太股を見つめられた%CALLNAME:奴隷%は、自分からスカートを捲り上げて愛撫を求めた。
+  priority: 1
+  displayMode: newline

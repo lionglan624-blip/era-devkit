@@ -1,0 +1,16 @@
+{
+  "name": "大妖精と同室テスト",
+  "description": "大妖精の現在位置を取得し、主人公をそこに移動",
+  "characters": {
+    "大妖精": {
+      "CFLAG:2": 5000,
+      "CFLAG:21": 100
+    }
+  },
+  "copy": [
+    {"from": "大妖精", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]"]
+  }
+}

@@ -1,0 +1,46 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「あら・・%CALLNAME_K5(奴隷
+
+    「誰の鍵かしら・・%CALLNAME_K5(奴隷
+
+    「ふぅん・・%CALLNAME_K5(奴隷
+  priority: 5
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「あら・・%CALLNAME_K5(奴隷
+
+    「誰の鍵かしら・・%CALLNAME_K5(奴隷
+
+    「ふぅん・・%CALLNAME_K5(奴隷
+  priority: 4
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あら・・%CALLNAME_K5(奴隷
+
+    「誰の鍵かしら・・%CALLNAME_K5(奴隷
+
+    「ふぅん・・%CALLNAME_K5(奴隷
+
+    「ククッ、怒ってなんかいないわよ。好きにしなさい」
+
+    「・・ああいうのが趣味なの？」
+
+    「あの人が喜ぶわ。ククッ」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: 「・・ふうん・・そう・・」
+  priority: 2
+- id: fallback
+  content: 「・・ふうん・・そう・・」
+  priority: 1

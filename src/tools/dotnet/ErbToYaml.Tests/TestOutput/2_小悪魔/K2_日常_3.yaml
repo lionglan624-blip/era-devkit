@@ -1,0 +1,12 @@
+﻿character: 小悪魔
+situation: K2_日常
+entries:
+- id: fallback
+  content: >-
+    「ええ〜〜っ、どうしてですかぁ？」
+
+    「つまらないですぅ」
+
+    「三人の方が楽しいのに・・」
+  priority: 1
+  displayMode: newline

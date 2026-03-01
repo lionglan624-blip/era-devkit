@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GameBase",
+  "description": "Game metadata configuration schema",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    },
+    "allowVersionMismatch": {
+      "type": "string"
+    },
+    "additionalInfo": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

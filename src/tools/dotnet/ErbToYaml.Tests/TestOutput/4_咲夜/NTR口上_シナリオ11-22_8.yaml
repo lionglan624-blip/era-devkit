@@ -1,0 +1,45 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ11-22
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%に目配せされた%CALLNAME:奴隷%はうつむき加減で%CALLNAME:MASTER%に声をかけた。
+
+    「・・ごめんなさい、%NTR_KARE()%が呼んでいるわ」
+
+    「・・ごめんなさい、お呼びみたい」
+
+    「%NTR_KARE()%が呼んでいるみたいだから・・ごめんなさい」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%に目配せされた%CALLNAME:奴隷%は頬を染めた。
+
+    「はい、お呼びでしょうか？」
+
+    「はい、なんなりと」
+
+    「ええ、私でしたらここに」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%に目配せされた%CALLNAME:奴隷%は頬を染めた。
+
+    「はい、お呼びでしょうか？」
+
+    「はい、なんなりと」
+
+    「ええ、私でしたらここに」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ごめんなさい、用事を思い出したわ」
+
+    「あら、こんな所にいたのね」
+
+    「あら、何か用？」
+  priority: 1
+  displayMode: newline

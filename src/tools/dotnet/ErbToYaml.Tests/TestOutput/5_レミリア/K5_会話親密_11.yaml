@@ -1,0 +1,25 @@
+﻿character: レミリア
+situation: K5_会話親密
+entries:
+- id: talent_3_0
+  content: >-
+    「ええ、いいわ・・好きにして・・」
+
+    「・・遅い。逢いにきたら、キスをして、すぐ抱き寄せなさい」
+
+    「・・こうするのが一番落ち着くわね・・」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ククク、使用人のくせにずいぶん大胆じゃない？ この私にどんな狼藉を働いてくれるのかしら？」
+
+    「ククク、さぁ、いらっしゃい・・抱き寄せたからには、どう愉しませてくれるのかしら？」
+
+    「ええ・・いいわ、好きにしなさい・・でも、愉しませてくれないと承知しないわよ？」
+  priority: 1
+  displayMode: newline

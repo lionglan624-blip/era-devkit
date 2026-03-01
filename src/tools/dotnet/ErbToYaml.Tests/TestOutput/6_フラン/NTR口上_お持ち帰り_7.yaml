@@ -1,0 +1,70 @@
+﻿character: フラン
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「やっ・・やだあっ・・！！ やああああっ！！」
+
+    「だ、だめっ・・！ おしりなんて、やだあああっ！！」
+
+    「ああっ！ やだ、やだあっ！ ああああっ！！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「やっ・・やだあっ・・！！ やああああっ！！」
+
+    「だ、だめっ・・！ おしりなんて、やだあああっ！！」
+
+    「ああっ！ やだ、やだあっ！ ああああっ！！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はぁっ・・ああっ、ん、お、おっきいいっ！！」
+
+    「んっ・・お、おくまで・・きてるぅっ！」
+
+    「ああ・・んっ・・いいよっ・・もっ・・とぉ・・」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はぁっ・・ああっ、ん、お、おっきいいっ！！」
+
+    「んっ・・お、おくまで・・きてるぅっ！」
+
+    「ああ・・んっ・・いいよっ・・もっ・・とぉ・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「うんっ・・いっぱい、いっぱいしようね♪」
+
+    「うふっ・・ぜんぶ、入るかなぁ♪」
+
+    「ああ・・んっ・・おっきぃの・・すきぃ%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「うんっ・・いっぱい、いっぱいしようね♪」
+
+    「うふっ・・ぜんぶ、入るかなぁ♪」
+
+    「ああ・・んっ・・おっきぃの・・すきぃ%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あン・・また・・するの？」
+
+    「うん・・おしりで・・いいよ」
+
+    「いいよ・・いたく、しないでね？」
+  priority: 1
+  displayMode: newline

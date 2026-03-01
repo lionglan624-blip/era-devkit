@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: fallback
+  content: >-
+    もっと搾ってやらないと駄目かしら」
+
+    全部出させてあげるわ」
+
+    勃たなくなるまでシないとね」
+  priority: 1
+  displayMode: newline

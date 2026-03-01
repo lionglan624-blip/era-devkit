@@ -1,0 +1,39 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ9
+entries:
+- id: fallback
+  content: >-
+    「ああっ・・きて、きて%S_HEART0% 奥で出してええっ%S_HEART1%%S_HEART1%」
+
+    「ああっ・・出して%S_HEART0%・・いっぱい出してええっ%S_HEART1%%S_HEART1%」
+
+    「ああ・・ちょうだい%S_HEART0%、おしりに、いっぱいちょうだい%S_HEART1%%S_HEART1%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ・・きて、きて%S_HEART0% 奥で出してええっ%S_HEART1%%S_HEART1%」
+
+    「ああっ・・出して%S_HEART0%・・いっぱい出してええっ%S_HEART1%%S_HEART1%」
+
+    「ああ・・ちょうだい%S_HEART0%、おしりに、いっぱいちょうだい%S_HEART1%%S_HEART1%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・うそ・・おしりで、おしりで、いっちゃう・・%S_HEART0%」
+
+    「ああ・・いくっ・・おしりで・・おしりで・・ああっ%S_HEART0%」
+
+    「ああ・・いや・・いく、いっちゃう%S_HEART0%・・いっちゃう%S_HEART0%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「嫌・・いやっ、だめえええっ！！」
+
+    「い、いやっ・・抜いてええええっ！！」
+
+    「い、痛っ・・いたいの・・もう、もう許してええっ！」
+  priority: 1
+  displayMode: newline

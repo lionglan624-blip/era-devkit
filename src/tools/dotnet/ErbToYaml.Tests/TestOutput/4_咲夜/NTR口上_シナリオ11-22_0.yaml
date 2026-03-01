@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ11-22
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%の存在は眼中に入っていないようだ。
+
+    %CALLNAME:MASTER%の存在を気にもしていないようだ。
+
+    %CALLNAME:MASTER%の視線を気にしていないようだ。
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,12 @@
+﻿character: 美鈴
+situation: K1_日常
+entries:
+- id: fallback
+  content: >-
+    「そのお話、私も混ざっていいですか？」
+
+    「どうせなら、三人で楽しみませんか？」
+
+    「その勝負、待った！」
+  priority: 1
+  displayMode: newline

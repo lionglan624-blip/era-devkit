@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: fallback
+  content: >-
+    ククク、言った筈よ。一滴残らず搾り取ってあげるって」
+
+    さ、続けるわよ。干からびるまでね」
+
+    そんなに元気なんだし、もっと搾ってあげるわ」
+  priority: 1
+  displayMode: newline

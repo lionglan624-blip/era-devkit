@@ -1,0 +1,12 @@
+﻿character: チルノ
+situation: K8_日常
+entries:
+- id: fallback
+  content: >-
+    「や、やだよっ」
+
+    「や、やだあ！」
+
+    「そんなの嫌だよっ！」
+  priority: 1
+  displayMode: newline

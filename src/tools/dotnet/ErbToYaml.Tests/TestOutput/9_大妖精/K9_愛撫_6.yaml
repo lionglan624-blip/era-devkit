@@ -1,0 +1,227 @@
+﻿character: 大妖精
+situation: K9_愛撫
+entries:
+- id: fallback
+  content: >-
+    「んっ……%CALLNAME:MASTER%……胸、触りたいの……？」
+
+    %CALLNAME:人物_大妖精%は恥ずかしそうに微笑みながら、%CALLNAME:MASTER%の手を自分の胸へと導いた。
+
+    「……わたしの胸、小さいけど……%CALLNAME:MASTER%になら、いっぱい触ってほしいの」
+
+    %CALLNAME:MASTER%の手が柔らかな膨らみを包むと、%CALLNAME:人物_大妖精%は幸せそうに目を細めた。
+
+    「あっ……ん……%CALLNAME:MASTER%の手、あったかい……」
+
+    小さな翅がふるふると震え、喜びを表している。
+
+    「……もっと、触っていいよ……わたし、%CALLNAME:MASTER%のものだから……」
+
+    %CALLNAME:人物_大妖精%は甘えるように%CALLNAME:MASTER%に身を預けた。
+
+    「ふふっ……%CALLNAME:MASTER%、胸ばっかり……」
+
+    %CALLNAME:人物_大妖精%はくすくすと笑いながら、愛撫を受け入れている。
+
+    %CALLNAME:MASTER%が胸を優しく揉むと、%CALLNAME:人物_大妖精%は甘い吐息を漏らした。
+
+    「んぁ……そこ、気持ちいい……」
+
+    %CALLNAME:人物_大妖精%の頬が桜色に染まっていく。
+
+    「……%CALLNAME:MASTER%に触られると、どきどきするの……」
+
+    %CALLNAME:人物_大妖精%は恋人の手の感触を、心から楽しんでいた。
+
+    「あっ……んっ……」
+
+    %CALLNAME:MASTER%の手が胸を這うたび、%CALLNAME:人物_大妖精%は小さく声を上げた。
+
+    妖精の小さな胸は、%CALLNAME:MASTER%の手の中で愛おしそうに揉まれている。
+
+    「……%CALLNAME:MASTER%、上手……わたしの胸、よく知ってるね……」
+
+    %CALLNAME:人物_大妖精%は照れくさそうに、でも嬉しそうに微笑んだ。
+
+    「……ずっと、こうしていたいな……」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「……ん……」
+
+    %CALLNAME:人物_大妖精%は目を閉じて、%CALLNAME:MASTER%の愛撫に身を委ねている。
+
+    「……%CALLNAME:MASTER%に胸を触られると……なんだか、安心するの……」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の手に自分の手を重ねた。
+
+    「……大好きだよ、%CALLNAME:MASTER%……」
+
+    小さな告白とともに、%CALLNAME:人物_大妖精%の翅がきらきらと輝いた。
+
+    「……もっと、いっぱい触って……」
+
+    %CALLNAME:人物_大妖精%は恋人に甘えるように、そうねだった。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ひゃっ……！　む、胸……？」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の手が胸に触れた瞬間、驚いて体を強張らせた。
+
+    しかし、逃げようとはしない。
+
+    「……こ、こういうの……恥ずかしいよ……」
+
+    %CALLNAME:人物_大妖精%は顔を真っ赤にしながら、でも%CALLNAME:MASTER%を拒まなかった。
+
+    「……%CALLNAME:MASTER%だから……触っても、いいの……」
+
+    小さな声で、%CALLNAME:人物_大妖精%は許可を出した。
+
+    「あ……そこ……」
+
+    %CALLNAME:MASTER%が胸を揉むと、%CALLNAME:人物_大妖精%は思わず声を漏らした。
+
+    「……んっ……%CALLNAME:MASTER%の手、気持ちいい……」
+
+    %CALLNAME:人物_大妖精%の翅がぴくぴくと動いている。
+
+    「……わたし、こんな声出すの……恥ずかしいのに……」
+
+    困ったような、でも嬉しそうな表情で%CALLNAME:MASTER%を見上げた。
+
+    「……でも、やめないでね……」
+
+    %CALLNAME:人物_大妖精%は小さな声でそうお願いした。
+
+    「んっ……やぁ……」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の愛撫に、甘い声を漏らしている。
+
+    「……わたしの胸、小さいのに……%CALLNAME:MASTER%は、触ってくれるんだね……」
+
+    %CALLNAME:人物_大妖精%は不思議そうに、でも嬉しそうに呟いた。
+
+    「……こういうの、好きになったかも……」
+
+    %CALLNAME:人物_大妖精%は恥ずかしそうに目を伏せた。
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:人物_大妖精%は潤んだ瞳で%CALLNAME:MASTER%を見つめた。
+
+    「……胸、触られるの……こんなに気持ちいいって、知らなかった……」
+
+    %CALLNAME:人物_大妖精%の小さな胸は、%CALLNAME:MASTER%の手の中で優しく揉まれている。
+
+    「……%CALLNAME:MASTER%のこと、もっと好きになっちゃうよ……」
+
+    %CALLNAME:人物_大妖精%は顔を赤くして、%CALLNAME:MASTER%に身を寄せた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え、えっ……！？　む、胸……！？」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の手が胸に触れて、顔を真っ赤にした。
+
+    「こ、こういうのは……まだ早いと思うの……」
+
+    %CALLNAME:人物_大妖精%は慌てて胸を隠そうとした。
+
+    「……で、でも……%CALLNAME:MASTER%が、どうしてもって言うなら……」
+
+    %CALLNAME:人物_大妖精%はおずおずと、手を下ろした。
+
+    「ひゃっ……」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の手に、びくりと体を震わせた。
+
+    「%CALLNAME:MASTER%……いきなり胸は……びっくりするよ……」
+
+    %CALLNAME:人物_大妖精%の翅がばたばたと動いている。
+
+    「……もうちょっと、仲良くなってから……じゃ、だめ……？」
+
+    %CALLNAME:人物_大妖精%は困った表情で%CALLNAME:MASTER%を見た。
+
+    「あ……あの……」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の手を、止めようとして止められなかった。
+
+    「……わたし、そういうの、慣れてないから……」
+
+    %CALLNAME:人物_大妖精%は恥ずかしそうに俯いた。
+
+    「……優しくしてくれる……？」
+
+    %CALLNAME:人物_大妖精%は不安そうに、しかし受け入れる姿勢を見せた。
+
+    「……ん……」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の愛撫を、ぎこちなく受け入れた。
+
+    「……%CALLNAME:MASTER%って、意外と……そういうこと、するんだね……」
+
+    %CALLNAME:人物_大妖精%は照れ隠しに笑った。
+
+    「……嫌じゃない、けど……急だから、どきどきしちゃって……」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の手を握った。
+  priority: 2
+- id: fallback
+  content: >-
+    「ひゃっ……！　な、何するの……！？」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の手を払いのけようとした。
+
+    「い、いきなり胸なんて……信じられない……」
+
+    %CALLNAME:人物_大妖精%は怯えた目で%CALLNAME:MASTER%を見た。
+
+    「……わたし、そんなに親しくないのに……」
+
+    %CALLNAME:人物_大妖精%は翅を震わせながら、一歩後ろに下がった。
+
+    「えっ……」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の突然の行動に固まった。
+
+    「あ、あの……%CALLNAME:MASTER%……これは……」
+
+    %CALLNAME:人物_大妖精%は戸惑いながら、どう対応していいかわからない様子だ。
+
+    「……や、やめて……ほしいの……」
+
+    %CALLNAME:人物_大妖精%は困惑しながら、%CALLNAME:MASTER%から離れようとした。
+
+    「な、何を……！」
+
+    %CALLNAME:人物_大妖精%は反射的に胸を守るように腕を組んだ。
+
+    翅がびくりと跳ね、警戒心を露わにしている。
+
+    「……そういうことは、しないで……」
+
+    %CALLNAME:人物_大妖精%は明確に拒絶の意思を示した。
+
+    「……もっと、仲良くなってからにして……」
+
+    %CALLNAME:人物_大妖精%は不安そうな視線を%CALLNAME:MASTER%に向けた。
+
+    「……」
+
+    %CALLNAME:人物_大妖精%は無言で%CALLNAME:MASTER%の手を掴んで止めた。
+
+    「%CALLNAME:MASTER%……いきなりこういうことされると、困るの……」
+
+    %CALLNAME:人物_大妖精%は困った表情で%CALLNAME:MASTER%を見つめた。
+
+    「わたし、まだ……あなたのこと、よく知らないから……」
+
+    %CALLNAME:人物_大妖精%は控えめに、しかし毅然と断った。
+  priority: 1

@@ -1,0 +1,207 @@
+﻿character: 小悪魔
+situation: K2_挿入
+entries:
+- id: fallback
+  content: >-
+    「%CALLNAME:MASTER%……私の全部、受け取ってくださいな……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%を見上げながら、悪魔らしい妖艶な笑みを浮かべた。
+
+    %CALLNAME:MASTER%が腰を進めると、%CALLNAME:人物_小悪魔%は甘い吐息を漏らす。
+
+    「んっ……あぁ……奥まで、届いて……っ」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%の背中に腕を回し、しっかりと抱きついた。
+
+    「……このまま、溶けてしまいそうですわ……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%に押し倒されながら、嬉しそうに微笑んでいる。
+
+    「ふふ……%CALLNAME:MASTER%に繋がれてると……悪魔なのに、幸せですわ……」
+
+    %CALLNAME:MASTER%が奥まで突き入れると、%CALLNAME:人物_小悪魔%は身を震わせた。
+
+    「あっ……やぁ……そこ、一番奥……っ！」
+
+    %CALLNAME:人物_小悪魔%の小さな尻尾がぴくぴくと揺れている。
+
+    「もっと……もっと深く、私を満たしてくださいな……」
+
+    「んぅ……%CALLNAME:MASTER%の……あったかい……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%に抱かれながら、蕩けた表情を浮かべている。
+
+    %CALLNAME:MASTER%が腰を動かすたびに、%CALLNAME:人物_小悪魔%は甘い声を漏らした。
+
+    「あぁっ……そう……そこ、気持ちいい……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%の首に腕を絡め、引き寄せる。
+
+    「……キス、してくださいな……繋がったまま……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%の上に覆いかぶさるように抱きついた。
+
+    「%CALLNAME:MASTER%……私、もう%CALLNAME:MASTER%なしじゃいられませんわ……」
+
+    %CALLNAME:人物_小悪魔%の瞳は潤んで、熱を帯びている。
+
+    「あっ……ん……動かさないで……今、一番深いところ……っ」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%の胸に顔を埋め、体を震わせている。
+
+    「……ずっと、こうしていたいですわ……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「あ……%CALLNAME:MASTER%……こ、こうやって向かい合うの……恥ずかしいですわ……」
+
+    %CALLNAME:人物_小悪魔%は顔を真っ赤に染めながら、%CALLNAME:MASTER%を見上げている。
+
+    %CALLNAME:MASTER%が中に入ると、%CALLNAME:人物_小悪魔%は小さく声を漏らした。
+
+    「んっ……入って、きた……っ」
+
+    %CALLNAME:人物_小悪魔%の尻尾が無意識にぱたぱたと揺れている。
+
+    「……顔、見られてる……恥ずかしい……でも、嫌じゃない……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%に組み敷かれ、期待と羞恥で表情が揺れている。
+
+    「%CALLNAME:MASTER%……優しく、してくれますか……？」
+
+    %CALLNAME:MASTER%が腰を動かし始めると、%CALLNAME:人物_小悪魔%は甘い声を上げた。
+
+    「ひゃっ……あ、あぁ……そこ……っ」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%のシャツを握りしめている。
+
+    「……%CALLNAME:MASTER%の、奥まで届いて……変な感じ……」
+
+    「あっ……%CALLNAME:MASTER%、そんなに見つめないで……」
+
+    %CALLNAME:人物_小悪魔%は恥ずかしそうに目を逸らしながらも、%CALLNAME:MASTER%から離れようとしない。
+
+    %CALLNAME:MASTER%が突き上げると、%CALLNAME:人物_小悪魔%は体を震わせた。
+
+    「んんっ……深い……っ！」
+
+    %CALLNAME:人物_小悪魔%は両手で顔を覆いながら、くぐもった声で言う。
+
+    「……%CALLNAME:MASTER%のこと……もっと感じたい……」
+
+    %CALLNAME:人物_小悪魔%は恥ずかしそうに、でも自分から%CALLNAME:MASTER%に体を預けた。
+
+    「私……悪魔なのに……%CALLNAME:MASTER%にこんな気持ちにされて……」
+
+    %CALLNAME:MASTER%が奥を突くと、%CALLNAME:人物_小悪魔%は切なげな声を漏らした。
+
+    「あぁっ……そこ、ダメ……感じちゃう……っ」
+
+    %CALLNAME:人物_小悪魔%の尻尾が%CALLNAME:MASTER%の腰に絡みついている。
+
+    「……もう、離さないでくださいな……」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え……こ、こうやって……するんですの？」
+
+    %CALLNAME:人物_小悪魔%は戸惑いながらも、%CALLNAME:MASTER%に身を任せている。
+
+    %CALLNAME:MASTER%が中に入ると、%CALLNAME:人物_小悪魔%は息を呑んだ。
+
+    「っ……あ、入って……きました……」
+
+    %CALLNAME:人物_小悪魔%は少し強張った表情で、%CALLNAME:MASTER%を見上げている。
+
+    「……これが……%CALLNAME:MASTER%さんと繋がるということ……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%の下で、不安そうな表情を浮かべている。
+
+    「あの……%CALLNAME:MASTER%さん……私、上手くできるかわかりませんけど……」
+
+    %CALLNAME:MASTER%が動き出すと、%CALLNAME:人物_小悪魔%は驚いたように目を見開いた。
+
+    「あっ……ん……なんか……変な感じ……」
+
+    %CALLNAME:人物_小悪魔%は戸惑いながらも、%CALLNAME:MASTER%の動きに体を合わせようとしている。
+
+    「……これ……気持ちいい……のかしら……」
+
+    「%CALLNAME:MASTER%さん……顔が、近い……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%と向かい合う体勢に、頬を染めている。
+
+    %CALLNAME:MASTER%が腰を進めると、%CALLNAME:人物_小悪魔%は小さく声を漏らした。
+
+    「んっ……あ……奥、まで……」
+
+    %CALLNAME:人物_小悪魔%は混乱したように%CALLNAME:MASTER%を見つめている。
+
+    「……なんで……%CALLNAME:MASTER%さんにされると……こんな気持ちに……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%に抱かれながら、困惑した表情を見せている。
+
+    「私……悪魔ですのに……こんなことされて……」
+
+    %CALLNAME:MASTER%が突き上げると、%CALLNAME:人物_小悪魔%は思わず声を上げた。
+
+    「ひゃっ……あ、あぁ……っ」
+
+    %CALLNAME:人物_小悪魔%は自分の反応に驚いたように、口元を押さえた。
+
+    「……%CALLNAME:MASTER%さん……私、おかしくなっちゃいそう……」
+  priority: 2
+- id: fallback
+  content: >-
+    「……そうですか。こうするのがお望みなんですのね」
+
+    %CALLNAME:人物_小悪魔%は冷静な表情で%CALLNAME:MASTER%を見つめている。
+
+    %CALLNAME:MASTER%が中に入ると、%CALLNAME:人物_小悪魔%は小さく息を漏らした。
+
+    「……ん……まあ、悪魔ですから……これくらいは……」
+
+    %CALLNAME:人物_小悪魔%は淡々と%CALLNAME:MASTER%を受け入れている。
+
+    「……お気が済むまで、どうぞ……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%に組み敷かれながら、観察するような目を向けている。
+
+    「人間って……こういうことがお好きなんですのね……」
+
+    %CALLNAME:MASTER%が動き出すと、%CALLNAME:人物_小悪魔%はわずかに眉を寄せた。
+
+    「……っ……意外と……悪くない……かも……」
+
+    %CALLNAME:人物_小悪魔%は自分の反応に少し驚いた様子だ。
+
+    「……まあ、付き合ってあげますわ……」
+
+    「……パチュリー様の命令ですから……仕方ありませんわね」
+
+    %CALLNAME:人物_小悪魔%は溜息をつきながら、%CALLNAME:MASTER%を受け入れた。
+
+    %CALLNAME:MASTER%が腰を動かすと、%CALLNAME:人物_小悪魔%は小さく声を漏らす。
+
+    「……んっ……別に、嫌では……ないですけど……」
+
+    %CALLNAME:人物_小悪魔%は少し気まずそうに目を逸らした。
+
+    「……あまりじろじろ見ないでくださいな……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%の下で、冷静を装っている。
+
+    「悪魔に手を出すなんて……度胸がありますわね、%CALLNAME:MASTER%さん」
+
+    %CALLNAME:MASTER%が奥まで突くと、%CALLNAME:人物_小悪魔%はわずかに体を震わせた。
+
+    「……っ……そこ、深い……」
+
+    %CALLNAME:人物_小悪魔%は動揺を隠すように、視線を逸らしている。
+
+    「……変な気分にさせないでくださいな……困りますわ……」
+  priority: 1

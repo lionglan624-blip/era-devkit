@@ -1,0 +1,11 @@
+﻿character: パチュリー
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    「ふ〜ん……
+
+    「へぇ……
+
+    「なるほど。
+  priority: 1

@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ククク・・立会い人さんにも証拠をみてもらわないとねぇ・・？」
+
+    「ククッ・・見物人さんに、最後まで見届けてもらおうかしら？」
+
+    「本当に最後まで見続けるなんて・・%CALLNAME:MASTER%もいい趣味しているわね？」
+  priority: 1
+  displayMode: newline

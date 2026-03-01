@@ -1,0 +1,9 @@
+{
+  "name": "AC6 CALLNAME:MASTER substitution",
+  "call": "AC6_TEST_CALLNAME_MASTER",
+  "character": "1",
+  "master": "11",
+  "expect": {
+    "output_contains": ["霊夢"]
+  }
+}

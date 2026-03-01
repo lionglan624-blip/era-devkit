@@ -1,0 +1,36 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%はピンと主張する乳首を擦りあげる。
+
+    %NTR_NAME(0)%は膨らみかけの乳房をやわやわと揉みしだく。
+
+    %NTR_NAME(0)%の指先が、感じやすい先端をつまみ上げる。
+
+    「ふうんっ、ぞくぞくってぇ♪・・・・ふゃっッ」
+
+    「んっ・・それ、いい・・%MSG_HEART()%」
+
+    「あぁん・・ね、もっとぉ♪」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・・ふっ・・んぅっ・・はぁんっ・・」
+
+    「んっ・・それ、いい・・%MSG_HEART()%」
+
+    「あぁん・・ね、もっとぉ♪」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・・ふっ・・んぅっ・・はぁんっ・・」
+
+    「んっ・・いい・・%MSG_HEART()%」
+
+    「あぁん・・んっ・・くぅんっ」
+  priority: 1
+  displayMode: newline

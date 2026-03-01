@@ -1,0 +1,217 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……ん……これで……いいのかしら……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%から手渡されたオナホールを見つめ、静かに息を吐いた。
+
+    大図書館の薄暗がりの中、%CALLNAME:TARGET%はそっとオナホールを%CALLNAME:MASTER%に宛がった。
+
+    「……柔らかいわね……あなたの反応……研究させて……」
+
+    %CALLNAME:TARGET%は淡々と言いながらも、%CALLNAME:MASTER%の様子を熱心に観察している。
+
+    「……%CALLNAME:MASTER%……気持ちいい……？」
+
+    珍しく素直な言葉が、%CALLNAME:TARGET%の唇から零れた。
+
+    「……ふふ……こんなに……反応してくれるのね……」
+
+    %CALLNAME:TARGET%はオナホールをゆっくりと動かしながら、%CALLNAME:MASTER%を見上げた。
+
+    読みかけの魔導書は既に閉じられ、%CALLNAME:TARGET%の意識は%CALLNAME:MASTER%に集中している。
+
+    「……あなたの快感を……私が与えているの……不思議な気分ね……」
+
+    %CALLNAME:TARGET%は頬を微かに染めながらも、手を止めない。
+
+    「……もっと……奥まで……入れてあげる……」
+
+    そう呟いて、%CALLNAME:TARGET%はオナホールを深く沈めた。
+
+    「……んっ……こうかしら……」
+
+    %CALLNAME:TARGET%は慣れない手つきでオナホールを扱っている。
+
+    しかしその瞳は真剣で、%CALLNAME:MASTER%を喜ばせようという意志が見て取れた。
+
+    「……動かし方……合ってる……？ 本には詳しく載ってなかったのよ……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに尋ねながらも、手を止めない。
+
+    「……あなたのためなら……こんなことも……してあげる……」
+
+    普段の%CALLNAME:TARGET%からは想像できないほど、その声は甘かった。
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の傍らで、オナホールを優しく動かしている。
+
+    大図書館の静寂に、湿った音が微かに響いていた。
+
+    「……こうして……あなたに奉仕するのも……悪くないわね……」
+
+    %CALLNAME:TARGET%は穏やかに微笑み、%CALLNAME:MASTER%に寄り添った。
+
+    「……私の手で……あなたを満たしてあげる……」
+
+    その言葉は、深い愛情に満ちていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……!? こ、これを……私が……？」
+
+    %CALLNAME:TARGET%はオナホールを見て、頬を真っ赤に染めた。
+
+    「本で読んだことは……あるけど……まさか私が使うことになるなんて……」
+
+    %CALLNAME:TARGET%は恥ずかしそうにオナホールを手に取り、%CALLNAME:MASTER%に宛がった。
+
+    「……こ、こうかしら……動かせば……いいのよね……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで、ぎこちなく手を動かし始めた。
+
+    「……やぁ……見ないで……恥ずかしいわ……」
+
+    %CALLNAME:TARGET%はオナホールを動かしながら、顔を背けた。
+
+    「……む、むきゅ……こんなこと……してる私……変よね……」
+
+    %CALLNAME:TARGET%は手を止めようとするが、%CALLNAME:MASTER%の反応を見て思い留まった。
+
+    「……%CALLNAME:MASTER%が……喜んでくれるなら……」
+
+    %CALLNAME:TARGET%は羞恥に震えながらも、懸命に手を動かしていた。
+
+    「……ん……こう……すればいいの……？」
+
+    %CALLNAME:TARGET%はオナホールをゆっくりと上下させている。
+
+    「……あなたの反応……見てると……私も……変な気持ちになる……」
+
+    %CALLNAME:TARGET%の頬は紅潮し、吐息が熱を帯びていた。
+
+    「……もっと……気持ちよくしてあげたいのに……」
+
+    そう呟きながら、%CALLNAME:TARGET%は必死にオナホールを動かしていた。
+
+    「……ぁ……こんなに……反応してる……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の様子を見て、目を見開いた。
+
+    「……私が……こんなことで……%CALLNAME:MASTER%を……」
+
+    %CALLNAME:TARGET%は言葉を詰まらせながらも、手を止めない。
+
+    「……もう少し……頑張るから……見ていて……」
+
+    %CALLNAME:TARGET%は恥ずかしさを堪えて、%CALLNAME:MASTER%に奉仕し続けた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……これは……何かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が差し出したオナホールを、興味深そうに観察した。
+
+    「外の世界の道具ね……構造を調べたいわ」
+
+    しかし%CALLNAME:MASTER%がその使い方を示すと、%CALLNAME:TARGET%の表情が変わった。
+
+    「……これを……私が……使えと……？」
+
+    %CALLNAME:TARGET%は困惑しながらも、知識欲には抗えないようだった。
+
+    「……ふぅん……なるほどね……」
+
+    %CALLNAME:TARGET%は冷静を装いながら、オナホールを動かしている。
+
+    「……反応の変化を観察させてもらうわ……これは研究よ……」
+
+    しかし%CALLNAME:TARGET%の頬は微かに紅潮している。
+
+    「……むきゅ……見ないで……集中できないわ……」
+
+    観察者を装いながらも、%CALLNAME:TARGET%は恥ずかしさを隠しきれなかった。
+
+    「……興味深いデータね……」
+
+    %CALLNAME:TARGET%はオナホールを動かしながら、%CALLNAME:MASTER%の反応を分析している。
+
+    「……この刺激で……こんなに反応が変わるなんて……」
+
+    しかし%CALLNAME:TARGET%自身も、何か感じているようだった。
+
+    「……あなた……私で実験しているつもりかしら……」
+
+    そう言いながらも、%CALLNAME:TARGET%は手を止めなかった。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言でオナホールを動かしている。
+
+    その瞳は%CALLNAME:MASTER%の反応を追い、真剣な光を宿していた。
+
+    「……悪くないわ……こういう研究も……」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「……でも……調子に乗らないで。これはあくまで実験よ」
+
+    そう言いながらも、%CALLNAME:TARGET%の吐息は熱を帯びていた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の真似かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が差し出したオナホールを見て、冷ややかな目を向けた。
+
+    「そんな下品な道具を……私に使えと……？」
+
+    %CALLNAME:TARGET%は呆れたように溜息をついた。
+
+    「……理解に苦しむわ。帰りなさい」
+
+    そう言って%CALLNAME:TARGET%は、読書に戻ろうとした。
+
+    「……」
+
+    %CALLNAME:TARGET%は冷めた目で%CALLNAME:MASTER%を見た。
+
+    「お断りよ。そんな下品なことに付き合う義理はないわ」
+
+    %CALLNAME:TARGET%は淡々と拒絶した。
+
+    「……知識の殿堂を汚さないで。さっさと帰りなさい」
+
+    %CALLNAME:TARGET%は本を盾のように構えた。
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「大図書館にふさわしくないわ、そんな物は」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を睨みつけた。
+
+    「……精霊魔法で追い出されたくなければ、それをしまいなさい」
+
+    冷たい声が大図書館に響いた。
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついた。
+
+    「あなたは私に何を求めているの。不愉快だわ」
+
+    %CALLNAME:TARGET%は呆れたような表情を浮かべている。
+
+    「……本を汚したら許さないわよ」
+
+    %CALLNAME:TARGET%は冷めた目で%CALLNAME:MASTER%を一瞥し、読書に戻った。
+  priority: 1

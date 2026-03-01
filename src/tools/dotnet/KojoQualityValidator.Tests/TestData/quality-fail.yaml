@@ -1,0 +1,16 @@
+character: TestChar
+situation: TEST
+entries:
+- id: entry1
+  content: |
+    Line 1
+    Line 2
+    Line 3
+  priority: 4
+- id: entry2
+  content: |
+    Line 1
+    Line 2
+    Line 3
+    Line 4
+  priority: 3

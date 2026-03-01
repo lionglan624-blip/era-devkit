@@ -1,0 +1,33 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「…うっ、くっ、そこのッ変態野朗！」
+
+    「はあああ、気持ちいい！」
+
+    「もう…イくからッ、しっかり目に焼き付けとけよ！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「…うっ、くっ、そこのッ変態野朗！」
+
+    「はあああ、気持ちいい！」
+
+    「もう…イくからッ、しっかり目に焼き付けとけよ！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: ぐったりと力なく身体を預けてくる%CALLNAME:奴隷%を抱きしめながら、%NTR_NAME(0)%はペニスを隆起させている。
+  priority: 2
+- id: fallback
+  content: >-
+    「いやっ…や、めてっ、助けてっ、助けて%CALLNAME:MASTER%！！ あ、ああっ！！」
+
+    「た…助けてっ、助けて%CALLNAME:MASTER%！！ あ、ああっ、い、イくっ！！」
+
+    「た…助けて%CALLNAME:MASTER%！！ あ、ああっ、い、やあああ！！」
+  priority: 1
+  displayMode: newline

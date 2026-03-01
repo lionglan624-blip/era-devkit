@@ -1,0 +1,179 @@
+﻿character: 咲夜
+situation: K4_会話親密
+entries:
+- id: fallback
+  content: >-
+    「んっ……やぁ……」
+
+    %CALLNAME:TARGET%はされるがままに、%CALLNAME:MASTER%に尻を撫でられている。
+
+    「……%CALLNAME:MASTER%、その手……いやらしいですわ……」
+
+    瀟洒なメイドとは思えぬ、熱を帯びた吐息が漏れた。
+
+    「……でも、嫌じゃないの。%CALLNAME:MASTER%の手だから……」
+
+    %CALLNAME:TARGET%は頬を染めながら、そっと%CALLNAME:MASTER%に身を寄せた。
+
+    「あっ……そこ……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の尻を優しく包み込んでいる。
+
+    「もう……メイドのお尻なんて、珍しくもないでしょうに……」
+
+    そう言いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の腕に自分の手を添えた。
+
+    「……ふふ、%CALLNAME:MASTER%ったら、本当に……」
+
+    時を止める暇もなく、%CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「……んぅ……」
+
+    %CALLNAME:TARGET%は目を伏せ、%CALLNAME:MASTER%に身を委ねている。
+
+    「お嬢様の前では絶対に見せられない姿ね……」
+
+    %CALLNAME:MASTER%の手が布越しにその柔らかさを確かめる。
+
+    「……こんなに触られたら、私……瀟洒でいられなくなるわ」
+
+    上気した頬で、%CALLNAME:TARGET%は恥じらいながらも受け入れていた。
+
+    「や……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%の尻は%CALLNAME:MASTER%の手に優しく撫でられている。
+
+    「……時間を止めて逃げることもできるのに……そうしないのは何故かしら」
+
+    自嘲気味に微笑みながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げた。
+
+    「……答えはきっと、私が誰よりも知っているわ」
+
+    そう囁いて、%CALLNAME:TARGET%は%CALLNAME:MASTER%の首筋にそっと唇を寄せた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「やっ……%CALLNAME:MASTER%、そこは……」
+
+    %CALLNAME:TARGET%は顔を赤らめ、仕事の手を止めた。
+
+    「もう……こんなところで、厭らしいですわ……」
+
+    そう文句を言いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を払おうとはしなかった。
+
+    「……少しだけですからね？」
+
+    「んっ……や……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の尻を撫でている。
+
+    %CALLNAME:TARGET%は紅潮した顔で、じっとその手を見つめていた。
+
+    「……%CALLNAME:MASTER%の手、温かい……」
+
+    そう呟いて、%CALLNAME:TARGET%はそっと目を伏せた。
+
+    「あ……」
+
+    %CALLNAME:TARGET%の体が僅かに震える。
+
+    「……服が、しわになってしまいますわ……」
+
+    小さく抗議するも、%CALLNAME:TARGET%は逃げようとはしなかった。
+
+    「……もう、%CALLNAME:MASTER%ったら……困るんですから」
+
+    その声には、拒絶の色はなかった。
+
+    「っ……」
+
+    %CALLNAME:TARGET%は息を飲み、%CALLNAME:MASTER%の手を感じている。
+
+    「……メイドとして、これは……いけないことですわ……」
+
+    そう言いながらも、%CALLNAME:TARGET%の表情はどこか嬉しそうだった。
+
+    「……でも、%CALLNAME:MASTER%だけには……」
+
+    言いかけた言葉を飲み込み、%CALLNAME:TARGET%は俯いた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%？」
+
+    %CALLNAME:TARGET%は冷静な表情のまま振り返った。
+
+    「お嬢様のメイドに、何をなさっているのかしら？」
+
+    その言葉に棘はないが、どこか困惑したような色が滲んでいる。
+
+    「……あまり、困らせないでくださいまし」
+
+    「……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を静かに見下ろした。
+
+    「大胆ですわね、%CALLNAME:MASTER%。瀟洒とは言い難い行為ですわ」
+
+    そう言いながらも、%CALLNAME:TARGET%はすぐには離れなかった。
+
+    「……今回だけ、見逃して差し上げますわ」
+
+    「……何のつもりですか？」
+
+    %CALLNAME:TARGET%は僅かに眉を顰めた。
+
+    「私は紅魔館のメイド長。こうした行為は……」
+
+    言葉が途切れる。%CALLNAME:TARGET%の頬が僅かに赤らんでいた。
+
+    「……とにかく、お控えくださいまし」
+
+    「……っ」
+
+    %CALLNAME:TARGET%は小さく息を呑んだ。
+
+    「%CALLNAME:MASTER%、そのような行為はメイドに対する礼儀を欠いておりますわ」
+
+    注意しながらも、%CALLNAME:TARGET%の声には厳しさが薄かった。
+
+    「……今は仕事中ですの。後にしてくださいまし」
+  priority: 2
+- id: fallback
+  content: >-
+    「……何をなさっているのですか？」
+
+    %CALLNAME:TARGET%は時を止めるまでもなく、優雅に距離を取った。
+
+    「私はお嬢様のメイドですわ。軽率な行動は控えていただけますか？」
+
+    %CALLNAME:TARGET%は冷たい視線を向けながら、再び仕事に戻った。
+
+    「……失礼ですわね」
+
+    %CALLNAME:TARGET%は眉一つ動かさず、%CALLNAME:MASTER%の手を払った。
+
+    「そのような無作法、お嬢様がお知りになれば……」
+
+    言外に脅しを含ませながら、%CALLNAME:TARGET%は静かに背を向けた。
+
+    「……」
+
+    無言で時が止まる。次の瞬間、%CALLNAME:TARGET%は数歩離れた場所にいた。
+
+    「瀟洒なメイドは、野蛮な行為には応じませんの」
+
+    冷ややかな視線が%CALLNAME:MASTER%を射抜いた。
+
+    「お手をお引きくださいまし」
+
+    %CALLNAME:TARGET%は事務的な口調で告げた。
+
+    「このようなことをされる謂れは、私にはございませんわ」
+
+    そう言って、%CALLNAME:TARGET%は何事もなかったかのように仕事を続けた。
+  priority: 1

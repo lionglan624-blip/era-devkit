@@ -1,0 +1,257 @@
+﻿character: フラン
+situation: K6_会話親密
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%をそっと抱きしめた。
+
+    「……あっ」
+
+    %CALLNAME:TARGET%は一瞬驚いたように身を硬くしたが、すぐに力を抜いた。
+
+    「%CALLNAME:MASTER%、あったかい……あったかいのさ……」
+
+    %CALLNAME:TARGET%の翼がぱたぱたと嬉しそうに揺れている。
+
+    「495年、ずっとひとりぼっちだったの。でも今は、こうして温かいのさ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に顔を埋め、幸せそうに目を細めた。
+
+    「……ねえ、ずっとこうしていていい？ 壊さないから……約束するから……」
+
+    「――%CALLNAME:MASTER%！」
+
+    %CALLNAME:TARGET%は自分から飛びつくように%CALLNAME:MASTER%に抱きついた。
+
+    ぎゅっと抱きしめ合う二人。%CALLNAME:TARGET%の翼が二人を包むように広がる。
+
+    「えへへ……%CALLNAME:MASTER%の心臓、どくどくしてるのさ。あったかいのさ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の鼓動を聞きながら、無邪気に笑っている。
+
+    「ね、この音、私だけのものだよね？ 誰にもあげちゃダメだよ」
+
+    %CALLNAME:TARGET%の紅い瞳が、愛おしさと独占欲で輝いていた。
+
+    「……壊したくなるくらい大好きなの。でも、壊さないようにぎゅってするのさ」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%に抱きつくと、彼女は嬉しそうに笑った。
+
+    「また抱っこしてくれるのさ……えへへ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕の中で、猫のように丸くなった。
+
+    翼が満足げにゆっくりと上下している。
+
+    「%CALLNAME:MASTER%の匂い……好き。安心するのさ」
+
+    %CALLNAME:TARGET%は深く息を吸い込み、幸せそうに目を閉じた。
+
+    「ずっとこのままでいたいな……%CALLNAME:MASTER%と一緒なら、私、壊れないの」
+
+    「%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に顔を押し付け、ぎゅっと抱きついた。
+
+    「今日ね、ちょっと寂しかったの……でも、もう大丈夫のさ」
+
+    %CALLNAME:TARGET%の声が少し震えている。翼が%CALLNAME:MASTER%を包み込むように広がった。
+
+    「こうしてると、495年の孤独なんて、嘘みたいなのさ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%をさらに強く抱きしめた。
+
+    「……ねえ、離さないで。私、%CALLNAME:MASTER%を手放したくないの」
+
+    紅い瞳に涙が滲んでいたが、%CALLNAME:TARGET%は笑っていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついた。
+
+    「……んっ！？ %CALLNAME:MASTER%……？」
+
+    %CALLNAME:TARGET%は驚いて目を丸くしたが、逃げようとはしなかった。
+
+    「こ、こういうの……初めてなのさ……あったかい……」
+
+    %CALLNAME:TARGET%の頬がほんのりと染まっている。翼が恥ずかしそうに畳まれた。
+
+    「地下にいた時は、こんなの知らなかったのさ……」
+
+    「……もう少しだけ、こうしててもいい？ あったかいの、好きなのさ」
+
+    %CALLNAME:TARGET%は照れながらも、%CALLNAME:MASTER%の温もりを確かめるように寄り添っていた。
+
+    「あっ……」
+
+    %CALLNAME:MASTER%に抱きしめられ、%CALLNAME:TARGET%は小さく声を漏らした。
+
+    「……%CALLNAME:MASTER%、急にどうしたの？ ……あったかい」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%の腕の中で落ち着いている。
+
+    「本で読んだのと、全然違うのさ……もっとドキドキするのさ」
+
+    %CALLNAME:TARGET%の心臓が早鳴りしているのが伝わってくる。
+
+    「……ねえ、また抱きしめてくれる？ 寂しい時に……」
+
+    切なげな表情で、%CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%を後ろから抱きしめた。
+
+    「ひゃっ……！ び、びっくりしたのさ……」
+
+    %CALLNAME:TARGET%の翼がぴくりと跳ねた。
+
+    「……後ろからって、ずるいよ。顔が見えないのさ」
+
+    %CALLNAME:TARGET%は少し拗ねたような声を出したが、逃げようとはしない。
+
+    「でも……こうしてると、%CALLNAME:MASTER%の温度がよくわかるのさ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕に自分の手を重ねた。
+
+    「……もうちょっとだけ、このままでいいよ」
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に抱きつかれ、動けないでいた。
+
+    「私のこと、怖くないの……？ 壊しちゃうかもしれないのに」
+
+    %CALLNAME:TARGET%の声が少し震えている。
+
+    %CALLNAME:MASTER%は答えず、ただ%CALLNAME:TARGET%を抱きしめ続けた。
+
+    「……ふふ、変なの。でも、嬉しいのさ」
+
+    %CALLNAME:TARGET%の翼がゆっくりと畳まれ、%CALLNAME:MASTER%に身を委ねた。
+
+    「……%CALLNAME:MASTER%となら、壊さないでいられるかもしれない」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついた。
+
+    「ひゃっ……！？ な、何するのさ……！」
+
+    %CALLNAME:TARGET%は驚いて身を強張らせた。翼がばさっと開く。
+
+    「……壊れないの？ 私、壊しちゃうかもしれないのに……あったかい」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%を押し退けようとはしなかった。
+
+    「こういうの……誰にもされたことないのさ……」
+
+    「……よく、わかんない。でも……嫌じゃ、ないかも……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%の温もりを受け入れ始めていた。
+
+    「……えっ」
+
+    突然の抱擁に、%CALLNAME:TARGET%は固まってしまった。
+
+    「だ、抱きつくって……こういうことなの……？ あったかい……」
+
+    %CALLNAME:TARGET%は頬を染めながら、不思議そうに瞬きをした。
+
+    「495年、ずっと一人だったから……こういうの、知らなかったのさ」
+
+    %CALLNAME:TARGET%の翼が、落ち着かなげにぱたぱたと動いている。
+
+    「……今だけだよ？ あんまり慣れてないから……」
+
+    そう言いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%を振りほどこうとはしなかった。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%をそっと抱きしめた。
+
+    「……っ！？」
+
+    %CALLNAME:TARGET%の体が一瞬ビクッと震えた。
+
+    「な、何……急に……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、じっとしている。
+
+    「……あったかいのさ。これが、抱っこ……」
+
+    %CALLNAME:TARGET%は初めての感覚に、不思議そうな顔をしていた。
+
+    「……お姉様は、こういうの、してくれなかったのさ」
+
+    「あっ……」
+
+    %CALLNAME:MASTER%が抱きつくと、%CALLNAME:TARGET%は小さく声を上げた。
+
+    「……なんで、そんなことするの？」
+
+    %CALLNAME:TARGET%は首を傾げて%CALLNAME:MASTER%を見上げた。
+
+    「私、壊しちゃうかもしれないのに……怖くないの？」
+
+    %CALLNAME:TARGET%の紅い瞳が、不安と期待で揺れている。
+
+    「……でも、あったかい。こういうの、嫌いじゃないかもしれないのさ」
+
+    %CALLNAME:TARGET%は少しだけ、%CALLNAME:MASTER%に身を寄せた。
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついた。
+
+    「……何してるの」
+
+    %CALLNAME:TARGET%は冷たい瞳で%CALLNAME:MASTER%を見つめた。
+
+    「私に触ると、壊れるよ……きゅっとしてドカーン」
+
+    %CALLNAME:TARGET%の紅い瞳が、危険な光を帯びている。
+
+    「……でも、ちょっとだけ……あったかいかも」
+
+    一瞬だけ、%CALLNAME:TARGET%の表情が和らいだように見えた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きつこうとした。
+
+    「……やめて」
+
+    %CALLNAME:TARGET%は一歩後ろに下がった。翼が警戒するように広がる。
+
+    「私、495年もずっと地下にいたの。急に近づかないで」
+
+    「……壊しちゃったら、どうするのさ」
+
+    %CALLNAME:TARGET%は寂しそうな、でも警戒した目で%CALLNAME:MASTER%を見ていた。
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%に近づいた。
+
+    「……来ないで」
+
+    %CALLNAME:TARGET%の瞳に赤い光が宿った。
+
+    「誰も、私に触らないで。壊しちゃうから」
+
+    %CALLNAME:TARGET%は危険な笑みを浮かべ、%CALLNAME:MASTER%を睨みつけた。
+
+    「きゅっとしてドカーン……しても、いいの？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に手を伸ばした。
+
+    「……触りたいの？ 私に？」
+
+    %CALLNAME:TARGET%は不思議そうに首を傾げた。
+
+    「変なの。みんな、私から逃げるのに」
+
+    %CALLNAME:TARGET%の翼がわずかに動いた。警戒と好奇心が入り混じっている。
+
+    「……まあ、いいよ。壊れても知らないけどね」
+
+    %CALLNAME:TARGET%は無表情だったが、どこか期待しているようにも見えた。
+  priority: 1

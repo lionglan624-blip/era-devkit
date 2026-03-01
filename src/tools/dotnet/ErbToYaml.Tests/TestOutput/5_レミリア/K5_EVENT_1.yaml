@@ -1,0 +1,17 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: fallback
+  content: '%CALLNAME:人物_レミリア%は%CALLNAME:PLAYER%がアヌスにローターを挿入していることに気付いて妖しい笑みを浮かべた。'
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:人物_レミリア%は%CALLNAME:PLAYER%が下着を身に着けていないことに気付いて妖しい笑みを浮かべ微笑んだ。
+
+    「あら…ノーパンだなんて、準備がいいわね。誘っているのかしら？」
+
+    「言われる前から準備しているなんて、躾が行き届いているわね」
+
+    「駄目じゃない。脱がす側の悦びも残しておいてくれないと？」
+  priority: 1
+  displayMode: newline

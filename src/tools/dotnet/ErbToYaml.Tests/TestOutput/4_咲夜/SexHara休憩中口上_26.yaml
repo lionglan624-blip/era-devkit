@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「さ・・わかっているでしょう、その手で扱きなさい」
+
+    「言われないとわからないのかしら？ その手で扱いてもらうわ」
+
+    「その手で愛撫なさい。それとも、口でしてくれるのかしら？」
+  priority: 1
+  displayMode: newline

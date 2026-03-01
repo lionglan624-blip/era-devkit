@@ -1,0 +1,361 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VariableSize",
+  "description": "Array variable size configuration schema",
+  "type": "object",
+  "properties": {
+    "DAY": {
+      "type": ["integer", "string"]
+    },
+    "MONEY": {
+      "type": ["integer", "string"]
+    },
+    "TIME": {
+      "type": ["integer", "string"]
+    },
+    "ITEM": {
+      "type": ["integer", "string"]
+    },
+    "ITEMSALES": {
+      "type": ["integer", "string"]
+    },
+    "NOITEM": {
+      "type": ["integer", "string"]
+    },
+    "BOUGHT": {
+      "type": ["integer", "string"]
+    },
+    "PBAND": {
+      "type": ["integer", "string"]
+    },
+    "FLAG": {
+      "type": ["integer", "string"]
+    },
+    "TFLAG": {
+      "type": ["integer", "string"]
+    },
+    "TARGET": {
+      "type": ["integer", "string"]
+    },
+    "MASTER": {
+      "type": ["integer", "string"]
+    },
+    "PLAYER": {
+      "type": ["integer", "string"]
+    },
+    "ASSI": {
+      "type": ["integer", "string"]
+    },
+    "ASSIPLAY": {
+      "type": ["integer", "string"]
+    },
+    "UP": {
+      "type": ["integer", "string"]
+    },
+    "DOWN": {
+      "type": ["integer", "string"]
+    },
+    "LOSEBASE": {
+      "type": ["integer", "string"]
+    },
+    "PALAMLV": {
+      "type": ["integer", "string"]
+    },
+    "EXPLV": {
+      "type": ["integer", "string"]
+    },
+    "EJAC": {
+      "type": ["integer", "string"]
+    },
+    "PREVCOM": {
+      "type": ["integer", "string"]
+    },
+    "SELECTCOM": {
+      "type": ["integer", "string"]
+    },
+    "NEXTCOM": {
+      "type": ["integer", "string"]
+    },
+    "RESULT": {
+      "type": ["integer", "string"]
+    },
+    "COUNT": {
+      "type": ["integer", "string"]
+    },
+    "A": {
+      "type": ["integer", "string"]
+    },
+    "B": {
+      "type": ["integer", "string"]
+    },
+    "C": {
+      "type": ["integer", "string"]
+    },
+    "D": {
+      "type": ["integer", "string"]
+    },
+    "E": {
+      "type": ["integer", "string"]
+    },
+    "F": {
+      "type": ["integer", "string"]
+    },
+    "G": {
+      "type": ["integer", "string"]
+    },
+    "H": {
+      "type": ["integer", "string"]
+    },
+    "I": {
+      "type": ["integer", "string"]
+    },
+    "J": {
+      "type": ["integer", "string"]
+    },
+    "K": {
+      "type": ["integer", "string"]
+    },
+    "L": {
+      "type": ["integer", "string"]
+    },
+    "M": {
+      "type": ["integer", "string"]
+    },
+    "N": {
+      "type": ["integer", "string"]
+    },
+    "O": {
+      "type": ["integer", "string"]
+    },
+    "P": {
+      "type": ["integer", "string"]
+    },
+    "Q": {
+      "type": ["integer", "string"]
+    },
+    "R": {
+      "type": ["integer", "string"]
+    },
+    "S": {
+      "type": ["integer", "string"]
+    },
+    "T": {
+      "type": ["integer", "string"]
+    },
+    "U": {
+      "type": ["integer", "string"]
+    },
+    "V": {
+      "type": ["integer", "string"]
+    },
+    "W": {
+      "type": ["integer", "string"]
+    },
+    "X": {
+      "type": ["integer", "string"]
+    },
+    "Y": {
+      "type": ["integer", "string"]
+    },
+    "Z": {
+      "type": ["integer", "string"]
+    },
+    "SAVESTR": {
+      "type": ["integer", "string"]
+    },
+    "RESULTS": {
+      "type": ["integer", "string"]
+    },
+    "TSTR": {
+      "type": ["integer", "string"]
+    },
+    "ITEMNAME": {
+      "type": ["integer", "string"]
+    },
+    "ABLNAME": {
+      "type": ["integer", "string"]
+    },
+    "TALENTNAME": {
+      "type": ["integer", "string"]
+    },
+    "EXPNAME": {
+      "type": ["integer", "string"]
+    },
+    "MARKNAME": {
+      "type": ["integer", "string"]
+    },
+    "PALAMNAME": {
+      "type": ["integer", "string"]
+    },
+    "TRAINNAME": {
+      "type": ["integer", "string"]
+    },
+    "BASENAME": {
+      "type": ["integer", "string"]
+    },
+    "SOURCENAME": {
+      "type": ["integer", "string"]
+    },
+    "EXNAME": {
+      "type": ["integer", "string"]
+    },
+    "EQUIPNAME": {
+      "type": ["integer", "string"]
+    },
+    "TEQUIPNAME": {
+      "type": ["integer", "string"]
+    },
+    "FLAGNAME": {
+      "type": ["integer", "string"]
+    },
+    "CFLAGNAME": {
+      "type": ["integer", "string"]
+    },
+    "TFLAGNAME": {
+      "type": ["integer", "string"]
+    },
+    "STR": {
+      "type": ["integer", "string"]
+    },
+    "BASE": {
+      "type": ["integer", "string"]
+    },
+    "MAXBASE": {
+      "type": ["integer", "string"]
+    },
+    "ABL": {
+      "type": ["integer", "string"]
+    },
+    "TALENT": {
+      "type": ["integer", "string"]
+    },
+    "EXP": {
+      "type": ["integer", "string"]
+    },
+    "MARK": {
+      "type": ["integer", "string"]
+    },
+    "PALAM": {
+      "type": ["integer", "string"]
+    },
+    "SOURCE": {
+      "type": ["integer", "string"]
+    },
+    "EX": {
+      "type": ["integer", "string"]
+    },
+    "CFLAG": {
+      "type": ["integer", "string"]
+    },
+    "JUEL": {
+      "type": ["integer", "string"]
+    },
+    "RELATION": {
+      "type": ["integer", "string"]
+    },
+    "EQUIP": {
+      "type": ["integer", "string"]
+    },
+    "TEQUIP": {
+      "type": ["integer", "string"]
+    },
+    "STAIN": {
+      "type": ["integer", "string"]
+    },
+    "GOTJUEL": {
+      "type": ["integer", "string"]
+    },
+    "NOWEX": {
+      "type": ["integer", "string"]
+    },
+    "TCVAR": {
+      "type": ["integer", "string"]
+    },
+    "CSTR": {
+      "type": ["integer", "string"]
+    },
+    "LOCAL": {
+      "type": ["integer", "string"]
+    },
+    "LOCALS": {
+      "type": ["integer", "string"]
+    },
+    "ARG": {
+      "type": ["integer", "string"]
+    },
+    "ARGS": {
+      "type": ["integer", "string"]
+    },
+    "GLOBAL": {
+      "type": ["integer", "string"]
+    },
+    "GLOBALS": {
+      "type": ["integer", "string"]
+    },
+    "DITEMTYPE": {
+      "type": "array",
+      "items": {
+        "type": ["integer", "string"]
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "DA": {
+      "type": "array",
+      "items": {
+        "type": ["integer", "string"]
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "DB": {
+      "type": "array",
+      "items": {
+        "type": ["integer", "string"]
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "DC": {
+      "type": "array",
+      "items": {
+        "type": ["integer", "string"]
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "DD": {
+      "type": "array",
+      "items": {
+        "type": ["integer", "string"]
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "DE": {
+      "type": "array",
+      "items": {
+        "type": ["integer", "string"]
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "TA": {
+      "type": "array",
+      "items": {
+        "type": ["integer", "string"]
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "TB": {
+      "type": "array",
+      "items": {
+        "type": ["integer", "string"]
+      },
+      "minItems": 3,
+      "maxItems": 3
+    }
+  },
+  "additionalProperties": false
+}

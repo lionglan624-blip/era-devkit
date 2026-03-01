@@ -1,0 +1,7 @@
+{
+  "name": "core-dayend: 1日終了テスト",
+  "description": "1日を終了して翌日のSHOP画面に遷移することを確認",
+  "expect": {
+    "output_contains": ["[100]"]
+  }
+}

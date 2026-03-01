@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    「私は公衆便所……娼婦になったんだから」
+
+    「私は公衆便所……娼婦なんだから」
+
+    「私は公衆便所……娼婦なのよ」
+  priority: 1
+  displayMode: newline

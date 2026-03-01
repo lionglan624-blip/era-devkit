@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: K3_日常
+entries:
+- id: fallback
+  content: >-
+    「お断りよ」
+
+    「今日は体調がすぐれないの」
+
+    「遠慮しておくわ」
+  priority: 1
+  displayMode: newline

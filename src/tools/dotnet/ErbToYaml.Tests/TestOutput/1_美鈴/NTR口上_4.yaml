@@ -1,0 +1,78 @@
+﻿character: 美鈴
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「はい・・わかりました・・」
+
+    「はい・・このとおりに」
+
+    「はい・・今日一日、このままで・・」
+
+    %CALLNAME:奴隷%はうっすらと頬を染め、局部を露出したまま仕事に戻った。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に言われるまま下着を脱ぐと彼に手渡し、局部を露出したまま仕事に戻った。
+
+    %CALLNAME:奴隷%はその場で脱いだ下着を%NTR_NAME(0)%に手渡し、局部を露出したまま仕事に戻った。
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はい・・わかりました・・」
+
+    「はい・・このとおりに」
+
+    「はい・・今日一日、このままで・・」
+
+    %CALLNAME:奴隷%はうっすらと頬を染め、局部を露出したまま仕事に戻った。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に言われるまま下着を脱ぐと彼に手渡し、局部を露出したまま仕事に戻った。
+
+    %CALLNAME:奴隷%はその場で脱いだ下着を%NTR_NAME(0)%に手渡し、局部を露出したまま仕事に戻った。
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あぁ・・恥ずかしい・・」
+
+    「あぁ・・こんな・・恥ずかしい・・」
+
+    「あぁ・・恥ずかしいです・・」
+
+    %CALLNAME:奴隷%は剥き出しの局部を誰かに見られたら、と羞恥に頬を染めた。
+
+    %CALLNAME:奴隷%は局部を外気に晒すことに不安を感じ、羞恥に頬を染めた。
+
+    %CALLNAME:奴隷%は下着を身に着けてないことで落ち着かないようだ。
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・ああ・・こんな・・」
+
+    「・・ああ・・こんな格好で・・」
+
+    「・・ああ・・恥ずかしい・・」
+
+    局部露出を強いられた%CALLNAME:奴隷%は悔しさと羞恥に頬を染めつつも%NTR_NAME(0)%の言葉に従った。
+
+    局部露出を強いられた%CALLNAME:奴隷%は悔しさと羞恥に頬を染めつつも%NTR_NAME(0)%の言葉に従い、下着を%NTR_KARE()%に手渡した。
+
+    %NTR_NAME(0)%に下着を奪われ局部露出を強いられた実鈴は悔しさと羞恥に頬を染めた。
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・くっ・・」
+
+    「・・破廉恥なっ・・」
+
+    「こんな・・ことっ・・」
+
+    局部露出を強いられた%CALLNAME:奴隷%は悔しさと羞恥に唇を噛んだが、%NTR_NAME(0)%の言葉に従うしかなかった。
+
+    局部露出を強いられた%CALLNAME:奴隷%は悔しさと羞恥に唇を噛んだが、%NTR_NAME(0)%の言葉に従い下着を手渡すしかなかった。
+
+    脅迫に屈した%CALLNAME:奴隷%は悔しさと羞恥に歯噛みしながら下着を脱ぎ%NTR_NAME(0)%に手渡した。
+  priority: 1
+  displayMode: newline

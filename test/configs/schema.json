@@ -1,0 +1,261 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/era-game/test-scenario-schema",
+  "title": "ERA Game Test Scenario Schema",
+  "description": "Unified schema for ERA game test scenarios supporting kojo tests, inject scenarios, and regression tests",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Test or suite name - required for all scenarios"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable explanation of what this test verifies"
+    },
+    "character": {
+      "type": ["string", "integer"],
+      "description": "Target character ID or name for kojo tests (single test format)"
+    },
+    "call": {
+      "type": "string",
+      "description": "ERB function to invoke (e.g., KOJO_MESSAGE_COM_K1_300)"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": ["integer", "string"]
+      },
+      "description": "Input values for interactive prompts during test execution"
+    },
+    "state": {
+      "type": "object",
+      "description": "Game variable state to set before test (single test format)",
+      "additionalProperties": true
+    },
+    "mock_rand": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "description": "Deterministic random values to ensure reproducible tests"
+    },
+    "expect": {
+      "$ref": "#/definitions/expectation",
+      "description": "Expected test outcomes (single test format)"
+    },
+    "add_characters": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "description": "Character IDs to add to the game before test execution"
+    },
+    "characters": {
+      "type": "object",
+      "description": "Character-specific state configuration (name -> variable map)",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "flags": {
+      "type": "object",
+      "description": "Global flags to set before test execution",
+      "additionalProperties": true
+    },
+    "copy": {
+      "type": "array",
+      "description": "Variable copy operations to perform during setup",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "Source character name"
+          },
+          "to": {
+            "type": "string",
+            "description": "Destination character name (e.g., MASTER)"
+          },
+          "var": {
+            "type": "string",
+            "description": "Variable to copy (e.g., CFLAG:300)"
+          }
+        },
+        "required": ["from", "to", "var"]
+      }
+    },
+    "save": {
+      "type": "string",
+      "description": "Save file path to load before test execution"
+    },
+    "defaults": {
+      "type": "object",
+      "description": "Default values applied to all tests in a suite",
+      "properties": {
+        "character": {
+          "type": ["string", "integer"],
+          "description": "Default target character"
+        },
+        "state": {
+          "type": "object",
+          "description": "Default state variables",
+          "additionalProperties": true
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": ["integer", "string"]
+          },
+          "description": "Default inputs"
+        },
+        "mock_rand": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "description": "Default mock random values"
+        }
+      }
+    },
+    "tests": {
+      "type": "array",
+      "description": "Array of test cases (test suite format)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Individual test name"
+          },
+          "character": {
+            "type": ["string", "integer"],
+            "description": "Target character (overrides defaults)"
+          },
+          "call": {
+            "type": "string",
+            "description": "ERB function to call"
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": ["integer", "string"]
+            },
+            "description": "Inputs for this test"
+          },
+          "state": {
+            "type": "object",
+            "description": "State for this test (merged with defaults)",
+            "additionalProperties": true
+          },
+          "mock_rand": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "description": "Mock random values (overrides defaults)"
+          },
+          "expect": {
+            "$ref": "#/definitions/expectation"
+          }
+        },
+        "required": ["name"]
+      }
+    }
+  },
+  "required": ["name"],
+  "definitions": {
+    "expectation": {
+      "type": "object",
+      "description": "Expected test outcomes - at least one assertion should be specified",
+      "properties": {
+        "output_contains": {
+          "type": ["string", "array"],
+          "description": "String or array of strings that must appear in output",
+          "items": {
+            "type": "string"
+          }
+        },
+        "not_contains": {
+          "type": ["string", "array"],
+          "description": "String or array of strings that must NOT appear in output",
+          "items": {
+            "type": "string"
+          }
+        },
+        "output_matches": {
+          "type": ["string", "array"],
+          "description": "Regex pattern(s) that output must match",
+          "items": {
+            "type": "string"
+          }
+        },
+        "no_errors": {
+          "type": "boolean",
+          "description": "Assert that execution completes without errors"
+        },
+        "exit_code": {
+          "type": "integer",
+          "description": "Expected exit code (0 = success)"
+        },
+        "variable_equals": {
+          "type": "object",
+          "description": "Variable equality checks (var_name -> expected_value)",
+          "additionalProperties": true
+        },
+        "variable_gt": {
+          "type": "object",
+          "description": "Variable greater-than checks",
+          "additionalProperties": true
+        },
+        "variable_gte": {
+          "type": "object",
+          "description": "Variable greater-than-or-equal checks",
+          "additionalProperties": true
+        },
+        "variable_lt": {
+          "type": "object",
+          "description": "Variable less-than checks",
+          "additionalProperties": true
+        },
+        "variable_lte": {
+          "type": "object",
+          "description": "Variable less-than-or-equal checks",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "description": "Single test format (call required)",
+      "required": ["name", "call"]
+    },
+    {
+      "description": "Test suite format (tests array required)",
+      "required": ["name", "tests"]
+    },
+    {
+      "description": "Scenario setup format (characters/add_characters required, no call/tests)",
+      "required": ["name"],
+      "properties": {
+        "call": {
+          "not": {}
+        },
+        "tests": {
+          "not": {}
+        }
+      },
+      "anyOf": [
+        {
+          "required": ["characters"]
+        },
+        {
+          "required": ["add_characters"]
+        }
+      ]
+    }
+  ]
+}

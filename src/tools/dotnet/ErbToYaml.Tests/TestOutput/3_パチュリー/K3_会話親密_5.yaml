@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: K3_会話親密
+entries:
+- id: fallback
+  content: >-
+    「や、やめなさいっ」
+
+    「いきなり何をっ！？」
+
+    「そこまでよ！」
+  priority: 1
+  displayMode: newline

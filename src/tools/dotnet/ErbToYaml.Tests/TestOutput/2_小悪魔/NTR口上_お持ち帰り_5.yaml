@@ -1,0 +1,56 @@
+﻿character: 小悪魔
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: 唇を重ねながら目を閉じた彼女の目尻に涙が滲んだ。
+  priority: 8
+- id: talent_148_1
+  content: >-
+    「んっ！んむぅ！・・んっ、んっ・・やあっ・・んぅ！」
+
+    「いっ、いやっ・・んっ、んんっ・・むうっ！」
+
+    「んんっ！ は、はなしてくださいっ・・んんんっ！」
+  priority: 7
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: 口移しで客の口内に唾液を流し込んで飲み下させ、「おかわりはいかがですか？」ともう一度唇を重ねた。
+  priority: 6
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・んぅ・・」
+
+    %CALLNAME:奴隷%は客と抱き合いながら唇を重ね、自ら舌を絡ませている。
+
+    口移しで客の口内に唾液を流し込んで飲み下させ、「おかわりはいかがですか？」ともう一度唇を重ねた。
+  priority: 5
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・んぅ・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と抱き合いながら唇を重ね、自ら舌を絡ませている。
+
+    口移しで流し込まれた唾液を飲み下し、もっと欲しいとせがんで唇を重ねた。
+  priority: 4
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・んぅ・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と唇を重ね、自ら舌を絡ませている。
+  priority: 3
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・んぅ・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と唇を重ね、自ら舌を絡ませている。
+  priority: 2
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・んぅ・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に唇を奪われたが、自ら舌を絡ませた。
+  priority: 1

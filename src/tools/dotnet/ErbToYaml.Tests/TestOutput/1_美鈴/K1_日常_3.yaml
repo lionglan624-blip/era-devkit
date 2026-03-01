@@ -1,0 +1,12 @@
+﻿character: 美鈴
+situation: K1_日常
+entries:
+- id: fallback
+  content: >-
+    「・・そうですか。では後ほど」
+
+    「・・そうですかぁ」
+
+    「ええ〜っ」
+  priority: 1
+  displayMode: newline

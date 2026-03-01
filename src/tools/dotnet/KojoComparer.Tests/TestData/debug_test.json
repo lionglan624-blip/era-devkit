@@ -1,0 +1,1 @@
+{"name":"debug_test","defaults":{"char":"1"},"tests":[{"call":"@KOJO_MESSAGE_COM_K1_0_1","state":{"TALENT:1:15":1,"TARGET":"1"},"expect":{"output_contains":["美鈴"]}}]}

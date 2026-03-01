@@ -1,0 +1,57 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「そう・・、やさしく・・ああ」
+
+    「そうよ・・好きにして・・」
+
+    「いいわ・・もっと触って・・」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そう・・、やさしく・・ああ」
+
+    「そうよ・・好きにして・・」
+
+    「いいわ・・もっと触って・・」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「相変わらず無礼な手ね。ふふ」
+
+    「ずいぶん調子に乗っているわね、ククッ」
+
+    「構わないわ・・好きにしていいから、気持ちよくして」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ずいぶんと無礼な手ね。ふふ」
+
+    「怖いもの知らずというのかしらね？ いいわ、続けなさい」
+
+    「構わないわ・・好きにしていいから、気持ちよくしなさい」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ずいぶんと無礼な手ね。ふふ」
+
+    「怖いもの知らずというのかしらね？ どこまで頑張れるかしら？」
+
+    「構わないわ・・好きにしていいけど、気持ちよくできるかしら？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「なっ！ 無礼者っ！」
+
+    「は、離しなさいっ！」
+
+    「こ、こいつっ！」
+  priority: 1
+  displayMode: newline

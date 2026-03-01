@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: fallback
+  content: >-
+    「…後ろを向いて、壁に手をつきなさい」
+
+    「…後ろを向いて、壁に手をつきなさい。もっと尻を突き出して！」
+
+    「…後ろを向いて、尻を突き出すように壁に手をつきなさい」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,207 @@
+﻿character: 大妖精
+situation: K9_会話親密
+entries:
+- id: fallback
+  content: >-
+    「あっ……んぅ……%CALLNAME:MASTER%……そこ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に身を預けながら、後ろの穴を弄られている。
+
+    「……恥ずかしいところなのに……%CALLNAME:MASTER%に触られると……気持ちいいの……」
+
+    %CALLNAME:TARGET%の透き通った羽が、快感に震えている。
+
+    「……%CALLNAME:MASTER%になら……全部、見せてあげるね……」
+
+    %CALLNAME:TARGET%は恥じらいながらも、幸せそうに目を細めた。
+
+    「ひゃぁ……あぁっ……おしり……弱いのに……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の菊穴をゆっくりと解している。
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%にしがみつきながら、甘い声を漏らした。
+
+    「……こんなところで感じちゃうなんて……妖精としておかしいのかな……」
+
+    「でも……%CALLNAME:MASTER%とだから……いいの……」
+
+    %CALLNAME:TARGET%は潤んだ瞳で%CALLNAME:MASTER%を見上げた。
+
+    「んっ……あ……そんなに優しく……」
+
+    %CALLNAME:TARGET%の後ろの穴を、%CALLNAME:MASTER%が丁寧に愛撫している。
+
+    「チルノちゃんには……絶対に知られたくないよ……こんな姿……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「……でも……%CALLNAME:MASTER%にだけは……見ていてほしいの……」
+
+    小さな体が、快感に震えている。
+
+    「あっ……やぁ……そこ……指が入って……」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の後ろの穴をゆっくりと犯している。
+
+    %CALLNAME:TARGET%は背中の羽をぴくぴくと震わせながら、身を捩った。
+
+    「……%CALLNAME:MASTER%の指……わたしのおしり……覚えちゃったみたい……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに、でも嬉しそうに呟いた。
+
+    「……もっと……してほしいな……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ひゃっ……！　そ、そこは……おしりは……駄目だよ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を止めようとするが、力が入らない。
+
+    「あっ……んっ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%の頬が赤く染まり、瞳が潤んでいく。
+
+    「……こんなところ触られるなんて……恥ずかしいよ……」
+
+    それでも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を払おうとはしなかった。
+
+    「んぅっ……あ……そんなところ触ったら……変な声……出ちゃうよ……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の後ろの穴に触れている。
+
+    %CALLNAME:TARGET%は必死に声を堪えながら、%CALLNAME:MASTER%を見つめた。
+
+    「……おしりなんて……普通は触らないのに……」
+
+    「……%CALLNAME:MASTER%が……そうしたいなら……我慢、する……」
+
+    %CALLNAME:TARGET%の羽が、そわそわと動いている。
+
+    「きゃっ……あっ……%CALLNAME:MASTER%……そこ……」
+
+    %CALLNAME:TARGET%の体が小さく震えている。
+
+    「……こんなこと、されたこと……ないの……おしりなんて……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%から目を逸らさない。
+
+    「……でも、%CALLNAME:MASTER%となら……怖くない、かも……」
+
+    %CALLNAME:TARGET%は小さく頷いた。
+
+    「あぅっ……んっ……そこ……敏感なの……」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の後ろの穴を優しく刺激している。
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯きながら、小さく喘いだ。
+
+    「……%CALLNAME:MASTER%……わたしの……そんなところまで……」
+
+    %CALLNAME:TARGET%は不安そうに、でも期待を込めた目で見上げてきた。
+
+    「……優しくしてくれる……？」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「ひゃぁっ！？　%CALLNAME:MASTER%さん、そ、そこは……おしりは……！」
+
+    %CALLNAME:TARGET%は驚いて身を竦めた。
+
+    「あ、あの……こういうことは……その……恥ずかしいです……」
+
+    %CALLNAME:TARGET%は何と言っていいか分からず、口ごもっている。
+
+    「……チルノちゃんに知られたら……本当に困ります……」
+
+    %CALLNAME:TARGET%は困惑しながらも、強く拒絶はしなかった。
+
+    「きゃっ……！　あの、%CALLNAME:MASTER%さん……おしりは……」
+
+    %CALLNAME:TARGET%は突然の愛撫に動揺している。
+
+    「わ、わたし……こういうの、よく分からなくて……」
+
+    %CALLNAME:TARGET%の顔が真っ赤に染まっていく。
+
+    「……でも……痛くは……ないです……」
+
+    %CALLNAME:TARGET%は小さな声でそう呟いた。
+
+    「あっ……んっ……そんな……おしりなんて……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の後ろの穴を撫でている。
+
+    %CALLNAME:TARGET%は戸惑いながらも、されるがままになっている。
+
+    「……%CALLNAME:MASTER%さんは……こういうところも……触りたいんですか……？」
+
+    %CALLNAME:TARGET%は理解しようとするように、%CALLNAME:MASTER%を見上げた。
+
+    「……妖精は……そういうの……あまりしないんですけど……」
+
+    「ひぅっ……あ……そこ……触らないで……」
+
+    %CALLNAME:TARGET%は弱々しく抵抗するが、本気ではない。
+
+    「……おしりなんて……汚いところなのに……」
+
+    %CALLNAME:TARGET%は困ったように眉を寄せている。
+
+    「……でも……%CALLNAME:MASTER%さんが、そうしたいなら……」
+
+    %CALLNAME:TARGET%の羽が落ち着きなく揺れている。
+  priority: 2
+- id: fallback
+  content: >-
+    「きゃぁっ！？　な、何するんですか……！　おしりなんて……！」
+
+    %CALLNAME:TARGET%は驚いて後ずさった。
+
+    「そ、そんなところ……触らないでください……」
+
+    %CALLNAME:TARGET%は怯えた目で%CALLNAME:MASTER%を見ている。
+
+    「……わたし、そういうの……分からないです……」
+
+    %CALLNAME:TARGET%の羽が、警戒するように広がっている。
+
+    「ひゃっ……！　%CALLNAME:MASTER%さん……おしりは……駄目です……」
+
+    %CALLNAME:TARGET%は突然の接触に身を硬くした。
+
+    「あ、あの……こういうことは……困ります……」
+
+    %CALLNAME:TARGET%は困惑と不安を滲ませながら、助けを求めるように周囲を見回した。
+
+    「……チルノちゃん、どこにいるのかな……」
+
+    %CALLNAME:TARGET%は心細そうに呟いた。
+
+    「えっ……あ、あの……おしりを触るなんて……」
+
+    %CALLNAME:TARGET%は何が起きているのか理解できていないようだ。
+
+    「……これは……どういうことなんですか……？」
+
+    %CALLNAME:TARGET%は不安そうに%CALLNAME:MASTER%を見上げている。
+
+    「……人間の人は……こういうことを……するんですか……？」
+
+    %CALLNAME:TARGET%は首を傾げている。
+
+    「やっ……！　駄目です……そんなところ……おしりは……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を押し退けようとした。
+
+    「わ、わたし……まだ……心の準備が……」
+
+    %CALLNAME:TARGET%は怯えながらも、強く拒絶はできないでいる。
+
+    「……お願い……優しく……してください……」
+
+    %CALLNAME:TARGET%は小さな声で懇願した。
+  priority: 1

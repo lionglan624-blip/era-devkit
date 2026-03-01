@@ -1,0 +1,57 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んっ、んっ、んっ…んんっ！！ ん…ふ…こくっ」
+
+    「ちゅっ、ちゅっ、ぢゅっ、んっ！！ ちゅ…こくん」
+
+    「ん…んっ、んんっ！！ ちゅ…ちゅぱっ…こくんっ」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ、んっ、んっ…んんっ！！ ん…ふ…こくっ」
+
+    「ちゅっ、ちゅっ、ぢゅっ、んっ！！ ちゅ…こくん」
+
+    「ん…んっ、んんっ！！ ちゅ…ちゅぱっ…こくんっ」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ、んっ…んんっ！！ ん…ふ…こくっ」
+
+    「ちゅっ、ぢゅっ、んっ！！ ちゅ…こくん」
+
+    「ん…んんっ！！ ちゅ…ちゅぱっ…こくんっ」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んぅ！…んっ…んっ…こくっ」
+
+    「うっ！…飲めばいいんだな…こくっ」
+
+    「ううっ！ …んっ…こくっ」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んぅ！…んっ…んっ…こくっ」
+
+    「うっ！…飲むなんて…ううっ…こくっ」
+
+    「ううっ！ …んっ…ひどい…こくっ」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んぶっ！？げほっ・ごほっ…けほっ…んんぅ！！？」
+
+    「うううっ！？…の、飲むなんて…やだあっ！」
+
+    「ううっ！ …けほっ…い、いやあっ！」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,74 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「はい…了解しました…」
+
+    「はい…%呼称%に従うぜ…」
+
+    「はい…これは…刺激的だな…」
+
+    「ああ…アナル…イイッ！
+
+    「ああっ…感じる…
+
+    「歩くだけで…響く…
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はい…了解しました…」
+
+    「はい…%呼称%に従うぜ…」
+
+    「はい…これは…刺激的だな…」
+
+    「ああ…アナル…イイッ！
+
+    「ああっ…感じる…
+
+    「歩くだけで…響く…
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「すごい震えてる…」
+
+    「悪趣味な奴…」
+
+    「入れてればいいんだな？」
+
+    「うっ…ふっ…はぁ…
+
+    「ん…おしり…感じる…
+
+    「あああ…
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああん…おしりに…くるぅ
+
+    「あぁっ…おしりで感じちゃう…
+
+    「ううん…
+  priority: 3
+- id: fallback
+  content: >-
+    「…むずむずする…」
+
+    「…だんだん、なじんできた感じだ」
+
+    「んっ…」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「…こんなことで私が音を上げると思うなよ…」
+
+    「…ふんっ、こんな…ものか…？」
+
+    「…覚えてろよ」
+  priority: 1
+  displayMode: newline

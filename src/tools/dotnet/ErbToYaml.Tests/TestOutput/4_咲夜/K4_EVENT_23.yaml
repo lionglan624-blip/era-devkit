@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    「ええ、泊まってくると言ったの。泊まりがけで、朝まで%NTR_KARE()%に抱かれてくるわ」
+
+    「ええ、泊まってくると言ったの。まさかと思うけど、引き止めたりしないわよね？」
+
+    「ええ、泊まってくると言ったの。朝まで%NTR_KARE()%に抱かれてくるわ・・ふふ」
+  priority: 1
+  displayMode: newline

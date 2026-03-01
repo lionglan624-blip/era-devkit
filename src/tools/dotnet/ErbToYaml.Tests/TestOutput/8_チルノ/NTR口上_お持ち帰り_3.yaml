@@ -1,0 +1,55 @@
+﻿character: チルノ
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「うっ・・うぐっ・・んんっ・・！！」
+
+    「ううっ・・い、いやっ・・んぐうっ！」
+
+    「んっ・・んむっ・・だ、だめっ・・ああっ！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「うっ・・うぐっ・・んんっ・・！！」
+
+    「ううっ・・い、いやっ・・んぐうっ！」
+
+    「んっ・・んむっ・・だ、だめっ・・ああっ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「れろっ・・ぺろっ・・あっ、あっ、んあっ」
+
+    名も知らぬ客の指が%CALLNAME:奴隷%の膣をかき回すと、%CALLNAME:奴隷%はペニスから口を離して喘ぎ声を上げた。
+  priority: 5
+- id: fallback
+  content: >-
+    「れろっ・・ぺろっ・・あっ、あっ、んあっ」
+
+    名も知らぬ客の指が%CALLNAME:奴隷%の膣をかき回すと、%CALLNAME:奴隷%はペニスから口を離して喘ぎ声を上げた。
+  priority: 4
+- id: fallback
+  content: >-
+    「れろっ・・ぺろっ・・あっ、あっ、んあっ」
+
+    %NTR_NAME(0)%の指が%CALLNAME:奴隷%の膣をかき回すと、%CALLNAME:奴隷%はペニスから口を離して喘ぎ声を上げた。
+  priority: 3
+- id: fallback
+  content: >-
+    「れろっ・・ぺろっ・・あっ、あっ、んあっ」
+
+    %NTR_NAME(0)%の指が%CALLNAME:奴隷%の膣をかき回すと、%CALLNAME:奴隷%はペニスから口を離して喘ぎ声を上げた。
+  priority: 2
+- id: fallback
+  content: >-
+    「ぺろっ・・あっ、あっ、んんっ、おっきぃっ」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%のペニスをしゃぶりながら、クンニの快楽に溺れつつあった。
+  priority: 1

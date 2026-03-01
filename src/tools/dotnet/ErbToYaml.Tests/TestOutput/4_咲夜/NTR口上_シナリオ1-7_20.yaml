@@ -1,0 +1,30 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ1-7
+entries:
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・ちゅぱっ%S_HEART%・・ああ・・おいしい・・%S_HEART%」
+
+    「ん・・れるっ・・いい・・いいわ%S_HEART%・・太くて・・ああ・・%S_HEART%」
+
+    「ふふっ・・ああ・・んっ・・おちんちん・・いい・・%S_HEART%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・ちゅぱっ%S_HEART%・・ああ・・おいしい・・%S_HEART%」
+
+    「ん・・れるっ・・いい・・いいわ%S_HEART%・・太くて・・ああ・・%S_HEART%」
+
+    「ふふっ・・ああ・・んっ・・おちんちん・・いい・・%S_HEART%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「い、いやっ、た、助けてっ・・んんんっ！！」
+
+    「ああっ、助けて%CALLNAME:MASTER%・・んっ、んんんっ！！」
+
+    「んっ・・たすけ・・て・・んんんっ！」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,37 @@
+﻿character: 美鈴
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: 下手に逆らって余計な怒りを買うと面倒なことになるかもしれない。
+  priority: 5
+- id: talent_148_1
+  content: >-
+    「い・・いや・・、こ、こないで・・！」
+
+    「ち、近寄らないでっ！」
+
+    「こ、こんなことで私が屈するとでも・・！」
+  priority: 4
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は愛想よく客と話している。
+
+    客の視線は%CALLNAME:奴隷%の豊満な胸に釘付けとなっている。
+  priority: 3
+- id: fallback
+  content: >-
+    「ふふ・・何をいたしましょうか・・？」
+
+    %CALLNAME:奴隷%は何かを期待するように%NTR_NAME(0)%を見上げている。
+  priority: 2
+- id: fallback
+  content: >-
+    「ふふ・・何をいたしましょうか・・？」
+
+    %CALLNAME:奴隷%は何かを期待するように%NTR_NAME(0)%を見上げている。
+  priority: 1

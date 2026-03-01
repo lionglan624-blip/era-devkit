@@ -1,0 +1,44 @@
+{
+  "name": "Feature 216 AC5: ABL Boundary Values",
+  "defaults": {
+    "character": "1"
+  },
+  "tests": [
+    {
+      "name": "ABL=0 returns 0 (low)",
+      "call": "TEST_GET_ABL_BRANCH",
+      "args": [0],
+      "state": {"ABL:TARGET:0": 0},
+      "expect": {
+        "output_contains": ["0"]
+      }
+    },
+    {
+      "name": "ABL=1 returns 1 (mid)",
+      "call": "TEST_GET_ABL_BRANCH",
+      "args": [0],
+      "state": {"ABL:TARGET:0": 1},
+      "expect": {
+        "output_contains": ["1"]
+      }
+    },
+    {
+      "name": "ABL=2 returns 1 (mid)",
+      "call": "TEST_GET_ABL_BRANCH",
+      "args": [0],
+      "state": {"ABL:TARGET:0": 2},
+      "expect": {
+        "output_contains": ["1"]
+      }
+    },
+    {
+      "name": "ABL=3 returns 2 (high)",
+      "call": "TEST_GET_ABL_BRANCH",
+      "args": [0],
+      "state": {"ABL:TARGET:0": 3},
+      "expect": {
+        "output_contains": ["2"]
+      }
+    }
+  ]
+}

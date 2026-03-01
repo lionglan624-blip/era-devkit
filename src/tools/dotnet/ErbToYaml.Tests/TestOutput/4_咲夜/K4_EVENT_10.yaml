@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    「まだまだ出るでしょう？少し休憩したらもう１回ね」
+
+    「こんなの序の口でしょう。続けていくわよ」
+
+    「さすがに濃いわね。まだまだ余裕みたいね」
+  priority: 1
+  displayMode: newline

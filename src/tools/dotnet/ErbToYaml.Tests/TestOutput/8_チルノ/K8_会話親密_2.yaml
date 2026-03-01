@@ -1,0 +1,223 @@
+﻿character: チルノ
+situation: K8_会話親密
+entries:
+- id: fallback
+  content: >-
+    「うふふ、%CALLNAME:MASTER%～」
+
+    %CALLNAME:TARGET%は猫なで声を上げて%CALLNAME:MASTER%に抱きついてきた。
+
+    ひんやりとした小さな体が、%CALLNAME:MASTER%の温もりを求めている。
+
+    「えへへ、あたいったら最強だから、こうやってくっつくのも最高なのよ！」
+
+    %CALLNAME:TARGET%は幸せそうに目を細めている。
+
+    「……%CALLNAME:MASTER%、あったかいね。あたい……こういうの、大好き」
+
+    氷の妖精は照れ隠しのように威勢よく言いながらも、%CALLNAME:MASTER%から離れようとしなかった。
+
+    「……んっ……やぁ……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の青い髪を優しく撫でている。
+
+    %CALLNAME:TARGET%は目を閉じて、気持ちよさそうに身を任せた。
+
+    「あっ……そこ、気持ちいいのよ……」
+
+    「ふふん、あたいの髪、最高でしょ？ もっと撫でていいんだからね！」
+
+    得意げに笑いながらも、%CALLNAME:TARGET%は甘えるように%CALLNAME:MASTER%にもたれかかった。
+
+    その頬は、ほんのりと赤く染まっている。
+
+    「……ぎゅってして？ あたい、%CALLNAME:MASTER%に抱きしめてほしいの」
+
+    %CALLNAME:TARGET%が珍しく素直にお願いしてきた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の小さな体を後ろから抱きしめた。
+
+    「……うん、これが最高なのよ。あったかくて、安心するの」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕に自分の手を重ねている。
+
+    「%CALLNAME:MASTER%だけだよ……こんな風に甘えるの。最強の秘密なんだから！」
+
+    氷の妖精は照れくさそうに、でも幸せそうに%CALLNAME:MASTER%の胸に頭を預けた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の耳元に顔を寄せ、熱い息を吹きかけた。
+
+    「ひゃっ……！？ ちょ、耳は……らめぇ……」
+
+    %CALLNAME:TARGET%はとろんとした顔になって、体から力が抜けていく。
+
+    「もう……%CALLNAME:MASTER%のいじわる……」
+
+    だが、その声には怒りはなく、むしろ嬉しそうだった。
+
+    「……えへへ、%CALLNAME:MASTER%のスキンシップ、最高なのよ！」
+
+    %CALLNAME:TARGET%は照れくさそうに微笑んで、%CALLNAME:MASTER%の腕の中でくつろいでいる。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「――%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の名前を呼んで、手を繋いできた。
+
+    ひんやりとした小さな手が、%CALLNAME:MASTER%の手を握り返してくる。
+
+    「……べ、別にいいでしょ？ あたいは寛大だからね」
+
+    %CALLNAME:TARGET%の頬がほんのりと赤く染まっている。
+
+    「あったかいね……%CALLNAME:MASTER%の手」
+
+    言葉少なに、だが%CALLNAME:TARGET%は心底幸せそうだった。
+
+    「……んっ……あっ……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の青い髪に触れた。
+
+    「やっ……そこは……」
+
+    %CALLNAME:TARGET%は体を触る%CALLNAME:MASTER%の手に、艶やかな声を上げている。
+
+    「……変なの。でも、嫌じゃないわね」
+
+    目を閉じて%CALLNAME:MASTER%に身を任せる%CALLNAME:TARGET%。
+
+    「……もう少しだけ、いいわよ」
+
+    「……あ、ちょっと」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の肩に手を置いた。
+
+    %CALLNAME:TARGET%は一瞬身を強張らせたが、すぐに力を抜いた。
+
+    「……触っても凍らせないであげるわよ。特別にね」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げながら、小さく微笑んだ。
+
+    「あんたのこと……嫌いじゃないから」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%を後ろから抱き、その肩にあごを乗せた。
+
+    「わっ……え、%CALLNAME:MASTER%……？」
+
+    %CALLNAME:TARGET%は驚きながらも、冷たい腕を%CALLNAME:MASTER%に回した。
+
+    「……もう、急に甘えん坊なんだから」
+
+    頬を紅潮させながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%の背中を軽く叩いた。
+
+    「……あったかいわね。なんか、安心するの」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「――その、%CALLNAME:MASTER%？」
+
+    「その……手……手を……」
+
+    珍しく%CALLNAME:TARGET%は顔を紅くしている。
+
+    その手は空を掴んでいて。
+
+    %CALLNAME:MASTER%はその手を取った。
+
+    「……まあ、いいけどさ。凍っても知らないわよ？」
+
+    おずおずと手を差し出す%CALLNAME:TARGET%は、どこか嬉しそうだった。
+
+    「……何するのよ？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の髪に触れた。
+
+    %CALLNAME:TARGET%は困惑した表情で%CALLNAME:MASTER%を見つめている。
+
+    「……髪に興味があるの？ 変なやつね」
+
+    されるがままに髪を撫でられながら、%CALLNAME:TARGET%は小首を傾げた。
+
+    「……まあ、嫌じゃないけどさ」
+
+    「あっ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の肩に手を置いた。
+
+    「ん……あっ、そこは……」
+
+    %CALLNAME:TARGET%は体を触る%CALLNAME:MASTER%の手に抵抗の色を見せている。
+
+    といっても、その抵抗も微々たる物。
+
+    「……変な感じ。あったかいわね」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の青い髪に顔を近づけ、ふわりと匂いを嗅いだ。
+
+    「ひゃっ……な、何してるのよ！」
+
+    %CALLNAME:TARGET%は目を丸くして%CALLNAME:MASTER%を見上げている。
+
+    「あたいの髪なんて……冷たいだけでしょ？」
+
+    だが、嫌そうな素振りはなく、されるがままになっている。
+
+    「……まあ、嗅ぐだけなら、許してあげてもいいけど」
+
+    %CALLNAME:TARGET%は小さな声でそう呟いた。
+  priority: 2
+- id: fallback
+  content: >-
+    「――あの、あまりぺたぺた体を触らないでくれる？」
+
+    %CALLNAME:TARGET%は拒絶の声を上げた。
+
+    「触りたいの？ あたいを？」
+
+    「……凍らせちゃうかもしれないけど、いいの？」
+
+    %CALLNAME:TARGET%の周囲に、冷たい空気が漂い始めた。
+
+    「……もっと仲良くなってからにしなさいよね！」
+
+    「……ふぅん」
+
+    %CALLNAME:MASTER%が近づくと、%CALLNAME:TARGET%は警戒するようにこちらを見た。
+
+    「あたいに触りたいなんて、変わってるわね」
+
+    「最強のあたいに馴れ馴れしくするなんて、いい度胸じゃない」
+
+    %CALLNAME:TARGET%は威嚇するように冷気を纏った。
+
+    「……まあ、悪い奴じゃなさそうだけどね」
+
+    「ひゃっ！？ 何すんのよ！」
+
+    %CALLNAME:MASTER%が手を伸ばすと、%CALLNAME:TARGET%は飛び退いた。
+
+    小さな体から冷気が放たれる。
+
+    「あたいに触っていいのは、認めた奴だけなんだからね！」
+
+    %CALLNAME:TARGET%は腕を組んで、威嚇するように%CALLNAME:MASTER%を睨んでいる。
+
+    「……まあ、いつか認めてあげてもいいけど。今じゃないわよ！」
+
+    「……なによ、じっと見て」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の視線に気づいて、眉をひそめた。
+
+    「あたいの顔に何かついてる？」
+
+    %CALLNAME:MASTER%が手を伸ばすと、%CALLNAME:TARGET%はさっと身を引いた。
+
+    「……触りたいなら、もっと強くなってから来なさいよね」
+
+    氷の妖精は尊大な態度を崩さなかったが、その頬はほんのり赤かった。
+  priority: 1

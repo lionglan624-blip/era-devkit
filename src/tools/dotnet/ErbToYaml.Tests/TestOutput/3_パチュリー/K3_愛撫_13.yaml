@@ -1,0 +1,217 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……ん……%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は読みかけの魔導書を閉じ、%CALLNAME:MASTER%に身を預けた。
+
+    電動マッサージャーが%CALLNAME:TARGET%の肌に触れると、低い振動音が大図書館に響く。
+
+    「……振動魔術の応用かしら……こういう道具は……」
+
+    %CALLNAME:TARGET%は淡々と言おうとしたが、体が微かに震えて言葉が途切れた。
+
+    「……あなたの手で……使われると……違う、わね……」
+
+    そう呟いて、%CALLNAME:TARGET%は%CALLNAME:MASTER%に寄り添った。
+
+    「あ……ぁ……そこ……」
+
+    %CALLNAME:MASTER%がマッサージャーを%CALLNAME:TARGET%の敏感な部分に当てている。
+
+    %CALLNAME:TARGET%の体がびくりと跳ね、大図書館の静寂に甘い声が響いた。
+
+    「……振動が……体の奥まで……伝わってくるわ……」
+
+    %CALLNAME:TARGET%は目を閉じ、快感に身を委ねている。
+
+    「……%CALLNAME:MASTER%……私を……もっと……」
+
+    普段の知的な口調が、甘く蕩けていた。
+
+    「……ひゃ……っ……」
+
+    マッサージャーの振動が強まると、%CALLNAME:TARGET%は思わず声を上げた。
+
+    「……こんな機械で……こんなに……感じるなんて……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに顔を伏せながらも、逃げようとはしない。
+
+    「……%CALLNAME:MASTER%の手で使われるから……そうなるのよ……」
+
+    %CALLNAME:TARGET%は言い訳のように呟き、%CALLNAME:MASTER%にしがみついた。
+
+    「……もう……止めないで……」
+
+    「……ん……ふぅ……やぁ……」
+
+    %CALLNAME:TARGET%はマッサージャーの振動に、理性を手放しかけている。
+
+    動かない大図書館が、%CALLNAME:MASTER%の手の中で震えていた。
+
+    「……%CALLNAME:MASTER%……私の体……全部……あなたのものよ……」
+
+    %CALLNAME:TARGET%は潤んだ瞳で%CALLNAME:MASTER%を見上げた。
+
+    「……振動が……頭の中まで……白くなる……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の名を呼びながら、快楽の波に飲まれていった。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……っ!? な、何……その道具……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が取り出したマッサージャーを見て、目を見開いた。
+
+    「本で読んだことは……あるけど……実物は初めて見るわ」
+
+    %CALLNAME:TARGET%は頬を赤らめながらも、興味深そうに観察している。
+
+    「……まあ、いいわ。研究材料として……」
+
+    言い訳のように呟きながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%に身を任せた。
+
+    「……やぁ……振動が……」
+
+    マッサージャーが%CALLNAME:TARGET%の肌に触れた瞬間、%CALLNAME:TARGET%は小さく声を上げた。
+
+    「……思ったより……刺激が強いわね……」
+
+    %CALLNAME:TARGET%は声を殺そうとするが、甘い吐息が漏れてしまう。
+
+    「……%CALLNAME:MASTER%、そんなに見ないで……恥ずかしい……」
+
+    %CALLNAME:TARGET%は本で顔を隠そうとしたが、既に読書どころではなかった。
+
+    「……ん……っ……むきゅ……」
+
+    %CALLNAME:TARGET%はマッサージャーの振動に、困惑した声を漏らした。
+
+    「……こんなの……本には……詳しく書いてなかったわ……」
+
+    %CALLNAME:TARGET%の体がびくびくと震え、大図書館に甘い声が響いている。
+
+    「……%CALLNAME:MASTER%……もう少し……優しくして……」
+
+    恥ずかしそうに懇願する%CALLNAME:TARGET%がそこにいた。
+
+    「……ぁ……あ……だめ……」
+
+    マッサージャーの振動が強まり、%CALLNAME:TARGET%の体が大きく震えた。
+
+    「……こんなところで……小悪魔に見られたら……」
+
+    %CALLNAME:TARGET%は周囲を気にしながらも、%CALLNAME:MASTER%から離れられない。
+
+    「……もっと奥の書架に……行きましょう……？」
+
+    羞恥と快感の狭間で、%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を引いた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……それは何かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つマッサージャーを、観察するような目で見た。
+
+    「振動を利用した器具ね……興味深いわ」
+
+    %CALLNAME:TARGET%は淡々と言うが、%CALLNAME:MASTER%が近づくと僅かに身を引いた。
+
+    「……まあ、いいわ。観察対象として、試してみましょう」
+
+    知識欲を隠れ蓑に、%CALLNAME:TARGET%は%CALLNAME:MASTER%を受け入れた。
+
+    「……っ」
+
+    マッサージャーの振動が体に触れた瞬間、%CALLNAME:TARGET%は小さく息を呑んだ。
+
+    「……なるほど……こういう刺激なのね……」
+
+    %CALLNAME:TARGET%は分析しようとするが、声が微かに震えている。
+
+    「……興味深いデータね……もう少し……続けて……」
+
+    観察者を装いながらも、%CALLNAME:TARGET%の頬は微かに紅潮していた。
+
+    「……ふぅん」
+
+    %CALLNAME:TARGET%はマッサージャーの振動を受けながら、冷静を装っている。
+
+    「……振動の周波数と快感の相関関係……研究価値があるわね」
+
+    しかし%CALLNAME:TARGET%の体は正直に反応し、時折びくりと震えていた。
+
+    「……あなた、私で実験しているつもりかしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を睨んだが、その視線には拒絶の色がない。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言でマッサージャーの刺激を受けている。
+
+    本を読む手はいつの間にか止まり、視線が虚空を彷徨っている。
+
+    「……悪くないわ……これは……」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「……でも、調子に乗らないで。私はデータを収集しているだけよ」
+
+    そう言いながらも、%CALLNAME:TARGET%の吐息は熱を帯びていた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の真似かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つマッサージャーを見て、冷ややかな目を向けた。
+
+    「そんな道具を私に使おうなんて」
+
+    %CALLNAME:TARGET%は呆れたように溜息をついた。
+
+    「……まあいいわ。暇つぶしには丁度いいかもね」
+
+    そう言って%CALLNAME:TARGET%は、無表情のまま%CALLNAME:MASTER%を受け入れた。
+
+    「……」
+
+    %CALLNAME:TARGET%は淡々とマッサージャーの振動を受けている。
+
+    その表情は読み取れないが、どこか退屈そうでもある。
+
+    「……これで満足？」
+
+    %CALLNAME:TARGET%は冷めた声で問いかけた。
+
+    「早く終わらせて、読書に戻りたいのだけど」
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「下品な道具ね。本から得られる知識の方が、よほど価値があるわ」
+
+    %CALLNAME:TARGET%は義務的に%CALLNAME:MASTER%の行為を受けている。
+
+    「……ふぅ……まあ、悪くはないけど」
+
+    口ではそう言いながら、%CALLNAME:TARGET%は離れようとはしなかった。
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついた。
+
+    「あなたは私に何を求めているの。理解に苦しむわ」
+
+    %CALLNAME:TARGET%は呆れたような表情を浮かべている。
+
+    「……好きにしなさい。ただし、読書の邪魔はしないで」
+
+    そう言って%CALLNAME:TARGET%は、本に視線を戻した。
+  priority: 1

@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: K3_日常
+entries:
+- id: fallback
+  content: >-
+    「ちょっといいかしら？」
+
+    「ちょっと聞きなさい」
+
+    「あら、こんなところにいたのね」
+  priority: 1
+  displayMode: newline

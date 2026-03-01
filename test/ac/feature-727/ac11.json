@@ -1,0 +1,9 @@
+{
+  "name": "AC11 Error handling for missing character",
+  "call": "AC11_TEST_MISSING_YAML",
+  "character": "99",
+  "master": "0",
+  "expect": {
+    "errors_contain": ["Failed to set up characters"]
+  }
+}

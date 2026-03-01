@@ -1,0 +1,12 @@
+﻿character: 大妖精
+situation: K9_日常
+entries:
+- id: fallback
+  content: >-
+    「はい、よろこんで・・うふふっ」
+
+    「はい・・おつきあいさせていただきます・・」
+
+    「うふふっ・・ちょっと、恥ずかしいですね・・」
+  priority: 1
+  displayMode: newline

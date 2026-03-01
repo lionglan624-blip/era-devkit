@@ -1,0 +1,62 @@
+; Test file with valid ERB syntax
+; Should produce 0 errors
+
+@TEST_GOOD_FUNCTION
+; Simple IF block
+IF FLAG:0 == 1
+    PRINTL Hello
+ENDIF
+
+; Nested IF blocks
+IF FLAG:1
+    IF FLAG:2
+        PRINTL Nested
+    ENDIF
+ENDIF
+
+; FOR loop
+FOR LOCAL, 0, 10
+    PRINTFORML Loop: {LOCAL}
+NEXT
+
+; REPEAT block
+REPEAT 5
+    PRINTL Repeat
+REND
+
+; WHILE block
+LOCAL = 0
+WHILE LOCAL < 5
+    LOCAL += 1
+WEND
+
+; SELECTCASE block
+SELECTCASE FLAG:0
+    CASE 0
+        PRINTL Case 0
+    CASE 1
+        PRINTL Case 1
+    CASEELSE
+        PRINTL Default
+ENDSELECT
+
+; TRYC block
+TRYCCALLFORM SOME_FUNC_{FLAG:0}
+    PRINTL Success
+CATCH
+    PRINTL Failed
+ENDCATCH
+
+; PRINTDATA block
+PRINTDATAL
+    DATA Line 1
+    DATA Line 2
+ENDDATA
+
+; Parentheses (balanced)
+LOCAL = (1 + 2) * (3 + 4)
+IF (FLAG:0 == 1) && (FLAG:1 == 2)
+    PRINTL OK
+ENDIF
+
+RETURN

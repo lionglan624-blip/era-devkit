@@ -1,0 +1,27 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ1-7
+entries:
+- id: fallback
+  content: >-
+    キスの余韻に酔う%CALLNAME:奴隷%の耳元で、%NTR_NAME(0)%がお前の%MSG_LOVER(奴隷)%とどちらのキスが巧いかと尋ねた。
+
+    %CALLNAME:奴隷%はちらりと視線を%CALLNAME:MASTER%に向け、あてつけるように答えた。
+
+    「ふふっ、もちろん%MSG_NTR_SEX_4()%よ・・」
+
+    「そんな事、言わないとわからないのかしら？」
+
+    「わざわざ言わせたいのね？ %MSG_NTR_SEX_4()%よ・・ふふっ」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    キスの余韻に酔う%CALLNAME:奴隷%の耳元で、%NTR_NAME(0)%がお前の%MSG_LOVER(奴隷)%とどちらのキスが巧いかと尋ねた。
+
+    %CALLNAME:奴隷%は視線を%CALLNAME:MASTER%から逸らし、言いよどんだ。
+
+    「そ、それは・・」
+
+    「そ、その・・」
+  priority: 1
+  displayMode: newline

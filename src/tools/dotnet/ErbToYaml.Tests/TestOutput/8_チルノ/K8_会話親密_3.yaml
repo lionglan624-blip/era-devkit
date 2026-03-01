@@ -1,0 +1,207 @@
+﻿character: チルノ
+situation: K8_会話親密
+entries:
+- id: fallback
+  content: >-
+    「んっ……やぁ……あたいのお尻、そんなに好き……？」
+
+    %CALLNAME:TARGET%はされるがままに、%CALLNAME:MASTER%に尻をなでられている。
+
+    冷たい肌に、%CALLNAME:MASTER%の温かな手が心地よい。
+
+    「……%CALLNAME:MASTER%の手、あったかいわね……」
+
+    %CALLNAME:TARGET%は熱い息を漏らしながらも、抵抗はしなかった。
+
+    「もっと触っていいのよ。最強のあたいが許可してあげるんだから」
+
+    「ひゃっ……もう、%CALLNAME:MASTER%ったら……」
+
+    %CALLNAME:MASTER%の手が、%CALLNAME:TARGET%の小さな尻をゆっくりと撫でる。
+
+    氷の妖精の肌は冷たいが、今は少しだけ温もりを帯びている。
+
+    「……あたいのお尻、気持ちいいでしょ？」
+
+    %CALLNAME:TARGET%は得意げに、でもどこか照れくさそうに笑った。
+
+    「えへへ……%CALLNAME:MASTER%にだけは、特別に触らせてあげるわ」
+
+    「あ……んっ……そこ……」
+
+    %CALLNAME:TARGET%は甘い声を漏らしながら、尻をなでる手に身を委ねている。
+
+    %CALLNAME:MASTER%の掌が、%CALLNAME:TARGET%の尻の曲線をなぞる。
+
+    「……%CALLNAME:MASTER%、手付き、上手くなったわね……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに、でも嬉しそうに微笑んだ。
+
+    「あたいの身体、すっかり%CALLNAME:MASTER%に知られちゃったわね」
+
+    氷の妖精は甘えるように%CALLNAME:MASTER%にもたれかかった。
+
+    %CALLNAME:MASTER%の手が、%CALLNAME:TARGET%の尻に触れた。
+
+    「んふふ……%CALLNAME:MASTER%、あたいのお尻が恋しかったの？」
+
+    %CALLNAME:TARGET%は悪戯っぽく微笑みながら、腰を少し揺らした。
+
+    冷たい肌と%CALLNAME:MASTER%の温かな手の対比が心地よい。
+
+    「……最強のあたいも、こうされると……ちょっとだけ溶けそう……」
+
+    そう言って、%CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に頬を寄せた。
+
+    氷の妖精の威厳などどこへやら、すっかり甘えた様子だ。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「きゃっ……も、もう……そんなところ触って……」
+
+    %CALLNAME:TARGET%は顔を赤くして、でも逃げようとはしない。
+
+    「%CALLNAME:MASTER%ったら、えっちなんだから……」
+
+    %CALLNAME:TARGET%は恥じらいながらも、その場に留まっている。
+
+    「……嫌じゃないけど、恥ずかしいのよ、こういうの」
+
+    頬を染めたまま、氷の妖精は小さく呟いた。
+
+    「やっ……あたいのお尻、そんなに撫でて……」
+
+    %CALLNAME:TARGET%はビクッと体を震わせた。
+
+    %CALLNAME:MASTER%の手が、尻の曲線をゆっくりとなぞる。
+
+    「……%CALLNAME:MASTER%だから、いいけど……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を逸らした。
+
+    その小さな体が、かすかに震えている。
+
+    「んっ……あ……そこ……」
+
+    %CALLNAME:TARGET%は小さく声を漏らした。
+
+    「……急にそういうことするの、ずるいわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を上目遣いで見ている。
+
+    「……心の準備くらい、させてよね」
+
+    そう言いながらも、氷の妖精は逃げようとはしなかった。
+
+    %CALLNAME:MASTER%の手が、%CALLNAME:TARGET%の尻に触れる。
+
+    「ひゃっ……も、もう……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして、体を硬くした。
+
+    「……あったかい手……服越しなのに、伝わってくる……」
+
+    %CALLNAME:TARGET%はそう呟きながらも、%CALLNAME:MASTER%から離れようとはしない。
+
+    その瞳は潤んで、期待と恥じらいが混じっていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「うきゅっ！？ちょ、ちょっと……」
+
+    %CALLNAME:TARGET%は驚いて体を固くした。
+
+    「……お尻は、ちょっと……恥ずかしいわよ」
+
+    %CALLNAME:TARGET%は困惑しながらも、強くは拒まなかった。
+
+    「……%CALLNAME:MASTER%、そういうことは、もう少し……」
+
+    氷の妖精は顔を赤くして、言葉を濁した。
+
+    「ひゃっ……な、何を……」
+
+    %CALLNAME:TARGET%は驚いて%CALLNAME:MASTER%を見た。
+
+    「あたいのお尻、触るなんて……大胆ね」
+
+    %CALLNAME:TARGET%は戸惑いながらも、されるがままになっている。
+
+    「……べ、別に嫌じゃないけど……」
+
+    小さな声でそう付け加えた。
+
+    「わっ……急に触らないでよ」
+
+    %CALLNAME:TARGET%は少し飛び上がって驚いた。
+
+    「……あたいのお尻、そんなに触りたいの？」
+
+    %CALLNAME:TARGET%は困惑した表情で%CALLNAME:MASTER%を見ている。
+
+    「……まあ、%CALLNAME:MASTER%なら……少しくらいは、いいけど」
+
+    頬を染めながら、氷の妖精は小さく呟いた。
+
+    「んっ……そこは……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の尻に触れた。
+
+    %CALLNAME:TARGET%は戸惑いながらも、その場に留まっている。
+
+    「……%CALLNAME:MASTER%、最強のあたいを相手に大胆ね」
+
+    %CALLNAME:TARGET%は強がりながらも、顔は赤い。
+
+    「……今回だけ、特別よ？」
+  priority: 2
+- id: fallback
+  content: >-
+    「うきゅ！？なにすんのさ！？」
+
+    %CALLNAME:TARGET%は可愛らしい声を上げて飛びのいた。
+
+    「いきなりあたいのお尻触るなんて、どういうつもり！？」
+
+    氷の妖精は頬を膨らませて%CALLNAME:MASTER%を睨んでいる。
+
+    「……最強のあたいに手を出すなんて、度胸あるわね」
+
+    「……っ！ちょっと、何してんのよ！」
+
+    %CALLNAME:TARGET%は驚いて距離を取った。
+
+    「あたいのお尻を触るなんて、百年早いわ！」
+
+    氷の妖精は威勢よく言い放った。
+
+    「……まったく、何考えてんだか」
+
+    %CALLNAME:TARGET%はぷいっとそっぽを向いた。
+
+    「はぁ？何すんの？」
+
+    %CALLNAME:TARGET%は冷たい視線で%CALLNAME:MASTER%を見た。
+
+    「あたいのお尻触って楽しいの？」
+
+    氷の妖精は呆れた様子で腕を組んでいる。
+
+    「……変なやつ。近寄らないでよね」
+
+    「……そんなとこ触って楽しいの？」
+
+    %CALLNAME:TARGET%は戸惑いながらも、じっと%CALLNAME:MASTER%を見ている。
+
+    %CALLNAME:MASTER%は思わず手を引いた。
+
+    「……ふーん、変な人。でも、あたいの感触は印象的だったでしょ？」
+
+    氷の妖精は少しだけ得意げに笑った。
+
+    「最強のあたいのお尻なんだから、当然よね」
+  priority: 1

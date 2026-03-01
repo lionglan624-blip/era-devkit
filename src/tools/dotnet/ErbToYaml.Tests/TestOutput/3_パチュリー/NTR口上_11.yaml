@@ -1,0 +1,39 @@
+﻿character: パチュリー
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああっ！ ちょうだいっ！ おしりに、おしりにちょうだいっ！！」
+
+    「ああんっ！ 出して、おしりにいっぱい、いっぱい出してぇぇっ！」
+
+    「お、おしりっ！ おしりに出してっ！ 射精してっ！！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ！ い、いくっ！ おしり、おしりでいっちゃううっ！」
+
+    「ああんっ、いいっ！ おしりが、いいのおおっ！」
+
+    「い、いくっ！ おしりぃ、おしりで、いっちゃうのおっ！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ！ うそっ、うそよっ！ こんな、こんなあああ！」
+
+    「ああっ、違う、ちがうのっ、おしりなんかで・・！」
+
+    「いやああっ！ こんな、こんなのっ！ ああああっ！！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ！ い、いやっ、いやあああっ！！」
+
+    「ああ・・やめ・・やめて・・やめててえ！！」
+
+    「いやああっ！ こんな、こんなのっ！ ああああっ！！」
+  priority: 1
+  displayMode: newline

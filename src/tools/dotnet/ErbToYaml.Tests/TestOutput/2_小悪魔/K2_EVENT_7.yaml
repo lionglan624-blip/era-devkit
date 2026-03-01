@@ -1,0 +1,23 @@
+﻿character: 小悪魔
+situation: K2_EVENT
+entries:
+- id: fallback
+  content: >-
+    「そうそう、大切なお知らせです。実は私、今日は危ない日なんです」
+
+    「きっと、お客様に種付けされちゃいますよぉ・・？」
+
+    「お客様にたっぷり中出しされて・・ふふっ、ゾクゾクしますね？」
+
+    「きっといっぱい注がれちゃいます・・%CALLNAME:MASTER%以外の人に、妊娠させられちゃうんです・・%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「今日は帰らないから・・よろしくお願いしますね」
+
+    「お部屋のお掃除、よろしくお願いしますね。あ、ぱんつをくすねちゃ、ダメですよぉ？」
+
+    「図書館のお掃除、よろしくお願いしますね」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,12 @@
+﻿character: 小悪魔
+situation: K2_EVENT
+entries:
+- id: fallback
+  content: >-
+    「う〜ん、結構出ましたね。でもまだ余裕があるんじゃないですか？」
+
+    「ふふっ、結構出ましたね。でもまだお元気ですよね？」
+
+    「まだまだ余裕みたいですねぇ…」
+  priority: 1
+  displayMode: newline

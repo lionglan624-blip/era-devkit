@@ -1,0 +1,219 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……ん……それを……そこに……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が取り出した小さな器具を見て、頬を染めた。
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の陰核にキャップを被せると、%CALLNAME:TARGET%の体が微かに強張った。
+
+    「……あ……直接……振動が……」
+
+    電源が入り、キャップが振動し始めると、%CALLNAME:TARGET%は目を閉じて身を震わせた。
+
+    「……%CALLNAME:MASTER%……こんな……刺激……頭が……白くなるわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%にしがみつき、快感に耐えている。
+
+    「……ひ……ゃ……っ……」
+
+    クリキャップの振動が%CALLNAME:TARGET%の一番敏感な場所を刺激している。
+
+    大図書館の静寂に、%CALLNAME:TARGET%の甘い喘ぎ声が響き渡った。
+
+    「……圧迫されて……振動が……逃げ場がない……」
+
+    %CALLNAME:TARGET%は淡々と分析しようとするが、声が震えて言葉にならない。
+
+    「……%CALLNAME:MASTER%……このままだと……すぐに……」
+
+    潤んだ瞳で懇願するように、%CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げた。
+
+    「……あ……あぁ……」
+
+    %CALLNAME:TARGET%は読みかけの魔導書を床に落とし、%CALLNAME:MASTER%にすがりついた。
+
+    クリキャップの振動が陰核を直接責め続け、%CALLNAME:TARGET%の理性を蕩かせていく。
+
+    「……こんな小さな道具で……こんなに……感じるなんて……」
+
+    %CALLNAME:TARGET%の体がびくびくと痙攣し、大図書館に甘い声が響いている。
+
+    「……%CALLNAME:MASTER%……私……もう……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の名を呼びながら、快楽の波に飲まれていった。
+
+    「……ん……ふぅ……」
+
+    %CALLNAME:TARGET%はクリキャップの振動に身を委ね、%CALLNAME:MASTER%に寄り添っている。
+
+    陰核への集中した刺激が、%CALLNAME:TARGET%の体を甘く震わせていた。
+
+    「……あなたは……私の弱点を……よく知っているわね……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を伏せながらも、逃げようとはしない。
+
+    「……もっと……%CALLNAME:MASTER%の手で……私を……」
+
+    そう呟いて、%CALLNAME:TARGET%は%CALLNAME:MASTER%の腕の中で蕩けていった。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……!? そ、それを……そこに付けるの……？」
+
+    %CALLNAME:TARGET%はクリキャップを見て、頬を真っ赤に染めた。
+
+    「本で読んだことは……あるけど……直接なんて……」
+
+    %CALLNAME:MASTER%がキャップを陰核に被せると、%CALLNAME:TARGET%は小さく悲鳴を上げた。
+
+    「……ひゃっ……振動が……直に……くる……」
+
+    %CALLNAME:TARGET%は恥ずかしさに顔を覆いながらも、%CALLNAME:MASTER%を拒まなかった。
+
+    「……やぁ……そこ……直接は……恥ずかしい……」
+
+    クリキャップが陰核を包み込み、振動が%CALLNAME:TARGET%の体を揺さぶっている。
+
+    「……む、むきゅ……こんなの……集中できないわ……」
+
+    %CALLNAME:TARGET%は手元の本を閉じ、快感に耐えている。
+
+    「……%CALLNAME:MASTER%……見ないで……今の私……変よ……」
+
+    %CALLNAME:TARGET%は羞恥に震えながらも、キャップを外そうとはしなかった。
+
+    「……っ……あ……」
+
+    %CALLNAME:TARGET%はクリキャップの刺激に、言葉を失っていた。
+
+    陰核への直接的な振動は、知識では説明できない快感を与えてくる。
+
+    「……こんな……刺激……本には……載ってなかったわ……」
+
+    %CALLNAME:TARGET%の体がびくりと跳ね、大図書館に甘い喘ぎが響いた。
+
+    「……%CALLNAME:MASTER%……もう少し……弱くして……」
+
+    そう懇願しながらも、%CALLNAME:TARGET%の瞳は潤んでいた。
+
+    「……ん……ぁ……だめ……」
+
+    クリキャップの振動が強まり、%CALLNAME:TARGET%の体が大きく震えた。
+
+    「……圧迫されて……逃げられない……直接……くる……」
+
+    %CALLNAME:TARGET%は分析しようとするが、頭が真っ白になっていく。
+
+    「……こんなところで……小悪魔に見られたら……」
+
+    %CALLNAME:TARGET%は羞恥と快感の狭間で、%CALLNAME:MASTER%にしがみついた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……それは……何かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つクリキャップを、興味深そうに観察した。
+
+    「陰核に装着する振動器具……なるほど、興味深いわね」
+
+    しかしいざ装着されると、%CALLNAME:TARGET%の表情が一変した。
+
+    「……っ!? こ、これは……直接すぎる……」
+
+    %CALLNAME:TARGET%は冷静を装おうとするが、声が震えている。
+
+    「……ん……」
+
+    クリキャップの振動が陰核を刺激し、%CALLNAME:TARGET%は小さく息を漏らした。
+
+    「……振動の周波数と刺激の相関……データとして……」
+
+    %CALLNAME:TARGET%は分析しようとするが、快感が思考を邪魔している。
+
+    「……むきゅ……集中できない……」
+
+    %CALLNAME:TARGET%は困惑した表情で、%CALLNAME:MASTER%を睨んだ。
+
+    「……ふぅん……」
+
+    %CALLNAME:TARGET%はクリキャップの振動を受けながら、冷静を装っている。
+
+    「……直接的な刺激による反応……研究価値があるわね」
+
+    しかし%CALLNAME:TARGET%の体は正直に反応し、時折びくりと震えていた。
+
+    「……あなた……私で実験しているつもりかしら……」
+
+    そう言いながらも、%CALLNAME:TARGET%はキャップを外そうとはしなかった。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言でクリキャップの刺激を受けている。
+
+    陰核への直接的な振動は、%CALLNAME:TARGET%の知識欲すら麻痺させていた。
+
+    「……悪くない……わね……これは……」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「……でも……調子に乗らないで……私は……データを……」
+
+    言い訳が途切れ、%CALLNAME:TARGET%の吐息だけが大図書館に響いていた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の真似かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つクリキャップを見て、冷ややかな目を向けた。
+
+    「そんな下品な道具を私に……」
+
+    しかし装着された瞬間、%CALLNAME:TARGET%の表情が強張った。
+
+    「……っ……直接……振動が……」
+
+    冷淡を装おうとするが、%CALLNAME:TARGET%の体は小さく震えていた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無表情でクリキャップの振動を受けている。
+
+    その表情は読み取れないが、呼吸が微かに乱れている。
+
+    「……これで満足……かしら……」
+
+    %CALLNAME:TARGET%は冷めた声で問いかけたが、語尾が震えていた。
+
+    「……早く終わらせて……読書に戻りたいのだけど……」
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せたが、その反応は本物だった。
+
+    クリキャップの振動が陰核を直接責め、%CALLNAME:TARGET%の冷淡な態度を揺さぶっている。
+
+    「……下品な道具ね……でも……悪くは……ない……かも……」
+
+    %CALLNAME:TARGET%は認めたくないように、視線を逸らした。
+
+    「……勘違いしないで。ただの感想よ」
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついたが、それは快感を逃がすためだった。
+
+    「あなたは私に何を求めているの……理解に苦しむわ……」
+
+    %CALLNAME:TARGET%は呆れた表情を浮かべているが、その体は振動に反応している。
+
+    「……好きにしなさい……ただし……読書の邪魔は……」
+
+    言い終える前に、%CALLNAME:TARGET%は小さく声を漏らした。
+  priority: 1

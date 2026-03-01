@@ -1,0 +1,207 @@
+﻿character: パチュリー
+situation: K3_口挿入
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%、触れても……いい？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の体に細い指を添えた。
+
+    本で読んだ知識を思い出しながら、ゆっくりと指を這わせ始める。
+
+    「……あなたの肌、温かいわ……本には書いてなかった感覚ね」
+
+    %CALLNAME:TARGET%は頬を染めながら、愛撫を続けた。
+
+    「……こうして触れていると、あなたを感じられて……嬉しいわ」
+
+    「んっ……ここを触ると、反応するのね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応を観察しながら指を動かしている。
+
+    「……興味深いわ。文献とは違う、生きた知識……」
+
+    %CALLNAME:TARGET%は学者らしく分析しながらも、表情は優しく蕩けていた。
+
+    「……あなたの体を知ることができて……光栄よ」
+
+    そう小さく呟いて、%CALLNAME:TARGET%は丁寧に愛撫を続けた。
+
+    「……ふぅ……あなたの体、不思議ね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の肌を撫でながら、うっとりとした表情を浮かべていた。
+
+    「……触れるだけで、私の方まで温かくなってくるわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げて、微笑んだ。
+
+    「……もう少し、触れていても……いいかしら」
+
+    知識の魔女は、愛する人の肌に静かに指を滑らせ続けた。
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の体を両手で包み込むように触れている。
+
+    「……こうして触れていると、あなたの鼓動が伝わってくるわ」
+
+    %CALLNAME:TARGET%は穏やかな表情で言った。
+
+    「……私の指で、あなたを癒せるなら……それが何より嬉しいの」
+
+    知識の魔女は、愛する人への愛撫に静かな幸福を感じていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「っ……%CALLNAME:MASTER%の体に……触れるの……？」
+
+    %CALLNAME:TARGET%は恥ずかしそうに%CALLNAME:MASTER%に手を伸ばした。
+
+    「……本では読んだことがあるけれど……実際に触れるのは……」
+
+    %CALLNAME:TARGET%は顔を赤くしながら、おずおずと指を動かし始めた。
+
+    「……む、むきゅ……温かい……」
+
+    知識と実体験の差異に、%CALLNAME:TARGET%は戸惑っていた。
+
+    「……こう……触れば良いのかしら……」
+
+    %CALLNAME:TARGET%はぎこちなく%CALLNAME:MASTER%の体を撫でている。
+
+    「……文献には、こうすると気持ち良いと……」
+
+    %CALLNAME:TARGET%は知識を頼りに、指の動きを工夫していた。
+
+    「……どう……？　変じゃない……？」
+
+    不安そうに%CALLNAME:MASTER%の顔を覗き込んだ。
+
+    「……んっ……こんな風に触れるなんて……」
+
+    %CALLNAME:TARGET%は羞恥に顔を染めながら、愛撫を続けている。
+
+    「……あなたに触れられて……嬉しい……わけじゃないわ」
+
+    %CALLNAME:TARGET%は素直になれないでいた。
+
+    「……で、でも……続けるわ……研究のために」
+
+    照れ隠しの言い訳と共に、指は止まらなかった。
+
+    「……」
+
+    %CALLNAME:TARGET%は黙々と%CALLNAME:MASTER%の体に触れている。
+
+    頬を染めながら、慎重に指を動かしていた。
+
+    「……あなたの体温……本では学べないわね……」
+
+    %CALLNAME:TARGET%は小さく呟いた。
+
+    「……もう少しだけ……触れていたい……むきゅ」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……私が、愛撫を……？」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%の指示に従った。
+
+    「……本で読んだ知識では、愛撫は精神的効果も大きい行為……」
+
+    %CALLNAME:TARGET%は理論を確認しながら、ゆっくりと触れた。
+
+    「……んっ……思ったより、温かいのね……」
+
+    %CALLNAME:TARGET%は意外そうな表情を浮かべた。
+
+    「……こう……すれば良いのかしら……」
+
+    %CALLNAME:TARGET%は義務的に%CALLNAME:MASTER%の体を撫でている。
+
+    「……%CALLNAME:MASTER%、こういうことを命じるなんて……」
+
+    %CALLNAME:TARGET%は複雑な表情を浮かべた。
+
+    「……でも、指示に従うのが私の役目……」
+
+    %CALLNAME:TARGET%は淡々と続けた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%に触れている。
+
+    頭の中では、次に読む本のことを考えているようだ。
+
+    「……触れているうちに、少し分かってきたわ……」
+
+    %CALLNAME:TARGET%は呟いた。
+
+    「……体温というものは、興味深いわね……むきゅ」
+
+    「……早く終わらせたいのだけれど……」
+
+    %CALLNAME:TARGET%は本音を漏らしながらも、愛撫は続けている。
+
+    「……でも、雑に触れるのは、私の性分に合わないわ」
+
+    %CALLNAME:TARGET%は丁寧に指を動かした。
+
+    「……知識として、正しい方法で行いたいの」
+
+    知識の魔女らしい拘りを見せた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何故、私がこんなことを……」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「……人に触れるなんて、本を読む時間の無駄だわ」
+
+    %CALLNAME:TARGET%は溜息をついた。
+
+    「……さっさと終わらせるから、静かにして」
+
+    %CALLNAME:TARGET%は冷たい口調で言い放った。
+
+    「……むきゅ……面倒くさいわ……」
+
+    %CALLNAME:TARGET%は最低限の動きで%CALLNAME:MASTER%に触れている。
+
+    「……こんなことより、本を読みたいの」
+
+    %CALLNAME:TARGET%は露骨に不満を示した。
+
+    「……早く終わらせて。私は大図書館に戻るから」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……」
+
+    %CALLNAME:TARGET%は無表情のまま、%CALLNAME:MASTER%に触れている。
+
+    頭の中では、次に読む本のことを考えている。
+
+    「……終わったら、すぐに大図書館から出て行って」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……むきゅ……時間の無駄だわ」
+
+    「……触れなければならないの？」
+
+    %CALLNAME:TARGET%は不満げに呟いた。
+
+    「……本で読んだ知識によれば、愛撫は信頼関係が前提の行為……」
+
+    %CALLNAME:TARGET%は理論武装しながら、最低限の動きだけを続けた。
+
+    「……あなたとの間に、そんなものはないわ」
+
+    %CALLNAME:TARGET%は事務的に言い放った。
+  priority: 1

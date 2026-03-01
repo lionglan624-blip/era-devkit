@@ -1,0 +1,31 @@
+﻿character: 小悪魔
+situation: NTR口上
+entries:
+- id: talent_148_0
+  content: >-
+    「あ・・これって・・もしかしなくても、私の鍵ですよね・・？」
+
+    「あ・・私のことを買ってくださったんですね・・」
+
+    「うふふっ、お買い上げ、ありがとうございます」
+
+    「はい、私のご主人様・・時間いっぱい、ご奉仕します！」
+
+    「はい、喜んで・・な、なんでも言ってください。なんでも、してください」
+
+    「うれしい・・嬉しいですっ」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「今だけは%CALLNAME:MASTER%が私のご主人様です♪ サービスしますよぉ♪」
+
+    「%CALLNAME:MASTER%が私のご主人様ですから、時間いっぱいサービスしますよぉ♪」
+
+    「今だけは%CALLNAME:MASTER%が私のご主人様です♪ ご奉仕しますよぉ♪」
+  priority: 1
+  displayMode: newline

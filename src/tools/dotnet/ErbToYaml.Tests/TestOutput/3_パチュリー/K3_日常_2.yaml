@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: K3_日常
+entries:
+- id: fallback
+  content: >-
+    「楽しそうね。私も混ざっていいかしら？」
+
+    「私も参加していいかしら？」
+
+    「私も混ぜなさい」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: K5_日常
+entries:
+- id: fallback
+  content: >-
+    「どういうつもり？」
+
+    「今更恥ずかしがらなくてもいいのに」
+
+    「つまらないわね。フン」
+  priority: 1
+  displayMode: newline

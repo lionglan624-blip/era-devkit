@@ -1,0 +1,239 @@
+﻿character: 咲夜
+situation: K4_口挿入
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%……こんなところまで……触らせてくださるの……？」
+
+    %CALLNAME:TARGET%は顔を赤らめながらも、恋人のために指を伸ばした。
+
+    %CALLNAME:TARGET%の繊細な指先が、%CALLNAME:MASTER%の秘められた場所を優しく撫でる。
+
+    「ふふ……緊張していらっしゃる……？」
+
+    「大丈夫ですわ……優しくしますから……」
+
+    メイドの器用な指が、丁寧に愛撫を続けた。
+
+    「……%CALLNAME:MASTER%の全てを……知りたいですわ……」
+
+    「こんな……はしたないご奉仕……」
+
+    %CALLNAME:TARGET%は恥じらいながらも、%CALLNAME:MASTER%のために手を動かしている。
+
+    「でも……貴方が望むなら……」
+
+    %CALLNAME:TARGET%の指が優しく円を描くように愛撫する。
+
+    「ん……こうすると……気持ちいいですか……？」
+
+    「……もっと……感じてくださいまし……」
+
+    %CALLNAME:TARGET%は恋人の反応を確かめながら指を動かした。
+
+    「……んっ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げながら、その秘所に指を這わせる。
+
+    「こんなことをする日が来るなんて……」
+
+    「瀟洒なメイドとしては……想定外ですわね……」
+
+    しかし、その表情には喜びが滲んでいた。
+
+    「でも……貴方のためなら……何でも……」
+
+    %CALLNAME:TARGET%は恋人にだけ見せる顔で微笑んだ。
+
+    「……%CALLNAME:MASTER%……力を抜いてくださいまし……」
+
+    %CALLNAME:TARGET%は優しく%CALLNAME:MASTER%の体を支えながら愛撫を続けている。
+
+    「私が……気持ちよくして差し上げますわ……」
+
+    %CALLNAME:TARGET%の指先が巧みに動き、敏感な場所を探り当てる。
+
+    「ふふ……ここ……弱いのですね……」
+
+    「……もっと……乱れてくださいまし……」
+
+    完璧なメイドは、恋人のために献身的な奉仕を続けた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……こ、こんなところを触れと……？」
+
+    %CALLNAME:TARGET%は驚きと羞恥で顔を赤く染めた。
+
+    「%CALLNAME:MASTER%……その……」
+
+    しかし、拒絶の言葉は出てこなかった。
+
+    %CALLNAME:TARGET%はおずおずと指を伸ばし、%CALLNAME:MASTER%の秘所に触れた。
+
+    「……こ、こうで……よろしいでしょうか……」
+
+    想い人のために、%CALLNAME:TARGET%は恥ずかしさを堪えた。
+
+    「こんな……恥ずかしいこと……」
+
+    %CALLNAME:TARGET%は俯きながらも、%CALLNAME:MASTER%のために指を動かしている。
+
+    「メイドとして……こんなご奉仕は……」
+
+    %CALLNAME:TARGET%の指が、ぎこちなく愛撫を続ける。
+
+    「あっ……動きましたわね……」
+
+    「……気持ちいい……ですか……？」
+
+    戸惑いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の反応を窺った。
+
+    「……んっ……こんなところを触るなんて……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を恨めしそうに見上げた。
+
+    「%CALLNAME:MASTER%は……本当に……意地悪……」
+
+    しかし、その手は止まらなかった。
+
+    %CALLNAME:TARGET%の指が、%CALLNAME:MASTER%の秘所を優しく撫で続ける。
+
+    「……でも……貴方のためなら……」
+
+    %CALLNAME:TARGET%は小声で呟きながら奉仕を続けた。
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は緊張しながらも、懸命に指を動かしている。
+
+    「こうして……触っていると……」
+
+    %CALLNAME:TARGET%の指が、%CALLNAME:MASTER%の反応を確かめるように動く。
+
+    「……貴方のこと……もっと知れる気がしますわ……」
+
+    問いかける声には、期待と緊張が入り混じっていた。
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の顔を見つめながら奉仕を続けた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……っ！ %CALLNAME:MASTER%……こんなことを……」
+
+    %CALLNAME:TARGET%は驚いて手を止めかけた。
+
+    「そのような場所を……触れと……？」
+
+    しかし、完全に拒絶することはできなかった。
+
+    「……お、お客様のご要望であれば……」
+
+    %CALLNAME:TARGET%はおずおずと指を伸ばした。
+
+    その頬は僅かに赤く染まっていた。
+
+    「……これは……メイドの仕事では……」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%のために手を動かした。
+
+    %CALLNAME:TARGET%の指が、ぎこちなく%CALLNAME:MASTER%の秘所を撫でる。
+
+    「こ、こうで……よろしいのでしょうか……」
+
+    「……何とも言えない……気分ですわ……」
+
+    「でも……続けろと仰るなら……」
+
+    動揺を隠しながら、%CALLNAME:TARGET%は奉仕を続けた。
+
+    「……こんなこと……初めてですわ……」
+
+    %CALLNAME:TARGET%は複雑な表情を浮かべている。
+
+    「紅魔館のメイドとして……想定外の……」
+
+    %CALLNAME:TARGET%の指が、恐る恐る%CALLNAME:MASTER%の秘所を探る。
+
+    「……っ……不思議な感触ですわ……」
+
+    「嫌というわけでは……ありませんけれど……」
+
+    %CALLNAME:TARGET%は言葉を濁しながら、指を動かし続けた。
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%を見つめた。
+
+    「どうして……こんなことを……」
+
+    問いかけながらも、%CALLNAME:TARGET%の手は止まらなかった。
+
+    「……分かっていますわ……」
+
+    「私は……ただ……ご奉仕すれば良いのでしょう……」
+
+    %CALLNAME:TARGET%は諦めとも覚悟ともつかない表情で指を動かした。
+  priority: 2
+- id: fallback
+  content: >-
+    「……っ！」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の要求に凍りついた。
+
+    「……そのようなところを触れと……」
+
+    冷たい視線を%CALLNAME:MASTER%に向ける。
+
+    %CALLNAME:TARGET%は嫌々ながらも指を伸ばした。
+
+    「……ご命令であれば……従いますが……」
+
+    %CALLNAME:TARGET%は嫌悪を隠しきれない様子で呟いた。
+
+    「……これは屈辱ですわ……」
+
+    %CALLNAME:TARGET%は感情を押し殺した表情で指を動かしている。
+
+    「紅魔館のメイドともあろう者が……」
+
+    %CALLNAME:TARGET%の指が、機械的に%CALLNAME:MASTER%の秘所を撫でた。
+
+    「……早く済ませてくださいませ……」
+
+    「私には仕事がありますので……」
+
+    冷たい言葉だけが返ってきた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%への奉仕を続けている。
+
+    その表情からは何も読み取れない。
+
+    %CALLNAME:TARGET%の指が、淡々と動き続ける。
+
+    「……満足されましたか」
+
+    %CALLNAME:TARGET%は感情のない声で問いかけた。
+
+    「お気が済みましたら……お知らせくださいませ」
+
+    「……このようなことで満足なさるとは……」
+
+    %CALLNAME:TARGET%は軽蔑するような視線を向けた。
+
+    「品性を疑いますわ……」
+
+    しかし、%CALLNAME:TARGET%の指は要求通りに動いていた。
+
+    %CALLNAME:TARGET%の指が、%CALLNAME:MASTER%の秘所を形式的に愛撫する。
+
+    「……これで……よろしいでしょう……」
+
+    「……何でもありませんわ」
+  priority: 1

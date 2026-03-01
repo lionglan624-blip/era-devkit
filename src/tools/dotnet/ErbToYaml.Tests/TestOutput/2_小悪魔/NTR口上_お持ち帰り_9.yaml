@@ -1,0 +1,57 @@
+﻿character: 小悪魔
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「いやあっ！ おしりっ・・熱ぅいいいっ！！」
+
+    「いっ、いやああっ！ 出さないでくださぃぃぃっ！」
+
+    「ああああああっ！！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「いやあっ！ おしりっ・・熱ぅいいいっ！！」
+
+    「いっ、いやああっ！ 出さないでくださぃぃぃっ！」
+
+    「ああああああっ！！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    %悲鳴%
+
+    奥の奥までねじ込まれた客のペニスから濃厚な精液が注ぎ込まれた。
+  priority: 5
+- id: fallback
+  content: >-
+    %悲鳴%
+
+    奥の奥までねじ込まれた客のペニスから濃厚な精液が注ぎ込まれた。
+  priority: 4
+- id: fallback
+  content: >-
+    %悲鳴%
+
+    奥の奥までねじ込まれた%NTR_NAME(0)%のペニスから濃厚な精液が注ぎ込まれた。
+
+    熱い白濁で直腸を満たされる悦びに、%CALLNAME:奴隷%は甘い声を上げながら絶頂した。
+  priority: 3
+- id: fallback
+  content: >-
+    「あっあっ・・来るうぅっ、極太チンポの精子でっ・・虜になっちゃううぅ！！」
+
+    奥の奥までねじ込まれた%NTR_NAME(0)%のペニスから濃厚な精液が注ぎ込まれた。
+  priority: 2
+- id: fallback
+  content: >-
+    「あっあっ・・来るうぅっ、極太チンポの精子がっ・・いっぱいい！！」
+
+    奥の奥までねじ込まれた%NTR_NAME(0)%のペニスから濃厚な精液が注ぎ込まれた。
+  priority: 1

@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「誰が床を汚していいと言ったのかしら？！」
+
+    「便器のくせに床を汚すなんて！ 這いつくばって舐めてきれいにしなさい！」
+
+    「床を汚せなんて命令をした覚えは無いわね？ 躾直しが必要かしら？」
+  priority: 1
+  displayMode: newline

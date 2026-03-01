@@ -1,0 +1,78 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ふふ・・そんなに見せびらかせたいのかしら・・？」
+
+    「相変わらずいい趣味してるわね・・ふふ、私も楽しませてもらっているけど」
+
+    「まさかあちこちで見せて回れってわけじゃないでしょうね？ ふふ」
+
+    %CALLNAME:奴隷%は露出プレイの期待に頬を染めながら下着を脱いで%NTR_NAME(0)%に差し出した。
+
+    %CALLNAME:奴隷%は脱いだ下着を%NTR_NAME(0)%に手渡し妖しげに微笑んだ。
+
+    %CALLNAME:奴隷%は脱いだばかりの下着を%NTR_NAME(0)%に渡し、局部を露出したままスカートを翻してみせた。
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふふ・・そんなに見せびらかせたいのかしら・・？」
+
+    「相変わらずいい趣味してるわね・・ふふ、私も楽しませてもらっているけど」
+
+    「まさかあちこちで見せて回れってわけじゃないでしょうね？ ふふ」
+
+    %CALLNAME:奴隷%は露出プレイの期待に頬を染めながら下着を脱いで%NTR_NAME(0)%に差し出した。
+
+    %CALLNAME:奴隷%は脱いだ下着を%NTR_NAME(0)%に手渡し妖しげに微笑んだ。
+
+    %CALLNAME:奴隷%は脱いだばかりの下着を%NTR_NAME(0)%に渡し、局部を露出したままスカートを翻してみせた。
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「くくっ、悪趣味ね・・」
+
+    「くくっ、いい趣味してるわね・・」
+
+    「くくっ、あんたも脱いでみたら？」
+
+    %CALLNAME:奴隷%はうっすらと頬を染めながら下着を脱いで%NTR_NAME(0)%に差し出した。
+
+    %CALLNAME:奴隷%は言われるままに下着を脱いで%NTR_NAME(0)%に差し出した。
+
+    %CALLNAME:奴隷%は皮肉な笑みを浮かべながら下着を脱いで%NTR_NAME(0)%に差し出した。
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「くくっ、悪趣味ね・・」
+
+    「くくっ、いい趣味してるわね・・」
+
+    「くくっ、あんたも脱いでみたら？」
+
+    %CALLNAME:奴隷%はうっすらと頬を染めながら下着を脱いで%NTR_NAME(0)%に差し出した。
+
+    %CALLNAME:奴隷%は言われるままに下着を脱いで%NTR_NAME(0)%に差し出した。
+
+    %CALLNAME:奴隷%は皮肉な笑みを浮かべながら下着を脱いで%NTR_NAME(0)%に差し出した。
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふん・・悪趣味ね・・」
+
+    「ふん・・これだから・・」
+
+    「どういう趣味してるんだか・・」
+
+    %CALLNAME:奴隷%は呆れながら下着を脱いで%NTR_NAME(0)%に投げつけた。
+
+    %CALLNAME:奴隷%は下着を脱いで%NTR_NAME(0)%に放り投げた。
+
+    %CALLNAME:奴隷%は下着を脱いで%NTR_NAME(0)%の目の前にぽとりと落とした。
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,11 @@
+﻿character: パチュリー
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    ちょっと過敏すぎるわよ？
+
+    本当、いやらしいこととなると、これなんだから
+
+    それとも、もしかして誘っているのかしら？
+  priority: 1

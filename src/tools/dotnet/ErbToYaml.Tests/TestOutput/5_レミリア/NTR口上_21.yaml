@@ -1,0 +1,48 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああんっ・・いい・・いいわ・・もっと、もっとちょうだい・・！」
+
+    「ああ・・い、いい・・構わないから、もっと、激しくっ・・！」
+
+    「ああっ！ もっと！ もっと速くっ！ もっと、深くっ！！」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああんっ・・いい・・いいわ・・もっと、もっとちょうだい・・！」
+
+    「ああ・・い、いい・・構わないから、もっと、激しくっ・・！」
+
+    「ああっ！ もっと！ もっと速くっ！ もっと、深くっ！！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああんっ・・いい・・いいわ・・おしり・・いいっ！」
+
+    「ああ・・い、いい・・もっと、激しくっ・・！」
+
+    「ああっ！ もっと！ もっとよ！ ああっ！！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・いい・・いいわ・・おしりが・・こんなに、いいなんて・・」
+
+    「ああ・・い、いい・・いいわ・・」
+
+    「・・こっちで、こんなに・・感じるっ・・なんてっ・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ぐっ・・うっ・・こ、こんな、ことで・・私が・・」
+
+    「こんな・・こと、で、女を・・好きにできるなんて・・思わない・・で・・」
+
+    「くっ・・ううっ・・この、程度・・で・・！」
+  priority: 1
+  displayMode: newline

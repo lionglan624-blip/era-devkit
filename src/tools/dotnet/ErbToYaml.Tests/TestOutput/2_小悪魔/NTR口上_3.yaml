@@ -1,0 +1,39 @@
+﻿character: 小悪魔
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああっ！ きて！ おしりに、そそいでええっ！」
+
+    「ああんっ！ 出して、いっぱい、いっぱい出してぇぇっ！」
+
+    「お、おしりっ！ おしりにくださいいっ！！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ！ い、いくっ！ おしりで、いっちゃううっ！」
+
+    「ああんっ、いいっ！ おしりが、いいのおおっ！」
+
+    「い、いくっ！ おしりぃ、おしりで、いっちゃうのおっ！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ！ い、いくっ！ おしりで、いっちゃううっ！」
+
+    「ああんっ、いいっ！ おしりが、いいのおおっ！」
+
+    「い、いくっ！ おしりぃ、おしりで、いっちゃうのおっ！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ！ い、いやああっ！ だめええっ！」
+
+    「ああっ！ い、いやああっ！ ぬ、ぬいてええっ！」
+
+    「ああっ！ 出しちゃだめええっ！」
+  priority: 1
+  displayMode: newline

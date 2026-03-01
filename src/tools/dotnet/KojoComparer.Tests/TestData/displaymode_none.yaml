@@ -1,0 +1,24 @@
+character: 美鈴
+situation: COM_0
+entries:
+- id: talent_16_1
+  content: >-
+    最近一緒にいると心が落ち着くの。
+
+    %CALLNAME:MASTER%のこと、好きになっちゃったみたい。
+  condition:
+    type: and
+    conditions:
+    - type: equals
+      left:
+        type: variable
+        variable: TALENT
+        index: 16
+      right:
+        type: literal
+        value: 1
+  priority: 4
+- id: fallback
+  content: >-
+    こんにちは、%CALLNAME:MASTER%。
+  priority: 0

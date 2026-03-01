@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「わかっているでしょう？ これを口で清めなさい」
+
+    「言われないとわからないのかしら？ コレをそのお口でしゃぶって清めなさい」
+
+    「私のモノをその口で清めなさい」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「やっ、やめなさっ・・んんっ！！」
+
+    「なっ、何をっ、やめっ、うううっ！」
+
+    「やめなさいっ、んっ、ううっ！！」
+  priority: 1
+  displayMode: newline

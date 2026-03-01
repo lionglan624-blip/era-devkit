@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    「どんなときでも、居住まいを正すことを忘れないで……」
+
+    「紅魔館のメイドとして、常に恥ずかしからぬ態度を……」
+
+    「もし%CALLNAME:MASTER%が、外で無様を晒すようなことがあれば……」
+  priority: 1
+  displayMode: newline

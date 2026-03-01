@@ -1,0 +1,243 @@
+﻿character: 魔理沙
+situation: K10_会話親密
+entries:
+- id: fallback
+  content: >-
+    「……なあ、%CALLNAME:MASTER%。手、繋いでもいいか？」
+
+    %CALLNAME:TARGET%がそう言って、少し恥ずかしそうに手を差し出してきた。
+
+    %CALLNAME:MASTER%がその手をしっかりと握ると、%CALLNAME:TARGET%は嬉しそうに指を絡めてきた。
+
+    「へへ……%CALLNAME:MASTER%の手、やっぱりあったかいな」
+
+    金髪の魔法使いは、照れくさそうに笑いながら、%CALLNAME:MASTER%の手を両手で包んだ。
+
+    「こうしてると、なんか安心するんだ。……私の特等席だぜ」
+
+    %CALLNAME:TARGET%は幸せそうに%CALLNAME:MASTER%の肩にもたれかかった。
+
+    「……なあ、髪、撫でてくれないか？」
+
+    %CALLNAME:TARGET%が珍しく甘えた声でお願いしてきた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の金髪を優しく梳くように撫でた。
+
+    「ん……へへ、気持ちいいぜ。%CALLNAME:MASTER%、上手いな」
+
+    %CALLNAME:TARGET%は猫のように目を細めて、%CALLNAME:MASTER%の手に頭を預けている。
+
+    「……こんなの、霊夢には絶対見せられないな。内緒だぞ？」
+
+    普通の魔法使いは、満足げに微笑みながら%CALLNAME:MASTER%に身を寄せた。
+
+    「……なあ、ぎゅってしてくれよ」
+
+    %CALLNAME:TARGET%がそう言って、%CALLNAME:MASTER%の服の裾をつまんだ。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%を後ろから優しく抱きしめた。
+
+    「……ん、あったかい。落ち着くぜ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕に自分の手を重ね、そっと握りしめた。
+
+    「私さ、魔法使いになるって決めた時、こんな幸せがあるなんて思わなかったんだ」
+
+    「でも今は%CALLNAME:MASTER%がいて……へへ、最高だぜ」
+
+    普通の魔法使いは、%CALLNAME:MASTER%の腕の中で静かに目を閉じた。
+
+    「……%CALLNAME:MASTER%、ちょっとじっとしててくれ」
+
+    %CALLNAME:TARGET%がそう言って、%CALLNAME:MASTER%の頬に手を添えた。
+
+    金色の瞳がじっと%CALLNAME:MASTER%を見つめ、そして――
+
+    %CALLNAME:TARGET%は自分から%CALLNAME:MASTER%の額にそっとキスをした。
+
+    「……へへ、たまには私からもこういうのしたくなるんだ」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながらも、嬉しそうに笑っている。
+
+    「%CALLNAME:MASTER%のこと、大好きだからな。……ずっと一緒にいてくれよな」
+
+    普通の魔法使いは、照れ隠しのように帽子を深く被った。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……手？　ま、まあいいけどな」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の手をそっと取った。
+
+    %CALLNAME:TARGET%は一瞬戸惑った表情を浮かべたが、手を振り払わなかった。
+
+    「……あったかいな、%CALLNAME:MASTER%の手」
+
+    %CALLNAME:TARGET%の頬がほんのりと赤く染まっている。
+
+    「……べ、別に嫌じゃないんだぜ？　勘違いするなよ」
+
+    そう言いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を握り返してきた。
+
+    「おい、何するんだよ……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の金髪に触れた。
+
+    %CALLNAME:TARGET%は驚いた表情を見せたが、されるがままになっている。
+
+    「……ん、まあ、悪くはないな」
+
+    目を閉じて%CALLNAME:MASTER%に身を任せる%CALLNAME:TARGET%。
+
+    その表情は、どこか気持ちよさそうだった。
+
+    「……もうちょっとだけ、いいぜ」
+
+    「……近いぞ、%CALLNAME:MASTER%」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の肩に手を置いた。
+
+    %CALLNAME:TARGET%は一瞬身を強張らせたが、すぐに力を抜いた。
+
+    「……触りたいのか？　しょうがないな、許可してやるよ」
+
+    %CALLNAME:TARGET%は照れくさそうにそっぽを向いた。
+
+    「……%CALLNAME:MASTER%といると、なんか……落ち着くんだよな」
+
+    その耳は、ほんのり赤く染まっていた。
+
+    「……なあ、%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%が珍しく自分から近づいてきた。
+
+    「その……ちょっとだけ、触ってもいいか？」
+
+    %CALLNAME:MASTER%が頷くと、%CALLNAME:TARGET%はおずおずと%CALLNAME:MASTER%の腕に触れた。
+
+    「……へへ、なんか恥ずかしいな」
+
+    %CALLNAME:TARGET%は顔を赤くしながらも、%CALLNAME:MASTER%の腕をそっと撫でている。
+
+    「……今日だけだからな。勘違いするなよ？」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……手？　握りたいのか？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の手に触れようとした。
+
+    %CALLNAME:TARGET%は少し戸惑った表情を浮かべている。
+
+    「……ま、まあ、いいけどな。変な意味はないんだろ？」
+
+    おずおずと手を差し出す%CALLNAME:TARGET%。
+
+    %CALLNAME:MASTER%がその手を取ると、%CALLNAME:TARGET%は小さく息を呑んだ。
+
+    「……あったかいな、%CALLNAME:MASTER%の手って」
+
+    「……おい、何するんだよ」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の髪に触れた。
+
+    %CALLNAME:TARGET%は困惑した表情で%CALLNAME:MASTER%を見つめている。
+
+    「私の髪に興味があるのか？　変なやつだな」
+
+    されるがままに髪を撫でられながら、%CALLNAME:TARGET%は小さくため息をついた。
+
+    「……まあ、嫌じゃないけどな。お前だから、だけどな」
+
+    %CALLNAME:TARGET%は気恥ずかしそうに視線を逸らした。
+
+    「……おい、近いぞ」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%に近づくと、%CALLNAME:TARGET%は少し身を引いた。
+
+    「……なんだよ、急に」
+
+    だが、逃げるような素振りは見せない。
+
+    「……ま、まあ、そのくらいなら、いいけどな」
+
+    %CALLNAME:TARGET%は帽子のつばを押さえながら、ぼそりと呟いた。
+
+    「……%CALLNAME:MASTER%って、たまに大胆だよな」
+
+    「……なんだ、%CALLNAME:MASTER%。私に用か？」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の肩に軽く触れた。
+
+    %CALLNAME:TARGET%は少し驚いた表情を見せたが、振り払わなかった。
+
+    「……別に、嫌ってわけじゃないんだけどな」
+
+    %CALLNAME:TARGET%は視線を泳がせながら、照れくさそうにしている。
+
+    「……お前となら、こういうのも悪くないかもな」
+
+    そう言って、%CALLNAME:TARGET%は小さく笑った。
+  priority: 2
+- id: fallback
+  content: >-
+    「……おい、何するつもりだ？」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%に触れようとすると、
+
+    %CALLNAME:TARGET%は金色の瞳を警戒するように光らせた。
+
+    「私に触りたいのか？　まあ、手くらいなら許してやるけどな」
+
+    「……けど、変なことするなよ？　箒で殴るぞ」
+
+    %CALLNAME:TARGET%は腕を組みながら、探るようにこちらを見ている。
+
+    「……私は普通の魔法使いだからな。簡単には懐かないぜ」
+
+    「……なんだ、近いぞ」
+
+    %CALLNAME:MASTER%が近づくと、%CALLNAME:TARGET%は一歩後ずさった。
+
+    「私とお前の関係で、こういうのは早いんじゃないか？」
+
+    「もうちょっと仲良くなってからにしてくれよな」
+
+    %CALLNAME:TARGET%は帽子のつばを押さえながら、そっぽを向いた。
+
+    「……別に、お前が嫌いってわけじゃないんだけどな」
+
+    だが、その顔は少しだけ赤かった。
+
+    「おい、いきなり触るな」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%に触れようとすると、%CALLNAME:TARGET%はさっと身をかわした。
+
+    「……私は魔法使いだぞ？　そう簡単に触らせると思ったか？」
+
+    %CALLNAME:TARGET%は挑戦的な笑みを浮かべている。
+
+    「……どうしても触りたいなら、私を楽しませてみせろよ」
+
+    「弾幕勝負でも何でもいいぜ。勝ったら触らせてやるよ」
+
+    普通の魔法使いは、意地悪そうに笑った。
+
+    「……なんだ、%CALLNAME:MASTER%」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%を見つめていると、%CALLNAME:TARGET%は不思議そうに首を傾げた。
+
+    「私の顔に何かついてるか？」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の頬に手を伸ばすと、%CALLNAME:TARGET%は目を丸くした。
+
+    「お、おい……なんだよ、いきなり」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を払い除けようとしたが、その動きは緩かった。
+
+    「……まあ、お前なら、ちょっとくらいは許してやるけどな」
+  priority: 1

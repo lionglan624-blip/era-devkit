@@ -1,0 +1,12 @@
+﻿character: 小悪魔
+situation: K2_日常
+entries:
+- id: fallback
+  content: >-
+    「あ、%CALLNAME:MASTER%、%CALLNAME_K2(人物_小悪魔
+
+    「そうそう、そういえば・・」
+
+    「あ、お貸しした本ですけど、早く返してくださいね？」
+  priority: 1
+  displayMode: newline

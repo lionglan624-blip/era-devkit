@@ -1,0 +1,48 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ちゅっんっ・・・・んふっ・・・・（こく・・・・こくん）」
+
+    「んんっ・・ちゅっ・・くちゅっ・・（こく・・・・こくん）」
+
+    「ちゅ・・ちゅ・・んんっ・・・・（こく・・・・こくん）」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の唾液を積極的に求めている。
+
+    %CALLNAME:奴隷%は口移しで与えられる唾液を美味しそうに飲みくだしている。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の唾液を嬉々として飲み込んでいる。
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ちゅっんっ・・・・んふっ・・・・（こく・・・・こくん）」
+
+    「んんっ・・ちゅっ・・くちゅっ・・（こく・・・・こくん）」
+
+    「ちゅ・・ちゅ・・んんっ・・・・（こく・・・・こくん）」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の唾液を積極的に求めている。
+
+    %CALLNAME:奴隷%は口移しで与えられる唾液を美味しそうに飲みくだしている。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の唾液を嬉々として飲み込んでいる。
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ちゅっんっ・・・・はふっ・・・・んぅ」
+
+    「ちゅっ・・んんっ・ちゅっ・・ん・・」
+
+    「ちゅ・・ちゅ・・ちゅぱ・・んん・・」
+
+    %NTR_NAME(0)%のテクニックになす術なく身を任せている。
+
+    %NTR_NAME(0)%の巧みな舌使いにすっかりとろけさせられている。
+
+    %NTR_NAME(0)%の舌の動きに身も心も虜にされてしまっている。
+  priority: 1
+  displayMode: newline

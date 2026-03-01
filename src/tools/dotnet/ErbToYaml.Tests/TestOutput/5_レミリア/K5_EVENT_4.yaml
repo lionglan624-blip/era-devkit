@@ -1,0 +1,30 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: fallback
+  content: >-
+    「ククク、いくらなんでも早すぎるわね。やっぱり童貞は駄目ね」
+
+    「童貞とはいえ早すぎない？ 余計な心配だったかしら」
+
+    「ククッ・・怒ったりしないわよ？ 童貞なんだから仕方ないじゃない」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ククク、いくらなんでも早すぎるわね。ローターが効いたのかしら？」
+
+    「・・私の指よりローターの方がいいとか思ってないでしょうね？」
+
+    「ククッ、そうよね。ローターの良さは私も知っているわ」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ククク、いくらなんでも早すぎるわね。お尻が弱いみたいね？？」
+
+    「・・早すぎない？ ちょっと心配になってきたわ」
+
+    「もう少し愉しませなさい」
+  priority: 1
+  displayMode: newline

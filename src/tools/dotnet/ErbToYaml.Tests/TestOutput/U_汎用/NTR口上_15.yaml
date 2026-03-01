@@ -1,0 +1,12 @@
+﻿character: 汎用
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %"「んっ、あっ、ああんっ。はっ、っあ・・いい・・いくぅ・・！」"%
+
+    %"「んんっ、あんっ。はっ、っいい・・い、いくぅ・・！」"%
+
+    %"「いいっ、いいのっ。い・・い、いくぅ・・！」"%
+  priority: 1
+  displayMode: newline

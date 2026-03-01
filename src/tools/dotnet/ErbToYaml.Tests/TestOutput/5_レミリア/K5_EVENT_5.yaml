@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: fallback
+  content: >-
+    ククク、これくらいで許してあげる」
+
+    いいわ、ここまでにしてあげる」
+
+    もっと遊びたかったけど、無い袖は振れないわね」
+  priority: 1
+  displayMode: newline

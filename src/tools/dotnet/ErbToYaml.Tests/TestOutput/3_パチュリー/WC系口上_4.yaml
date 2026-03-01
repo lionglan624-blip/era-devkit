@@ -1,0 +1,9 @@
+﻿character: パチュリー
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    、決して悪いことではないけれど……
+
+    考え物ね、%CALLNAME:MASTER%の体……
+  priority: 1

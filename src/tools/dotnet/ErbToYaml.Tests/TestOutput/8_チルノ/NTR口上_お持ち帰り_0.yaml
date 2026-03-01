@@ -1,0 +1,80 @@
+﻿character: チルノ
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「・・が、がまんするから・・ひ・・ひどいこと、しないで・・」
+
+    「・・しばるの、やだ・・」
+
+    「・・おとなしくするから・・痛いことしないで・・」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「やっ、やだああっ！ 助けて、助けて%CALLNAME:MASTER%！！」
+
+    「いっ、やだああっ！ 離せっ、離せってばあ！！」
+
+    「やだああっ！ 離せえっ！ ぶっとばすぞおお！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: talent_7_2
+  content: >-
+    「いらっしゃいませご主人様たち！今日もあたいがごほーしします！」
+
+    薄暗い部屋に鎖で繋がれた%CALLNAME:奴隷%は、彼女を買ったご主人様たちに元気よく挨拶した。
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+- id: fallback
+  content: >-
+    「うんっ、あたいははご主人様のどれーだもんね！」
+
+    「えへへっ、ご主人様・・」
+
+    「なんでもごほーしするよ！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「うんっ、あたいははご主人様のどれーだもんね！」
+
+    「えへへっ、ご主人様・・」
+
+    「なんでもごほーしするよ！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ねぇ、またするんだよね？」
+
+    「ねぇねぇ、今日はなにをするの？」
+
+    「どんなコトするのかな？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・うん・・行こ・・」
+
+    %CALLNAME:奴隷%は大人しく%NTR_NAME(0)%の家に同行した。
+
+    外泊してくると%MSG_LOVER(奴隷)%相手に大見得を切ってしまったせいもあり、%CALLNAME:奴隷%は半ば居直っていた。
+
+    （・・%CALLNAME:MASTER%が・・悪いんだから・・）
+
+    「・・」
+
+    %CALLNAME:奴隷%は大人しく%NTR_NAME(0)%の家に同行した。
+
+    「・・」
+
+    %CALLNAME:奴隷%は表面上大人しく%NTR_NAME(0)%の家に同行した。
+  priority: 1

@@ -1,0 +1,51 @@
+# Sample dialogue YAML for schema validation testing
+# Tests TALENT, ABL, EXP condition entries (post-F675 format)
+
+character: "美鈴"
+situation: "K4"
+entries:
+  # Entry 1: TALENT condition (恋慕 = 1)
+  - id: "talent_love"
+    content: "最近一緒にいると、胸がどきどきして……これって、もしかして……"
+    priority: 3
+    condition:
+      type: "Talent"
+      talentType: "50"
+      threshold: 1
+      operand: "Equals"
+
+  # Entry 2: ABL condition (欲望 >= 3)
+  - id: "abl_desire"
+    content: "もう我慢できない……触れたくて仕方ないの"
+    priority: 3
+    condition:
+      type: "Abl"
+      ablType: "0"
+      threshold: 3
+      operand: "GreaterThanOrEqual"
+
+  # Entry 3: EXP condition (キス経験 > 5)
+  - id: "exp_kiss"
+    content: "あなたとのキス、忘れられなくて……"
+    priority: 3
+    condition:
+      type: "Exp"
+      threshold: 5
+      operand: "GreaterThan"
+
+  # Entry 4: Multiple conditions (TALENT + CFLAG) - represented as high priority single condition
+  # Note: Schema currently supports single condition per entry, complex multi-condition logic
+  # should be handled at application level or with future schema extension
+  - id: "talent_cflag_combo"
+    content: "思慕を自覚して、フラグも立ってる状態"
+    priority: 4
+    condition:
+      type: "Talent"
+      talentType: "50"
+      threshold: 1
+      operand: "Equals"
+
+  # Entry 5: Default fallback (no condition)
+  - id: "default"
+    content: "普通の台詞。条件なしのデフォルト"
+    priority: 1

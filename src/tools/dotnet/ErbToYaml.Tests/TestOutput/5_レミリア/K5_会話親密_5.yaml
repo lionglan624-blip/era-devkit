@@ -1,0 +1,44 @@
+﻿character: レミリア
+situation: K5_会話親密
+entries:
+- id: fallback
+  content: >-
+    （これも運命かしらね）
+
+    （あっても無くても変わらないわね）
+
+    （気にする程でもないわね）
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「一時的なものよ。気を強く持ちなさい」
+
+    「健康第一よ。そこから始めたらどうかしら」
+
+    「そんなに落ち込むんじゃないわよ」
+
+    （%NTR_KARE()%に伝えたら喜ぶかしらね）
+
+    （%NTR_KARE()%がいればあっちの方は困らないけど）
+
+    （本当に勃たないのか確かめてみようかしら？）
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷+"は一緒に治していきましょう、と微笑んだ。"%
+
+    「一時的なものよ。気を強く持ちなさい。
+
+    「健康第一よ。そこから始めたらどうかしら。
+
+    「そんなに落ち込むんじゃないわよ。
+
+    私も手伝うから、頑張りなさい」
+
+    この私が手伝ってあげるのよ。感謝しなさい」
+
+    手伝ってあげるから、顔を上げなさい」
+  priority: 1
+  displayMode: newline

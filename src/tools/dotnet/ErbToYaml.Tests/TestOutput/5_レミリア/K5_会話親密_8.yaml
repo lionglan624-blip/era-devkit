@@ -1,0 +1,207 @@
+﻿character: レミリア
+situation: K5_会話親密
+entries:
+- id: fallback
+  content: >-
+    「んっ……ふふ、大胆ね、お前……」
+
+    %CALLNAME:TARGET%はされるがままに、%CALLNAME:MASTER%に尻をなでられている。
+
+    その手付きを確かめるように、紅い瞳が細められた。
+
+    「……紅魔館の主の身体を、こんな風に触れるのはお前だけよ」
+
+    %CALLNAME:TARGET%は熱い吐息を漏らしながら、背中を預けてきた。
+
+    「もっと……もっと撫でなさい。お前になら、全て許すわ」
+
+    「あっ……そこ、いいわ……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の臀部を優しく撫でている。
+
+    %CALLNAME:TARGET%は小さく身を震わせながらも、逃げようとはしない。
+
+    「ククク……お前の手は温かいわね……」
+
+    %CALLNAME:TARGET%は満足げに目を閉じ、その感触に身を委ねた。
+
+    「……このひとときだけは、ただの女でいさせて」
+
+    「やぁ……んっ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の膝に座り、尻を撫でられている。
+
+    500年を生きた吸血鬼が、まるで甘える猫のように身を委ねていた。
+
+    「……こうしていると、お前の体温が伝わってくるわ」
+
+    %CALLNAME:TARGET%は紅い頬で%CALLNAME:MASTER%を見上げた。
+
+    「私を温めて……ずっと、こうしていて……」
+
+    「……んぅ……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%のドレス越しに、その丸みを確かめている。
+
+    %CALLNAME:TARGET%は恥じらいながらも、その手を止めようとはしない。
+
+    「……お前だけよ。私にこんな姿を見せるのは」
+
+    高貴な吸血鬼の仮面を脱いで、%CALLNAME:TARGET%は甘えるように囁いた。
+
+    「……もう少しだけ、このまま……いいでしょう？」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「んっ……何をしているの、お前……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に尻をなでられ、頬を染めている。
+
+    威厳を保とうと腕を組んだが、その身体は逃げていない。
+
+    「使用人のくせに大胆ね……」
+
+    %CALLNAME:TARGET%は紅い瞳を逸らしながらも、されるがままでいた。
+
+    「……でも、嫌いじゃないわ。特別に許してあげる」
+
+    「やっ……そこは……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の臀部に触れている。
+
+    %CALLNAME:TARGET%は一瞬ビクッと震えたが、すぐに平静を装った。
+
+    「……敏感なところを、よく知っているわね」
+
+    %CALLNAME:TARGET%は熱い息を吐きながらも、高飛車な態度を崩さない。
+
+    「……他の者には絶対に言わないこと。いいわね？」
+
+    「あっ……くぅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に尻を撫でられ、顔を背けている。
+
+    その耳は紅く染まり、吸血鬼らしからぬ動揺を見せていた。
+
+    「……私を喜ばせようというの？」
+
+    %CALLNAME:TARGET%は小さく身を震わせながら、%CALLNAME:MASTER%を横目で見た。
+
+    「……ふん、認めてあげるわ。続けなさい」
+
+    「……っ」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の腰に手を回し、尻を撫でている。
+
+    %CALLNAME:TARGET%は驚いた顔をしたが、その手を払いのけはしなかった。
+
+    「……こんなことを許すのは、お前だけなんだから」
+
+    %CALLNAME:TARGET%は紅い顔で、強がるように呟いた。
+
+    「……感謝しなさいよね」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……っ！ 何をしているの、お前……」
+
+    %CALLNAME:TARGET%は驚いた表情を見せたが、手を払いのけはしなかった。
+
+    %CALLNAME:MASTER%の手が、%CALLNAME:TARGET%の尻を撫でている。
+
+    「私のお尻を撫でるなんて、身の程知らずね……」
+
+    %CALLNAME:TARGET%は紅い瞳で睨みながらも、どこか拒絶しきれない様子だった。
+
+    「……特別に許してあげるわ。感謝しなさい」
+
+    「やめなさい……何のつもり？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を睨んだが、身体は逃げていない。
+
+    %CALLNAME:MASTER%は構わず、その小さな臀部を撫で続けている。
+
+    「……使用人のくせに、主に触れるなんて」
+
+    %CALLNAME:TARGET%は威厳を保とうとしているが、頬がわずかに赤い。
+
+    「……今回だけよ。二度目はないと思いなさい」
+
+    「……っ、お前……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の尻に触れている。
+
+    %CALLNAME:TARGET%は眉をひそめたが、特に抵抗はしなかった。
+
+    「……紅魔館の主に、そんな大胆なことを」
+
+    %CALLNAME:TARGET%は腕を組み、傲然と%CALLNAME:MASTER%を見下ろした。
+
+    「……まあ、悪くないわ。続けても構わなくてよ」
+
+    「んっ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に尻を撫でられ、かすかに身を震わせた。
+
+    だが、吸血鬼の矜持が彼女を逃げさせなかった。
+
+    「……触り心地はどうかしら？」
+
+    %CALLNAME:TARGET%は強がるように、紅い瞳で%CALLNAME:MASTER%を見つめた。
+
+    「……ふん、光栄に思いなさい」
+  priority: 2
+- id: fallback
+  content: >-
+    「……何をしているの、下僕が」
+
+    %CALLNAME:TARGET%は紅い瞳を細め、%CALLNAME:MASTER%を睨みつけた。
+
+    %CALLNAME:MASTER%の手が、%CALLNAME:TARGET%の尻に触れている。
+
+    「私に触れることを許した覚えはないわ」
+
+    %CALLNAME:TARGET%は傲然と腕を組み、威圧するように見下ろした。
+
+    「……身の程を弁えなさい」
+
+    「……何のつもりかしら？」
+
+    %CALLNAME:TARGET%は冷ややかな視線で%CALLNAME:MASTER%を見た。
+
+    %CALLNAME:MASTER%が尻に触れても、%CALLNAME:TARGET%は微動だにしない。
+
+    「私はそんなに安い女じゃなくてよ」
+
+    500年を生きた吸血鬼の威厳が、その紅い瞳に宿っている。
+
+    「……用が済んだら、さっさと離れなさい」
+
+    「使用人のくせに、主の身体に触れようとするの？」
+
+    %CALLNAME:TARGET%は眉をひそめ、%CALLNAME:MASTER%を見据えた。
+
+    %CALLNAME:MASTER%の手が臀部を撫でるのを、%CALLNAME:TARGET%は許容している。
+
+    「……ふん、今回だけよ」
+
+    %CALLNAME:TARGET%は不機嫌そうに顔を背けた。
+
+    「次はないと思いなさい」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%を見つめている。
+
+    %CALLNAME:MASTER%が尻に触れても、その表情は変わらない。
+
+    「……何が望みかしら」
+
+    %CALLNAME:TARGET%の紅い瞳が、冷たく%CALLNAME:MASTER%を射抜いた。
+
+    「……私を侮っているのなら、後悔させてあげるわ」
+  priority: 1

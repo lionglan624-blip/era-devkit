@@ -1,0 +1,48 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ9
+entries:
+- id: fallback
+  content: >-
+    「ああん・・ふふっ・・こんなに出して%S_HEART0%・・気持ちよかったかしら・・%S_HEART1%」
+
+    「ううん・・いっぱい出すのね%S_HEART0%・・ええ・・いくらでも使って・・%S_HEART1%」
+
+    「ふふっ%S_HEART0%・・こんなに出してくれて、嬉しいわ・・%S_HEART1%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああん・・ふふっ・・こんなに出して%S_HEART0%・・気持ちよかったかしら・・%S_HEART1%」
+
+    「ううん・・いっぱい出すのね%S_HEART0%・・ええ・・いくらでも使って・・%S_HEART1%」
+
+    「ふふっ%S_HEART0%・・こんなに出してくれて、嬉しいわ・・%S_HEART1%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああん・・ふふっ・・こんなに出して%S_HEART0%・・気持ちよかったかしら・・%S_HEART1%」
+
+    「ううん・・いっぱい出すのね%S_HEART0%・・ええ・・いくらでも使って・・%S_HEART1%」
+
+    「ふふっ%S_HEART0%・・こんなに出してくれて、嬉しいわ・・%S_HEART1%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・こんなに・・出して%S_HEART0%・・ああ・・」
+
+    「ううっ・・いっぱい・・ああ・・%S_HEART0%」
+
+    「ああ・・おしり・・熱いっ・・%S_HEART0%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・おしりに・・出すなんて・・」
+
+    「ううっ・・痛っ・・熱い・・」
+
+    「ああ・・おしり・・熱い・・」
+  priority: 1
+  displayMode: newline

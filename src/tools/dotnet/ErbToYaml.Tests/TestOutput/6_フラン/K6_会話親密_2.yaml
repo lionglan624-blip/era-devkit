@@ -1,0 +1,167 @@
+﻿character: フラン
+situation: K6_会話親密
+entries:
+- id: fallback
+  content: >-
+    「んふふ……%CALLNAME:MASTER%、お尻触るの好きなのさ？」
+
+    %CALLNAME:TARGET%は翼をぱたぱたと揺らしながら、嬉しそうに振り返った。
+
+    「私のお尻、%CALLNAME:MASTER%専用だからね。他の誰にも触らせないのさ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手に自分の手を重ね、もっと深く触れさせた。
+
+    「えへへ……%CALLNAME:MASTER%の手、あったかいのさ……ずっとこうしてて？」
+
+    「あっ……やぁ……そこ、くすぐったい……」
+
+    %CALLNAME:TARGET%は身をよじりながらも、%CALLNAME:MASTER%から逃げようとしなかった。
+
+    「495年、誰にも触れてもらえなかったの……でも今は%CALLNAME:MASTER%がいるのさ」
+
+    %CALLNAME:TARGET%の紅い瞳が潤んでいる。
+
+    「ねえ、もっと触って？ 壊れちゃうくらい、触って欲しいの」
+
+    %CALLNAME:TARGET%は甘えるように腰を押し付けてきた。
+
+    「んっ……%CALLNAME:MASTER%の手、いやらしいのさ……」
+
+    %CALLNAME:TARGET%は頬を染めながら、されるがままになっている。
+
+    翼がぴくぴくと反応し、%CALLNAME:TARGET%の感じている様子が伝わってくる。
+
+    「こういうことするの、%CALLNAME:MASTER%だけだよ……？」
+
+    %CALLNAME:TARGET%は振り返り、確認するように%CALLNAME:MASTER%を見つめた。
+
+    「他の人にしたら……きゅっとして、ドカーンなのさ」
+
+    「ふふ……%CALLNAME:MASTER%ったら、えっちなのさ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に尻を撫でられ、満足そうに目を細めた。
+
+    「お姉様には内緒だよ？ こんなこと知られたら、大変なのさ」
+
+    %CALLNAME:TARGET%はいたずらっぽく笑いながら、%CALLNAME:MASTER%に体を預けた。
+
+    「でもね、%CALLNAME:MASTER%となら……もっといろんなこと、したいのさ」
+
+    紅い瞳が妖しく輝いていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「やっ……そこ、触っちゃダメなのさ……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに身をよじった。
+
+    「でも……%CALLNAME:MASTER%がそうしたいなら……」
+
+    %CALLNAME:TARGET%は赤い顔で俯きながらも、逃げようとはしなかった。
+
+    翼が恥ずかしそうに小さく畳まれている。
+
+    「んっ……くすぐったいのさ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に尻を撫でられ、体を震わせた。
+
+    「%CALLNAME:MASTER%って……こういうこと、するんだね……」
+
+    %CALLNAME:TARGET%は照れながらも、嬉しそうに微笑んだ。
+
+    「……嫌じゃ、ないけど……恥ずかしいのさ」
+
+    「あっ……や、やぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手付きに、思わず声を漏らした。
+
+    「そんな風に触られると……変な気持ちになるのさ……」
+
+    %CALLNAME:TARGET%の頬が紅潮している。翼がぴくりと跳ねた。
+
+    「……もうちょっとだけなら、いいよ……」
+
+    「ひゃっ……！」
+
+    %CALLNAME:TARGET%は驚いて飛び跳ねたが、すぐに落ち着いた。
+
+    「び、びっくりしたのさ……急に触るから……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を少し睨んだが、その目は嬉しそうだった。
+
+    「……次は、声かけてからにしてね？」
+
+    %CALLNAME:TARGET%は照れ隠しに、そっぽを向いた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「ひゃっ……な、何するのさ！」
+
+    %CALLNAME:TARGET%は驚いて飛び跳ねた。翼がばさりと開く。
+
+    「お尻を触るなんて……えっちなのさ」
+
+    %CALLNAME:TARGET%は困惑しながらも、すぐには離れようとしなかった。
+
+    「んっ……や、やめてよぉ……」
+
+    %CALLNAME:TARGET%は戸惑った表情で%CALLNAME:MASTER%を見上げた。
+
+    「こういうの……よくわからないのさ……」
+
+    %CALLNAME:TARGET%の翼が落ち着きなく揺れている。
+
+    「……っ！ そこ……触らないでよ……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして抗議した。
+
+    「本で読んだことはあるけど……実際にされると、変な感じなのさ」
+
+    %CALLNAME:TARGET%は恥ずかしそうに身をすくめた。
+
+    「あっ……%CALLNAME:MASTER%……？」
+
+    %CALLNAME:TARGET%は不意打ちに体を硬くした。
+
+    「急に何するのさ……びっくりしたよ……」
+
+    %CALLNAME:TARGET%は困った顔をしながらも、逃げ出しはしなかった。
+  priority: 2
+- id: fallback
+  content: >-
+    「……触らないで」
+
+    %CALLNAME:TARGET%の瞳に赤い光が宿った。
+
+    「私に触ると……きゅっとして、ドカーンだよ？」
+
+    %CALLNAME:TARGET%は危険な笑みを浮かべ、%CALLNAME:MASTER%を睨みつけた。
+
+    「……何してるのさ」
+
+    %CALLNAME:TARGET%は冷たい声で問いかけた。翼が警戒するように広がる。
+
+    「勝手に触らないでよ……壊しちゃうよ？」
+
+    %CALLNAME:TARGET%の指先がかすかに光を帯びた。
+
+    「やめて」
+
+    %CALLNAME:TARGET%は感情のこもらない声で言った。
+
+    「……そういうの、よくわからないの。興味ないのさ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を払いのけた。
+
+    「……ふぅん」
+
+    %CALLNAME:TARGET%は無表情で%CALLNAME:MASTER%を見つめた。
+
+    「面白いことするね。でも、つまらないのさ」
+
+    %CALLNAME:TARGET%の翼が苛立たしげに揺れている。
+  priority: 1

@@ -1,0 +1,231 @@
+﻿character: 子悪魔
+situation: K7_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%、見たいの……？」
+
+    %CALLNAME:TARGET%は頬を染めながら、自分から足を開いた。
+
+    妖精の小さな秘裂が、%CALLNAME:MASTER%の前に晒される。
+
+    「えへへ……恥ずかしいけど……%CALLNAME:MASTER%になら、見せてあげる」
+
+    %CALLNAME:TARGET%は震える手で、自分の秘唇をそっと開いてみせた。
+
+    薄桃色の内壁が、恥じらいながら%CALLNAME:MASTER%の視線を受け入れている。
+
+    「……ね？　あたしの全部……%CALLNAME:MASTER%のものだよ……」
+
+    「んっ……そんなに、じっくり見られると……」
+
+    %CALLNAME:MASTER%に秘裂を押し開かれ、%CALLNAME:TARGET%は甘い声を漏らした。
+
+    妖精の膣内は、愛液で潤い、淡い桃色に染まっている。
+
+    「……恥ずかしいよぉ……でも、嬉しい……」
+
+    %CALLNAME:TARGET%は目を潤ませながら、%CALLNAME:MASTER%を見上げた。
+
+    「%CALLNAME:MASTER%が見てくれてるって思うと……ドキドキしちゃう……」
+
+    妖精は幸せそうに微笑みながら、体を開いたままでいた。
+
+    「あっ……やぁっ……中まで、見ないで……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながらも、逃げようとはしなかった。
+
+    「……うそ……やっぱり見て……全部、見てほしいの……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯きながら、さらに足を広げた。
+
+    妖精の秘部が大きく開かれ、奥まで%CALLNAME:MASTER%の視線に晒されている。
+
+    「あたしの一番恥ずかしいとこ……%CALLNAME:MASTER%だけに見せるね……」
+
+    %CALLNAME:TARGET%は震えながら、精一杯の愛情を込めてそう言った。
+
+    「%CALLNAME:MASTER%……あたしの、きれい……？」
+
+    %CALLNAME:TARGET%は不安そうに問いかけながら、秘裂を晒し続けている。
+
+    妖精の小さな蜜壺が、%CALLNAME:MASTER%の視線を浴びて熱くなっていく。
+
+    「……えへへ、きれいって言ってくれると思った……」
+
+    %CALLNAME:TARGET%は嬉しそうに微笑んで、自分から秘唇を広げた。
+
+    「見てて……もっともっと、%CALLNAME:MASTER%に見てほしいの……」
+
+    妖精は恥じらいながらも、愛しい人に全てを見せることに喜びを感じていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ひゃっ……そ、そこ、開いちゃ……」
+
+    %CALLNAME:TARGET%は驚きながら、%CALLNAME:MASTER%に秘裂を晒されていた。
+
+    妖精の可愛らしい蜜壺が、羞恥に震えている。
+
+    「……はずかしいよぅ……こんなとこ、見ないで……」
+
+    %CALLNAME:TARGET%は目を潤ませながらも、逃げようとはしない。
+
+    「……でも、%CALLNAME:MASTER%なら……ちょっとだけ、いいよ……」
+
+    小さな声でそう言って、%CALLNAME:TARGET%は恥ずかしそうに足を開いた。
+
+    「あ……あぁっ……中、見ちゃやだぁ……」
+
+    %CALLNAME:MASTER%に秘裂を押し開かれ、%CALLNAME:TARGET%は悲鳴を上げた。
+
+    「こんなの……恥ずかしすぎるよぉ……」
+
+    %CALLNAME:TARGET%は顔を手で覆いながら、されるがままになっている。
+
+    妖精の膣内は淡い桃色で、緊張に震えていた。
+
+    「……%CALLNAME:MASTER%にだけ……見せてるんだからね……」
+
+    指の隙間から%CALLNAME:MASTER%を見つめながら、%CALLNAME:TARGET%はそう呟いた。
+
+    「……ん……や……そんなに、見つめないで……」
+
+    %CALLNAME:TARGET%は真っ赤な顔で、%CALLNAME:MASTER%の視線を避けようとしている。
+
+    「あたしの……見てて、楽しいの……？」
+
+    恥ずかしそうに問いかけながら、%CALLNAME:TARGET%は足を閉じようとしない。
+
+    妖精の秘裂は、%CALLNAME:MASTER%の視線を受けて微かに震えていた。
+
+    「……%CALLNAME:MASTER%が喜んでくれるなら……もっと見ていいよ……」
+
+    %CALLNAME:TARGET%は恥ずかしさを押し殺して、そう言った。
+
+    「ふぇ……そ、そこは……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に秘唇を開かれ、思わず声を漏らした。
+
+    「……んっ、や……見られてると、なんか変な感じ……」
+
+    %CALLNAME:TARGET%は初めての感覚に戸惑いながら、体を震わせている。
+
+    妖精の蜜壺は、緊張と羞恥で微かに潤い始めていた。
+
+    「……こういうの……恋人同士がすることなの……？」
+
+    %CALLNAME:TARGET%は不安そうに、でもどこか期待を込めて%CALLNAME:MASTER%を見上げた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「ふぇっ……な、何するんですかぁ……！」
+
+    %CALLNAME:TARGET%は驚いて足を閉じようとした。
+
+    しかし、%CALLNAME:MASTER%に押し開かれ、秘裂を晒されてしまう。
+
+    「こ、こんなとこ……見ちゃだめです……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして、目に涙を浮かべている。
+
+    「……%CALLNAME:MASTER%……優しくしてくれますか……？」
+
+    不安そうに問いかけながら、%CALLNAME:TARGET%は観念したように力を抜いた。
+
+    「いやぁ……見ないでください……」
+
+    %CALLNAME:TARGET%は必死に足を閉じようとしていた。
+
+    「あたしの、そんなとこ……恥ずかしいですぅ……」
+
+    %CALLNAME:TARGET%は泣きそうな顔で%CALLNAME:MASTER%を見上げている。
+
+    しかし、%CALLNAME:MASTER%に見つめられると、少しだけ足の力が抜けた。
+
+    「……ちょっとだけなら……でも、誰にも言わないでくださいね……？」
+
+    妖精は恥じらいながらも、%CALLNAME:MASTER%を信じようとしていた。
+
+    「ひっ……そ、そこ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に秘裂を開かれ、体を強張らせた。
+
+    「こ、こういうの……あたし、初めてで……」
+
+    %CALLNAME:TARGET%は戸惑いながら、%CALLNAME:MASTER%の行動を見守っている。
+
+    妖精の小さな秘部が、緊張に震えながら晒されていた。
+
+    「……怖いけど……%CALLNAME:MASTER%だから……」
+
+    %CALLNAME:TARGET%は恐る恐る足の力を抜いて、身を任せた。
+
+    「……え、えっと……」
+
+    %CALLNAME:TARGET%は何が起こっているのか理解できないようだ。
+
+    「あの……これ、何してるんですか……？」
+
+    自分の秘裂を見つめられて、%CALLNAME:TARGET%は困惑している。
+
+    「……恥ずかしいです……でも、よくわからない……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、されるがままになっていた。
+
+    「……%CALLNAME:MASTER%がそうしたいなら……いいですけど……」
+  priority: 2
+- id: fallback
+  content: >-
+    「ひゃあっ！？　な、なにっ……！」
+
+    %CALLNAME:TARGET%は悲鳴を上げて、必死に足を閉じようとした。
+
+    「そ、そんなとこ見ちゃだめです！　だめですっ！」
+
+    %CALLNAME:TARGET%は真っ赤な顔で、%CALLNAME:MASTER%を押しのけようとしている。
+
+    「咲夜さんに言いますからねっ……！」
+
+    妖精は涙目で、精一杯の抵抗を試みていた。
+
+    「いやっ……見ないでください……！」
+
+    %CALLNAME:TARGET%は泣きそうな声で訴えた。
+
+    「あたしたち、そんな仲じゃないです……」
+
+    %CALLNAME:TARGET%は必死に体を守ろうとしている。
+
+    「……お願いですから、やめてください……」
+
+    妖精は怯えた目で%CALLNAME:MASTER%を見つめていた。
+
+    「……っ！」
+
+    %CALLNAME:TARGET%は声も出せずに固まっている。
+
+    「な、何でそんなことするんですか……」
+
+    %CALLNAME:TARGET%は理解できないという顔で%CALLNAME:MASTER%を見上げた。
+
+    「……あたし、何か悪いことしましたか……？」
+
+    妖精は困惑しながら、されるがままになるしかなかった。
+
+    「やだっ……こんなの、やだぁ……」
+
+    %CALLNAME:TARGET%は涙を浮かべて、首を振っている。
+
+    「……恥ずかしいです……やめてください……」
+
+    %CALLNAME:TARGET%は消え入りそうな声で訴えた。
+
+    「……%CALLNAME:MASTER%は、こんな妖精で何がしたいの……？」
+
+    妖精は悲しそうな目で、%CALLNAME:MASTER%を見つめていた。
+  priority: 1

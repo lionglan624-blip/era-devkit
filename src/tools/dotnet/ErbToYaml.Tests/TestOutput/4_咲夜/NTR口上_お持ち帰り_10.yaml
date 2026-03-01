@@ -1,0 +1,123 @@
+﻿character: 咲夜
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%はいつもの部屋・・『商品』である彼女が客に『使用される』部屋で目覚めた。
+
+    今日もまた、彼女は『商品』であることを強いられる。
+
+    %ANATA_LOVER(奴隷)%以外の男によって肉体を買われ、唇も、乳房も、尻も、性器も・・膣奥深く、子宮さえも欲しいままに『使用』されてしまうのだ。
+
+    %CALLNAME:奴隷%が身支度を整えたことを確かめた%NTR_NAME(0)%は部屋を去り、入れ替わりに男が入ってくる。
+  priority: 7
+- id: talent_148_1
+  content: >-
+    「・・助けて%CALLNAME:MASTER%・・」
+
+    「・・まだ・・帰らせてもらえないのね・・」
+
+    「・・負けるものですか・・」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: talent_7_2
+  content: >-
+    %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%はいつもの部屋・・『商品』である彼女が客に『使用される』部屋へと赴いた。
+
+    手早く身支度を整え、今日の『仕事』の準備を始めた。
+
+    彼女の身体を金で買った男に誠心誠意奉仕して尽くす一日が始まるのだ。
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+- id: fallback
+  content: >-
+    「ああ・・・また・・・%MSG_HEART()%」
+
+    「ああ・・・ぞくぞくする・・・%MSG_HEART()%」
+
+    「ああん・・・早く・・・%MSG_HEART()%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・・また・・・%MSG_HEART()%」
+
+    「ああ・・・ぞくぞくする・・・%MSG_HEART()%」
+
+    「ああん・・・早く・・・%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ええ、始めましょう。ふふっ、楽しみね」
+
+    「ふふっ、今日はどんな風に可愛がってくれるのかしら？」
+
+    「ええ、言う通りにするわ。何でも・・・何度でも」
+
+    外泊してくることは%MSG_LOVER(奴隷)%も承知していることであり、
+
+    外泊してくることは%MSG_LOVER(奴隷)%が望んだことであり、
+
+    泊まりがけでの浮気は%MSG_LOVER(奴隷)%の望みをかなえるためであり、
+
+    彼女はもはや後ろめたさを感じてはいなかった。
+
+    彼女はためらうことなく%NTR_NAME(0)%に従った。
+
+    彼女は迷うどころか自ら%NTR_NAME(0)%に抱きついた。
+
+    （・・%CALLNAME:MASTER%・・帰ったら、聞かせてあげないといけないわね・・）
+
+    （・・%CALLNAME:MASTER%・・楽しみにしてなさい・・ふふっ・・）
+
+    （・・%CALLNAME:MASTER%・・あなたの望みどおりにしてあげる・・）
+
+    「ええ、始めましょう」
+
+    「ふふっ、今日はどんな風にしてくれるのかしら？」
+
+    「ええ、言う通りにするわ」
+
+    （・・%CALLNAME:MASTER%・・帰ったら、聞かせてあげないといけないわね・・）
+
+    （・・%CALLNAME:MASTER%・・楽しみにしてなさい・・ふふっ・・）
+
+    （・・%CALLNAME:MASTER%・・あなたの望みどおりにしてあげる・・）
+
+    「だ・・だめ、帰して・・・」
+
+    「や・・やっぱり・・だめっ・・ああっ」
+
+    「い、いや・・・ひどいこと、しないで・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・ええ、始めましょう」
+
+    %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は大人しく%NTR_KARE()%の腕に身をゆだねた。
+
+    外泊してくると%MSG_LOVER(奴隷)%相手に大見得を切ってしまったせいもあり、%CALLNAME:奴隷%は半ば居直っていた。
+
+    （・・%CALLNAME:MASTER%が・・悪いんだから・・）
+
+    「・・」
+
+    %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は大人しく%NTR_KARE()%の腕に身をゆだねた。
+
+    （・・%CALLNAME:MASTER%・・本当に・・これでいいの・・）
+
+    「・・」
+
+    %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は表面上大人しく%NTR_KARE()%の腕に身をゆだねた。
+
+    （・・まだ・・帰らせてもらえないのね・・）
+  priority: 1

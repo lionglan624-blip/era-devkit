@@ -1,0 +1,35 @@
+﻿character: 美鈴
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    普段の気丈さは影を潜め、乱れた着衣からは情交の名残をぷんぷんと漂わせている。
+
+    %ANATA_LOVER(奴隷)%に見咎められるのを恐れるかのようだった。
+
+    愛する人にこんな姿を見られたくなかった。もし見られてしまったら泣いてしまいそうだったから・・。
+
+    本当はすがり付いて泣きたかった。だが%CALLNAME:MASTER%を悲しませまいと、%CALLNAME:奴隷%は一人で泣くために部屋に戻っていった。
+
+    %NTR_NAME(0)%への憎しみより、悔しさより、ただただ悲しかった。
+  priority: 5
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    破れた衣服から見える胸の谷間には大量の精液が溜まっている。
+
+    普段の気丈さは影を潜め、肉欲のままに蹂躙された牝の臭いを漂わせている
+  priority: 4
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+- id: fallback
+  content: 普段の気丈さは影を潜め、肉欲のままに蹂躙された牝の臭いを漂わせている
+  priority: 3
+- id: fallback
+  content: 普段の気丈さは影を潜め、乱れた着衣からは情交の名残をぷんぷんと漂わせている。
+  priority: 2
+- id: fallback
+  content: 普段の気丈さは影を潜め、乱れた着衣からは情交の名残を漂わせている。
+  priority: 1

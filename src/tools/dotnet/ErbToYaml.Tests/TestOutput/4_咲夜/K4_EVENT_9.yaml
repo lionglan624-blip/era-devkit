@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    「まだ出るんじゃないかしら。え？もう無理？……そう言われたら、試してみたくなるわね？」
+
+    「まだ元気そうね・・ええ、言ったでしょう、全部出させてあげるわ」
+
+    「ふふ・・たっぷり出たわね・・でもこれなら、まだいけそうよ？」
+  priority: 1
+  displayMode: newline

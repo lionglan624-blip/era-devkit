@@ -1,0 +1,25 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: talent_148_0
+  content: >-
+    「ありがとう・・%CALLNAME:MASTER%にだけ買われたいな・・」
+
+    「ありがと・・うん・・大好き」
+
+    「嬉しいよ・・%CALLNAME:MASTER%だけのものだから・・」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「うふっ、どんなサービスすればいいのかな？」
+
+    「ねぇ、なにして欲しい？」
+
+    「ねぇ、シないの？」
+  priority: 1
+  displayMode: newline

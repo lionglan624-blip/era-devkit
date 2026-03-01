@@ -1,0 +1,70 @@
+﻿character: フラン
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「んっ！んむぅ！・・やっ、んっ・・んぅ！」
+
+    「やっ、やだぁっ・・んっ、んんっ・・むうっ！」
+
+    「んんっ！ んっ・・やぁっ・・」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「んっ！んむぅ！・・んっ、んっ・・やあっ・・んぅ！」
+
+    「やっ、やだあっ・・んっ、んんっ・・むうっ！」
+
+    「んんっ！ は、はなしてえ・・んんんっ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・ちゅぱっ・・・」
+
+    「んっ、んんっ・・んふー%MSG_HEART()%」
+
+    「んんっ・・れろっ・・ちゅ・・ちゅっ・・%MSG_HEART()%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・ちゅぱっ・・・」
+
+    「んっ、んんっ・・んふー%MSG_HEART()%」
+
+    「んんっ・・れろっ・・ちゅ・・ちゅっ・・%MSG_HEART()%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・ちゅぱっ・・・」
+
+    「んっ、んんっ・・んふー%MSG_HEART()%」
+
+    「んんっ・・れろっ・・ちゅ・・ちゅっ・・%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・ちゅぱっ・・・」
+
+    「んっ、んんっ・・んふー%MSG_HEART()%」
+
+    「んんっ・・れろっ・・ちゅ・・ちゅっ・・%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・♪」
+
+    「ちゅっ・・んっ・・♪」
+
+    「れろっ・・ちゅ・・♪」
+  priority: 1
+  displayMode: newline

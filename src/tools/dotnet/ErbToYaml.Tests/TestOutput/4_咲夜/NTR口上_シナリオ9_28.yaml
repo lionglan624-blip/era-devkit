@@ -1,0 +1,36 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ9
+entries:
+- id: fallback
+  content: >-
+    「こっち・・？ ふふ、悪趣味ね・・ええ、いいわ%S_HEART0%・・ちょうだい・・%S_HEART1%」
+
+    「後ろで・・？ ふふ、いいわ%S_HEART0%・・いっぱい、ちょうだい・・%S_HEART1%」
+
+    「こっちでするのね・・？ ええ、もちろんよ%S_HEART0%・・きて・・%S_HEART1%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「こっち・・？ ふふ、悪趣味ね・・ええ、いいわ%S_HEART0%・・ちょうだい・・%S_HEART1%」
+
+    「後ろで・・？ ふふ、いいわ%S_HEART0%・・いっぱい、ちょうだい・・%S_HEART1%」
+
+    「こっちでするのね・・？ ええ、もちろんよ%S_HEART0%・・きて・・%S_HEART1%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「こっち・・？ 悪趣味ね・・ええ、ちょうだい・・%S_HEART0%」
+
+    「後ろで・・？ いいわ・・ちょうだい・・%S_HEART0%」
+
+    「こっちでするのね・・？ いいわ・・きて・・%S_HEART0%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「こ、こっち・・！？ い、いやああっ！！」
+
+    %NTR_NAME(0)%はもがく%CALLNAME:奴隷%を%MSG_WALL_OR_TREE()%に押し付け強引にアヌスを貫いた。
+  priority: 1

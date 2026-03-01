@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    あっ……！　いっ、イク……いく……！」
+
+    ああんっ……！　で、出るぅぅっ……！」
+
+    あああっ……！　いっ、イクぅぅ！」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,227 @@
+﻿character: 咲夜
+situation: K4_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……あっ……%CALLNAME:MASTER%……胸、触りたいのですか……」
+
+    %CALLNAME:TARGET%は瀟洒な笑みを浮かべながら、%CALLNAME:MASTER%を誘うように胸を差し出した。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の豊かな乳房に手を伸ばし、そっと揉み始めた。
+
+    「んっ……ふぁ……貴方の手、私の胸を覚えてくださいましたのね……」
+
+    %CALLNAME:TARGET%は頬を染めながら、%CALLNAME:MASTER%の愛撫に身を任せている。
+
+    「……もっと……強く揉んでくださっても……」
+
+    完璧なメイドの仮面の下、蕩けるような表情が覗いていた。
+
+    「……ひぁっ……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の乳房を掴んだ。
+
+    %CALLNAME:TARGET%は小さく息を呑み、%CALLNAME:MASTER%に体を預けている。
+
+    「ん……%CALLNAME:MASTER%……手付きが、いやらしいですわ……」
+
+    そう言いながらも、%CALLNAME:TARGET%は嬉しそうに目を細めた。
+
+    %CALLNAME:MASTER%が乳房を揉みしだくごとに、%CALLNAME:TARGET%の吐息が熱くなる。
+
+    「……こうしていると……時を止めたくなりますわ……ずっとこのまま……」
+
+    %CALLNAME:TARGET%は恋人にだけ見せる甘い表情で囁いた。
+
+    「あっ……そこ……乳首は……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の乳首を捉えた。
+
+    %CALLNAME:TARGET%の体がびくりと震える。
+
+    「んぁっ……%CALLNAME:MASTER%……乳首、弱いのを……ご存知でしょうに……」
+
+    %CALLNAME:TARGET%は恨めしそうに%CALLNAME:MASTER%を見上げたが、その瞳は潤んでいた。
+
+    「……意地悪ですわ……でも……嫌いじゃありませんわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手に自分の胸を押し付けた。
+
+    「……やぁ……んっ……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%を背後から抱き寄せ、両手で乳房を包み込んだ。
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に背中を預け、身を任せている。
+
+    「……この体勢……お嬢様に見られたら……」
+
+    「……でも……貴方になら……見せてもいいですわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手に自分の手を重ね、より深く触れるよう促した。
+
+    「……もっと……私を感じてくださいまし……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「っ……%CALLNAME:MASTER%……む、胸は……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の乳房に触れた。
+
+    %CALLNAME:TARGET%は咄嗟に拒もうとしたが、その手は虚空を掴んだだけだった。
+
+    「……そのような……お戯れは……困りますわ……」
+
+    しかし%CALLNAME:TARGET%の体は素直に反応し、乳首が固くなり始めている。
+
+    「……少しだけなら……お許しいたしますわ……」
+
+    %CALLNAME:TARGET%は観念したように目を伏せた。
+
+    「ひっ……あ……」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の乳房を揉み始めた。
+
+    %CALLNAME:TARGET%は顔を赤らめながらも、その手を払いのけようとしない。
+
+    「……%CALLNAME:MASTER%は……胸がお好きなのですね……」
+
+    「……こんな……メイドの胸で、よろしければ……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに視線を逸らしながら、%CALLNAME:MASTER%の愛撫を受け入れた。
+
+    「んっ……あっ……そこは……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の乳首に触れた。
+
+    %CALLNAME:TARGET%の体がぴくりと反応する。
+
+    「……乳首は……敏感で……」
+
+    %CALLNAME:TARGET%は声を抑えようとしながらも、吐息が漏れてしまう。
+
+    「……%CALLNAME:MASTER%の前では……取り繕えませんわね……」
+
+    %CALLNAME:TARGET%は諦めたように、%CALLNAME:MASTER%に体を預けた。
+
+    「……あ……やぁ……」
+
+    %CALLNAME:MASTER%は優しく%CALLNAME:TARGET%の乳房を撫でている。
+
+    %CALLNAME:TARGET%は目を閉じ、その感触を受け止めていた。
+
+    「……%CALLNAME:MASTER%の手……温かいですわね……」
+
+    「……もう少しだけ……このまま……」
+
+    %CALLNAME:TARGET%は小さく呟き、%CALLNAME:MASTER%に身を寄せた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「えっ……%CALLNAME:MASTER%、む、胸を……？」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の乳房に伸びてきた。
+
+    %CALLNAME:TARGET%は驚いて身を固くしている。
+
+    「……そ、そのようなことは……」
+
+    しかし%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を払いのけることができなかった。
+
+    「……お嬢様に知られたら……」
+
+    %CALLNAME:TARGET%は困惑しながらも、拒絶はしなかった。
+
+    「っ……あの……%CALLNAME:MASTER%……」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の乳房に触れている。
+
+    %CALLNAME:TARGET%は顔を赤くしながら、どうしていいかわからない様子だ。
+
+    「……メイドとして……このようなことは……」
+
+    「……でも……%CALLNAME:MASTER%なら……」
+
+    %CALLNAME:TARGET%は小さく呟き、%CALLNAME:MASTER%の行為を黙認した。
+
+    「あっ……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の乳房を包み込んだ。
+
+    %CALLNAME:TARGET%は息を呑み、体を強張らせている。
+
+    「……%CALLNAME:MASTER%……そこは……」
+
+    %CALLNAME:TARGET%は抗議しようとしたが、言葉が続かなかった。
+
+    「……わ、わかりましたわ……少しだけですよ……」
+
+    %CALLNAME:TARGET%は観念したように目を伏せた。
+
+    「……ひぅ……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の乳房を撫でている。
+
+    %CALLNAME:TARGET%は小さく声を漏らしてしまった。
+
+    「……す、すみません……変な声を……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに顔を背けた。
+
+    「……あまり……見ないでくださいまし……」
+  priority: 2
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%、何のおつもりでしょうか」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の胸に手を伸ばした。
+
+    %CALLNAME:TARGET%は冷たい目で%CALLNAME:MASTER%を見つめている。
+
+    「……私はメイドですわ。そのようなお相手をするつもりはございません」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を静かに払いのけた。
+
+    「……お茶をお持ちしましょうか？」
+
+    %CALLNAME:TARGET%は何事もなかったかのように、仕事に戻ろうとした。
+
+    「……困りますわね」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の乳房に触れようとしている。
+
+    %CALLNAME:TARGET%は一歩後ろに下がり、距離を取った。
+
+    「……お嬢様のお客様とはいえ、限度がございますわ」
+
+    「……このようなお戯れは、お控えくださいまし」
+
+    %CALLNAME:TARGET%は冷ややかな声で告げた。
+
+    「……」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の胸に触れた。
+
+    %CALLNAME:TARGET%は無表情のまま、%CALLNAME:MASTER%の手を掴んで止めた。
+
+    「……私を誰だとお思いですか」
+
+    「……紅魔館のメイド長ですわ。このような無礼は……」
+
+    %CALLNAME:TARGET%の瞳は冷たく光っていた。
+
+    「……そのような行為は、お控えください」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の胸に手を伸ばしてきた。
+
+    %CALLNAME:TARGET%は素早く身を翻し、%CALLNAME:MASTER%の手を躱した。
+
+    「……私はお嬢様にお仕えする身ですわ」
+
+    「……%CALLNAME:MASTER%のお相手をする暇はございません」
+
+    %CALLNAME:TARGET%は瀟洒な笑みを浮かべながらも、その目は笑っていなかった。
+  priority: 1

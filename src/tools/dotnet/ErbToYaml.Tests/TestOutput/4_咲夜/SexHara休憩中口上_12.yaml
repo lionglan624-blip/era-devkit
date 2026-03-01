@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「さあ、もうできあがってるかしら？」
+
+    「ふふっ、ずいぶん蒸れていたみたいね？」
+
+    「お楽しみはこれからよ」
+  priority: 1
+  displayMode: newline

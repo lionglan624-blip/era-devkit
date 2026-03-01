@@ -1,0 +1,52 @@
+﻿character: 小悪魔
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「あっ・・ああっ・・！！ おっ、お尻っ・・なんてっ・・！」
+
+    「だ、だめっ・・ あああっ！」
+
+    「ああっ そんなっ・・ふかくっ・・」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「いやっ・・いやああっ・・！！ ああああっ！！」
+
+    「だ、だめっ・・！ いやあああっ！！」
+
+    「ああっ！ だめ、だめええっ！ ああああっ！！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっっ・・・はぁん・・いっ・・いいっ・・」
+
+    %CALLNAME:奴隷%は名も知らぬ男にアヌスを突かれながら腰を振っている。
+  priority: 5
+- id: fallback
+  content: >-
+    「あっっ・・・はぁん・・いっ・・いいっ・・」
+
+    %CALLNAME:奴隷%は名も知らぬ男にアヌスを突かれながら腰を振っている。
+  priority: 4
+- id: fallback
+  content: >-
+    「んうっ・・あっ・・おっきい！・・・おっきいぃぃよおぉっ！」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%のペニスにアヌスを蹂躙され、快楽に酔いしれている。
+  priority: 3
+- id: fallback
+  content: >-
+    「んうっ・・あっ・・おっきい！・・・おっきいぃぃよおぉっ！」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%のペニスにアヌスを蹂躙され、快楽に酔いしれている。
+  priority: 2
+- id: fallback
+  content: 「んうっ・・あっ・・ああっ！・・・すごいっっ！」
+  priority: 1

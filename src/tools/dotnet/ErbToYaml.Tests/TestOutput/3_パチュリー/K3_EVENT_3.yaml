@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: K3_EVENT
+entries:
+- id: fallback
+  content: >-
+    %"「もうおしまい？ まぁこれだけ搾ればたぶん十分ね」"%
+
+    %"「これで打ち止めかしら？ もう少し欲しかったけど、仕方ないわね」"%
+
+    %"「いいかげん終わりかしら？ ありがとう、助かったわ」"%
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,239 @@
+﻿character: 子悪魔
+situation: K7_口挿入
+entries:
+- id: fallback
+  content: >-
+    「えへへ……%CALLNAME:MASTER%のこと、いっぱい触っていい？」
+
+    %CALLNAME:TARGET%は嬉しそうに%CALLNAME:MASTER%に寄り添った。
+
+    小さな手が%CALLNAME:MASTER%の体を愛おしそうに撫でていく。
+
+    「ん……%CALLNAME:MASTER%の体、あったかい……」
+
+    %CALLNAME:TARGET%は幸せそうな表情で%CALLNAME:MASTER%を見上げている。
+
+    「あたし、%CALLNAME:MASTER%に触ってるの……大好き」
+
+    妖精の小さな手が、懸命に%CALLNAME:MASTER%の肌を撫でていく……
+
+    「今日もあたしにさせてくれるの？　やったぁ！」
+
+    %CALLNAME:TARGET%は満面の笑みで%CALLNAME:MASTER%の側に座った。
+
+    「%CALLNAME:MASTER%のこと、いっぱい気持ちよくしてあげるね」
+
+    %CALLNAME:TARGET%は慣れた手つきで%CALLNAME:MASTER%の体を撫で始めた。
+
+    「ふふっ……ここ触ると、%CALLNAME:MASTER%、くすぐったそう……」
+
+    嬉しそうに%CALLNAME:TARGET%は指を這わせている。
+
+    「えへへ、あたしの手で気持ちよくなってね……？」
+
+    「%CALLNAME:MASTER%……あたし、もっと上手に触れるようになりたいの」
+
+    %CALLNAME:TARGET%は真剣な表情で%CALLNAME:MASTER%に手を伸ばした。
+
+    「だから……いっぱい触らせてね？」
+
+    小さな手が%CALLNAME:MASTER%の肌の上を滑っていく。
+
+    「ここ、触ると気持ちいいって……咲夜さんが言ってた……」
+
+    %CALLNAME:TARGET%は敏感な場所を探りながら、期待に満ちた目で見上げた。
+
+    「……ね、あたし、ちゃんとできてる……？」
+
+    「あ……%CALLNAME:MASTER%、あたしに触られると……嬉しい？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応を見つめて、嬉しそうに微笑んだ。
+
+    「あたしがいると、こんな顔するんだね……えへへ」
+
+    %CALLNAME:TARGET%は愛おしそうに%CALLNAME:MASTER%の体を撫で続けた。
+
+    「ふふっ……ぴくってした……可愛い」
+
+    %CALLNAME:TARGET%はくすくす笑いながら、優しく愛撫している。
+
+    「%CALLNAME:MASTER%……大好き。ずっとあたしのそばにいてね……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「え、えっと……こ、こうすればいいの……？」
+
+    %CALLNAME:TARGET%は真っ赤になりながら、おずおずと%CALLNAME:MASTER%に手を伸ばした。
+
+    初めて触れる肌の感触に緊張しながらも、そっと撫で始める。
+
+    「わぁ……%CALLNAME:MASTER%の体、あったかい……」
+
+    %CALLNAME:TARGET%は困惑しながらも、見よう見まねで手を動かし始めた。
+
+    「……%CALLNAME:MASTER%、くすぐったくないですか……？」
+
+    心配そうに%CALLNAME:TARGET%は%CALLNAME:MASTER%の顔を窺っている。
+
+    「あの……%CALLNAME:MASTER%のために……頑張ります……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで%CALLNAME:MASTER%に触れた。
+
+    「こういうの、あたし初めてだから……下手でごめんね……」
+
+    ぎこちない手つきで、%CALLNAME:TARGET%は懸命に撫で始めた。
+
+    「んしょ……こう……？」
+
+    一生懸命な%CALLNAME:TARGET%の姿は、どこか健気だった。
+
+    「……気持ちよくなって、くれたら……嬉しいな……」
+
+    「は、恥ずかしいよぅ……でも……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、%CALLNAME:MASTER%の体に手を添えた。
+
+    「%CALLNAME:MASTER%が気持ちよくなるなら……あたし、頑張る……」
+
+    小さな手が%CALLNAME:MASTER%の肌の上をゆっくりと滑っていく。
+
+    「……んっ……%CALLNAME:MASTER%の体……すべすべ……」
+
+    %CALLNAME:TARGET%は触れる感触に驚きながらも、手を止めなかった。
+
+    「……%CALLNAME:MASTER%……あたしのこと、好き……？」
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は上目遣いに%CALLNAME:MASTER%を見つめた。
+
+    「あたし……%CALLNAME:MASTER%のこと、好きだから……」
+
+    恥ずかしそうに俯きながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%を撫で始めた。
+
+    「だから……こうやって触らせて……ね……？」
+
+    小さな手がたどたどしく動き、%CALLNAME:MASTER%に快感を与えようと頑張っている。
+
+    %CALLNAME:TARGET%は真剣な表情で、%CALLNAME:MASTER%の反応を見守っていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え……あたしが……%CALLNAME:MASTER%を触るの……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見つめて固まっている。
+
+    「その……こういうこと、したことないです……」
+
+    おずおずと手を伸ばし、恐る恐る触れてみる。
+
+    「わっ……あったかい……」
+
+    %CALLNAME:TARGET%は驚きながらも、言われた通りに手を動かし始めた。
+
+    「……こう……ですか……？　痛くないですか……？」
+
+    「あの……%CALLNAME:MASTER%……これって……」
+
+    %CALLNAME:TARGET%は戸惑いながら、%CALLNAME:MASTER%に手を添えた。
+
+    「えっと……撫でればいいんですよね……？」
+
+    ぎこちない手つきで、%CALLNAME:TARGET%は見よう見まねで触り始めた。
+
+    「……%CALLNAME:MASTER%の肌……すべすべですね……」
+
+    初めての感触に%CALLNAME:TARGET%は困惑しながらも、手を動かし続けている。
+
+    「……%CALLNAME:MASTER%……あたし、ちゃんとできてますか……？」
+
+    「……はい……やります……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで%CALLNAME:MASTER%に近づいた。
+
+    「あの……優しくしますね……？　あたし、力加減がわからなくて……」
+
+    小さな手が震えながら%CALLNAME:MASTER%の体に触れた。
+
+    「……こう……？　もっと強く……？」
+
+    %CALLNAME:TARGET%は不安そうに%CALLNAME:MASTER%の顔色を窺いながら、手を動かしている。
+
+    「……%CALLNAME:MASTER%が満足してくれたら……嬉しいです……」
+
+    「……えっと……%CALLNAME:MASTER%のお手伝い……ですか？」
+
+    %CALLNAME:TARGET%は首を傾げながら、%CALLNAME:MASTER%を見つめた。
+
+    「妖精メイドのお仕事……なのかな……」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%の体に手を添えた。
+
+    「……んしょ……こうかな……」
+
+    たどたどしい手つきで、%CALLNAME:TARGET%は懸命に撫で始めた。
+
+    「……咲夜さんには、内緒ですよ……？」
+  priority: 2
+- id: fallback
+  content: >-
+    「え……えっ……な、何を……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見つめて顔を青くした。
+
+    「あの……こういうの、あたしにはわからないです……」
+
+    困惑した表情で、%CALLNAME:TARGET%は後ずさりしようとした。
+
+    「……で、でも……やらないとダメ……ですか……」
+
+    観念したように、%CALLNAME:TARGET%は恐る恐る手を伸ばした。
+
+    「……う……変に思わないでくださいね……」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%を見つめている。
+
+    「……あたし、こういうの、どうすればいいかわからないです……」
+
+    仕方なさそうに手を伸ばし、ぎこちなく触れた。
+
+    「……こう……ですか……」
+
+    機械的に手を動かしながら、%CALLNAME:TARGET%は視線を逸らしている。
+
+    「……早く終わってほしいな……」
+
+    「ひっ……こ、これを……あたしが……？」
+
+    %CALLNAME:TARGET%は怯えた表情で%CALLNAME:MASTER%を見つめた。
+
+    「あの……お仕事なら他のことの方が……」
+
+    %CALLNAME:TARGET%は逃げ出したそうな顔をしているが、従わざるを得ない。
+
+    「……う……触ります……」
+
+    嫌々ながら%CALLNAME:TARGET%は%CALLNAME:MASTER%の体に手を添えた。
+
+    「……こういうの、苦手なんです……ごめんなさい……」
+
+    「……%CALLNAME:MASTER%……なんでこんなこと……」
+
+    %CALLNAME:TARGET%は困惑と戸惑いの表情を浮かべている。
+
+    「あたし、お掃除とかお茶汲みの方が得意なんですけど……」
+
+    渋々と%CALLNAME:TARGET%は%CALLNAME:MASTER%に近づいた。
+
+    「……えっと……こう……？」
+
+    不慣れな手つきで、%CALLNAME:TARGET%は%CALLNAME:MASTER%を撫で始めた。
+
+    「……咲夜さんに見つかったら、怒られちゃいます……」
+  priority: 1

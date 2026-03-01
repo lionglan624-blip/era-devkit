@@ -1,0 +1,76 @@
+﻿character: パチュリー
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「・・抵抗はしないから、痕は残さないで」
+
+    「離して。痕が残ってしまうわ」
+
+    「いやああっ！ や、やめなさいっ！！」
+  priority: 6
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「いっ、いやああっ！ 助けて%CALLNAME:MASTER%！！」
+
+    「いっ、いやああっ！ は、はなしなさいっ！」
+
+    「いやああっ！ や、やめなさいっ！！」
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: talent_7_2
+  content: >-
+    鎖に繋がれた%CALLNAME:奴隷%は地下室へと導かれ、そこに繋がれた。
+
+    そこで待っていた男たちを満足させるまで、この鎖が解かれることはない。
+
+    しかし彼女は微笑んでいた。薄暗い部屋ほど落ち着くところなどこの世には存在しないのだから。
+  priority: 4
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+- id: fallback
+  content: >-
+    「・・こんなものなくても、抵抗しないのに♪」
+
+    「・・抵抗するつもりなんてないのに・・悪趣味ね♪」
+
+    「・・言うとおりにするわ・・ああん%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・こんなものなくても、抵抗しないのに♪」
+
+    「・・抵抗するつもりなんてないのに・・悪趣味ね♪」
+
+    「・・言うとおりにするわ・・ああん%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「わかったわ、行きましょう」
+
+    「行けばいいのね」
+
+    「仕方ないわね」
+
+    「・・わかったわ、行きましょう」
+
+    「・・行けばいいのね」
+
+    「・・仕方ないわね」
+
+    「離しなさいっ・・・」
+
+    「は、離しなさいっ・・」
+
+    「くっ、離してっ・・」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,25 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%CALLNAME:PLAYER%がアヌスにローターを挿入していることに気付いて微笑んだ。
+
+    ちょうどいいわ、このままシてあげる」
+
+    気持ちいい方がいいでしょう？ 入れたままシてあげる」
+
+    もっとローターが好きになれるようにしてあげるわ」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%CALLNAME:PLAYER%が下着を身に着けていないことに気付いて微笑んだ。
+
+    「あら・・ふふっ、ノーパンだなんて、準備がいいわね。好都合だわ」
+
+    「ふふっ・・履いてないだなんて、いつからそういう趣味になったの？」
+
+    「あら・・誰かに下着を取られたのかしら？」
+  priority: 1
+  displayMode: newline

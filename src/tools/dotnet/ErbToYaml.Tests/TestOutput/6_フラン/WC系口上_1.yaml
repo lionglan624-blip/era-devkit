@@ -1,0 +1,40 @@
+﻿character: フラン
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    ……い、痛かった？　……んじゃ、ないのかな。けど……大丈夫？」
+
+    び、ビックリさせちゃった？　急にしたつもりじゃ、無かったんだけど……」
+
+    お仕事の、邪魔になっちゃったかなぁ？　だったら、ゴメンね？」
+
+    「でも、いいよね？　%CALLNAME:MASTER%は、%CALLNAME:TARGET%のなんだから。
+
+    「%CALLNAME:MASTER%の体、すぐピクピクしちゃうの、忘れてた。
+
+    「えへへ……でも、喜んでくれた証拠だよね？　だって、
+
+    このお尻だって、%CALLNAME:TARGET%のだもん」
+
+    こうやって、もっと優しく触ったら……」
+
+    %CALLNAME:MASTER%の体は、ぜ〜〜んぶ……」
+
+    「ね？　気持ちいいでしょ？　ほら……」
+
+    「ちゃんとわかってるんだよ、%CALLNAME:MASTER%の好きなこと%UNICODE(0x2764)%」
+
+    「どうかなぁ？　ふふ……%CALLNAME:TARGET%も、ドキドキして来ちゃった」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    ご、ごめんね？
+
+    大丈夫？
+
+    そんなにビックリするなんて思わなくて……
+
+    別にね、驚かすつもりとかじゃなくて……
+  priority: 1

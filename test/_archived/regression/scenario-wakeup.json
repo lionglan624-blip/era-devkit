@@ -1,0 +1,7 @@
+{
+  "name": "core-wakeup: 起床テスト",
+  "description": "起床後、日常画面が表示されることを確認",
+  "expect": {
+    "output_contains": ["[100]", "起床"]
+  }
+}

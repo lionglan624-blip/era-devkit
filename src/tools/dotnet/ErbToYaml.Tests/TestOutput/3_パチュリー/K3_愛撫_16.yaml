@@ -1,0 +1,219 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……ん……それを……入れるの……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が手にしたバイブを見つめ、静かに息を吐いた。
+
+    %CALLNAME:MASTER%がゆっくりとバイブを挿入すると、%CALLNAME:TARGET%の体が微かに震えた。
+
+    「……あ……振動が……中で……響いてる……」
+
+    大図書館の静寂に、バイブの低い振動音と%CALLNAME:TARGET%の吐息が混ざり合っている。
+
+    「……%CALLNAME:MASTER%……あなたに……全部……委ねるわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に身を寄せ、穏やかに微笑んだ。
+
+    「……ひぁ……っ……」
+
+    バイブの振動が%CALLNAME:TARGET%の奥深くを刺激している。
+
+    %CALLNAME:TARGET%は読みかけの魔導書を机に置き、%CALLNAME:MASTER%にしがみついた。
+
+    「……振動が……止まらない……頭が……蕩けそう……」
+
+    %CALLNAME:TARGET%の瞳は潤み、いつもの冷静さは消え失せていた。
+
+    「……%CALLNAME:MASTER%……このまま……壊れてもいい……」
+
+    そう呟いて、%CALLNAME:TARGET%は快感の波に身を任せた。
+
+    「……あ……あぁ……」
+
+    %CALLNAME:TARGET%はバイブの振動に合わせて、小刻みに体を震わせている。
+
+    膣内を満たす振動は、%CALLNAME:TARGET%の思考を甘く溶かしていった。
+
+    「……こんな道具で……こんなに……理性が……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を伏せたが、その表情は蕩けている。
+
+    「……%CALLNAME:MASTER%……もっと……奥まで……」
+
+    %CALLNAME:TARGET%は珍しく素直に、自らの欲望を口にした。
+
+    「……ん……ふぅ……」
+
+    %CALLNAME:TARGET%はバイブの振動に身を委ね、%CALLNAME:MASTER%の腕の中で蕩けている。
+
+    膣内を震わせる快感が、%CALLNAME:TARGET%の体を甘く痺れさせていた。
+
+    「……あなたの温もりと……この振動と……両方感じられる……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げ、淡い微笑みを浮かべた。
+
+    「……幸せ……よ……今……」
+
+    その言葉は、普段の%CALLNAME:TARGET%からは想像できないほど素直だった。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……!? そ、そんなもの……入れるつもり……？」
+
+    %CALLNAME:TARGET%はバイブを見て、頬を真っ赤に染めた。
+
+    「本で読んだことは……あるけど……まさか私が……」
+
+    %CALLNAME:MASTER%がバイブを挿入すると、%CALLNAME:TARGET%は小さく悲鳴を上げた。
+
+    「……ひゃっ……振動が……中から……くる……」
+
+    %CALLNAME:TARGET%は恥ずかしさに顔を覆いながらも、%CALLNAME:MASTER%を拒まなかった。
+
+    「……やぁ……振動……止めて……」
+
+    バイブが膣内で振動し、%CALLNAME:TARGET%の体を揺さぶっている。
+
+    「……む、むきゅ……こんなの……集中できないわ……」
+
+    %CALLNAME:TARGET%は手元の本を閉じ、机にしがみついた。
+
+    「……%CALLNAME:MASTER%……見ないで……変な声……出ちゃう……」
+
+    %CALLNAME:TARGET%は羞恥に震えながら、甘い声を漏らしていた。
+
+    「……っ……あ……」
+
+    %CALLNAME:TARGET%はバイブの振動に、言葉を失っていた。
+
+    膣内を満たす振動は、知識では説明できない快感を与えてくる。
+
+    「……こんな……刺激……本には……載ってなかった……」
+
+    %CALLNAME:TARGET%の体がびくりと跳ね、大図書館に甘い喘ぎが響いた。
+
+    「……%CALLNAME:MASTER%……弱くして……壊れちゃう……」
+
+    そう懇願しながらも、%CALLNAME:TARGET%の瞳は潤んでいた。
+
+    「……ん……ぁ……だめ……」
+
+    バイブの振動が強まり、%CALLNAME:TARGET%の体が大きく震えた。
+
+    「……中が……熱い……振動が……響いて……」
+
+    %CALLNAME:TARGET%は分析しようとするが、頭が真っ白になっていく。
+
+    「……こんなところで……小悪魔に見られたら……」
+
+    %CALLNAME:TARGET%は羞恥と快感の狭間で、%CALLNAME:MASTER%にしがみついた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……それは……バイブレーターかしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つバイブを、興味深そうに観察した。
+
+    「振動による膣内刺激……医学的には興味深いわね」
+
+    しかしいざ挿入されると、%CALLNAME:TARGET%の表情が一変した。
+
+    「……っ!? こ、これは……想像以上……」
+
+    %CALLNAME:TARGET%は冷静を装おうとするが、声が震えている。
+
+    「……ん……」
+
+    バイブの振動が膣内を刺激し、%CALLNAME:TARGET%は小さく息を漏らした。
+
+    「……振動の周波数と……膣壁の反応……データとして……」
+
+    %CALLNAME:TARGET%は分析しようとするが、快感が思考を邪魔している。
+
+    「……むきゅ……これは……予想外ね……」
+
+    %CALLNAME:TARGET%は困惑した表情で、%CALLNAME:MASTER%を睨んだ。
+
+    「……ふぅん……」
+
+    %CALLNAME:TARGET%はバイブの振動を受けながら、冷静を装っている。
+
+    「……振動刺激による生理的反応……研究価値があるわね」
+
+    しかし%CALLNAME:TARGET%の体は正直に反応し、時折びくりと震えていた。
+
+    「……あなた……私で実験しているつもりかしら……」
+
+    そう言いながらも、%CALLNAME:TARGET%はバイブを抜こうとはしなかった。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言でバイブの刺激を受けている。
+
+    膣内を満たす振動は、%CALLNAME:TARGET%の知識欲すら麻痺させていた。
+
+    「……悪くない……わね……これは……」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「……でも……調子に乗らないで……私は……研究を……」
+
+    言い訳が途切れ、%CALLNAME:TARGET%の吐息だけが大図書館に響いていた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の真似かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つバイブを見て、冷ややかな目を向けた。
+
+    「そんな下品な道具を私に……」
+
+    しかし挿入された瞬間、%CALLNAME:TARGET%の表情が強張った。
+
+    「……っ……中で……振動が……」
+
+    冷淡を装おうとするが、%CALLNAME:TARGET%の体は小さく震えていた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無表情でバイブの振動を受けている。
+
+    その表情は読み取れないが、呼吸が微かに乱れている。
+
+    「……これで満足……かしら……」
+
+    %CALLNAME:TARGET%は冷めた声で問いかけたが、語尾が震えていた。
+
+    「……早く終わらせて……読書に戻りたいのだけど……」
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せたが、その反応は本物だった。
+
+    バイブの振動が膣内を責め、%CALLNAME:TARGET%の冷淡な態度を揺さぶっている。
+
+    「……下品な道具ね……でも……悪くは……ない……かも……」
+
+    %CALLNAME:TARGET%は認めたくないように、視線を逸らした。
+
+    「……勘違いしないで。ただの感想よ」
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついたが、それは快感を逃がすためだった。
+
+    「あなたは私に何を求めているの……理解に苦しむわ……」
+
+    %CALLNAME:TARGET%は呆れた表情を浮かべているが、その体は振動に反応している。
+
+    「……好きにしなさい……ただし……読書の邪魔は……」
+
+    言い終える前に、%CALLNAME:TARGET%は小さく声を漏らした。
+  priority: 1

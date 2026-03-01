@@ -1,0 +1,17 @@
+{
+  "name": "sc-011: うふふモード切替",
+  "description": "CFLAG:317 (うふふモード) が 0→1→0 と正しくサイクルすることを確認",
+  "add_characters": [1],
+  "characters": {
+    "紅美鈴": {
+      "CFLAG:317": 0,
+      "CFLAG:2": 1000
+    }
+  },
+  "copy": [
+    {"from": "紅美鈴", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]", "うふふモード"]
+  }
+}

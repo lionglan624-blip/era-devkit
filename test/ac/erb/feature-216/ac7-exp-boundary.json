@@ -1,0 +1,53 @@
+{
+  "name": "Feature 216 AC7: EXP Boundary Values",
+  "defaults": {
+    "character": "1"
+  },
+  "tests": [
+    {
+      "name": "EXP=0 returns 0 (none)",
+      "call": "TEST_GET_EXP_BRANCH",
+      "args": [0],
+      "state": {"EXP:TARGET:0": 0},
+      "expect": {
+        "output_contains": ["0"]
+      }
+    },
+    {
+      "name": "EXP=9 returns 0 (none)",
+      "call": "TEST_GET_EXP_BRANCH",
+      "args": [0],
+      "state": {"EXP:TARGET:0": 9},
+      "expect": {
+        "output_contains": ["0"]
+      }
+    },
+    {
+      "name": "EXP=10 returns 1 (few)",
+      "call": "TEST_GET_EXP_BRANCH",
+      "args": [0],
+      "state": {"EXP:TARGET:0": 10},
+      "expect": {
+        "output_contains": ["1"]
+      }
+    },
+    {
+      "name": "EXP=99 returns 1 (few)",
+      "call": "TEST_GET_EXP_BRANCH",
+      "args": [0],
+      "state": {"EXP:TARGET:0": 99},
+      "expect": {
+        "output_contains": ["1"]
+      }
+    },
+    {
+      "name": "EXP=100 returns 2 (many)",
+      "call": "TEST_GET_EXP_BRANCH",
+      "args": [0],
+      "state": {"EXP:TARGET:0": 100},
+      "expect": {
+        "output_contains": ["2"]
+      }
+    }
+  ]
+}

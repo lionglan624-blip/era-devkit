@@ -1,0 +1,9 @@
+{
+  "name": "AC5 CALLNAME:TARGET substitution",
+  "call": "AC5_TEST_CALLNAME_TARGET",
+  "character": "1",
+  "master": "0",
+  "expect": {
+    "output_contains": ["美鈴"]
+  }
+}

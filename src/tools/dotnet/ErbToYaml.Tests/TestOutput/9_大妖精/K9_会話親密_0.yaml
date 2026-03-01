@@ -1,0 +1,197 @@
+﻿character: 大妖精
+situation: K9_会話親密
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の言葉に優しく微笑みながら、じっと聞き入っている。
+
+    「――うん、そうなんだ…」
+
+    %CALLNAME:TARGET%は相槌を打ちながら%CALLNAME:MASTER%の話を聞いている。
+
+    「あ、そういえばね、チルノちゃんがこの前…」
+
+    %CALLNAME:TARGET%は幸せそうに新しい話を始めた。
+
+    穏やかな時間が二人の間を流れていく。
+
+    「――ふふ、%CALLNAME:MASTER%ってば」
+
+    %CALLNAME:TARGET%は柔らかく笑いながら、%CALLNAME:MASTER%の手にそっと自分の手を重ねた。
+
+    「こうして話してると、時間があっという間に過ぎちゃうね」
+
+    「…ずっと、こうしていたいな」
+
+    %CALLNAME:TARGET%は照れたように、でも嬉しそうに笑っている。
+
+    「――あのね、%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%はおずおずと口を開いた。
+
+    「わたし、%CALLNAME:MASTER%といる時が一番落ち着くの」
+
+    「チルノちゃんといる時も楽しいけど…%CALLNAME:MASTER%といると、心があったかくなるんだ」
+
+    %CALLNAME:TARGET%は頬を少し染めながら、幸せそうに微笑んだ。
+
+    「――ねえ、%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は何かを確かめるように%CALLNAME:MASTER%を見つめた。
+
+    「わたしと一緒にいて、幸せ…？」
+
+    うん、と答えると、%CALLNAME:TARGET%の目に涙が滲んだ。
+
+    「…よかった。わたしも、すごく幸せなの」
+
+    %CALLNAME:TARGET%は静かに%CALLNAME:MASTER%の胸に頬を寄せた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と話をしながら、ずっと%CALLNAME:MASTER%の顔を見つめている。
+
+    「――へえ、そうなんだ…」
+
+    %CALLNAME:TARGET%は興味深そうに%CALLNAME:MASTER%の話を聞いている。
+
+    「%CALLNAME:MASTER%って、いろんなこと知ってるんだね」
+
+    %CALLNAME:TARGET%は少し照れたように微笑んだ。
+
+    「わたしにも、もっと教えて…？」
+
+    「――あのね、今日ね、チルノちゃんがね…」
+
+    %CALLNAME:TARGET%は楽しそうに話し始めた。
+
+    「…って、ごめんね。わたしばっかり話しちゃって」
+
+    「%CALLNAME:MASTER%のお話も、聞きたいな」
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯きながらも、%CALLNAME:MASTER%を見上げた。
+
+    「――ねえ、%CALLNAME:MASTER%？」
+
+    %CALLNAME:TARGET%が唐突に声をかけてきた。
+
+    「わたしと話してて、つまらなくない…？」
+
+    楽しいよ、と答えると、%CALLNAME:TARGET%は安心したように息を吐いた。
+
+    「よかった…わたしも、%CALLNAME:MASTER%と話すの、好きだから…」
+
+    「――%CALLNAME:MASTER%、あのね…」
+
+    %CALLNAME:TARGET%は何か言いたげに口を開いた。
+
+    「今日は、チルノちゃんが湖で遊んでたの」
+
+    %CALLNAME:TARGET%は楽しそうにその様子を話している。
+
+    「あ、ごめんね、チルノちゃんの話ばっかりで…」
+
+    「でも、%CALLNAME:MASTER%に聞いてほしくて…」
+
+    %CALLNAME:TARGET%は少し頬を染めながら、照れくさそうに微笑んだ。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:TARGET%は控えめに微笑みながら%CALLNAME:MASTER%と話をしている。
+
+    「――うん、そうなんですか…」
+
+    %CALLNAME:TARGET%は静かに相槌を打っている。
+
+    「あの…もっと聞かせてもらっても、いいですか？」
+
+    %CALLNAME:TARGET%は遠慮がちにそう言った。
+
+    どうやら%CALLNAME:MASTER%の話に興味を持っているようだ。
+
+    「――あの、%CALLNAME:MASTER%さん…」
+
+    %CALLNAME:TARGET%は何か言いたそうにしていたが、首を横に振った。
+
+    「…ううん、なんでもないです」
+
+    %CALLNAME:TARGET%は少し寂しそうに微笑んだ。
+
+    何か気にかかることがあるのかもしれない。
+
+    「――えっと、%CALLNAME:MASTER%さんは、妖精とお話するの、慣れてますか…？」
+
+    %CALLNAME:TARGET%はおずおずと尋ねてきた。
+
+    「わたし、人間の人とお話するの、あまり経験なくて…」
+
+    %CALLNAME:TARGET%は遠慮がちに視線を落としている。
+
+    「…でも、%CALLNAME:MASTER%さんは、なんだか話しやすいです…」
+
+    %CALLNAME:TARGET%は小さく微笑んだ。
+
+    「――あの、この前、湖で…」
+
+    %CALLNAME:TARGET%は控えめに話し始めた。
+
+    「チルノちゃんが、すごい氷の花を作ったんです」
+
+    「きれいだったなぁ…」
+
+    %CALLNAME:TARGET%は嬉しそうに目を輝かせている。
+
+    「…あ、すみません、つまらない話でしたか…？」
+
+    %CALLNAME:TARGET%は急に不安そうな顔になった。
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:TARGET%は少し緊張した面持ちで%CALLNAME:MASTER%と話をしている。
+
+    「――あ、はい…そうなんですか」
+
+    %CALLNAME:TARGET%は控えめに相槌を打っている。
+
+    「あの…わたし、あまりお話が上手じゃなくて…」
+
+    %CALLNAME:TARGET%は申し訳なさそうに俯いた。
+
+    「――えっと、何のお話でしたっけ…」
+
+    %CALLNAME:TARGET%は少し困ったように首を傾げている。
+
+    「すみません、緊張しちゃって…」
+
+    「チルノちゃんならもっと上手に話せるのに…」
+
+    %CALLNAME:TARGET%は自信なさげに呟いた。
+
+    「――あの…」
+
+    %CALLNAME:TARGET%は遠慮がちに口を開いた。
+
+    「わたし、人間の人とあまりお話ししたことがなくて…」
+
+    「変なこと言ってたら、ごめんなさい…」
+
+    %CALLNAME:TARGET%は不安そうに%CALLNAME:MASTER%の顔色を窺っている。
+
+    背中の羽が、そわそわと小さく動いている。
+
+    「――…」
+
+    %CALLNAME:TARGET%は何か話そうとして、でも言葉が出てこないようだ。
+
+    「あの…お天気、いいですね…」
+
+    %CALLNAME:TARGET%は当たり障りのない話題を選んだ。
+
+    「……すみません、つまらない話で…」
+
+    %CALLNAME:TARGET%は申し訳なさそうに俯いた。
+  priority: 1

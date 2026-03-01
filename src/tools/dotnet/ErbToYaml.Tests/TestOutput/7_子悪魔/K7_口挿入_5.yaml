@@ -1,0 +1,239 @@
+﻿character: 子悪魔
+situation: K7_口挿入
+entries:
+- id: fallback
+  content: >-
+    「えへへ……%CALLNAME:MASTER%、あたしの足で気持ちよくなってね？」
+
+    %CALLNAME:TARGET%は嬉しそうに%CALLNAME:MASTER%の前に座り込んだ。
+
+    小さな足を伸ばして、%CALLNAME:MASTER%のものを足裏で挟み込む。
+
+    「んっ……こう？　あたしの足、柔らかい……？」
+
+    %CALLNAME:TARGET%は一生懸命な顔で足を上下に動かしている。
+
+    「あたし、%CALLNAME:MASTER%のこと大好きだから……いっぱいしてあげるの」
+
+    妖精の小さな足が、懸命に%CALLNAME:MASTER%を擦り上げていく……
+
+    「今日もあたしの足で、していい？」
+
+    %CALLNAME:TARGET%は満面の笑みで%CALLNAME:MASTER%の股間に足を伸ばした。
+
+    「むにゅ……んっ……挟まってる……ぷにぷにする……」
+
+    %CALLNAME:TARGET%は慣れた様子で足を動かし始めた。
+
+    「ふふっ……%CALLNAME:MASTER%の、あたしの足の間で元気になってる……」
+
+    嬉しそうに%CALLNAME:TARGET%は足指を動かしている。
+
+    「えへへ、いっぱい気持ちよくなってね……？」
+
+    「%CALLNAME:MASTER%……あたし、もっと上手にしたいの……」
+
+    %CALLNAME:TARGET%は真剣な表情で%CALLNAME:MASTER%の一物を足で挟んだ。
+
+    「だから……いっぱい練習させてね？」
+
+    小さな足裏が%CALLNAME:MASTER%のものを包み込み、ゆっくりと上下する。
+
+    「んしょ……こう動かすと、気持ちいいって……」
+
+    %CALLNAME:TARGET%は足指で先端をつつきながら、期待に満ちた目で見上げた。
+
+    「……ね、あたし、ちゃんとできてる……？」
+
+    「あ……%CALLNAME:MASTER%の、元気いっぱいだね……えへへ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の一物を愛おしそうに見つめた。
+
+    「あたしの足で擦ると、もっと元気になるかな……？」
+
+    %CALLNAME:TARGET%は嬉しそうに%CALLNAME:MASTER%の一物を足裏で挟んだ。
+
+    「ふふっ……ぴくってした……かわいい」
+
+    %CALLNAME:TARGET%はくすくす笑いながら、優しく足を動かしている。
+
+    「%CALLNAME:MASTER%……大好き。あたしの足でいっぱい出していいよ……？」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「え、えっと……あ、あたしの足で……するの……？」
+
+    %CALLNAME:TARGET%は真っ赤になりながら、おずおずと%CALLNAME:MASTER%のものに足を伸ばした。
+
+    「こ、こうすればいいの……？」
+
+    %CALLNAME:TARGET%は困惑しながらも、足裏で挟もうとした。
+
+    「んっ……熱い……こんなに硬いんだ……」
+
+    小さな足で精一杯挟もうとしている。
+
+    「……%CALLNAME:MASTER%、気持ちいい……ですか……？」
+
+    「あの……%CALLNAME:MASTER%のために……足で、頑張ります……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで%CALLNAME:MASTER%の一物を足で挟んだ。
+
+    「むにゅ……ぷにぷに……こういうの、初めてだから……」
+
+    ぎこちない動きで、%CALLNAME:TARGET%は懸命に足を動かしている。
+
+    「んしょ……こう……？」
+
+    一生懸命な%CALLNAME:TARGET%の姿は、どこか健気だった。
+
+    「……気持ちよくなって、くれたら……嬉しいな……」
+
+    「は、恥ずかしいよぅ……でも……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、%CALLNAME:MASTER%の一物を足で挟んだ。
+
+    「%CALLNAME:MASTER%が気持ちよくなるなら……あたし、頑張る……」
+
+    小さな足裏が%CALLNAME:MASTER%のものを包み、ゆっくりと動き出す。
+
+    「……んっ……ぬるっとしてきた……これ、気持ちいいってこと……？」
+
+    %CALLNAME:TARGET%は先走りの感触に驚きながらも、足を止めなかった。
+
+    「……%CALLNAME:MASTER%……あたしのこと、好き……？」
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は上目遣いに%CALLNAME:MASTER%を見つめた。
+
+    「あたし……%CALLNAME:MASTER%のこと、好きだから……」
+
+    恥ずかしそうに俯きながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%のものを足で挟んだ。
+
+    「だから……足で、させて……ね……？」
+
+    小さな足がたどたどしく動き、%CALLNAME:MASTER%に快感を与えようと頑張っている。
+
+    %CALLNAME:TARGET%は真剣な表情で、%CALLNAME:MASTER%の反応を見守っていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え……足で……これを……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の一物を見つめて固まっている。
+
+    「その……こういうこと、したことないです……」
+
+    おずおずと足を伸ばし、恐る恐る挟んでみる。
+
+    「わっ……熱い……ぴくって動いた……」
+
+    %CALLNAME:TARGET%は驚きながらも、言われた通りに足を動かし始めた。
+
+    「……こう……ですか……？　あたし、ちゃんとできてますか……？」
+
+    「あの……%CALLNAME:MASTER%……これって……」
+
+    %CALLNAME:TARGET%は戸惑いながら、%CALLNAME:MASTER%の一物を足で挟んだ。
+
+    「えっと……上下に動かせばいいんですよね……？」
+
+    ぎこちない動きで、%CALLNAME:TARGET%は見よう見まねで足を動かし始めた。
+
+    「……熱い……なんか、すごい……」
+
+    初めての感触に%CALLNAME:TARGET%は困惑しながらも、足を動かし続けている。
+
+    「……%CALLNAME:MASTER%……あたし、上手にできてますか……？」
+
+    「……はい……やります……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで%CALLNAME:MASTER%の前に座った。
+
+    「あの……足って、こういうことに使うんですか……？」
+
+    小さな足が震えながら%CALLNAME:MASTER%のものを挟み込んだ。
+
+    「……こう……？　もっと強く……？」
+
+    %CALLNAME:TARGET%は不安そうに%CALLNAME:MASTER%の顔色を窺いながら、足を動かしている。
+
+    「……%CALLNAME:MASTER%が満足してくれたら……嬉しいです……」
+
+    「……えっと……%CALLNAME:MASTER%のお手伝い……ですか？」
+
+    %CALLNAME:TARGET%は首を傾げながら、%CALLNAME:MASTER%の一物を見つめた。
+
+    「妖精メイドのお仕事……なのかな……変わったお仕事……」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%のものを足で挟んだ。
+
+    「……むにゅ……こうかな……」
+
+    たどたどしい動きで、%CALLNAME:TARGET%は懸命に足を動かし始めた。
+
+    「……咲夜さんには、絶対内緒ですよ……？」
+  priority: 2
+- id: fallback
+  content: >-
+    「え……えっ……あ、あたしの足で……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の一物を見つめて顔を青くした。
+
+    「あの……こういうの、あたしにはわからないです……」
+
+    困惑した表情で、%CALLNAME:TARGET%は後ずさりしようとした。
+
+    「……で、でも……やらないとダメ……ですか……」
+
+    観念したように、%CALLNAME:TARGET%は恐る恐る足を伸ばした。
+
+    「……う……こうですか……」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%の一物を見つめている。
+
+    「……あたし、こういうの、どうすればいいかわからないです……」
+
+    仕方なさそうに足を伸ばし、ぎこちなく挟んだ。
+
+    「……こう……ですか……」
+
+    機械的に足を動かしながら、%CALLNAME:TARGET%は視線を逸らしている。
+
+    「……早く終わってほしいな……」
+
+    「ひっ……こ、これを……足で……？」
+
+    %CALLNAME:TARGET%は怯えた表情で%CALLNAME:MASTER%のものを見つめた。
+
+    「あの……お仕事なら他のことの方が……」
+
+    %CALLNAME:TARGET%は逃げ出したそうな顔をしているが、従わざるを得ない。
+
+    「……う……足で触ります……」
+
+    嫌々ながら%CALLNAME:TARGET%は%CALLNAME:MASTER%のものを足裏で挟んだ。
+
+    「……こういうの、苦手なんです……ごめんなさい……」
+
+    「……%CALLNAME:MASTER%……なんでこんなこと……」
+
+    %CALLNAME:TARGET%は困惑と戸惑いの表情を浮かべている。
+
+    「あたし、お掃除とかお茶汲みの方が得意なんですけど……」
+
+    渋々と%CALLNAME:TARGET%は%CALLNAME:MASTER%の前に座った。
+
+    「……えっと……むにゅ……こう……？」
+
+    不慣れな動きで、%CALLNAME:TARGET%は足で%CALLNAME:MASTER%のものを挟み始めた。
+
+    「……咲夜さんに見つかったら、怒られちゃいます……」
+  priority: 1

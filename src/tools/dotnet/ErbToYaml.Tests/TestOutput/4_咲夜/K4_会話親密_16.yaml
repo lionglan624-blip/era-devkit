@@ -1,0 +1,40 @@
+﻿character: 咲夜
+situation: K4_会話親密
+entries:
+- id: fallback
+  content: >-
+    「ごめんなさい・・指輪は今はつけてないの。だって、私はお金で誰にでも身体を開く『公衆便所』だから・・」
+
+    「こんな汚れきった身体で、%CALLNAME:MASTER%が贈ってくれた指輪を身に着けるなんてできない・・」
+
+    「今の私にはこの首輪の方がふさわしいんだわ・・」
+
+    「いつか解放されたら、胸を張ってあの指輪を身に着けるわ」
+  priority: 3
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「ええ、指輪はもうつけてないの。だって、お客様が邪魔だって言うんですもの」
+
+    「つけている方が背徳的でいいとおっしゃる方もおみえだけど・・」
+
+    「それよりも、今の私にはこの首輪の方が似合うんじゃないかしら？」
+
+    「ごめんなさい、あの指輪はもうつけてないの。だって、私は『公衆便所』ですもの」
+
+    「%MSG_LOVER(奴隷)%のものである前に、お客様のものでないといけないの」
+
+    「だから指輪ではなくて、この首輪を身に着けているのよ♪」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: talent_6_2
+  content: '%"もう"+CALLNAME:MASTER+"のものではないのだから指輪をする必要は無いと言い切られた。"%'
+  priority: 1
+  condition:
+    type: Talent
+    talentType: 6
+    threshold: 1

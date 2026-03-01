@@ -1,0 +1,229 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……ん、%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は読みかけの魔導書を丁寧に閉じ、%CALLNAME:MASTER%の前に跪いた。
+
+    「本よりあなたを選ぶなんて……私も変わったものね」
+
+    %CALLNAME:TARGET%は静かに%CALLNAME:MASTER%のものを手に取り、唇を寄せた。
+
+    「……ん……熱いわ……あなたの体温」
+
+    淡々とした口調とは裏腹に、%CALLNAME:TARGET%の頬は微かに紅潮している。
+
+    「……もう少し、味わわせて」
+
+    「……ふぅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%のものを口に含み、ゆっくりと舌を這わせている。
+
+    大図書館の静寂の中に、微かな水音だけが響く。
+
+    「……ん……%CALLNAME:MASTER%、反応が……面白いわ」
+
+    %CALLNAME:TARGET%は観察するような目で%CALLNAME:MASTER%を見上げた。
+
+    「……私のせいで、そんな顔をするのね」
+
+    そう言って%CALLNAME:TARGET%は、微かに口角を上げた。
+
+    「……んっ……ちゅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%のものを丁寧に舐めている。
+
+    まるで貴重な文献を扱うかのような、慎重な口づけ。
+
+    「……あなたの味、覚えてしまったわ」
+
+    %CALLNAME:TARGET%は唇を離し、潤んだ瞳で%CALLNAME:MASTER%を見つめた。
+
+    「……これは、私だけの特権よ」
+
+    独占欲を滲ませながら、%CALLNAME:TARGET%は再び唇を寄せた。
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%のものに頬を寄せ、熱を確かめるように目を閉じた。
+
+    「……私は魔法使い。けれど、あなたの前では……ただの女になってしまうわ」
+
+    %CALLNAME:TARGET%は静かに口を開け、%CALLNAME:MASTER%を受け入れた。
+
+    「……ん……奥まで……いいわ」
+
+    普段の知的な雰囲気とは異なる、甘い表情を浮かべている。
+
+    「……あなたのために、動かない大図書館が動くの」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……こ、こういうこと……本で読んだことはあるけど」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%の前に跪いた。
+
+    「……実践するのは、初めてよ」
+
+    %CALLNAME:TARGET%は恥ずかしそうに視線を逸らしながら、%CALLNAME:MASTER%のものに唇を近づけた。
+
+    「……ん……」
+
+    ぎこちない動きで、%CALLNAME:TARGET%は舌を伸ばした。
+
+    「……こ、これで……いいの？」
+
+    「……むきゅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%のものを口に含み、困惑した声を漏らした。
+
+    「……思ったより……大きいわね」
+
+    %CALLNAME:TARGET%は頬を赤くしながら、懸命に奉仕を続けている。
+
+    「……ん……%CALLNAME:MASTER%、そんなに見ないで」
+
+    視線を感じて、%CALLNAME:TARGET%は更に顔を赤くした。
+
+    「……恥ずかしいじゃない」
+
+    「……こうすれば、いいのかしら」
+
+    %CALLNAME:TARGET%は不器用ながらも、%CALLNAME:MASTER%のものを舐めている。
+
+    「本には細かいやり方までは……書いてなかったの」
+
+    %CALLNAME:TARGET%は少し悔しそうに呟いた。
+
+    「……んっ……でも、あなたが喜ぶなら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応を窺いながら、舌を動かした。
+
+    「……教えてくれても、いいわよ」
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げ、小さく息を吐いた。
+
+    「……あなたのために、こんなことをするなんてね」
+
+    %CALLNAME:TARGET%は自嘲気味に笑いながら、%CALLNAME:MASTER%のものに口づけた。
+
+    「……ん……ちゅっ……」
+
+    恥ずかしそうにしながらも、%CALLNAME:TARGET%の動きには熱がこもっている。
+
+    「……嫌じゃないわ。あなただから」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……何をさせるつもり？」
+
+    %CALLNAME:TARGET%は淡々と言いながら、%CALLNAME:MASTER%のものを見つめた。
+
+    「……まあいいわ。観察対象として、興味がないわけじゃないし」
+
+    %CALLNAME:TARGET%は実験でも行うかのように、冷静に唇を寄せた。
+
+    「……ふぅん……こういう味なのね」
+
+    %CALLNAME:TARGET%は知識を得たとばかりに、小さく頷いた。
+
+    「……続きを、させてもらうわ」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%のものを口に含んだ。
+
+    「……ん……これが、人間の反応」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の変化を観察しながら、舌を動かしている。
+
+    「……興味深いわね。本で読むのとは違う」
+
+    淡々とした口調だが、頬が僅かに赤いのは気のせいではない。
+
+    「……もう少し、データを集めさせて」
+
+    「……こういう行為に、どんな意味があるのかしら」
+
+    %CALLNAME:TARGET%は独り言のように呟きながら、%CALLNAME:MASTER%に奉仕している。
+
+    「……ん……まあ、悪くはないわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応を見て、微かに表情を緩めた。
+
+    「……あなたが、そういう顔をするのは……少し、面白いわね」
+
+    冷静を装いながらも、%CALLNAME:TARGET%の声には微かな温かみがあった。
+
+    「……これは、研究の一環よ」
+
+    %CALLNAME:TARGET%は言い訳のように呟きながら、%CALLNAME:MASTER%のものを舐めた。
+
+    「……ん……別に、あなただから……というわけじゃ」
+
+    %CALLNAME:TARGET%は目を逸らしながら、ぎこちなく奉仕を続けている。
+
+    「……ふぅ……こんなこと、誰にも言わないでね」
+
+    普段の冷静さが少し揺らいでいる%CALLNAME:TARGET%がそこにいた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の冗談かしら」
+
+    %CALLNAME:TARGET%は冷ややかな目で%CALLNAME:MASTER%を見た。
+
+    「私にそんなことをさせようなんて」
+
+    %CALLNAME:TARGET%は呆れたように溜息をついた。
+
+    「……まあいいわ。暇つぶしには丁度いいかもね」
+
+    そう言って%CALLNAME:TARGET%は、無表情のまま%CALLNAME:MASTER%のものに唇を寄せた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%のものを舐めている。
+
+    その動きは淡々として、感情が読み取れない。
+
+    「……これで満足？」
+
+    %CALLNAME:TARGET%は退屈そうに問いかけた。
+
+    「早く終わらせて、読書に戻りたいのだけど」
+
+    「……下らない行為ね」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%のものを手に取りながら、冷めた声で言った。
+
+    「本から得られる知識の方が、よほど価値があるわ」
+
+    %CALLNAME:TARGET%は義務的に奉仕を続けている。
+
+    「……ふぅ……まあ、悪くはないけど」
+
+    口ではそう言いながら、%CALLNAME:TARGET%は奉仕を止めなかった。
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついて、%CALLNAME:MASTER%の前に跪いた。
+
+    「仕方ないわね。言うことを聞いてあげるわ」
+
+    %CALLNAME:TARGET%は面倒臭そうに%CALLNAME:MASTER%のものに口づけた。
+
+    「……ん……」
+
+    嫌々ながらも、%CALLNAME:TARGET%の動きには最低限の丁寧さがあった。
+
+    「……これで、しばらくは大人しくしていなさい」
+  priority: 1

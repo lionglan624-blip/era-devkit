@@ -1,0 +1,22 @@
+{
+  "name": "sc-005: NTR保護（親愛状態）",
+  "description": "親愛=1 の場合、好感度低+屈服度高でもNTR陥落しないことを確認",
+  "add_characters": [1],
+  "characters": {
+    "紅美鈴": {
+      "CFLAG:2": 500,
+      "CFLAG:21": 2500,
+      "TALENT:148": 1
+    }
+  },
+  "copy": [
+    {"from": "紅美鈴", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]"],
+    "output_not_contains": ["陥落(NTR)を獲得"],
+    "var_equals": {
+      "TALENT:1:101": 0
+    }
+  }
+}

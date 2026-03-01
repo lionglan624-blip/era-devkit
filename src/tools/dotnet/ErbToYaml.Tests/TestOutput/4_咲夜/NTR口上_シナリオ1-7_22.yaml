@@ -1,0 +1,48 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ1-7
+entries:
+- id: fallback
+  content: >-
+    「んっ・・じゅっ・・ちゅっ%S_HEART%・・んっんんっ%S_HEART%」
+
+    「ん・・ちゅっ%S_HEART%・・んむっ・・ちゅぱっ%S_HEART%」
+
+    「ちゅっ%S_HEART%・・ちゅ%S_HEART%・・ぢゅるっ・・ちゅぱっ%S_HEART%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・じゅっ・・ちゅっ%S_HEART%・・んっんんっ%S_HEART%」
+
+    「ん・・ちゅっ%S_HEART%・・んむっ・・ちゅぱっ%S_HEART%」
+
+    「ちゅっ%S_HEART%・・ちゅ%S_HEART%・・ぢゅるっ・・ちゅぱっ%S_HEART%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・じゅっ・・ちゅっ%S_HEART%・・んっんんっ%S_HEART%」
+
+    「ん・・ちゅっ%S_HEART%・・んむっ・・ちゅぱっ%S_HEART%」
+
+    「ちゅっ%S_HEART%・・ちゅ%S_HEART%・・ぢゅるっ・・ちゅぱっ%S_HEART%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・むぅ・・むぅう・・うぅ・・・%S_HEART%」
+
+    「ん・・ちゅっ%S_HEART%・・んむっ・・んっ・・%S_HEART%」
+
+    「ちゅっ%S_HEART%・・ちゅ・・ちゅぱっ・・%S_HEART%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・むぅ・・むぅう・・うぅ・・・」
+
+    「ん・・ちゅっ・・んむっ・・んっ・・」」
+
+    「ちゅっ・・ちゅ・・ちゅぱっ・・」
+  priority: 1
+  displayMode: newline

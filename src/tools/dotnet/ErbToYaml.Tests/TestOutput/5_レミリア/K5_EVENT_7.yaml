@@ -1,0 +1,11 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: fallback
+  content: >-
+    「まだ出るでしょう？
+
+    「こんなものじゃないでしょう？
+
+    「いつももっと頑張ってるじゃない？
+  priority: 1

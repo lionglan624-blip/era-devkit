@@ -1,0 +1,239 @@
+﻿character: 魔理沙
+situation: K10_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%、今日は私が後ろからいくぜ」
+
+    %CALLNAME:人物_魔理沙%は四つん這いの%CALLNAME:MASTER%の背後に立った。
+
+    「お前の背中、見てると……なんか、守りたくなるな」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の腰を掴み、ゆっくりと挿入した。
+
+    「くっ……お前の中、熱いな……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の背中に身を寄せながら、腰を動かした。
+
+    「んっ……こうやって後ろから抱くの、悪くないぜ……」
+
+    「ふふっ……%CALLNAME:MASTER%、四つん這いで待ってろよ」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の尻を軽く叩いた。
+
+    「私が主導するってのも、たまにはいいだろ？」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%のアナルに先端を押し当てた。
+
+    「あっ……入っていく……お前の中、きついな……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の腰を掴みながら、深く繋がった。
+
+    「お前の声……もっと聞かせてくれよ……」
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:人物_魔理沙%は四つん這いの%CALLNAME:MASTER%を後ろから抱きしめた。
+
+    「お前のこと、後ろから見るのも……いいもんだな」
+
+    %CALLNAME:人物_魔理沙%はゆっくりと%CALLNAME:MASTER%の中に侵入した。
+
+    「くっ……んっ……こうやって繋がってると……幸せだぜ……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の背中にキスをしながら、腰を動かした。
+
+    「お前のこと……もっと感じさせてやるからな……」
+
+    「今日は私が攻める番だぜ、%CALLNAME:MASTER%」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の背後に立ちながら、得意げに笑った。
+
+    「お前、いつも私を気持ちよくしてくれるからな……お返しだぜ」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%のアナルを押し広げながら挿入した。
+
+    「あっ……お前の中……私を締め付けてる……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%と深く繋がりながら、幸せそうに息を吐いた。
+
+    「……私のペースに任せろよ……気持ちよくしてやるから……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……私が、後ろから……するのか……」
+
+    %CALLNAME:人物_魔理沙%は緊張した面持ちで%CALLNAME:MASTER%の背後に立った。
+
+    「こ、こういうの……初めてだから……緊張するな……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の腰を掴み、ゆっくりと挿入した。
+
+    「くっ……お前の中……熱いぜ……」
+
+    %CALLNAME:人物_魔理沙%は顔を赤くしながら、腰を動かした。
+
+    「……%CALLNAME:MASTER%……気持ちいいか……？」
+
+    「え……私が主導するの……？」
+
+    %CALLNAME:人物_魔理沙%は戸惑いながらも、%CALLNAME:MASTER%の背後に立った。
+
+    「ま、まあ……やってみるぜ……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%のアナルに先端を押し当てた。
+
+    「んっ……入って……いく……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%と繋がりながら、小さく息を漏らした。
+
+    「……%CALLNAME:MASTER%……こ、こんな感じでいいのか……？」
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の背後に立ち、躊躇いがちに腰を掴んだ。
+
+    「後ろからって……なんか、恥ずかしいな……」
+
+    %CALLNAME:人物_魔理沙%はゆっくりと%CALLNAME:MASTER%の中に入っていった。
+
+    「くっ……あ……お前の中、きつい……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の背中を見つめながら、腰を動かした。
+
+    「……%CALLNAME:MASTER%……嫌じゃ……ないか……？」
+
+    「わ、私が攻める側か……緊張するぜ……」
+
+    %CALLNAME:人物_魔理沙%は四つん這いの%CALLNAME:MASTER%を見下ろした。
+
+    「お前のこういう姿、見るの……初めてだな……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%のアナルを押し広げながら挿入した。
+
+    「あっ……んっ……お前の中……私を包んでる……」
+
+    %CALLNAME:人物_魔理沙%は頬を染めながら、%CALLNAME:MASTER%と深く繋がった。
+
+    「……%CALLNAME:MASTER%……もっと、声……聞かせてくれよ……」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……え、私が……後ろから……？」
+
+    %CALLNAME:人物_魔理沙%は困惑しながらも、%CALLNAME:MASTER%の背後に立った。
+
+    「こ、こういうの……どうすればいいんだ……」
+
+    %CALLNAME:人物_魔理沙%は言われるままに%CALLNAME:MASTER%のアナルに挿入した。
+
+    「くっ……入った……お前の中、熱いぜ……」
+
+    %CALLNAME:人物_魔理沙%は戸惑いながらも、腰を動かした。
+
+    「……%CALLNAME:MASTER%さん……こ、これでいいのか……？」
+
+    「私が……主導……するのか……？」
+
+    %CALLNAME:人物_魔理沙%は戸惑った顔で%CALLNAME:MASTER%を見た。
+
+    「言われた通りにするけど……ちゃんとできるかな……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の腰を掴み、ゆっくりと入っていった。
+
+    「んっ……あ……お前の中……きつい……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%と繋がりながら、不安そうに息を吐いた。
+
+    「……%CALLNAME:MASTER%さん……痛く……ないか……？」
+
+    「……%CALLNAME:MASTER%さん」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の背後に立ち、躊躇した。
+
+    「本当に……私が……していいのか……？」
+
+    %CALLNAME:人物_魔理沙%は言われるままに%CALLNAME:MASTER%の中に入っていった。
+
+    「くっ……んっ……こういう感覚……初めてだぜ……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の背中を見つめながら、ぎこちなく腰を動かした。
+
+    「……%CALLNAME:MASTER%さん……ゆっくり……やるから……」
+
+    「こ、こうすればいいのか……？」
+
+    %CALLNAME:人物_魔理沙%は混乱しながらも%CALLNAME:MASTER%の背後に立った。
+
+    「言われた通りにするぜ……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%のアナルを押し広げながら挿入した。
+
+    「あっ……入って……いく……」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%と繋がりながら、困惑した表情を浮かべた。
+
+    「……%CALLNAME:MASTER%さん……これで……いいんだよな……？」
+  priority: 2
+- id: fallback
+  content: >-
+    「……私にこんなことさせるのか」
+
+    %CALLNAME:人物_魔理沙%は冷めた目で%CALLNAME:MASTER%の背後に立った。
+
+    「変な趣味してるな……まあいいけどさ」
+
+    %CALLNAME:人物_魔理沙%は言われるままに%CALLNAME:MASTER%のアナルに挿入した。
+
+    「……っ……入ったぜ……」
+
+    %CALLNAME:人物_魔理沙%は淡々と腰を動かした。
+
+    「……さっさと終わらせるぜ……」
+
+    「私が後ろからか……随分な注文だな」
+
+    %CALLNAME:人物_魔理沙%は溜息をつきながら%CALLNAME:MASTER%の背後に立った。
+
+    「まあ、言われた通りにしてやるぜ」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%の腰を掴み、挿入した。
+
+    「……っ……こんなもんか……」
+
+    %CALLNAME:人物_魔理沙%は無表情のまま腰を動かした。
+
+    「……早く終わらせようぜ……」
+
+    「……勝手にしろよ」
+
+    %CALLNAME:人物_魔理沙%は諦めたように%CALLNAME:MASTER%の背後に立った。
+
+    「こういうの……面倒だぜ」
+
+    %CALLNAME:人物_魔理沙%は言われるままに%CALLNAME:MASTER%の中に入っていった。
+
+    「……っ……入ったぞ……」
+
+    %CALLNAME:人物_魔理沙%は感情を押し殺したまま、腰を動かした。
+
+    「……付き合ってやるぜ……」
+
+    「人間って……変なことさせるよな」
+
+    %CALLNAME:人物_魔理沙%は呆れたように%CALLNAME:MASTER%の背後に立った。
+
+    「私が攻める側か……まあいいけどさ」
+
+    %CALLNAME:人物_魔理沙%は%CALLNAME:MASTER%のアナルに挿入した。
+
+    「……っ……こんな感じか……」
+
+    %CALLNAME:人物_魔理沙%は冷めた目で腰を動かした。
+
+    「……どうせ、終わるまで待てばいいんだろ……」
+  priority: 1

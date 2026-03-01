@@ -1,0 +1,215 @@
+﻿character: パチュリー
+situation: K3_口挿入
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%……ここを、舐めればいいのね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の秘所に顔を近づけた。
+
+    本で読んだ知識はあるが、実践するのは初めてだ。
+
+    「……こう……すれば……いいのかしら……」
+
+    %CALLNAME:TARGET%の舌が恐る恐る%CALLNAME:MASTER%の敏感な場所を舐めた。
+
+    「……むきゅ……本とは、違う感触ね……」
+
+    %CALLNAME:TARGET%は学者らしく感想を呟きながら、舌を動かし続けた。
+
+    「……あなたのために……こうするのは、嫌じゃないわ……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに%CALLNAME:MASTER%の股間に口づけた。
+
+    大図書館の静寂の中で、小さな水音が響く。
+
+    「……ここが、敏感なの……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応を観察しながら舌を這わせた。
+
+    「……あなたの体を知れて……嬉しいわ……」
+
+    %CALLNAME:TARGET%は頬を染めながら、奉仕を続けた。
+
+    「……もっと……舌を深く入れて欲しい……？」
+
+    %CALLNAME:TARGET%は珍しく積極的に問いかけた。
+
+    普段は本に埋もれている知識の魔女が、愛する人のために舌を動かしている。
+
+    「……んっ……私の舌で……気持ちいい……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の表情を見上げた。
+
+    「……愛しているから……こんなこと、してあげるのよ……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに告白した。
+
+    「……ふふ……反応が、よくわかるわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の体の変化を感じ取っていた。
+
+    「……ここを……こうすると……」
+
+    %CALLNAME:TARGET%の舌が丁寧に秘所を愛撫する。
+
+    「……むきゅ……あなたの味……覚えたわ……」
+
+    %CALLNAME:TARGET%は恥ずかしさを隠すように呟いた。
+
+    「……これからも……させてくれる……？」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……%CALLNAME:MASTER%……こんなこと……するの……？」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%の秘所に顔を近づけた。
+
+    「……んっ……舌で……舐めれば……いいのね……」
+
+    %CALLNAME:TARGET%はぎこちなく舌を伸ばした。
+
+    「……本で読んだことはあるけれど……実際にするのは……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を伏せながら、舌を動かし始めた。
+
+    「……あ……こうするの……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応を窺いながら舌を這わせた。
+
+    「……私が……こんなことをするなんて……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに顔を赤らめた。
+
+    「……でも……嫌じゃないの……むきゅ……」
+
+    %CALLNAME:TARGET%は小さく呟きながら奉仕を続けた。
+
+    「……んっ……もっとこう……した方がいい……？」
+
+    %CALLNAME:TARGET%は恥ずかしげに確認した。
+
+    「……あなたに奉仕していると思うと……」
+
+    %CALLNAME:TARGET%は複雑な表情を浮かべた。
+
+    「……嬉しいような……恥ずかしいような……」
+
+    %CALLNAME:TARGET%は正直な気持ちを漏らしながら舌を動かした。
+
+    「……ぁ……こんなに見られながら……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の視線を感じて身をよじった。
+
+    「……私の舌……上手……？」
+
+    %CALLNAME:TARGET%は恐る恐る聞いた。
+
+    「……むきゅ……聞かなければよかった……」
+
+    %CALLNAME:TARGET%は自分の発言に赤面しながらも、奉仕を止めなかった。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……これは……どういうつもりかしら……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%の秘所に顔を近づけた。
+
+    「……舌で……こうすれば……いいのね……」
+
+    %CALLNAME:TARGET%はぎこちなく舌を動かした。
+
+    「……本で読んだ知識によれば……愛情表現の一種……らしいけれど……」
+
+    %CALLNAME:TARGET%は分析しようとしながら、舌を這わせた。
+
+    「……あ……ここは……敏感なのね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応を観察していた。
+
+    「……興味深いわ……体の構造として……」
+
+    %CALLNAME:TARGET%は学者らしく分析を試みた。
+
+    「……むきゅ……もう少し……研究させて……」
+
+    %CALLNAME:TARGET%は奇妙な言い訳をしながら舌を動かした。
+
+    「……奇妙な味ね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の秘所を舐めながら呟いた。
+
+    「……これが……人間の……」
+
+    %CALLNAME:TARGET%は冷静を装いながらも、頬が赤い。
+
+    「……でも……んっ……やめる気はないわ……」
+
+    %CALLNAME:TARGET%は意外な発言をした。
+
+    「……あなた……何故こんなことを……させるの……」
+
+    %CALLNAME:TARGET%は困惑しながらも舌を動かし続けた。
+
+    「……んっ……別に嫌ではないけれど……」
+
+    %CALLNAME:TARGET%は素直になれない様子だ。
+
+    「……もう少しだけ……続けるわ……」
+
+    %CALLNAME:TARGET%は小さく呟いた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何故私がこんなことを……」
+
+    %CALLNAME:TARGET%は冷たい目で%CALLNAME:MASTER%を見上げた。
+
+    「……こんな場所を舐めるなんて……理解できないわ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せながらも舌を動かした。
+
+    「……早く終わらせて。本を読む時間が減るわ」
+
+    %CALLNAME:TARGET%は淡々と言いながら義務的に奉仕した。
+
+    「……むきゅ……何故私がこんな目に……」
+
+    %CALLNAME:TARGET%は不満を隠さなかった。
+
+    「……行為としては、興味がないわけではないけれど……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の秘所を舐めながら分析した。
+
+    「……あなたのためにしているわけではないわ」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……」
+
+    %CALLNAME:TARGET%は無表情のまま、%CALLNAME:MASTER%に奉仕していた。
+
+    頭の中では、次に読む本のことを考えている。
+
+    「……終わったら、すぐに大図書館から出て行って」
+
+    %CALLNAME:TARGET%は舌を動かしながら冷淡に言った。
+
+    「……むきゅ……時間の無駄だわ」
+
+    「……これは単なる生理的行為に過ぎないわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を舐めながら切り捨てるように言った。
+
+    「……機械的にしているだけで、何も意味はないの」
+
+    %CALLNAME:TARGET%は理論武装した。
+
+    「……早く終わらせなさい。私は本を読みたいの」
+
+    %CALLNAME:TARGET%は事務的に奉仕を続けた。
+  priority: 1

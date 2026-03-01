@@ -1,0 +1,34 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「っふ、っん、っん・・・・」
+
+    「ねえ・・おまたが切ないの・・・・」
+
+    「ああ・・おまた、熱いよぉ・・」
+
+    「んふっ・・ジンジンするぅ・・%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「っふ、っん、っん・・・・」
+
+    「ねえ・・おまたが切ないの・・・・」
+
+    「ああ・・おまた、熱いよぉ・・」
+
+    「んふっ・・ジンジンするぅ・・%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・大きなおちんちん、%CALLNAME:奴隷%のおまんこにぴったりくっついてくるよぉ・・」
+
+    「・・ああン・・おちんちん、こすれてるぅ・・」
+
+    「・・ううン・・あそこが、こすれて・・熱いよぅ・・」
+  priority: 1
+  displayMode: newline

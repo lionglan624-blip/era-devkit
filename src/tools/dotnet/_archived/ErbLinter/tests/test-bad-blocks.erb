@@ -1,0 +1,33 @@
+; Test file with block matching errors
+; Should produce multiple ERB001/ERB002 errors
+
+@TEST_BAD_BLOCKS
+
+; ERB001: IF without ENDIF
+IF FLAG:0 == 1
+    PRINTL Missing ENDIF
+
+; ERB001: ENDIF without IF
+ENDIF
+
+; ERB002: FOR without NEXT
+FOR LOCAL, 0, 10
+    PRINTL Missing NEXT
+
+; ERB002: NEXT without FOR
+NEXT
+
+; ERB002: Mismatched blocks (IF closed with NEXT)
+IF FLAG:1
+    PRINTL Wrong closer
+NEXT
+
+; ERB002: REPEAT without REND
+REPEAT 5
+    PRINTL Missing REND
+
+; ERB002: WHILE without WEND
+WHILE FLAG:0
+    PRINTL Missing WEND
+
+RETURN

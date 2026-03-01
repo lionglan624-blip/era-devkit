@@ -1,0 +1,26 @@
+﻿character: 大妖精
+situation: WC系口上
+entries:
+- id: talent_3_0
+  content: >-
+    「……あは♪　そんなに、気持ちよかったですか？
+
+    「わぁ〜♪　%CALLNAME:MASTER%って、本当に敏感ですよね。
+
+    じゃあ、もっとしてあげちゃいますね、うふふ♪」
+
+    すぐ震えちゃって、とっても触り甲斐がありますよ♪」
+
+    もっともっと、エッチな悪戯しちゃいますよ？」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「きゃっ！？　わ……す、すみません……
+
+    「あっ、あの、そんなに驚くなんて、思ってなくて……
+  priority: 1

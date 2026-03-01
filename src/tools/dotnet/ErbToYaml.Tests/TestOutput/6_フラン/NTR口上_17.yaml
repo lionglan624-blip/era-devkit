@@ -1,0 +1,39 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「これ、一緒に気持ちよくなれるね♪」
+
+    「うふ♪ 一緒に気持ちよくなろうね%MSG_HEART()%」
+
+    「んふっ、気持ちよくしてあげる♪」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「これ、一緒に気持ちよくなれるね♪」
+
+    「うふ♪ 一緒に気持ちよくなろうね%MSG_HEART()%」
+
+    「んふっ、気持ちよくしてあげる♪」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「お尻見せながらおちんちん舐めたらいいんだね♪
+
+    「おちんちんしゃぶるの？ でも、%CALLNAME:奴隷%のぜんぶみえちゃう♪」
+
+    「おまた見せながらおしゃぶり・・？ うん、いいよ・・%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「お尻見せながらおちんちん舐めたらいいんだね♪
+
+    「おちんちんしゃぶるの？ でも、%CALLNAME:奴隷%のぜんぶみえちゃう♪」
+
+    「おまた見せながらおしゃぶり・・？ うん、いいよ・・%MSG_HEART()%」
+  priority: 1
+  displayMode: newline

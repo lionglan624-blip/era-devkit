@@ -1,0 +1,12 @@
+﻿character: フラン
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「うん、あの人のところから。えへへ、あの人、いっぱい可愛がってくれたよ」
+
+    「抱かれてきたのかって？ うん、してきたよ」
+
+    「セックスしてきたのかって？ うん。もちろんだよ」
+  priority: 1
+  displayMode: newline

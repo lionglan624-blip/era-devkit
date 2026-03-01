@@ -1,0 +1,40 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は呻き声共に精を解き放った。
+
+    欲望を高めれば挿入して貰えると頑張りすぎたらしい。
+
+    「あーん、でちゃったぁ。 ・・・・まだ終わらないよね？」
+
+    「やぁん、出しちゃったのぉ？ でもこれなら、まだデキるよね？」
+
+    「あぁん、もったいなぁい！ ねぇ・・今度は、%CALLNAME:奴隷%のナカだよね？」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は呻き声共に精を解き放った。
+
+    欲望を高めれば挿入して貰えると頑張りすぎたらしい。
+
+    「あーん、でちゃったぁ。 ・・・・まだ終わらないよね？」
+
+    「やぁん、出しちゃったのぉ？ でもこれなら、まだデキるよね？」
+
+    「あぁん、もったいなぁい！ ねぇ・・今度は、%CALLNAME:奴隷%のナカだよね？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    腰の動きだけでなく亀頭に掌で刺激を加えると間もなく射精が始まった。
+
+    「んっ、んっっ・・・・んんんんっっっ！」
+
+    「あっ・・い、イくっ、%CALLNAME:奴隷%も、イくっ！！」
+
+    「あっ、びくびくっ、って！」
+  priority: 1
+  displayMode: newline

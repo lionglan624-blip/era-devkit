@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「あら？ ちゃんと『仕事』に励んでいるみたいね？」
+
+    「ふふっ、上出来ね。もっともっと汚れなさい」
+
+    「ふふっ、誰を相手に勤めを果たしたのかしら？」
+  priority: 1
+  displayMode: newline

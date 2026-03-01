@@ -1,0 +1,10 @@
+﻿character: チルノ
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    「ねぇねぇ、こんなふうにされるの、好き？」
+
+    「お〜、むにむにぃ♪」
+  priority: 1
+  displayMode: newline

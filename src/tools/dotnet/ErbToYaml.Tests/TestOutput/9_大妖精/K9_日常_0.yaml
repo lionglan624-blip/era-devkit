@@ -1,0 +1,12 @@
+﻿character: 大妖精
+situation: K9_日常
+entries:
+- id: fallback
+  content: >-
+    「こ、こっちです！」
+
+    「いいから来てください！！」
+
+    「は、早くっ！！」
+  priority: 1
+  displayMode: newline

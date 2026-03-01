@@ -1,0 +1,54 @@
+﻿character: 美鈴
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「・・ちゅっ、ちゅっ・・・ふぁ・・んっ、れる・・♪」
+
+    「ちゅ・・ん・・♪」
+
+    「キスして・・ください・・ん・・♪」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・ちゅっ、ちゅっ・・・ふぁ・・んっ、れる・・♪」
+
+    「ちゅ・・ん・・♪」
+
+    「キスして・・ください・・ん・・♪」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・ちゅっ、ちゅっ・・・ふぁ・・んっ、れる・・」
+
+    「ちゅ・・ん・・」
+
+    「キスして・・ください・・ん・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ
+
+    「ん
+
+    「うんっ
+  priority: 3
+- id: fallback
+  content: >-
+    「えっ？　んっ
+
+    「なに・・んっ！
+
+    「んっ！？
+  priority: 2
+- id: fallback
+  content: >-
+    「えっ？　んっ
+
+    「なに・・んっ！
+
+    「んっ！？
+  priority: 1

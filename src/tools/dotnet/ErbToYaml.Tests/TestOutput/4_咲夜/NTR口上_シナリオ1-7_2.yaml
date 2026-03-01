@@ -1,0 +1,30 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ1-7
+entries:
+- id: fallback
+  content: >-
+    「んっ う・・ん・・%S_HEART%」
+
+    「ん・・く・・んん・・%S_HEART%」
+
+    「んっ・・ん・・う・・ううん・・%S_HEART%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ？　んっ、んむぅっ！！ う・・ん・・」
+
+    「やっ・・んんっ！ ん・・く・・んん・・」
+
+    「んんっ！？ んっ・・ん・・う・・ううん・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ？　んっ、んむぅっ！！」
+
+    「やっ・・んんっ！」
+
+    「んんっ！？ ん・・」
+  priority: 1
+  displayMode: newline

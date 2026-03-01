@@ -1,0 +1,20 @@
+{
+  "name": "TEMPLATE: Feature Name / Scenario Name",
+  "call": "KOJO_MESSAGE_COM_KX_XXX",
+  "character": "X",
+  "state": {
+    "SELECTCOM": 300,
+    "TARGET": 1,
+    "MASTER": 0,
+    "CFLAG:TARGET:好感度": 1000,
+    "CFLAG:TARGET:屈服度": 1000,
+    "BASE:TARGET:体力": 1000,
+    "BASE:TARGET:気力": 1000,
+    
+    "//_COMMENT": "Add specific flags below (e.g. TALENT:恋慕, CFLAG:NTR...)"
+  },
+  "inputs": [],
+  "expect": {
+    "output_contains": "Expected Dialogue Text"
+  }
+}

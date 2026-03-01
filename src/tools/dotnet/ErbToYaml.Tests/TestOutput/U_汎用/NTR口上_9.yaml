@@ -1,0 +1,57 @@
+﻿character: 汎用
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んっ、あんまり強くしないで・・ね%MSG_HEART()%」
+
+    「うん・・もぉ・・こんなところで・・%MSG_HEART()%」
+
+    「ん・・やぁん・・%MSG_HEART()%」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ、あんまり強くしないで・・ね%MSG_HEART()%」
+
+    「うん・・もぉ・・こんなところで・・%MSG_HEART()%」
+
+    「ん・・やぁん・・%MSG_HEART()%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ、あんまり強くしないで・・」
+
+    「うん・・もぉ・・こんなところで・・」
+
+    「ん・・やぁん・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「だっ、だめ・・離して・・もう・・」
+
+    「や、やだ・・もぉ・・こんなところで・・」
+
+    「ん・・やぁ・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「やっ、やめ・・離して！」
+
+    「や、やだ・・やめて！！」
+
+    「い、いやぁ・・嫌ああっ！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「なっ！どこさわってっ！！」
+
+    「や、やだあ！」
+
+    「なっ！？」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,52 @@
+﻿character: パチュリー
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「うっ・・ぐっ・・無理矢理は、やめてっ・・ううっ！」
+
+    「ううっ・・い、いやああっ・・んぐうっ！ んむうっ！」
+
+    「んっ・・んむっ・・いきなりはやめて・・う、うぐっ！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「うっ・・うぐっ・・んんっ・・ううっ！！」
+
+    「ううっ・・い、いやああっ・・んぐうっ！ んむうっ！」
+
+    「んっ・・んむっ・・だ、だめええっ・・ああっ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: 「んっ・・ちゅく・・ちゅく・・ちゅく・・」
+  priority: 5
+- id: fallback
+  content: >-
+    「んっ・・ちゅく・・ちゅく・・ちゅく・・」
+
+    %CALLNAME:奴隷%は客のペニスを自ら頬張りながら秘所を濡らした。
+  priority: 4
+- id: fallback
+  content: >-
+    「んっ・・ちゅく・・ちゅく・・ちゅく・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%のペニスを自ら頬張りながら秘所を濡らした。
+  priority: 3
+- id: fallback
+  content: >-
+    「んっ・・ちゅく・・ちゅく・・ちゅく・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%のペニスを自ら頬張りながら秘所を濡らした。
+  priority: 2
+- id: fallback
+  content: >-
+    「んっ・・ちゅく・・ちゅく・・ちゅく・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%のペニスを頬張りながら秘所を濡らした。
+  priority: 1

@@ -1,0 +1,12 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「あぁ！？ ちくびとクリいっしょにしちゃ・・・・イッ・・・・ぅぅぅぅんんん・・・・！！」
+
+    「んっ！ くるっ！！ すごいの、くるうぅぅぅぅ・・！！」
+
+    「そ、そこ、そこおおおおっ！ いいのおっ！！」
+  priority: 1
+  displayMode: newline

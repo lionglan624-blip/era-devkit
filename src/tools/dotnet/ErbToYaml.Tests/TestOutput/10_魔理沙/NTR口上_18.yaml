@@ -1,0 +1,30 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「きて…いっぱい、いっぱい出してっ…んっ、んんんんっ！！」
+
+    「早くっ…精液、いっぱい出してっ…んんんんんっ！！」
+
+    「んっ…イく…？ 出る…？ んむっ、んっ！ んんんんっ！！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「きて…いっぱい、いっぱい出してっ…んっ、んんんんっ！！」
+
+    「早くっ…精液、いっぱい出してっ…んんんんんっ！！」
+
+    「んっ…イく…？ 出る…？ んむっ、んっ！ んんんんっ！！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ…だ、だめっ、んんっ！ んんんんんっ！！」
+
+    「いやっ…うっ、うぐっ！！ うううううううっ！！」
+
+    「んっ…いやあっ…ううっ、うぐううーーーーっ！！」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,197 @@
+﻿character: 大妖精
+situation: K9_会話親密
+entries:
+- id: fallback
+  content: >-
+    「んっ……%CALLNAME:MASTER%の手、あったかい……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に身を預けながら、胸を優しく触れられている。
+
+    小さな胸が%CALLNAME:MASTER%の掌の中で柔らかく形を変える。
+
+    「あ……そこ、敏感なの……知ってるでしょ……？」
+
+    %CALLNAME:TARGET%の羽が幸せそうにぴくぴくと震えている。
+
+    「……%CALLNAME:MASTER%に触られると……安心するんだよ……」
+
+    「ひゃっ……あぁ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の胸の膨らみを優しく包み込んでいる。
+
+    %CALLNAME:TARGET%は甘い吐息を漏らしながら、%CALLNAME:MASTER%の腕にしがみついた。
+
+    「……わたしの胸、小さいけど……%CALLNAME:MASTER%は好き……？」
+
+    不安そうに見上げる瞳は、答えを求めて揺れていた。
+
+    「……嬉しいな……そう言ってくれると……」
+
+    「あっ……んぅ……そんなに優しくされたら……」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の胸を丁寧に愛撫している。
+
+    %CALLNAME:TARGET%は恥ずかしそうに頬を染めながら、身を捩った。
+
+    「チルノちゃんには……絶対、見せられないね……こんな顔……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「……でも、%CALLNAME:MASTER%だけには……全部見せてあげるね……」
+
+    「んっ……ふぁ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%の小さな胸が%CALLNAME:MASTER%の手に包まれている。
+
+    指先が敏感な突起に触れる度に、%CALLNAME:TARGET%の体がびくりと震える。
+
+    「……%CALLNAME:MASTER%の指……わたしの体、覚えちゃったみたい……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに、でも嬉しそうに呟いた。
+
+    「……もっと……触っていいよ……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ひゃっ……！　%CALLNAME:MASTER%……そ、そこは……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を止めようとするが、力が入らない。
+
+    「あっ……んっ……恥ずかしいよぅ……」
+
+    %CALLNAME:TARGET%の頬が赤く染まり、瞳が潤んでいく。
+
+    「……で、でも……嫌じゃ……ないの……」
+
+    それでも、%CALLNAME:TARGET%は%CALLNAME:MASTER%から離れようとはしなかった。
+
+    「んぅっ……あ……胸……触らないで……」
+
+    %CALLNAME:MASTER%の掌が%CALLNAME:TARGET%の胸を優しく揉んでいる。
+
+    「……わたし、変な声……出ちゃうよ……？」
+
+    %CALLNAME:TARGET%は必死に声を堪えながら、%CALLNAME:MASTER%を見つめた。
+
+    「……%CALLNAME:MASTER%が……触りたいなら……我慢、する……」
+
+    %CALLNAME:TARGET%の羽がそわそわと落ち着かなく揺れている。
+
+    「きゃっ……あっ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%の体が%CALLNAME:MASTER%の愛撫に小さく震えている。
+
+    「……こんなこと、されたこと……ないの……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%から目を逸らさない。
+
+    「……でも、%CALLNAME:MASTER%となら……怖くない、かも……」
+
+    小さな羽が期待に震えていた。
+
+    「あぅっ……んっ……そこ……」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の胸の先端を指で転がしている。
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯きながら、小さく喘いだ。
+
+    「……%CALLNAME:MASTER%……わたしのこと……どう思ってるの……？」
+
+    %CALLNAME:TARGET%は不安と期待を込めた目で見上げてきた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「ひゃぁっ！？　%CALLNAME:MASTER%さん、む、胸は……！」
+
+    %CALLNAME:TARGET%は驚いて身を竦めた。
+
+    「あ、あの……こういうことは……その……」
+
+    %CALLNAME:TARGET%は何と言っていいか分からず、口ごもっている。
+
+    「……チルノちゃんに知られたら……困ります……」
+
+    %CALLNAME:TARGET%は困惑しながらも、強く拒絶はしなかった。
+
+    「きゃっ……！　あの、%CALLNAME:MASTER%さん……？」
+
+    %CALLNAME:TARGET%は突然の愛撫に動揺している。
+
+    「わ、わたし……こういうの、よく分からなくて……」
+
+    %CALLNAME:TARGET%の顔が真っ赤に染まっていく。
+
+    「……でも……痛くは……ないです……」
+
+    %CALLNAME:TARGET%は小さな声でそう呟いた。
+
+    「あっ……んっ……そんな……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の胸を撫でている。
+
+    %CALLNAME:TARGET%は戸惑いながらも、されるがままになっている。
+
+    「……%CALLNAME:MASTER%さんは……こういうことが……したいんですか……？」
+
+    %CALLNAME:TARGET%は理解しようとするように、%CALLNAME:MASTER%を見上げた。
+
+    「ひぅっ……あ……胸……触らないで……」
+
+    %CALLNAME:TARGET%は弱々しく抵抗するが、本気ではない。
+
+    「……妖精は……こういうこと……あまりしないの……」
+
+    %CALLNAME:TARGET%は困ったように眉を寄せている。
+
+    「……でも……%CALLNAME:MASTER%さんが、そうしたいなら……」
+
+    %CALLNAME:TARGET%の羽が落ち着きなく揺れている。
+  priority: 2
+- id: fallback
+  content: >-
+    「きゃぁっ！？　な、何するんですか……！」
+
+    %CALLNAME:TARGET%は驚いて胸を隠した。
+
+    「そ、そんなところ……触らないでください……」
+
+    %CALLNAME:TARGET%は怯えた目で%CALLNAME:MASTER%を見ている。
+
+    「……わたし、そういうの……分からないです……」
+
+    「ひゃっ……！　%CALLNAME:MASTER%さん……？」
+
+    %CALLNAME:TARGET%は突然の接触に身を硬くした。
+
+    「あ、あの……こういうことは……困ります……」
+
+    %CALLNAME:TARGET%は困惑と不安を滲ませながら、助けを求めるように周囲を見回した。
+
+    「……チルノちゃん、どこにいるのかな……」
+
+    「えっ……あ、あの……」
+
+    %CALLNAME:TARGET%は何が起きているのか理解できていないようだ。
+
+    「……これは……どういうことなんですか……？」
+
+    %CALLNAME:TARGET%は不安そうに%CALLNAME:MASTER%を見上げている。
+
+    「……人間の人は……こういうことを……するんですか……？」
+
+    「やっ……！　駄目です……胸は……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を押し退けようとした。
+
+    「わ、わたし……まだ……心の準備が……」
+
+    %CALLNAME:TARGET%は怯えながらも、強く拒絶はできないでいる。
+
+    「……お願い……優しく……してください……」
+
+    %CALLNAME:TARGET%は小さな声で懇願した。
+  priority: 1

@@ -1,0 +1,88 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「次の『おしごと』・・？ や・・やだ・・やだよぉ・・」
+
+    「え・・？ また『お店』に？ やだ・・もう、あんな事、やだぁ」
+
+    「また・・また、あんなこと・・しないといけないの？」
+  priority: 9
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「うふふっ、『お店』に行かなくていいの？」
+
+    「あのねっ、この間のお客様、すっごく上手だったよ？」
+
+    「ん〜〜、おおぜいの人より、一人がじっくりしてくれるほうがいいなぁ」
+  priority: 8
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ねえ、せっかくだからもっと楽しい事しよ・・・・」
+
+    「ねえ、人のこないところに行こうよ？」
+
+    「うふふっ、気持ちイイこと、したいな？」
+  priority: 7
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・ねぇ、そろそろ・・」
+
+    「・・ま・・まだかな・・」
+
+    「・・あの・・あのね・・次はね・・」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・ねぇ・・」
+
+    「・・あ・・あの・・ね・・」
+
+    「・・あの・・えと・・」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あはは、面白いね！」
+
+    「あはっ、今度%CALLNAME:奴隷%もやってみる！」
+
+    「ええ〜〜？ %CALLNAME:奴隷%も誘ってよぉ」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふぅん、そうなんだ？」
+
+    「へぇ〜、知らなかったよ」
+
+    「ええ？ そんなの聞いたことない！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ぁ、なによ・・・・？」
+
+    「な、なに・・？」
+
+    「・・今度は、なに？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・それで、あなた、わたしと遊んでくれるの？」
+
+    「・・何かご用？」
+
+    「・・何？」
+  priority: 1
+  displayMode: newline

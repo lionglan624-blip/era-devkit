@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    「今日は帰らないから・・館のこと、よろしくね」
+
+    「私がいないからって、掃除の手を抜かないでね」
+
+    「お嬢様のお世話を最優先よ。くれぐれも失礼のないようにね」
+  priority: 1
+  displayMode: newline

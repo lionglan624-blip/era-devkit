@@ -1,0 +1,12 @@
+﻿character: チルノ
+situation: K8_日常
+entries:
+- id: fallback
+  content: >-
+    「えーーっ、どうして？ やだやだ！」
+
+    「この次は呼んでね！絶対だよ！」
+
+    「つまんなーーい！！」
+  priority: 1
+  displayMode: newline

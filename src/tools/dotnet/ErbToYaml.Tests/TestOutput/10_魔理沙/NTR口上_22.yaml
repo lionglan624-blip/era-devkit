@@ -1,0 +1,37 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「はぁふ…これ…クリがこすれて…んぅっ…」
+
+    「おまんこに%ペニス%のにおいいっぱいつけて…%呼称%のものだから…んんっ」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はぁふ…これ…クリがこすれて…んぅっ…」
+
+    「おまんこに%ペニス%のにおいいっぱいつけて…%呼称%のものだから…んんっ」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はぁふ…これ…クリがこすれて…んぅっ…」
+
+    %CALLNAME:奴隷%は悦に浸った表情で、懸命に腰を動かしている。
+  priority: 3
+- id: fallback
+  content: >-
+    「んっ…くっ…ああっ……くぅんっ…」
+
+    「んくっ…おまんこに…%ペニス%のにおいが染みついちゃう…」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ…くっ…くっ……くぅっ…」
+
+    「くっ…おまんこに…%ペニス%のにおいが染みついちゃう…」
+  priority: 1
+  displayMode: newline

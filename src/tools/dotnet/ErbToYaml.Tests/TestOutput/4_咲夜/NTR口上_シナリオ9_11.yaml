@@ -1,0 +1,78 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ9
+entries:
+- id: fallback
+  content: >-
+    「んふふっ%S_HEART0% なんっか・・これっ・・・犯してるって・・感じっ%S_HEART1%」
+
+    「ふふっ・・ああっ%S_HEART0%・・まるで、私が犯してる、みたい%S_HEART1%」
+
+    「んっ、ああっ%S_HEART0%・・ふふっ・・お、犯して、あげるっ・・%S_HEART1%」
+
+    「ひゃっっ・・！ うっっ%S_HEART0% は・・あぁん%S_HEART1%」
+
+    「んんっ・・お、おくまでっ%S_HEART0%・・奥まで、くるぅぅ%S_HEART1%%S_HEART1%」
+
+    「んああっ%S_HEART0%・・ああっ・・い、いいっ・・%S_HEART1%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んふふっ%S_HEART0% なんっか・・これっ・・・犯してるって・・感じっ%S_HEART1%」
+
+    「ふふっ・・ああっ%S_HEART0%・・まるで、私が犯してる、みたい%S_HEART1%」
+
+    「んっ、ああっ%S_HEART0%・・ふふっ・・お、犯して、あげるっ・・%S_HEART1%」
+
+    「ひゃっっ・・！ うっっ%S_HEART0% は・・あぁん%S_HEART1%」
+
+    「んんっ・・お、おくまでっ%S_HEART0%・・奥まで、くるぅぅ%S_HEART1%%S_HEART1%」
+
+    「んああっ%S_HEART0%・・ああっ・・い、いいっ・・%S_HEART1%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んふふっ%S_HEART0% なんっか・・これっ・・・犯してるって・・感じっ%S_HEART1%」
+
+    「ふふっ・・ああっ%S_HEART0%・・まるで、私が犯してる、みたい%S_HEART1%」
+
+    「んっ、ああっ%S_HEART0%・・ふふっ・・お、犯して、あげるっ・・%S_HEART1%」
+
+    「ひゃっっ・・！ うっっ%S_HEART0% は・・あぁん%S_HEART1%」
+
+    「んんっ・・お、おくまでっ%S_HEART0%・・奥まで、くるぅぅ%S_HEART1%%S_HEART1%」
+
+    「んああっ%S_HEART0%・・ああっ・・い、いいっ・・%S_HEART1%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ひゃっっ・・！ うっっ%S_HEART0% は・・あぁん%S_HEART1%」
+
+    「んんっ・・お、おくまでっ%S_HEART0%・・奥まで、くるぅぅ%S_HEART1%%S_HEART1%」
+
+    「んああっ%S_HEART0%・・ああっ・・い、いいっ・・%S_HEART1%」
+
+    「ああ・・おしり、なのに・・イイ%S_HEART0%・・いいっ・・%S_HEART1%」
+
+    「ああっ・・お、奥まで%S_HEART0%・・奥まで、くるぅ・・%S_HEART1%」
+
+    「ああ・・すごい%S_HEART0%・・ああ・・イイっ・・%S_HEART1%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「こっ・・んな・・うごけるわけ・・」
+
+    「ああっ・・お、しり、なんか・・でっ・・！」
+
+    「んんっ・・・・ああっ・・そん、な、おく・・までっ・・」
+
+    「やああっ・・やっ・・やめ、やめなさいっ・・」
+
+    「ああああっ・・い、いやあっ・・！」
+
+    「んああっ・・やめっ・・あああっ・・」
+  priority: 1
+  displayMode: newline

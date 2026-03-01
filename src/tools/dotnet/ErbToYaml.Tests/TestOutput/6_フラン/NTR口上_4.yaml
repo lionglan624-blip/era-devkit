@@ -1,0 +1,45 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「あん♪ もっとちゅーしよぉ・・・・♪」
+
+    「んっ・・ねぇ、もっとぉ♪」
+
+    「ちゅぱ・・んふっ、もっとしないの？」
+
+    %CALLNAME:奴隷%は潤んだ瞳で次を強請っている。
+
+    %CALLNAME:奴隷%はとろけた視線をなげかけてキスを、あるいはその先の行為を求めている。
+
+    %CALLNAME:奴隷%は上気した顔で相手の唇をみつめている。
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あん♪ もっとちゅーしよぉ・・・・♪」
+
+    「んっ・・ねぇ、もっとぉ♪」
+
+    「ちゅぱ・・んふっ、もっとしないの？」
+
+    %CALLNAME:奴隷%は潤んだ瞳で次を強請っている。
+
+    %CALLNAME:奴隷%はとろけた視線をなげかけてキスを、あるいはその先の行為を求めている。
+
+    %CALLNAME:奴隷%は上気した顔で相手の唇をみつめている。
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: 「・・・・」
+  priority: 4
+- id: fallback
+  content: 「・・・・」
+  priority: 3
+- id: fallback
+  content: 「・・・・」
+  priority: 2
+- id: fallback
+  content: 「・・・・」
+  priority: 1

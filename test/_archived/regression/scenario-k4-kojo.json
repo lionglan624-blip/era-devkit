@@ -1,0 +1,15 @@
+{
+  "name": "K4 Kojo Test: 咲夜口上テスト (恋慕)",
+  "description": "咲夜のCOMカテゴリ再編成後、恋慕分岐の口上が正しく呼ばれることを確認",
+  "characters": {
+    "十六夜咲夜": {
+      "CFLAG:2": 5000,
+      "CFLAG:21": 100,
+      "TALENT:3": 1,
+      "TALENT:27": 1
+    }
+  },
+  "expect": {
+    "output_contains": ["[100]"]
+  }
+}

@@ -1,0 +1,55 @@
+﻿character: フラン
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「お願い・・ひどいこと、しないで・・・」
+
+    「い・・痛くしないなら・・我慢するから・・」
+
+    「はい・・おとなしく、するから・・」
+  priority: 6
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「い・・いや・・、こ、こないで・・！」
+
+    「ち、近寄らないでっ！」
+
+    「こ、こないでっ！ こないでよっ！」
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: '%CALLNAME:奴隷%は客の膝の上に座り、上目遣いで話しかけた。'
+  priority: 4
+- id: fallback
+  content: >-
+    「ねぇ、今日は何回するの？」
+
+    「ねぇ、何回してくれるの？」
+
+    「ねぇ、どこに何回、してくれるの？」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ねぇ、今日は何回するの？」
+
+    「ねぇ、何回してくれるの？」
+
+    「ねぇ、どこに何回、してくれるの？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そんなことより、ねぇ、しないの？」
+
+    「ねぇ、早く遊ぼうよぉ」
+
+    「うふふっ、いっぱい遊ぶんだよね？」
+  priority: 1
+  displayMode: newline

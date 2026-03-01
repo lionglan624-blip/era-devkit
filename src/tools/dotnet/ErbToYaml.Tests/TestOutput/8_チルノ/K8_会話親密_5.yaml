@@ -1,0 +1,215 @@
+﻿character: チルノ
+situation: K8_会話親密
+entries:
+- id: fallback
+  content: >-
+    「ん……ちゅ……れろ……ちゅる……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と深く口付けを交わしている。
+
+    ひんやりとした唇が、熱く絡み合う。
+
+    「ぷはっ……えへへ、あたいのキス、最強でしょ？」
+
+    %CALLNAME:TARGET%は蕩けた顔で%CALLNAME:MASTER%を見上げている。
+
+    「もっとしてあげるわ……%CALLNAME:MASTER%だけの、特別なのよ」
+
+    氷の妖精は幸せそうに目を細めて、自分から唇を重ねてきた。
+
+    「……ん、む……ちゅ、る……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の首に冷たい腕を回している。
+
+    二人は熱く唇を重ね合った。
+
+    「はぁっ……はぁっ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は熱に浮かされた表情で息を吐いている。
+
+    「あたいのキス、最強でしょ？ もっと……もっとしてよ」
+
+    せがむように%CALLNAME:TARGET%は%CALLNAME:MASTER%に身を寄せた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇に口付けた。
+
+    「んっ……ちゅ……れろ……ん……」
+
+    しばらく互いの唇を味わってから、二人は唇を離した。
+
+    「……ふぅ……あったかい……」
+
+    %CALLNAME:TARGET%は頬を上気させて、ぼんやりと%CALLNAME:MASTER%を見つめている。
+
+    「あたい、氷の妖精だけど……%CALLNAME:MASTER%とのキスは、とろけちゃいそう……」
+
+    氷精は恋人に甘えるように、幸せそうに微笑んだ。
+
+    「ちゅ……んっ……れろ……ん……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に手を添えながら、深いキスを続けている。
+
+    冷たいはずの唇が、互いの体温で温まっていく。
+
+    「ぷはっ……はぁ……はぁ……」
+
+    %CALLNAME:TARGET%は頬を染めて、潤んだ瞳で%CALLNAME:MASTER%を見つめた。
+
+    「……あたい、最強だから……%CALLNAME:MASTER%のこと、ずっと離さないんだから」
+
+    そう言って、氷精は再び唇を求めるように顔を近づけてきた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%にキスをした。
+
+    「んっ……ちゅ……ん……」
+
+    %CALLNAME:TARGET%は目を閉じて、%CALLNAME:MASTER%のキスを受け入れている。
+
+    「……ぷはっ……えへへ……」
+
+    %CALLNAME:TARGET%は頬を紅潮させて、嬉しそうに微笑んだ。
+
+    「キス……冷たくなかった？ あたい、氷の妖精だから……」
+
+    「……でも%CALLNAME:MASTER%とのキスは、なんだか温かいの……」
+
+    「んむ……ちゅ……」
+
+    %CALLNAME:TARGET%は控えめに%CALLNAME:MASTER%と口付けを交わしている。
+
+    ひんやりとした唇が、少しずつ熱を帯びていく。
+
+    「……ん……ぷ、は……」
+
+    %CALLNAME:TARGET%は照れくさそうに唇を離した。
+
+    「もう……急にキスなんて……あたい、心臓止まるかと思ったわよ」
+
+    そう言いながらも、%CALLNAME:TARGET%の表情は幸せそうだった。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇にそっとキスをした。
+
+    「ふぇっ……！ ……んっ……」
+
+    %CALLNAME:TARGET%は一瞬驚いたが、すぐに目を閉じてキスを受け入れた。
+
+    「……はぁ……%CALLNAME:MASTER%……」
+
+    唇を離すと、%CALLNAME:TARGET%は上気した顔でこちらを見上げている。
+
+    「……べ、別に嬉しくなんかないんだからね！ ……ちょっとだけよ」
+
+    「ん……ちゅ……れろ……」
+
+    %CALLNAME:TARGET%は少しずつ大胆になりながら、%CALLNAME:MASTER%とキスを続けている。
+
+    冷気が二人の周りを優しく包む。
+
+    「……ぷは……はぁ……」
+
+    %CALLNAME:TARGET%は息を切らしながら、%CALLNAME:MASTER%にしがみついた。
+
+    「あたい……キスって、こんなにドキドキするものなのね……」
+
+    氷精は恥ずかしそうに目を逸らしながらも、%CALLNAME:MASTER%の手を握っている。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%にキスをした。
+
+    「ふぇっ……！ キ、キスしたの……？」
+
+    %CALLNAME:TARGET%は目を丸くして固まっている。
+
+    「べ、別に嫌じゃないけど……こういうのって、どうすればいいのよ……」
+
+    %CALLNAME:TARGET%は照れ隠しに髪をいじりながら、ちらちらとこちらを見ている。
+
+    「……も、もう少しだけなら……いいわよ」
+
+    「んっ……！」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇に軽くキスをした。
+
+    %CALLNAME:TARGET%は固まったまま、%CALLNAME:MASTER%の顔を見つめている。
+
+    「……い、いきなりすぎるのよ、馬鹿……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、小さな声で抗議した。
+
+    「……次は、ちゃんと言ってからにしなさいよね……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の頬にそっと触れ、キスをした。
+
+    「んっ……ふぁ……」
+
+    %CALLNAME:TARGET%は驚きながらも、逃げずにじっとしている。
+
+    「……な、なによ……あたいのキス、冷たかったでしょ……」
+
+    %CALLNAME:TARGET%は照れ隠しなのか、そっぽを向いた。
+
+    「……べ、別に嫌じゃないから……もう一回くらいなら……」
+
+    「ん……」
+
+    %CALLNAME:MASTER%が唇を重ねると、%CALLNAME:TARGET%はおとなしく受け入れた。
+
+    冷たい唇が、ほんの少しだけ熱を持ったような気がする。
+
+    「……ぷは……」
+
+    %CALLNAME:TARGET%は頬を染めて、%CALLNAME:MASTER%を見上げている。
+
+    「あたい……キスとか、よくわかんないけど……」
+
+    「……%CALLNAME:MASTER%のは、そんなに嫌じゃなかったわ」
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%にキスをしようとした。
+
+    「はぁ！？ な、なにすんのよ！ キスとか馬鹿じゃないの！？」
+
+    %CALLNAME:TARGET%は冷気を纏いながら距離を取った。
+
+    「あたいは最強なんだから、そんな隙なんて見せないわよ！」
+
+    「……仲良くなってからにしなさいよね、まったく！」
+
+    「んっ……！？」
+
+    %CALLNAME:MASTER%が唇を近づけると、%CALLNAME:TARGET%は慌てて顔を背けた。
+
+    「ちょ、ちょっと！ 何考えてんのよ！」
+
+    %CALLNAME:TARGET%は顔を赤くしながらも、冷気を放っている。
+
+    「あたいにキスしたいなら……も、もっとあたいのこと知ってからにしなさいよね！」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に近づいた。
+
+    「え、ちょ、なに……近い近い！」
+
+    %CALLNAME:TARGET%は慌てて後ろに下がろうとしたが、壁に阻まれた。
+
+    「あたいに何するつもりよ！ 最強の妖精をなめないでよね！」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、冷気で牽制している。
+
+    「ひゃっ……！」
+
+    %CALLNAME:MASTER%が唇を近づけると、%CALLNAME:TARGET%は素早く身をかわした。
+
+    「い、いきなり何すんのよ！ あたいはそんな簡単に落ちないんだから！」
+
+    %CALLNAME:TARGET%は腰に手を当て、胸を張って%CALLNAME:MASTER%を見据えている。
+
+    「キスしたいなら……あたいを認めさせてからにしなさいよね！」
+  priority: 1

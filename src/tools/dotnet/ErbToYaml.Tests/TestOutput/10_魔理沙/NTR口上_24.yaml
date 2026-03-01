@@ -1,0 +1,39 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああっ…きて、きて！ 奥で出してええっ！！」
+
+    「ああっ…出して…いっぱい出してええっ！！」
+
+    「ああ…おしりに、腸内にいっぱい出してええっ！！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ…い、いくっ…いくううっ！！」
+
+    「ああっ…いくっ…おしりで、いっちゃうう！！」
+
+    「ああ…いっしょ…いっしょに、いっしょに、ああっ！！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ…うそ…おしりで、おしりで、いっちゃう…！」
+
+    「ああ…いくっ…おしりで…おしりで…ああっ！！」
+
+    「ああ…いや…いく、いっちゃう…いやああ！！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「嫌…いやっ、だめえええっ！！」
+
+    「い、いやっ…抜いてええええっ！！」
+
+    「い、痛っ…いたいの…もう、もう許してええっ！」
+  priority: 1
+  displayMode: newline

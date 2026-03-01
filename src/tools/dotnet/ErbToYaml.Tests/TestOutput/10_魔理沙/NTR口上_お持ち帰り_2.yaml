@@ -1,0 +1,12 @@
+﻿character: 魔理沙
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「ああ、%NTR_KARE()%のところから。もちろん、いっぱい抱かれてきたぜ」
+
+    「抱かれてきたのかって？ もちろんセックスしてきたぜ」
+
+    「何をしてきたかって？ セックス以外何をするんだ？」
+  priority: 1
+  displayMode: newline

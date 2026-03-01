@@ -1,0 +1,12 @@
+﻿character: 小悪魔
+situation: K2_日常
+entries:
+- id: fallback
+  content: >-
+    「あ、あのっ、ごめんなさいっ」
+
+    「あっ、%CALLNAME_K2(人物_小悪魔
+
+    「し、失礼しますっ！」
+  priority: 1
+  displayMode: newline

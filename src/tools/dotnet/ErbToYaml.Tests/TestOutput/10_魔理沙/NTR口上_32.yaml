@@ -1,0 +1,12 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああっ！ いっ、やだあっ、助けてっ！」
+
+    「ああっ、いや、嫌だ、いやああっ！」
+
+    「嫌、嫌よ！ 助けて、助けて%CALLNAME:MASTER%！」
+  priority: 1
+  displayMode: newline

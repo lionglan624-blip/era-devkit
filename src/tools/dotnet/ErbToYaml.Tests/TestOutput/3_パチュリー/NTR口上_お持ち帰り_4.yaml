@@ -1,0 +1,70 @@
+﻿character: パチュリー
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「んっ！んむぅ！・・んっ、んっ・・いやあっ・・んぅ！」
+
+    「いっ、いやあっ・・んっ、んんっ・・むうっ！」
+
+    「んんっ！ は、はなしなさいっ・・んんんっ！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「んっ！んむぅ！・・んっ、んっ・・いやあっ・・んぅ！」
+
+    「いっ、いやあっ・・んっ、んんっ・・むうっ！」
+
+    「んんっ！ は、はなしなさいっ・・んんんっ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・んぅ・・」
+
+    「ちゅ・・ちゅぱっ・・ふふっ・・」
+
+    「んんっ・・んっ・・ちゅ・・くちゅっ・・」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・んぅ・・」
+
+    「ちゅ・・ちゅぱっ・・ふふっ・・」
+
+    「んんっ・・んっ・・ちゅ・・くちゅっ・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・いいわ・・」
+
+    「ちゅ・・ちゅぱっ・・素敵・・」
+
+    「んんっ・・んっ・・ちゅ・・もっと・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・いいわ・・」
+
+    「ちゅ・・ちゅぱっ・・素敵・・」
+
+    「んんっ・・んっ・・ちゅ・・もっと・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅっ・・仕方ないわね・・」
+
+    「ちゅ・・ちゅぱっ・・ええ・・」
+
+    「んんっ・・んっ・・ちゅ・・もっと・・」
+  priority: 1
+  displayMode: newline

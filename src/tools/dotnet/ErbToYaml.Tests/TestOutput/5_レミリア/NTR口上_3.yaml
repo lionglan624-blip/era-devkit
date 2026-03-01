@@ -1,0 +1,57 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ちょうだい・・ふふ・・んっ・・ん・・」
+
+    「見せつけてあげましょう・・」
+
+    「ええ・・ちょうだい・・んっ・・」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ちょうだい・・ふふ・・んっ・・ん・・」
+
+    「見せつけてあげましょう・・」
+
+    「ええ・・ちょうだい・・んっ・・」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふふ・・んっ・・ん・・」
+
+    「はあぁ・・んっ・・んむぅ・・」
+
+    「ええ・・んっ・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・んむっ・・ん・・」
+
+    「・・んっ・・むっ・・」
+
+    「・・んっ・・う・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ？　んっ・・んむぅっ！」
+
+    「なにを・・んっ・・むっ・・」
+
+    「え？ ・・んっ・・う・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ？　んっ・・んむぅっ！」
+
+    「なにを・・んっ・・むっ・・」
+
+    「え？ ・・んっ・・う・・」
+  priority: 1
+  displayMode: newline

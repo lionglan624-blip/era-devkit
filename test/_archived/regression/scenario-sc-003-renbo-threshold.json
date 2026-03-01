@@ -1,0 +1,22 @@
+{
+  "name": "sc-003: 恋慕→親愛 閾値確認",
+  "description": "好感度9999 + 恋慕=1 でも恋人状態なしでは親愛にならないことを確認",
+  "add_characters": [1],
+  "characters": {
+    "紅美鈴": {
+      "CFLAG:2": 9999,
+      "TALENT:3": 1,
+      "ABL:10": 3
+    }
+  },
+  "copy": [
+    {"from": "紅美鈴", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]"],
+    "output_not_contains": ["親愛を獲得"],
+    "var_equals": {
+      "TALENT:1:19": 0
+    }
+  }
+}

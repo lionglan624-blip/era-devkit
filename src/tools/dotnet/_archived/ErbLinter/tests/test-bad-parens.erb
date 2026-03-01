@@ -1,0 +1,22 @@
+; Test file with parenthesis errors
+; Should produce ERB003 errors
+
+@TEST_BAD_PARENS
+
+; ERB003: Unclosed parenthesis
+LOCAL = (1 + 2
+
+; ERB003: Unmatched closing parenthesis
+LOCAL = 1 + 2)
+
+; ERB003: Mismatched brackets
+LOCAL = (1 + 2}
+
+; ERB003: Unclosed brace
+LOCAL = {FLAG:0
+
+; Note: PRINT lines should NOT produce errors (special syntax)
+PRINTFORM (This is literal text with unmatched parens
+PRINTL )also literal
+
+RETURN

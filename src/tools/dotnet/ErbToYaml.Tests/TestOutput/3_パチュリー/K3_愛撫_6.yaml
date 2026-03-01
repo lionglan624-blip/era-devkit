@@ -1,0 +1,215 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%、見たいの？　私の……そこを……」
+
+    %CALLNAME:TARGET%は魔導書を閉じ、静かに足を開いた。
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の秘所を左右に開くと、鮮やかな桃色の粘膜が露わになった。
+
+    「……こんな風に……開いて見せるなんて……本には載っていない行為ね……」
+
+    %CALLNAME:TARGET%は羞恥に頬を染めながらも、%CALLNAME:MASTER%から目を逸らさなかった。
+
+    「……あなただけよ……私の全てを見せるのは……」
+
+    大図書館の静寂の中、%CALLNAME:TARGET%の秘所が%CALLNAME:MASTER%の前で震えていた。
+
+    「……ん……そう、じっくり……見て……」
+
+    %CALLNAME:TARGET%は自ら陰唇を開き、%CALLNAME:MASTER%に見せている。
+
+    膣内は鮮やかな桃色に染まり、蜜が溢れ出していた。
+
+    「……動かない大図書館が……こんな姿を晒すなんて……」
+
+    %CALLNAME:TARGET%は淡々と呟くが、声には熱がこもっている。
+
+    「……私の中、見える？　あなたのために……濡れているの……」
+
+    %CALLNAME:TARGET%は潤んだ瞳で%CALLNAME:MASTER%を見つめ、さらに秘所を広げた。
+
+    「あ……ぁ……」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の秘貝を開き、中を覗き込んでいる。
+
+    %CALLNAME:TARGET%の膣内は艶やかに濡れ、%CALLNAME:MASTER%の視線を浴びてひくひくと蠢いていた。
+
+    「……%CALLNAME:MASTER%、そんなに見つめないで……恥ずかしい……」
+
+    %CALLNAME:TARGET%は顔を伏せながらも、足を閉じようとはしない。
+
+    「……でも、嫌じゃないわ……あなたに見られると……体が熱くなる……」
+
+    %CALLNAME:TARGET%の秘所から、蜜が一筋流れ落ちた。
+
+    「……ひぅ……っ……」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の秘所に冷たい息を吹きかけると、%CALLNAME:TARGET%は体を震わせた。
+
+    開かれた膣内が%CALLNAME:MASTER%の息を受けて、ひくりと収縮している。
+
+    「……やぁ……そんなことされたら……頭が……真っ白に……」
+
+    %CALLNAME:TARGET%は普段の冷静さを失い、甘い声を漏らしていた。
+
+    「%CALLNAME:MASTER%……私の一番恥ずかしいところ……全部あなたのものよ……」
+
+    知識の番人は、愛する者の前で全てを曝け出していた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……っ!? %CALLNAME:MASTER%、何を……開かないで……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の行為に驚き、身を強張らせた。
+
+    しかし抵抗は弱く、%CALLNAME:MASTER%の指が秘所を開いていく。
+
+    「……そんな、中まで……見ないで……」
+
+    %CALLNAME:TARGET%の頬は真っ赤に染まり、目には涙が滲んでいる。
+
+    「……%CALLNAME:MASTER%……恥ずかしい……」
+
+    そう言いながらも、%CALLNAME:TARGET%は足を閉じようとはしなかった。
+
+    「……やぁ……そこ、開いちゃ、だめ……」
+
+    %CALLNAME:TARGET%は弱々しく抗議しながらも、%CALLNAME:MASTER%にされるがまま。
+
+    %CALLNAME:MASTER%が秘貝を左右に押し広げると、%CALLNAME:TARGET%の膣内が露わになった。
+
+    「……むきゅ……中まで見られてる……恥ずかしい……」
+
+    %CALLNAME:TARGET%は両手で顔を覆い、羞恥に耐えている。
+
+    「……本には……こんな恥ずかしい行為……載ってなかったわ……」
+
+    %CALLNAME:TARGET%の秘所は、見られていることで余計に蜜を溢れさせていた。
+
+    「……ん……っ……見ないで……」
+
+    %CALLNAME:TARGET%は声を殺しながら、%CALLNAME:MASTER%の視線に耐えている。
+
+    「……どうして、そんなところを……開いて見るの……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに%CALLNAME:MASTER%を睨むが、その視線には力がない。
+
+    「……あなたは、私を……どこまで辱めれば、気が済むの……」
+
+    そう言いながらも、%CALLNAME:TARGET%の膣内はひくひくと動き、反応を隠せない。
+
+    「……ひ……ぅ……」
+
+    %CALLNAME:TARGET%は思わず甘い声を漏らし、慌てて口を押さえた。
+
+    %CALLNAME:MASTER%が膣内を覗き込むと、%CALLNAME:TARGET%の体が大きく震えた。
+
+    「……聞かないで。今の声は、聞かなかったことに、して……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%から顔を背けたが、耳まで赤い。
+
+    「……%CALLNAME:MASTER%……こんなの……初めて……」
+
+    言葉を飲み込み、%CALLNAME:TARGET%はただ%CALLNAME:MASTER%に身を任せた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……何を、しているの」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の行為に、冷静を装って問いかけた。
+
+    「そんな場所を開いて……何を見るつもり」
+
+    しかし%CALLNAME:MASTER%が構わず秘所を開くと、%CALLNAME:TARGET%は僅かに息を乱した。
+
+    「……まあ、いいわ。観察対象として……」
+
+    そう言いながらも、%CALLNAME:TARGET%の頬は微かに紅潮している。
+
+    「……っ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に秘所を開かれた瞬間、小さく息を呑んだ。
+
+    「……膣内の構造については、本で読んだことがあるわ……」
+
+    %CALLNAME:TARGET%は淡々と言うが、声が僅かに震えている。
+
+    「……ふぅん……見られると、こういう感覚なのね……」
+
+    知識欲のふりをして、%CALLNAME:TARGET%は%CALLNAME:MASTER%の行為を受け入れた。
+
+    「……止めなさい」
+
+    %CALLNAME:TARGET%は冷静に言い放つが、%CALLNAME:MASTER%は止めない。
+
+    「……聞こえなかったの？」
+
+    しかし%CALLNAME:TARGET%自身も、強く拒否する気配がない。
+
+    「……まあ、いいわ。勝手に、しなさい」
+
+    %CALLNAME:TARGET%は本に視線を戻したが、ページを読む集中力は失われていた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%の行為を受けている。
+
+    「……何がしたいの、あなたは」
+
+    %CALLNAME:MASTER%が秘所を広げ続けると、%CALLNAME:TARGET%は僅かに身じろぎした。
+
+    「……変な感覚ね。見られているだけなのに……」
+
+    %CALLNAME:TARGET%はぼそりと呟き、観察者を装いながら%CALLNAME:MASTER%に身を任せた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何をしているの」
+
+    %CALLNAME:TARGET%は冷ややかな目で%CALLNAME:MASTER%を見た。
+
+    「私の体を、許可なく開こうなんて」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%から距離を取ろうとした。
+
+    「……下品極まりない行為ね。今すぐ出て行きなさい」
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を顰めた。
+
+    「そんな場所を見て、何が楽しいの」
+
+    %CALLNAME:TARGET%は嫌悪感を隠さずに%CALLNAME:MASTER%を睨んだ。
+
+    「……読書の邪魔をしないで。精霊魔法で追い出すわよ」
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついた。
+
+    「あなたは何を考えているの。理解に苦しむわ」
+
+    %CALLNAME:TARGET%は呆れた表情で%CALLNAME:MASTER%を見ている。
+
+    「……獣以下ね。本を読んで教養を身につけなさい」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%を睨みつけた。
+
+    「私を何だと思っているの」
+
+    %CALLNAME:TARGET%の声には怒りと軽蔑が滲んでいる。
+
+    「……好きにしなさい。ただし、二度とこの図書館には入れないわよ」
+
+    %CALLNAME:TARGET%は冷たく言い放ち、本に視線を戻した。
+  priority: 1

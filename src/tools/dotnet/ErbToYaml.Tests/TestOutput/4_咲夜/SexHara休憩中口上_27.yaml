@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「普段どんな風にオナニーしているのかしら？ 今から実演なさい」
+
+    「%CALLNAME:被害者%がどんな風に自分でしているのか興味があるわね。やってお見せなさい」
+
+    「オナニーして見せなさい。したこともないとは言わせないわ」
+  priority: 1
+  displayMode: newline

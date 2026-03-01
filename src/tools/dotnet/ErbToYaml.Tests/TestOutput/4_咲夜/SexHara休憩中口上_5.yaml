@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「ふふ・・ここがいいのかしら・・」
+
+    「ここは、どうかしら？」
+
+    「ふふ・・生意気ね・・」
+  priority: 1
+  displayMode: newline

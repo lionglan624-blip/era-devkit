@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_日常
+entries:
+- id: fallback
+  content: >-
+    「あら、楽しそうな話ね。私も混ざっていいかしら？」
+
+    「二人だけで楽しむなんて、ずるいわ・・ね、いいでしょう？」
+
+    「私抜きで何を話してるのかしら？」
+  priority: 1
+  displayMode: newline

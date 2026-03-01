@@ -1,0 +1,38 @@
+﻿character: 小悪魔
+situation: K2_会話親密
+entries:
+- id: fallback
+  content: >-
+    「・・ごめんなさい・・指輪は今はつけてないんです。わ、私はお金で誰にでも身体を開く『公衆便所』だから・・」
+
+    「こんな汚れた身体で、%CALLNAME:MASTER%から贈られた指輪を着けるなんてできません・・」
+
+    「いつか解放されたら、胸を張ってあの指輪を着け、ます」
+  priority: 3
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「はい、指輪はもうつけていません。お客様が邪魔だって言うんだから、仕方ないじゃないですか」
+
+    「指輪をしている方がいかにも浮気しているみたいでいいとおっしゃる方もおみえですけど・・」
+
+    「それよりも、今の私にはこの首輪の方が似合ってるんです♪」
+
+    「ふふっ、ごめんなさい、あの指輪はもうつけてなんです。だって、私は『公衆便所』なんですから」
+
+    「%MSG_LOVER(奴隷)%のものである以前に、お客様たちのものだとアピールしないといけないんですっ」
+
+    「だから指輪ではなくて、この首輪を身に着けているんですよ♪」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: talent_6_2
+  content: '%"もう"+CALLNAME:MASTER+"のものではないのだから指輪をする必要は無いと言い切られた。"%'
+  priority: 1
+  condition:
+    type: Talent
+    talentType: 6
+    threshold: 1

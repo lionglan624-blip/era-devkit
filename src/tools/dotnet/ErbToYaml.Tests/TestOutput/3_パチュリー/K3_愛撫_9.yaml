@@ -1,0 +1,197 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……ん……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は魔導書を閉じ、%CALLNAME:MASTER%の頭を胸元に抱き寄せた。
+
+    「……あなたが私の乳首を吸うの、好きね」
+
+    %CALLNAME:MASTER%の唇が%CALLNAME:TARGET%の乳首に触れると、%CALLNAME:TARGET%は微かに身を震わせた。
+
+    「……本には書いていない感覚……でも、あなたとだから心地いいわ」
+
+    %CALLNAME:TARGET%は静かに目を閉じ、%CALLNAME:MASTER%に身を委ねた。
+
+    「……ふぅ……そう、そこ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に乳首を吸われながら、甘い吐息を漏らしている。
+
+    大図書館の静寂の中、%CALLNAME:TARGET%の熱い息遣いだけが響く。
+
+    「……%CALLNAME:MASTER%……あなたの舌、魔法みたい」
+
+    %CALLNAME:TARGET%は珍しく甘えるような声を出した。
+
+    「……もっと、吸って……」
+
+    「あっ……やぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の舌が乳首を転がすたびに、身を捩った。
+
+    「……こうしていると、魔力が溢れそうになるわ……」
+
+    %CALLNAME:TARGET%は自分の体の反応を不思議そうに見つめている。
+
+    「……あなたが吸うと、私の体が勝手に反応するの」
+
+    そう言って、%CALLNAME:TARGET%は%CALLNAME:MASTER%の髪を優しく撫でた。
+
+    「……くぅ……んっ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に吸われるまま、甘い声を漏らしている。
+
+    「……%CALLNAME:MASTER%……赤ん坊のように吸わないで……恥ずかしいわ」
+
+    しかし、%CALLNAME:TARGET%の手は%CALLNAME:MASTER%の頭を離さない。
+
+    「……でも……やめないで。今日は、あなたの好きにさせてあげる」
+
+    %CALLNAME:TARGET%は微かに微笑みながら、%CALLNAME:MASTER%を見つめた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「っ……何を……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が胸に顔を埋めてきたことに驚いた。
+
+    しかし、抵抗するどころか、自ら胸を差し出すように体を反らせた。
+
+    「……吸いたいなら、吸いなさい。研究の一環よ」
+
+    %CALLNAME:TARGET%は頬を染めながら、言い訳するように呟いた。
+
+    「……でも、優しくしてね」
+
+    「あ……ん……そんなに強く……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に乳首を吸われ、思わず声を漏らした。
+
+    「……感じてなんかないわ。ただ、体が敏感なだけよ」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を逸らした。
+
+    「……%CALLNAME:MASTER%……もう少しだけ……続けてもいいわよ」
+
+    そう言って、%CALLNAME:TARGET%は%CALLNAME:MASTER%の頭を引き寄せた。
+
+    「……ふぁ……っ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の舌使いに、身を震わせた。
+
+    「こ、こんなこと……本には書いてなかったわ……」
+
+    %CALLNAME:TARGET%は動揺を隠すように、淡々と言おうとしたが、声が震えている。
+
+    「……あなたの口、温かい……もう少し、感じさせて」
+
+    %CALLNAME:TARGET%は小さく呟いた。
+
+    「んっ……やぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に吸われながら、小さく喘いでいる。
+
+    手元の魔導書が、いつの間にか床に落ちている。
+
+    「……%CALLNAME:MASTER%、あなたのせいで集中できないじゃない」
+
+    %CALLNAME:TARGET%は恨めしそうに、でもどこか嬉しそうに言った。
+
+    「……責任、取ってもらうわよ」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……何をしているの」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の行動を冷静に観察している。
+
+    「……人間の性行動に関する実地調査、ということにしておくわ」
+
+    %CALLNAME:TARGET%は自分を納得させるように言った。
+
+    「……まあ、続けなさい。データは多い方がいいわ」
+
+    「っ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に乳首を吸われ、一瞬身を強張らせた。
+
+    「……興味深いわね。触覚だけでこんなに反応するなんて」
+
+    %CALLNAME:TARGET%は自分の体の反応を分析するような目で見下ろしている。
+
+    「……もう少し、調べさせてもらうわ」
+
+    そう言って、%CALLNAME:TARGET%は%CALLNAME:MASTER%を止めなかった。
+
+    「……ふぅん」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の行為を、まるで実験を眺めるように見ている。
+
+    「……乳首への吸引刺激が快感神経に作用する……文献通りね」
+
+    %CALLNAME:TARGET%は淡々と呟いたが、頬は微かに上気している。
+
+    「……理論と実践は違うわね。これは」
+
+    「……む」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に吸われながら、怪訝そうな顔をした。
+
+    「……あなた、そういうことが好きなの？」
+
+    %CALLNAME:TARGET%は観察するような目で%CALLNAME:MASTER%を見つめた。
+
+    「……まあ、私も嫌いじゃないわ。体が弱い割に、敏感みたいね」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何をしているの」
+
+    %CALLNAME:TARGET%は冷ややかな目で%CALLNAME:MASTER%を見下ろした。
+
+    「私の体に興味があるなら、解剖学の本を貸してあげるわ」
+
+    %CALLNAME:TARGET%は素っ気なく言い放った。
+
+    「……触るなら、許可を取りなさい」
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「あなた、図書館に何しに来たの」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%から距離を取った。
+
+    「……本を読む気がないなら、出て行って」
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って%CALLNAME:MASTER%の頭を押し退けた。
+
+    「図書館の利用規約には、そんな行為は書いていないわ」
+
+    %CALLNAME:TARGET%は冷たく言い放ち、魔導書を開いた。
+
+    「……精霊魔法で追い出すわよ。次やったら」
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついた。
+
+    「あなたは本を読みに来たんじゃないの？」
+
+    %CALLNAME:TARGET%は呆れたような表情を浮かべている。
+
+    「……まあいいわ。私の研究対象にでもなりなさい」
+
+    そう言って、%CALLNAME:TARGET%は冷めた目で%CALLNAME:MASTER%を観察し始めた。
+  priority: 1

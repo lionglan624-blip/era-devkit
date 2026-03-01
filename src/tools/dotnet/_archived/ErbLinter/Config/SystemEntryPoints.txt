@@ -1,0 +1,98 @@
+# SystemEntryPoints.txt
+# Entry points that should not be flagged as dead code
+# Lines starting with # are comments
+# Lines starting with ^ are treated as regex patterns
+
+# Emuera system callbacks
+EVENTFIRST
+EVENTEND
+EVENTTURNEND
+EVENTCOMEND
+EVENTSHOP
+EVENTTRAIN
+EVENTBUY
+EVENTSELL
+EVENTLOAD
+EVENTSAVE
+EVENTLOADEND
+
+# Display functions
+SHOW_STATUS
+SHOW_SHOP
+SHOW_USERCOM
+SHOW_ABLUP_SELECT
+SHOW_STAIN
+SHOW_JUEL
+
+# User hooks
+USERSHOP
+USERCOM
+
+# System functions
+SYSTEM_TITLE
+SYSTEM_AUTOSAVE
+SAVEINFO
+
+# User-defined entry patterns (regex)
+^USERCOM\d+$
+^COM\d+$
+^COMF\d+$
+^COMABLE\d+$
+^COMABLEF\d+$
+
+# Kojo entry points
+^KOJO_.*$
+^NTR_KOJO_.*$
+^K\d+$
+
+# Event handlers (regex)
+^EVENT.*$
+
+# Display functions (regex)
+^SHOW_.*$
+
+# Dynamic call patterns (often called via CALLFORM)
+^COM_ABLE\d+$
+^JUEL_DEMAND.*$
+^EXP_DEMAND.*$
+.*口上.*$
+^SexHara.*$
+^CALLNAME_K\d+$
+^NTR_MESSAGE_.*$
+^CHK_CANCEL_.*$
+^MSG_.*$
+^COM\d+_.*$
+^GETPLACENAME_.*$
+^CAN_COM\d+$
+^EQUIP_COM\d+$
+^MESSAGE_COM\d+$
+^PUNISHMENT_\d+$
+^CHARA_MOVEMENT.*$
+
+# SCOM functions (called via TRYCALLFORM SCOM{TFLAG:50})
+^SCOM\d+$
+^CAN_SCOM\d+$
+^MESSAGE_SCOM\d+$
+
+# NTR sex scene functions (called via CALLFORM NTR_SEX_{体位})
+^NTR_SEX_\d+$
+^NTR_A_SEX_\d+$
+
+# Random name functions (called via TRYCALLFORM RANDOM_N_GIRL_{n})
+^RANDOM_N_GIRL_\d+$
+^RANDOM_N_BOY_\d+$
+
+# Map print functions (called via CALLFORM MAP_PRINT_{PAGE})
+^MAP_PRINT_\d+$
+
+# Luna option functions (called via TRYCCALLFORM LUNA_OPTION_...)
+^LUNA_OPTION_.*$
+
+# Item description functions (called via CALLFORM アイテム説明_{n})
+^アイテム説明_\d+$
+
+# Wait counter punishment functions
+^WC_PUNISHMENT_\d+$
+
+# Luna kojo event functions (called dynamically)
+^LUNA_KOJO_EVENT_.*$

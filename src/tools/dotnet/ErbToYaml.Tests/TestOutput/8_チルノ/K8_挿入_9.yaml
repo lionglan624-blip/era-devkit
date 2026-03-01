@@ -1,0 +1,207 @@
+﻿character: チルノ
+situation: K8_挿入
+entries:
+- id: fallback
+  content: >-
+    「ねえ%CALLNAME:MASTER%……お尻の方、なんだね」
+
+    %CALLNAME:人物_チルノ%は%CALLNAME:MASTER%の膝の上で正面から抱きついている。
+
+    「んっ……あ……いつもと違う場所……ちょっと変な感じ……」
+
+    %CALLNAME:MASTER%が腰を動かすと、%CALLNAME:人物_チルノ%は小さく声を漏らした。
+
+    「でも……%CALLNAME:MASTER%の顔見えるから……安心する……」
+
+    %CALLNAME:人物_チルノ%は%CALLNAME:MASTER%の首にぎゅっとしがみついた。
+
+    「はぁっ……んん……お尻で%CALLNAME:MASTER%を感じてる……」
+
+    %CALLNAME:人物_チルノ%は%CALLNAME:MASTER%に抱きつきながら、体を揺らしている。
+
+    「こっちだと……なんかお腹の奥がじんじんする……」
+
+    氷の妖精の体が%CALLNAME:MASTER%の動きに合わせて上下に揺れた。
+
+    「あっ……%CALLNAME:MASTER%……もっとぎゅってして……」
+
+    %CALLNAME:人物_チルノ%は甘えた声で%CALLNAME:MASTER%に抱きついた。
+
+    「えへへ……正面からだと、%CALLNAME:MASTER%の顔よく見える」
+
+    %CALLNAME:人物_チルノ%は幸せそうに%CALLNAME:MASTER%を見上げている。
+
+    「んっ……はぁ……お尻の奥……きてる……」
+
+    %CALLNAME:人物_チルノ%の表情が快感に蕩けていく。
+
+    「あたいのお尻……%CALLNAME:MASTER%のものだよ……えへへ……」
+
+    照れながらも、%CALLNAME:人物_チルノ%は嬉しそうに笑った。
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:人物_チルノ%は潤んだ瞳で%CALLNAME:MASTER%を見つめた。
+
+    「お尻でするの……最初はちょっと怖かったけど……」
+
+    %CALLNAME:人物_チルノ%は%CALLNAME:MASTER%に顔を寄せ、額をくっつけた。
+
+    「今は……%CALLNAME:MASTER%とならどこでも……いいよ」
+
+    小さな声で、%CALLNAME:人物_チルノ%は素直な気持ちを告げた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ちょ……お、お尻の方から……!?」
+
+    %CALLNAME:人物_チルノ%は驚いて%CALLNAME:MASTER%の肩にしがみついた。
+
+    「そ、そっちは……んっ……変な感じがする……」
+
+    正面から組みつかれて、%CALLNAME:人物_チルノ%は逃げられない。
+
+    「顔……見られてる……恥ずかし……っ」
+
+    %CALLNAME:人物_チルノ%は真っ赤になりながら%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「んあっ……ま、まって%CALLNAME:MASTER%……っ！」
+
+    %CALLNAME:人物_チルノ%は慌てて%CALLNAME:MASTER%にしがみついた。
+
+    「お尻……そんなに動かされたら……っ」
+
+    %CALLNAME:人物_チルノ%の体が%CALLNAME:MASTER%の動きに翻弄されている。
+
+    「……っ、こんな変な声……出したくないのに……」
+
+    %CALLNAME:人物_チルノ%は恥ずかしそうに唇を噛んだ。
+
+    「はぁっ……あ……お尻の奥まで……」
+
+    %CALLNAME:人物_チルノ%は甘い声を漏らし、はっと我に返った。
+
+    「い、今のは……違くて……っ」
+
+    しかし体は正直に%CALLNAME:MASTER%にしがみついている。
+
+    「……っ、もう……%CALLNAME:MASTER%のばか……」
+
+    %CALLNAME:人物_チルノ%は涙目で%CALLNAME:MASTER%を睨んだが、離れようとはしなかった。
+
+    「……%CALLNAME:MASTER%、あんまり見ないで」
+
+    %CALLNAME:人物_チルノ%は恥ずかしそうに目を逸らした。
+
+    「お尻で繋がってるの……見られてると思うと……」
+
+    正面からの体勢では、%CALLNAME:人物_チルノ%の表情は隠しきれない。
+
+    「……っ、%CALLNAME:MASTER%のせいで……こんな顔……」
+
+    %CALLNAME:人物_チルノ%は恨めしそうに、それでも%CALLNAME:MASTER%に抱きついていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え……お、お尻から……!?」
+
+    %CALLNAME:人物_チルノ%は正面から%CALLNAME:MASTER%に組みつかれ、困惑している。
+
+    「そこって……いいの……？」
+
+    %CALLNAME:MASTER%が入ってくると、%CALLNAME:人物_チルノ%は目を丸くした。
+
+    「んっ……へ、変な感じ……いつもと違う……」
+
+    よくわからないながらも、%CALLNAME:人物_チルノ%は%CALLNAME:MASTER%にしがみついた。
+
+    「あ……%CALLNAME:MASTER%、ちょっと……」
+
+    %CALLNAME:人物_チルノ%は%CALLNAME:MASTER%の動きに驚いたように息を呑んだ。
+
+    「お尻の奥……なんかぐりぐりされてる……」
+
+    %CALLNAME:人物_チルノ%は不思議そうに自分の体の感覚を確かめている。
+
+    「これって……気持ちいい……のかな……？」
+
+    首を傾げながら、%CALLNAME:人物_チルノ%は%CALLNAME:MASTER%を見上げた。
+
+    「へぇ……お尻からでもできるんだ……」
+
+    %CALLNAME:人物_チルノ%は興味深そうに繋がっている部分を見下ろした。
+
+    「んっ……あ……なんか変な感じ……」
+
+    %CALLNAME:人物_チルノ%の体が小刻みに揺れている。
+
+    「……お腹の中がじんじんする……これが普通なの……？」
+
+    よくわかっていないながらも、%CALLNAME:人物_チルノ%は%CALLNAME:MASTER%に体を預けた。
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:人物_チルノ%はおとなしく%CALLNAME:MASTER%を受け入れている。
+
+    「お尻からって……ちょっとびっくりしたけど……」
+
+    %CALLNAME:人物_チルノ%は%CALLNAME:MASTER%の顔を見つめた。
+
+    「……顔見えるから……なんか安心する……かも」
+
+    %CALLNAME:人物_チルノ%は控えめに%CALLNAME:MASTER%にしがみついた。
+  priority: 2
+- id: fallback
+  content: >-
+    「ちょ……っ！　そこは違……っ！」
+
+    %CALLNAME:人物_チルノ%は抵抗しようとするが、正面から組み伏せられている。
+
+    「お、お尻なんて……やめ……っ！」
+
+    %CALLNAME:MASTER%が入ってくると、%CALLNAME:人物_チルノ%は悲鳴を上げた。
+
+    「いたっ……痛い……やめてってば……！」
+
+    %CALLNAME:人物_チルノ%の目には涙が浮かんでいた。
+
+    「な……っ！　そっちは違うでしょ……！」
+
+    %CALLNAME:人物_チルノ%は%CALLNAME:MASTER%を睨みつけるが、動けない。
+
+    「あたいを誰だと思ってんの……凍らせる……っ」
+
+    しかし痛みで冷気を放つ余裕もないようだ。
+
+    「んっ……や……お尻……裂けちゃう……っ」
+
+    %CALLNAME:人物_チルノ%の強がりも、今は完全に崩れていた。
+
+    「やめっ……お尻は……だめぇ……！」
+
+    %CALLNAME:人物_チルノ%は正面から犯されながら、必死に抵抗していた。
+
+    「こんなの……痛いだけ……っ」
+
+    %CALLNAME:人物_チルノ%の目から涙がこぼれ落ちる。
+
+    「……っ、最強なのに……こんな……ひどい……」
+
+    いつもの自信は完全に打ち砕かれていた。
+
+    「……」
+
+    %CALLNAME:人物_チルノ%は痛みに耐えながら%CALLNAME:MASTER%を睨んでいる。
+
+    「あんた……絶対に許さない……」
+
+    正面から抱きすくめられ、%CALLNAME:人物_チルノ%は歯を食いしばっていた。
+
+    「……こんなこと……忘れないから……」
+
+    震える声だったが、瞳には怒りの炎が燃えていた。
+  priority: 1

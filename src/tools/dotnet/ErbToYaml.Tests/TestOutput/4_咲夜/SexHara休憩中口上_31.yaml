@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「ふふっ、ハイヒールでしてあげたほうがよかったかしら？」
+
+    「足で気持ちよくなるように躾けてあげるわ」
+
+    「大切なところを足蹴にされる気分はどうかしら？」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,70 @@
+﻿character: フラン
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「うっ・・ううっ・・やだぁ・・！！」
+
+    「ううっ・・や、やあっ・・んぐうっ！」
+
+    「う・・うっ・・そ、そこだめぇ！ ひゃん！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「うっ・・うぐっ・・んんっ・・！！」
+
+    「ううっ・・い、いやっ・・んぐうっ！」
+
+    「んっ・・んむっ・・だ、だめっ・・ああっ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えへへっ、おっきぃ♪」
+
+    「あぁん・・気持ちイイよぉ・・%MSG_HEART()%」
+
+    「あン・・も、もっと、もっとしゃぶってぇ・・%MSG_HEART()%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えへへっ、おっきぃ♪」
+
+    「あぁん・・気持ちイイよぉ・・%MSG_HEART()%」
+
+    「あン・・も、もっと、もっとしゃぶってぇ・・%MSG_HEART()%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えへへっ、おっきぃ♪ こういうの大好き♪」
+
+    「あぁん・・気持ちイイよぉ・・もっとぉ%MSG_HEART()%」
+
+    「やぁン・・も、もっと、もっとしゃぶってぇ・・%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えへへっ、おっきぃ♪ こういうの大好き♪」
+
+    「あぁん・・気持ちイイよぉ・・もっとぉ%MSG_HEART()%」
+
+    「やぁン・・も、もっと、もっとしゃぶってぇ・・%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ん・・・おっきぃ・・・ああンっ」
+
+    「あぁん・・気持ちイイよぉ・・どうしてぇ・・」
+
+    「やぁン・・そんな、そんなに、しゃぶっちゃ、やぁ・・」
+  priority: 1
+  displayMode: newline

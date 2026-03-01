@@ -1,0 +1,51 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ1-7
+entries:
+- id: fallback
+  content: >-
+    「んっ、あんまり強くしないで・・ね%S_HEART%」
+
+    「うん・・もぉ・・こんなところで・・%S_HEART%」
+
+    「ん・・やぁん・・%S_HEART%」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ、あんまり強くしないで・・ね%S_HEART%」
+
+    「うん・・もぉ・・こんなところで・・%S_HEART%」
+
+    「ん・・やぁん・・%S_HEART%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ、あんまり強くしないで・・ね%S_HEART%」
+
+    「うん・・もぉ・・こんなところで・・%S_HEART%」
+
+    「ん・・やぁね・・%S_HEART%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっ、あん・・離して・・%S_HEART%」
+
+    「うん・・あぁ・・こんなところで・・%S_HEART%」
+
+    「ん・・やぁん・・%S_HEART%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「だっ、だめ・・離して・・！！」
+
+    %NTR_NAME(0)%に背後から抱きつかれた%CALLNAME:奴隷%は、振りほどこうとしている。
+  priority: 2
+- id: fallback
+  content: >-
+    「なっ！どこさわってっ！！」
+
+    背後から急に抱きついた%NTR_NAME(0)%に胸を鷲掴みにされた。
+  priority: 1

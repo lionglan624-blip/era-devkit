@@ -1,0 +1,12 @@
+﻿character: フラン
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「ただいま、今帰ったよ」
+
+    「ただいま。うん、今帰ったよ」
+
+    「ただいま」
+  priority: 1
+  displayMode: newline

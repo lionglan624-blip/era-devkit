@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    「ごめんなさいね・・%MSG_LOVER(奴隷)%の%CALLNAME:MASTER%をさしおいて、他の人とセックスしてくるわ」
+
+    「そうよ。%MSG_LOVER(奴隷)%の%CALLNAME:MASTER%をさしおいて、他の人とセックスするために出かけてくるの」
+
+    「だから、今私の身体は%MSG_LOVER(奴隷)%の%CALLNAME:MASTER%でなくて、その人のものなの」
+  priority: 1
+  displayMode: newline

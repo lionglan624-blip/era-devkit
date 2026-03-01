@@ -1,0 +1,4946 @@
+{
+  "summary": {
+    "errors": 0,
+    "warnings": 1,
+    "info": 616,
+    "filesScanned": 98
+  },
+  "issues": [
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 123,
+      "column": 1,
+      "level": "warning",
+      "code": "FUNC004",
+      "message": "Duplicate function @EVENTTRAIN (first defined at BEFORETRAIN.ERB:3)"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u53E3\u4E0A\\6_\u30D5\u30E9\u30F3\\\u5BFE\u3042\u306A\u305F\u53E3\u4E0A.ERB",
+      "line": 814,
+      "column": 1,
+      "level": "info",
+      "code": "STYLE001",
+      "message": "Kojo function @KOJO_MESSAGE_COM_K7_463_1 has K7 but is in 6_\u30D5\u30E9\u30F3 directory"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\ABL.ERB",
+      "line": 104,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @USERABLUP is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\ABL.ERB",
+      "line": 114,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MAXABL is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\BEFORETRAIN.ERB",
+      "line": 170,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @BEFORETRAIN_ResetCFlags is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CLOTHES.ERB",
+      "line": 718,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CLOTHES_IsDressed is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CLOTHES.ERB",
+      "line": 1021,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CLOTHNAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CLOTHES.ERB",
+      "line": 1289,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u4ECA\u65E5\u306E\u3071\u3093\u3064 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CLOTHES.ERB",
+      "line": 1471,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u4ECA\u65E5\u306E\u3071\u3093\u3064ADULT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CLOTHES.ERB",
+      "line": 1489,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @PANTSNAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CLOTHES.ERB",
+      "line": 1610,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @PANTS_DESCRIPTION is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CLOTHES.ERB",
+      "line": 1722,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u4E0B\u7740\u540D\uFF11_\uFF12 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CLOTHES.ERB",
+      "line": 1737,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHK_NO_PANTS is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CLOTHES.ERB",
+      "line": 1751,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IRUINAME_SMELL is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CLOTHES.ERB",
+      "line": 1973,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5BDD\u9593\u7740\u540D\u79F0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMABLE2.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GLOBAL_COMABLE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF312.ERB",
+      "line": 142,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHK_COM312_STAIN is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF350.ERB",
+      "line": 113,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHK_350_STAIN_SEMEN is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF350.ERB",
+      "line": 130,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHK_350_STAIN is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF400.ERB",
+      "line": 426,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FARMOVE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF400.ERB",
+      "line": 522,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u6B21\u306E\u7D4C\u7531\u5730 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF400.ERB",
+      "line": 588,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u6B21\u306E\u76EE\u7684\u5730 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF400.ERB",
+      "line": 743,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RESET_ROUTE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF400.ERB",
+      "line": 760,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @HAS_DUPLICATE_KEY is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF400.ERB",
+      "line": 775,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u53CE\u96C6\u54C1\u6B7B\u5B88\u6226\u767A\u751F is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF404.ERB",
+      "line": 539,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHK_LOOK_PANCHIRA is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF404.ERB",
+      "line": 576,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_LAKE_TALK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF404.ERB",
+      "line": 826,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @LOOK_INHABITANT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF446.ERB",
+      "line": 166,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @PHOTO_NAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF446.ERB",
+      "line": 214,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @PHOTO_DETAIL_NAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF446.ERB",
+      "line": 376,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHOOSE_PHOTO is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF446.ERB",
+      "line": 447,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHOOSE_PHOTO_DETAIL is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF446.ERB",
+      "line": 481,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHOOSE_PHOTO2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMF64.ERB",
+      "line": 91,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_COMF64 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 4,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ISSALE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 19,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ITEMSTOCK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 73,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_REVISION is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 80,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_REVISION2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 104,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ONCE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 134,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FIRSTTIME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 157,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @EXP_UP is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 169,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @INVAGINA is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 186,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @INANAL is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 204,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @HETEROSEX is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 222,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @HAS_PENIS is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 236,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @HAS_VAGINA is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 250,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_MALE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 264,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_FEMALE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 278,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_FUTA is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 292,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_DOUTEI is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 306,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_SEXNAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 324,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SOURCE_REVISION1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 342,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SOURCE_REVISION2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 357,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_TARGETNUM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 370,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_TARGETSLEEP is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 403,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_TARGETWAKEUP is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 421,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_DAY is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 433,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @DATETIME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 438,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GETDISHNAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 503,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GETDISHMENU is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 518,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @Common_SetErection is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 525,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_TRAIN_NAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 544,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_STAINCOUNT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 583,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @HAS_STAIN is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 595,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_PAIR_\u90E8\u4F4D is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 605,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @HAS_PAIR_\u90E8\u4F4D is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 615,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @DICTIONARY_PAIR_\u90E8\u4F4D is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 626,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_DESCRIPTIVE_NAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 648,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_CALLNAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 670,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_MARK_LEVEL_OWNERNAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 697,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_MARK_LEVEL is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_J.ERB",
+      "line": 1,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_SUCCESS_RATE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_KOJO.ERB",
+      "line": 1,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SAMEROOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_PLACE.ERB",
+      "line": 3,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GETPLACENAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_PLACE.ERB",
+      "line": 115,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_GETPLACENAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_PLACE.ERB",
+      "line": 129,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IN_ROOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_PLACE.ERB",
+      "line": 234,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_N_IN_ROOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_PLACE.ERB",
+      "line": 257,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MAXROOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_PLACE.ERB",
+      "line": 262,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @BEDROOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_PLACE.ERB",
+      "line": 276,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @BATHROOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_PLACE.ERB",
+      "line": 286,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @KITCHEN is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_PLACE.ERB",
+      "line": 296,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @OPENPLACE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_PLACE.ERB",
+      "line": 310,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MAP_DISTINCTION is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CORE8666.ERB",
+      "line": 2,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_7 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CORE8666.ERB",
+      "line": 38,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_7 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\CORE8666.ERB",
+      "line": 47,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_7 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COUNTER_ACTABLE.ERB",
+      "line": 3,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ACTABLE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COUNTER_CONBINATION.ERB",
+      "line": 15,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @COUNTER_RESET is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COUNTER_PUNISHMENT.ERB",
+      "line": 17,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @PUNISHMENT_0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COUNTER_PUNISHMENT.ERB",
+      "line": 27,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @PUNISHMENT_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COUNTER_PUNISHMENT.ERB",
+      "line": 38,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @PUNISHMENT_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COUNTER_SELECT.ERB",
+      "line": 4,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @POSITION_OCCUPATION is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENTCOMEND.ERB",
+      "line": 524,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u81EA\u6170\u4E2D\u5909\u52D5\u5024_\u5FEB is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENTCOMEND.ERB",
+      "line": 563,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u81EA\u6170\u4E2D\u5909\u52D5\u5024_\u6B32\u60C5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENTCOMEND.ERB",
+      "line": 602,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u81EA\u6170\u4E2D\u5909\u52D5\u5024_\u6F64\u6ED1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE.ERB",
+      "line": 241,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @OPPAI_DESCRIPTION is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 29,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 65,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 109,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 118,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 159,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 175,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 205,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 223,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM7 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 238,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM8 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 301,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM9 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 352,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM10 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 376,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM11 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 402,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM20 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 426,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM21 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 431,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM40 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 472,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM41 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 504,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM42 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 514,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM43 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 524,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM44 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 635,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM45 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 701,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM46 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 710,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM47 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 719,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM48 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 729,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM60 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 834,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM61 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 940,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM62 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1019,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM63 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1082,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM64 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1104,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM65 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1151,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM66 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1182,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM67 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1219,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM68 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1252,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM69 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1288,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM70 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1318,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM71 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1343,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM72 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1377,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM80 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1414,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM81 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1463,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM82 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1484,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM83 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1520,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM84 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1538,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM85 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1550,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM86 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1575,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM90 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1603,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM91 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1614,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM92 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1661,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM93 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1715,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM94 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1767,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM95 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1810,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM96 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 1820,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM97 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2062,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM98 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2327,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM99 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2454,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM100 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2478,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM101 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2483,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM102 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2504,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM103 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2515,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM104 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2525,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM105 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2535,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM106 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2545,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM120 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2550,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM121 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2555,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM122 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2560,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM123 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2570,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM126 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2575,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM140 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2580,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM141 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2595,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM142 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2610,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM143 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2622,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM144 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2638,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM145 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2643,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM146 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2683,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM147 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2707,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM148 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2717,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM149 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2741,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM160 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2775,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM180 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2780,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM181 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2793,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM182 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2806,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM183 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2816,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM184 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2826,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM185 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2842,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM186 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2852,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM187 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2862,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM188 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2871,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM189 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2880,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM200 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2923,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM201 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 2963,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM202 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3000,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM203 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3075,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3122,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3127,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3169,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3202,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3219,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3224,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM7 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3230,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM8 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3248,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM9 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3258,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM10 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3265,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM11 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3284,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM12 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3305,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM13 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3373,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM14 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3398,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM15 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3423,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_SCOM16 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3438,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM300 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3468,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM301 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3479,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM302 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3494,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM310 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3536,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM311 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3575,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM312 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3617,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM313 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3652,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM314 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3726,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM315 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3760,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM316 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3787,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM350 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3809,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM352 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3824,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM355 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3829,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM360 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3834,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM403 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3859,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM410 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3913,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM411 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3922,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM414 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3941,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM415 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3954,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM420 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3960,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM600 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3978,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM602 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 3988,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM603 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4029,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM605 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4058,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM606 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4073,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM607 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4085,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM608 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4181,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM609 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4191,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM640 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4225,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM641 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4249,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM642 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4260,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM643 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4271,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM644 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4349,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM645 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4416,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM646 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4426,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM647 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4436,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM648 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\EVENT_MESSAGE_COM.ERB",
+      "line": 4464,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_ORGASM_CVAB is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\GIFT.ERB",
+      "line": 29,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_GIFT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\INFO.ERB",
+      "line": 411,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SAVEINFO is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\INFO.ERB",
+      "line": 1345,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @INFO_ToSIPrefixed is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\INTRUDER.ERB",
+      "line": 54,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_DISP_INTRUDER is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LOCK.ERB",
+      "line": 3,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @isLockable is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LOCK.ERB",
+      "line": 28,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @isLocked is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LOCK.ERB",
+      "line": 35,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @canOpenDoor is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LOCK.ERB",
+      "line": 46,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @canUnLock is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LOCK.ERB",
+      "line": 80,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @tryLock is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LOCK.ERB",
+      "line": 95,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @isLockedByBolt is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LOCK.ERB",
+      "line": 102,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @tryLockBolt is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LOCK.ERB",
+      "line": 120,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @tryUnLock is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LOCK.ERB",
+      "line": 135,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @tryOpenDoor is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LUNA_KOJO.ERB",
+      "line": 35,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @LUNA_OPTION_00 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LUNA_KOJO.ERB",
+      "line": 55,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @LUNA_OPTION_01 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LUNA_KOJO.ERB",
+      "line": 75,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @LUNA_OPTION_02 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LUNA_KOJO.ERB",
+      "line": 95,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @LUNA_OPTION_03 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LUNA_KOJO.ERB",
+      "line": 115,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @LUNA_OPTION_09 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LUNA_KOJO.ERB",
+      "line": 134,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @LUNA_OPTION_100 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\LUNA_KOJO.ERB",
+      "line": 161,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @LUNA_KOJO_EVENT_REST_UseRestRoom_Pee is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAKEFILM.ERB",
+      "line": 63,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAMERA_SPOT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAKEFILM.ERB",
+      "line": 133,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SLOTNUM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAKEFILM.ERB",
+      "line": 153,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SLOTTIMING is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAKEFILM.ERB",
+      "line": 169,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SLOTACTRESS is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAKEFILM.ERB",
+      "line": 184,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SLOTPLACE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAKEFILM.ERB",
+      "line": 200,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SLOTSLICE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAKEFILM.ERB",
+      "line": 213,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SLOTPRICE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAKEFILM.ERB",
+      "line": 352,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM450 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAKEFILM.ERB",
+      "line": 362,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM451 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAKEFILM.ERB",
+      "line": 371,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM452 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAP_PRINT.ERB",
+      "line": 4,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MAP_PRINT_0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAP_PRINT.ERB",
+      "line": 55,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MAP_PRINT_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAP_PRINT.ERB",
+      "line": 145,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MAP_SETC is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MAP_PRINT.ERB",
+      "line": 151,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MAP_SETC2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 255,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 264,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 270,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 317,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 326,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 332,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 381,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 390,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 396,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 443,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 452,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 458,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 520,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 529,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 535,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 581,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 590,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 596,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 640,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_8 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 649,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_8 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 655,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_8 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 674,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_9 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 683,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_9 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 689,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_9 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 707,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_10 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 716,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_10 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 722,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_10 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 745,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_11 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 754,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_11 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 760,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_11 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 781,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_12 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 790,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_12 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 796,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_12 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 813,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_13 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 822,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_13 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 828,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_13 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 849,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_ACTIVETIME_0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 856,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_MOVERATE_0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 862,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_MOVEMENT_0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 926,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_MOVE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 1231,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TIME_PROGRESS is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 1575,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHK_NTR_ESCAPE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 1622,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @COUNT_MEM_IN_POS is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 1639,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_PRIVATE_ROOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\MOVEMENT.ERB",
+      "line": 1649,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_PRIVATE_ROOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 652,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHK_TGT_IN_POS is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 751,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_N_WITH_VISITER is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 766,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_ATTRIBUTE_OF_PERSON_IN_ROOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 940,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_ROOM_SECURITY is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 2415,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_SEX_0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 2482,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_SEX_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 2548,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_SEX_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 2621,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_SEX_3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 2689,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_SEX_4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 2758,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_SEX_5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 2824,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_SEX_6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 2890,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_A_SEX_0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 2947,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_A_SEX_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 3004,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_A_SEX_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 3063,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_A_SEX_3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 3121,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_A_SEX_4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 3180,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_A_SEX_5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 3237,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_A_SEX_6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 3597,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_LOCK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 3623,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_COST_UNLOCK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 3703,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_COST_UNLOCK_SP is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 3850,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_CAN_LOCK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 4382,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_AIR_MASTER is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 4420,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_GET_SEX_LAGE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 4455,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_CHK_FAVORABLY is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 4539,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_CHK_VISIBLE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 4559,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_CHK_PEEP_CONT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 4573,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_CHK_MISETUKE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 4730,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHK_NTR_SATISFACTORY is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 4826,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_FickleCount is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR.ERB",
+      "line": 4885,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_CHK_STRIKE_ZONE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_COMF416.ERB",
+      "line": 253,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @DRESS_LEVEL is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_EXHIBITION.ERB",
+      "line": 393,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_EXH_CALC_PERMISSIBLE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_MASTER_3P_SEX.ERB",
+      "line": 1807,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u6027\u4EA4\u56DE\u6570MSG is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_MASTER_3P_SEX.ERB",
+      "line": 1834,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_MASTER_3P_CHK_SEX_AV is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_MESSAGE.ERB",
+      "line": 17,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_NAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_MESSAGE.ERB",
+      "line": 53,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_OTOKO is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_MESSAGE.ERB",
+      "line": 58,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_KARE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_MESSAGE.ERB",
+      "line": 63,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_NAME_1_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 342,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_DRAIN_LOVE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 353,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_DRAIN_TALENT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 364,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_LONG_STAY is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 375,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_IMPRISON_ENABLE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 386,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_PREGNANCY_ENABLE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 397,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_TAKINGOUT_ENABLE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 408,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_VISITOR_COME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 419,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_EXHIBITION is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 430,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_SLEEP_RAPE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 441,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_ATTACK_LOVER_ONLY is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 452,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_KEEP_VIRGIN is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 463,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_DROP_LOVER_WC is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 474,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_SOFT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 486,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_ESCAPE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 497,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_SHOW_POS is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_OPTION.ERB",
+      "line": 508,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @IS_NTR_SHOW_ALL is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_TAKEOUT.ERB",
+      "line": 956,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_Play_A_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_TAKEOUT.ERB",
+      "line": 1674,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_GET_STAYOUT_CURRENT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR_TAKEOUT.ERB",
+      "line": 1682,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_GET_STAYOUT_MAXIMUM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR\u9665\u843D\u30A4\u30D9\u30F3\u30C8.ERB",
+      "line": 130,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR\u9665\u843D\u30A4\u30D9\u30F3\u30C8_\u5199\u771F is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\NTR\u9665\u843D\u30A4\u30D9\u30F3\u30C8.ERB",
+      "line": 188,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR\u9665\u843D\u30A4\u30D9\u30F3\u30C8_\u81EA\u6170\u6761\u4EF6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 951,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @PREGNACY_S_CHILD_CHK_PALENT_TALENT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 970,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @PREGNACY_S_CHILD_GET_PALENT_TALENT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 996,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @PREGNACY_S_CHILD_GET_TALENT_RANDOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1321,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_GIRL_0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1332,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_GIRL_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1350,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_GIRL_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1370,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_GIRL_3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1386,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_GIRL_4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1402,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_GIRL_5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1413,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_GIRL_6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1429,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_GIRL_7 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1443,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_GIRL_8 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1459,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_GIRL_9 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1473,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_GIRL_10 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1953,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_BOY_0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1969,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_BOY_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 1983,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_BOY_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 2001,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_BOY_3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 2017,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_BOY_4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 2033,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_BOY_5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 2044,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_BOY_6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 2060,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_BOY_7 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 2074,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_BOY_8 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 2088,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_BOY_9 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S.ERB",
+      "line": 2102,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @RANDOM_N_BOY_10 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PREGNACY_S_CHILD_MOVEMENT.ERB",
+      "line": 103,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_NOW_POS is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 316,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_TALENTNAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 704,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @Unknown\u4E0B\u7740 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 724,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u7DE0\u308A\u5177\u5408\u540D\u79F0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 767,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\uFF36\u4F4D\u7F6E is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 783,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\uFF36\u30AA\u30D7\u30B7\u30E7\u30F3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 797,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET\uFF36\u30AA\u30D7\u30B7\u30E7\u30F3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 806,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\uFF30\u5927\u304D\u3055 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 826,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\uFF30\u30AA\u30D7\u30B7\u30E7\u30F3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 844,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u9AEA\u306E\u9577\u3055 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 874,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u9AEA\u30AA\u30D7\u30B7\u30E7\u30F3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 894,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u76EE\u3064\u304D is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 914,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u77B3\u30AA\u30D7\u30B7\u30E7\u30F3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 934,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u808C\u8272 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 993,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u4F53\u30AA\u30D7\u30B7\u30E7\u30F3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\PRINT_STATE.ERB",
+      "line": 1073,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u8272\u6C4E\u7528 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\RESTROOM.ERB",
+      "line": 38,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @REST_GetBladderCapacity is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\RESTROOM.ERB",
+      "line": 62,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @REST_GetColonCapacity is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\RESTROOM.ERB",
+      "line": 78,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @REST_GetRectalCapacity is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\RESTROOM.ERB",
+      "line": 93,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @REST_GetUrge is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\RESTROOM.ERB",
+      "line": 120,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @REST_NeedRestroom is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\RESTROOM.ERB",
+      "line": 284,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @REST_GetBedTime is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\RESTROOM.ERB",
+      "line": 293,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NEAR_RESTROOM_DOOR is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\RESTROOM.ERB",
+      "line": 314,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @REST_IsRestRoom is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\RESTROOM.ERB",
+      "line": 344,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GO_TO_RESTROOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\RESTROOM.ERB",
+      "line": 438,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @AFTER_REST_ROOM is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\ROOM_SMELL.ERB",
+      "line": 781,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ROOM_SMELL_BIT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\ROOM_SMELL.ERB",
+      "line": 786,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ROOM_SMELL_VALUE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\ROOM_SMELL.ERB",
+      "line": 791,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ROOM_SMELL_WHOSE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\ROOM_SMELL.ERB",
+      "line": 796,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ROOM_SMELL_WHOSE_NAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\ROOM_SMELL.ERB",
+      "line": 815,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ROOM_SMELL_KINDS is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\ROOM_SMELL.ERB",
+      "line": 881,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ROOM_SMELL_CHARA_MOST is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\ROOM_SMELL.ERB",
+      "line": 1108,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ROOM_SMELL_WHOSE_SAMEN is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF1.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF1.ERB",
+      "line": 164,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_SCOM1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF10.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM10 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF10.ERB",
+      "line": 104,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_SCOM10 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF11.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM11 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF11.ERB",
+      "line": 108,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_SCOM11 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF12.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM12 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF12.ERB",
+      "line": 90,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_SCOM12 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF13.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM13 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF13.ERB",
+      "line": 138,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_SCOM13 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF14.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM14 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF15.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM15 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF16.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM16 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF16.ERB",
+      "line": 81,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_SCOM16 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF2.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF3.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF4.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF4.ERB",
+      "line": 104,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_SCOM4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF5.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF5.ERB",
+      "line": 15,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_SCOM5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF6.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF7.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM7 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF8.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM8 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF8.ERB",
+      "line": 101,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_SCOM8 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF9.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SCOM9 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SCOMF9.ERB",
+      "line": 105,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CAN_SCOM9 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SEL_ARRAY.ERB",
+      "line": 22,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SEL_ARRAY is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SexHara.erb",
+      "line": 32,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SOJI_SexHara_Easy is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SexHara.erb",
+      "line": 57,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SOJI_SexHara_Normal is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SexHara.erb",
+      "line": 135,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SOJI_SexHara_Extra is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SexHara.erb",
+      "line": 254,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SOJI_SexHara_Hard is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SexHara.erb",
+      "line": 315,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SOJI_SexHara_Lunatic is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SexHara.erb",
+      "line": 563,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SOJI_SexHara_Phantasm is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SOURCE.ERB",
+      "line": 4,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SOURCE_CHECK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SOURCE_POSE.ERB",
+      "line": 334,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MASTER_POSE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SOURCE_SHOOT.ERB",
+      "line": 4,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SAMEN_DIRECTION is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SOURCE_SHOOT.ERB",
+      "line": 15,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SAMEN_DIRECTION2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TALENTCOPY.ERB",
+      "line": 4,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARACROSS is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TOILET_COUNTER_ACTABLE.ERB",
+      "line": 3,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_ACTABLE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TOILET_COUNTER_COMBINATION.ERB",
+      "line": 16,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_COUNTER_RESET is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TOILET_COUNTER_MESSAGE.ERB",
+      "line": 7044,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_VA_FITTING is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TOILET_COUNTER_MESSAGE.ERB",
+      "line": 10935,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_LOVEranking is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TOILET_COUNTER_PUNISHMENT.ERB",
+      "line": 18,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_PUNISHMENT_0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TOILET_COUNTER_PUNISHMENT.ERB",
+      "line": 28,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_PUNISHMENT_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TOILET_COUNTER_PUNISHMENT.ERB",
+      "line": 39,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_PUNISHMENT_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TRACHECK.ERB",
+      "line": 12,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MASTER_FAVOR_CHECK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TRACHECK.ERB",
+      "line": 30,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TECHNIQUE_CHECK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TRACHECK.ERB",
+      "line": 46,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MOOD_CHECK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TRACHECK.ERB",
+      "line": 60,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @REASON_CHECK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TRACHECK.ERB",
+      "line": 611,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5C48\u670D\u523B\u5370\u53D6\u5F97\u30C1\u30A7\u30C3\u30AF_\u5FEB\u697D is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TRACHECK.ERB",
+      "line": 649,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5C48\u670D\u523B\u5370\u53D6\u5F97\u30C1\u30A7\u30C3\u30AF_\u6050\u6016 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TRACHECK.ERB",
+      "line": 679,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5C48\u670D\u523B\u5370\u53D6\u5F97\u30C1\u30A7\u30C3\u30AF_\u5F93\u9806 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\WC_SexHara_ACTABLE.ERB",
+      "line": 3,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_SexHara_ACTABLE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\WC_SexHara_ACTABLE.ERB",
+      "line": 577,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_topOFsurrender is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\WC_SexHara_ACTABLE.ERB",
+      "line": 596,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_winOFsurrender is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\WC_SexHara_MESSAGE.ERB",
+      "line": 7927,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_SexHara_MESSAGE_intercept_CHECK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\WC_SexHara_MESSAGE.ERB",
+      "line": 8227,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_SURRENDER is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\WC_SexHara_MESSAGE.ERB",
+      "line": 8302,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_sensPOINT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\WC_SexHara_MESSAGE.ERB",
+      "line": 8381,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_dullPOINT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\WC_SexHara_MESSAGE.ERB",
+      "line": 8465,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @WC_SH_VA_FITTING is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 4,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_0 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 8,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 12,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 16,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 20,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_4 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 24,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_5 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 28,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 32,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_7 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 36,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_8 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 40,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_9 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 44,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_10 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 48,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_11 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 52,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_12 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 56,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_13 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 60,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_14 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 64,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_15 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 68,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_16 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 72,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_17 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 76,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_19 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 80,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_20 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 84,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_23 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 88,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_24 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 92,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_27 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 102,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_35 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 106,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_36 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 112,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_40 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 118,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_41 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 124,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_42 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 132,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_44 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 138,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_45 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 141,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_46 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 147,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_60 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 151,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_61 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 157,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_62 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 163,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_63 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 167,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_64 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 171,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_70 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 175,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_71 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 179,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_72 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 183,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_74 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 190,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_77 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 199,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_91 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 208,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_92 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 216,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_93 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 220,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_94 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 224,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_95 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E.ERB",
+      "line": 228,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30A2\u30A4\u30C6\u30E0\u8AAC\u660E_96 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u4F4F\u4EBA\u540C\u58EB\u306E\u4EA4\u6D41.ERB",
+      "line": 2150,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @INHABITANT_FRIENDSHIP_POWER is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u4F4F\u4EBA\u540C\u58EB\u306E\u4EA4\u6D41.ERB",
+      "line": 2165,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NOT_CONSPICUOUS_PLACE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u4F4F\u4EBA\u540C\u58EB\u306E\u4EA4\u6D41.ERB",
+      "line": 2291,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @INHABITANT_MEMORIAL_CREATE is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u4F4F\u4EBA\u540C\u58EB\u306E\u4EA4\u6D41\u8A2D\u5B9A.ERB",
+      "line": 324,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @INHABITANT_LOOP_MAX is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u4F53\u8A2D\u5B9A.ERB",
+      "line": 836,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u4F53\u8A73\u7D30\u30AA\u30D7\u30B7\u30E7\u30F3\u8A2D\u5B9A is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u4F53\u8A2D\u5B9A.ERB",
+      "line": 1881,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u4F53\u8A73\u7D30\u30AA\u30D7\u30B7\u30E7\u30F3\u8A2D\u5B9A\u8A2A\u554F\u8005 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u591A\u751F\u5150\u30D1\u30C3\u30C1.ERB",
+      "line": 447,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @N_T_R is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u591A\u751F\u5150\u30D1\u30C3\u30C1.ERB",
+      "line": 487,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u591A\u751F\u5150\u51FA\u7523\u5F37\u5EA6 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5929\u5019.ERB",
+      "line": 64,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u65E5\u4ED8_\u6708 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5929\u5019.ERB",
+      "line": 87,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5E74\u9593\u57FA\u790E\u96F7\u767A\u751F\u78BA\u7387 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5929\u5019.ERB",
+      "line": 136,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5E74\u9593\u57FA\u790E\u964D\u6C34\u78BA\u7387 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5929\u5019.ERB",
+      "line": 185,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5E74\u9593\u57FA\u790E\u6700\u9AD8\u6C17\u6E29 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5929\u5019.ERB",
+      "line": 331,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5E74\u9593\u57FA\u790E\u6700\u4F4E\u6C17\u6E29 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5929\u5019.ERB",
+      "line": 473,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5929\u5019 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u598A\u5A20\u51E6\u7406\u5909\u66F4\u30D1\u30C3\u30C1.ERB",
+      "line": 32,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5B50\u5BAE\u5185\u4F53\u7A4D\u8A2D\u5B9AF is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u598A\u5A20\u51E6\u7406\u5909\u66F4\u30D1\u30C3\u30C1.ERB",
+      "line": 284,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5B50\u4F9B\u306E\u6210\u9577\u72B6\u614B is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5B50\u4F9B\u306E\u8A2A\u554F\u95A2\u4FC2.ERB",
+      "line": 209,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GET_TARGET_CHILDREN is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5B50\u4F9B\u306E\u8A2A\u554F\u95A2\u4FC2.ERB",
+      "line": 236,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u89AA\u5B50\u95A2\u4FC2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5BA2\u53E3\u4E0A.ERB",
+      "line": 264,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CALL_K_NAME is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5BA2\u6C4E\u7528\u5730\u306E\u6587.ERB",
+      "line": 3,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5BA2\u6C4E\u7528\u5730\u306E\u6587 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5F93\u8005\u30A4\u30D9\u30F3\u30C8.ERB",
+      "line": 198,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u90E8\u5C4B\u306E\u6C5A\u308C_\u6700\u5927 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5F93\u8005\u30A4\u30D9\u30F3\u30C8.ERB",
+      "line": 505,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5F93\u8005E_\u304A\u4F7F\u3044_\u4F9D\u983C\u54C1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5F93\u8005\u30A4\u30D9\u30F3\u30C8.ERB",
+      "line": 713,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5F93\u8005E_\u304A\u4F7F\u3044_\u8272\u9078\u629E is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5F93\u8005\u30A4\u30D9\u30F3\u30C8.ERB",
+      "line": 886,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5F93\u8005E_\u914D\u9054\uFF11 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5F93\u8005\u30A4\u30D9\u30F3\u30C8.ERB",
+      "line": 943,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5F93\u8005E_\u914D\u9054\uFF12 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5F93\u8005\u30A4\u30D9\u30F3\u30C8.ERB",
+      "line": 1052,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5F93\u8005E_\u6642\u9593\u7D4C\u904E is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5F93\u8005\u30A4\u30D9\u30F3\u30C8.ERB",
+      "line": 1151,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u5F93\u8005E_\u30AD\u30E3\u30E9\u5225\u4E0D\u6E80 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u60C5\u4E8B\u4E2D\u306B\u8E0F\u307F\u8FBC\u307F.ERB",
+      "line": 6,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @NTR_INFIDELITY is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u751F\u7406\u6A5F\u80FD\u8FFD\u52A0\u30D1\u30C3\u30C1.ERB",
+      "line": 17,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u598A\u5A20\u78BA\u5B9A\u6642\u306E\u8FFD\u52A0\u51E6\u7406 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7761\u7720\u6DF1\u5EA6.ERB",
+      "line": 215,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u3046\u3075\u3075\u4E2D\u8D77\u5E8A_\u95A2\u5FC3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D9A\u67C4.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TUDUKIGARA_OUTPUT_ALL is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D9A\u67C4.ERB",
+      "line": 173,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TUDUKIGARA_CHECK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D9A\u67C4.ERB",
+      "line": 248,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SONZOKU_CHECK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D9A\u67C4.ERB",
+      "line": 285,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @HIZOKU_CHECK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D9A\u67C4.ERB",
+      "line": 321,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @BOUKEI_CHECK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D9A\u67C4.ERB",
+      "line": 368,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHILDREM_CHECK is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u8C9E\u64CD\u5E2F\u7BA1\u7406.ERB",
+      "line": 50,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHK_DISMOUNT_P_CHASTITY_BELT is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u4F1A\u8A71\u62E1\u5F35\\ComF300ex14_\u7D50\u5A5A\u6307\u8F2A\u306B\u3064\u3044\u3066.ERB",
+      "line": 42,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MESSAGE_COM_300_14_01 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5916\u51FA\u62E1\u5F35\\GoOut.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GoOut_Ready is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5916\u51FA\u62E1\u5F35\\GoOut900_\u8A2A\u554F\u8005\u306E\u5BB6\u3078.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GoOut_Ready_900 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\COMF420ex01_\u4EBA\u3092\u63A2\u3057\u3066\u3044\u308B.ERB",
+      "line": 68,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @CHARA_KATUDOU is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\COMF420ex02_\u9928\u306E\u6383\u9664\u3092\u3057\u305F\u3044.ERB",
+      "line": 62,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SEIKETU is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 4,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_Employ is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 13,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_hasVacancy is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 26,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_addVacancy is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 41,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_HiredCount is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 56,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetRandomName is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 89,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetRandomWord1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 125,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetRandomWord2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 148,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetRandomWord3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 214,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_Remove is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 265,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetClothColor is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 300,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetHairColor is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 345,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetHairStyle is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 390,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetBoobsSize is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 434,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetBodyStyle is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 479,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetExFeature is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 525,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetAdjective is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 602,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetAblName is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 640,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetParaphilia is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.erb",
+      "line": 737,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetTalentName is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D4C\u6B74\u62E1\u5F35\\memorial_base.erb",
+      "line": 131,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @is_virgin_m is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D4C\u6B74\u62E1\u5F35\\memorial_base.erb",
+      "line": 146,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @memorial_create is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D4C\u6B74\u62E1\u5F35\\memorial_base.erb",
+      "line": 277,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @check_lost_virgin_m is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D4C\u6B74\u62E1\u5F35\\memorial_base.erb",
+      "line": 293,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @check_lost_virgin_v is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D4C\u6B74\u62E1\u5F35\\memorial_base.erb",
+      "line": 309,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @check_lost_virgin_a is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u7D4C\u6B74\u62E1\u5F35\\memorial_base.erb",
+      "line": 324,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @get_call_name is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u8A2A\u554F\u8005\u5B85\u62E1\u5F35\\COMF46x.ERB",
+      "line": 4,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @COM46x_V_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u8A2A\u554F\u8005\u5B85\u62E1\u5F35\\COMF46x.ERB",
+      "line": 89,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @COM46x_A_1 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u8A2A\u554F\u8005\u5B85\u62E1\u5F35\\COMF46x.ERB",
+      "line": 117,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @COM46x_A_2 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u8A2A\u554F\u8005\u5B85\u62E1\u5F35\\COMF46x.ERB",
+      "line": 145,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @COM46x_A_3 is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u53E3\u4E0A\\U_\u6C4E\u7528\\NTR\u53E3\u4E0A.ERB",
+      "line": 7392,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @ANATA_LOVER is never called"
+    },
+    {
+      "file": "C:\\Users\\siihe\\OneDrive\\\u540C\u4EBA\u30B2\u30FC\u30E0\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u53E3\u4E0A\\U_\u6C4E\u7528\\NTR\u53E3\u4E0A.ERB",
+      "line": 7405,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @BOTTOM_BODY is never called"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んっ・・んんっ・・・いいっ・・♪」
+
+    「ああ・・いいわ・・続けて・・♪」
+
+    「ああ・・そこよ・・もっと、強くっ・・♪」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・んんっ・・・いいっ・・♪」
+
+    「ああ・・いいわ・・続けて・・♪」
+
+    「ああ・・そこよ・・もっと、強くっ・・♪」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・んんっ・・・いいっ・・」
+
+    「ああ・・いいわ・・続けて・・」
+
+    「ああ・・そこよ・・もっと、強くっ・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・その程度かしら・・？ あン・・」
+
+    「ああ・・そんなものかしら？ んっ・・まだまだ、ね・・」
+
+    「ああ・・ククッ、少しは、やるわね・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・その程度かしら・・？」
+
+    「ああ・・そんなものかしら？」
+
+    「ああ・・上手にできないと、力ずくでやめさせるわよ・・？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「いっ、痛っ！！やめっ、強くしないで」
+
+    「こ、このっ、離しなさいっ！！」
+
+    「こ、こいつっ、あんまり調子に・・！」
+  priority: 1
+  displayMode: newline

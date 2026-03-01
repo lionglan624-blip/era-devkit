@@ -1,0 +1,48 @@
+﻿character: 汎用
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「あぁんっ・・んっ・・ああ・・そ、そこぉ・・%MSG_HEART()%」
+
+    「い・・いぃ・・も、もっとぉ・・%MSG_HEART()%」
+
+    「そ・・そこよ・・あぁ・・もっと・・つよ、く・・%MSG_HEART()%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あぁんっ・・んっ・・ああ・・そ、そこぉ・・%MSG_HEART()%」
+
+    「い・・いぃ・・も、もっとぉ・・%MSG_HEART()%」
+
+    「そ・・そこよ・・あぁ・・もっと・・つよ、く・・%MSG_HEART()%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「離して・・こんな・・こんなこといけな・・・」
+
+    「や、やめてよ・・だめぇ・・あっ・・」
+
+    「な、なにするの・・あっ・・だめ・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「離してっ！こんなこといけな・・・っ！？」
+
+    「や、やめてよっ・・いやあ・・あっ・・」
+
+    「な、なにするのっ・・あっ・・いやっ！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「離してっ！こんなの気持ち悪いだけっ！？」
+
+    「や、やめてよっ・・いやあっ！！」
+
+    「な、なにするのっ・・い、いやっ！」
+  priority: 1
+  displayMode: newline

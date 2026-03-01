@@ -1,0 +1,28 @@
+﻿character: パチュリー
+situation: NTR口上_お持ち帰り
+entries:
+- id: talent_148_0
+  content: >-
+    「い・・いや・・、こ、こないで・・！」
+
+    「ち、近寄らないでっ！」
+
+    「や、やめてなさいっ！ こないでっ！」
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: '%CALLNAME:奴隷%は客を相手に知的な、しかし淫らな会話を楽しんでいる。'
+  priority: 4
+- id: fallback
+  content: '%CALLNAME:奴隷%は首に着けられた首輪から伸びる鎖を引かれ、%NTR_OTOKO()%にしなだれかかった。'
+  priority: 3
+- id: fallback
+  content: '%CALLNAME:奴隷%は平気を装って%NTR_NAME(0)%と話しているが、彼の股間のモノにちらちらと視線を泳がせている。'
+  priority: 2
+- id: fallback
+  content: '%CALLNAME:奴隷%は平気を装って%NTR_NAME(0)%と話しているが、%NTR_KARE()%の股間のモノにちらちらと視線を泳がせている。'
+  priority: 1

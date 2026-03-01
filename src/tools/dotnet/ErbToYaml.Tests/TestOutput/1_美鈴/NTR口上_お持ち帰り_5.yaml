@@ -1,0 +1,64 @@
+﻿character: 美鈴
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「あんっ、そんなっ・・おしり・・お尻に・・・ああっ、深っ・・・ああん！！」
+
+    「ああっ・・後ろ・・後ろで・・ああっ！！」
+
+    「ああっ！ だめ、だめですっ！ ああああっ！！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「やっ・・やめ、やめてくださっ・・！！ ああああっ！！」
+
+    「だ、だめっ・・！ いやあああっ！！」
+
+    「ああっ！ だめ、だめですっ！ ああああっ！！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あんっ、おしり・・お尻に、もっと・・・もっと強く、ああっ、深くっ・・・ああん！！」
+
+    「ああっ・・後ろ・・後ろで・・感じちゃうっ・・ああっ！！」
+
+    「ああっ！ そこ、そこですっ！ ああああっ！！」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あんっ、おしり・・お尻に、もっと・・・もっと強く、ああっ、深くっ・・・ああん！！」
+
+    「ああっ・・後ろ・・後ろで・・感じちゃうっ・・ああっ！！」
+
+    「ああっ！ そこ、そこですっ！ ああああっ！！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んはぁ、奥・・奥まで、きてぇぇ・・！！」
+
+    「ああっ、もっと、く、くださいっ・・もっと、もっとぉ！」
+
+    「ああっ！ もっと、もっと突いて・・突いてくださいっ！！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んはぁ、奥・・奥まで、きてぇぇ・・！！」
+
+    「ああっ、もっと、く、くださいっ・・もっと、もっとぉ！」
+
+    「ああっ！ もっと、もっと突いて・・突いてくださいっ！！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: '%CALLNAME:奴隷%は菊門を突かれ、排泄器官から与えられる快楽に乱れている。'
+  priority: 1

@@ -1,0 +1,54 @@
+[
+  {
+    "name": "K4 NTR COM 302 (Skinship) Conflict Dialogue",
+    "call": "NTR_KOJO_MESSAGE_COM_K4_302",
+    "character": "4",
+    "state": {
+      "CFLAG:TARGET:2": 1000,
+      "CFLAG:TARGET:21": 5000,
+      "TALENT:TARGET:3": 1,
+      "TALENT:TARGET:159": 1
+    },
+    "expect": {
+      "output_contains": "その瞳には、困惑と罪悪感、そして仄暗い情欲が揺らめいている。"
+    }
+  },
+  {
+    "name": "K4 NTR COM 311 (Hug) Conflict Dialogue",
+    "call": "NTR_KOJO_MESSAGE_COM_K4_311",
+    "character": "4",
+    "state": {
+      "CFLAG:TARGET:2": 1000,
+      "CFLAG:TARGET:21": 5000,
+      "TALENT:TARGET:3": 1,
+      "TALENT:TARGET:159": 1
+    },
+    "expect": {
+      "output_contains": "その身体は微かに震えており、%CALLNAME:MASTER%の腕を押し返そうとする力は弱々しい。"
+    }
+  },
+  {
+    "name": "K4 NTR COM 312 (Kiss) Taken Dialogue",
+    "call": "NTR_KOJO_MESSAGE_COM_K4_312",
+    "character": "4",
+    "state": {
+      "TALENT:TARGET:6": 1,
+      "CFLAG:TARGET:2": 100
+    },
+    "expect": {
+      "output_contains": "・・こんなの・・"
+    }
+  },
+  {
+    "name": "K4 NTR COM 314 (Anal Caress) NTR Reaction",
+    "call": "NTR_KOJO_MESSAGE_COM_K4_314",
+    "character": "4",
+    "state": {
+      "TALENT:TARGET:6": 1,
+      "CFLAG:TARGET:2": 100
+    },
+    "expect": {
+      "output_contains": "・・%NTR_KARE()%の指とは・・違うわね・・"
+    }
+  }
+]

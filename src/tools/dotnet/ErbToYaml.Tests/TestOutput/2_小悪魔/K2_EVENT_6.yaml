@@ -1,0 +1,12 @@
+﻿character: 小悪魔
+situation: K2_EVENT
+entries:
+- id: fallback
+  content: >-
+    「さすが活きがいいですね。うふふっ、たっぷり出ましたよ？」
+
+    「うふふっ、たまってたみたいですねぇ」
+
+    「うふふっ、たっぷり出ましたねぇ」
+  priority: 1
+  displayMode: newline

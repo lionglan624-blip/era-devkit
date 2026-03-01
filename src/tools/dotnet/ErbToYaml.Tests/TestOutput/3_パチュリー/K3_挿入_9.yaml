@@ -1,0 +1,207 @@
+﻿character: パチュリー
+situation: K3_挿入
+entries:
+- id: fallback
+  content: >-
+    「……っ……あ……」
+
+    %CALLNAME:TARGET%は背を向けたまま、%CALLNAME:MASTER%を受け入れている。
+
+    顔を見られないことに、どこか安堵している自分がいた。
+
+    「……%CALLNAME:MASTER%、私の背中……見ているの……？」
+
+    %CALLNAME:TARGET%は肩越しに振り返ろうとして、やめた。
+
+    「……見ていていいわ。あなたには、全てを見せているのだから」
+
+    「はぁ……んっ……深い……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に背を預けながら、小さく喘いだ。
+
+    大図書館の静寂の中、体温が背中に伝わってくる。
+
+    「……この体位、顔を見なくていいのね……」
+
+    %CALLNAME:TARGET%は少し寂しそうに呟いた。
+
+    「……でも、あなたの体温を感じられるわ。それで十分」
+
+    「ぁ……んん……っ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きに合わせて、体を揺らしている。
+
+    背中越しに伝わる鼓動が、二人を繋いでいる。
+
+    「……%CALLNAME:MASTER%……後ろから抱いて……」
+
+    %CALLNAME:TARGET%は珍しく甘えた声を出した。
+
+    「……顔を見せなくていいなら、少しだけ素直になれる気がする」
+
+    「……ふぅ……あ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に背中を預けながら、満ち足りた表情を浮かべている。
+
+    「……体が弱いから、もたれかかれる体位は楽でいいわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕に手を重ねた。
+
+    「……こうしていると、守られている気がする」
+
+    そう言って、%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を胸元に引き寄せた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「っ……あ……入って……」
+
+    %CALLNAME:TARGET%は背を向けたまま、%CALLNAME:MASTER%を受け入れている。
+
+    「……この体位は、顔を見られなくて済むわ」
+
+    %CALLNAME:TARGET%は安堵したように呟いた。
+
+    「……表情を分析されなくていいから……少しだけ、楽」
+
+    頬を紅潮させながらも、%CALLNAME:TARGET%は素直に感想を漏らした。
+
+    「んっ……ふ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きに、体を強張らせている。
+
+    「……本では、背面位は深く入ると書いてあったけれど……」
+
+    %CALLNAME:TARGET%は知識を確認するように呟いた。
+
+    「……むきゅ……本当だったのね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕にしがみついた。
+
+    「あ……やぁ……そんなに奥まで……」
+
+    %CALLNAME:TARGET%は思わず声を漏らし、慌てて口を押さえた。
+
+    「……背を向けていても、声は聞こえるのね……」
+
+    %CALLNAME:TARGET%は今更ながらに気づいた。
+
+    「……%CALLNAME:MASTER%、今のは聞かなかったことに……」
+
+    照れ隠しのように、%CALLNAME:TARGET%は小さく呟いた。
+
+    「……ん……ぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に背を預けながら、静かに喘いでいる。
+
+    「……私の背中、どう見えているのかしら……」
+
+    %CALLNAME:TARGET%は自分では見えない部分を気にしている。
+
+    「……変な格好になっていないか、教えて……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕を握りしめた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……っ……これが、背面座位……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に背を向けたまま、受け入れている。
+
+    「……本で読んだ通り、視覚情報が制限されるわね……」
+
+    %CALLNAME:TARGET%は冷静を保とうとしているが、声が震えている。
+
+    「……その分、他の感覚が……むきゅ……」
+
+    分析しようとする言葉が、途切れ途切れになっている。
+
+    「んっ……ふぅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きを、感覚だけで捉えようとしている。
+
+    「……興味深いわ。顔が見えないと、集中力が……」
+
+    %CALLNAME:TARGET%は淡々と言おうとしたが、息が上がっている。
+
+    「……なぜ、こんなに体が敏感になるのかしら……」
+
+    自分の反応に、%CALLNAME:TARGET%自身が戸惑っている。
+
+    「あ……そこ……っ」
+
+    %CALLNAME:TARGET%は思わず声を漏らし、背を丸めた。
+
+    「……不覚だわ。背を向けているから油断した……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに首を振った。
+
+    「……%CALLNAME:MASTER%、私の背中を……あまり見ないで」
+
+    そう言いながらも、体は正直に反応し続けている。
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って%CALLNAME:MASTER%の行為を受けている。
+
+    研究者として、異なる体位の感覚を比較しようとしている。
+
+    「……%CALLNAME:MASTER%、質問があるわ」
+
+    %CALLNAME:TARGET%は息を整えながら、肩越しに振り返った。
+
+    「……私の背中と、顔と……どちらを見たいの……？」
+  priority: 2
+- id: fallback
+  content: >-
+    「……」
+
+    %CALLNAME:TARGET%は無表情のまま、%CALLNAME:MASTER%に背を向けている。
+
+    「……この体位なら、顔を見なくて済むわ」
+
+    %CALLNAME:TARGET%は淡々と言い放った。
+
+    「……好きにしなさい。私は本のことを考えているから」
+
+    それだけを告げ、%CALLNAME:TARGET%は目を閉じた。
+
+    「……ふぅ……むきゅ……」
+
+    %CALLNAME:TARGET%は溜息をつきながら、形式的に体を委ねている。
+
+    「……背面位というのは、愛情表現には向いていないわね」
+
+    %CALLNAME:TARGET%は事実を述べるように言った。
+
+    「……まあ、あなたとの間に愛情などないから、丁度いいのかもしれないけれど」
+
+    投げやりな態度で、%CALLNAME:TARGET%は身を任せた。
+
+    「……むきゅ……痛い……」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「……もっと丁寧にして。体が弱いのだから」
+
+    %CALLNAME:TARGET%は体の弱さを訴えた。
+
+    「……こういうことをするなら、配慮くらいはしなさい」
+
+    冷たい口調で、%CALLNAME:TARGET%は%CALLNAME:MASTER%を窘めた。
+
+    「……」
+
+    %CALLNAME:TARGET%は虚空を見つめながら、%CALLNAME:MASTER%の行為を受けている。
+
+    頭の中では、次に読む本のことを考えているようだ。
+
+    「……終わったら、すぐに出て行って」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……私に背を向けさせておいて、遠慮も何もないでしょう」
+  priority: 1

@@ -1,0 +1,12 @@
+﻿character: フラン
+situation: K6_EVENT
+entries:
+- id: fallback
+  content: >-
+    「うん、もちろん、いっぱいエッチしてくるよ？」
+
+    「そうだよ、泊りがけでエッチしてくるんだよ♪」
+
+    「うん、そうだよ、お風呂も、ベッドも一緒だよ？」
+  priority: 1
+  displayMode: newline

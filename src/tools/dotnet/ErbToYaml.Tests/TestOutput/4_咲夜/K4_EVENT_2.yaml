@@ -1,0 +1,27 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: talent_159_0
+  content: >-
+    「私が%NTR_KARE()%に抱かれてる間は、%CALLNAME:PLAYER%のセックスは禁止にしようと思うの」
+
+    「私は%CALLNAME:PLAYER%が望むから%NTR_KARE()%に抱かれるわ。だから%CALLNAME:PLAYER%も私の望みを聞いてくれるわよね？」
+
+    「ふふっ・・%CALLNAME:PLAYER%はセックス禁止・・いいわね？」
+
+    「ふふっ・・%NTR_KARE()%が言うのよ。%CALLNAME:PLAYER%が浮気しないようにした方がいいって」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 159
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「%CALLNAME:PLAYER%が%CALLNAME_K4(人物_咲夜
+
+    「無駄に元気ね・・紅魔館の恥にならないように、大人しくさせてあげるわ」
+
+    「ふふっ、使用人の%CALLNAME:MASTER%がお嬢様に粗相をしないようにしないといけないわね」
+  priority: 1
+  displayMode: newline

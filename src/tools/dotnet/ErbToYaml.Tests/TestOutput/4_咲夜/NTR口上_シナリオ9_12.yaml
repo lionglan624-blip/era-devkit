@@ -1,0 +1,47 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ9
+entries:
+- id: fallback
+  content: >-
+    「んああっ・・! ああん%S_HEART0%・・熱いの・・いっぱいっ・・%S_HEART1%」
+
+    「ああんン・・%S_HEART0%・・おしりに・・熱いの・・いっぱいっ・・%S_HEART1%」
+
+    「あはぁああん%S_HEART0%・・おしりっ・・熱い・・%S_HEART1%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んああっ・・! ああん%S_HEART0%・・熱いの・・いっぱいっ・・%S_HEART1%」
+
+    「ああんン・・%S_HEART0%・・おしりに・・熱いの・・いっぱいっ・・%S_HEART1%」
+
+    「あはぁああん%S_HEART0%・・おしりっ・・熱い・・%S_HEART1%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んああっ・・! ああん%S_HEART0%・・熱いの・・いっぱいっ・・%S_HEART1%」
+
+    「ああんン・・%S_HEART0%・・おしりに・・熱いの・・いっぱいっ・・%S_HEART1%」
+
+    「あはぁああん%S_HEART0%・・おしりっ・・熱い・・%S_HEART1%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んああっ・・! ああん%S_HEART0%・・熱いの・・いっぱいっ・・%S_HEART1%」
+
+    「ああんン・・%S_HEART0%・・おしりに・・熱いの・・いっぱいっ・・%S_HEART1%」
+
+    「あはぁああん%S_HEART0%・・おしりっ・・熱い・・%S_HEART1%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    下から犯し続けていた%NTR_NAME(0)%は腰の動きを止め射精を始めようとした。
+
+    「えっ？い、いやあっ！」
+
+    そのことに気づいた%CALLNAME:奴隷%は、逃れようとしたが体に力が入らず腸内に射精されてしまった。
+  priority: 1

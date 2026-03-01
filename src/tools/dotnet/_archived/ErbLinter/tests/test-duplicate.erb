@@ -1,0 +1,22 @@
+; Test file with duplicate function definitions
+; Should produce FUNC004 warnings
+
+@DUPLICATE_FUNC
+PRINTL First definition
+RETURN
+
+@ANOTHER_FUNC
+PRINTL Another function
+RETURN
+
+@DUPLICATE_FUNC
+PRINTL Second definition (duplicate!)
+RETURN
+
+@UNIQUE_FUNC
+PRINTL Unique function
+RETURN
+
+@DUPLICATE_FUNC
+PRINTL Third definition (another duplicate!)
+RETURN

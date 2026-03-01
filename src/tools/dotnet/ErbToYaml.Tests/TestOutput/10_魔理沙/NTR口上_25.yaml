@@ -1,0 +1,48 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああ…ふふっ…こんなに出して…気持ちよかったか…？」
+
+    「んっ…いっぱい出たな…ああ…いくらでも使ってくれ…」
+
+    「ふふっ…こんなに出して、ああ嬉しいぜ…」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ…ふふっ…こんなに出して…気持ちよかったか…？」
+
+    「んっ…いっぱい出たな…ああ…いくらでも使ってくれ…」
+
+    「ふふっ…こんなに出して、ああ嬉しいぜ…」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ…こんなに出して…気持ちよかったか…？」
+
+    「んっ…いっぱい出たな…ああ…いくらでも使ってくれ…」
+
+    「ふふっ…こんなに出して、ああ嬉しいぜ…」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ…こんなに…出して…ああ…」
+
+    「ううっ…いっぱい…ああ…」
+
+    「ああ…おしり…熱いっ…」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ…おしりに…出すなんて…」
+
+    「ううっ…痛っ…熱い…」
+
+    「ああ…おしり…熱い…」
+  priority: 1
+  displayMode: newline

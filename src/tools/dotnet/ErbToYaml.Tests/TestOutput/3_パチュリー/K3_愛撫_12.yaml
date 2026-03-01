@@ -1,0 +1,217 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……ん……%CALLNAME:MASTER%、この振動……」
+
+    %CALLNAME:TARGET%は読みかけの魔導書を閉じ、%CALLNAME:MASTER%に身を預けた。
+
+    小さなローターが%CALLNAME:TARGET%の肌に触れると、低い振動音が大図書館に響く。
+
+    「……この振動、魔力回路を刺激するみたい……」
+
+    %CALLNAME:TARGET%は淡々と言おうとしたが、体が微かに震えて言葉が途切れた。
+
+    「……あなたの手で……当てられると……違う、わね……」
+
+    そう呟いて、%CALLNAME:TARGET%は%CALLNAME:MASTER%に寄り添った。
+
+    「あ……ぁ……そこ……」
+
+    %CALLNAME:MASTER%がローターを%CALLNAME:TARGET%の敏感な部分に当てている。
+
+    %CALLNAME:TARGET%の体がびくりと跳ね、大図書館の静寂に甘い声が響いた。
+
+    「……この快感、研究させて……体の反応が……止まらないわ……」
+
+    %CALLNAME:TARGET%は目を閉じ、快感に身を委ねている。
+
+    「……%CALLNAME:MASTER%……私を……もっと……」
+
+    普段の知的な口調が、甘く蕩けていた。
+
+    「……ひゃ……っ……」
+
+    ローターの振動が強まると、%CALLNAME:TARGET%は思わず声を上げた。
+
+    「……こんな小さな道具で……こんなに……感じるなんて……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに顔を伏せながらも、逃げようとはしない。
+
+    「……魔女としては不覚だわ……でも……」
+
+    %CALLNAME:TARGET%は言い訳のように呟き、%CALLNAME:MASTER%にしがみついた。
+
+    「……もう……止めないで……」
+
+    「……ん……ふぅ……やぁ……」
+
+    %CALLNAME:TARGET%はローターの振動に、理性を手放しかけている。
+
+    動かない大図書館が、%CALLNAME:MASTER%の手の中で震えていた。
+
+    「……%CALLNAME:MASTER%……あなたの前でだけ……こんな姿……見せるのよ……」
+
+    %CALLNAME:TARGET%は潤んだ瞳で%CALLNAME:MASTER%を見上げた。
+
+    「……振動が……頭の中まで……白くなる……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の名を呼びながら、快楽の波に飲まれていった。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……っ!? な、何……その道具……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が取り出したローターを見て、目を見開いた。
+
+    「本には載ってなかった……こういう形の道具は……」
+
+    %CALLNAME:TARGET%は頬を赤らめながらも、興味深そうに観察している。
+
+    「……まあ、いいわ。研究材料として……」
+
+    言い訳のように呟きながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%に身を任せた。
+
+    「……やぁ……振動が……」
+
+    ローターが%CALLNAME:TARGET%の肌に触れた瞬間、%CALLNAME:TARGET%は小さく声を上げた。
+
+    「……思ったより……刺激が強いわね……触らなくても……こんなに……」
+
+    %CALLNAME:TARGET%は声を殺そうとするが、甘い吐息が漏れてしまう。
+
+    「……%CALLNAME:MASTER%、そんなに見ないで……恥ずかしい……」
+
+    %CALLNAME:TARGET%は本で顔を隠そうとしたが、既に読書どころではなかった。
+
+    「……ん……っ……むきゅ……」
+
+    %CALLNAME:TARGET%はローターの振動に、困惑した声を漏らした。
+
+    「……変な気持ちになってきた……これは……何かしら……」
+
+    %CALLNAME:TARGET%の体がびくびくと震え、大図書館に甘い声が響いている。
+
+    「……%CALLNAME:MASTER%……もう少し……優しくして……」
+
+    恥ずかしそうに懇願する%CALLNAME:TARGET%がそこにいた。
+
+    「……ぁ……あ……だめ……」
+
+    ローターの振動が強まり、%CALLNAME:TARGET%の体が大きく震えた。
+
+    「……この振動の原理を教えて……気を紛らわせたいの……」
+
+    %CALLNAME:TARGET%は周囲を気にしながらも、%CALLNAME:MASTER%から離れられない。
+
+    「……もっと奥の書架に……行きましょう……？」
+
+    羞恥と快感の狭間で、%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を引いた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……それは何かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つローターを、観察するような目で見た。
+
+    「外の世界の道具ね……興味深いわ」
+
+    %CALLNAME:TARGET%は淡々と言うが、%CALLNAME:MASTER%が近づくと僅かに身を引いた。
+
+    「……まあ、いいわ。観察対象として、試してみましょう」
+
+    知識欲を隠れ蓑に、%CALLNAME:TARGET%は%CALLNAME:MASTER%を受け入れた。
+
+    「……っ」
+
+    ローターの振動が体に触れた瞬間、%CALLNAME:TARGET%は小さく息を呑んだ。
+
+    「……なるほど……こういう刺激なのね……調べる必要があるわね」
+
+    %CALLNAME:TARGET%は分析しようとするが、声が微かに震えている。
+
+    「……興味深いデータね……もう少し……続けて……」
+
+    観察者を装いながらも、%CALLNAME:TARGET%の頬は微かに紅潮していた。
+
+    「……ふぅん」
+
+    %CALLNAME:TARGET%はローターの振動を受けながら、冷静を装っている。
+
+    「……魔術的な効果はないはずなのに……体が反応するのはなぜかしら……」
+
+    しかし%CALLNAME:TARGET%の体は正直に反応し、時折びくりと震えていた。
+
+    「……あなた、私で実験しているつもりかしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を睨んだが、その視線には拒絶の色がない。
+
+    「……むきゅ……」
+
+    %CALLNAME:TARGET%は無言でローターの刺激を受けている。
+
+    本を読む手はいつの間にか止まり、視線が虚空を彷徨っている。
+
+    「……悪くないわ……これは……」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「……でも、調子に乗らないで。私はデータを収集しているだけよ」
+
+    そう言いながらも、%CALLNAME:TARGET%の吐息は熱を帯びていた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の真似かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つローターを見て、冷ややかな目を向けた。
+
+    「そんな得体の知れない物を私に使おうなんて」
+
+    %CALLNAME:TARGET%は呆れたように溜息をついた。
+
+    「……不愉快ね。本を読む邪魔をしないで」
+
+    そう言って%CALLNAME:TARGET%は、読書に戻ろうとした。
+
+    「……」
+
+    %CALLNAME:TARGET%は冷めた目で%CALLNAME:MASTER%を見た。
+
+    「お断りよ。そんな下品な道具に興味はないわ」
+
+    %CALLNAME:TARGET%は淡々と拒絶した。
+
+    「……知識の殿堂を汚さないで。帰りなさい」
+
+    %CALLNAME:TARGET%は本を盾のように構えた。
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「大図書館にふさわしくないわ、そんな物は」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を睨みつけた。
+
+    「……精霊魔法で追い出されたくなければ、それをしまいなさい」
+
+    冷たい声が大図書館に響いた。
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついた。
+
+    「あなたは私に何を求めているの。不愉快だわ」
+
+    %CALLNAME:TARGET%は呆れたような表情を浮かべている。
+
+    「……本を汚したら許さないわよ」
+
+    %CALLNAME:TARGET%は冷めた目で%CALLNAME:MASTER%を一瞥し、読書に戻った。
+  priority: 1

@@ -1,0 +1,19 @@
+﻿character: レミリア
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    「ちょっと触っただけで、こんなにいやらしい反応をする便器なんて、%CALLNAME:MASTER%だけでしょうね」
+
+    「こんなところでも、はしたない顔を晒すなんて、なかなかの淫乱ぶりね」
+
+    「普通、こっちは「出す」ところのはずだけど……%CALLNAME:MASTER%の場合は、違いそうね？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「もっと力を抜きなさい。触られるのは好きでしょ？　そうそう、その調子……」
+
+    「震えてる割りには、熱くなってるじゃない。便器のくせに、発情もするの？」
+  priority: 1
+  displayMode: newline

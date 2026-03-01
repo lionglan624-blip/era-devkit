@@ -1,0 +1,42 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ9
+entries:
+- id: fallback
+  content: >-
+    「ああ・・おしり・・イイ%S_HEART0%・・いい・・もっと・・もっとよ・・%S_HEART1%」
+
+    「ああっ・・お、奥まで%S_HEART0%・・奥まで、きてぇ・・%S_HEART1%」
+
+    「ああ・・すごい%S_HEART0%・・ああ・・ふとくて・・イイっ・・%S_HEART1%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・おしり・・イイ%S_HEART0%・・いい・・もっと・・もっとよ・・%S_HEART1%」
+
+    「ああっ・・お、奥まで%S_HEART0%・・奥まで、きてぇ・・%S_HEART1%」
+
+    「ああ・・すごい%S_HEART0%・・ああ・・ふとくて・・イイっ・・%S_HEART1%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・おしり・・イイ%S_HEART0%・・いい・・もっと・・もっとよ・・%S_HEART1%」
+
+    「ああっ・・お、奥まで%S_HEART0%・・奥まで、きてぇ・・%S_HEART1%」
+
+    「ああ・・すごい%S_HEART0%・・ああ・・ふとくて・・イイっ・・%S_HEART1%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: アヌスを抉られる%NTR_KOJO_K_9_0_0_SUB(奴隷)%ながら、%CALLNAME:奴隷%は
+  priority: 2
+- id: fallback
+  content: >-
+    「ああ・・おしり・・なのに・・ああっ・・ううっ・・！」
+
+    「ああっ・・お、奥まで・・いやああっ・・！」
+
+    「ああ・・うぐうっ・・ふ・・ふとい・・いやああっ・・！」
+  priority: 1
+  displayMode: newline

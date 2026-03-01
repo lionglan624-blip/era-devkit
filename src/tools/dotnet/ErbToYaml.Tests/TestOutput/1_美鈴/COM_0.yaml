@@ -1,0 +1,130 @@
+entries:
+- id: "lover"
+  content: |
+    DATAFORM 「んっ……そこ、気持ちいい……」
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%に身を預け、されるがままになっている。
+    「……%CALLNAME:MASTER%の手、あったかいね」
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の愛撫を心地よさそうに受け入れている。
+    その顔には、恋人に触れられる幸せが浮かんでいた。
+    「……もっと、触ってていいわよ？」
+    甘えるような声で、%CALLNAME:人物_美鈴%はそう囁いた。
+    DATAFORM 「ふふっ……%CALLNAME:MASTER%ったら、甘えん坊ね」
+    %CALLNAME:人物_美鈴%は微笑みながら%CALLNAME:MASTER%の愛撫を受けている。
+    「私のこと、そんなに触りたかった？」
+    からかうように言いながらも、%CALLNAME:人物_美鈴%の頬は赤い。
+    「……嬉しいな。私も、%CALLNAME:MASTER%に触られるの、好きだから」
+    %CALLNAME:人物_美鈴%は恥ずかしそうに目を伏せた。
+    DATAFORM 「あっ……やぁ……」
+    %CALLNAME:人物_美鈴%は小さく声を漏らした。
+    %CALLNAME:MASTER%の手が肌を這うたびに、体が小さく震える。
+    「……%CALLNAME:MASTER%、上手になったわね……」
+    %CALLNAME:人物_美鈴%は熱っぽい息を吐きながら、恋人を見上げた。
+    「……私の体のこと、よく知ってるんだから……」
+    照れくさそうに、でも嬉しそうに%CALLNAME:人物_美鈴%は呟いた。
+    DATAFORM 「……ん……」
+    %CALLNAME:人物_美鈴%は目を閉じて%CALLNAME:MASTER%の愛撫に身を任せている。
+    門番としての強さはどこへやら、今はただの恋する女の子だ。
+    「……%CALLNAME:MASTER%といると、なんか安心するの」
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%に寄り添うように体を預けた。
+    「……ずっと、こうしていたいな」
+    %CALLNAME:人物_美鈴%は恋人の温もりに、幸せそうに微笑んだ。
+  priority: 3
+  condition:
+    type: "Talent"
+    talentType: "16"
+    threshold: 1
+
+- id: "yearning"
+  content: |
+    DATAFORM 「ひゃっ……！　ちょ、ちょっと%CALLNAME:MASTER%……」
+    %CALLNAME:人物_美鈴%は驚いた顔をしながらも、拒むことはしなかった。
+    「……もう、急にそんなこと……」
+    頬を赤く染めながら、%CALLNAME:人物_美鈴%は俯いた。
+    「……嫌じゃ、ないけど……恥ずかしいわ……」
+    %CALLNAME:人物_美鈴%はされるがままに、%CALLNAME:MASTER%の愛撫を受け入れていた。
+    DATAFORM 「あ……そこは……」
+    %CALLNAME:人物_美鈴%は思わず声を漏らした。
+    「……%CALLNAME:MASTER%、なんでそういうこと……」
+    困ったような、でもどこか嬉しそうな表情で、%CALLNAME:人物_美鈴%は%CALLNAME:MASTER%を見つめた。
+    「……もう、門番の仕事中なのに……」
+    抗議の言葉とは裏腹に、その体は%CALLNAME:MASTER%の手を拒んでいなかった。
+    DATAFORM 「んっ……や、やめて……」
+    %CALLNAME:人物_美鈴%は弱々しく抵抗した。
+    しかしその手は%CALLNAME:MASTER%を押し返すことなく、ただ震えている。
+    「……%CALLNAME:MASTER%のこと……嫌いになれないのが、悔しいわ」
+    %CALLNAME:人物_美鈴%は顔を赤くしながら、視線を逸らした。
+    「……もう、好きにしなさいよ……」
+    観念したように、%CALLNAME:人物_美鈴%は呟いた。
+    DATAFORM 「……%CALLNAME:MASTER%……」
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の顔をじっと見つめた。
+    その瞳には、戸惑いと期待が入り混じっている。
+    「……こういうこと、私にだけしてる？」
+    不安そうに問いかける%CALLNAME:人物_美鈴%。
+    「……%CALLNAME:MASTER%のこと、信じていいの？」
+    %CALLNAME:人物_美鈴%は答えを待つように、%CALLNAME:MASTER%を見上げた。
+  priority: 2
+  condition:
+    type: "Talent"
+    talentType: "3"
+    threshold: 1
+
+- id: "admiration"
+  content: |
+    DATAFORM 「え、えっと……%CALLNAME:MASTER%？」
+    %CALLNAME:人物_美鈴%は突然の愛撫に戸惑っている。
+    「こ、こういうのは……ちょっと……」
+    %CALLNAME:人物_美鈴%は困惑した表情で%CALLNAME:MASTER%を見た。
+    「……まだ、そういう関係じゃないと思うんですけど……」
+    %CALLNAME:人物_美鈴%は困ったように眉を下げた。
+    DATAFORM 「あの……%CALLNAME:MASTER%……」
+    %CALLNAME:人物_美鈴%は控えめに声をあげた。
+    「これって、その……どういう意味ですか？」
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の真意を測りかねているようだ。
+    「……嫌ってわけじゃないんですけど、急だから……」
+    %CALLNAME:人物_美鈴%は戸惑いながらも、強く拒むことはしなかった。
+    DATAFORM 「ひゃっ……！」
+    %CALLNAME:人物_美鈴%は驚いて小さく跳ねた。
+    「%CALLNAME:MASTER%、何を……」
+    抗議しようとして、しかし言葉が続かない。
+    「……もう、急にそういうことしないでくださいよ」
+    %CALLNAME:人物_美鈴%は顔を赤くしながら、どこか嬉しそうだった。
+    DATAFORM 「あ……」
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の手に、ぎこちなく身を任せた。
+    「……%CALLNAME:MASTER%って、意外と大胆なんですね」
+    %CALLNAME:人物_美鈴%は照れ隠しに笑った。
+    「……もうちょっと、仲良くなってからの方が……」
+    その言葉とは裏腹に、%CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の手を払いのけはしなかった。
+  priority: 1
+  condition:
+    type: "Talent"
+    talentType: "17"
+    threshold: 1
+
+- id: "fallback"
+  content: |
+    DATAFORM 「ちょっ……何するんですか！？」
+    %CALLNAME:人物_美鈴%は驚いて%CALLNAME:MASTER%の手を払った。
+    「いきなりそういうのは……困ります」
+    %CALLNAME:人物_美鈴%は警戒するような目で%CALLNAME:MASTER%を見た。
+    「……もう少し、距離を保ってもらえませんか？」
+    %CALLNAME:人物_美鈴%は一歩後ろに下がった。
+    DATAFORM 「えっ……」
+    %CALLNAME:人物_美鈴%は突然の愛撫に固まった。
+    「あ、あの……%CALLNAME:MASTER%？　これは一体……」
+    %CALLNAME:人物_美鈴%は戸惑いながらも、どう対応していいかわからない様子だ。
+    「……すみません、ちょっと、やめてもらえますか」
+    %CALLNAME:人物_美鈴%は困惑しながら、静かに%CALLNAME:MASTER%から離れた。
+    DATAFORM 「な、何を……！」
+    %CALLNAME:人物_美鈴%は反射的に身を引いた。
+    「……私、門番の仕事中なんですけど」
+    %CALLNAME:人物_美鈴%は冷たい視線を%CALLNAME:MASTER%に向けた。
+    「そういうことは……もっと親しくなってからにしてください」
+    %CALLNAME:人物_美鈴%はきっぱりと拒絶した。
+    DATAFORM 「……」
+    %CALLNAME:人物_美鈴%は無言で%CALLNAME:MASTER%の手を止めた。
+    「%CALLNAME:MASTER%……何をお考えかわかりませんが」
+    %CALLNAME:人物_美鈴%は真剣な表情で%CALLNAME:MASTER%を見つめた。
+    「私はまだ、あなたのことをよく知りません」
+    「……もう少し、お互いを知ってからにしませんか」
+    %CALLNAME:人物_美鈴%は提案するように、しかし毅然と言い放った。
+  priority: 0

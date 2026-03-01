@@ -1,0 +1,12 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「えっ？　んっ、んむぅっ！！」
+
+    「やっ…んんっ！」
+
+    「んんっ！？ ん…」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,235 @@
+﻿character: 咲夜
+situation: K4_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%、お望みのままに」
+
+    %CALLNAME:TARGET%は膝をつき、瀟洒な所作で%CALLNAME:MASTER%のものに口づけた。
+
+    完璧なメイドの仕草は、こんな時でさえ美しい。
+
+    「んっ……ふぅ……」
+
+    銀髪が揺れ、%CALLNAME:TARGET%は丁寧に舌を這わせていく。
+
+    「%CALLNAME:MASTER%の味……覚えてしまいましたわ……」
+
+    恋人だけに見せる、蕩けた表情で%CALLNAME:TARGET%は奉仕を続けた。
+
+    「……このような奉仕も、メイドの務めですわね」
+
+    %CALLNAME:TARGET%は微笑みながら、%CALLNAME:MASTER%のものを口に含んだ。
+
+    「れろ……んむ……」
+
+    舌を絡め、丹念に愛撫していく。時を操る従者の舌技は、どこか非現実的なほど心地よい。
+
+    「%CALLNAME:MASTER%……気持ちいい？」
+
+    上目遣いで確認する%CALLNAME:TARGET%の瞳には、恋人への愛情が溢れていた。
+
+    「もっと……奥まで……」
+
+    %CALLNAME:TARGET%は喉の奥まで咥え込み、献身的に奉仕を続けた。
+
+    「%CALLNAME:MASTER%のここ……熱いですわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%のものを両手で包み込み、先端に舌を這わせた。
+
+    「んっ……ちゅ……れろ……」
+
+    丁寧に、しかし情熱的に。完璧なメイドらしい気遣いと、恋人としての愛情が混ざり合う。
+
+    「お嬢様には内緒……こんな姿は見せられませんわ……」
+
+    そう言いながらも、%CALLNAME:TARGET%は幸せそうに微笑んでいる。
+
+    「……全部、受け止めますから……」
+
+    「……ふふ、%CALLNAME:MASTER%ったら、こんなに大きくなって」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%のものを愛おしそうに見つめた。
+
+    「私の口で、楽にして差し上げますわ」
+
+    そう言って、%CALLNAME:TARGET%は優しく口に含む。
+
+    「んむ……ふぅ……じゅる……」
+
+    銀髪のメイドは、恋人のために一心不乱に舌を動かした。
+
+    「%CALLNAME:MASTER%……私で、果ててくださいね……」
+
+    瀟洒な従者の、恋人だけへの甘い囁きだった。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「こ、こんなこと……メイドとして……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%の前に膝をついた。
+
+    「……%CALLNAME:MASTER%がお望みなら……」
+
+    顔を赤らめながら、%CALLNAME:TARGET%はそっと口づけた。
+
+    「んっ……ふ……」
+
+    ぎこちなくも、懸命に奉仕する姿が愛おしい。
+
+    「……これで、いいの……？」
+
+    上目遣いで確認する%CALLNAME:TARGET%の瞳は、不安と期待で揺れていた。
+
+    「……お嬢様に知られたら、叱られてしまいますわ」
+
+    それでも、%CALLNAME:TARGET%は%CALLNAME:MASTER%のものに手を伸ばした。
+
+    「……でも、貴方のためなら……」
+
+    %CALLNAME:TARGET%は意を決したように口に含む。
+
+    「れろ……んむ……」
+
+    慣れない動きながらも、%CALLNAME:TARGET%は精一杯の奉仕をしている。
+
+    「%CALLNAME:MASTER%……変な声、出さないでくださいね……恥ずかしいですわ……」
+
+    「……私が、こんなことをするなんて……」
+
+    %CALLNAME:TARGET%は自分でも信じられないという表情を浮かべた。
+
+    しかし、手は止まらない。
+
+    「%CALLNAME:MASTER%のここ……大きいですわね……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに呟きながら、舌を這わせた。
+
+    「んっ……ちゅ……」
+
+    「……貴方のためなら、私……もっと頑張りますわ……」
+
+    「%CALLNAME:MASTER%……見ないでください……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、%CALLNAME:MASTER%のものを咥えた。
+
+    「んむ……ふぅ……」
+
+    視線を逸らしながらも、舌の動きは止まらない。
+
+    「……こんな姿、誰にも見せたことありませんのに……」
+
+    %CALLNAME:TARGET%の耳まで紅く染まっている。
+
+    「……%CALLNAME:MASTER%だけですわ、こんな私を見せるのは……」
+
+    その言葉は、告白にも似ていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%、これは……」
+
+    %CALLNAME:TARGET%は戸惑った様子で%CALLNAME:MASTER%を見上げた。
+
+    「メイドとして、こんなことは……いけないですわ……」
+
+    しかし、完全には拒絶しない。
+
+    「……ただ、お客様のおもてなしも……」
+
+    %CALLNAME:TARGET%は自分に言い聞かせるように呟いた。
+
+    「……今回だけ、ですわよ……」
+
+    「……お嬢様に報告しなければ……」
+
+    そう言いながらも、%CALLNAME:TARGET%は動かない。
+
+    「……でも、まあ……」
+
+    %CALLNAME:TARGET%は小さくため息をついた。
+
+    「……メイドの務めと思えば……」
+
+    おずおずと手を伸ばし、%CALLNAME:TARGET%は%CALLNAME:MASTER%のものに触れた。
+
+    「……これで、満足してくださいまし……」
+
+    「……どうしてこんな……」
+
+    %CALLNAME:TARGET%は困惑した表情を浮かべている。
+
+    「私は紅魔館のメイド長ですのに……」
+
+    それでも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の求めに応じようとしていた。
+
+    「……貴方には、何か……断れないものがありますわね……」
+
+    %CALLNAME:TARGET%は自嘲するように呟いた。
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は複雑な表情で%CALLNAME:MASTER%を見つめた。
+
+    「このようなことをお望みなら……一度だけですわよ」
+
+    %CALLNAME:TARGET%は静かに膝をついた。
+
+    「……お嬢様には、絶対に秘密にしてくださいまし」
+
+    メイドとしての矜持と、%CALLNAME:MASTER%への好意が葛藤していた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何を考えていらっしゃるの」
+
+    %CALLNAME:TARGET%は冷たい目で%CALLNAME:MASTER%を見た。
+
+    「紅魔館のメイド長に、このような要求をなさるとは」
+
+    %CALLNAME:TARGET%の手には、いつの間にかナイフが握られている。
+
+    「……お嬢様のお客様でなければ、既に首が落ちていますわ」
+
+    瀟洒なメイドの声は、氷のように冷たかった。
+
+    「……失礼ですわね」
+
+    %CALLNAME:TARGET%は嫌悪感を隠さない。
+
+    「私をどなたとお思いですか」
+
+    「レミリアお嬢様にお仕えする身として、このような侮辱は許せませんわ」
+
+    %CALLNAME:TARGET%は冷ややかに%CALLNAME:MASTER%を睨みつけた。
+
+    「……二度とこのような真似はなさらないことですわね」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%を見据えた。
+
+    その視線には、軽蔑の色が滲んでいる。
+
+    「時を止めれば、貴方の存在など一瞬で消せますわ」
+
+    静かに、しかし有無を言わせぬ威圧感。
+
+    「……お引き取りを。次はありませんわよ」
+
+    「……正気ですか」
+
+    %CALLNAME:TARGET%は呆れたように首を振った。
+
+    「私に何をお望みか存じませんが、答えはノーですわ」
+
+    完璧なメイドは、完璧な拒絶を示す。
+
+    「お嬢様のお怒りを買う前に、お帰りになることをお勧めしますわ」
+
+    %CALLNAME:TARGET%は踵を返し、%CALLNAME:MASTER%に背を向けた。
+  priority: 1

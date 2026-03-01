@@ -1,0 +1,70 @@
+# ===========================================
+# ERA Devkit .gitignore
+# ===========================================
+
+# Generated output
+_out/
+
+# .NET build artifacts
+**/bin/
+**/obj/
+**/TestResults/
+
+# Node.js
+**/node_modules/
+**/coverage/
+
+# Python
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# IDE
+.vs/
+*.suo
+*.cache
+*.user
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Temp/Backup
+*.bak
+*.tmp
+*~
+.tmp/
+temp-*/
+
+# Logs
+*.log
+
+# Claude Code local
+.claude/settings.local.json
+.claude/hooks/post-hook.log
+
+# Serena MCP
+.serena/
+
+# PM intermediate files
+pm/cache/*
+!pm/cache/.gitkeep
+!pm/cache/README.md
+pm/.fl-pending/
+pm/*-pending.md
+pm/pending_user.txt
+pm/status/
+pm/logs/
+
+# Go build
+src/tools/go/**/com-validator.exe
+
+# Kojo mapper output
+src/tools/kojo-mapper/kojo-map-*.md
+src/tools/kojo-mapper/kojo-dashboard.html
+src/tools/kojo-mapper/com_file_map.json
+src/tools/kojo-mapper/test_branch_map.json
+
+# Stryker
+StrykerOutput/

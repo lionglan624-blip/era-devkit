@@ -1,0 +1,12 @@
+﻿character: フラン
+situation: K6_日常
+entries:
+- id: fallback
+  content: >-
+    「ねぇねぇ聞いてよ！！」
+
+    「そんなことより、聞いてってば！」
+
+    「だ〜め、私が先約なの！」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,12 @@
+﻿character: 大妖精
+situation: K9_日常
+entries:
+- id: fallback
+  content: >-
+    「そうですか・・残念です」
+
+    「この次は呼んでくださいね」
+
+    「・・わかりました」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    「ふふっ、後ろを向いて、壁に手をつきなさい」
+
+    「後ろを向いて。そこの壁に手をつくのよ」
+
+    「そこの壁に手をついて頂戴。動かないで」
+  priority: 1
+  displayMode: newline

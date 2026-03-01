@@ -1,0 +1,12 @@
+﻿character: 大妖精
+situation: K9_日常
+entries:
+- id: fallback
+  content: >-
+    「あ・・あの・・私もいっしょに・・いいですか？」
+
+    「・・あの・・私も・・まぜてください・・」
+
+    「・・私も・・ご一緒に・・いいですよね？」
+  priority: 1
+  displayMode: newline

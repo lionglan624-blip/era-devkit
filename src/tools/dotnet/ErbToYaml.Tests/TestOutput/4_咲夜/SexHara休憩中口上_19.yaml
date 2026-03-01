@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「そうよ。%CALLNAME:MASTER%には無視する事しかできないわ」
+
+    「それでいいの。便器が逆らうなんてことはないものね」
+
+    「ふふっ、それでいいの」
+  priority: 1
+  displayMode: newline

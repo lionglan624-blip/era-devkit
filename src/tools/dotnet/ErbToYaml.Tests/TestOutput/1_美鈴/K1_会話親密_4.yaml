@@ -1,0 +1,231 @@
+﻿character: 美鈴
+situation: K1_会話親密
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:人物_美鈴%をそっと抱きしめた。
+
+    「んっ…%CALLNAME:MASTER%…」
+
+    %CALLNAME:人物_美鈴%は自然と腕を回して抱き返した。
+
+    「ふふ…温かいわね。%CALLNAME:MASTER%のぬくもり…大好き」
+
+    門番の鎧越しでも伝わる体温に、%CALLNAME:人物_美鈴%は目を細めた。
+
+    「こうしてると、門番の疲れなんて全部吹き飛んじゃう」
+
+    %CALLNAME:人物_美鈴%はそう言って、%CALLNAME:MASTER%の胸に頬を寄せた。
+
+    「――%CALLNAME:MASTER%」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%を迎え入れるように両腕を広げた。
+
+    ぎゅっと抱きしめ合う。
+
+    「…ふふ、いい匂い。%CALLNAME:MASTER%の匂い」
+
+    %CALLNAME:人物_美鈴%は幸せそうに%CALLNAME:MASTER%の首筋に顔を埋めた。
+
+    「…もう少しだけ、このままでいさせて？」
+
+    甘える声が耳元で囁かれた。
+
+    %CALLNAME:MASTER%は後ろから%CALLNAME:人物_美鈴%を抱きしめた。
+
+    「あっ…%CALLNAME:MASTER%…」
+
+    %CALLNAME:人物_美鈴%は驚きながらも、すぐに身体の力を抜いた。
+
+    「もう…門番中なんだから…」
+
+    そう言いながらも、%CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の腕に手を重ねた。
+
+    「…でも、離さないでね」
+
+    小さな声でそう囁いて、%CALLNAME:人物_美鈴%は幸せそうに微笑んだ。
+
+    「%CALLNAME:MASTER%、来てくれたのね」
+
+    %CALLNAME:人物_美鈴%の方から%CALLNAME:MASTER%に抱きついた。
+
+    「今日は疲れちゃって…少しだけ、こうさせて」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「…%CALLNAME:MASTER%のそばにいると、安心するの」
+
+    %CALLNAME:人物_美鈴%はそのまま目を閉じて、穏やかな吐息をついた。
+
+    「…ありがとう。大好きよ、%CALLNAME:MASTER%」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:人物_美鈴%に抱きついた。
+
+    「わっ…え、%CALLNAME:MASTER%…？」
+
+    %CALLNAME:人物_美鈴%は驚きながらも、嬉しそうに抱き返した。
+
+    「…ふふ、急に甘えん坊ね」
+
+    頬を赤らめながら、%CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の背中を優しく撫でた。
+
+    「…でも、こういうの…嫌いじゃないわ」
+
+    そう言って、%CALLNAME:人物_美鈴%は照れくさそうに笑った。
+
+    「あ…%CALLNAME:MASTER%？」
+
+    %CALLNAME:MASTER%に抱きしめられて、%CALLNAME:人物_美鈴%は一瞬固まった。
+
+    「…もう、いきなりなんだから」
+
+    だが、その声は怒っているようには聞こえなかった。
+
+    %CALLNAME:人物_美鈴%は戸惑いながらも、%CALLNAME:MASTER%の体に腕を回した。
+
+    「…温かいわね。%CALLNAME:MASTER%って」
+
+    頬を染めながら、%CALLNAME:人物_美鈴%は小さく呟いた。
+
+    %CALLNAME:MASTER%は%CALLNAME:人物_美鈴%の後ろから抱きついた。
+
+    「ひゃっ…！？ %CALLNAME:MASTER%…？」
+
+    %CALLNAME:人物_美鈴%の肩がびくりと跳ねた。
+
+    「も、もう…心臓に悪いわよ…」
+
+    そう言いながらも、%CALLNAME:人物_美鈴%は逃げようとはしなかった。
+
+    「…でも、%CALLNAME:MASTER%の腕…温かい…」
+
+    %CALLNAME:人物_美鈴%は照れくさそうに俯いて、小さく呟いた。
+
+    「…%CALLNAME:MASTER%、どうしたの？」
+
+    %CALLNAME:MASTER%に抱きしめられて、%CALLNAME:人物_美鈴%は戸惑いの声を上げた。
+
+    「疲れた？　それとも…甘えたいの？」
+
+    %CALLNAME:人物_美鈴%はおずおずと%CALLNAME:MASTER%の背中に手を回した。
+
+    「…私も、%CALLNAME:MASTER%とこうしてると…」
+
+    %CALLNAME:人物_美鈴%は言葉を途切れさせ、頬を赤らめた。
+
+    「…なんでもない。もう少し、このままでいいわよ」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:人物_美鈴%に抱きついた。
+
+    「えっ…！？ ちょ、%CALLNAME:MASTER%…！？」
+
+    %CALLNAME:人物_美鈴%は顔を真っ赤にして固まった。
+
+    「だ、抱きつくなんて…いきなりすぎるわ…」
+
+    戸惑いながらも、%CALLNAME:人物_美鈴%は%CALLNAME:MASTER%を押し退けはしなかった。
+
+    「…まあ、嫌じゃない…けど…」
+
+    恥ずかしそうに目を逸らしながら、%CALLNAME:人物_美鈴%は小声でそう言った。
+
+    「わわっ！？」
+
+    突然の抱擁に、%CALLNAME:人物_美鈴%は動揺した声を上げた。
+
+    「%CALLNAME:MASTER%、急にどうしたの…」
+
+    %CALLNAME:人物_美鈴%は困惑しながらも、抵抗はしなかった。
+
+    「…疲れてるの？ 大丈夫？」
+
+    戸惑いながらも、%CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の背中を軽く叩いた。
+
+    %CALLNAME:MASTER%が近づいてきて、%CALLNAME:人物_美鈴%を抱きしめた。
+
+    「あ…あの…%CALLNAME:MASTER%…？」
+
+    %CALLNAME:人物_美鈴%は身体を硬くしたまま、動けずにいた。
+
+    「こ、こういうの…慣れてなくて…」
+
+    %CALLNAME:人物_美鈴%の心臓が早鐘のように打っている。
+
+    「…で、でも、少しだけなら…」
+
+    %CALLNAME:人物_美鈴%は恥ずかしそうに目を閉じた。
+
+    「%CALLNAME:MASTER%…？」
+
+    %CALLNAME:MASTER%に抱きしめられて、%CALLNAME:人物_美鈴%は戸惑いを隠せない。
+
+    「えっと…その…なんでしょう…」
+
+    どう反応していいかわからず、%CALLNAME:人物_美鈴%は両手を宙に彷徨わせた。
+
+    「…抱きついてくるなんて、急すぎ…」
+
+    %CALLNAME:人物_美鈴%は困ったように眉を下げたが、嫌がってはいないようだった。
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:人物_美鈴%に抱きつこうとした。
+
+    「わっ！？ ちょ、ちょっと、何するんですか！」
+
+    %CALLNAME:人物_美鈴%は慌てて身を引いた。
+
+    「い、いきなり抱きつくなんて…」
+
+    困惑した表情で、%CALLNAME:人物_美鈴%は%CALLNAME:MASTER%を見つめた。
+
+    「…もうちょっと仲良くなってからにしてもらえます？」
+
+    %CALLNAME:人物_美鈴%は困ったように眉を下げた。
+
+    「えっ…ちょっと…」
+
+    %CALLNAME:MASTER%が近づいてきて、%CALLNAME:人物_美鈴%は後ずさった。
+
+    「あの、抱きつくのは…その…」
+
+    %CALLNAME:人物_美鈴%は居心地悪そうに視線を泳がせた。
+
+    「門番として警戒しないといけないので…」
+
+    丁重に、しかし明確に、%CALLNAME:人物_美鈴%は距離を置いた。
+
+    %CALLNAME:MASTER%は%CALLNAME:人物_美鈴%に近づいた。
+
+    「あ、あの…そんなに近づかれると…」
+
+    %CALLNAME:人物_美鈴%は警戒するように一歩下がった。
+
+    「す、すみません、仕事中なので…」
+
+    %CALLNAME:人物_美鈴%は申し訳なさそうに、しかし毅然と距離を保った。
+
+    「また今度、もう少し親しくなってからでいいですか？」
+
+    「あ…えっと…」
+
+    %CALLNAME:MASTER%が抱きつこうとするのを、%CALLNAME:人物_美鈴%は身をかわした。
+
+    「ごめんなさい、いきなりはちょっと…」
+
+    %CALLNAME:人物_美鈴%は困惑した表情で%CALLNAME:MASTER%を見た。
+
+    「悪気がないのはわかるんですけど…」
+
+    「まだそこまで親しくないし…門番の仕事もありますから」
+
+    %CALLNAME:人物_美鈴%は丁寧に、しかし明確に断った。
+  priority: 1

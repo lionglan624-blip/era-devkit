@@ -1,0 +1,207 @@
+﻿character: 小悪魔
+situation: K2_口挿入
+entries:
+- id: fallback
+  content: >-
+    「%CALLNAME:MASTER%……ふふっ、今度は私が触る番ですわね……」
+
+    %CALLNAME:人物_小悪魔%は悪戯っぽい笑みを浮かべながら、%CALLNAME:MASTER%の体に手を伸ばした。
+
+    細い指先が%CALLNAME:MASTER%の秘所に触れると、ゆっくりと撫で始める。
+
+    「悪魔の指……感じてくださいませ……んっ……」
+
+    %CALLNAME:人物_小悪魔%は愛おしそうに指を動かし、%CALLNAME:MASTER%の反応を楽しんでいる。
+
+    「ふふ……%CALLNAME:MASTER%の弱いところ……全部知ってますわ……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%に寄り添い、そっと手を這わせた。
+
+    「ここ……こうされると、気持ちいいでしょう？　ふふっ」
+
+    悪魔の指が%CALLNAME:MASTER%の敏感な場所を的確に刺激していく。
+
+    「んっ……%CALLNAME:MASTER%の声……もっと聞かせてくださいな……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%の反応を楽しむように、緩急をつけて愛撫する。
+
+    「私の指……気持ちいい……？　ふふ……正直に言ってくださいませ……」
+
+    「ねえ、%CALLNAME:MASTER%……私、こういうの……好きですわ……」
+
+    %CALLNAME:人物_小悪魔%は蕩けるような目で%CALLNAME:MASTER%を見つめながら、指先を動かした。
+
+    悪魔特有の器用な指が、%CALLNAME:MASTER%の体を丁寧に愛撫していく。
+
+    「%CALLNAME:MASTER%が感じてる顔……たまらなく好きですわ……」
+
+    %CALLNAME:人物_小悪魔%の尻尾がゆらゆらと揺れている。
+
+    「もっと……もっと気持ちよくしてあげますわ……」
+
+    「ふふ……%CALLNAME:MASTER%ったら、こんなに反応して……」
+
+    %CALLNAME:人物_小悪魔%は嬉しそうに笑いながら、%CALLNAME:MASTER%の秘所を撫で続けている。
+
+    時折、意地悪そうに手の動きを止めては、%CALLNAME:MASTER%を焦らす。
+
+    「……ん、もっとしてほしい？　おねだりしてくださいな……」
+
+    %CALLNAME:人物_小悪魔%は悪魔らしい妖艶な笑みを浮かべた。
+
+    「私の手で……%CALLNAME:MASTER%を満足させてあげますわ……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「%CALLNAME:MASTER%……あの……触っても、いいですの……？」
+
+    %CALLNAME:人物_小悪魔%は恥ずかしそうに頬を染めながら、%CALLNAME:MASTER%に手を伸ばした。
+
+    おずおずと%CALLNAME:MASTER%の秘所に触れると、ゆっくりと指を動かし始める。
+
+    「こ、こうですの……？　気持ちいいですか……？」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%の反応を窺いながら、懸命に愛撫している。
+
+    「……%CALLNAME:MASTER%に喜んでもらえると……嬉しいですわ……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%のそばに寄り添い、手を添えた。
+
+    「私……%CALLNAME:MASTER%のこと、もっと知りたくて……」
+
+    細い指が%CALLNAME:MASTER%の体を探るように動いている。
+
+    「ここを触ると……んっ……%CALLNAME:MASTER%、声が出ちゃうんですね……」
+
+    %CALLNAME:人物_小悪魔%は嬉しそうに微笑みながら、愛撫を続けた。
+
+    「もっと……いい声、聞かせてくださいな……」
+
+    「あの……%CALLNAME:MASTER%……私の手、冷たくないですか……？」
+
+    %CALLNAME:人物_小悪魔%は心配そうに%CALLNAME:MASTER%を見上げながら、愛撫を続けている。
+
+    悪魔の手は少しひんやりとしているが、その冷たさが心地よい刺激になる。
+
+    「ふふ……%CALLNAME:MASTER%、気持ちよさそうな顔……してますわ……」
+
+    %CALLNAME:人物_小悪魔%の尻尾がぱたぱたと揺れている。
+
+    「私……もっと上手になりたいですわ……」
+
+    「%CALLNAME:MASTER%……こうやって触れるの……幸せですわ……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%の体を丁寧に愛撫しながら、うっとりとした表情を浮かべている。
+
+    指先に力を込めたり、軽く撫でたり、緩急をつけて刺激していく。
+
+    「%CALLNAME:MASTER%が感じてるの……私にも伝わってきますわ……」
+
+    %CALLNAME:人物_小悪魔%は頬を染めながら、愛撫を続けた。
+
+    「……もっと……%CALLNAME:MASTER%のこと、感じたい……」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……え、私が……触るんですの……？」
+
+    %CALLNAME:人物_小悪魔%は少し戸惑いながらも、%CALLNAME:MASTER%に手を伸ばした。
+
+    おそるおそる%CALLNAME:MASTER%の秘所に触れると、ぎこちなく指を動かし始める。
+
+    「こ、こうですの……？　合ってますの……？」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%の反応を確認しながら、懸命に愛撫している。
+
+    「……へ、変なところ触ってたら言ってくださいな……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%のそばに座り、手を添えた。
+
+    「……悪魔が人間を愛撫するなんて……変な感じですわ……」
+
+    細い指がぎこちなく%CALLNAME:MASTER%の体を撫でている。
+
+    「んっ……こうすると……%CALLNAME:MASTER%、反応しますわね……」
+
+    %CALLNAME:人物_小悪魔%は少し興味深そうに%CALLNAME:MASTER%を見つめた。
+
+    「……もう少し、続けますわね……」
+
+    「……%CALLNAME:MASTER%……私の手、ちょっと冷たいかもしれませんわ……」
+
+    %CALLNAME:人物_小悪魔%は申し訳なさそうに%CALLNAME:MASTER%を見ながら、愛撫を続けている。
+
+    悪魔の手がひんやりと%CALLNAME:MASTER%の体を撫でていく。
+
+    「……%CALLNAME:MASTER%……気持ちいいですの……？」
+
+    %CALLNAME:人物_小悪魔%は少し不安そうな表情を浮かべている。
+
+    「……もっと上手くできるように……頑張りますわ……」
+
+    「……パチュリー様の本で読んだことがありますわ……こうすると……」
+
+    %CALLNAME:人物_小悪魔%は思い出しながら、%CALLNAME:MASTER%の体を愛撫している。
+
+    ぎこちないながらも、丁寧に指を動かしていく。
+
+    「……んっ……%CALLNAME:MASTER%、声が……出てますわ……」
+
+    %CALLNAME:人物_小悪魔%は少し驚いた様子で%CALLNAME:MASTER%を見つめた。
+
+    「……これでいいんですの……？　もう少し続けますわね……」
+  priority: 2
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%さん……これをしろ、と……？」
+
+    %CALLNAME:人物_小悪魔%は溜息をつきながら、%CALLNAME:MASTER%に手を伸ばした。
+
+    淡々と%CALLNAME:MASTER%の秘所に触れると、機械的に指を動かし始める。
+
+    「……こうですの……？　悪魔を使う趣味がおありなようで……」
+
+    %CALLNAME:人物_小悪魔%は冷ややかな目で%CALLNAME:MASTER%を見ている。
+
+    「……お気が済みましたら、終わりにしてくださいな……」
+
+    %CALLNAME:人物_小悪魔%は%CALLNAME:MASTER%のそばに座り、義務的に手を添えた。
+
+    「……仕方ありませんわね……パチュリー様の命令ですし……」
+
+    細い指が無感情に%CALLNAME:MASTER%の体を撫でている。
+
+    「……んっ……反応されても困りますわ……」
+
+    %CALLNAME:人物_小悪魔%は気まずそうに目を逸らした。
+
+    「……早く終わらせてくださいな……」
+
+    「……私の手、冷たいでしょう……？　悪魔ですから……」
+
+    %CALLNAME:人物_小悪魔%は皮肉っぽく%CALLNAME:MASTER%を見ながら、愛撫を続けている。
+
+    悪魔の手がひんやりと%CALLNAME:MASTER%の体を撫でていく。
+
+    「……%CALLNAME:MASTER%さん……変な声、出さないでくださいな……」
+
+    %CALLNAME:人物_小悪魔%は少し困惑した表情を浮かべている。
+
+    「……早く済ませましょう……」
+
+    「……人間って……こういうことがお好きなんですのね……」
+
+    %CALLNAME:人物_小悪魔%は冷めた目で%CALLNAME:MASTER%を見ながら、愛撫している。
+
+    淡々と指を動かしながらも、%CALLNAME:MASTER%の反応は確認している。
+
+    「……んっ……まあ、反応はしますわよね……」
+
+    %CALLNAME:人物_小悪魔%は小さく溜息をついた。
+
+    「……付き合ってあげますから……感謝してくださいな……」
+  priority: 1

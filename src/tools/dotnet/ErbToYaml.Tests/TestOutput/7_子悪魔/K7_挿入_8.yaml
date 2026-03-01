@@ -1,0 +1,239 @@
+﻿character: 子悪魔
+situation: K7_挿入
+entries:
+- id: fallback
+  content: >-
+    「んぅ……%CALLNAME:MASTER%、うしろむきだと……おくまで、くる……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の膝の上に座り、背中を預けている。
+
+    悪魔の少女は後ろから抱きしめられる感覚に、幸せそうに身を震わせた。
+
+    「あたし……%CALLNAME:MASTER%に、つつまれてる……みたい……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕に自分の手を重ねた。
+
+    「このまま……いっぱい、きもちよくして……ね……？」
+
+    サキュバスの血が騒ぎ、%CALLNAME:TARGET%は甘く%CALLNAME:MASTER%を求めていた。
+
+    「ふぁ……%CALLNAME:MASTER%のうで……あったかい……」
+
+    %CALLNAME:TARGET%は後ろから抱きしめられ、安心したように息を吐いている。
+
+    悪魔の少女は%CALLNAME:MASTER%の胸板に背中を預け、深く繋がっていた。
+
+    「うしろからだと……%CALLNAME:MASTER%のこと、かんじる……ぜんぶ……」
+
+    %CALLNAME:TARGET%は恍惚とした表情で、腰をくねらせた。
+
+    「あたしの中……%CALLNAME:MASTER%で、いっぱいにして……」
+
+    愛情と本能が溶け合い、%CALLNAME:TARGET%は%CALLNAME:MASTER%を締め付けていった。
+
+    「あっ……んっ……%CALLNAME:MASTER%……すき……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きに合わせ、小刻みに体を揺らしている。
+
+    後ろから抱きしめられながら、悪魔の少女は幸せに満ちた声を上げていた。
+
+    「むねも……さわって……あたし、ぜんぶ……%CALLNAME:MASTER%のもの……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を自分の胸に導いた。
+
+    「えへへ……こうしてると、しあわせ……」
+
+    無邪気に微笑みながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%との繋がりを楽しんでいた。
+
+    「んっ……はぁ……%CALLNAME:MASTER%、うしろから……きもちいい……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に体を預け、蕩けるような表情を浮かべている。
+
+    サキュバスの血が愛を求め、%CALLNAME:TARGET%は甘い声を漏らし続けていた。
+
+    「あたしね……%CALLNAME:MASTER%のこと、だいすき……」
+
+    %CALLNAME:TARGET%は首を傾け、%CALLNAME:MASTER%の顔を見上げた。
+
+    「だから……いっぱい、だして……あたしの中に……ね……？」
+
+    愛情を込めて、%CALLNAME:TARGET%は%CALLNAME:MASTER%を締め付けていった。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ふぇ……%CALLNAME:MASTER%、うしろから……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の膝の上に座り、背中を向けている。
+
+    悪魔の少女は顔が見えないことに少し安心しながらも、触れられる感覚にどきどきしていた。
+
+    「おかお、みえないから……ちょっと、あんしん……」
+
+    %CALLNAME:TARGET%は小さく呟いた。
+
+    「でも……うしろから、だきしめられると……どきどき、する……」
+
+    恥じらいながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%に体を預けていった。
+
+    「あっ……んっ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は後ろから抱きしめられ、甘い声を漏らしている。
+
+    悪魔の血が騒ぎ、%CALLNAME:TARGET%の体は正直に快楽を求め始めていた。
+
+    「むね……さわらないで……はずかしい……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を払おうとしたが、力が入らなかった。
+
+    「……でも……きもち、わるくない……なんでだろ……」
+
+    芽生えた感情が、%CALLNAME:TARGET%を%CALLNAME:MASTER%に引き寄せていた。
+
+    「んぅ……%CALLNAME:MASTER%、うしろから……おく、まできてる……」
+
+    %CALLNAME:TARGET%は深く繋がる感覚に、戸惑いながらも身を震わせている。
+
+    サキュバスの本能が目覚め、悪魔の少女の奥から蜜が溢れ始めていた。
+
+    「あたし……%CALLNAME:MASTER%のこと、すき……なのかな……」
+
+    %CALLNAME:TARGET%は首を傾け、%CALLNAME:MASTER%の顔を見ようとした。
+
+    「……わかんないけど……このまま、いたい……」
+
+    恥じらいと芽生えた感情の間で、%CALLNAME:TARGET%は揺れていた。
+
+    「はぁ……ふぁ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の温もりを感じながら、とろけるような声を漏らしている。
+
+    後ろから包まれる感覚が、悪魔の少女の心を揺さぶっていた。
+
+    「うしろから、だきしめられると……むねが、きゅってなる……」
+
+    %CALLNAME:TARGET%は自分の胸に手を当てた。
+
+    「……%CALLNAME:MASTER%のこと……もっと、しりたい……」
+
+    照れながら呟き、%CALLNAME:TARGET%は%CALLNAME:MASTER%に身を委ねていった。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「わぁ……うしろむきで、するの……？」
+
+    %CALLNAME:TARGET%は興味津々な様子で、%CALLNAME:MASTER%の膝の上に座った。
+
+    悪魔の少女にとって、この体勢は新鮮な体験だった。
+
+    「へー……こうすると、おく、まではいるんだ……」
+
+    %CALLNAME:TARGET%は不思議そうに首を傾げた。
+
+    「%CALLNAME:MASTER%、これ、おもしろい……もっと、して……」
+
+    遊ぶような気持ちで、%CALLNAME:TARGET%は%CALLNAME:MASTER%との繋がりを楽しんでいた。
+
+    「んっ……あ、うしろからだと……ちがう……」
+
+    %CALLNAME:TARGET%は後ろから抱きしめられ、新しい感覚を味わっている。
+
+    サキュバスの血が反応し、体が勝手に快楽を求め始めていた。
+
+    「むねも、さわるの……？　んっ……きもち、へん……」
+
+    %CALLNAME:TARGET%は驚いたように声を漏らした。
+
+    「……でも、いやじゃない……ふしぎ……」
+
+    好奇心と芽生えた快楽に誘われ、%CALLNAME:TARGET%は身を委ねていった。
+
+    「ふぅん……%CALLNAME:MASTER%、うしろから、すきなの……？」
+
+    %CALLNAME:TARGET%は首を傾け、%CALLNAME:MASTER%を見上げた。
+
+    しかし体は正直で、悪魔の少女の奥から蜜が溢れ始めていた。
+
+    「あっ……ん……なんか、おくが……きもちいい……」
+
+    %CALLNAME:TARGET%は小さく身を震わせた。
+
+    「こういうの、はじめて……もっと、おしえて……？」
+
+    興味深そうに呟きながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%の動きに身を任せた。
+
+    「へえ……これが、はいめんざい……」
+
+    %CALLNAME:TARGET%は後ろから繋がりながら、興味津々に感想を漏らしている。
+
+    悪魔の本能が目覚め、少女の体は次第に熱を帯びていった。
+
+    「%CALLNAME:MASTER%のうで、あったかい……なんか、あんしんする……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕に手を添えた。
+
+    「……もうちょっと、このまま……いい……？」
+
+    好奇心と芽生えた安心感に誘われ、%CALLNAME:TARGET%は%CALLNAME:MASTER%に身を預けた。
+  priority: 2
+- id: fallback
+  content: >-
+    「ん……うしろむき……？　いいよ……」
+
+    %CALLNAME:TARGET%は無感情な瞳で、%CALLNAME:MASTER%の膝の上に座った。
+
+    しかしその体は悪魔の本能に従い、%CALLNAME:MASTER%を締め付け始めていた。
+
+    「……あたし、おなかすいてたの……」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「うしろからでも……ぜんぶ、もらえる……」
+
+    サキュバスの眷属として、%CALLNAME:TARGET%は%CALLNAME:MASTER%から精気を求めていた。
+
+    「ふぅん……%CALLNAME:MASTER%、うしろから、したいの……」
+
+    %CALLNAME:TARGET%は淡々と%CALLNAME:MASTER%を受け入れた。
+
+    悪魔の少女の瞳には、獲物を絡め取るような光が宿っている。
+
+    「いいよ……すきにして……」
+
+    %CALLNAME:TARGET%は本能に従い、%CALLNAME:MASTER%を誘うように腰を動かした。
+
+    「そのかわり……ぜんぶ、もらうから……」
+
+    無邪気な声で淫らな言葉を紡ぎながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%を締め付けた。
+
+    「……ん、うしろむきだと……おく、までくる……」
+
+    %CALLNAME:TARGET%は後ろから繋がりながら、淡々と感想を漏らした。
+
+    感情のない瞳とは裏腹に、体は本能的に快楽を求めていた。
+
+    「%CALLNAME:MASTER%……もっと、うごいて……」
+
+    %CALLNAME:TARGET%は自ら腰を動かし始めた。
+
+    「あたし、まだ……たりない……もっと、ちょうだい……」
+
+    サキュバスの血が騒ぎ、%CALLNAME:TARGET%は飢えたように%CALLNAME:MASTER%を求めていた。
+
+    「あたしね……うしろむき、はじめて……」
+
+    %CALLNAME:TARGET%は後ろから抱きしめられ、不思議そうな顔をしている。
+
+    しかし悪魔の本能は既に目覚め、%CALLNAME:MASTER%を搾り取ろうとしていた。
+
+    「でも……体が、しってる……こうすれば、いっぱいもらえる……」
+
+    %CALLNAME:TARGET%は本能のままに腰を動かし始めた。
+
+    「%CALLNAME:MASTER%……あたしのなかに、いっぱい、だして……？」
+
+    無表情な顔で淫らな言葉を紡ぎながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%を絡め取っていた。
+  priority: 1

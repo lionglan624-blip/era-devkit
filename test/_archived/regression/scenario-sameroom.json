@@ -1,0 +1,16 @@
+{
+  "name": "core-sameroom: 同室イベントテスト",
+  "description": "キャラと同じ場所で起床し、同室イベントが発火することを確認",
+  "characters": {
+    "大妖精": {
+      "CFLAG:2": 5000,
+      "CFLAG:21": 100
+    }
+  },
+  "copy": [
+    {"from": "大妖精", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]"]
+  }
+}

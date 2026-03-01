@@ -1,0 +1,12 @@
+﻿character: 汎用
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「やっ、そんなことしたくなっ・・んぶっ！！」
+
+    「いっ、嫌よっ、誰がそんなモノに・・ううっ！！」
+
+    「な、何ですって、く、口でっ・・！？ う、ううっ！！」
+  priority: 1
+  displayMode: newline

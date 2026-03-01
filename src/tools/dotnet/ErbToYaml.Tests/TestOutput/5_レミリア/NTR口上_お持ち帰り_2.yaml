@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「もちろん、いっぱい抱かれてきたわ」
+
+    「愉しんできたかって？ そりゃもう、いろいろとね」
+
+    「たっぷり愉しんできたわよ、ふふ」
+  priority: 1
+  displayMode: newline

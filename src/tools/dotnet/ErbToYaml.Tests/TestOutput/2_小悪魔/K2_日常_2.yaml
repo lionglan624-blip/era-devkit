@@ -1,0 +1,12 @@
+﻿character: 小悪魔
+situation: K2_日常
+entries:
+- id: fallback
+  content: >-
+    「あの・・よかったら、私もご一緒させていただけませんか？」
+
+    「うふふっ、誰かお忘れじゃありませんか？」
+
+    「あの・・是非私もご一緒に・・」
+  priority: 1
+  displayMode: newline

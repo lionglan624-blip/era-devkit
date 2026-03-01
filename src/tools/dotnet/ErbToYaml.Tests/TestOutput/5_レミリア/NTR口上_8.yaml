@@ -1,0 +1,30 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「あっ・・あああああっ♪」
+
+    「ああっ、い、いいっ、いくぅぅっ♪」
+
+    「そう、そうよ・・い、いくぅぅっ♪」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっ・・あああああっ♪」
+
+    「ああっ、い、いいっ、いくぅぅっ♪」
+
+    「そう、そうよ・・い、いくぅぅっ♪」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そうよ、そこっ、もっと強くっ・・んあああっ」
+
+    「そ、そこ、そこよっ！ あっ、ああああっ！！」
+
+    「んっ・・ん・・い、いかせて・・いかせてっ・・い、イくぅぅーーーーっ！！」
+  priority: 1
+  displayMode: newline

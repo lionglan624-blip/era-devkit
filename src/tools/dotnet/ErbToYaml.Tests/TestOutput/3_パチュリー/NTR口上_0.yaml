@@ -1,0 +1,80 @@
+﻿character: パチュリー
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「今はそんな話を聞きたくないわ」
+
+    「つまらない話はやめてちょうだい」
+
+    「今はやめて。それより、聞いておきたいことがあるのだけど」
+  priority: 8
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「次の『お仕事』・・ええ、いつでも引き受けるわ」
+
+    「一度に何人も相手するのはさすがに疲れるわ。たまにならいいけど」
+
+    「ふふ、この次にお呼びがかかるのはいつかしら？」
+  priority: 7
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そうね・・続きをゆっくり聞かせてもらいたいわ」
+
+    「興味深いわね・・静かなところで聞かせてもらえないかしら？」
+
+    「少し疲れたわ・・一休みしない？」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふふ、それは興味深いわね」
+
+    「興味深いわね・・もっと聞かせてもらえないかしら？」
+
+    「その話の続きはないの？」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そうね、そういう解釈もあるわね」
+
+    「結論から言えばそうね。その通りだわ」
+
+    「あら、でもこういう説明もできない？」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >2-
+
+    「一理あるわね」
+
+    「ちょっと待って。確かにそういう見方もできるわ」
+
+    「そうではないの。隠された要因を見落としているわ」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そうね。ではこれはどうかしら？」
+
+    「そうともいえるわね」
+
+    「あら、おもしろそうね」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・・そう」
+
+    「それがどうかしたの？」
+
+    「その話、何度目？」
+  priority: 1
+  displayMode: newline

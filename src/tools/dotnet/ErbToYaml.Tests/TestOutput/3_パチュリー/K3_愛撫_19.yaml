@@ -1,0 +1,217 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……それは……ニプルキャップね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が手にした一対のクリップを、淡々と観察した。
+
+    「振動機能付き……なかなか興味深い構造だわ……」
+
+    %CALLNAME:MASTER%がクリップを%CALLNAME:TARGET%の乳首に装着すると、%CALLNAME:TARGET%は小さく息を吐いた。
+
+    電源が入り、微細な振動が乳首を刺激し始める。
+
+    「……んっ……%CALLNAME:MASTER%……これは……効くわね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に顔を埋め、振動の快感を受け入れた。
+
+    「……振動の周波数……変えられるのね……」
+
+    %CALLNAME:TARGET%はクリップの仕組みを分析しようとしている。
+
+    しかし電源が入った瞬間、%CALLNAME:TARGET%の思考は中断された。
+
+    「……むきゅ……これは……予想以上に……」
+
+    振動が乳首を通じて全身に伝わり、%CALLNAME:TARGET%の体が震えた。
+
+    「……%CALLNAME:MASTER%……あなたの傍で……感じさせて……」
+
+    %CALLNAME:TARGET%は珍しく甘えた声で、%CALLNAME:MASTER%に寄り添った。
+
+    「……付けてくれるの……？」
+
+    %CALLNAME:TARGET%は読みかけの本を閉じ、%CALLNAME:MASTER%に身を委ねた。
+
+    クリップが乳首を挟み込み、振動が始まる。
+
+    「……ん……乳首が……敏感に……なってきた……」
+
+    %CALLNAME:TARGET%は目を閉じ、振動の刺激に集中している。
+
+    「……%CALLNAME:MASTER%……ずっと……こうしていたいわ……」
+
+    大図書館に、%CALLNAME:TARGET%の甘い吐息が静かに響いた。
+
+    「……んっ……」
+
+    %CALLNAME:TARGET%はクリップの装着を静かに受け入れた。
+
+    振動が乳首を刺激し、%CALLNAME:TARGET%の白い肌がほんのり上気していく。
+
+    「……この刺激……本を読みながらでは……無理ね……」
+
+    %CALLNAME:TARGET%は諦めたように魔導書を置いた。
+
+    「……%CALLNAME:MASTER%……今は……あなたに集中するわ……」
+
+    その言葉は、%CALLNAME:TARGET%からの精一杯の愛情表現だった。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……!? そ、それは何かしら……」
+
+    %CALLNAME:TARGET%はクリップ型の器具を見て、頬を染めた。
+
+    「乳首に……付けるの……？」
+
+    %CALLNAME:MASTER%がクリップを装着し、電源を入れると、%CALLNAME:TARGET%は声を漏らした。
+
+    「……ひぁっ……振動して……乳首が……」
+
+    %CALLNAME:TARGET%は本で顔を隠しながら、振動の刺激に耐えている。
+
+    「……%CALLNAME:MASTER%……見ないで……こんな姿……」
+
+    「……むきゅ……これは……」
+
+    %CALLNAME:TARGET%はクリップの振動に、言葉を失っていた。
+
+    「……乳首から……全身に……伝わってくる……」
+
+    %CALLNAME:TARGET%の体が小刻みに震え、呼吸が乱れていく。
+
+    「……こんな道具……大図書館の蔵書にも……載ってない……」
+
+    %CALLNAME:TARGET%は困惑しながらも、不快ではないようだった。
+
+    「……や……振動が……強く……」
+
+    %CALLNAME:MASTER%が出力を上げると、%CALLNAME:TARGET%は本を取り落とした。
+
+    「……んっ……これでは……本を……持てない……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕にしがみついた。
+
+    「……%CALLNAME:MASTER%……お願い……少し……弱くして……」
+
+    しかし%CALLNAME:TARGET%の瞳は、快感に潤んでいた。
+
+    「……はぁ……はぁ……」
+
+    %CALLNAME:TARGET%は振動の刺激に、荒い息を吐いていた。
+
+    「……乳首が……敏感になって……」
+
+    クリップの振動が止まらず、%CALLNAME:TARGET%の体は快感に翻弄されている。
+
+    「……%CALLNAME:MASTER%……こんなの……初めて……」
+
+    %CALLNAME:TARGET%は羞恥と快感の狭間で、%CALLNAME:MASTER%に縋り付いた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……それは……ニプルキャップというものね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つ器具を、興味深そうに観察した。
+
+    「乳首を挟み、振動で刺激を与える道具……」
+
+    しかし実際に装着されると、%CALLNAME:TARGET%の表情が強張った。
+
+    「……っ……振動が……直接……」
+
+    %CALLNAME:TARGET%は冷静を装おうとするが、声が震えている。
+
+    「……ふぅん……」
+
+    %CALLNAME:TARGET%はクリップの構造を分析しようとしている。
+
+    「……挟む力と振動周波数……計算された設計ね……」
+
+    しかし振動が強まる度に、%CALLNAME:TARGET%の冷静さは揺らいでいく。
+
+    「……むきゅ……これは……予想外の刺激……」
+
+    %CALLNAME:TARGET%は困惑した表情で、%CALLNAME:MASTER%を見上げた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で振動の刺激を受けている。
+
+    振動が続く度に、%CALLNAME:TARGET%の呼吸が微かに乱れる。
+
+    「……乳首への刺激……悪くは……ないわね……」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「……でも……調子に乗らないで……」
+
+    「……ん……」
+
+    %CALLNAME:TARGET%はクリップの振動に、小さく声を漏らした。
+
+    「……この振動……体が……慣れてきた……かしら……」
+
+    しかし快感が思考を邪魔し、%CALLNAME:TARGET%は言葉を途切れさせた。
+
+    「……本を……読もうと思ったけど……無理ね……」
+
+    %CALLNAME:TARGET%は諦めたように目を閉じた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の真似かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つクリップを見て、冷ややかな目を向けた。
+
+    「そんなものを乳首に付けて……何が楽しいの……」
+
+    しかし振動が始まった瞬間、%CALLNAME:TARGET%の表情が強張った。
+
+    「……っ……振動……してる……」
+
+    冷淡を装おうとするが、%CALLNAME:TARGET%の体は小さく震えていた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無表情でクリップの装着を受けている。
+
+    振動が続く度に、その表情が微かに歪む。
+
+    「……これで満足……かしら……」
+
+    %CALLNAME:TARGET%は冷めた声で問いかけたが、呼吸が乱れていた。
+
+    「……早く終わらせて……」
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せたが、その反応は本物だった。
+
+    「……振動が……乳首から……全身に……」
+
+    クリップの刺激が%CALLNAME:TARGET%の冷淡な態度を揺さぶっている。
+
+    「……下品な道具ね……でも……悪くは……ない……かも……」
+
+    %CALLNAME:TARGET%は認めたくないように、視線を逸らした。
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついたが、それは快感を逃がすためだった。
+
+    「……こんなもので……読書の邪魔を……」
+
+    %CALLNAME:TARGET%は呆れた表情を浮かべているが、その体は振動に反応している。
+
+    「……好きにしなさい……ただし……本を汚さないで……」
+
+    言い終える前に、%CALLNAME:TARGET%は小さく声を漏らした。
+  priority: 1

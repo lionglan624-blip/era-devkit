@@ -1,0 +1,59 @@
+﻿character: フラン
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は嫌がる%CALLNAME:奴隷%の首輪を掴み、逃げられない彼女の口を無理矢理に犯した。
+
+    「いっ、いやっ・・んんんっ！ ・・うううっ！！」
+
+    %CALLNAME:奴隷%は唇も、舌も、喉の奥底までも白濁で汚されてしまった。
+  priority: 5
+- id: fallback
+  content: >-
+    「んっ・・ちゅ・・んんんっ！ ・・こく、こく・・」
+
+    「ん・・ちゅっ・・ちゅぱっ・・んんんっ！ ・・こくっ・・うん、おいし・・」
+
+    「んんっ・・いいよ・・だして・・ん・・・ううっ！ ・・ごくっ・・ごく・・」
+
+    「うふ、飲んだよ♪」
+
+    「いっぱい出たね♪」
+
+    「ふふ、おいし♪」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ちゅ・・んんんっ！ ・・こく、こく・・」
+
+    「ん・・ちゅっ・・ちゅぱっ・・んんんっ！ ・・こくっ・・」
+
+    「んんっ・・いいよ・・だして・・ん・・・ううっ！ ・・ごくっ・・ごく・・」
+
+    「うふ、飲んだよ♪」
+
+    「いっぱい出たね♪」
+
+    「ふふ、おいし♪」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「うふ、飲んだよ？」
+
+    「いっぱい出たね・・」
+
+    「もう、へいきだよ」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・ひどいよ、こんなの・・」
+
+    「・・やっぱり、変な味・・」
+
+    「・・飲んだよ・・これでいいの？」
+  priority: 1
+  displayMode: newline

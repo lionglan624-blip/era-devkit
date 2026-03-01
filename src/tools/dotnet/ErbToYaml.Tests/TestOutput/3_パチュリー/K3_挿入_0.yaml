@@ -1,0 +1,207 @@
+﻿character: パチュリー
+situation: K3_挿入
+entries:
+- id: fallback
+  content: >-
+    「……んっ、あ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を受け入れながら、静かに息を吐いた。
+
+    本で読んだ知識と、実際に感じる熱は全く違う。
+
+    「……%CALLNAME:MASTER%、重い……でも、離れないで」
+
+    %CALLNAME:TARGET%は細い腕を%CALLNAME:MASTER%の背に回した。
+
+    「……あなたの体温が、私の魔力を満たしていくの」
+
+    「はぁ……ん……深い……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の目を見つめながら、小さく喘いだ。
+
+    大図書館の静寂の中、二人の息遣いだけが響いている。
+
+    「……この体勢、顔がよく見えるわね」
+
+    %CALLNAME:TARGET%は頬を染めながら、%CALLNAME:MASTER%の頬に手を添えた。
+
+    「……私の顔も、そんな風に見えているの？ 恥ずかしいわ……」
+
+    「ぁ……んん……っ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きに合わせて、体を揺らしている。
+
+    普段は動かない大図書館が、今は二人のために揺れているよう。
+
+    「……%CALLNAME:MASTER%……もっと、奥まで……」
+
+    %CALLNAME:TARGET%は珍しく積極的な言葉を口にした。
+
+    「……私の全てを、あなたに知ってほしいの」
+
+    「……ふぅ……あ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に抱かれながら、満ち足りた表情を浮かべている。
+
+    「……体が弱いから、この体勢は楽でいいわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げ、微笑んだ。
+
+    「……あなたに委ねていれば、私は安心できる」
+
+    そう言って、%CALLNAME:TARGET%は%CALLNAME:MASTER%の唇に口づけを求めた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「っ……あ……入って……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を受け入れながら、顔を背けた。
+
+    「……正面から見ないで。恥ずかしいから」
+
+    %CALLNAME:TARGET%は論理的に説明しようとして、言葉に詰まった。
+
+    「……この感情は、何なのかしら。胸が苦しいの」
+
+    頬を紅潮させながら、%CALLNAME:TARGET%は小さく呟いた。
+
+    「んっ……ふ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きに、体を強張らせている。
+
+    「……本では、こういう行為について色々と読んだわ」
+
+    %CALLNAME:TARGET%は平静を装おうとしているが、声が震えている。
+
+    「……でも、実際は全然違う。頭が、考えることを拒否するの」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%にしがみついた。
+
+    「あ……やぁ……そんなに見ないで……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と目が合い、慌てて目を閉じた。
+
+    「……正常位というのは、相手の表情が見えるのね」
+
+    %CALLNAME:TARGET%は知識として理解していたが、こんなに恥ずかしいとは。
+
+    「……%CALLNAME:MASTER%、キスして。そうすれば、視線を感じなくて済むから」
+
+    照れ隠しのように、%CALLNAME:TARGET%は唇を求めた。
+
+    「……ん……ぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に組み敷かれながら、静かに喘いでいる。
+
+    「……私の心拍数が上がっているわ。これは運動によるものか、それとも……」
+
+    %CALLNAME:TARGET%は自分の感情を分析しようとしている。
+
+    「……いえ、分析は後にしましょう。今は……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の首に腕を回し、身を委ねた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……っ……これが……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を受け入れながら、興味深そうな目をしている。
+
+    「……本で読んだ通りの感覚ね。いえ、少し違うかしら」
+
+    %CALLNAME:TARGET%は冷静を保とうとしているが、頬が上気している。
+
+    「……体が熱い。これは生理的反応……」
+
+    分析しようとする言葉が、途切れ途切れになっている。
+
+    「ん……ふぅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きを、観察するような目で見ている。
+
+    「……興味深いわ。人間の生殖行為というのは」
+
+    %CALLNAME:TARGET%は淡々と言おうとしたが、声が震えた。
+
+    「……なぜ、こんなに落ち着かないのかしら」
+
+    自分の反応に、%CALLNAME:TARGET%自身が戸惑っている。
+
+    「あ……そこ……」
+
+    %CALLNAME:TARGET%は思わず声を漏らし、慌てて口を押さえた。
+
+    「……不覚だわ。声が出るなんて」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を逸らした。
+
+    「……%CALLNAME:MASTER%、今のは聞かなかったことにして」
+
+    そう言いながらも、体は%CALLNAME:MASTER%を拒んでいない。
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って%CALLNAME:MASTER%を受け入れている。
+
+    研究者としての冷静さを保とうとしているが、表情が揺れている。
+
+    「……%CALLNAME:MASTER%、質問があるわ」
+
+    %CALLNAME:TARGET%は息を整えながら、%CALLNAME:MASTER%を見上げた。
+
+    「……なぜ私を選んだの？ 体の弱い魔女なんかを」
+  priority: 2
+- id: fallback
+  content: >-
+    「……」
+
+    %CALLNAME:TARGET%は無表情のまま、%CALLNAME:MASTER%を受け入れている。
+
+    「……早く終わらせて。読みかけの本があるの」
+
+    %CALLNAME:TARGET%は淡々と言い放った。
+
+    「……体が弱いから、あまり激しくしないで」
+
+    それだけを告げ、%CALLNAME:TARGET%は目を閉じた。
+
+    「……ふぅ……」
+
+    %CALLNAME:TARGET%は溜息をつきながら、%CALLNAME:MASTER%の行為を受けている。
+
+    「……私の体力では、こういう行為は向いていないのだけれど」
+
+    %CALLNAME:TARGET%は事実を述べるように言った。
+
+    「……まあ、あなたがそうしたいなら、好きにしなさい」
+
+    投げやりな態度で、%CALLNAME:TARGET%は身を委ねた。
+
+    「……むきゅ……」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「……息が苦しいわ。少し楽にして」
+
+    %CALLNAME:TARGET%は体の弱さを訴えた。
+
+    「……こういうことをするなら、もっと配慮が必要よ」
+
+    冷たい口調で、%CALLNAME:TARGET%は%CALLNAME:MASTER%を窘めた。
+
+    「……」
+
+    %CALLNAME:TARGET%は天井を見つめながら、%CALLNAME:MASTER%の行為を受けている。
+
+    頭の中では、次に読む本のことを考えているようだ。
+
+    「……終わったら、すぐに出て行って」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……大図書館は、私の聖域なのだから」
+  priority: 1

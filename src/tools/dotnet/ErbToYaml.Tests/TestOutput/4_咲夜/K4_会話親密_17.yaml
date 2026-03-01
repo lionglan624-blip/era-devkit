@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_会話親密
+entries:
+- id: fallback
+  content: >-
+    「%CALLNAME:MASTER%もこういうの、好きなんでしょう？」
+
+    「%CALLNAME:MASTER%もこういうの、好きなくせに」
+
+    「私のを見れて、嬉しかったでしょう？」
+  priority: 1
+  displayMode: newline

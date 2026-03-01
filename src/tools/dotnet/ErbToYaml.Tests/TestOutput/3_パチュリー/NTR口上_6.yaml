@@ -1,0 +1,57 @@
+﻿character: パチュリー
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「あっ、あ、あはぁあああん・・っ♪」
+
+    「ああっ！ い、いくっ！ いくのおぉぉっ♪」
+
+    「ああ・・いく、いっちゃうぅう♪」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっ、あ、あはぁあああん・・っ♪」
+
+    「ああっ！ い、いくっ！ いくのおぉぉっ♪」
+
+    「ああ・・いく、いっちゃうぅう♪」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっ、あ、あはぁあああん・・っ！」
+
+    「ああっ！ い、いくっ！ いくのおぉぉっ！」
+
+    「ああ・・いく、いっちゃうぅう！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「だめ・・だめよ・・あ、ああああっ！！」
+
+    「だめ・・これ以上は・・あ、ああっ！！」
+
+    「ああ・・もういく、いっちゃう！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あ、ああっ！ たえられ、ない、あああっ！」
+
+    「だめ・・これ以上は・・いや、やっ、あ、ああっ！！」
+
+    「ああ・・だめ・・だめよ・・いく、いっちゃう！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「だめ、だめよ、だめえええええっ！！」
+
+    「だめ・・これ以上は・・いや、嫌あああああっ！！」
+
+    「ああ・・駄目・・駄目よ・・いく、いっちゃう！」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,229 @@
+﻿character: 魔理沙
+situation: K10_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……ったく、こんなことさせるなんてな」
+
+    %CALLNAME:TARGET%は照れ隠しに文句を言いながら、%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「……んっ……ちゅ……」
+
+    魔理沙の唇が乳首に吸い付き、ちゅぷちゅぷと音を立てる。
+
+    「……まあ、恋人なんだから……これくらいは、してやるぜ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸を両手で包みながら、夢中で吸い続けた。
+
+    「……%CALLNAME:MASTER%の匂い……なんか、落ち着くな……」
+
+    「ほら、じっとしてろよ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の乳首を舌先でくすぐりながら、からかうように笑った。
+
+    「……んむ……れろ……お前、敏感だな……」
+
+    魔理沙の舌が乳首を転がし、%CALLNAME:MASTER%の体に甘い痺れを走らせる。
+
+    「……こうやって甘えるの、悪くないぜ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕の中で、幸せそうに目を細めた。
+
+    「……もうちょっと、こうさせてくれよ……」
+
+    「……ふぅ……%CALLNAME:MASTER%の胸、柔らかいな……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に頬をすり寄せながら、穏やかな表情を浮かべている。
+
+    「……ちゅっ……んっ……」
+
+    魔理沙は乳首を口に含み、赤ん坊のように吸い付いた。
+
+    魔法の研究に明け暮れる日々とは違う、甘い時間だった。
+
+    「……お前といると、なんか力が抜けるんだよな」
+
+    %CALLNAME:TARGET%は珍しく素直に、自分の気持ちを口にした。
+
+    「……んん……好きだぜ、%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の乳首を吸いながら、甘い声を漏らした。
+
+    「……こうしてると、お前のことがもっと好きになる……」
+
+    魔理沙の舌が乳首を舐め上げ、時折甘噛みするように歯を立てる。
+
+    %CALLNAME:TARGET%の体が%CALLNAME:MASTER%の温もりに包まれて、とろけるように緩んでいた。
+
+    「……ずっと、こうしてていいか……？」
+
+    %CALLNAME:TARGET%は恋人に甘えられる幸せを、全身で感じていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……え、こんなこと……本当にするのか……？」
+
+    %CALLNAME:TARGET%は顔を赤くしながら、おずおずと%CALLNAME:MASTER%の胸に顔を近づけた。
+
+    「……んっ……ちゅ……」
+
+    魔理沙の小さな唇が、恐る恐る乳首に触れる。
+
+    「……%CALLNAME:MASTER%の体、あったかい……」
+
+    %CALLNAME:TARGET%は緊張しながらも、吸い付くことをやめなかった。
+
+    「……恥ずかしいけど……なんか、ドキドキするぜ……」
+
+    「こ、こんなの……赤ちゃんみたいで恥ずかしいぜ……」
+
+    %CALLNAME:TARGET%は文句を言いながらも、言われた通りに乳首を口に含んだ。
+
+    「……んむっ……ちゅ……れろ……」
+
+    魔理沙の舌が乳首をくすぐり、%CALLNAME:MASTER%の肌を舐め上げる。
+
+    「……%CALLNAME:MASTER%のせいだからな……こんな気持ちになるの……」
+
+    %CALLNAME:TARGET%は照れ隠しのように呟きながら、甘える手を止めなかった。
+
+    「……でも……嫌じゃ、ないぜ……」
+
+    「%CALLNAME:MASTER%……見るなよな……」
+
+    %CALLNAME:TARGET%は目を閉じて、%CALLNAME:MASTER%の胸に吸い付いた。
+
+    「んっ……ちゅぅ……はぁ……」
+
+    魔理沙は無心になって乳首を吸い、時折甘い息を漏らしている。
+
+    %CALLNAME:TARGET%の頬が上気し、恥じらいながらも夢中になっていた。
+
+    「……%CALLNAME:MASTER%の胸……なんか、癖になりそうだぜ……」
+
+    魔理沙は自分の言葉に気づいて、さらに顔を赤くした。
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に顔を埋めながら、複雑な表情をしていた。
+
+    「……こうしてると、お前に受け入れられてる気がするぜ」
+
+    %CALLNAME:TARGET%は照れくさそうに、でも嬉しそうに呟いた。
+
+    「……もうちょっと、こうしててもいいか……？」
+
+    魔理沙は%CALLNAME:MASTER%の腕の中で、甘えるように言った。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「お、おい……！　本当にこんなこと……」
+
+    %CALLNAME:TARGET%は突然の指示に動揺を隠せない。
+
+    「胸を吸えって……そういうのは……急すぎないか……？」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%の胸に顔を近づけた。
+
+    「……んっ……」
+
+    魔理沙はおずおずと乳首に唇を触れさせた。
+
+    「……もうちょっと、段階ってものがあるだろ……」
+
+    「ちょ……本気か……？」
+
+    %CALLNAME:TARGET%は戸惑いながらも、言われた通りに%CALLNAME:MASTER%の乳首を口に含んだ。
+
+    「こういうこと……まだ、心の準備が……」
+
+    %CALLNAME:TARGET%は顔を赤くしながら、言葉を詰まらせた。
+
+    「……ちゅ……んっ……」
+
+    「……嫌ってわけじゃないけど……順番ってものがあるだろ……」
+
+    %CALLNAME:TARGET%は困った顔で%CALLNAME:MASTER%を見上げた。
+
+    「う、うわっ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に顔を押し付けられて、思わず声を上げた。
+
+    「%CALLNAME:MASTER%……これって……どういうつもりだ……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の真意を探るように見つめている。
+
+    「……んっ……ちゅ……」
+
+    「……私のこと……その……好きなのか……？」
+
+    %CALLNAME:TARGET%は照れ隠しに視線を逸らしながら、小声で問いかけた。
+
+    「あ……んっ……」
+
+    %CALLNAME:TARGET%は言われるままに乳首を吸い始めた。
+
+    「……もう……仕方ないやつだな、お前……」
+
+    %CALLNAME:TARGET%は諦めたように溜息をついた。
+
+    「……ちゅぷ……れろ……」
+
+    「……今回だけだぞ。次からはちゃんと段階踏めよな」
+
+    魔理沙はぎこちなく%CALLNAME:MASTER%の胸に吸い付き続けた。
+  priority: 2
+- id: fallback
+  content: >-
+    「は……！？　何言ってんだお前！」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の要求に戸惑いを隠せない。
+
+    「いきなり胸を吸えとか……頭おかしいんじゃないか！？」
+
+    %CALLNAME:TARGET%は警戒するような目で%CALLNAME:MASTER%を睨んだ。
+
+    「……そういうのは、もっと親しくなってからにしろよ」
+
+    魔理沙は一歩後ろに下がった。
+
+    「ちょっ……！　無理だって！」
+
+    %CALLNAME:TARGET%は慌てて拒否の姿勢を見せた。
+
+    「何考えてんだ、お前……私のことなんだと思ってるんだ」
+
+    %CALLNAME:TARGET%は怒りと困惑が混じった表情で%CALLNAME:MASTER%を見た。
+
+    「……悪いけど、そういうのはお断りだぜ」
+
+    魔理沙はきっぱりと拒絶した。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%から距離を取った。
+
+    「%CALLNAME:MASTER%……私はそんなに安い女じゃないぜ」
+
+    %CALLNAME:TARGET%は冷たい視線を%CALLNAME:MASTER%に向けた。
+
+    「……もう少し、人の気持ちを考えろよな」
+
+    魔理沙は失望したように首を横に振った。
+
+    「お、おい……何を言って……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の要求に戸惑いながら、身を引いた。
+
+    「悪いけど、お前とはまだそういう仲じゃないだろ」
+
+    %CALLNAME:TARGET%は困惑しながらも、毅然とした態度を崩さなかった。
+
+    「……私のこと知りたいなら、まずは普通に話すことから始めろよ」
+
+    魔理沙は%CALLNAME:MASTER%を諭すように言った。
+  priority: 1

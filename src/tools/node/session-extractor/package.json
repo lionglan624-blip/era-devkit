@@ -1,0 +1,8 @@
+{
+  "name": "session-extractor",
+  "version": "1.0.0",
+  "description": "Extract Feature Dashboard session data for analysis",
+  "type": "module",
+  "author": "",
+  "license": "ISC"
+}

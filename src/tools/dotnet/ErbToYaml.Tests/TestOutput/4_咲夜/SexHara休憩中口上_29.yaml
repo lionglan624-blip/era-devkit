@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「ここを舐めなさい。良くしないと許さないわ」
+
+    「言われないとわからないのかしら？ ここを舐めなさい」
+
+    「私のここをその口で清めなさい」
+  priority: 1
+  displayMode: newline

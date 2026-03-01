@@ -1,0 +1,25 @@
+﻿character: 小悪魔
+situation: NTR口上_お持ち帰り
+entries:
+- id: talent_148_0
+  content: >-
+    「い・・いや・・、こ、こないでください・・！」
+
+    「ち、近寄らないでくださいっ！」
+
+    「や、やめてくださいっ！ 人でなしっ！ 鬼っ！ 悪魔っ！！」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: '%CALLNAME:奴隷%は客に身体を預けながら話している。'
+  priority: 2
+- id: fallback
+  content: >-
+    「これを着けるんですね・・ふふ、似合いますか？」
+
+    %CALLNAME:奴隷%は微笑みながら首に着けられた首輪を指でなぞった
+  priority: 1

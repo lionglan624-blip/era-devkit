@@ -1,0 +1,222 @@
+# Feature 091: MockRand Engine Integration
+
+## Status: [DONE]
+
+## Type: engine
+
+## Background
+
+### Problem
+
+`--mock-rand` 繧ｪ繝励す繝ｧ繝ｳ縺ｯ KojoTestConfig.MockRandQueue 縺ｫ蛟､繧定ｨｭ螳壹☆繧九′縲∝ｮ滄圀縺ｮ RAND 髢｢謨ｰ・・VariableEvaluator.GetNextRand`・峨・ MTRandom 繧ｯ繝ｩ繧ｹ繧堤峩謗･菴ｿ逕ｨ縺励※縺翫ｊ縲｀ockRandQueue 繧貞盾辣ｧ縺励※縺・↑縺・・
+
+縺､縺ｾ繧・**Mock Rand 讖溯・縺ｯ險ｭ螳壹□縺代＆繧後※縲∝ｮ滄圀縺ｮRAND縺ｨ縺ｯ謗･邯壹＆繧後※縺・↑縺・*縲・
+
+### Goal
+
+RAND 髢｢謨ｰ蜻ｼ縺ｳ蜃ｺ縺玲凾縺ｫ MockRandQueue 縺九ｉ鬆・分縺ｫ蛟､繧貞叙蠕励〒縺阪ｋ繧医≧縺ｫ縺励∝哨荳翫ユ繧ｹ繝医・蛻・ｲ舌ｒ螳悟・縺ｫ蛻ｶ蠕｡蜿ｯ閭ｽ縺ｫ縺吶ｋ縲・
+
+### Context
+
+Feature 060 縺ｧ `--mock-rand` CLI 繧ｪ繝励す繝ｧ繝ｳ縺瑚ｿｽ蜉縺輔ｌ縺溘′縲∝ｮ滄圀縺ｮ荵ｱ謨ｰ逕滓・縺ｸ縺ｮ謗･邯壹′譛ｪ螳溯｣・□縺｣縺溘・
+
+迴ｾ迥ｶ縺ｮ螳溯｣・
+```
+CLI: --mock-rand 0,1,2
+  竊・
+HeadlessRunner: options.MockRand.Add(value)
+  竊・
+KojoTestConfig: MockRandQueue.AddRange(values)
+  竊・
+(謗･邯壹↑縺・
+  竊・
+VariableEvaluator.GetNextRand: return rand.NextInt64(max) 竊・MTRandom繧剃ｽｿ逕ｨ
+```
+
+譛溷ｾ・☆繧句ｮ溯｣・
+```
+CLI: --mock-rand 0,1,2
+  竊・
+HeadlessRunner: options.MockRand.Add(value)
+  竊・
+KojoTestConfig: MockRandQueue.AddRange(values)
+  竊・
+GlobalStatic or InjectedQueue
+  竊・
+VariableEvaluator.GetNextRand: MockRandQueue 縺九ｉ蜿門ｾ励√↑縺代ｌ縺ｰMTRandom
+```
+
+---
+
+## Acceptance Criteria
+
+### AC Definition Table
+
+| AC# | Description | Type | Matcher | Expected | Status |
+|:---:|-------------|------|---------|----------|:------:|
+| 1 | 繝薙Ν繝画・蜉・| build | succeeds | - | [x] VERIFIED |
+| 2 | MockRand蛟､縺軍AND縺ｫ蜿肴丐縺輔ｌ繧・| output | contains | "RAND邨先棡: 42" | [x] VERIFIED |
+| 3 | MockRand譫ｯ貂・凾縺ｫRAND2縺悟・蜉帙＆繧後ｋ | output | contains | "RAND2:" | [x] VERIFIED |
+
+### AC Details
+
+#### AC1: 繝薙Ν繝画・蜉・
+
+**Test Command**:
+```bash
+dotnet build uEmuera/uEmuera.Headless.csproj
+```
+
+**Expected Output**: Exit code 0
+
+---
+
+#### AC2: MockRand蛟､縺軍AND縺ｫ蜿肴丐縺輔ｌ繧・
+
+**Test Command**:
+```bash
+dotnet run --project uEmuera/uEmuera.Headless.csproj -- Game/ \
+  --mock-rand 42 \
+  --unit TEST_MOCK_RAND \
+  --char 1
+```
+
+**Test ERB** (Game/ERB/TEST_MOCK_RAND.ERB):
+```erb
+@TEST_MOCK_RAND
+#FUNCTION
+PRINTL RAND邨先棡: %RAND(100)%
+RETURNF 1
+```
+
+**Expected Output**: "RAND邨先棡: 42"
+
+---
+
+#### AC3: MockRand譫ｯ貂・凾縺ｫRAND2縺悟・蜉帙＆繧後ｋ
+
+**Test Command**:
+```bash
+dotnet run --project uEmuera/uEmuera.Headless.csproj -- Game/ \
+  --mock-rand 42 \
+  --unit TEST_MOCK_RAND_EXHAUST \
+  --char 1
+```
+
+**Test ERB** (Game/ERB/TEST_MOCK_RAND_EXHAUST.ERB):
+```erb
+@TEST_MOCK_RAND_EXHAUST
+LOCAL = RAND(100)
+PRINTFORML RAND1: {LOCAL}
+LOCAL = RAND(100)
+PRINTFORML RAND2: {LOCAL}
+RETURN
+```
+
+**Expected Output**: "RAND2:" appears (confirms second RAND call succeeds after mock queue exhaustion)
+
+---
+
+## Tasks
+
+| Task# | AC# | Description | Status |
+|:-----:|:---:|-------------|:------:|
+| 1 | 1 | VariableEvaluator.GetNextRand 縺ｫ MockRandQueue 讖滓ｧ九ｒ螳溯｣・| [x] TESTED |
+| 2 | 2 | TEST_MOCK_RAND.ERB 繝・せ繝磯未謨ｰ菴懈・ | [x] TESTED |
+| 3 | 3 | TEST_MOCK_RAND_EXHAUST.ERB 繝・せ繝磯未謨ｰ菴懈・ | [x] TESTED |
+
+---
+
+## Implementation Approach
+
+### Option A: GlobalStatic邨檎罰 (Simple)
+
+```csharp
+// VariableEvaluator.cs
+public Int64 GetNextRand(Int64 max)
+{
+    if (GlobalStatic.KojoTestConfig?.MockRandQueue?.Count > 0)
+    {
+        var queue = GlobalStatic.KojoTestConfig.MockRandQueue;
+        var value = queue[0];
+        queue.RemoveAt(0);
+        return value % max; // Ensure within range
+    }
+    return rand.NextInt64(max);
+}
+```
+
+### Option B: IVariableEvaluator諡｡蠑ｵ (Clean)
+
+```csharp
+// IVariableEvaluator.cs - add method
+void SetMockRandQueue(List<int> queue);
+
+// VariableEvaluator.cs
+private List<int> mockRandQueue;
+
+public void SetMockRandQueue(List<int> queue)
+{
+    mockRandQueue = queue;
+}
+
+public Int64 GetNextRand(Int64 max)
+{
+    if (mockRandQueue?.Count > 0)
+    {
+        var value = mockRandQueue[0];
+        mockRandQueue.RemoveAt(0);
+        return value % max;
+    }
+    return rand.NextInt64(max);
+}
+```
+
+**Recommendation**: Option A is simpler and consistent with existing GlobalStatic pattern.
+
+---
+
+## Execution State
+
+**Current Phase**: Complete
+**Assigned To**: finalizer (haiku)
+**Completion**: 2025-12-17 23:45:00 UTC
+
+---
+
+## Execution Log
+
+| Date | Agent | Action | Result |
+|------|-------|--------|--------|
+| 2025-12-17 | initializer | Initialize feature-091 for [WIP] | READY |
+| 2025-12-17 | implementer | Task 1: Implement MockRandQueue in GetNextRand | SUCCESS |
+| 2025-12-17 | unit-tester | Task 1: Verify build succeeds and code compiles (AC1) | PASS |
+| 2025-12-17 | implementer | Task 2: Create TEST_MOCK_RAND.ERB test function | SUCCESS |
+| 2025-12-17 | unit-tester | Task 2: Test --unit with TEST_MOCK_RAND (AC2) | FAIL (incompatible #FUNCTION) |
+| 2025-12-17 | debugger | Task 2 (Attempt 1): Fix TEST_MOCK_RAND.ERB #FUNCTION issue | FIXED |
+| 2025-12-17 | unit-tester | Task 2 (RETRY): Verify MockRand value 42 in RAND output | PASS |
+| 2025-12-17 | implementer | Task 3: Create TEST_MOCK_RAND_EXHAUST.ERB test function | SUCCESS |
+| 2025-12-17 | unit-tester | Task 3: Verify MockRand exhaustion fallback (AC3) | PASS |
+| 2025-12-17 | ac-tester | AC3 Verification: output contains "RAND2:" | PASS |
+| 2025-12-17 | debugger | AC2 (Attempt 1): Fix UTF-8 BOM encoding in TEST_MOCK_RAND.ERB | FIXED |
+| 2025-12-17 | ac-tester | AC2 Verification (RETRY): output contains "RAND邨先棡: 42" with UTF-8 fix | PASS |
+
+---
+
+## Discovered Issues
+
+| Issue | Type | Priority |
+|-------|------|----------|
+| Feature 060 譛ｪ螳梧・ | Bug | High |
+| `#FUNCTION` directive incompatible with `--unit` | Limitation | Medium |
+| ERB files created by implementer lack UTF-8 BOM | Process | Low |
+
+---
+
+## Links
+
+- [feature-060.md](feature-060.md) - MockRand CLI option (original)
+- [KojoTestConfig.cs](../../uEmuera/Assets/Scripts/Emuera/Headless/KojoTestConfig.cs)
+- [VariableEvaluator.cs](../../uEmuera/Assets/Scripts/Emuera/GameData/Variable/VariableEvaluator.cs)
+- [GlobalStatic.cs](../../uEmuera/Assets/Scripts/Emuera/GlobalStatic.cs) - Added KojoTestConfig property
+- [KojoTestRunner.cs](../../uEmuera/Assets/Scripts/Emuera/Headless/KojoTestRunner.cs) - Sets GlobalStatic.KojoTestConfig

@@ -1,0 +1,239 @@
+﻿character: 咲夜
+situation: K4_挿入
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%……そちらでも、よろしいのですか……？」
+
+    %CALLNAME:TARGET%は恥じらいながらも、%CALLNAME:MASTER%を見つめた。
+
+    「貴方のためでしたら……どこでも、構いませんわ……」
+
+    %CALLNAME:MASTER%が菊穴に先端を宛てがうと、%CALLNAME:TARGET%は小さく息を呑んだ。
+
+    「んっ……きつい……ですわ……でも、貴方を受け入れたい……」
+
+    窮屈な場所に押し入る感覚に、%CALLNAME:TARGET%は甘い吐息を漏らした。
+
+    「……こんな場所でも……貴方と繋がれて……幸せですの……」
+
+    「ふぁ……%CALLNAME:MASTER%……そこは……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の意図を察して、顔を赤らめた。
+
+    「向かい合ったまま……後ろで……なんて……背徳的ですわ……」
+
+    %CALLNAME:MASTER%がゆっくりと腸内へ進入すると、%CALLNAME:TARGET%は体を強張らせた。
+
+    「あ……んっ……違和感が……でも、慣れてきましたわ……」
+
+    「貴方の顔を見ながら……こんなこと……恥ずかしい……」
+
+    %CALLNAME:TARGET%は恋人の腕の中で、背徳的な快感に身を委ねた。
+
+    「……んぅ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げ、潤んだ瞳で微笑んだ。
+
+    「この場所も……もう、貴方のものですわ……」
+
+    %CALLNAME:MASTER%が深く腰を沈めると、%CALLNAME:TARGET%の体が震えた。
+
+    「あっ……奥まで……入って……きゅう、と締まって……」
+
+    「メイドとして……こんな姿……でも、貴方になら……」
+
+    %CALLNAME:TARGET%は恋人だけに見せる、淫らな表情を浮かべていた。
+
+    「……あ……%CALLNAME:MASTER%、顔を見て……」
+
+    %CALLNAME:TARGET%は繋がったまま、%CALLNAME:MASTER%の顔を引き寄せた。
+
+    「こうして向かい合っていると……恥ずかしいけど……嬉しいの……」
+
+    「んちゅ……ん……後ろなのに……気持ちいい……」
+
+    唇を重ねながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%を深く受け入れていく。
+
+    「……好き……ですわ……全部……貴方に捧げますの……」
+
+    完璧なメイドは、恋人の前で全てを晒して甘く乱れていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「っ……%CALLNAME:MASTER%……そちらは……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の要求に戸惑いを見せた。
+
+    「メイドとして……そのような場所は……」
+
+    しかし、%CALLNAME:MASTER%の眼差しを受けて、%CALLNAME:TARGET%は観念した。
+
+    「……わかりました……貴方がお望みなら……」
+
+    「んっ……きつい……違和感が……でも、嫌じゃ……ないの……」
+
+    %CALLNAME:TARGET%は羞恥に顔を染めながら、%CALLNAME:MASTER%を受け入れた。
+
+    「あ……んっ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が腸内を進む感覚に、声を漏らしている。
+
+    「向かい合ったまま……後ろで……こんなの……」
+
+    「顔を……見ないでください……恥ずかしい……ですわ……」
+
+    %CALLNAME:MASTER%の腰が深く沈むと、%CALLNAME:TARGET%の体が震えた。
+
+    「あっ……奥……当たって……変な感じ……」
+
+    「%CALLNAME:MASTER%……もっと……ゆっくり……」
+
+    「……ふぁ……こんな場所で……感じてしまうなんて……」
+
+    %CALLNAME:TARGET%は自分の反応に戸惑いながらも、%CALLNAME:MASTER%を受け入れている。
+
+    「お嬢様に知られたら……なんて思われるか……」
+
+    言いかけて、%CALLNAME:TARGET%は唇を噛んだ。
+
+    「……いけませんわね、こんなこと考えては……」
+
+    「でも……貴方になら……この場所も……」
+
+    葛藤しながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%から目を逸らせなかった。
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は躊躇いがちに%CALLNAME:MASTER%の背中に手を回した。
+
+    「こうして……抱きしめさせて……ください……」
+
+    許可を求めながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%を引き寄せた。
+
+    「あ……近い……後ろなのに……繋がっていて……」
+
+    「……ん……っ……%CALLNAME:MASTER%……」
+
+    羞恥と背徳感の狭間で、%CALLNAME:TARGET%は甘い声を漏らし続けた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……そちらも……おもてなしの範囲ですわね……」
+
+    %CALLNAME:TARGET%は自分に言い聞かせるように呟いた。
+
+    「お客様のご要望にお応えするのは……メイドの務め……」
+
+    しかし、%CALLNAME:MASTER%が菊穴に進入すると、体は正直に反応してしまう。
+
+    「っ……きつい……異物感が……」
+
+    「……少し……変な気分になっているだけですわ……」
+
+    %CALLNAME:TARGET%は自分の反応を言い訳するように付け加えた。
+
+    「……ん……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は複雑な表情を浮かべている。
+
+    「向かい合いながら……後ろで……これは困りますわ……」
+
+    「貴方の顔が見えて……何を考えているのか……」
+
+    %CALLNAME:MASTER%が深く突くと、%CALLNAME:TARGET%の体が跳ねた。
+
+    「あっ……そこは……奥が……」
+
+    言葉を途中で飲み込み、%CALLNAME:TARGET%は唇を噛んだ。
+
+    「……これは……仕事……ですから……」
+
+    %CALLNAME:TARGET%は何度も自分に言い聞かせている。
+
+    しかし、腸内を貫かれる体は快感を覚え始めていた。
+
+    「……ぅ……変な気分になってきましたわ……」
+
+    「%CALLNAME:MASTER%のせいですからね……後ろなんて……」
+
+    %CALLNAME:TARGET%は責任を押し付けながらも、抵抗する様子はなかった。
+
+    「……もう少し……続けても構いませんわ……」
+
+    「……っ……」
+
+    %CALLNAME:TARGET%は声を堪えようとしたが、漏れてしまう。
+
+    「……後ろで……こんな声を出すなんて……」
+
+    「%CALLNAME:MASTER%、貴方は……私を困らせてばかりですわね……」
+
+    恨めしそうに言いながらも、%CALLNAME:TARGET%の瞳には別の感情が宿っていた。
+
+    「……でも……嫌ではありませんの……」
+
+    小さな声で、%CALLNAME:TARGET%はそう認めた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……」
+
+    %CALLNAME:TARGET%は無表情で%CALLNAME:MASTER%を見つめている。
+
+    「そちらもお望みでしたら……お相手いたしますわ」
+
+    「ただし、メイドとしての品位は保たせていただきます」
+
+    %CALLNAME:MASTER%が菊穴に進入しても、%CALLNAME:TARGET%は表情を崩さない。
+
+    「……早く済ませてくださいまし」
+
+    瀟洒なメイドは、事務的な冷たさを帯びていた。
+
+    「……ふぅ……」
+
+    %CALLNAME:TARGET%は小さく息を吐いた。
+
+    「後ろでお望みとは……趣味が良いとは言えませんわね」
+
+    「私に何を期待しているのか……無駄ですけれど」
+
+    %CALLNAME:MASTER%が動いても、%CALLNAME:TARGET%は表情を崩さない。
+
+    「……感情移入などしませんわよ」
+
+    完璧なメイドは、あくまでプロフェッショナルを貫いていた。
+
+    「……これは仕事です」
+
+    %CALLNAME:TARGET%は自分に言い聞かせるように呟いた。
+
+    「どの場所であろうと……メイドの務め……」
+
+    「……っ」
+
+    一瞬、%CALLNAME:TARGET%の表情が揺らいだが、すぐに戻る。
+
+    「……何でもありませんわ」
+
+    冷静さを取り繕いながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%を見つめた。
+
+    「……貴方に感情を見せる必要はありませんわ」
+
+    %CALLNAME:TARGET%は冷たい目で%CALLNAME:MASTER%を見た。
+
+    「向かい合っていても……私の心は読めませんわよ」
+
+    「……ん……」
+
+    僅かに声が漏れ、%CALLNAME:TARGET%は唇を噛んだ。
+
+    「……早く終わらせてください。お嬢様がお呼びですので」
+
+    瀟洒な従者は、最後まで感情を見せなかった。
+  priority: 1

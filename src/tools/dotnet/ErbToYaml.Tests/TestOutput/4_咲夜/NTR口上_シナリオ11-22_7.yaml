@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ11-22
+entries:
+- id: fallback
+  content: >-
+    「ああっ！ いっ、いやああっ、助けてっ！」
+
+    「ああっ、いや、嫌よ、いやああっ！」
+
+    「嫌、嫌よ！ 助けて、助けて%CALLNAME:MASTER%！」
+  priority: 1
+  displayMode: newline

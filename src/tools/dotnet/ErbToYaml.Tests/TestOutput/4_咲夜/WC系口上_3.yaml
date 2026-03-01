@@ -1,0 +1,16 @@
+﻿character: 咲夜
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    いきり立つモノを見せつける%CALLNAME:TARGET%に、%CALLNAME:MASTER%は今日は危険日だと伝えた。
+
+    %CALLNAME:TARGET%は淫らに微笑み、有無を言わせぬ口調で問いかけた。
+
+    「それがどうかしたのかしら？ 便器相手に避妊なんてしないわよね？」
+
+    「あら素敵ね。ふふっ、私のコレで孕みたい……そうでしょう？」
+
+    「そうなの。私の子種を受け入れる準備ができているということね？」
+  priority: 1
+  displayMode: newline

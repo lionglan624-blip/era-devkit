@@ -1,0 +1,16 @@
+﻿character: 美鈴
+situation: K1_EVENT
+entries:
+- id: talent_3_0
+  content: >-
+    「ごめんなさい・・%MSG_LOVER(奴隷)%の%CALLNAME:MASTER%をさしおいて、他の人とセックスしてきますね」
+
+    「はい。%MSG_LOVER(奴隷)%の%CALLNAME:MASTER%をさしおいて、他の人とセックスするために出かけるんです」
+
+    「今私の身体は%MSG_LOVER(奴隷)%の%CALLNAME:MASTER%ではなくて、お客様のものなんです」
+  priority: 1
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+  displayMode: newline

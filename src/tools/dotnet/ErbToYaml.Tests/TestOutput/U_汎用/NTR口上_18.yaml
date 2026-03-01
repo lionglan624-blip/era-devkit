@@ -1,0 +1,12 @@
+﻿character: 汎用
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %"（・・イキたい・・でも、"+CALLNAME:MASTER+"じゃ・・ああっ、ダメ・・そんな事考えちゃ・・）"%
+
+    %"（・・ああ・でも、"+CALLNAME:MASTER+"じゃイけない・・ああっ、ダメ・・そんな、そんな事・・）"%
+
+    %"（・・ああっ、"+CALLNAME:MASTER+"じゃ足りない・・イきたい、イきたいのに・・）"%
+  priority: 1
+  displayMode: newline

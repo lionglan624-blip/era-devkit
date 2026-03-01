@@ -1,0 +1,12 @@
+﻿character: チルノ
+situation: K8_日常
+entries:
+- id: fallback
+  content: >-
+    「ねぇ二人で遊ぶの？ あたいも混ざっていいよね？」
+
+    「二人だけで遊ぶなんてずっるーい！」
+
+    「このあたい抜きで遊ぶなんて許さないよ！」
+  priority: 1
+  displayMode: newline

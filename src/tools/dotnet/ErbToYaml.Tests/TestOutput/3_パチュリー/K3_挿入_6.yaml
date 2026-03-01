@@ -1,0 +1,207 @@
+﻿character: パチュリー
+situation: K3_挿入
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%、こっちに来て」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を手招きし、向かい合って座った。
+
+    大図書館の静寂の中、二人は互いの膝の上で絡み合う。
+
+    「……んっ……座ったまま、挿入って……顔が、近い……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の肩に手を置き、腰を沈めた。
+
+    「……この体位、本で読んだわ……密着感が高いのよね」
+
+    「はぁ……ん……っ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と向かい合いながら、静かに喘いでいる。
+
+    胡坐をかいた%CALLNAME:MASTER%の上で、%CALLNAME:TARGET%は身を委ねている。
+
+    「……この体勢、体力的には楽よ……支えてもらえるから」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の首に腕を回した。
+
+    「……あなたの体温が、直接伝わってくる……悪くないわ」
+
+    「ぁ……やぁ……顔が近いから、恥ずかしい……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と目が合い、頬を紅く染めた。
+
+    向かい合って座る体位は、互いの表情がよく見える。
+
+    「……%CALLNAME:MASTER%……キスして……そうすれば、視線が……」
+
+    %CALLNAME:TARGET%は照れ隠しのように唇を求めた。
+
+    「……んっ……こうしていると、あなたと一つになれた気がする……」
+
+    「……ふぅ……あ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に抱きつきながら、満ち足りた表情を浮かべている。
+
+    「……対面座位というのは、心臓の音が聞こえるのね」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に耳を当てた。
+
+    「……あなたの鼓動、早くなっている……私のせいかしら」
+
+    そう言って、%CALLNAME:TARGET%は満足げに微笑んだ。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……っ……向かい合って、座るの……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と向かい合いながら、顔を真っ赤にしている。
+
+    「……顔が、近すぎる……恥ずかしいわ……」
+
+    %CALLNAME:TARGET%は目を逸らしながらも、%CALLNAME:MASTER%の上に腰を下ろした。
+
+    「……んっ……入って……この体位だと、深く感じる……」
+
+    密着した体勢に、%CALLNAME:TARGET%は動揺を隠せない。
+
+    「んっ……ふ……あ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きに、小さく喘いでいる。
+
+    「……本では、この体位は親密さが高いと書いてあったけれど……」
+
+    %CALLNAME:TARGET%は知識と実感を照らし合わせようとしている。
+
+    「……こんなに、心臓が……むきゅ……落ち着かない……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%にしがみついた。
+
+    「あ……やぁ……そんなに見ないで……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と目が合い、慌てて目を閉じた。
+
+    「……この体位、表情が丸見えなのよ……」
+
+    %CALLNAME:TARGET%は羞恥に頬を染めながら、顔を逸らそうとする。
+
+    「……%CALLNAME:MASTER%、キスして……そうすれば、目を閉じていられるから……」
+
+    照れ隠しのように、%CALLNAME:TARGET%は唇を求めた。
+
+    「……ん……ぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に抱きしめられながら、静かに喘いでいる。
+
+    「……この体位、体力的には楽なのだけれど……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「……心臓の音が聞こえる……あなたのも、私のも……」
+
+    そう呟いて、%CALLNAME:TARGET%は%CALLNAME:MASTER%に身を委ねた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……これが、対面座位……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と向かい合いながら、興味深そうな目をしている。
+
+    「……本で読んだ通り、密着感が高い体位ね……」
+
+    %CALLNAME:TARGET%は冷静を保とうとしているが、頬が上気している。
+
+    「……んっ……顔が近い……これは、分析しにくいわ……」
+
+    観察者でいるつもりが、距離の近さに動揺している。
+
+    「んっ……ふぅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きを、なんとか観察しようとしている。
+
+    「……興味深いわ。この体位だと、相手の反応が直接見える……」
+
+    %CALLNAME:TARGET%は淡々と言おうとしたが、声が震えた。
+
+    「……なぜ、こんなに心拍数が上がるのかしら……」
+
+    自分の反応に、%CALLNAME:TARGET%自身が戸惑っている。
+
+    「あ……そこ……っ」
+
+    %CALLNAME:TARGET%は思わず声を漏らし、慌てて口を押さえた。
+
+    「……不覚だわ。向かい合っているから、表情が隠せない……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を逸らした。
+
+    「……%CALLNAME:MASTER%、今の表情は見なかったことにして……」
+
+    そう言いながらも、体は%CALLNAME:MASTER%から離れようとしない。
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って%CALLNAME:MASTER%と向かい合っている。
+
+    研究者として、この体位の特性を記録しておくべきだろう。
+
+    「……%CALLNAME:MASTER%、質問があるわ」
+
+    %CALLNAME:TARGET%は息を整えながら、%CALLNAME:MASTER%を見つめた。
+
+    「……対面座位を選んだ理由は何？ 私の反応を観察したいから？」
+  priority: 2
+- id: fallback
+  content: >-
+    「……」
+
+    %CALLNAME:TARGET%は無表情のまま、%CALLNAME:MASTER%と向かい合って座っている。
+
+    「……この体位なら、押し潰されなくて済むわ」
+
+    %CALLNAME:TARGET%は淡々と言い放った。
+
+    「……好きにしなさい。体力は温存できるから」
+
+    それだけを告げ、%CALLNAME:TARGET%は%CALLNAME:MASTER%に身を任せた。
+
+    「……ふぅ……」
+
+    %CALLNAME:TARGET%は溜息をつきながら、%CALLNAME:MASTER%の行為を受けている。
+
+    「……顔が近いのは気に入らないけれど、体力的には楽ね」
+
+    %CALLNAME:TARGET%は事実を述べるように言った。
+
+    「……早く終わらせて。読みかけの本があるの」
+
+    投げやりな態度で、%CALLNAME:TARGET%は目を逸らした。
+
+    「……むきゅ……」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「……顔が近すぎるわ。少し離れて」
+
+    %CALLNAME:TARGET%は距離感への不満を訴えた。
+
+    「……こういう親密な体位は、私には向いていないのよ」
+
+    冷たい口調で、%CALLNAME:TARGET%は視線を逸らした。
+
+    「……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と向かい合いながら、興味なさそうにしている。
+
+    頭の中では、次に読む本のことを考えているようだ。
+
+    「……終わったら、すぐに出て行って」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……大図書館は、私の聖域なのだから」
+  priority: 1

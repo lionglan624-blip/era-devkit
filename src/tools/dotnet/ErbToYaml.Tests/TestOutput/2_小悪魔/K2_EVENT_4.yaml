@@ -1,0 +1,12 @@
+﻿character: 小悪魔
+situation: K2_EVENT
+entries:
+- id: fallback
+  content: >-
+    「もうおしまいですか？ まぁこれだけ搾ればたぶん十分ですね」
+
+    「うふふっ、もうすっからかんですね？」
+
+    「うふふっ、もう粉も出ませんか？」
+  priority: 1
+  displayMode: newline

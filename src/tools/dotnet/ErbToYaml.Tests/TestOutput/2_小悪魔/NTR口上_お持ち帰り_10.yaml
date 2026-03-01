@@ -1,0 +1,40 @@
+﻿character: 小悪魔
+situation: NTR口上_お持ち帰り
+entries:
+- id: talent_148_0
+  content: >-
+    「んあっ・・・中にっ・・・中に・・・やああっ！」
+
+    「い、いやあっ・・中はいやああっ！」
+
+    「いやああっ！ もう、もういやあああっ！」
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んあっ・・・中にっ・・・中にきてるぅっ！」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%にしがみつき、胎内深くに精液の迸りを受け絶頂した。
+  priority: 4
+- id: fallback
+  content: >-
+    「んあっ・・・中にっ・・・中にきてるぅっ！」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%にしがみつき、胎内深くに精液の迸りを受け絶頂した。
+  priority: 3
+- id: fallback
+  content: >-
+    「んあっ・・・中にっ・・・中に・・・い、いくううっ！」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%にしがみつき、胎内深くに精液の迸りを受け絶頂した。
+  priority: 2
+- id: fallback
+  content: >-
+    「んあっ・・・中にっ・・・中に・・・い、いくううっ！」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に貫かれ、膣内にたっぷりと射精されながら絶頂した。
+  priority: 1

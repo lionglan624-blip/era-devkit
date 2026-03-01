@@ -1,0 +1,30 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んっ…ちゅっ…ちゅぱっ…ああ…おいしい…」
+
+    「ん…れるっ…いい…いい…逞しくて…ああ…」
+
+    「ふふっ…ああ…んっ…%ペニス%…いい…」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ…ちゅっ…ちゅぱっ…ああ…おいしい…」
+
+    「ん…れるっ…いい…いい…逞しくて…ああ…」
+
+    「ふふっ…ああ…んっ…%ペニス%…いい…」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「い、いやっ、た、助けてっ…んんんっ！！」
+
+    「ああっ、助けて%CALLNAME:MASTER%…んっ、んんんっ！！」
+
+    「んっ…たすけ…て…んんんっ！」
+  priority: 1
+  displayMode: newline

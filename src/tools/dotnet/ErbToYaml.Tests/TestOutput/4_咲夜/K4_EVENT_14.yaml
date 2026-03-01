@@ -1,0 +1,24 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >2-
+
+    「そうそう、言い忘れてたわ。覚えてる？今日、私危ない日なのよ？ふふっ・・」
+
+    「もしかしたら、お客様に種付けされちゃうかしら・・？」
+
+    「お客様にたっぷり中出しされてくるわ・・どう？ゾクゾクする？」
+
+    「どれだけ注がれちゃうかしら・・%CALLNAME:MASTER%以外の人に、妊娠させられちゃうわ・・%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「今日は帰らないから・・館のこと、よろしくね」
+
+    「私がいないからって、掃除の手を抜かないでね」
+
+    「お嬢様のお世話を最優先よ。くれぐれも失礼のないようにね」
+  priority: 1
+  displayMode: newline

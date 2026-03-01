@@ -1,0 +1,25 @@
+﻿character: パチュリー
+situation: K3_EVENT
+entries:
+- id: talent_82_0
+  content: >-
+    %"「後ろを向いて、壁に手をついて」"%
+
+    %"「後ろを向いて。いいからそこの壁に手をついて」"%
+
+    %"「そこの壁に手をつきなさい、そのまま動かないで」"%
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 82
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    %"「ちょっと後ろを向いてくれるかしら？ 悪いようにはしないから安心して」"%
+
+    %"「後ろを向いて、そこの壁に手をついて頂戴。悪いようにはしないわ」"%
+
+    %"「そこの壁に手をついてくれるかしら？ いいことしてあげるから、動かないで」"%
+  priority: 1
+  displayMode: newline

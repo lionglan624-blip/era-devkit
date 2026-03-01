@@ -1,0 +1,17 @@
+﻿character: 小悪魔
+situation: K2_EVENT
+entries:
+- id: fallback
+  content: '%CALLNAME:奴隷%は%CALLNAME:PLAYER%がアヌスにローターを挿入していることに気付いて微笑んだ。'
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%CALLNAME:PLAYER%が下着を身に着けていないことに気付いて微笑んだ。
+
+    「あら…ノーパンだなんて、うふふっ、趣味がいいですね」
+
+    「うふふっ、馬鹿には見えない素敵な下着ですね？」
+
+    「こういうのがお好きなんですね…うふふっ、覚えておきますね？」
+  priority: 1
+  displayMode: newline

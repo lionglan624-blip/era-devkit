@@ -1,0 +1,17 @@
+{
+  "name": "咲夜と同室テスト",
+  "description": "咲夜の現在位置を取得し、主人公をそこに移動",
+  "characters": {
+    "十六夜咲夜": {
+      "CFLAG:2": 5000,
+      "CFLAG:6": 3,
+      "CFLAG:21": 100
+    }
+  },
+  "copy": [
+    {"from": "十六夜咲夜", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]"]
+  }
+}

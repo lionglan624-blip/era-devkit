@@ -1,0 +1,10 @@
+﻿character: 魔理沙
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「ああ、ただいま。今帰ったぜ」
+
+    「ただいま。今帰ったぜ」
+  priority: 1
+  displayMode: newline

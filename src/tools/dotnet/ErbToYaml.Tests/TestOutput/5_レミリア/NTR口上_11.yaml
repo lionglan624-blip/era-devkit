@@ -1,0 +1,60 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「あ・・ん・・それだけ？ ふふ・・」
+
+    「あン・・あら、これだけかしら？」
+
+    「あん・・『もっと』って、言わせたいの？」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あ・・ん・・それだけ？ ふふ・・」
+
+    「あン・・あら、これだけかしら？」
+
+    「あん・・『もっと』って、言わせたいの？」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ん・・それだけでいいのかしら？ ククッ・・」
+
+    「ん・・あら、これだけかしら？」
+
+    「あん・・続けても怒らないわよ？」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は仕上げとばかりに%CALLNAME:奴隷%の乳首を強く摘みあげた。
+
+    「んっ！ ふふ、今のは悪くなかったわよ、ん・・」
+
+    「ん・・あら、もう満足？ 続けてもよかったのに、ククッ」
+
+    「あん・・続けてもいいのよ？」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は仕上げとばかりに%CALLNAME:奴隷%の乳首を強く摘みあげた。
+
+    「んっ！ ふふ、今のは悪くなかったわよ」
+
+    「ん・・あら、もう満足？」
+
+    「あん・・ククッ、続けるのが怖くなったかしら？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は服の上から%CALLNAME:奴隷%の乳首を強く摘みあげた。
+
+    「んっ！んんんっ！！」
+
+    %CALLNAME:奴隷%は強い快感に甘い声を漏らしそうになるのを必死にこらえた。
+  priority: 1

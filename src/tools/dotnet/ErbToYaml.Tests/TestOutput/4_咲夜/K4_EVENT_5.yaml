@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    「%MSG_RE_LOVER(奴隷)%が他の相手とセックスするところを想像して射精するなんて、
+
+    本当に悪趣味ね！」
+
+    ホンモノの変態ね！！」
+  priority: 1
+  displayMode: newline

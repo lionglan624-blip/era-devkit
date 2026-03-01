@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「ただいま。今帰ったわ。昨日は外泊してきたの」
+
+    「ただいま。今帰ったわ」
+
+    「ただいま、今帰ったわ。図書館の掃除、ちゃんとしてくれたかしら？」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,203 @@
+﻿character: 子悪魔
+situation: K7_会話親密
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の話にきらきらと目を輝かせながら聞き入っている。
+
+    「へぇ〜、そうなんですか…！」
+
+    %CALLNAME:TARGET%は目を丸くしながら相槌を打っている。
+
+    「あたしね、%CALLNAME:MASTER%のお話、大好きなの…」
+
+    %CALLNAME:TARGET%は照れくさそうに俯いた。
+
+    「だって、%CALLNAME:MASTER%と一緒にいると、あったかい気持ちになるから…えへへ」
+
+    「――あのね、あたしね、今日ね…」
+
+    %CALLNAME:TARGET%は嬉しそうに今日あったことを話し始めた。
+
+    「…あっ、ごめんなさい、あたしばっかり喋っちゃって…」
+
+    でもね、と%CALLNAME:TARGET%は続ける。
+
+    「%CALLNAME:MASTER%に聞いてほしかったの。だって、大好きな人に聞いてほしいから…」
+
+    %CALLNAME:TARGET%は幸せそうに微笑んだ。
+
+    「うんうん、それで、それで？」
+
+    %CALLNAME:TARGET%は身を乗り出すようにして話を聞いている。
+
+    「%CALLNAME:MASTER%のお話、もっと聞きたいの…」
+
+    %CALLNAME:TARGET%はそっと%CALLNAME:MASTER%の手を握った。
+
+    「こうしてると…なんだか、夢みたいで…嬉しいの」
+
+    「……ねえ、%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕にそっと寄り添った。
+
+    「あたしね、こうしてお話してる時間が、一番幸せなの」
+
+    %CALLNAME:TARGET%は甘えるように%CALLNAME:MASTER%を見上げている。
+
+    「咲夜さんのお仕事はね、大変だけど……でも、%CALLNAME:MASTER%と会えるから頑張れるの」
+
+    妖精の小さな体から、幸せそうな温もりが伝わってくる。
+
+    「……えへへ、だいすき」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:TARGET%は頬を少し赤らめながら%CALLNAME:MASTER%の方を見ている。
+
+    「えっと…それで、どうなったんですか？」
+
+    %CALLNAME:TARGET%は緊張した面持ちで%CALLNAME:MASTER%の話を聞いている。
+
+    「…ふふ、面白いですね」
+
+    %CALLNAME:TARGET%はほっとしたように笑った。
+
+    「あの…また、お話、聞かせてくれますか…？」
+
+    「あのね、今日ね、咲夜さんにね…」
+
+    %CALLNAME:TARGET%は嬉しそうに話し始めた。
+
+    「…えっと、つまらなくないですか…？」
+
+    不安そうに%CALLNAME:TARGET%は%CALLNAME:MASTER%の顔を覗き込んだ。
+
+    つまらなくないよ、と言うと、%CALLNAME:TARGET%は安心したように微笑んだ。
+
+    「へぇ…そうなんですか…」
+
+    %CALLNAME:TARGET%は感心したように頷いている。
+
+    「あたし、こういうお話、初めて聞いたかも…」
+
+    %CALLNAME:TARGET%は照れくさそうに俯いた。
+
+    「…%CALLNAME:MASTER%って、物知りなんですね」
+
+    「あっ、あのね…」
+
+    %CALLNAME:TARGET%は何か思い出したように目を輝かせた。
+
+    「今日、廊下のお掃除してたら、綺麗なお花を見つけたの」
+
+    %CALLNAME:TARGET%は身振り手振りで一生懸命説明している。
+
+    「…あ、ごめんなさい、こんなお話、つまらないですよね…」
+
+    %CALLNAME:TARGET%は急に自信をなくしたように俯いた。
+
+    「…でも、%CALLNAME:MASTER%に話したかったの」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:TARGET%は少し緊張した様子で%CALLNAME:MASTER%を見つめている。
+
+    「は、はい…そうなんですか…」
+
+    %CALLNAME:TARGET%は緊張しながらも、きちんと話を聞いている。
+
+    「あたし、難しいことはよくわからないんですけど…」
+
+    %CALLNAME:TARGET%は困ったように首を傾げた。
+
+    「でも、%CALLNAME:MASTER%のお話、嫌いじゃないです…」
+
+    「えっと…あの…」
+
+    %CALLNAME:TARGET%は何か言いたそうにもじもじしている。
+
+    「…あ、あたしも、お話していいですか…？」
+
+    恐る恐る%CALLNAME:TARGET%は尋ねてきた。
+
+    どうやら%CALLNAME:MASTER%に話したいことがあるようだ。
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って%CALLNAME:MASTER%の話を聞いている。
+
+    時折小さく頷いて、真面目に聞いている様子だ。
+
+    「あの…%CALLNAME:MASTER%って、優しいんですね」
+
+    %CALLNAME:TARGET%はぽつりとそう呟いた。
+
+    「妖精にも、ちゃんとお話してくれるから…」
+
+    「ふぇ…？　あ、はい…」
+
+    %CALLNAME:MASTER%に話しかけられて、%CALLNAME:TARGET%は少し驚いた。
+
+    「あの…あたしなんかと、お話してくれるんですか…？」
+
+    %CALLNAME:TARGET%は不思議そうに首を傾げている。
+
+    「妖精って、あんまりお話する相手いないから…」
+
+    %CALLNAME:TARGET%は照れくさそうに視線を落とした。
+
+    「……ちょっと、嬉しいかも」
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:TARGET%は落ち着かない様子で、%CALLNAME:MASTER%の話を聞いている。
+
+    「は、はぁ…そうですか…」
+
+    %CALLNAME:TARGET%はよくわからないという顔で頷いている。
+
+    「あの…あたし、お仕事があるので…」
+
+    %CALLNAME:TARGET%はちらちらと出口の方を見ている。
+
+    どうやらまだ%CALLNAME:MASTER%に慣れていないようだ。
+
+    「えっと…あたしに何か用ですか…？」
+
+    %CALLNAME:TARGET%は不安そうにこちらを見ている。
+
+    「べ、別に怖くないですよ…？　怖くないですけど…」
+
+    %CALLNAME:TARGET%は小さな声でそう言いながら、少し身を縮こまらせた。
+
+    「……はい」
+
+    %CALLNAME:TARGET%は短く返事をして、%CALLNAME:MASTER%の話を聞いている。
+
+    しかし、その表情はどこかそわそわしている。
+
+    「あの…咲夜さんに呼ばれてるかもしれないので…」
+
+    %CALLNAME:TARGET%は落ち着かない様子で、辺りをきょろきょろと見回した。
+
+    「す、すみません…」
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って立っている。どう反応していいかわからないようだ。
+
+    「えっと…あたし、あんまり頭よくないから…」
+
+    %CALLNAME:TARGET%は困った顔で首を傾げた。
+
+    「%CALLNAME:MASTER%のお話、難しくて…ごめんなさい」
+
+    妖精は申し訳なさそうに俯いている。
+
+    「でも…怒らないでくれると、嬉しいです…」
+  priority: 1

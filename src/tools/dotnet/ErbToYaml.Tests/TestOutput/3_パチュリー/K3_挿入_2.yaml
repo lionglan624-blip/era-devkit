@@ -1,0 +1,207 @@
+﻿character: パチュリー
+situation: K3_挿入
+entries:
+- id: fallback
+  content: >-
+    「……んっ……そこは、違う場所……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げながら、静かに息を吐いた。
+
+    本で読んだ知識はあるが、実際にそこで受け入れるのは初めて。
+
+    「……あ……入って、きた……狭い、わね……」
+
+    %CALLNAME:TARGET%は異物感に眉を寄せながらも、%CALLNAME:MASTER%を拒まない。
+
+    「……あなたなら、信じて委ねられるから……」
+
+    「はぁ……ん……っ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きに合わせて、小さく喘いでいる。
+
+    大図書館の静寂の中、二人の荒い息遣いだけが響く。
+
+    「……本には載っていない感覚……むきゅ……」
+
+    %CALLNAME:TARGET%は理論で説明できない快感に戸惑いを見せている。
+
+    「……あなたの顔が見えるから、安心できるの……」
+
+    「ぁ……やぁ……奥まで……」
+
+    %CALLNAME:TARGET%は珍しく乱れた声を上げた。
+
+    肛門での挿入は普段とは違う刺激を与えている。
+
+    「……%CALLNAME:MASTER%……ゆっくり……体が弱いから……」
+
+    %CALLNAME:TARGET%は甘えるように頼んだ。
+
+    「……でも、止めないで……もっと、研究させて……」
+
+    「……ふぅ……あ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に抱かれながら、複雑な表情を浮かべている。
+
+    「……この体勢、顔が見えるから好きよ。でも、そこは……」
+
+    %CALLNAME:TARGET%は肛門の異物感に言葉を詰まらせた。
+
+    「……慣れてきた、かしら……不思議な感覚ね」
+
+    そう呟いて、%CALLNAME:TARGET%は%CALLNAME:MASTER%の背に腕を回した。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……っ……そこは……違うわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を受け入れながら、顔を真っ赤にしている。
+
+    「……肛門で、なんて……本でしか読んだことが……」
+
+    %CALLNAME:TARGET%は論理的に説明しようとして、言葉に詰まった。
+
+    「……あっ……狭い……むきゅ……」
+
+    異物感と羞恥に、%CALLNAME:TARGET%は目を閉じた。
+
+    「んっ……ふ……痛い、わ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きに、体を強張らせている。
+
+    「……本では、この行為は慣れが必要と書いてあったけれど……」
+
+    %CALLNAME:TARGET%は平静を装おうとしているが、声が震えている。
+
+    「……実際は、こんなに……頭が、真っ白になる……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%にしがみついた。
+
+    「あ……やぁ……そんなに見ないで……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と目が合い、慌てて目を閉じた。
+
+    「……こんな恥ずかしい行為で、正面から見られるなんて……」
+
+    %CALLNAME:TARGET%は知識として理解していたが、羞恥は想像以上だった。
+
+    「……%CALLNAME:MASTER%、キスして……そうすれば、気が紛れるから……」
+
+    照れ隠しのように、%CALLNAME:TARGET%は唇を求めた。
+
+    「……ん……ぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に組み敷かれながら、静かに喘いでいる。
+
+    「……肛門の感覚を分析しようとしたのだけれど……」
+
+    %CALLNAME:TARGET%は自分の反応を理解しようとしている。
+
+    「……無理ね。こんなに落ち着かないのは、初めて……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の首に腕を回し、身を委ねた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……これが、肛門性交……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を受け入れながら、興味深そうな目をしている。
+
+    「……本で読んだ通り、独特の感覚ね……いえ、少し違うかしら」
+
+    %CALLNAME:TARGET%は冷静を保とうとしているが、顔が歪んでいる。
+
+    「……痛い……これは生理的反応として当然……むきゅ……」
+
+    分析しようとする言葉が、途切れ途切れになっている。
+
+    「んっ……ふぅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きを、なんとか観察しようとしている。
+
+    「……興味深いわ。肛門での挿入というのは……」
+
+    %CALLNAME:TARGET%は淡々と言おうとしたが、声が震えた。
+
+    「……なぜ、こんなに体が強張るのかしら……」
+
+    自分の反応に、%CALLNAME:TARGET%自身が戸惑っている。
+
+    「あ……そこ……っ」
+
+    %CALLNAME:TARGET%は思わず声を漏らし、慌てて口を押さえた。
+
+    「……不覚だわ。声が出るなんて……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を逸らした。
+
+    「……%CALLNAME:MASTER%、今のは聞かなかったことにして……」
+
+    そう言いながらも、体は%CALLNAME:MASTER%を拒んでいない。
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って%CALLNAME:MASTER%を受け入れている。
+
+    研究者として、様々な体験を記録しておくべきかもしれない。
+
+    「……%CALLNAME:MASTER%、質問があるわ」
+
+    %CALLNAME:TARGET%は息を整えながら、%CALLNAME:MASTER%を見上げた。
+
+    「……なぜ、そこを選んだの？ 私の反応を見たかった？」
+  priority: 2
+- id: fallback
+  content: >-
+    「……」
+
+    %CALLNAME:TARGET%は無表情のまま、%CALLNAME:MASTER%を受け入れている。
+
+    「……そこでするの？ まあ、好きにしなさい」
+
+    %CALLNAME:TARGET%は淡々と言い放った。
+
+    「……ただし、体が弱いから乱暴にしないで」
+
+    それだけを告げ、%CALLNAME:TARGET%は目を閉じた。
+
+    「……ふぅ……」
+
+    %CALLNAME:TARGET%は溜息をつきながら、%CALLNAME:MASTER%の行為を受けている。
+
+    「……肛門で、なんて……変わった趣味ね」
+
+    %CALLNAME:TARGET%は事実を述べるように言った。
+
+    「……痛いから、早く終わらせて。読みかけの本があるの」
+
+    投げやりな態度で、%CALLNAME:TARGET%は身を委ねた。
+
+    「……むきゅ……」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「……痛いわ。もう少し配慮して」
+
+    %CALLNAME:TARGET%は体の弱さと痛みを訴えた。
+
+    「……こういう行為は、私には向いていないのよ」
+
+    冷たい口調で、%CALLNAME:TARGET%は%CALLNAME:MASTER%を窘めた。
+
+    「……」
+
+    %CALLNAME:TARGET%は天井を見つめながら、%CALLNAME:MASTER%の行為を受けている。
+
+    頭の中では、次に読む本のことを考えているようだ。
+
+    「……終わったら、すぐに出て行って」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……大図書館で、こんなことをされるのは不愉快よ」
+  priority: 1

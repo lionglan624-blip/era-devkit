@@ -1,0 +1,239 @@
+﻿character: レミリア
+situation: K5_口挿入
+entries:
+- id: fallback
+  content: >-
+    「ふふ……私が%CALLNAME:MASTER%を犯してあげるわ」
+
+    %CALLNAME:人物_レミリア%は妖艶に微笑み、%CALLNAME:MASTER%の両脚を抱え上げた。
+
+    小さな身体が覆いかぶさり、%CALLNAME:MASTER%の後孔に押し当てる。
+
+    「あなたの中……私が入っていくわよ……」
+
+    %CALLNAME:人物_レミリア%はゆっくりと腰を沈め、%CALLNAME:MASTER%の奥へ侵入した。
+
+    「ん……っ、%CALLNAME:MASTER%……私を締め付けているのね」
+
+    紅魔館の主は、恋人を正常位で支配しながら官能的に腰を揺らした。
+
+    「今日は私が%CALLNAME:MASTER%を貫くわ」
+
+    %CALLNAME:人物_レミリア%は%CALLNAME:MASTER%を組み敷き、脚を押し広げた。
+
+    %CALLNAME:MASTER%の後孔に自分のものを押し当て、ゆっくりと挿入していく。
+
+    「はぁ……っ、んん……%CALLNAME:MASTER%の中、熱いわ……」
+
+    %CALLNAME:人物_レミリア%は快感に紅い瞳を潤ませた。
+
+    「どう？　私に犯される気分は……」
+
+    500年の吸血鬼が、恋人の身体を支配する喜びに酔いしれた。
+
+    「……%CALLNAME:MASTER%、こうされたかったのでしょう？」
+
+    %CALLNAME:人物_レミリア%は悪戯っぽく笑い、%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    %CALLNAME:MASTER%の後孔を貫き、二人の身体が深く繋がった。
+
+    「あ……っ、この角度……奥まで届くわ……」
+
+    %CALLNAME:人物_レミリア%は自ら腰を動かし始めた。
+
+    「ふふ……%CALLNAME:MASTER%の顔、とろけてるわよ」
+
+    紅魔館の主は、恋人を見下ろしながら支配的に微笑んだ。
+
+    「私に組み敷かれる気分はどう？」
+
+    %CALLNAME:人物_レミリア%は優雅に%CALLNAME:MASTER%の上に乗った。
+
+    小さな身体が%CALLNAME:MASTER%を押さえつけ、後孔を貫いていく。
+
+    「んっ……あ、ぁ……%CALLNAME:MASTER%、締め付けすぎよ……」
+
+    %CALLNAME:人物_レミリア%は甘い吐息を漏らしながら腰を揺らした。
+
+    「%CALLNAME:MASTER%……全部、私のものよ」
+
+    紅魔館の主は、恋人を正常位で犯しながら蕩けるような表情を見せた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……私が上から、してあげるわ」
+
+    %CALLNAME:人物_レミリア%は少し恥ずかしそうに%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    ゆっくりと腰を進め、%CALLNAME:MASTER%の後孔に入っていく。
+
+    「あ……っ、入った……%CALLNAME:MASTER%の中……」
+
+    %CALLNAME:人物_レミリア%は眉をひそめながらも、腰を動かし始めた。
+
+    「ん……こ、こう？　気持ちいい……？」
+
+    紅魔館の主は、慣れない動きでぎこちなく%CALLNAME:MASTER%を犯した。
+
+    「……こういう体勢、初めてだけど……」
+
+    %CALLNAME:人物_レミリア%は%CALLNAME:MASTER%の脚を抱えながら覆いかぶさった。
+
+    %CALLNAME:MASTER%の後孔に挿入していく感覚に、小さく息を呑む。
+
+    「ひぁ……っ、%CALLNAME:MASTER%の中……締め付けてくる……」
+
+    %CALLNAME:人物_レミリア%は%CALLNAME:MASTER%の頬に手を添えて顔を見つめた。
+
+    「……%CALLNAME:MASTER%、もっと気持ちよくしてあげるから……」
+
+    500年の吸血鬼が、好意を込めて%CALLNAME:MASTER%を貫き続けた。
+
+    「……私の方から、犯してあげるわ」
+
+    %CALLNAME:人物_レミリア%は決意したように%CALLNAME:MASTER%の上に乗った。
+
+    %CALLNAME:MASTER%の後孔に自分のものを導き、少しずつ押し込んでいく。
+
+    「あぁ……っ、きつ……い……でも、入ってる……」
+
+    %CALLNAME:人物_レミリア%は頬を染めながら腰を揺らした。
+
+    「こうすると……%CALLNAME:MASTER%、気持ちいいの？」
+
+    紅魔館の主は、相手の反応を窺いながら懸命に腰を使った。
+
+    「……上から見下ろすのも、悪くないわね」
+
+    %CALLNAME:人物_レミリア%は%CALLNAME:MASTER%を見下ろしながら腰を進めた。
+
+    %CALLNAME:MASTER%の後孔を貫き、二人の身体が繋がる。
+
+    「んん……っ、あ……%CALLNAME:MASTER%の奥、届いてる……」
+
+    %CALLNAME:人物_レミリア%は恥ずかしそうに目を逸らした。
+
+    「……変な顔しないで。見てるこっちが恥ずかしいわ」
+
+    紅魔館の主は、照れ隠しをしながら%CALLNAME:MASTER%を犯し続けた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……私が上から？　変な体勢ね……」
+
+    %CALLNAME:人物_レミリア%は戸惑いながらも%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    ゆっくりと%CALLNAME:MASTER%の後孔に挿入していく。
+
+    「あ……っ、入って……こんなの、変よ……」
+
+    %CALLNAME:人物_レミリア%は羞恥で頬を染めた。
+
+    「……%CALLNAME:MASTER%の中、変な感じ……」
+
+    紅魔館の主は、ぎこちなく腰を動かし始めた。
+
+    「……こんな格好、あまり見ないでよね」
+
+    %CALLNAME:人物_レミリア%は恥ずかしそうに%CALLNAME:MASTER%の上に乗った。
+
+    %CALLNAME:MASTER%の後孔を貫き、小さな身体が震える。
+
+    「ひ……っ、%CALLNAME:MASTER%……締め付けないで……」
+
+    %CALLNAME:人物_レミリア%は目を伏せて耐えた。
+
+    「……動けばいいの？　こう……？」
+
+    紅魔館の主は、恥じらいながらもぎこちなく腰を揺らした。
+
+    「……仕方ないわね。私が上になってあげるわ」
+
+    %CALLNAME:人物_レミリア%は渋々といった様子で%CALLNAME:MASTER%の上に乗った。
+
+    %CALLNAME:MASTER%の後孔に自分のものを導き、ゆっくりと挿入していく。
+
+    「あ……あぁ……%CALLNAME:MASTER%の中……変な感じ……」
+
+    %CALLNAME:人物_レミリア%は複雑な表情で動き始めた。
+
+    「……笑ったら許さないわよ」
+
+    500年の吸血鬼は、羞恥を隠しながら義務的に%CALLNAME:MASTER%を犯した。
+
+    「……こういうのは初めてなのだけど」
+
+    %CALLNAME:人物_レミリア%は不安げに%CALLNAME:MASTER%を見下ろした。
+
+    そっと腰を進め、%CALLNAME:MASTER%の後孔に入っていく。
+
+    「んっ……あ……%CALLNAME:MASTER%、きつい……」
+
+    %CALLNAME:人物_レミリア%は慣れない感覚に眉をひそめた。
+
+    「……もう少し、待って。慣れるまで……」
+
+    紅魔館の主は、恥じらいながらも少しずつ動き始めた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……私が上から犯せと？　図々しいわね」
+
+    %CALLNAME:人物_レミリア%は不快そうに%CALLNAME:MASTER%を見下ろした。
+
+    渋々と上に覆いかぶさり、%CALLNAME:MASTER%の後孔を貫く。
+
+    「っ……こんなところに入れさせられるなんて……」
+
+    %CALLNAME:人物_レミリア%は苛立ちを隠さなかった。
+
+    「……早く終わらせなさい」
+
+    紅魔館の主は、不機嫌そうに最低限の動きだけで%CALLNAME:MASTER%を犯した。
+
+    「……こんな屈辱的なことを……」
+
+    %CALLNAME:人物_レミリア%は憤然と%CALLNAME:MASTER%の上に乗った。
+
+    %CALLNAME:MASTER%の後孔に挿入し、小さな身体が緊張で強張る。
+
+    「……っ、締め付けるな。やりにくいじゃない」
+
+    %CALLNAME:人物_レミリア%は%CALLNAME:MASTER%を睨みつけた。
+
+    「……感謝しなさい。私が自ら犯してやっているのよ」
+
+    500年の吸血鬼は、屈辱を怒りに変えて%CALLNAME:MASTER%を突いた。
+
+    「……私を見世物にするつもり？」
+
+    %CALLNAME:人物_レミリア%は不満げに%CALLNAME:MASTER%の上に乗った。
+
+    %CALLNAME:MASTER%の後孔に挿入し、苦痛に顔をしかめる。
+
+    「あ……っ、締め付けるな……動きにくい……」
+
+    %CALLNAME:人物_レミリア%は羞恥と怒りで頬を紅潮させた。
+
+    「……私に犯されるのを光栄に思いなさい」
+
+    紅魔館の主は、高慢な態度を崩さず%CALLNAME:MASTER%を犯した。
+
+    「……気まぐれで従ってあげているのよ」
+
+    %CALLNAME:人物_レミリア%は傲慢に言い放ち、%CALLNAME:MASTER%の上に覆いかぶさった。
+
+    %CALLNAME:MASTER%の後孔に挿入し、苛立たしげに眉をひそめる。
+
+    「……っ、もっと力を抜きなさい」
+
+    %CALLNAME:人物_レミリア%は%CALLNAME:MASTER%を冷たく見下ろした。
+
+    「……次はもう少しましな頼み方をしなさい」
+
+    紅魔館の主は、最後まで支配者然とした態度で%CALLNAME:MASTER%を貫いた。
+  priority: 1

@@ -1,0 +1,57 @@
+﻿character: パチュリー
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ん・・あぁ・・あん・・・♪」
+
+    「ああ・・そこ・・そこよ・・♪」
+
+    「ああ・・もっと・・つよ、くぅ・・♪」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ん・・あぁ・・あん・・・♪」
+
+    「ああ・・そこ・・そこよ・・♪」
+
+    「ああ・・もっと・・つよ、くぅ・・♪」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ん・・あぁ・・あん・・・」
+
+    「ああ・・そこ・・そこよ・・」
+
+    「ああ・・もっと・・つよ、くぅ・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああん・・だめ、だめ・・よ・・・」
+
+    「だめ・・だめよ、ああっ・・！」
+
+    「ああ・・いけない・・いけないのに・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああん・・だっ、だめ・・駄目よ・・・」
+
+    「だめ・・駄目よ、ああっ・・！」
+
+    「ああ・・いけない・・いけないわ・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「や、やめなさい・・・くっ・・・」
+
+    「や、やめて・・いやあっ・・」
+
+    「ああ・・こ、こんな、こと、で・・」
+  priority: 1
+  displayMode: newline

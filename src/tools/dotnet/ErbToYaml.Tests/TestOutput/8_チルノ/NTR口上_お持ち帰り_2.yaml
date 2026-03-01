@@ -1,0 +1,52 @@
+﻿character: チルノ
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「んっ！んむぅ！・・んっ、んっ・・やだあっ・・んぅ！」
+
+    「やっ、やだあっ・・んっ、んんっ・・むうっ！」
+
+    「んんっ！ は、はなせえっ・・んんんっ！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「んっ！んむぅ！・・んっ、んっ・・やだあっ・・んぅ！」
+
+    「やっ、やだあっ・・んっ、んんっ・・むうっ！」
+
+    「んんっ！ は、はなせえっ・・んんんっ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: 「んっ・・んっ・・ちゅっ・・くちゅっ・・」
+  priority: 5
+- id: fallback
+  content: >-
+    「んっ・・んっ・・ちゅっ・・くちゅっ・・」
+
+    %CALLNAME:奴隷%は客と舌を絡ませあい、相手の口の中を隅々まで舐めて奉仕している。
+  priority: 4
+- id: fallback
+  content: >-
+    「んっ・・んっ・・ちゅっ・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と舌を絡ませあっている。
+  priority: 3
+- id: fallback
+  content: >-
+    「んっ・・んっ・・ちゅっ・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と唇を重ね、彼の舌を拒むことなく受け入れ舌を絡めている。
+  priority: 2
+- id: fallback
+  content: >-
+    「んっ・・んっ・・ちゅっ・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と唇を重ね、彼の舌を拒むことなく受け入れている。
+  priority: 1

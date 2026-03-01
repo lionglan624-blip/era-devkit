@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    また搾ってあげるから、毎日来るのよ」
+
+    それじゃあ、仕事に戻りなさい」
+
+    明日も搾ってあげるわ。もちろん、一滴残らずね」
+  priority: 1
+  displayMode: newline

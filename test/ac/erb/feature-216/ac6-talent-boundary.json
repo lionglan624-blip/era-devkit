@@ -1,0 +1,26 @@
+{
+  "name": "Feature 216 AC6: TALENT Boundary Values",
+  "defaults": {
+    "character": "1"
+  },
+  "tests": [
+    {
+      "name": "TALENT=0 returns 0 (normal)",
+      "call": "TEST_GET_TALENT_BRANCH",
+      "args": [0],
+      "state": {"TALENT:TARGET:0": 0},
+      "expect": {
+        "output_contains": ["0"]
+      }
+    },
+    {
+      "name": "TALENT=1 returns 1 (sensitive)",
+      "call": "TEST_GET_TALENT_BRANCH",
+      "args": [0],
+      "state": {"TALENT:TARGET:0": 1},
+      "expect": {
+        "output_contains": ["1"]
+      }
+    }
+  ]
+}

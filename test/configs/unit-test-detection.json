@@ -1,0 +1,12 @@
+{
+  "name": "Unit Test Detection Test",
+  "call": "KOJO_MESSAGE_COM_K4_300",
+  "character": "4",
+  "state": {
+    "CFLAG:TARGET:300": 5000
+  },
+  "inputs": [1],
+  "expect": {
+    "output_contains": "最近一緒にいると"
+  }
+}

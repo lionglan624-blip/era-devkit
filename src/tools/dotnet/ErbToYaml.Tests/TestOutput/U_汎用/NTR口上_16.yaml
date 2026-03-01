@@ -1,0 +1,12 @@
+﻿character: 汎用
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %"（・・ごめんなさい・・でも、イけなかったなんて知られたら、"+CALLNAME:MASTER+"は・・）"%
+
+    %"（・・ごめんなさい・・でも、イけなかったなんて、"+CALLNAME:MASTER+"には言えない・・）"%
+
+    %"（・・許して・・でも、"+CALLNAME:MASTER+"には、イけなかったなんて、言えない・・）"%
+  priority: 1
+  displayMode: newline

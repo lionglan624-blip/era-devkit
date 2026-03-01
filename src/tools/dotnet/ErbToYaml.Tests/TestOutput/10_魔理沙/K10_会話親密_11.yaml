@@ -1,0 +1,21 @@
+﻿character: 魔理沙
+situation: K10_会話親密
+entries:
+- id: fallback
+  content: >-
+    「…これくらいなら、…いいぜ」
+
+    「…あいつには内緒だぞ」
+
+    「…これは私達の細やかな抵抗。だよな？」
+
+    「…これ以上は駄目だ。鍵がなきゃ私が酷い目に合う」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「やめてくれ」
+
+    「駄目だ」
+  priority: 1
+  displayMode: newline

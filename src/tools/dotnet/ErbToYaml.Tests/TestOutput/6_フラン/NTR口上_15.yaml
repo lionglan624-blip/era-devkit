@@ -1,0 +1,34 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んっ・・むっ・・んんっ・・ちゅぱっ」
+
+    「チュッ、チュッ、ちゅぷっ・・んっ・・♪」
+
+    「んむっ・・ん・・んんっ、んっ・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    じゅる・・・・ぐぷ・・・・じゅぷ・・・・
+
+    （このおちんちん、なんでこんなにおいしいの・・・・？）
+
+    （んふ・・おちんちん・・おいしい・・♪）
+
+    （おツユがどんどんでてくる・・ん・・もっと・・）
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    じゅる・・・・ぐぷ・・・・じゅぷ・・・・
+
+    （おちんちん・・いやじゃ・・ない・・）
+
+    （ぴくぴくしてる・・気持ちイイんだ・・）
+
+    （おくちでセックス、してるんだよね・・♪）
+  priority: 1
+  displayMode: newline

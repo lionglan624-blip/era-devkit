@@ -1,0 +1,30 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んんっ・・ん・・んっ・・」
+
+    「んっ・・ちゅ・・ちゅっ・・」
+
+    「ちゅっ・・んっ・・ちゅっ・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんっ・・ん・・んっ・・」
+
+    「んっ・・ちゅ・・ちゅっ・・」
+
+    「ちゅっ・・んっ・・ちゅっ・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んーっ！んーっ！・・んっ！？」
+
+    「んんーーっ！！ んーーっ！」
+
+    「んーっ！！ んんーーっ！！」
+  priority: 1
+  displayMode: newline

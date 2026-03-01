@@ -1,0 +1,239 @@
+﻿character: フラン
+situation: K6_会話親密
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:人物_フラン%の胸にそっと手を触れた。
+
+    「んっ……あ……%CALLNAME:MASTER%の手、あったかいのさ……」
+
+    %CALLNAME:人物_フラン%は嬉しそうに目を細めながら、%CALLNAME:MASTER%に体を預けてきた。
+
+    %CALLNAME:MASTER%の指が小さな膨らみを優しく包み込む。
+
+    「フランの体、%CALLNAME:MASTER%だけのものなのさ……」
+
+    %CALLNAME:人物_フラン%は蕩けた表情で微笑んだ。
+
+    「壊さないでね……フラン、%CALLNAME:MASTER%のこと、ずっと好きでいたいから……」
+
+    「ねぇ%CALLNAME:MASTER%、フランの胸、触りたいの？」
+
+    %CALLNAME:人物_フラン%は無邪気な笑顔で自ら胸を差し出すようにした。
+
+    %CALLNAME:MASTER%がその柔らかさに手を伸ばすと、%CALLNAME:人物_フラン%は甘い声を漏らした。
+
+    「んん……気持ちいい……もっと触っていいよ……」
+
+    %CALLNAME:人物_フラン%の翼がぴくぴくと震えている。
+
+    「フランね、%CALLNAME:MASTER%に触られると……なんだか幸せなのさ」
+
+    紅い瞳に愛おしさと、どこか狂気を孕んだ光が揺れていた。
+
+    %CALLNAME:人物_フラン%は%CALLNAME:MASTER%の手を取り、自分の胸に導いた。
+
+    「……ほら、触って？ フランのこと、感じて？」
+
+    %CALLNAME:MASTER%の手が小さな膨らみを優しく揉む。
+
+    「あっ……んっ……そこ、ドキドキする……」
+
+    %CALLNAME:人物_フラン%は頬を染めて、甘い吐息を漏らした。
+
+    「%CALLNAME:MASTER%の手、離さないでね……離したら……壊しちゃうかも……」
+
+    そう言いながらも、%CALLNAME:人物_フラン%は幸せそうに微笑んでいた。
+
+    「%CALLNAME:MASTER%……今日もフランに触ってくれるの？」
+
+    %CALLNAME:人物_フラン%は期待に満ちた瞳で%CALLNAME:MASTER%を見上げた。
+
+    %CALLNAME:MASTER%がそっと胸に手を置くと、%CALLNAME:人物_フラン%は嬉しそうに身を震わせた。
+
+    「んっ……あぁ……%CALLNAME:MASTER%の手、大好き……」
+
+    %CALLNAME:人物_フラン%は%CALLNAME:MASTER%の腕に抱きついた。
+
+    「ずっとこうしていたいのさ……%CALLNAME:MASTER%とフランだけの時間……」
+
+    495年の孤独を埋めるように、%CALLNAME:人物_フラン%は%CALLNAME:MASTER%の温もりを求めた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:人物_フラン%の胸に手を伸ばした。
+
+    「ひゃっ……！ あ、あの……%CALLNAME:MASTER%……」
+
+    %CALLNAME:人物_フラン%は驚いたが、逃げようとはしなかった。
+
+    %CALLNAME:MASTER%の手が小さな膨らみに触れる。
+
+    「んっ……そこ、触られると……変な気持ちになるのさ……」
+
+    %CALLNAME:人物_フラン%は顔を真っ赤にして俯いた。
+
+    「……嬉しい……でも恥ずかしい……よく分からないよぅ……」
+
+    「え……胸を……？」
+
+    %CALLNAME:人物_フラン%は一瞬固まったが、やがておずおずと目を閉じた。
+
+    %CALLNAME:MASTER%がそっと手を添えると、%CALLNAME:人物_フラン%の体がぴくりと震えた。
+
+    「あっ……んっ……」
+
+    小さな声が漏れ、%CALLNAME:人物_フラン%の翼が小刻みに揺れる。
+
+    「%CALLNAME:MASTER%……こういうの、初めてなのさ……」
+
+    頬を染めながらも、%CALLNAME:人物_フラン%はどこか嬉しそうだった。
+
+    %CALLNAME:MASTER%が近づいてくると、%CALLNAME:人物_フラン%の心臓が高鳴った。
+
+    「あ、あのね……フラン、壊しちゃわないように頑張るから……」
+
+    %CALLNAME:MASTER%が胸に手を触れると、%CALLNAME:人物_フラン%は甘い声を漏らした。
+
+    「んっ……あっ……気持ちいい……」
+
+    %CALLNAME:人物_フラン%は恥ずかしそうに%CALLNAME:MASTER%の服を掴んだ。
+
+    「……もっと触っても……いいよ……」
+
+    紅い瞳が潤んで、%CALLNAME:MASTER%を見つめている。
+
+    「%CALLNAME:MASTER%……そんなにフランのこと見つめて……」
+
+    %CALLNAME:人物_フラン%は緊張した面持ちだったが、%CALLNAME:MASTER%を拒まなかった。
+
+    %CALLNAME:MASTER%の手が胸に触れると、%CALLNAME:人物_フラン%は小さく息を吸い込んだ。
+
+    「んっ……」
+
+    %CALLNAME:人物_フラン%は目を閉じて、%CALLNAME:MASTER%の愛撫を受け入れた。
+
+    「……地下室にいた時は、こんな気持ち……知らなかったのさ……」
+
+    その声には、切なさと喜びが入り混じっていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:人物_フラン%の胸に手を伸ばした。
+
+    「えっ……そこ触るの……？」
+
+    %CALLNAME:人物_フラン%は驚いた顔をしたが、不思議と怖くはなかった。
+
+    %CALLNAME:MASTER%の手が小さな膨らみに触れる。
+
+    「……んっ……変な感じ……」
+
+    %CALLNAME:人物_フラン%は戸惑いながらも、その感覚に興味を持ったようだ。
+
+    「……これが、人に触られるってことなのさ……？」
+
+    「あ、あのね……胸を触りたいの……？」
+
+    %CALLNAME:人物_フラン%は小首を傾げて%CALLNAME:MASTER%を見つめた。
+
+    %CALLNAME:MASTER%がそっと手を置くと、%CALLNAME:人物_フラン%の体が緊張した。
+
+    「んっ……ひゃっ……」
+
+    %CALLNAME:人物_フラン%は思わず目を閉じた。
+
+    「……壊したくなっちゃうかもしれないから……優しくしてね……？」
+
+    不安げな声だったが、どこか期待も混じっているようだった。
+
+    %CALLNAME:MASTER%が近づいてくると、%CALLNAME:人物_フラン%は身構えた。
+
+    「な、何するの……？」
+
+    %CALLNAME:MASTER%が胸に手を触れると、%CALLNAME:人物_フラン%は固まった。
+
+    「……んっ……」
+
+    しばらくして、%CALLNAME:人物_フラン%はゆっくりと力を抜いた。
+
+    「……痛くない……むしろ……なんだかあったかいのさ……」
+
+    初めての感覚に、%CALLNAME:人物_フラン%は不思議そうな顔をしていた。
+
+    「%CALLNAME:MASTER%……フランに何かするの……？」
+
+    %CALLNAME:人物_フラン%は警戒と好奇心が入り混じった瞳で見つめていた。
+
+    %CALLNAME:MASTER%が胸に手を触れさせると、%CALLNAME:人物_フラン%は小さく声を漏らした。
+
+    「あっ……」
+
+    %CALLNAME:人物_フラン%は戸惑いながらも、抵抗しなかった。
+
+    「……お姉様は教えてくれなかったのさ、こういうこと……」
+
+    頬を染めながら、%CALLNAME:人物_フラン%は%CALLNAME:MASTER%を見上げた。
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:人物_フラン%の胸に手を伸ばした。
+
+    「……何してるの？」
+
+    %CALLNAME:人物_フラン%は無表情で%CALLNAME:MASTER%を見つめた。
+
+    「フランに触ろうとした人、みんな壊れちゃったんだよ？」
+
+    紅い瞳がすっと細まる。
+
+    「……%CALLNAME:MASTER%も、壊れたいの？」
+
+    %CALLNAME:人物_フラン%の声に、ぞっとするような響きがあった。
+
+    「あれ……フランに何かするつもり？」
+
+    %CALLNAME:人物_フラン%は%CALLNAME:MASTER%の動きを見て、小首を傾げた。
+
+    「ねぇ、知ってる？ フランね、495年も一人だったのさ」
+
+    %CALLNAME:人物_フラン%の瞳に、危険な光が宿る。
+
+    「誰も……触らせてもらえなかったの……」
+
+    「だから……触り方、分からないのさ。優しくするの」
+
+    その言葉には、どこか脅しのような響きがあった。
+
+    %CALLNAME:MASTER%が%CALLNAME:人物_フラン%に近づこうとした。
+
+    「……止まって」
+
+    %CALLNAME:人物_フラン%は静かにそう言った。
+
+    「フランの胸、触りたいの？ ふーん……」
+
+    %CALLNAME:人物_フラン%は何かを考えるように首を傾げた。
+
+    「……まだダメ。%CALLNAME:MASTER%のこと、よく分からないもの」
+
+    警戒心を隠さない瞳で、%CALLNAME:人物_フラン%は%CALLNAME:MASTER%を見つめ続けた。
+
+    「%CALLNAME:MASTER%……何のつもり？」
+
+    %CALLNAME:人物_フラン%は%CALLNAME:MASTER%の意図を察し、じっと見つめてきた。
+
+    「フランに触ろうとする人、久しぶりなのさ」
+
+    「……前に触ろうとした人はね、きゅっとして……ドカーンって」
+
+    %CALLNAME:人物_フラン%は無邪気に笑った。
+
+    「%CALLNAME:MASTER%は大丈夫？ 壊れない？」
+
+    その笑顔が、逆に恐ろしく感じられた。
+  priority: 1

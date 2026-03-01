@@ -1,0 +1,11 @@
+﻿character: フラン
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    「お尻、ピクピクしてる……
+
+    「お顔、赤くなってきた……
+
+    「息、ハァハァ言ってる……
+  priority: 1

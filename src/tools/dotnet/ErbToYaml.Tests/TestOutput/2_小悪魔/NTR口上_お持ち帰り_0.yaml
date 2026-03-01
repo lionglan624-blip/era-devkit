@@ -1,0 +1,41 @@
+﻿character: 小悪魔
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    いったい何人の男の相手をしてきたのだろう、全身から性臭を漂わせ、着衣のあちこちにも白いものがこびりついている。
+
+    屋敷の者たち、特に%MSG_LOVER(奴隷)%に見咎められないようこっそりと、彼女は自分の部屋に戻っていった。
+
+    「許してなんて・・もらえませんよね・・」
+
+    「・・悲しませたく・・ありませんから・・」
+
+    「・・負けません・・こんな、こんなことで・・」
+  priority: 7
+  displayMode: newline
+- id: talent_7_1
+  content: いったい何人の男の相手をしてきたのだろう、全身から性臭を漂わせ、着衣のあちこちにも白いものがこびりついている。
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+- id: fallback
+  content: >-
+    館に戻った%CALLNAME:奴隷%の身体は性臭を漂わせ、着衣にもところどころ白いものがこびりついている。
+
+    その汚れを隠そうともせず、彼女はふらふらと自分の部屋に戻っていった。
+  priority: 5
+- id: fallback
+  content: 館に戻った%CALLNAME:奴隷%の身体は性臭を漂わせ、着衣にもところどころ白いものがこびりついている。
+  priority: 4
+- id: fallback
+  content: 館に戻った%CALLNAME:奴隷%の身体はほのかに性臭を漂わせ、着衣にもところどころ白いものがこびりついている。
+  priority: 3
+- id: fallback
+  content: 館に戻った%CALLNAME:奴隷%の身体はほのかに性臭を漂わせ、着衣にもところどころ白いものがこびりついている。
+  priority: 2
+- id: fallback
+  content: 館に戻った%CALLNAME:奴隷%の身体はほのかに性臭を漂わせ、着衣にもところどころ白いものがこびりついている。
+  priority: 1

@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: K3_日常
+entries:
+- id: fallback
+  content: >-
+    「来なさい、%CALLNAME:MASTER%！」
+
+    「そんなことをする必要はないわ！」
+
+    「逃げるなさい！！」
+  priority: 1
+  displayMode: newline

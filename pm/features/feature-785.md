@@ -1,0 +1,331 @@
+# Feature 785: Regression Test Recovery — Archived Flow Test Restoration and Validation
+
+## Status: [CANCELLED]
+
+**Cancel Reason**: ERBベースのflow test復活は不要。プロジェクトはERB→C#移行中であり、回帰テストはC#/YAMLベースであるべき。C#/YAML回帰テストの検討はF786に引き継ぎ。
+
+## Scope Discipline
+
+> **Out-of-Scope Issue Protocol**
+>
+> When you discover an issue that is OUT OF SCOPE but needs attention:
+> 1. **STOP** - Do not fix it within this feature
+> 2. **REPORT** - Notify user immediately with a clear description
+> 3. **TRACK** - If user approves, create a new feature-{ID}.md
+> 4. **LINK** - Reference the new feature in the Links section below
+>
+> **Rationale**: Skipping is acceptable. Forgetting is not. All discovered issues must be tracked.
+
+## Type: infra
+
+## Background
+
+### Philosophy (Mid-term Vision)
+
+"Game mechanics must have automated verification. Archiving tests is acceptable during migration, but the replacement must be created before the archive is forgotten."
+
+24 regression test scenarios were archived on 2026-01-10 with a documented promise of C# integration test replacements. That promise was deferred through three Phase completions (12, 15, 19) without being fulfilled. Meanwhile, 10 of 15 game mechanics lost all automated test coverage.
+
+### Problem (Current Issue)
+
+**The coverage gap**: 24 flow test scenarios covering 15 game mechanics were archived to `test/_archived/regression/` on 2026-01-10. The `--flow` engine infrastructure (HeadlessRunner, FlowTestScenario, ProcessLevelParallelRunner) remains fully intact, but the tests themselves are dormant.
+
+**Unverified mechanics** (zero automated coverage):
+- Game loop: wakeup, movement, day-end reset
+- TALENT promotion: 思慕→恋慕 threshold, 恋慕→親愛 threshold
+- NTR system: NTR fall, NTR protection (親愛 guard)
+- Toggle/cycle: うふふモード, 挿入パターンサイクル
+- Restrictions: 食事タイムアウト, 気力ゼロ, 体力ゼロ, 訪問者退去
+
+**Known defects in archived tests** (discovered during investigation):
+- 3 scenarios have incorrect var_equals TALENT indices that were vacuously passing (undefined indices always return 0):
+  - sc-001: `TALENT:1:18` should be `TALENT:1:3` (恋慕)
+  - sc-003: `TALENT:1:19` should be `TALENT:1:148` (親愛)
+  - sc-005: `TALENT:1:101` should be `TALENT:1:6` (NTR)
+- Input sequence compatibility (menu numbers 0, 9, 100) is unverified against current ERB menus
+- Evidence: `test/_archived/regression/scenario-sc-001-shiboo-threshold.json`, `Game/CSV/TALENT.CSV`, `engine/Assets/Scripts/Emuera/Headless/HeadlessRunner.cs:777`
+
+**Well-covered mechanics** (already have C# unit tests):
+- Save/Load: StateManagerTests.cs has JSON round-trip tests
+- Kojo dialogue branching: 400+ AC JSON files + KojoEngineTests.cs
+
+### Goal (What to Achieve)
+
+1. **Smoke test**: Run 1 archived scenario (scenario-wakeup.json) against current ERB to verify input sequence compatibility and --flow infrastructure
+2. **Fix known defects**: Correct 3 var_equals TALENT indices in sc-001, sc-003, sc-005
+3. **Unarchive**: Move viable scenarios from `_archived/regression/` back to `regression/`
+4. **Validate**: Run all 24 scenarios, identify and fix any failures from ERB changes
+5. **Document**: Update testing/SKILL.md and debugger.md archived comments, remove regression-tester agent from archive if re-enabled
+
+---
+
+## Root Cause Analysis
+<!-- Written by: consensus-synthesizer (Phase 1) -->
+
+### 5 Whys
+
+| Level | Question | Answer | Evidence |
+|:-----:|----------|--------|----------|
+| 1 | Why? | {answer} | {file:line} |
+| 2 | Why? | {answer} | {file:line} |
+| 3 | Why? | {answer} | {file:line} |
+| 4 | Why? | {answer} | {file:line} |
+| 5 | Why (Root)? | {root cause} | {file:line} |
+
+### Symptom vs Root Cause
+
+| Aspect | Symptom | Root Cause |
+|--------|---------|------------|
+| What | {observable symptom} | {underlying cause} |
+| Where | {surface location} | {structural origin} |
+| Fix | {band-aid fix} | {proper solution} |
+
+## Related Features
+<!-- Written by: consensus-synthesizer (Phase 1) -->
+
+| Feature | Status | Relationship |
+|---------|--------|--------------|
+| F{ID} | {status} | {description} |
+
+## Feasibility Assessment
+<!-- Written by: consensus-synthesizer (Phase 1) -->
+
+| Criterion | Assessment | Evidence |
+|-----------|:----------:|----------|
+| {criterion} | FEASIBLE/NEEDS_REVISION/NOT_FEASIBLE | {evidence} |
+
+**Verdict**: FEASIBLE / NEEDS_REVISION / NOT_FEASIBLE
+
+## Impact Analysis
+<!-- Written by: consensus-synthesizer (Phase 1) -->
+
+| Area | Impact | Description |
+|------|:------:|-------------|
+| {area} | HIGH/MEDIUM/LOW | {description} |
+
+## Technical Constraints
+<!-- Written by: consensus-synthesizer (Phase 1) -->
+
+| Constraint | Source | Impact |
+|------------|--------|--------|
+| {constraint} | {source} | {impact} |
+
+## Risks
+<!-- Written by: consensus-synthesizer (Phase 1) -->
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|:----------:|:------:|------------|
+| {risk} | HIGH/MEDIUM/LOW | HIGH/MEDIUM/LOW | {mitigation} |
+
+---
+
+## Baseline Measurement
+
+<!-- Generated by consensus-synthesizer (Phase 1). -->
+
+| Metric | Command | Baseline Value | Note |
+|--------|---------|----------------|------|
+| {metric} | {command} | {value} | {note} |
+
+**Baseline File**: `.tmp/baseline-785.txt`
+
+---
+
+## AC Design Constraints
+
+<!-- MANDATORY: ac-designer MUST read this section before designing ACs -->
+
+| ID | Constraint | Source | AC Implication |
+|:--:|------------|--------|----------------|
+| C1 | {constraint description} | {file:line or investigation} | {how AC must account for this} |
+
+### Constraint Details
+
+**C{N}: {Constraint Name}**
+- **Source**: {how discovered}
+- **Verification**: {how to confirm constraint still holds}
+- **AC Impact**: {specific guidance for ac-designer}
+
+---
+
+## Dependencies
+
+| Type | Feature | Status | Description |
+|------|---------|--------|-------------|
+| Predecessor | F784 | [DONE] | CI and pre-commit expansion prerequisite |
+
+<!-- Dependency Types (SSOT):
+| Type | Direction | Effect | Usage |
+|------|-----------|--------|-------|
+| Predecessor | F{ID} → This | BLOCKING | This feature cannot start until F{ID} is [DONE]. FL Phase 0 enforces. |
+| Successor | This → F{ID} | Informational | F{ID} depends on this feature. No effect on this feature's status. |
+| Related | - | None | Reference only. No blocking, no status effect. |
+
+Blocking Logic (FL Phase 0):
+- Only Type=Predecessor triggers [BLOCKED] status
+- Successor/Related do NOT block
+
+Example:
+| Predecessor | F540 | [DONE] | Era.Core setup required |
+| Successor | F567 | [BLOCKED] | F567 depends on this feature |
+| Related | F100 | [DONE] | Reference implementation |
+-->
+
+---
+
+## Acceptance Criteria
+<!-- Written by: ac-designer (Phase 3) -->
+
+### Philosophy Derivation
+
+| Absolute Claim | Derived Requirement | AC Coverage |
+|----------------|---------------------|-------------|
+| "{claim from Philosophy}" | {requirement} | AC#{N} |
+
+### AC Definition Table
+
+| AC# | Description | Type | Method | Matcher | Expected | Status |
+|:---:|-------------|------|--------|---------|----------|:------:|
+| 1 | {description} | {type} | {method} | {matcher} | {expected} | [ ] |
+
+### AC Details
+
+**AC#1: {Description}**
+- **Test**: `{command}`
+- **Expected**: `{output/pattern}`
+- **Rationale**: {why this AC is necessary}
+
+### Goal Coverage Verification
+
+| Goal Item | Description | Covering AC(s) |
+|:---------:|-------------|:---------------:|
+| 1 | {goal item from Goal section} | AC#{N} |
+
+---
+
+## Technical Design
+<!-- Written by: tech-designer (Phase 4) -->
+
+### Approach
+
+{Selected implementation approach with rationale}
+{How this approach satisfies the ACs}
+
+### AC Coverage
+
+| AC# | How to Satisfy |
+|:---:|----------------|
+| 1 | {implementation approach for AC#1} |
+
+### Key Decisions
+
+| Decision | Options Considered | Selected | Rationale |
+|----------|-------------------|----------|-----------|
+| {decision point} | {A, B, C} | {selected} | {why} |
+
+### Interfaces / Data Structures
+
+<!-- Optional: Define new interfaces, data structures, or APIs if applicable -->
+
+---
+
+## Tasks
+
+| Task# | AC# | Description | Tag | Status |
+|:-----:|:---:|-------------|:---:|:------:|
+| 1 | 1 | {HOW to achieve AC1} | | [ ] |
+| 2 | 2 | {Investigation-required task} | [I] | [ ] |
+
+<!-- AC Coverage Rule: Every Task must be verified by at least one AC. Multiple ACs per Task allowed. -->
+
+### Task Tags
+
+| Tag | Meaning | Phase 3 | Phase 4 |
+|:---:|---------|---------|---------|
+| (none) | KNOWN - AC Expected value is deterministic | Create test (RED) | Implement (GREEN) |
+| `[I]` | UNCERTAIN - AC Expected depends on implementation | **Skip** | Mini-TDD: Implement → Write test → Verify |
+
+**When to use `[I]`**:
+- AC Expected value cannot be determined before implementation
+- Task output depends on investigation or runtime discovery
+- Downstream tasks depend on this task's concrete output
+
+**Example**:
+```markdown
+| 1 | 1 | Add API endpoint | | [ ] |        ← KNOWN: Expected response format is specified
+| 2 | 2 | Calculate aggregates | [I] | [ ] | ← UNCERTAIN: Actual totals unknown until implemented
+| 3 | 3 | Format report | | [ ] |           ← KNOWN: Uses Task 2's output (determined after Task 2)
+```
+
+**When NOT to use `[I]`**:
+- Build/compile tasks (Expected = "succeeds" is always deterministic)
+- Tasks with spec-defined outputs (API contracts, schema validation)
+- Tasks that verify file existence (deterministic yes/no)
+- Tasks where Expected can be calculated from requirements (counts from data, paths from config)
+- Standard patterns with known outputs (error messages, status codes)
+
+**Anti-pattern**: Using `[I]` to avoid writing concrete Expected values. `[I]` is for genuine uncertainty, not convenience.
+
+---
+
+## Implementation Contract
+
+> **This section is an implementation contract. Do NOT modify, skip, or optimize the documented steps.**
+>
+> If issues arise: STOP → Ask user for guidance.
+
+<!--
+Use this section when the feature requires specific implementation steps
+that must be followed exactly (e.g., subagent orchestration, multi-phase audits).
+Delete this section if not needed.
+-->
+
+| Phase | Agent | Model | Input | Output |
+|-------|-------|-------|-------|--------|
+| 1 | {agent} | {model} | {input} | {output} |
+
+---
+
+## Mandatory Handoffs
+<!-- CRITICAL: Handoff without actionable Task = TBD violation -->
+<!-- Option A (new Feature): MUST add creation Task in Tasks table -->
+<!-- Option B (existing Feature): Referenced Feature must exist -->
+<!-- Option C (Phase): Phase must exist in architecture.md -->
+
+| Issue | Reason | Destination | Destination ID | Creation Task |
+|-------|--------|-------------|----------------|---------------|
+| {issue} | {why defer} | Feature | F{ID} | Task#{N} |
+
+<!-- Validation (FL PHASE-7):
+- Option A: Creation Task exists → OK (file created during /run)
+- Option B: Referenced Feature exists → OK
+- Option C: Phase exists in architecture.md → OK
+- Missing Task for Option A → FL FAIL
+-->
+
+<!-- DRAFT Creation Checklist (Option A):
+When a Task creates a new feature-{ID}.md [DRAFT], it MUST complete ALL of:
+1. Create feature-{ID}.md file
+2. Register in index-features.md (add row to Active Features table)
+3. Update "Next Feature number" in index-features.md
+AC for DRAFT creation MUST verify BOTH file existence AND index registration.
+-->
+
+---
+
+## Execution Log
+| Timestamp | Event | Agent | Action | Result |
+|-----------|:-----:|-------|--------|--------|
+| {timestamp} | {event} | {agent} | {action} | {result} |
+
+---
+
+## Review Notes
+<!-- Mandatory: All [pending] items must be resolved before /run. -->
+<!-- Format: - [pending|resolved-applied|resolved-invalid|resolved-skipped|fix|problem-fix] {phase} {iter}: [{category-code}] {description} -->
+<!-- Tag rules: [pending] = awaiting user decision (POST-LOOP). [resolved-applied] = fix applied. [resolved-invalid] = validation rejected. [resolved-skipped] = user explicitly chose skip in POST-LOOP ONLY (orchestrator MUST NOT use autonomously). [fix] = applied fix history (immutable, used by is_loop() for A→B→A detection). -->
+<!-- Category codes: See pm/reference/error-taxonomy.md (AC-XXX, CON-XXX, DEP-XXX, etc.) -->
+
+---
+
+## Links

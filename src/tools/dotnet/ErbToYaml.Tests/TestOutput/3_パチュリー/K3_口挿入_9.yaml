@@ -1,0 +1,207 @@
+﻿character: パチュリー
+situation: K3_口挿入
+entries:
+- id: fallback
+  content: >-
+    「……今日は、私が後ろから……いくわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背後に立ちながら、静かに宣言した。
+
+    普段は体が弱くて受身になりがちだが、今日は違う。
+
+    「……んっ……後ろから入れると、こんな感覚なのね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腰を掴みながら、ゆっくりと腰を進めた。
+
+    「……あなたの中、熱いわ……本には載っていない感触」
+
+    「はぁ……ん……っ……」
+
+    %CALLNAME:TARGET%は四つんばいの%CALLNAME:MASTER%を後ろから抱きながら、小さく喘いでいる。
+
+    大図書館の静寂の中、%CALLNAME:TARGET%が主導権を握っている。
+
+    「……%CALLNAME:MASTER%、力を抜いて……私のペースに任せて……」
+
+    %CALLNAME:TARGET%は優しく囁きながら、腰を動かした。
+
+    「……あなたを満たせるなら、体力の消耗も厭わないわ」
+
+    「ぁ……やぁ……この角度だと、奥まで……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中に身を預けながら、深く繋がっている。
+
+    細い腕で%CALLNAME:MASTER%の腰を支えながら、%CALLNAME:TARGET%は息を整えた。
+
+    「……むきゅ……体力が……でも、あなたの声を聞いていると……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応に満足げな表情を浮かべた。
+
+    「……もう少しだけ、続けさせて」
+
+    「……あなたを後ろから抱くの、悪くないわね」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の耳元で囁いた。
+
+    本の山に囲まれた空間で、魔女が主導権を握っている。
+
+    「……んっ……私の魔力があなたに流れ込んでいくみたい……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%との一体感を味わっている。
+
+    「……このまま、もっと深く繋がりたいわ」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……私が、上になるの……？」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%の背後に立った。
+
+    普段は受身が多いため、この体勢は新鮮に感じている。
+
+    「……本で読んだ知識はあるけれど……実践は初めて……」
+
+    %CALLNAME:TARGET%は緊張しながら、ゆっくりと腰を進めた。
+
+    「……んっ……思ったより、難しいわね……」
+
+    「はぁ……ん……っ……」
+
+    %CALLNAME:TARGET%は四つんばいの%CALLNAME:MASTER%を見下ろしながら、頬を染めている。
+
+    「……%CALLNAME:MASTER%が私に主導権を譲ってくれるなんて……」
+
+    %CALLNAME:TARGET%は嬉しそうに呟いた。
+
+    「……でも、体力がないから……あまり期待しないで……」
+
+    %CALLNAME:TARGET%は控えめに、ゆっくりと腰を動かした。
+
+    「ぁ……やぁ……後ろからだと、違う感覚……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中を見つめながら、新しい感覚に戸惑っている。
+
+    「……むきゅ……もう、腕が……」
+
+    %CALLNAME:TARGET%は体力の限界を感じ始めた。
+
+    「……でも、あなたが気持ちよさそうだから……もう少しだけ……」
+
+    %CALLNAME:TARGET%は必死に腰を動かし続けた。
+
+    「……これが、主導する側の景色……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中を眺めながら、呟いた。
+
+    大図書館の静寂の中、不思議な感覚に包まれている。
+
+    「……%CALLNAME:MASTER%の声、よく聞こえるわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応に、照れくさそうに目を逸らした。
+
+    「……悪い気分じゃない……かもしれない」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……私が、そうするの……？」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%の指示に従った。
+
+    「……本で読んだ知識では、この体位は……」
+
+    %CALLNAME:TARGET%は理論を確認しながら、ゆっくりと動いた。
+
+    「……んっ……予想通り、体力を消耗するわね……むきゅ」
+
+    %CALLNAME:TARGET%は早くも息切れを感じ始めた。
+
+    「はぁ……ん……っ……」
+
+    %CALLNAME:TARGET%は義務的に腰を動かしながら、小さく喘いでいる。
+
+    「……%CALLNAME:MASTER%、こういうことを命じるなんて……」
+
+    %CALLNAME:TARGET%は複雑な表情を浮かべた。
+
+    「……でも、指示に従うのが私の役目……」
+
+    %CALLNAME:TARGET%は淡々と続けた。
+
+    「ぁ……やぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中を見つめながら、困惑している。
+
+    「……こんな体勢で本が読めないのは困るわ……」
+
+    %CALLNAME:TARGET%は的外れなことを考えていた。
+
+    「……早く終わらせて、研究に戻りたい……」
+
+    %CALLNAME:TARGET%は本音を漏らした。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%の背後に立っている。
+
+    理論的には理解しているが、実践するのは気が進まない。
+
+    「……むきゅ……体力が持たないわ……」
+
+    %CALLNAME:TARGET%は溜息をついた。
+
+    「……%CALLNAME:MASTER%、もう少し協力して」
+  priority: 2
+- id: fallback
+  content: >-
+    「……何故、私がこんなことを……」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「……体力がないのに、こんな主導的な体位を強いるなんて」
+
+    %CALLNAME:TARGET%は溜息をついた。
+
+    「……さっさと終わらせるから、静かにして」
+
+    %CALLNAME:TARGET%は冷たい口調で言い放った。
+
+    「……むきゅ……もう疲れたわ……」
+
+    %CALLNAME:TARGET%は早々に動きを止めた。
+
+    「……こんなことに体力を使いたくない」
+
+    %CALLNAME:TARGET%は露骨に不満を示した。
+
+    「……後は自分でして。私は本に戻るから」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……」
+
+    %CALLNAME:TARGET%は無表情のまま、%CALLNAME:MASTER%の背後に立っている。
+
+    頭の中では、次に読む本のことを考えているようだ。
+
+    「……終わったら、すぐに大図書館から出て行って」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……むきゅ……体力の無駄遣いだわ」
+
+    「……なぜ私がこんな体勢を……」
+
+    %CALLNAME:TARGET%は不満げに呟いた。
+
+    「……本で読んだ知識によれば、これは相当な体力を使う体位……」
+
+    %CALLNAME:TARGET%は理論武装しながら、最低限の動きだけを続けた。
+
+    「……私には向いていないわ。早く終わらせましょう」
+
+    %CALLNAME:TARGET%は事務的に言い放った。
+  priority: 1

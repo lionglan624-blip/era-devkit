@@ -1,0 +1,12 @@
+﻿character: チルノ
+situation: K8_日常
+entries:
+- id: fallback
+  content: >-
+    「ね、聞いてよ！」
+
+    「でさでさ！今度ね！」
+
+    「ねぇねぇ、遊んでよぉ」
+  priority: 1
+  displayMode: newline

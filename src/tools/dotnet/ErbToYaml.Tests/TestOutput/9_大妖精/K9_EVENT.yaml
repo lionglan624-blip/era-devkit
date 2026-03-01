@@ -1,0 +1,20 @@
+﻿character: 大妖精
+situation: K9_EVENT
+entries:
+- id: fallback
+  content: >-
+    「じゃあ、行きましょう？」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と一緒に出て行った・・。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に連れられ出て行った・・。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に伴われて出て行った・・。
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「それでは、行ってきますね？」
+
+    %CALLNAME:奴隷%は%CALLNAME:MASTER%にそう言って%NTR_NAME(0)%の家へと行ってしまった・・。
+  priority: 1

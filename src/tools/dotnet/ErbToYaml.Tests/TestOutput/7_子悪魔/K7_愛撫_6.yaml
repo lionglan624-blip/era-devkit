@@ -1,0 +1,269 @@
+﻿character: 子悪魔
+situation: K7_愛撫
+entries:
+- id: fallback
+  content: >-
+    「えへへ……%CALLNAME:MASTER%のここ、おっきいね……」
+
+    %CALLNAME:TARGET%は恋人の前に跪き、興味深そうにそれを見つめている。
+
+    小さな舌がぺろりと先端を舐めた。
+
+    「あたしの口で、気持ちよくしてあげるね」
+
+    %CALLNAME:TARGET%は一生懸命に口を開け、ゆっくりと咥え込んでいった。
+
+    「んっ……ふふ……%CALLNAME:MASTER%の味、する……」
+
+    妖精の小さな口が、懸命に%CALLNAME:MASTER%を包んでいる。
+
+    「%CALLNAME:MASTER%……あたしね、これ上手になったかな……？」
+
+    %CALLNAME:TARGET%は不安げに見上げながら、舌を這わせている。
+
+    ちゅぷ、ちゅぷと小さな水音が漏れる。
+
+    「……もっとして欲しいところ、教えて？」
+
+    %CALLNAME:TARGET%は頬を染めながら、一生懸命に動いている。
+
+    「んっ……ちゅ……」
+
+    妖精の小さな口では大変そうだが、%CALLNAME:TARGET%は嬉しそうだった。
+
+    「%CALLNAME:MASTER%のためなら、頑張れるの……」
+
+    「んぅ……%CALLNAME:MASTER%、大好き……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に奉仕しながら、甘えた声を出している。
+
+    メイドの仕事のことはすっかり忘れてしまっている。
+
+    「あたしね……こうしてる時が、一番幸せなの……」
+
+    %CALLNAME:TARGET%は蕩けるような目で%CALLNAME:MASTER%を見上げた。
+
+    「……んっ、ふぅ……おいしい……」
+
+    妖精の舌が、愛おしそうに%CALLNAME:MASTER%を舐めている。
+
+    「ずっと……こうしていたいな……」
+
+    「今日はあたしが、%CALLNAME:MASTER%を気持ちよくしてあげるの！」
+
+    %CALLNAME:TARGET%は張り切って宣言し、%CALLNAME:MASTER%の前に跪いた。
+
+    小さな手が%CALLNAME:MASTER%のものを包み込む。
+
+    「えっとね……こうして……ぺろって……」
+
+    %CALLNAME:TARGET%は舌を出して、丁寧に舐め始めた。
+
+    「んっ……あむ……」
+
+    そしてゆっくりと口に含み、懸命に動き始める。
+
+    「……%CALLNAME:MASTER%、気持ちいい……？　あたし、頑張ってるよ……？」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「え、えっと……こ、こうすればいいの……？」
+
+    %CALLNAME:TARGET%は真っ赤な顔で%CALLNAME:MASTER%の前に跪いた。
+
+    小さな手が震えながら、%CALLNAME:MASTER%のものに触れる。
+
+    「……あの、恥ずかしいけど……」
+
+    %CALLNAME:TARGET%はおずおずと舌を伸ばし、先端を舐めた。
+
+    「んっ……へ、変な味……でも……」
+
+    恥ずかしさに耐えながら、%CALLNAME:TARGET%は口に含もうとしている。
+
+    「%CALLNAME:MASTER%のためだから……がんばる……」
+
+    「……ちゅっ……れろ……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに、%CALLNAME:MASTER%に奉仕している。
+
+    頬が真っ赤で、耳まで染まっている。
+
+    「……%CALLNAME:MASTER%……これで、気持ちいい……？」
+
+    不安そうに見上げる瞳には、認めて欲しいという想いが見える。
+
+    「あたし、下手かもしれないけど……」
+
+    %CALLNAME:TARGET%はぎこちなく舌を動かしている。
+
+    「……がんばるから……見ててね……」
+
+    「こ、こんなこと……恥ずかしいよぉ……」
+
+    %CALLNAME:TARGET%は俯きながらも、%CALLNAME:MASTER%から離れようとしない。
+
+    「でも……%CALLNAME:MASTER%のためなら……」
+
+    小さく呟いて、%CALLNAME:TARGET%は口を開けた。
+
+    「んっ……ふぁ……」
+
+    先端から丁寧に舐め始め、少しずつ口に入れていく。
+
+    「……んぅ……」
+
+    一生懸命な姿に、%CALLNAME:TARGET%の想いが伝わってくる。
+
+    「あの……%CALLNAME:MASTER%のこと、好きだから……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに告白しながら、顔を近づけた。
+
+    「こういうの、あたしもしてみたかったの……」
+
+    ぺろ、と先端を舐め、%CALLNAME:TARGET%は上目遣いに%CALLNAME:MASTER%を見た。
+
+    「……変、かな……？」
+
+    不安と期待の入り混じった表情で問いかける。
+
+    そしてゆっくりと口を開け、%CALLNAME:MASTER%を迎え入れた。
+
+    「んっ……ふぅ……」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「ふぇっ……こ、これをですか……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%のものを見て固まっている。
+
+    「え、えっと……あの……」
+
+    戸惑いながらも、%CALLNAME:TARGET%はおずおずと顔を近づけた。
+
+    「……%CALLNAME:MASTER%がそうしてほしいなら……」
+
+    小さな舌がおそるおそる先端に触れる。
+
+    「……ん……なんか、変な感じ……」
+
+    %CALLNAME:TARGET%は困惑しながらも、言われるままに舐めている。
+
+    「……こ、こうでいいんですか……？」
+
+    %CALLNAME:TARGET%は不安げに%CALLNAME:MASTER%を見上げた。
+
+    ぎこちない動きで、先端を舐めている。
+
+    「あたし、こういうの初めてで……」
+
+    %CALLNAME:TARGET%の頬は真っ赤に染まっている。
+
+    「……んっ……」
+
+    言われた通りにしようと、%CALLNAME:TARGET%は懸命だった。
+
+    「……%CALLNAME:MASTER%、教えてください……」
+
+    「あの……本当にこれでいいんですか……？」
+
+    %CALLNAME:TARGET%は困惑した表情で%CALLNAME:MASTER%を見ている。
+
+    「妖精のあたしなんかで……」
+
+    それでも言われた通り、%CALLNAME:TARGET%は口を開けた。
+
+    「……んむ……」
+
+    ぎこちなく口に含み、%CALLNAME:TARGET%は固まっている。
+
+    「……ど、どうすればいいの……」
+
+    助けを求めるように、%CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げた。
+
+    「%CALLNAME:MASTER%……あの……」
+
+    %CALLNAME:TARGET%はおずおずと%CALLNAME:MASTER%の前に跪いた。
+
+    何をすべきかは分かっているようだが、戸惑っている。
+
+    「……緊張するの……優しくしてくださいね……」
+
+    %CALLNAME:TARGET%はそっと舌を伸ばし、先端に触れた。
+
+    「……ん……」
+
+    恐る恐る舐め始め、少しずつ口に含もうとしている。
+
+    「……こ、こうかな……」
+  priority: 2
+- id: fallback
+  content: >-
+    「ふぇっ……！？　な、何するんですか……！」
+
+    %CALLNAME:TARGET%は驚いて後ずさりした。
+
+    「え、えっと……こ、これって……」
+
+    %CALLNAME:MASTER%のものを見て、%CALLNAME:TARGET%は顔を真っ赤にしている。
+
+    「……あたし、こんなの知らないです……」
+
+    %CALLNAME:TARGET%は困惑した表情で%CALLNAME:MASTER%を見上げた。
+
+    「……咲夜さんに怒られちゃいます……」
+
+    助けを求めるように周囲を見回している。
+
+    「あ、あの……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は戸惑った様子で立ち尽くしている。
+
+    「こういうのは……その……」
+
+    %CALLNAME:TARGET%は言葉を探しながら、困った顔をしている。
+
+    「……あたし、どうすればいいか、わからないです……」
+
+    妖精は混乱した様子で、%CALLNAME:MASTER%を見つめていた。
+
+    「……もっと仲良くなってから、じゃダメですか……」
+
+    おずおずと、%CALLNAME:TARGET%は提案した。
+
+    「ひゃっ……！　ち、ちょっと……」
+
+    %CALLNAME:TARGET%は慌てて目を逸らした。
+
+    「いきなりそんなの見せられても……」
+
+    %CALLNAME:TARGET%は顔を手で覆いながら、指の隙間からちらちらと見ている。
+
+    「……えっと、あの……」
+
+    どうしていいか分からず、%CALLNAME:TARGET%は固まっている。
+
+    「……お仕事、しなきゃいけないので……」
+
+    言い訳をしながら、%CALLNAME:TARGET%は逃げ出す機会を窺っていた。
+
+    「……%CALLNAME:MASTER%……何がしたいの……？」
+
+    %CALLNAME:TARGET%は困惑した表情で%CALLNAME:MASTER%を見ている。
+
+    「あたし、そういうのよくわからないです……」
+
+    妖精は首を傾げながら、%CALLNAME:MASTER%の真意を測りかねている。
+
+    「……こういうのって、仲良しさんがすることじゃないんですか……？」
+
+    %CALLNAME:TARGET%は不安そうに問いかけた。
+
+    「……あたしたち、そこまで仲良くないです……よね……」
+
+    警戒するように、%CALLNAME:TARGET%は距離を取ろうとしていた。
+  priority: 1

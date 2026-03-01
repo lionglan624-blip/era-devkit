@@ -1,0 +1,209 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……」
+
+    %CALLNAME:MASTER%は何もせず、ただじっと%CALLNAME:TARGET%を見つめている。
+
+    %CALLNAME:TARGET%は本を読もうとしたが、視線を感じて顔を上げた。
+
+    「……何もしないの？ 私を見ているだけ？」
+
+    %CALLNAME:TARGET%は静かに問いかけたが、頬が微かに上気している。
+
+    「……あなたの視線だけで、こんなに意識してしまうなんて」
+
+    %CALLNAME:TARGET%は本を閉じ、%CALLNAME:MASTER%をまっすぐ見つめ返した。
+
+    「……ふぅ」
+
+    %CALLNAME:MASTER%の視線が%CALLNAME:TARGET%の体を舐めるように這っている。
+
+    %CALLNAME:TARGET%は本のページを捲る手が止まっていることに気づいた。
+
+    「……あなたの目、熱いわ。触れられてもいないのに」
+
+    %CALLNAME:TARGET%は淡々と言いながらも、息が僅かに乱れている。
+
+    「……早く触って。こんな焦らしプレイ、本には書いてなかったわ」
+
+    %CALLNAME:TARGET%は珍しく甘えるような声で囁いた。
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%を見つめたまま、何も動こうとしない。
+
+    大図書館の静寂の中、%CALLNAME:TARGET%の鼓動だけが響いているような気がした。
+
+    「……視線だけで私を追い詰めるつもり？」
+
+    %CALLNAME:TARGET%は本を脇に置き、%CALLNAME:MASTER%に身を寄せた。
+
+    「……意地悪ね。でも、嫌いじゃないわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕に自ら手を伸ばした。
+
+    「……ん……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%を見つめ続けている。何もしないまま。
+
+    %CALLNAME:TARGET%は普段通りを装おうとしたが、視線を意識して落ち着かない。
+
+    「……触れて。お願い……」
+
+    %CALLNAME:TARGET%は珍しく懇願するような声を漏らした。
+
+    「……私を見るだけで満足だなんて、許さないわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を取り、自分の体に導いた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……っ」
+
+    %CALLNAME:MASTER%が何もせずこちらを見ていることに、%CALLNAME:TARGET%は気づいた。
+
+    「……何？ そんなに見られると、読書に集中できないわ」
+
+    %CALLNAME:TARGET%は本で顔を隠すようにしながら、チラリと%CALLNAME:MASTER%を窺った。
+
+    「……あなた、何を考えているの」
+
+    %CALLNAME:TARGET%の頬は、微かに紅潮している。
+
+    「……」
+
+    %CALLNAME:MASTER%の視線が%CALLNAME:TARGET%に注がれ続けている。
+
+    %CALLNAME:TARGET%は本を読んでいるふりをしていたが、一行も頭に入ってこない。
+
+    「……何もしないなら、帰ってくれない？」
+
+    %CALLNAME:TARGET%はそう言ったが、声には拒絶の色がない。
+
+    「……いえ、帰らなくてもいいけど。ただ、その……」
+
+    %CALLNAME:TARGET%は言葉を濁して、視線を逸らした。
+
+    「……ふぅ」
+
+    %CALLNAME:MASTER%はただ%CALLNAME:TARGET%を見つめている。じっと。
+
+    「……視姦という言葉、知ってる？ まさにそれね」
+
+    %CALLNAME:TARGET%は淡々と言ったが、耳まで赤くなっている。
+
+    「……本で読んだことがあるだけよ。経験ではなく」
+
+    %CALLNAME:TARGET%は慌てて付け加えた。
+
+    「……あの」
+
+    %CALLNAME:MASTER%の視線を受け続けて、%CALLNAME:TARGET%は落ち着かなくなってきた。
+
+    「……何かするなら、早くして。焦らされるのは、得意じゃないの」
+
+    %CALLNAME:TARGET%は本を閉じ、%CALLNAME:MASTER%を見つめ返した。
+
+    「……見てるだけなんて、意地悪よ」
+
+    %CALLNAME:TARGET%の声は、少し拗ねたような響きがあった。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……何をしているの」
+
+    %CALLNAME:MASTER%が何もせずこちらを見ていることに、%CALLNAME:TARGET%は眉をひそめた。
+
+    「用があるなら言いなさい。ないなら、本でも読んでいて」
+
+    %CALLNAME:TARGET%は淡々と言ったが、視線を意識してか、本を持つ手が僅かに震えている。
+
+    「……じろじろ見られると、気が散るのよ」
+
+    「……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の視線を感じ、本から顔を上げた。
+
+    「……観察しているの？ 私を？」
+
+    %CALLNAME:TARGET%は興味深そうに%CALLNAME:MASTER%を見返した。
+
+    「……ふぅん。人間の行動パターンとして、記録しておくわ」
+
+    %CALLNAME:TARGET%は自分を落ち着かせるように、淡々と呟いた。
+
+    「……むきゅ」
+
+    %CALLNAME:MASTER%の視線が%CALLNAME:TARGET%に注がれ続けている。
+
+    「……何もしないで見てるだけって、どういう意味があるの？」
+
+    %CALLNAME:TARGET%は純粋に疑問を呈した。
+
+    「……視覚的刺激だけで何かを得ようとしているの？」
+
+    %CALLNAME:TARGET%は首を傾げながら、分析するように%CALLNAME:MASTER%を観察した。
+
+    「……」
+
+    %CALLNAME:MASTER%は何もせず、ただ%CALLNAME:TARGET%を見つめている。
+
+    %CALLNAME:TARGET%は居心地の悪さを感じ、本に集中しようとした。
+
+    「……あなた、変わった趣味ね」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「……まあ、好きにしなさい。私は読書を続けるから」
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の真似？」
+
+    %CALLNAME:MASTER%がこちらを見つめているだけで何もしないことに、%CALLNAME:TARGET%は冷ややかな目を向けた。
+
+    「用がないなら、出て行って。読書の邪魔よ」
+
+    %CALLNAME:TARGET%は素っ気なく言い放ち、本に視線を戻した。
+
+    「……変な人ね」
+
+    「……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の視線に気づき、不快そうに眉を寄せた。
+
+    「じろじろ見ないで。私は展示物じゃないわ」
+
+    %CALLNAME:TARGET%は冷たく言い放った。
+
+    「……精霊魔法で追い出すわよ。失礼な人ね」
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の視線を不快に感じ、困惑した声を漏らした。
+
+    「何もしないなら、ここにいる意味がないでしょう」
+
+    %CALLNAME:TARGET%は本で顔を隠すようにした。
+
+    「……本を読みなさい。それか、帰って」
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついた。
+
+    「あなた、図書館に何しに来たの。見るだけ？」
+
+    %CALLNAME:TARGET%は呆れたような表情を浮かべている。
+
+    「……観察するなら、本でも読んで。私を見ても何も得られないわ」
+
+    %CALLNAME:TARGET%は冷めた目で%CALLNAME:MASTER%を一瞥し、読書に戻った。
+  priority: 1

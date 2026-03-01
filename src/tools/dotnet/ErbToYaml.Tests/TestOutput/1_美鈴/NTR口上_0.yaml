@@ -1,0 +1,70 @@
+﻿character: 美鈴
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「次の『お仕事』って・・い、嫌ですっ、もう、もうあんなことっ・・」
+
+    「同時に何人もって・・そんな・・そんなっ・・こと・・」
+
+    「もう・・もう許してください・・」
+  priority: 7
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「次の『お仕事』はいつですか？ ええ、いつでもお呼びください」
+
+    「同時に何人も？ 百人組手とか？ え？ 違う？ あ、ああ、そっちですか」
+
+    「お客様のお相手ももちろんですけど・・たまには・・その・・」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そうですね。とても楽しそうです」
+
+    「え・・またですか・・？ はい、もちろん・・」
+
+    「あんっ・・ここではなくて・・」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「おすすめのお昼寝スポットがあるんですよ」
+
+    「ここだけの話なんですけどね・・」
+
+    「え？ 炒飯の隠し味ですか？」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ええっ、そうなんですか？」
+
+    「そうだったんですか。知りませんでした」
+
+    「組み手ですか？ ええ、お相手しますよ？」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ、そうなんですか？」
+
+    「実はですね・・」
+
+    「えっ、ね、寝てませんよ？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そうなんですか」
+
+    「そうですね」
+
+    「そうかもしれませんね」
+  priority: 1
+  displayMode: newline

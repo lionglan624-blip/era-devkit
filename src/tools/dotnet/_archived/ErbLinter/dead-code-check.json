@@ -1,0 +1,250 @@
+{
+  "summary": {
+    "errors": 0,
+    "warnings": 1,
+    "info": 29,
+    "filesScanned": 15
+  },
+  "issues": [
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON.ERB",
+      "line": 109,
+      "column": 1,
+      "level": "warning",
+      "code": "FUNC004",
+      "message": "Duplicate function @EVENTTRAIN (first defined at BEFORETRAIN.ERB:3)"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u53E3\u4E0A\\U_\u6C4E\u7528\\KOJO_MODIFIER_COMMON.ERB",
+      "line": 11,
+      "column": 1,
+      "level": "info",
+      "code": "STYLE002",
+      "message": "Kojo function @KOJO_MODIFIER_PRE_COMMON doesn\u0027t follow K{N} naming pattern"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u53E3\u4E0A\\U_\u6C4E\u7528\\KOJO_MODIFIER_COMMON.ERB",
+      "line": 30,
+      "column": 1,
+      "level": "info",
+      "code": "STYLE002",
+      "message": "Kojo function @KOJO_MODIFIER_POST_COMMON doesn\u0027t follow K{N} naming pattern"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\ABL.ERB",
+      "line": 104,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @USERABLUP is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\ABL.ERB",
+      "line": 114,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @MAXABL is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_KOJO.ERB",
+      "line": 35,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TEST_GET_ABL_BRANCH is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_KOJO.ERB",
+      "line": 40,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TEST_GET_TALENT_BRANCH is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\COMMON_KOJO.ERB",
+      "line": 45,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TEST_GET_EXP_BRANCH is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\SOURCE.ERB",
+      "line": 4,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @SOURCE_CHECK is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TEST_FLOW_RAND.ERB",
+      "line": 1,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TEST_FLOW_RAND is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TEST_FLOW_RAND_MULTI.ERB",
+      "line": 1,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TEST_FLOW_RAND_MULTI is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TEST_MOCK_RAND.ERB",
+      "line": 6,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TEST_MOCK_RAND is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\TEST_MOCK_RAND_EXHAUST.ERB",
+      "line": 10,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TEST_MOCK_RAND_EXHAUST is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30B0\u30E9\u30D5\u30A3\u30C3\u30AF\u8868\u793A\\\u30B0\u30E9\u30D5\u30A3\u30C3\u30AF\u8868\u793A.ERB",
+      "line": 92,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u753B\u50CF\u30BB\u30C3\u30C8 is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30B0\u30E9\u30D5\u30A3\u30C3\u30AF\u8868\u793A\\\u30B0\u30E9\u30D5\u30A3\u30C3\u30AF\u8868\u793A.ERB",
+      "line": 144,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u30C0\u30DF\u30FC\u30BB\u30C3\u30C8 is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30B0\u30E9\u30D5\u30A3\u30C3\u30AF\u8868\u793A\\\u30B0\u30E9\u30D5\u30A3\u30C3\u30AF\u8868\u793A.ERB",
+      "line": 370,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TEST_\u753B\u50CF\u8868\u793A is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30B0\u30E9\u30D5\u30A3\u30C3\u30AF\u8868\u793A\\\u7ACB\u3061\u7D75\u8868\u793A.ERB",
+      "line": 71,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u9076\u4E5D\u25A0\u90A8\uFF75\u7E67\uFF6F\u7E5D\uFF6A\u7E67\uFF62 is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30B0\u30E9\u30D5\u30A3\u30C3\u30AF\u8868\u793A\\\u7ACB\u3061\u7D75\u8868\u793A.ERB",
+      "line": 90,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @\u9076\u4E5D\u25A0\u90A8\uFF75\u83F4\u54B2\uFF7D\uFF6E\u873F\u9580\uFF7E\u30FB is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u30B0\u30E9\u30D5\u30A3\u30C3\u30AF\u8868\u793A\\\u7ACB\u3061\u7D75\u8868\u793A.ERB",
+      "line": 122,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @TEST_\u9076\u4E5D\u25A0\u90A8\uFF75\u9666\uFF68\u9049\uFF7A is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5916\u51FA\u62E1\u5F35\\GoOut.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GoOut_Ready is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5916\u51FA\u62E1\u5F35\\GoOut900_\u8A2A\u554F\u8005\u306E\u5BB6\u3078.ERB",
+      "line": 5,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @GoOut_Ready_900 is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.ERB",
+      "line": 214,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_Remove is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.ERB",
+      "line": 265,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetClothColor is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.ERB",
+      "line": 479,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetExFeature is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.ERB",
+      "line": 602,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetAblName is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u5996\u7CBE\u30E1\u30A4\u30C9\u62E1\u5F35\\FairyMaids_Common.ERB",
+      "line": 737,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @FairyMaids_GetTalentName is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u8A2A\u554F\u8005\u5B85\u62E1\u5F35\\COMF46x.ERB",
+      "line": 4,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @COM46x_V_1 is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u8A2A\u554F\u8005\u5B85\u62E1\u5F35\\COMF46x.ERB",
+      "line": 89,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @COM46x_A_1 is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u8A2A\u554F\u8005\u5B85\u62E1\u5F35\\COMF46x.ERB",
+      "line": 117,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @COM46x_A_2 is never called"
+    },
+    {
+      "file": "C:\\Era\\era\u7D05\u9B54\u9928protoNTR\\Game\\ERB\\\u8A2A\u554F\u8005\u5B85\u62E1\u5F35\\COMF46x.ERB",
+      "line": 145,
+      "column": 1,
+      "level": "info",
+      "code": "DEAD001",
+      "message": "Function @COM46x_A_3 is never called"
+    }
+  ]
+}

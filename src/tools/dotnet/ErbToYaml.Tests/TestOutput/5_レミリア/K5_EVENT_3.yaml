@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: fallback
+  content: >-
+    「だからこうして、%CALLNAME:PLAYER%が勃たなくなるまで一滴残らず搾り取ってあげる」
+
+    「ククク・・去勢されないだけマシと思いなさい。あ、今反応しわね、この変態」
+
+    「痛くはしないから安心しなさい。搾り取るだけよ。それとも痛くされたいのかしら？」
+  priority: 1
+  displayMode: newline

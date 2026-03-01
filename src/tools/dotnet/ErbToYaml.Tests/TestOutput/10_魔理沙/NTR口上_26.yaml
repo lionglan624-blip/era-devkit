@@ -1,0 +1,78 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「はい…了解しました…」
+
+    「はい…%呼称%に従うぜ…」
+
+    「はい…これは…刺激的だな…」
+
+    %CALLNAME:奴隷%はうっすらと頬を染め、局部を露出したまま家に戻った。
+
+    %CALLNAME:奴隷%は脱ぎたての下着を%NTR_NAME(0)%に手渡し、局部を露出したまま家に戻った。
+
+    %CALLNAME:奴隷%は局部露出の羞恥に頬を染めながら家に戻った。
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はい…了解しました…」
+
+    「はい…%呼称%に従うぜ…」
+
+    「はい…これは…刺激的だな…」
+
+    %CALLNAME:奴隷%はうっすらと頬を染め、局部を露出したまま家に戻った。
+
+    %CALLNAME:奴隷%は脱ぎたての下着を%NTR_NAME(0)%に手渡し、局部を露出したまま家に戻った。
+
+    %CALLNAME:奴隷%は局部露出の羞恥に頬を染めながら家に戻った。
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あぁ…恥ずかしい…」
+
+    「あぁ…落ち着かないぜ…」
+
+    「…やっぱり恥ずかしい…」
+
+    %CALLNAME:奴隷%は剥き出しの局部を誰かに見られたら、と羞恥に頬を染めた。
+
+    %CALLNAME:奴隷%は局部露出の羞恥に頬を染めた。
+
+    %CALLNAME:奴隷%は下着を身に着けないまま家に戻った。
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ…こんな…恥ずかしい…」
+
+    「ああ…誰かに見られたら…」
+
+    「…落ち着かないぜ…」
+
+    局部露出を強いられた%CALLNAME:奴隷%は悔しさと羞恥に頬を染めつつも%NTR_NAME(0)%の言葉に従った。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に抗いきれず、下着を奪われたまま家に戻った。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に下着を渡し、局部を露出したまま家に戻った。
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「…くそっ…」
+
+    「…覚えてろ…」
+
+    「…最低だな…」
+
+    局部露出を強いられた%CALLNAME:奴隷%は悔しさと羞恥に唇を噛んだが、%NTR_NAME(0)%の言葉に従うしかなかった。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に抗えず、下着を奪われたまま家に戻った。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に下着を奪われ、局部を露出したまま家に戻った。
+  priority: 1
+  displayMode: newline

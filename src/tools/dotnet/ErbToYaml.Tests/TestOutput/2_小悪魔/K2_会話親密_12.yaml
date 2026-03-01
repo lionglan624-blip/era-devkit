@@ -1,0 +1,12 @@
+﻿character: 小悪魔
+situation: K2_会話親密
+entries:
+- id: fallback
+  content: >-
+    「%CALLNAME:MASTER%もこういうの、お好きですか？」
+
+    「%CALLNAME:MASTER%もこういうの、お好きですよね？」
+
+    「もしかして、ドキドキしてます？」
+  priority: 1
+  displayMode: newline

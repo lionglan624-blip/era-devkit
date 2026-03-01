@@ -1,0 +1,17 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああ…そこ、そこっ…気持ちい、いい、いいっ！！」
+
+    「ああっ…おっ、おっ、おおっ！…イッぐぅっっっ！！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ…そこ、そこっ…気持ちいいっ！！」
+
+    「イく…イくっ、イくっ！！」
+  priority: 1
+  displayMode: newline

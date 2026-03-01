@@ -1,0 +1,6 @@
+# Invalid YAML fixture for Feature 361 AC#2
+# Missing required field: branches
+# This should fail schema validation
+
+character: 美鈴
+situation: TEST

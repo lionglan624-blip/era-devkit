@@ -1,0 +1,207 @@
+﻿character: 魔理沙
+situation: K10_会話親密
+entries:
+- id: fallback
+  content: >-
+    「んっ……やぁ……そこ……」
+
+    %CALLNAME:TARGET%はされるがままに、%CALLNAME:MASTER%に尻をなでられている。
+
+    「……%CALLNAME:MASTER%、手つき……いやらしいぜ……」
+
+    %CALLNAME:TARGET%は熱い息を漏らしながらも、抵抗はしなかった。
+
+    むしろ身を寄せて、%CALLNAME:MASTER%の愛撫を受け入れている。
+
+    「……もっと触ってもいいんだぜ？　私の全部、お前のものだからな……」
+
+    %CALLNAME:MASTER%の手が、%CALLNAME:TARGET%の尻をゆっくりと撫でる。
+
+    「ん……ふふ、そこ好きだろ……？　分かってるぜ」
+
+    %CALLNAME:TARGET%は悪戯っぽく微笑みながら、腰を少し揺らした。
+
+    「……私も、%CALLNAME:MASTER%に触られるの、嫌いじゃないんだ」
+
+    そう言って、%CALLNAME:TARGET%は%CALLNAME:MASTER%の肩に頭を預けた。
+
+    普通の魔法使いの威厳などどこへやら、すっかり甘えた様子だ。
+
+    「あっ……もう……そんなところ……」
+
+    %CALLNAME:TARGET%は頬を染めて、%CALLNAME:MASTER%の手を受け入れている。
+
+    「……魔法の研究中なのに……こういうことするんだから……」
+
+    そう言いながらも、%CALLNAME:TARGET%は身を寄せてきた。
+
+    小ぶりだが形の良い尻が%CALLNAME:MASTER%の手に押し付けられる。
+
+    「……へへ、もう少しだけなら、いいぜ……」
+
+    「んぅ……くぅ……」
+
+    %CALLNAME:TARGET%は甘い声を漏らしながら、尻をなでる手に身を委ねている。
+
+    「……%CALLNAME:MASTER%の手、あったかいな……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに、でも嬉しそうに微笑んだ。
+
+    「……こういうの、嫌いじゃないんだぜ。%CALLNAME:MASTER%にだけ、な」
+
+    %CALLNAME:TARGET%は甘えるように%CALLNAME:MASTER%にもたれかかった。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「も、もう……そんなところ触って……」
+
+    %CALLNAME:TARGET%は顔を赤くして、でも逃げようとはしない。
+
+    「%CALLNAME:MASTER%ったら、えっちなんだぜ……」
+
+    %CALLNAME:TARGET%は恥じらいながらも、その場に留まっている。
+
+    「……嫌じゃないけど、恥ずかしいんだよ……」
+
+    頬を染めたまま、%CALLNAME:TARGET%は小さく呟いた。
+
+    「やっ……そこは……」
+
+    %CALLNAME:TARGET%はビクッと体を震わせた。
+
+    %CALLNAME:MASTER%の手が、尻の曲線をゆっくりとなぞる。
+
+    「……%CALLNAME:MASTER%だから、いいけどさ……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を逸らした。
+
+    その耳まで赤く染まっていた。
+
+    「んっ……あ……」
+
+    %CALLNAME:TARGET%は小さく声を漏らした。
+
+    「……急にそういうことするの、ずるいぜ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を上目遣いで見ている。
+
+    「……心の準備くらい、させてくれよな」
+
+    そう言いながらも、%CALLNAME:TARGET%は逃げようとはしなかった。
+
+    %CALLNAME:MASTER%の手が、%CALLNAME:TARGET%の尻に触れる。
+
+    「ひゃっ……も、もう……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして、体を硬くした。
+
+    「……服越しなのに、手の熱さが伝わってくるぜ……」
+
+    %CALLNAME:TARGET%はそう呟きながらも、%CALLNAME:MASTER%から離れようとはしない。
+
+    その金色の瞳は潤んで、期待と恥じらいが混じっていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「あっ……ちょ、ちょっと……」
+
+    %CALLNAME:TARGET%は驚いて体を固くした。
+
+    「……尻は、ちょっと……」
+
+    %CALLNAME:TARGET%は困惑しながらも、強くは拒まなかった。
+
+    「……%CALLNAME:MASTER%、そういうことは、もう少し……」
+
+    %CALLNAME:TARGET%は顔を赤くして、言葉を濁した。
+
+    「ひゃっ……な、何を……」
+
+    %CALLNAME:TARGET%は驚いて%CALLNAME:MASTER%を見た。
+
+    「お、尻を触るなんて……その、えっちだぜ……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯いている。
+
+    「……%CALLNAME:MASTER%って、意外と大胆なんだな……」
+
+    困惑しつつも、どこか嬉しそうな様子だった。
+
+    「えっ……あ、あの……」
+
+    %CALLNAME:TARGET%は戸惑った表情で%CALLNAME:MASTER%を見上げた。
+
+    %CALLNAME:MASTER%の手が、小ぶりで形の良い尻の曲線をなぞっている。
+
+    「……魔法の研究中に、こういうことされると困るんだぜ……」
+
+    口ではそう言いながらも、%CALLNAME:TARGET%の足は動こうとしない。
+
+    「……%CALLNAME:MASTER%って、もしかしてこういうの好きなのか……？」
+
+    「んっ……やだ、そこ……」
+
+    %CALLNAME:TARGET%はビクッと肩を震わせた。
+
+    「……尻を触るのは、その、ちょっと……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに視線を逸らした。
+
+    だが、その頬は紅く染まり、完全に嫌がっているわけではなさそうだ。
+
+    「……もう少し仲良くなってから、な？」
+  priority: 2
+- id: fallback
+  content: >-
+    「ちょっと、どこ触ってんだよ！」
+
+    %CALLNAME:TARGET%は驚いて身を引いた。
+
+    「……尻はさすがに、ダメだぜ」
+
+    %CALLNAME:TARGET%は困った顔で%CALLNAME:MASTER%を見ている。
+
+    「あんまりなれなれしくされると、困るんだけどな……」
+
+    %CALLNAME:TARGET%は少し距離を取って、警戒するように立った。
+
+    「うひっ！？　な、何すんだ！」
+
+    %CALLNAME:TARGET%は飛び上がるように驚いた。
+
+    「いきなり尻を触るなんて……失礼だぜ！」
+
+    %CALLNAME:TARGET%は顔を赤くして、怒りと恥ずかしさが混じった表情をしている。
+
+    「もう、%CALLNAME:MASTER%ってば……」
+
+    %CALLNAME:TARGET%はため息をつきながらも、どこか呆れたような顔をしていた。
+
+    「えっ……ちょ、ちょっと待てよ！」
+
+    %CALLNAME:TARGET%は慌てて%CALLNAME:MASTER%の手を払いのけた。
+
+    「いきなり尻を触るとか、どういうつもりだぜ……」
+
+    %CALLNAME:TARGET%は帽子を深く被り直しながら、%CALLNAME:MASTER%を睨んでいる。
+
+    「……まあ、悪気がないのは分かるけどさ」
+
+    %CALLNAME:TARGET%は少し距離を取りつつも、完全に怒っているわけではなさそうだ。
+
+    「わっ……！　な、なに急に……」
+
+    %CALLNAME:TARGET%は反射的に飛び退いた。
+
+    「尻を触るのは……その、まずいだろ……」
+
+    %CALLNAME:TARGET%は顔を赤くして、尻を押さえている。
+
+    「……べ、別に嫌ってわけじゃないけど、いきなりはダメだぜ」
+
+    金髪の魔法使いは照れ隠しのように、そっぽを向いた。
+  priority: 1

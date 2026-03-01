@@ -1,0 +1,59 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ1-7
+entries:
+- id: fallback
+  content: >-
+    「あっ%S_HEART%」
+
+    「あん・・%S_HEART%」
+
+    「ん・・%S_HEART%」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっ%S_HEART%」
+
+    「あん・・%S_HEART%」
+
+    「ん・・%S_HEART%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ？・・・あっ%S_HEART%」
+
+    「あ・・？・・ああ・・%S_HEART%」
+
+    「んっ？ ・・え・・%S_HEART%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ？・・・あっ%S_HEART%」
+
+    「あ・・？・・ああ・・%S_HEART%」
+
+    「んっ？ ・・え・・%S_HEART%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ？・・・あっ」
+
+    「あ・・？・・ああ・・」
+
+    「んっ？ ・・え・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は手を離すそぶりを見せた後、急に%CALLNAME:奴隷%の乳首を強く摘んだ。
+
+    「くっ！ぅんんん！！」
+
+    「んっ！んんっ！」
+
+    「んんっ！くうっ！！」
+  priority: 1
+  displayMode: newline

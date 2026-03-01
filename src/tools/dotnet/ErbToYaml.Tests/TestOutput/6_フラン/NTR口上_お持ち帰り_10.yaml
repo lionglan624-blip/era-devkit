@@ -1,0 +1,27 @@
+﻿character: フラン
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「や、やだあっ・・お尻・・いやああっ！！」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に尻穴を犯され、熱くたぎった白濁を注ぎ込まれた。
+  priority: 3
+- id: fallback
+  content: >-
+    「ああっ・・おしり、おしり、あついのおおおっ！！」
+
+    「ああんっ！ だ、出して！ おしりに、だしてえええ！！」
+
+    「いいっ・・おしり、いいよおっ！！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ・・おしり、おしり、あついのおおおっ！！」
+
+    「ああんっ！ だ、出して！ おしりに、だしてえええ！！」
+
+    「いいっ・・おしり、いいよおっ！！」
+  priority: 1
+  displayMode: newline

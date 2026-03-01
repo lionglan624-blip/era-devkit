@@ -1,0 +1,12 @@
+﻿character: フラン
+situation: K6_日常
+entries:
+- id: fallback
+  content: >-
+    「%CALLNAME:MASTER%、%CALLNAME:人物_咲夜%が呼んでたよ！」
+
+    「%CALLNAME:MASTER%、こっち！！」
+
+    「そんなことしなくていいよっ！」
+  priority: 1
+  displayMode: newline

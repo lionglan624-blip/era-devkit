@@ -1,0 +1,12 @@
+﻿character: 美鈴
+situation: K1_日常
+entries:
+- id: fallback
+  content: >-
+    「聞いてくださいよ、この前ですね・・」
+
+    「いや〜、参りましたよ、ははは」
+
+    「ちょっと、いいですか？」
+  priority: 1
+  displayMode: newline

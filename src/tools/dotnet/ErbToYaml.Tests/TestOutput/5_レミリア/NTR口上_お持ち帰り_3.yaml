@@ -1,0 +1,72 @@
+﻿character: レミリア
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%はいつもの部屋へと連行された。
+
+    見た目だけは豪奢を装った、しかし吐き気を催すような悪趣味な部屋であった。
+
+    悪趣味の極みか、%NTR_NAME(0)%は%CALLNAME:奴隷%の首輪に部屋の壁から伸びた鎖を繋ぎ鍵をかける。
+
+    哀れな奴隷を繋ぎ止めた%NTR_NAME(0)%は部屋を去り、入れ替わりに彼女を買った男が入ってくる。
+
+    せめてもの虚勢・・%CALLNAME:奴隷%は逃げも隠れもせず、わざとらしく笑みを浮かべて見せた。
+  priority: 5
+- id: talent_148_1
+  content: >-
+    「いっ、いやああっ！ 助けて、助けて%CALLNAME:MASTER%！！」
+
+    「いっ、いやああっ！ 何をするのっ、離しなさいっ！」
+
+    「いやああっ！ は、離しなさいっ！」
+  priority: 4
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: talent_7_2
+  content: >-
+    %NTR_NAME(0)%宅の門の前で、%CALLNAME:奴隷%は首輪を指でなぞりながらたずねた。
+
+    「さて、今日のお客様はどんな奉仕をお望みなのかしら？」
+
+    さらなる快楽への期待に頬を染めながらたずねる%CALLNAME:奴隷%に、%NTR_NAME(0)%は今日のオーダーを告げた。
+
+    ：
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%宅の門の前で、%CALLNAME:奴隷%は手渡された首輪を自分で身につけた。
+
+    首輪から伸びる鎖を%NTR_NAME(0)%に手渡すことが、我が身を捧げるという誓いなのだった。
+
+    %NTR_NAME(0)%は%CALLNAME:奴隷%から鎖を受け取り、%CALLNAME:奴隷%は彼の腕に引かれて門をくぐった。
+  priority: 2
+- id: fallback
+  content: >-
+    「ええ、行きましょう。ふふっ、楽しみね」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と腕を組んで歩きながら%NTR_KARE()%の家に同行した。
+
+    外泊してくることは%MSG_LOVER(奴隷)%も承知していることであり、彼女はもはや後ろめたさを感じてはいなかった。
+
+    （・・%CALLNAME:MASTER%・・帰ったら、聞かせてあげるわ・・ククク、楽しみにしてなさい）
+
+    「ええ、行きましょう」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と腕を組んで歩きながら%NTR_KARE()%の家に同行した。
+
+    （・・%CALLNAME:MASTER%・・帰ったら、聞かせてあげるわ・・ククク、楽しみにしてなさい）
+
+    「ふん、しけたところね・・」
+
+    %NTR_NAME(0)%宅に連れ込まれた%CALLNAME:奴隷%は不満を口にしている。
+
+    %NTR_NAME(0)%の家についての不満よりも、レディに対するマナーがなっていない等の愚痴の方が多かったようだ。
+  priority: 1

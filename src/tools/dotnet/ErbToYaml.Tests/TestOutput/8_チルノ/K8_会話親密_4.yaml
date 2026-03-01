@@ -1,0 +1,209 @@
+﻿character: チルノ
+situation: K8_会話親密
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%をそっと抱きしめた。
+
+    「んっ…%CALLNAME:MASTER%…」
+
+    冷たい体が%CALLNAME:MASTER%の温もりに包まれる。
+
+    %CALLNAME:TARGET%は目を細めて、幸せそうに%CALLNAME:MASTER%に身を委ねた。
+
+    「えへへ…あたいったら最強だけど、%CALLNAME:MASTER%の腕の中だと溶けちゃいそう…」
+
+    氷の妖精は照れくさそうに、でも離れようとはしなかった。
+
+    「――ぎゅってして、%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%が珍しく素直にお願いしてきた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の小さな体を優しく抱きしめた。
+
+    「…うん、あったかい。最強のあたいも、こうしてるときは…幸せ…」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に頬を寄せている。
+
+    氷の妖精は恋人の温もりに包まれて、幸せそうに目を閉じた。
+
+    %CALLNAME:TARGET%がいつの間にか%CALLNAME:MASTER%の背後に回っていた。
+
+    「えへへ、捕まえた！」
+
+    冷たい腕が%CALLNAME:MASTER%を後ろから抱きしめる。
+
+    「あたいから抱きついてあげるなんて、光栄に思いなさいよね」
+
+    %CALLNAME:MASTER%が振り向くと、%CALLNAME:TARGET%は得意げな、でもどこか照れた笑顔を浮かべていた。
+
+    「…ずっとこうしてたいな。最強のあたいが言うんだから間違いないわ」
+
+    「ねぇ%CALLNAME:MASTER%、あたいのこと抱きしめて」
+
+    %CALLNAME:TARGET%が腕を広げて待っている。
+
+    その姿が可愛らしくて、%CALLNAME:MASTER%は思わず抱きしめた。
+
+    「んふふ…%CALLNAME:MASTER%ってほんとあったかいわね」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に顔をうずめた。
+
+    「あたいったら最強だけど、この時だけは…%CALLNAME:MASTER%の方が強いかも」
+
+    幸せそうな吐息が、冷たい空気に白く溶けた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついた。
+
+    「わっ…え、%CALLNAME:MASTER%…？」
+
+    %CALLNAME:TARGET%は驚きながらも、冷たい腕を%CALLNAME:MASTER%に回した。
+
+    「…もう、急に甘えん坊なんだから」
+
+    頬を紅潮させながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%の背中を軽く叩いた。
+
+    「…あたいだって最強だから、これくらい…へ、平気なんだからね！」
+
+    「あ…%CALLNAME:MASTER%？」
+
+    %CALLNAME:MASTER%に抱きしめられて、%CALLNAME:TARGET%は一瞬固まった。
+
+    「…もう、いきなりなんだから」
+
+    だが、その声は怒っているようには聞こえない。
+
+    %CALLNAME:TARGET%は照れながらも、%CALLNAME:MASTER%の体に身を預けた。
+
+    「…あったかいわね。氷の妖精には、こういうの…いいかも…」
+
+    %CALLNAME:MASTER%が近づいてきて、%CALLNAME:TARGET%を抱きしめた。
+
+    「ひゃっ…！ ちょ、ちょっと…」
+
+    %CALLNAME:TARGET%は驚いたが、逃げようとはしなかった。
+
+    「…%CALLNAME:MASTER%って、こういうこと急にするわよね」
+
+    小さな溜息をつきながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の温もりを感じていた。
+
+    「…べ、別に嫌じゃないわよ。最強のあたいが許してあげるんだから」
+
+    「――んっ…」
+
+    %CALLNAME:MASTER%に抱きしめられて、%CALLNAME:TARGET%は小さな声を漏らした。
+
+    冷たい体がほんのり温まっていく。
+
+    「…%CALLNAME:MASTER%の体温、あったかい…」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を伏せながらも、離れようとはしなかった。
+
+    「…こうしてると、なんか…安心するのよね…」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついた。
+
+    「えっ…！？ ちょ、%CALLNAME:MASTER%…！？」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして固まった。
+
+    「だ、抱きつくなんて…いきなりすぎるわよ…」
+
+    戸惑いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%を押し退けはしなかった。
+
+    「…あったかい…なんか、悪くない…かも…」
+
+    「わわっ！？」
+
+    突然の抱擁に、%CALLNAME:TARGET%は動揺した声を上げた。
+
+    「%CALLNAME:MASTER%、急にどうしたのよ…」
+
+    %CALLNAME:TARGET%は困惑しながらも、抵抗はしなかった。
+
+    「…べ、別に嫌じゃないけどさ…こういうのって…」
+
+    「…あたいに許可取りなさいよね、次からは」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%を抱きしめると、冷気がふわりと漂った。
+
+    「えっ…ちょっと…」
+
+    %CALLNAME:TARGET%は目を白黒させている。
+
+    「いきなり抱きつくなんて…変な奴ね、あんた」
+
+    文句を言いながらも、%CALLNAME:TARGET%は離れようとしない。
+
+    「…まあ、たまにはいいわよ。最強のあたいが付き合ってあげる」
+
+    「な、なにするのよ…」
+
+    %CALLNAME:MASTER%に抱きしめられて、%CALLNAME:TARGET%は困った顔をした。
+
+    「あたいは氷の妖精なのよ？　冷たいでしょ」
+
+    だが、%CALLNAME:MASTER%の温もりは心地よいらしい。
+
+    「…ふーん、あんたの体温って結構あったかいのね」
+
+    %CALLNAME:TARGET%は少し興味深そうに、%CALLNAME:MASTER%の温もりを感じていた。
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きつこうとした。
+
+    「はぁ！？ ちょ、ちょっと何するのよ！」
+
+    %CALLNAME:TARGET%は慌てて身を引いた。
+
+    冷気が周囲に漂い始める。
+
+    「い、いきなり抱きつくなんて…あたいを誰だと思ってるの！」
+
+    「最強の妖精に馴れ馴れしくするなんて、いい度胸ね！」
+
+    「えっ…ちょっと…」
+
+    %CALLNAME:MASTER%が近づいてきて、%CALLNAME:TARGET%は後ずさった。
+
+    「抱きつくのは…その…しもやけになるわよ？」
+
+    %CALLNAME:TARGET%は困ったように眉を下げた。
+
+    「…もうちょっと仲良くなってからにしなさいよね」
+
+    「あたいだって選ぶ権利があるんだから！」
+
+    「なっ…！」
+
+    %CALLNAME:MASTER%が抱きつこうとすると、%CALLNAME:TARGET%は冷気を放った。
+
+    「馴れ馴れしいわね！　あたいは最強の妖精なのよ！」
+
+    %CALLNAME:TARGET%は威嚇するように腕を振り回した。
+
+    「そうやってすぐ触ろうとするの、やめなさいよね！」
+
+    だが、本気で凍らせるつもりはないらしく、冷気はすぐに収まった。
+
+    「ちょっとあんた、近いわよ！」
+
+    %CALLNAME:MASTER%が近づくと、%CALLNAME:TARGET%は顔をしかめた。
+
+    「あたいに抱きつくなんて百年早いわね」
+
+    %CALLNAME:TARGET%は腰に手を当てて、偉そうに言い放った。
+
+    「まずはあたいの偉大さを理解するところから始めなさい！」
+
+    「…話はそれからよ」
+  priority: 1

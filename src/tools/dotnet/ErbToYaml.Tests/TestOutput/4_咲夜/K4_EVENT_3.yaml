@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    「だからこうして、%CALLNAME:PLAYER%が勃たなくなるまで一滴残らず搾り取ってあげるわ」
+
+    「大人しくしなさい。すぐに済むわ。・・あまり早いのも考え物だけど」
+
+    「我慢できるならしてもいいのよ。無駄だと思うけど。ふふっ」
+  priority: 1
+  displayMode: newline

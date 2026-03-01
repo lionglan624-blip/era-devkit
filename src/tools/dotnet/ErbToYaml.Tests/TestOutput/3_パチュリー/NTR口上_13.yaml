@@ -1,0 +1,55 @@
+﻿character: パチュリー
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%に目配せされた%CALLNAME:奴隷%はうつむき加減で%CALLNAME:MASTER%に声をかけた。
+
+    「・・ごめんなさい、%NTR_KARE()%が呼んでいるわ」
+
+    「・・ごめんなさい、お呼びみたい」
+
+    「%NTR_KARE()%が呼んでいるみたいだから・・ごめんなさい」
+  priority: 6
+  displayMode: newline
+- id: talent_7_1
+  content: '%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ、微笑みながら%NTR_NAME(0)%の方に歩いていった。'
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%に目配せされた%CALLNAME:奴隷%は頬を染めた。
+
+    「・・お呼びかしら？」
+
+    「・・待たせたかしら」
+
+    「・・何かしら？」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%に目配せされた%CALLNAME:奴隷%は頬を染た。
+
+    「・・お呼びかしら？」
+
+    「・・待たせたかしら」
+
+    「・・何かしら？」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・ごめんなさい、用事を思い出したわ」
+
+    「・・こんな所にいたのね」
+
+    「・・何か用？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: '%CALLNAME:奴隷%は%CALLNAME:MASTER%から離れ%NTR_NAME(0)%の方に歩いていった。'
+  priority: 1

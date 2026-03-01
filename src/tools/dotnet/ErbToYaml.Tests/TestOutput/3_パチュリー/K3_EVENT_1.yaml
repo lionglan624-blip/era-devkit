@@ -1,0 +1,27 @@
+﻿character: パチュリー
+situation: K3_EVENT
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%CALLNAME:PLAYER%がアヌスにローターを挿入していることに気付いて微笑んだ。
+
+    %" ちょうどいいから、このまましてあげるわ」"%
+
+    %" 気持ちいい方がいいでしょう？ 入れたまましてあげるわ」"%
+
+    %" ローターが好きなら仕方ないわね。このまましてあげるわ」"%
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%CALLNAME:PLAYER%が下着を身に着けていないことに気付いて微笑んだ。
+
+    「あら…ノーパンだなんて、ふふっ、ちょうどいいわね」
+
+    %"「あら・・ノーパンだなんて、丁度いいわね」"%
+
+    %"「ふふ・・履いてないだなんて、そういう健康法かしら？」"%
+
+    %"「・・誰かに下着を取られたのかしら？ また何かしたの？」"%
+  priority: 1
+  displayMode: newline

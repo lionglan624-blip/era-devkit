@@ -1,0 +1,36 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああっ・・きて・・きてっ！ 中に出してっ！！ 孕ませてっ！」
+
+    「あああっ！！ いいっ！！ 出してっ！ 中に、中に出してっ！！ 孕ませてっ！」
+
+    「い、いくっ！ いくうっ！！ 孕ませてっ！ 子宮に出して！ 孕ませてっ！！
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ・・きて・・きてっ！ 中に出してっ！！」
+
+    「あああっ！！ いいっ！！ 出してっ！ 中に、中に出してっ！！」
+
+    「い、いくっ！ いくうっ！！ 中にっ！ 中にちょうだいっ！！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ・・きて・・きてっ！ 中に出しなさいっ！！」
+
+    「あああっ！！ いいっ！！ 出してっ！ 中に、中に出しなさいっ！！」
+
+    「い、いくっ！ いくうっ！！ 中でっ！ 中で出すのよっ！！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「や、やめ、中は、中だけは許してっ・・！ あっ・・あああああ！！！」
+
+    必死に抵抗する%CALLNAME:奴隷%の懇願を無視し、%NTR_NAME(0)%は容赦なく最深部まで届くよう突き上げて奥の奥で射精した。
+  priority: 1

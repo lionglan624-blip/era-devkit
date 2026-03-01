@@ -1,0 +1,71 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ11-22
+entries:
+- id: fallback
+  content: >-
+    「はい・・おおせのままに・・
+
+    「はい・・お言いつけどおりに・・
+
+    「はい・・承知しました・・
+
+    ああ・・イイ
+
+    ふふっ・・感じちゃう・・
+
+    ううン・・歩くだけで・・
+  priority: 6
+- id: fallback
+  content: >-
+    「はい・・おおせのままに・・
+
+    「はい・・お言いつけどおりに・・
+
+    「はい・・承知しました・・
+
+    ああ・・イイ
+
+    ふふっ・・感じちゃう・・
+
+    ううン・・歩くだけで・・
+  priority: 5
+- id: fallback
+  content: >-
+    「わかったわ・・
+
+    「ふふっ・・悪趣味ね・・
+
+    「入れたままで行くのね・・
+
+    ああん・・
+
+    あぁっ・・感じちゃう・・
+
+    ううン・・
+  priority: 4
+- id: fallback
+  content: >-
+    「ああん・・
+
+    「あぁっ・・感じちゃう・・
+
+    「ううン・・
+  priority: 3
+- id: fallback
+  content: >-
+    「ああん・・」
+
+    「あぁっ・・こんな・・」
+
+    「ううン・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・こんなことで私が堕ちると思わないで・・」
+
+    「・・舐められたものね・・くっ・・」
+
+    「・・覚えていなさい・・」
+  priority: 1
+  displayMode: newline

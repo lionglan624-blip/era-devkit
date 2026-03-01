@@ -1,0 +1,57 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「はあぁ・・ちゅっ・・ちゅうっ・・%MSG_HEART()%」
+
+    「んふ・・ん・・ちゅっ・・%MSG_HEART()%」
+
+    「いいよ・・いっぱいしようね？ んっ・・%MSG_HEART()%」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はあぁ・・ちゅっ・・ちゅうっ・・%MSG_HEART()%」
+
+    「んふ・・ん・・ちゅっ・・%MSG_HEART()%」
+
+    「いいよ・・いっぱいしようね？ んっ・・%MSG_HEART()%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はあぁ・・ちゅっ・・ちゅうっ・・」
+
+    「んふ・・ん・・ちゅっ・・」
+
+    「いいよ・・しても・・んっ・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ？ や、やぁっ・・んっ・・ん・・」
+
+    「んむっ！？ んっ・・やぁ・・ん・・ううん・・」
+
+    「やぁん！ んっ・・ちゅ・・ぁん・・ん・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ？ や、やぁっ・・んっ・・ん・・」
+
+    「んむっ！？ んっ・・やぁ・・ん・・ううん・・」
+
+    「やぁん！ んっ・・ちゅ・・ぁん・・ん・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ええっ？　んっ・・やだっ・・んんぅっ！！」
+
+    「んむっ！？ んっ・・やだぁ・・ん・・ううん・・」
+
+    「嫌ぁ！ んっ・・ちゅ・・ん！！」
+  priority: 1
+  displayMode: newline

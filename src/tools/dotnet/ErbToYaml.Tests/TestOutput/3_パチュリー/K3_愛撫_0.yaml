@@ -1,0 +1,197 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「んっ……あ……」
+
+    %CALLNAME:TARGET%は手元の魔導書を閉じ、%CALLNAME:MASTER%の愛撫を受け入れた。
+
+    「……%CALLNAME:MASTER%、今日は読書より私を選んでくれるの？」
+
+    %CALLNAME:TARGET%は静かに目を閉じ、%CALLNAME:MASTER%の手の温もりに身を委ねている。
+
+    「……嬉しいわ。こうしていると、魔力が満ちていくみたい」
+
+    そう呟きながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%に寄り添った。
+
+    「……ふぅ……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の体をゆっくりと撫でている。
+
+    %CALLNAME:TARGET%は淡々とした表情を保とうとしているが、頬が微かに上気している。
+
+    「……あなたの手は、不思議ね。触れられると、心が落ち着くの」
+
+    %CALLNAME:TARGET%は珍しく素直な言葉を口にした。
+
+    「……もう少し、そうしていて」
+
+    「あ……そこ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に愛撫されながら、小さく声を漏らした。
+
+    大図書館の静寂の中、%CALLNAME:TARGET%の吐息だけが響いている。
+
+    「……本の中では味わえない感覚ね、これは」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の顔を見上げ、微かに微笑んだ。
+
+    「……あなたとの時間は、私の一番の研究材料よ」
+
+    「……ん……くぅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の愛撫に、身を震わせた。
+
+    普段は感情を表に出さない%CALLNAME:TARGET%が、今は甘い表情を浮かべている。
+
+    「%CALLNAME:MASTER%……私を壊さないでね……体が弱いんだから」
+
+    そう言いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を離さなかった。
+
+    「……でも、あなたになら壊されてもいいわ」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「っ……何するの……」
+
+    %CALLNAME:TARGET%は驚いた様子で%CALLNAME:MASTER%を見上げた。
+
+    しかし、抵抗する様子はない。
+
+    「……別に、嫌じゃないわ。ただ、急だったから」
+
+    %CALLNAME:TARGET%は頬を赤らめながら、視線を逸らした。
+
+    「……続けていいわよ。本を読むのに邪魔じゃなければ」
+
+    「あ……やぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の愛撫に、小さく声を上げた。
+
+    手元の本のページが、めくられないまま止まっている。
+
+    「……集中できないじゃない」
+
+    そう言いながらも、%CALLNAME:TARGET%は本を閉じた。
+
+    「……今日は、あなたの相手をしてあげるわ」
+
+    「……ん……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に触れられて、目を伏せた。
+
+    「……こういうの、慣れていないの。だから……」
+
+    %CALLNAME:TARGET%は言葉を探すように、口をつぐんだ。
+
+    「……優しくして。本みたいに丁寧に扱って」
+
+    恥ずかしそうに、%CALLNAME:TARGET%はそう呟いた。
+
+    「ふぁ……っ……」
+
+    %CALLNAME:TARGET%は思わず声を漏らし、慌てて口を押さえた。
+
+    「……聞こえたら、小悪魔に何を言われるか」
+
+    %CALLNAME:TARGET%は周囲を警戒するように見回した。
+
+    「……%CALLNAME:MASTER%、もっと奥の書架に行きましょう」
+
+    そう言って、%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を引いた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……何をするの」
+
+    %CALLNAME:TARGET%は怪訝そうな顔で%CALLNAME:MASTER%を見た。
+
+    「……まあ、いいわ。読書の邪魔にならない程度なら」
+
+    %CALLNAME:TARGET%は本に視線を戻しながらも、%CALLNAME:MASTER%を拒否しなかった。
+
+    「……変な気を起こさないでよ」
+
+    「っ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に触れられ、一瞬身を強張らせた。
+
+    しかし、すぐに力を抜いた。
+
+    「……そういうスキンシップが好きなの？」
+
+    %CALLNAME:TARGET%は淡々と言いながらも、どこか満更でもない様子だった。
+
+    「……まあ、あなたの好きにしなさい」
+
+    「……ふぅん」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の行為を観察するような目で見ている。
+
+    「……人間って、こういうことをするのね」
+
+    %CALLNAME:TARGET%はまるで実験対象を見るかのように、冷静に分析している。
+
+    「……興味深いわ。もう少し続けて」
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って%CALLNAME:MASTER%の愛撫を受けている。
+
+    本を読む手が、いつの間にか止まっている。
+
+    「……悪くないわね。これは」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「……でも、調子に乗らないで」
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の真似？」
+
+    %CALLNAME:TARGET%は本から視線を上げ、冷ややかな目で%CALLNAME:MASTER%を見た。
+
+    「私に触れる許可は与えていないわよ」
+
+    %CALLNAME:TARGET%は素っ気なく言い放った。
+
+    「……用があるなら、口で言いなさい」
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って%CALLNAME:MASTER%の手を払いのけた。
+
+    「読書の邪魔よ。出て行って」
+
+    %CALLNAME:TARGET%は冷たく言い放ち、再び本に視線を落とした。
+
+    「……次やったら、精霊魔法で追い出すわ」
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「距離感というものを学びなさい」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%から距離を取った。
+
+    「……私の図書館で何をしているの」
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついた。
+
+    「あなたは本を読みに来たんじゃないの？」
+
+    %CALLNAME:TARGET%は呆れたような表情を浮かべている。
+
+    「……まあいいわ。好きにしなさい。ただし、私の邪魔はしないで」
+
+    そう言って、%CALLNAME:TARGET%は本に集中し始めた。
+  priority: 1

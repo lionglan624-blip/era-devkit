@@ -1,0 +1,7 @@
+{
+  "name": "core-movement: 移動テスト",
+  "description": "起床後、移動コマンドで場所を変更できることを確認",
+  "expect": {
+    "output_contains": ["[100]"]
+  }
+}

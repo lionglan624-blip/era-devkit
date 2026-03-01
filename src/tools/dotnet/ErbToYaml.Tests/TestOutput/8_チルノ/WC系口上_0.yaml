@@ -1,0 +1,13 @@
+﻿character: チルノ
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    「わ……！？　お、おどかしちゃったかなぁ？　なんか……ごめんね？」
+
+    「うわ！？　そ、そんなに強くした？　……もしかして、痛かったとか？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: 「あはは！　ビックリした？」
+  priority: 1

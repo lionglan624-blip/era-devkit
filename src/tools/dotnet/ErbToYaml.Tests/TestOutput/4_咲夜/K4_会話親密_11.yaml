@@ -1,0 +1,21 @@
+﻿character: 咲夜
+situation: K4_会話親密
+entries:
+- id: fallback
+  content: >-
+    「・・仕方ないわね・・」
+
+    「・・ええ、あの人には内緒よ・・」
+
+    「・・ふふ、二人だけの秘密ね？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・いけないわ・・」
+
+    「・・やめてちょうだい」
+
+    「・・だめよ・・」
+  priority: 1
+  displayMode: newline

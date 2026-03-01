@@ -1,0 +1,255 @@
+﻿character: フラン
+situation: K6_会話親密
+entries:
+- id: fallback
+  content: >-
+    「ん……ちゅ、る……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇にそっとキスをした。
+
+    %CALLNAME:TARGET%は目を閉じて、%CALLNAME:MASTER%のキスを受け入れている。
+
+    「んふふ……%CALLNAME:MASTER%の唇、あったかいのさ……」
+
+    %CALLNAME:TARGET%の翼がぱたぱたと嬉しそうに揺れている。紅い瞳が蕩けたように潤んでいる。
+
+    「もっとして……？ キスされてると、壊したくならないのさ……不思議だね」
+
+    %CALLNAME:TARGET%は無邪気な笑顔で、また唇を求めてきた。
+
+    「%CALLNAME:MASTER%……キス、しよ？」
+
+    %CALLNAME:TARGET%は自分からつま先立ちになって、%CALLNAME:MASTER%の唇に触れた。
+
+    「ん、ちゅ……れろ……ちゅっ」
+
+    %CALLNAME:TARGET%は不慣れながらも、一生懸命に唇を重ねている。
+
+    「はぁ……%CALLNAME:MASTER%の味がするのさ……」
+
+    唇を離した%CALLNAME:TARGET%は、蕩けた表情で%CALLNAME:MASTER%を見つめている。
+
+    「495年、ずっと知らなかったの。こんなにあったかいこと……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の首に腕を回し、また唇を近づけてきた。
+
+    「ん……んむっ……」
+
+    %CALLNAME:MASTER%と%CALLNAME:TARGET%は深く唇を重ね合っている。
+
+    「ちゅる……れろ……ん……」
+
+    %CALLNAME:TARGET%の舌が、ぎこちなく%CALLNAME:MASTER%の口内を探っている。
+
+    「ぷはぁっ……あはは、舌まで入れちゃったのさ……」
+
+    %CALLNAME:TARGET%は頬を染めながらも、幸せそうに笑っている。
+
+    「%CALLNAME:MASTER%、ずっと私のそばにいてね……？」
+
+    495年の孤独を埋めるように、%CALLNAME:TARGET%は%CALLNAME:MASTER%に寄り添った。
+
+    「ねえ、%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を取り、自分の頬に当てた。
+
+    「キスして……？ 私から言うの、恥ずかしいんだけど……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇にそっと口づけた。
+
+    「ん……ちゅ、ぷ……んぅ……」
+
+    %CALLNAME:TARGET%は幸せそうに目を細め、%CALLNAME:MASTER%のキスを受け止めている。
+
+    「……ふふ、%CALLNAME:MASTER%のキス、大好きなのさ」
+
+    唇を離した%CALLNAME:TARGET%は、無邪気に笑って%CALLNAME:MASTER%に抱きついた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ん……っ！？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に唇を重ねた。
+
+    %CALLNAME:TARGET%は驚いて目を見開いたが、やがて瞳を閉じた。
+
+    「……ちゅ、ん……ぷは……」
+
+    唇が離れると、%CALLNAME:TARGET%は頬を真っ赤に染めていた。
+
+    「キスって……こういうのなんだ……本で読んだのと、ちょっと違うのさ……」
+
+    %CALLNAME:TARGET%は照れくさそうに視線を逸らした。
+
+    「……もう一回、してもいい……？」
+
+    「あっ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%にキスをした。
+
+    「んっ……ん……」
+
+    %CALLNAME:TARGET%はぎこちなく唇を動かしている。翼が緊張するように畳まれた。
+
+    「……%CALLNAME:MASTER%の唇、あったかい……のさ……」
+
+    %CALLNAME:TARGET%は熱っぽい瞳で%CALLNAME:MASTER%を見上げた。
+
+    「地下にいた時は、こんなこと知らなかったの……」
+
+    「ねえ、また遊びに来てくれる？ 地下は寂しいから……」
+
+    「……んっ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%のキスを受け止めた。
+
+    「ちゅ……ん……」
+
+    控えめに唇を重ね合う二人。%CALLNAME:TARGET%の手が%CALLNAME:MASTER%の服を掴んでいる。
+
+    「はぁ……ドキドキするのさ……」
+
+    %CALLNAME:TARGET%の心臓が早鳴りしているのが伝わってくる。
+
+    「……%CALLNAME:MASTER%といると、壊したくならないの……なんでだろう……」
+
+    不思議そうに、でも嬉しそうに%CALLNAME:TARGET%は微笑んだ。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の顎を優しく持ち上げ、唇を重ねた。
+
+    「ん……ちゅ……ぷ……」
+
+    %CALLNAME:TARGET%は最初こそ戸惑っていたが、次第に身を預けてきた。
+
+    「……はぁ……なんだか、ふわふわするのさ……」
+
+    %CALLNAME:TARGET%は夢見心地の表情で%CALLNAME:MASTER%を見つめている。
+
+    「ねえ、%CALLNAME:MASTER%……私のこと、好き……？」
+
+    紅い瞳が不安げに揺れている。495年の孤独が、その問いに宿っていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「んっ……！？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%にキスをした。
+
+    %CALLNAME:TARGET%は目を丸くして固まってしまった。
+
+    「き、キス……したの……？」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして、%CALLNAME:MASTER%を見つめている。
+
+    「これって……好きな人にするって、本に書いてあったのさ……」
+
+    「……わ、私のこと、好きなの？ よくわかんないよ……」
+
+    %CALLNAME:TARGET%は困惑しながらも、唇に触れた指を見つめていた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇に触れた。
+
+    「ぴちゅ……ん……」
+
+    %CALLNAME:TARGET%は一瞬身を硬くしたが、すぐに力を抜いた。
+
+    「……っ。な、何……これ……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、逃げようとはしなかった。
+
+    「……あったかい……のさ……」
+
+    「でも、急にこんなことされると……壊しちゃいそうになる……」
+
+    %CALLNAME:TARGET%の翼が落ち着かなげにぱたぱたと動いている。
+
+    「えっ……？」
+
+    %CALLNAME:MASTER%が顔を近づけると、%CALLNAME:TARGET%はきょとんとした。
+
+    %CALLNAME:MASTER%はそのまま%CALLNAME:TARGET%の唇にキスをした。
+
+    「んっ……ん……」
+
+    %CALLNAME:TARGET%は目を閉じ、されるがままになっている。
+
+    「……ぷは。……なんか、変な気持ちになるのさ……」
+
+    %CALLNAME:TARGET%は頬を染めて、落ち着かなげに視線を彷徨わせた。
+
+    「あっ……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の頬に手を添え、唇を重ねた。
+
+    「ん……」
+
+    %CALLNAME:TARGET%は驚きながらも、%CALLNAME:MASTER%のキスを受け入れた。
+
+    「……唇、柔らかいのさ……」
+
+    %CALLNAME:TARGET%は不思議そうに自分の唇に触れている。
+
+    「これが、キス……地下にいた頃は、想像もできなかったの……」
+
+    495年の孤独を知る紅い瞳が、少しだけ和らいだ。
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%にキスをしようとした。
+
+    「……何するの？」
+
+    %CALLNAME:TARGET%は冷たい瞳で%CALLNAME:MASTER%を見つめた。
+
+    「私、495年もずっと一人だったんだよ？ 急に近づかないで」
+
+    %CALLNAME:TARGET%の紅い瞳に、危険な光が宿る。
+
+    「……壊しちゃうかもしれないのさ。きゅっとしてドカーン、ってね」
+
+    %CALLNAME:TARGET%は不穏な笑みを浮かべ、一歩後ろに下がった。
+
+    「んっ……！」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%と唇を重ねようとした。
+
+    「……やめて」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を押し退けた。翼が威嚇するように広がる。
+
+    「唇なんて触らせたら、壊しちゃうかもしれないのさ」
+
+    %CALLNAME:TARGET%は寂しそうな、でも警戒した目で%CALLNAME:MASTER%を見ていた。
+
+    「……もっと、仲良くなってからじゃないとダメなのさ」
+
+    「……ねえ、何？」
+
+    %CALLNAME:MASTER%が近づくと、%CALLNAME:TARGET%は首を傾げた。
+
+    %CALLNAME:MASTER%はキスをしようとしたが、%CALLNAME:TARGET%はひらりと身をかわした。
+
+    「あはは、捕まえてみせてよ。私、逃げるの上手いんだから」
+
+    %CALLNAME:TARGET%は子供のように笑っている。その瞳に、どこか危うい光が宿っていた。
+
+    「……でも、本当に捕まえたら……壊しちゃうかもね？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に顔を近づけた。
+
+    「……なに？ キス？」
+
+    %CALLNAME:TARGET%は無表情で%CALLNAME:MASTER%を見つめている。
+
+    「お姉様とはするけど、%CALLNAME:MASTER%とはまだダメなのさ」
+
+    %CALLNAME:TARGET%はつまらなそうに視線を逸らした。
+
+    「……もっと遊んでくれたら、考えてあげてもいいよ？」
+
+    495年の孤独が、その言葉の裏に潜んでいる。
+  priority: 1

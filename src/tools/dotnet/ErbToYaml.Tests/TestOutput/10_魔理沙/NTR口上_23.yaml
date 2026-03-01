@@ -1,0 +1,48 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああ…おしり…イイ…いい…もっと…もっと…」
+
+    「ああっ…お、奥まで…奥まで、きてぇ…」
+
+    「ああ…すごい…ああ…ふとくて…イイっ…」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ…おしり…イイ…いい…もっと…もっと…」
+
+    「ああっ…お、奥まで…奥まで、きてぇ…」
+
+    「ああ…すごい…ああ…ふとくて…イイっ…」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ…おしり…イイ…いい…」
+
+    「ああっ…お、奥まで…奥まで、くるぅ…」
+
+    「ああ…すごい…ああ…ふとくて…ああ…」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ…そんな…おしりなんかで…ああ…」
+
+    「ああっ…お、奥まで…奥まで、ああ…」
+
+    「ああ…くうっ…ああ…ふとい…ああ…」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「い、いやっ…ああっ…痛っ…！」
+
+    「いや…いやあ…た、たすけ、て…」
+
+    「くっ…うっ…ううっ…」
+  priority: 1
+  displayMode: newline

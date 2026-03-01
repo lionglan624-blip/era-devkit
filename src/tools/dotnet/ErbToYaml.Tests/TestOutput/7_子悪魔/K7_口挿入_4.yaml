@@ -1,0 +1,239 @@
+﻿character: 子悪魔
+situation: K7_口挿入
+entries:
+- id: fallback
+  content: >-
+    「えへへ……%CALLNAME:MASTER%、あたしの体で洗ってあげるね？」
+
+    %CALLNAME:TARGET%は嬉しそうに石鹸を泡立て始めた。
+
+    小さな体に泡を塗りたくり、%CALLNAME:MASTER%に密着してくる。
+
+    「んっ……ぬるぬる……気持ちいいでしょ？」
+
+    %CALLNAME:TARGET%は一生懸命に体を擦り付けながら、%CALLNAME:MASTER%を見上げた。
+
+    「あたし、%CALLNAME:MASTER%のこと大好きだから……いっぱいきれいにしてあげるの」
+
+    妖精の小さな体が、懸命に%CALLNAME:MASTER%を洗い上げていく……
+
+    「今日もあたしの体で、洗っていい？」
+
+    %CALLNAME:TARGET%は満面の笑みで%CALLNAME:MASTER%の体に抱きついた。
+
+    「むにゅ……んっ……ぬるぬるして、あたしも気持ちいい……」
+
+    %CALLNAME:TARGET%は慣れた様子で体を擦り付け始めた。
+
+    「ふふっ……%CALLNAME:MASTER%の、ここも元気になってる……」
+
+    嬉しそうに%CALLNAME:TARGET%は下半身も丁寧に洗っている。
+
+    「えへへ、いっぱいきれいにしてあげるね……？」
+
+    「%CALLNAME:MASTER%……あたし、もっと上手に洗いたいの……」
+
+    %CALLNAME:TARGET%は真剣な表情で泡を体中に広げた。
+
+    「だから……いっぱい練習させてね？」
+
+    小さな体が%CALLNAME:MASTER%に密着し、ゆっくりと擦り付けられる。
+
+    「んしょ……こう動かすと、気持ちいいって……」
+
+    %CALLNAME:TARGET%は胸や陰部を押し付けながら、期待に満ちた目で見上げた。
+
+    「……ね、あたし、ちゃんとできてる……？」
+
+    「あ……%CALLNAME:MASTER%、汚れちゃったんだ……えへへ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の体を愛おしそうに見つめた。
+
+    「あたしの体できれいにすると、%CALLNAME:MASTER%喜ぶかな……？」
+
+    %CALLNAME:TARGET%は嬉しそうに泡まみれの体で%CALLNAME:MASTER%に抱きついた。
+
+    「ふふっ……ぬるぬるして、気持ちいいね……」
+
+    %CALLNAME:TARGET%はくすくす笑いながら、優しく体を擦り付けている。
+
+    「%CALLNAME:MASTER%……大好き。ずっとあたしで洗わせてね……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「え、えっと……あ、あたしの体で……洗うの……？」
+
+    %CALLNAME:TARGET%は真っ赤になりながら、おずおずと泡を体に塗り始めた。
+
+    「こ、こうすればいいの……？」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%の体に密着した。
+
+    「んっ……ぬるぬるして……恥ずかしい……」
+
+    小さな体で精一杯%CALLNAME:MASTER%を洗おうとしている。
+
+    「……%CALLNAME:MASTER%、気持ちいい……ですか……？」
+
+    「あの……%CALLNAME:MASTER%のために……体で、洗います……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで石鹸を泡立てた。
+
+    「むにゅ……こういうの、初めてだから……」
+
+    ぎこちない動きで、%CALLNAME:TARGET%は懸命に体を擦り付けている。
+
+    「んしょ……こう……？」
+
+    一生懸命な%CALLNAME:TARGET%の姿は、どこか健気だった。
+
+    「……きれいになって、くれたら……嬉しいな……」
+
+    「は、恥ずかしいよぅ……でも……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、泡まみれの体で%CALLNAME:MASTER%に密着した。
+
+    「%CALLNAME:MASTER%が気持ちよくなるなら……あたし、頑張る……」
+
+    小さな体が%CALLNAME:MASTER%に擦り付けられ、ゆっくりと動く。
+
+    「……んっ……あたしもぬるぬるして……変な感じ……」
+
+    %CALLNAME:TARGET%は自分の体の感触に驚きながらも、動きを止めなかった。
+
+    「……%CALLNAME:MASTER%……あたしのこと、好き……？」
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は上目遣いに%CALLNAME:MASTER%を見つめた。
+
+    「あたし……%CALLNAME:MASTER%のこと、好きだから……」
+
+    恥ずかしそうに俯きながら、%CALLNAME:TARGET%は泡まみれの体を押し付けた。
+
+    「だから……あたしの体で、洗わせて……ね……？」
+
+    小さな体がたどたどしく動き、%CALLNAME:MASTER%を洗おうと頑張っている。
+
+    %CALLNAME:TARGET%は真剣な表情で、%CALLNAME:MASTER%の反応を見守っていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え……あたしの体で……洗うの……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見つめて固まっている。
+
+    「その……こういうこと、したことないです……」
+
+    おずおずと泡を体に塗り、恐る恐る%CALLNAME:MASTER%に密着してみる。
+
+    「わっ……ぬるぬるする……」
+
+    %CALLNAME:TARGET%は驚きながらも、言われた通りに体を擦り付け始めた。
+
+    「……こう……ですか……？　あたし、ちゃんとできてますか……？」
+
+    「あの……%CALLNAME:MASTER%……これって……」
+
+    %CALLNAME:TARGET%は戸惑いながら、石鹸を泡立てた。
+
+    「えっと……体を擦り付ければいいんですよね……？」
+
+    ぎこちない動きで、%CALLNAME:TARGET%は見よう見まねで体を動かし始めた。
+
+    「……ぬるぬる……なんか、変な感じ……」
+
+    初めての感触に%CALLNAME:TARGET%は困惑しながらも、体を動かし続けている。
+
+    「……%CALLNAME:MASTER%……あたし、上手にできてますか……？」
+
+    「……はい……やります……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで泡を体中に塗った。
+
+    「あの……優しくしてくださいね……？　あたし、怖いので……」
+
+    小さな体が震えながら%CALLNAME:MASTER%に密着した。
+
+    「……こう……？　もっと強く擦った方が……？」
+
+    %CALLNAME:TARGET%は不安そうに%CALLNAME:MASTER%の顔色を窺いながら、体を動かしている。
+
+    「……%CALLNAME:MASTER%が満足してくれたら……嬉しいです……」
+
+    「……えっと……%CALLNAME:MASTER%のお手伝い……ですか？」
+
+    %CALLNAME:TARGET%は首を傾げながら、石鹸を見つめた。
+
+    「妖精メイドのお仕事……なのかな……」
+
+    %CALLNAME:TARGET%は困惑しながらも、泡まみれの体で%CALLNAME:MASTER%に抱きついた。
+
+    「……むにゅ……こうかな……」
+
+    たどたどしい動きで、%CALLNAME:TARGET%は懸命に体を擦り付け始めた。
+
+    「……咲夜さんには、絶対内緒ですよ……？」
+  priority: 2
+- id: fallback
+  content: >-
+    「え……えっ……あ、あたしの体で……洗う……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見つめて顔を青くした。
+
+    「あの……こういうの、あたしにはわからないです……」
+
+    困惑した表情で、%CALLNAME:TARGET%は後ずさりしようとした。
+
+    「……で、でも……やらないとダメ……ですか……」
+
+    観念したように、%CALLNAME:TARGET%は恐る恐る泡を体に塗り始めた。
+
+    「……う……こうですか……」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で石鹸を見つめている。
+
+    「……あたし、こういうの、どうすればいいかわからないです……」
+
+    仕方なさそうに泡を体に塗り、ぎこちなく%CALLNAME:MASTER%に密着した。
+
+    「……こう……ですか……」
+
+    機械的に体を動かしながら、%CALLNAME:TARGET%は視線を逸らしている。
+
+    「……早く終わってほしいな……」
+
+    「ひっ……こ、これを……あたしの体で……？」
+
+    %CALLNAME:TARGET%は怯えた表情で石鹸を見つめた。
+
+    「あの……お仕事なら他のことの方が……」
+
+    %CALLNAME:TARGET%は逃げ出したそうな顔をしているが、従わざるを得ない。
+
+    「……う……やります……」
+
+    嫌々ながら%CALLNAME:TARGET%は泡まみれの体で%CALLNAME:MASTER%に密着した。
+
+    「……こういうの、苦手なんです……ごめんなさい……」
+
+    「……%CALLNAME:MASTER%……なんでこんなこと……」
+
+    %CALLNAME:TARGET%は困惑と戸惑いの表情を浮かべている。
+
+    「あたし、お掃除とかお茶汲みの方が得意なんですけど……」
+
+    渋々と%CALLNAME:TARGET%は石鹸を泡立て始めた。
+
+    「……えっと……むにゅ……こう……？」
+
+    不慣れな動きで、%CALLNAME:TARGET%は泡まみれの体を%CALLNAME:MASTER%に擦り付け始めた。
+
+    「……咲夜さんに見つかったら、怒られちゃいます……」
+  priority: 1

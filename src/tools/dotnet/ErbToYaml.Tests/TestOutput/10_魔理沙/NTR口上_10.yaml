@@ -1,0 +1,30 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ふふっ…悪趣味な%呼称%…いいぜ…ああ…」
+
+    「ふふ…そうだな、サービスしてやろう…あ…ん…」
+
+    「見られている方が私も気持ちよくなれるしな…あ…あんっ…」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふふっ…悪趣味な奴…いいぜ…ああ…」
+
+    「ふふ…そうだな、サービスしてやろう…あ…ん…」
+
+    「見られている方が私も気持ちよくなれるしな…あ…あんっ…」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「なっ…やめろっ…さわるな…」
+
+    「いやっ…たすけて…たすけて%CALLNAME:MASTER%…！」
+
+    「ああ…た、たすけてっ…！」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,11 @@
+﻿character: フラン
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    「わっ……！
+
+    「あ……！？
+
+    「わわ……！
+  priority: 1

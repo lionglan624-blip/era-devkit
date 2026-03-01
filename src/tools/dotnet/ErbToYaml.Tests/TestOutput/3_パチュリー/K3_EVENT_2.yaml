@@ -1,0 +1,11 @@
+﻿character: パチュリー
+situation: K3_EVENT
+entries:
+- id: fallback
+  content: >-
+    %"「ホムンクルスの研究のために活きのいい精液が必要なの。"%
+
+    %"「実験のためにザーメンが必要になったの。"%
+
+    %"「調合に精液が要るのよ。"%
+  priority: 1

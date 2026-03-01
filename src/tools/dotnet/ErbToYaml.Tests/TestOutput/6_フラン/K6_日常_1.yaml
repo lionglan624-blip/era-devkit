@@ -1,0 +1,12 @@
+﻿character: フラン
+situation: K6_日常
+entries:
+- id: fallback
+  content: >-
+    「や、やだっ！」
+
+    「あ、お、お部屋のお掃除！」
+
+    「やだよそんなのっ！」
+  priority: 1
+  displayMode: newline

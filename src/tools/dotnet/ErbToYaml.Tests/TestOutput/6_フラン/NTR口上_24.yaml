@@ -1,0 +1,12 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「あ・・%CALLNAME:奴隷%のこと買ってくれたんだ」
+
+    「あ、それって%CALLNAME:奴隷%の鍵だよね？」
+
+    「%CALLNAME:奴隷%のこと買ってくれたんだ」
+  priority: 1
+  displayMode: newline

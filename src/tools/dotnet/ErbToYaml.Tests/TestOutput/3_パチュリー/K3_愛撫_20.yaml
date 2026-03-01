@@ -1,0 +1,217 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……搾乳機……ね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が手にした器具を、静かに観察した。
+
+    「外の世界の医療器具……興味深い構造だわ……」
+
+    %CALLNAME:MASTER%がカップを%CALLNAME:TARGET%の胸に宛がうと、%CALLNAME:TARGET%は静かに目を閉じた。
+
+    吸引が始まり、リズミカルな刺激が%CALLNAME:TARGET%の乳房を包み込む。
+
+    「……んっ……吸われてる……%CALLNAME:MASTER%……気持ちいいわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に寄り添い、甘い吐息を漏らした。
+
+    「……ふぅ……この吸引力……なかなかね……」
+
+    %CALLNAME:TARGET%は搾乳機のリズムに身を委ねている。
+
+    読みかけの魔導書は既に閉じられ、%CALLNAME:TARGET%の意識は吸引の快感に集中していた。
+
+    「……乳首が……引っ張られて……敏感になってきた……」
+
+    %CALLNAME:TARGET%は頬を染めながらも、不快ではないようだった。
+
+    「……%CALLNAME:MASTER%……もう少し……このままでいさせて……」
+
+    大図書館に、%CALLNAME:TARGET%の甘い吐息が静かに響いた。
+
+    「……んっ……吸引が……深くなった……」
+
+    %CALLNAME:TARGET%は搾乳機の刺激に、声を漏らしていた。
+
+    カップの中で乳首が引き伸ばされ、快感が全身に広がっていく。
+
+    「……こんなに……気持ちいいなんて……予想外よ……」
+
+    %CALLNAME:TARGET%は驚いたように呟いたが、その表情は蕩けていた。
+
+    「……%CALLNAME:MASTER%……あなたに……見られながら……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに顔を背けたが、拒む様子はなかった。
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って搾乳機の吸引を受け入れている。
+
+    リズミカルな吸引音が、大図書館の静寂に響いていた。
+
+    「……胸が……吸い尽くされるみたい……」
+
+    %CALLNAME:TARGET%は穏やかに微笑み、%CALLNAME:MASTER%の手を取った。
+
+    「……私の全部……あなたに捧げるわ……」
+
+    その言葉は、深い愛情に満ちていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……!? そ、それは何かしら……」
+
+    %CALLNAME:TARGET%は搾乳機を見て、頬を真っ赤に染めた。
+
+    「胸に……付けるの……？」
+
+    %CALLNAME:MASTER%がカップを装着し、吸引を開始すると、%CALLNAME:TARGET%は声を漏らした。
+
+    「……ひぁっ……吸われて……乳首が……」
+
+    %CALLNAME:TARGET%は本で顔を隠しながら、吸引の刺激に耐えている。
+
+    「……%CALLNAME:MASTER%……恥ずかしいわ……」
+
+    「……むきゅ……こんなの……初めて……」
+
+    %CALLNAME:TARGET%は搾乳機の吸引に、困惑した表情を浮かべていた。
+
+    「……乳首が……引っ張られて……おかしくなりそう……」
+
+    %CALLNAME:TARGET%の体が小刻みに震え、呼吸が乱れていく。
+
+    「……こんな道具……大図書館の蔵書にも……載ってなかったわ……」
+
+    %CALLNAME:TARGET%は困惑しながらも、不快ではないようだった。
+
+    「……やっ……吸引が……強く……」
+
+    %CALLNAME:MASTER%が出力を上げると、%CALLNAME:TARGET%は本を取り落とした。
+
+    「……んっ……これでは……読書なんて……無理……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕にしがみついた。
+
+    「……%CALLNAME:MASTER%……お願い……少し……優しくして……」
+
+    しかし%CALLNAME:TARGET%の瞳は、快感に潤んでいた。
+
+    「……はぁ……はぁ……」
+
+    %CALLNAME:TARGET%は吸引の刺激に、荒い息を吐いていた。
+
+    「……胸が……敏感になって……頭がぼんやりする……」
+
+    搾乳機のリズムが止まらず、%CALLNAME:TARGET%の体は快感に翻弄されている。
+
+    「……%CALLNAME:MASTER%……こんな気持ち……初めてよ……」
+
+    %CALLNAME:TARGET%は羞恥と快感の狭間で、%CALLNAME:MASTER%に縋り付いた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……これは……搾乳機ね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つ器具を、興味深そうに観察した。
+
+    「外の世界では乳の採取に使うと聞いたわ……」
+
+    しかし実際に装着されると、%CALLNAME:TARGET%の表情が強張った。
+
+    「……っ……吸引が……直接……乳首に……」
+
+    %CALLNAME:TARGET%は冷静を装おうとするが、声が震えている。
+
+    「……ふぅん……」
+
+    %CALLNAME:TARGET%は搾乳機の構造を分析しようとしている。
+
+    「……吸引圧とリズム……計算された設計ね……」
+
+    しかし吸引が続く度に、%CALLNAME:TARGET%の冷静さは揺らいでいく。
+
+    「……むきゅ……これは……予想外の刺激……」
+
+    %CALLNAME:TARGET%は困惑した表情で、%CALLNAME:MASTER%を見上げた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で吸引の刺激を受けている。
+
+    リズミカルな吸引が続く度に、%CALLNAME:TARGET%の呼吸が微かに乱れる。
+
+    「……胸への吸引刺激……悪くは……ないわね……」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「……でも……調子に乗らないで……これはあくまで観察よ……」
+
+    「……ん……」
+
+    %CALLNAME:TARGET%は搾乳機の吸引に、小さく声を漏らした。
+
+    「……この吸引……体が……慣れてきた……かしら……」
+
+    しかし快感が思考を邪魔し、%CALLNAME:TARGET%は言葉を途切れさせた。
+
+    「……本を……読もうと思ったけど……無理ね……」
+
+    %CALLNAME:TARGET%は諦めたように目を閉じた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の真似かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つ搾乳機を見て、冷ややかな目を向けた。
+
+    「そんな下品な道具を……私の胸に……？」
+
+    しかし吸引が始まった瞬間、%CALLNAME:TARGET%の表情が強張った。
+
+    「……っ……吸われて……る……」
+
+    冷淡を装おうとするが、%CALLNAME:TARGET%の体は小さく震えていた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無表情で搾乳機の装着を受けている。
+
+    吸引が続く度に、その表情が微かに歪む。
+
+    「……これで満足……かしら……」
+
+    %CALLNAME:TARGET%は冷めた声で問いかけたが、呼吸が乱れていた。
+
+    「……早く終わらせて……」
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せたが、その反応は本物だった。
+
+    「……吸引が……乳首から……全身に……」
+
+    搾乳機の刺激が%CALLNAME:TARGET%の冷淡な態度を揺さぶっている。
+
+    「……下品な道具ね……でも……悪くは……ない……かも……」
+
+    %CALLNAME:TARGET%は認めたくないように、視線を逸らした。
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついたが、それは快感を逃がすためだった。
+
+    「……こんなもので……読書の邪魔を……」
+
+    %CALLNAME:TARGET%は呆れた表情を浮かべているが、その体は吸引に反応している。
+
+    「……好きにしなさい……ただし……本を汚さないで……」
+
+    言い終える前に、%CALLNAME:TARGET%は小さく声を漏らした。
+  priority: 1

@@ -1,0 +1,48 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「あぁん…ああっ…」
+
+    「あぁ…そ…そこ…もっと…」
+
+    「い、いい…変態野朗、しっかり目に焼き付けておくんだぞ…ああ…」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あぁん…ああっ…」
+
+    「あぁ…そ…そこ…もっと…」
+
+    「い、いい…変態野朗、しっかり目に焼き付けておくんだぞ…ああ…」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    %ANATA_LOVER(奴隷)%の目の前で、%NTR_NAME(0)%の手が
+
+    いやらしく蠢きながら愛撫を続けている。
+  priority: 4
+- id: fallback
+  content: >-
+    %ANATA_LOVER(奴隷)%の目の前で、%NTR_NAME(0)%の手が
+
+    いやらしく蠢きながら愛撫を続けている。
+  priority: 3
+- id: fallback
+  content: >-
+    %ANATA_LOVER(奴隷)%の目の前で、%NTR_NAME(0)%の手が
+
+    いやらしく蠢きながら愛撫を続けている。
+  priority: 2
+- id: fallback
+  content: >-
+    「離せ！ やめっ、た、助けてっ！」
+
+    「ああっ、た、助けて、助けて%CALLNAME:MASTER%！！」
+
+    「んっ…たすけ…て…んんっ！」
+  priority: 1
+  displayMode: newline

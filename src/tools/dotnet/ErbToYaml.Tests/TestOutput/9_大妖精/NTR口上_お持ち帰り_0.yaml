@@ -1,0 +1,53 @@
+﻿character: 大妖精
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「ううっ・・やっぱり・・やっぱり、いやです・・！」
+
+    「ううっ・・ぐすっ・・ぐすんっ・・」
+
+    「いや・・いや・・かえして・・」
+  priority: 5
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「いっ、いやああっ！ 助けて、助けて%CALLNAME:MASTER%！！」
+
+    「いっ、いやああっ！ 離してっ、離してえええっ！」
+
+    「いやああっ！ は、離してえええっ！」
+  priority: 4
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: 「ま、また・・・するんですね・・・」
+  priority: 3
+- id: fallback
+  content: 「ま、また・・・するんですね・・・」
+  priority: 2
+- id: fallback
+  content: >-
+    「・・ええ、行きましょう」
+
+    %CALLNAME:奴隷%は大人しく%NTR_NAME(0)%の家に同行した。
+
+    外泊してくると%MSG_LOVER(奴隷)%相手に言ってしまったせいもあり、彼女は半ば居直っていた。
+
+    （・・%CALLNAME:MASTER%が・・悪いんだから・・）
+
+    「・・」
+
+    %CALLNAME:奴隷%は大人しく%NTR_NAME(0)%の家に同行した。
+
+    （・・%CALLNAME:MASTER%・・本当に・・これでいいの・・）
+
+    「こ、ここどこですか！？ 帰して、帰してください！」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の手を振り切って逃げようとするも、非力な彼女が%NTR_NAME(3)%に勝てるはずもなく
+
+    彼の家に連れ込まれてしまった。
+  priority: 1

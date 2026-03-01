@@ -1,0 +1,189 @@
+﻿character: 小悪魔
+situation: K2_会話親密
+entries:
+- id: fallback
+  content: >-
+    「んっ……やぁ……」
+
+    %CALLNAME:TARGET%はされるがままに、%CALLNAME:MASTER%にお尻をなでられている。
+
+    「……ふふ、悪魔のお尻、お気に召しましたか？」
+
+    %CALLNAME:TARGET%はいたずらっぽく微笑みながら、腰をくねらせて誘うような仕草を見せた。
+
+    「……%CALLNAME:MASTER%の手、温かいですわ……もっと触っていいんですのよ？」
+
+    悪魔の尻尾がゆらゆらと揺れながら、%CALLNAME:TARGET%は幸せそうに目を細めた。
+
+    「あら……そんなに私のお尻が好きですの？」
+
+    %CALLNAME:TARGET%は振り返って、%CALLNAME:MASTER%を見上げた。
+
+    悪魔の瞳が妖しく光り、唇には挑発するような笑みが浮かんでいる。
+
+    「……ふふ、もっと大胆に触ってくださいな」
+
+    そう言って%CALLNAME:TARGET%は腰を押し付けるように寄せてきた。
+
+    「悪魔と契約した方には、サービスしませんとね……」
+
+    「んぅ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は甘い声を漏らしながら、%CALLNAME:MASTER%の手に身を委ねている。
+
+    悪魔の尻尾が嬉しそうにぱたぱたと揺れていた。
+
+    「……こうされると、悪魔も蕩けちゃいそうですわ……」
+
+    %CALLNAME:TARGET%は恍惚とした表情で目を細め、%CALLNAME:MASTER%に体を預けた。
+
+    「もっと……もっと触ってくださいまし……」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%のお尻を撫でる。
+
+    「んっ……ふふ、上手ですわね……」
+
+    %CALLNAME:TARGET%は振り返らずに、その手を楽しんでいるようだった。
+
+    「……%CALLNAME:MASTER%の手、覚えちゃいましたの」
+
+    悪魔の少女は艶やかに微笑み、腰をくねらせた。
+
+    「この手に触れられると、悪魔でもおとなしくなっちゃいますわ……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ひゃっ……そ、そこは……」
+
+    %CALLNAME:TARGET%は驚いて体をぴくりと震わせた。
+
+    「……%CALLNAME:MASTER%、お尻なんて……えっちですわ……」
+
+    %CALLNAME:TARGET%は頬を染めながらも、逃げようとはしない。
+
+    「……でも、%CALLNAME:MASTER%になら……嫌じゃない、ですの……」
+
+    照れくさそうに俯きながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を受け入れた。
+
+    「あっ……や、やぁ……」
+
+    %CALLNAME:TARGET%は顔を赤らめ、身をよじらせた。
+
+    「そんなところ……恥ずかしいですわ……」
+
+    けれど%CALLNAME:TARGET%は逃げ出そうとはしない。
+
+    「……%CALLNAME:MASTER%だから、許してあげますの……」
+
+    悪魔の尻尾が恥ずかしそうに、けれど嬉しそうに揺れていた。
+
+    「んっ……%CALLNAME:MASTER%ったら……」
+
+    %CALLNAME:TARGET%は困ったように眉を寄せたが、その頬は赤く染まっている。
+
+    「お尻を撫でるなんて……悪魔へのいたずらのつもりですの？」
+
+    %CALLNAME:TARGET%はそう言いながらも、%CALLNAME:MASTER%の手から逃れようとしなかった。
+
+    「……でも、嫌じゃないから困っちゃいますわ……」
+
+    「やぁ……そこ……」
+
+    %CALLNAME:MASTER%の手がお尻に触れると、%CALLNAME:TARGET%は小さく声を上げた。
+
+    「%CALLNAME:MASTER%……こういうの、慣れてないんですの……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯いたまま、されるがままになっている。
+
+    「……でも、%CALLNAME:MASTER%の手なら……もう少しだけ……」
+
+    照れながらも、悪魔の少女は%CALLNAME:MASTER%に身を任せた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「えっ……お、お尻……？」
+
+    %CALLNAME:TARGET%は戸惑いながら、%CALLNAME:MASTER%を振り返った。
+
+    「……急にそういうことされると、困っちゃいますの……」
+
+    %CALLNAME:TARGET%は困惑しながらも、強くは拒まなかった。
+
+    「……パチュリー様に見られたら、何て言われるか……」
+
+    「ひゃっ……な、何を……」
+
+    %CALLNAME:TARGET%は驚いて肩を震わせた。
+
+    「お尻を触るなんて……%CALLNAME:MASTER%、大胆ですわね……」
+
+    戸惑いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%を見つめている。
+
+    「……まあ、悪魔ですから……少しくらいなら……」
+
+    「あっ……そ、そこは……」
+
+    %CALLNAME:TARGET%は困惑した表情で%CALLNAME:MASTER%を見た。
+
+    「いきなりお尻を触るなんて……驚きますわよ」
+
+    けれど%CALLNAME:TARGET%は強く拒むこともなく、戸惑いながらそこに立っている。
+
+    「……%CALLNAME:MASTER%は、悪魔に何をさせたいんですの？」
+
+    「えっ……ちょ、ちょっと……」
+
+    %CALLNAME:MASTER%がお尻に手を置くと、%CALLNAME:TARGET%は身をすくめた。
+
+    「こういうの、急すぎますわ……心の準備が……」
+
+    %CALLNAME:TARGET%は頬を染めながら、%CALLNAME:MASTER%をちらりと見た。
+
+    「……嫌ではないですけど……もう少しゆっくり……」
+  priority: 2
+- id: fallback
+  content: >-
+    「ちょっ……何を……！」
+
+    %CALLNAME:TARGET%は驚いて振り返り、%CALLNAME:MASTER%の手を払おうとした。
+
+    「いきなりお尻を触るなんて、失礼ですわよ」
+
+    %CALLNAME:TARGET%は頬を膨らませながら、距離を取った。
+
+    「悪魔だからって何をしてもいいわけじゃないんですの」
+
+    「なっ……何するんですの！」
+
+    %CALLNAME:TARGET%は飛び退くようにして%CALLNAME:MASTER%から離れた。
+
+    「いきなりお尻なんて……どういうつもりですの？」
+
+    悪魔の尻尾が警戒するようにピンと立っている。
+
+    「……パチュリー様に言いつけますわよ」
+
+    「ひゃっ！ち、ちょっと……！」
+
+    %CALLNAME:TARGET%は驚きに目を見開き、%CALLNAME:MASTER%を睨んだ。
+
+    「お尻を触るなんて……失礼にもほどがありますわ」
+
+    %CALLNAME:TARGET%は一歩後ずさり、腕を組んで%CALLNAME:MASTER%を見据えた。
+
+    「悪魔でも、無礼な方は嫌いですの」
+
+    「えっ……ちょ、やめてくださいまし！」
+
+    %CALLNAME:TARGET%は慌てて%CALLNAME:MASTER%の手を振り払った。
+
+    「いきなりそんなところを……非常識ですわよ」
+
+    不機嫌そうに眉を寄せ、%CALLNAME:TARGET%は%CALLNAME:MASTER%から距離を取った。
+
+    「もう少し礼儀というものを学んでくださいまし」
+  priority: 1

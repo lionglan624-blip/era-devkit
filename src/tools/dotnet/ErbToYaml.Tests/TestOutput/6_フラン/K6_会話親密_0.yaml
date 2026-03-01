@@ -1,0 +1,36 @@
+﻿character: フラン
+situation: K6_会話親密
+entries:
+- id: fallback
+  content: >-
+    （・・いっそキュッてしちゃおっか？）
+
+    （・・あの人がいればいいかな）
+
+    （もう無くても困らないよね）
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「まだ若いんだし、大丈夫だよ」
+
+    「美味しいものを食べて、ぐっすり寝ればいいんじゃないかな？」
+
+    「痛いの痛いの飛んでけってしてあげよっか？」
+
+    （あの人の狙い通りってことかあ。報告したら喜んでくれるかな）
+
+    （あの人がいるから困らないし、別にいいかな？）
+
+    （私は別に困らないかな。あの人がいるからエッチはできるし）
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「私も手伝ってあげる！」
+
+    「元気になれるおまじないしてあげる！」
+
+    「手伝ってあげるね。ん〜〜、撫でてあげればいいの？」
+  priority: 1
+  displayMode: newline

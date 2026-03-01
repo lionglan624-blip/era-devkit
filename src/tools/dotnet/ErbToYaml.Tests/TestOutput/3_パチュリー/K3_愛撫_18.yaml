@@ -1,0 +1,217 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……ビーズ……後ろに入れるのね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が手にしたアナルビーズを、淡々と見つめた。
+
+    %CALLNAME:MASTER%が菊穴に最初の珠を押し当てると、%CALLNAME:TARGET%は小さく息を吐いた。
+
+    「……一つ……また一つ……数えていくわ……」
+
+    珠が一つ入る度に、%CALLNAME:TARGET%の体が微かに震える。
+
+    「……%CALLNAME:MASTER%……あなたになら……全部……飲み込めるわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げ、静かな信頼の眼差しを向けた。
+
+    「……んっ……珠が……」
+
+    アナルビーズの珠が%CALLNAME:TARGET%の菊穴に次々と飲み込まれていく。
+
+    「……腸内で……連なってる感覚……独特ね……」
+
+    %CALLNAME:TARGET%は読みかけの魔導書から目を離し、%CALLNAME:MASTER%に身を寄せた。
+
+    「……引き抜く時が……本番かしら……」
+
+    %CALLNAME:TARGET%は小さく微笑み、%CALLNAME:MASTER%の手を握った。
+
+    「……楽しみにしてるわ……」
+
+    「……はぁ……全部……入ったわね……」
+
+    %CALLNAME:TARGET%は腸内のアナルビーズの存在を感じ、深く息を吐いた。
+
+    珠の一つ一つが腸壁を圧迫し、不思議な充足感を与えている。
+
+    「……%CALLNAME:MASTER%……これを……引き抜いて……」
+
+    %CALLNAME:TARGET%は珍しく%CALLNAME:MASTER%に催促した。
+
+    「……あなたの手で……感じさせて……」
+
+    その言葉は、普段の%CALLNAME:TARGET%からは想像できないほど甘かった。
+
+    「……ん……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕の中で、アナルビーズの感触を受け止めている。
+
+    「……珠の数……数えてみようかしら……」
+
+    %CALLNAME:TARGET%は知識欲と快感の狭間で、微かに唇を緩めた。
+
+    「……%CALLNAME:MASTER%……ゆっくり……抜いてね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に囁き、目を閉じた。
+
+    「……あなたのペースに……委ねるわ……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……!? そ、それは……ビーズ……？」
+
+    %CALLNAME:TARGET%はアナルビーズを見て、頬を染めた。
+
+    「後ろに……一つずつ入れていくの……？」
+
+    %CALLNAME:MASTER%が最初の珠を挿入すると、%CALLNAME:TARGET%は声を漏らした。
+
+    「……ひぁ……入って……きた……」
+
+    珠が一つ入る度に、%CALLNAME:TARGET%の体がびくりと跳ねる。
+
+    「……%CALLNAME:MASTER%……見ないで……変な顔……してるから……」
+
+    「……や……また……一つ……」
+
+    アナルビーズが%CALLNAME:TARGET%の菊穴に次々と飲み込まれていく。
+
+    「……む、むきゅ……腸の中……珠が……連なって……」
+
+    %CALLNAME:TARGET%は本を握りしめ、快感に耐えている。
+
+    「……引き抜く時……どうなるの……怖いわ……」
+
+    %CALLNAME:TARGET%は不安と期待が入り混じった瞳で、%CALLNAME:MASTER%を見つめた。
+
+    「……っ……全部……入った……」
+
+    %CALLNAME:TARGET%は腸内の充満感に、深い息を吐いた。
+
+    「……動くと……珠が……腸壁を……」
+
+    %CALLNAME:TARGET%は僅かに腰を揺らし、その感触を確かめている。
+
+    「……%CALLNAME:MASTER%……お願い……ゆっくり……抜いて……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯きながら、%CALLNAME:MASTER%に懇願した。
+
+    「……ん……ぁ……珠が……」
+
+    %CALLNAME:TARGET%はアナルビーズの感触に、言葉を失っていた。
+
+    「……一つ一つが……腸壁を……押してる……」
+
+    %CALLNAME:TARGET%の体が小刻みに震え、大図書館に甘い吐息が響いた。
+
+    「……こんなの……本には……載ってなかった……」
+
+    %CALLNAME:TARGET%は羞恥と快感に、顔を真っ赤に染めていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……それは……アナルビーズね」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つ道具を、興味深そうに観察した。
+
+    「珠を一つずつ挿入し……引き抜き時に快感を得る道具……」
+
+    しかし実際に挿入されると、%CALLNAME:TARGET%の表情が強張った。
+
+    「……っ……一つ……入った……」
+
+    %CALLNAME:TARGET%は冷静を装おうとするが、声が震えている。
+
+    「……ふぅん……」
+
+    %CALLNAME:TARGET%はアナルビーズの感触を分析しようとしている。
+
+    「……珠の直径と間隔……計算された設計ね……」
+
+    しかし珠が増える度に、%CALLNAME:TARGET%の冷静さは揺らいでいく。
+
+    「……むきゅ……これは……予想外の刺激……」
+
+    %CALLNAME:TARGET%は困惑した表情で、%CALLNAME:MASTER%を見上げた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言でアナルビーズの挿入を受けている。
+
+    珠が一つ入る度に、%CALLNAME:TARGET%の呼吸が微かに乱れる。
+
+    「……腸内の圧迫感……悪くは……ないわね……」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「……でも……調子に乗らないで……」
+
+    「……ん……」
+
+    %CALLNAME:TARGET%はアナルビーズの感触に、小さく声を漏らした。
+
+    「……珠の数……数えて……分析を……」
+
+    しかし快感が思考を邪魔し、%CALLNAME:TARGET%は言葉を途切れさせた。
+
+    「……三つ……四つ……もう……分からないわ……」
+
+    %CALLNAME:TARGET%は諦めたように目を閉じた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の真似かしら」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%が持つアナルビーズを見て、冷ややかな目を向けた。
+
+    「そんな珠を後ろに入れて……何が楽しいの……」
+
+    しかし挿入された瞬間、%CALLNAME:TARGET%の表情が強張った。
+
+    「……っ……入って……きた……」
+
+    冷淡を装おうとするが、%CALLNAME:TARGET%の体は小さく震えていた。
+
+    「……」
+
+    %CALLNAME:TARGET%は無表情でアナルビーズの挿入を受けている。
+
+    珠が一つ入る度に、その表情が微かに歪む。
+
+    「……これで満足……かしら……」
+
+    %CALLNAME:TARGET%は冷めた声で問いかけたが、呼吸が乱れていた。
+
+    「……早く終わらせて……」
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せたが、その反応は本物だった。
+
+    「……珠が……一つ一つ……」
+
+    アナルビーズが腸内を満たし、%CALLNAME:TARGET%の冷淡な態度を揺さぶっている。
+
+    「……下品な道具ね……でも……悪くは……ない……かも……」
+
+    %CALLNAME:TARGET%は認めたくないように、視線を逸らした。
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついたが、それは快感を逃がすためだった。
+
+    「……珠を数えろと……？　馬鹿馬鹿しい……」
+
+    %CALLNAME:TARGET%は呆れた表情を浮かべているが、その体は珠の感触に反応している。
+
+    「……好きにしなさい……ただし……読書の邪魔だけは……」
+
+    言い終える前に、%CALLNAME:TARGET%は小さく声を漏らした。
+  priority: 1

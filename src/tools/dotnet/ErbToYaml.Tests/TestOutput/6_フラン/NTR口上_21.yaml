@@ -1,0 +1,39 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「あっ・・・・いやん・・・・なんで挿れてくれないのぉ・・・・だったら」
+
+    「ねぇ・・いれて・・入れてぇ・・%MSG_HEART()%」
+
+    「んっ・・いい・・いいよぉ・・%MSG_HEART()%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっ・・・・いやん・・・・なんで挿れてくれないのぉ・・・・だったら」
+
+    「ねぇ・・いれて・・入れてぇ・・%MSG_HEART()%」
+
+    「んっ・・いい・・いいよぉ・・%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ん・・ああんっ・・」
+
+    「あぁ・・んっ・・んくっ・・%MSG_HEART()%」
+
+    「んっ・・いい・・ううんっ・・%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ん・・ああんっ・・」
+
+    「あぁ・・んっ・・んくっ・・%MSG_HEART()%」
+
+    「んっ・・いい・・ううんっ・・%MSG_HEART()%」
+  priority: 1
+  displayMode: newline

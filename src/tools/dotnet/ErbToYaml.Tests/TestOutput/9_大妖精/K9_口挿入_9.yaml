@@ -1,0 +1,207 @@
+﻿character: 大妖精
+situation: K9_口挿入
+entries:
+- id: fallback
+  content: >-
+    「……今日は、わたしが後ろから……いくね」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背後に回り、そっと腰に手を添えた。
+
+    恥ずかしそうに頬を染めながらも、小さな妖精は決意を込めて動いた。
+
+    「んっ……%CALLNAME:MASTER%の中……あったかいの……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腰を掴みながら、ゆっくりと奥へ進んだ。
+
+    「……こうしてると、%CALLNAME:MASTER%を守ってるみたいで……嬉しいな」
+
+    「えへへ……%CALLNAME:MASTER%……後ろから抱きしめるね……」
+
+    %CALLNAME:TARGET%は四つんばいの%CALLNAME:MASTER%を後ろから包み込むように寄り添った。
+
+    小さな体で精一杯、恋人を包み込もうとしている。
+
+    「……%CALLNAME:MASTER%……力抜いてて……わたしに任せて……」
+
+    %CALLNAME:TARGET%は優しく囁きながら、腰を動かした。
+
+    「……大好きだよ……%CALLNAME:MASTER%……」
+
+    「……わたしが、こうするの……初めてだけど……」
+
+    %CALLNAME:TARGET%は緊張しながらも、%CALLNAME:MASTER%の背中にそっと寄り添った。
+
+    「あっ……入った……%CALLNAME:MASTER%の中、すごく……」
+
+    小さな妖精は%CALLNAME:MASTER%を後ろから抱きしめながら、ゆっくりと動いた。
+
+    「……こうしてると……%CALLNAME:MASTER%と繋がってるって……感じるの……」
+
+    %CALLNAME:TARGET%は幸せそうに%CALLNAME:MASTER%の背中に頬を寄せた。
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の後ろに立ち、小さな手で腰を支えた。
+
+    「%CALLNAME:MASTER%……わたし、頑張るから……」
+
+    恥ずかしさを堪えながら、%CALLNAME:TARGET%は恋人の中へ入っていった。
+
+    「んっ……奥まで……%CALLNAME:MASTER%……気持ちいい？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応を気にしながら、懸命に腰を動かした。
+
+    「……%CALLNAME:MASTER%を喜ばせられるなら……わたし、嬉しいの」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「え……わ、わたしが……後ろから……するの……？」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%の背後に回った。
+
+    顔を真っ赤にしながら、小さな妖精は恐る恐る腰を進めた。
+
+    「あっ……入って……いくよ……んっ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腰を掴みながら、ゆっくりと動いた。
+
+    「……こんなこと……恥ずかしいけど……%CALLNAME:MASTER%が望むなら……」
+
+    「……%CALLNAME:MASTER%……こうするの、初めてで……」
+
+    %CALLNAME:TARGET%は四つんばいの%CALLNAME:MASTER%を見つめながら、緊張で震えていた。
+
+    「えっと……こうかな……」
+
+    小さな妖精は%CALLNAME:MASTER%の後ろからそっと寄り添い、中へ入っていった。
+
+    「あっ……%CALLNAME:MASTER%の中……すごく熱いの……」
+
+    %CALLNAME:TARGET%は照れくさそうに目を逸らしながら、腰を動かし続けた。
+
+    「……こ、こうすればいいのかな……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背後に立ち、戸惑いながら腰に手を添えた。
+
+    「んっ……入った……%CALLNAME:MASTER%……大丈夫……？」
+
+    小さな妖精は%CALLNAME:MASTER%の反応を気にしながら、恐る恐る動いた。
+
+    「……わたしでも……%CALLNAME:MASTER%を気持ちよくできるかな……」
+
+    %CALLNAME:TARGET%は不安げに、それでも懸命に腰を動かした。
+
+    「%CALLNAME:MASTER%が四つんばいになって……わたしが後ろから……」
+
+    %CALLNAME:TARGET%は信じられないように呟きながら、%CALLNAME:MASTER%の背後に回った。
+
+    「あっ……中に……入っていくの……変な感じ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を後ろから抱きしめながら、ゆっくりと腰を進めた。
+
+    「……%CALLNAME:MASTER%……気持ちいい？……わたし、ちゃんとできてる……？」
+
+    小さな妖精は想い人の反応を気にしながら、懸命に奉仕した。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え……わたしが……%CALLNAME:MASTER%に……するんですか……？」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%の指示に従った。
+
+    「……あの……こうすればいいの……？」
+
+    小さな妖精は恐る恐る%CALLNAME:MASTER%の後ろに回り、腰を進めた。
+
+    「あっ……入った……%CALLNAME:MASTER%の中……」
+
+    %CALLNAME:TARGET%は言われた通りに、ゆっくりと腰を動かし始めた。
+
+    「……%CALLNAME:MASTER%がこうしてって言うから……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、四つんばいの%CALLNAME:MASTER%の後ろに立った。
+
+    「……こ、こうかな……入れるね……」
+
+    小さな妖精は%CALLNAME:MASTER%の腰を掴み、ゆっくりと中へ入っていった。
+
+    「んっ……これで……いいの……？」
+
+    %CALLNAME:TARGET%は不安げに%CALLNAME:MASTER%の様子を伺いながら動いた。
+
+    「わ、わたしに……こうしろって……」
+
+    %CALLNAME:TARGET%は言われるまま、%CALLNAME:MASTER%の背後に回った。
+
+    困惑しながらも、小さな妖精は指示に従って腰を進めた。
+
+    「あっ……%CALLNAME:MASTER%の中……熱い……」
+
+    %CALLNAME:TARGET%はおずおずと腰を動かしながら、%CALLNAME:MASTER%の反応を見ていた。
+
+    「……ちゃんと……できてますか……？」
+
+    「%CALLNAME:MASTER%……本当にわたしで……いいの……？」
+
+    %CALLNAME:TARGET%は自信なさげに%CALLNAME:MASTER%の後ろに立った。
+
+    「……えっと……後ろから……こうするんだよね……」
+
+    小さな妖精は恐る恐る%CALLNAME:MASTER%の中に入っていった。
+
+    「んっ……入って……いったよ……」
+
+    %CALLNAME:TARGET%は言われた通りに、ゆっくりと腰を動かし始めた。
+  priority: 2
+- id: fallback
+  content: >-
+    「え……わ、わたしが……こんなこと……」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%の命令に従うしかなかった。
+
+    「……こ、こうすればいいの……？」
+
+    小さな妖精は恐る恐る%CALLNAME:MASTER%の後ろに回り、言われた通りに腰を進めた。
+
+    「あっ……入って……いく……」
+
+    %CALLNAME:TARGET%は震えながら、ゆっくりと腰を動かし始めた。
+
+    「……%CALLNAME:MASTER%が……こうしろって……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、四つんばいの%CALLNAME:MASTER%の後ろに立った。
+
+    「わ、わたし……こんなこと……したことないの……」
+
+    小さな妖精は怯えながらも、%CALLNAME:MASTER%の中に入っていった。
+
+    「んっ……これで……いいんですか……」
+
+    %CALLNAME:TARGET%は不安げに%CALLNAME:MASTER%の様子を伺いながら動いた。
+
+    「ひっ……わ、わたしに……こうしろなんて……」
+
+    %CALLNAME:TARGET%は言われるまま、%CALLNAME:MASTER%の背後に回った。
+
+    恐怖に震えながらも、小さな妖精は指示に従って腰を進めた。
+
+    「あっ……%CALLNAME:MASTER%の中……」
+
+    %CALLNAME:TARGET%はおずおずと腰を動かしながら、%CALLNAME:MASTER%の反応を見ていた。
+
+    「……こうしてればいいの……？」
+
+    「%CALLNAME:MASTER%……わ、わたしが……後ろから……」
+
+    %CALLNAME:TARGET%は信じられない様子で%CALLNAME:MASTER%を見つめた。
+
+    「……やるしかない……んだよね……」
+
+    小さな妖精は恐る恐る%CALLNAME:MASTER%の後ろに回り、中に入っていった。
+
+    「んっ……入った……よ……」
+
+    %CALLNAME:TARGET%は言われた通りに、震えながら腰を動かし始めた。
+  priority: 1

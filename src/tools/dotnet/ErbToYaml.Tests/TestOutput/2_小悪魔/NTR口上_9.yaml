@@ -1,0 +1,57 @@
+﻿character: 小悪魔
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「あ・・%CALLNAME_K2(奴隷, FLAG:貞操帯鍵購入フラグ)%を買われたんですね・・」
+
+    「・・でも、どうせなら・・私のことを買っていただきたかったです」
+
+    「・・この次は、ぜひ私のぶんの鍵を買ってください・・お願いします」
+
+    「今度は、私のことを買ってくださいね？ 待ってますから」
+  priority: 6
+  displayMode: newline
+- id: talent_7_1
+  content: 「あ・・%CALLNAME_K2(奴隷, FLAG:貞操帯鍵購入フラグ)%を買われたんですね？」
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+- id: fallback
+  content: >-
+    「あ・・%CALLNAME_K2(奴隷, FLAG:貞操帯鍵購入フラグ)%を買われたんですね」
+
+    「うふふっ、アノお方も、きっとお喜びです」
+
+    「うふふっ、%CALLNAME:MASTER%もお好きですねぇ？」
+
+    「うふふっ、%CALLNAME:MASTER%もお盛んですねぇ？」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: 「ふぅ〜ん・・%CALLNAME_K2(奴隷, FLAG:貞操帯鍵購入フラグ)%を買われたんですね」
+  priority: 3
+- id: fallback
+  content: >-
+    「ふぅ〜ん・・%CALLNAME_K2(奴隷, FLAG:貞操帯鍵購入フラグ)%を買われたんですね」
+
+    「悪魔の私が言うのもなんですけど、そういうのって、どうなんですか？」
+
+    「私が言うのもアレですけど、ドン引きです・・」
+
+    「%CALLNAME:MASTER%もお盛んですねぇ・・？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「それって・・%CALLNAME_K2(奴隷, FLAG:貞操帯鍵購入フラグ)%のことをお買いになったんですか？」
+
+    「悪魔の私が言うのもなんですけど、そういうのって、どうなんですか？」
+
+    「私が言うのもアレですけど、ドン引きです・・」
+
+    「%CALLNAME:MASTER%もお盛んですねぇ・・？」
+  priority: 1
+  displayMode: newline

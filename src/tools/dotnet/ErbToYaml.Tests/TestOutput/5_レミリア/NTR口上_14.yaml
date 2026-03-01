@@ -1,0 +1,48 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んん！・・んっ・・んっ・・こくん・・」
+
+    「んんんっ！！ ・・ん・・うふ・・こくっ・・」
+
+    「ん・・んっ、んんっ！！ ちゅ・・ちゅぱっ・・こくんっ」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んん！・・んっ・・んっ・・こくん・・」
+
+    「んんんっ！！ ・・ん・・うふ・・こくっ・・」
+
+    「ん・・んっ、んんっ！！ ちゅ・・ちゅぱっ・・こくんっ」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んん！・・んっ・・んっ・・こくん・・」
+
+    「んんんっ！！ ・・ん・・こくっ・・」
+
+    「ん・・んっ、んんっ！！ ちゅ・・こくんっ」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んん！・・んっ・・んっ・・こくん・・」
+
+    「んんんっ！！ ・・ん・・こくっ・・」
+
+    「ん・・んっ、んんっ！！ ちゅ・・こくんっ」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んぅ！？ げほっ・ごほっ・・けほっ・・・」
+
+    「うっ！？ けほっ・・げほっ・・」
+
+    「ううっ！ にが・・」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,28 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「艶かしくていいわね。このままいくわ」%CALLNAME:加害者%は%CALLNAME:被害者%に興奮しきった様子でペニスを取り出した
+
+    そして%CALLNAME:被害者%の身体を締め付け黒光りするボディースーツの感触を堪能しながら、
+
+    後ろから押し倒すと秘部をペニスで貫こうとした
+  priority: 3
+- id: fallback
+  content: >-
+    「滑らかで気持ちいいわね。このままいくわ」%CALLNAME:加害者%は%CALLNAME:被害者%に興奮しきった様子でペニスを取り出した
+
+    そしてきわどく切り上がり小さく秘所を隠すレオタードの股布をずらし、
+
+    後ろから押し倒すと秘部をペニスで貫こうとした
+  priority: 2
+- id: fallback
+  content: >-
+    「動かないで。このままいくわ」
+
+    「ふふっ、これが欲しかったんでしょう・・？」
+
+    「嫌ですって？ 何を言っているの、便器に拒否権なんてないのよ？」
+  priority: 1
+  displayMode: newline

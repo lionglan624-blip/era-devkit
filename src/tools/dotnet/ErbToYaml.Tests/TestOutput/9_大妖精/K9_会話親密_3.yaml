@@ -1,0 +1,239 @@
+﻿character: 大妖精
+situation: K9_会話親密
+entries:
+- id: fallback
+  content: >-
+    「あっ…ん…%CALLNAME:MASTER%…♪」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%にお尻を撫でられ、控えめな声を漏らした。
+
+    羽がぴくりと震えて、頬が桜色に染まっていく。
+
+    「…そこ、触られると…くすぐったいの…」
+
+    %CALLNAME:TARGET%は恥ずかしそうに身をよじりながらも、離れようとはしなかった。
+
+    「…でも、%CALLNAME:MASTER%になら…いいよ…♪」
+
+    控えめな妖精は、恋人の手の温もりに身を委ねた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の小さなお尻をそっと撫でた。
+
+    「ふぁ…っ、%CALLNAME:MASTER%…そこ…♪」
+
+    %CALLNAME:TARGET%は頬を赤らめて、%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「も、もう…恥ずかしいよぉ…」
+
+    だが、%CALLNAME:TARGET%の背中の羽は嬉しそうにゆっくり揺れている。
+
+    「…%CALLNAME:MASTER%の手、あったかいの…もうちょっとだけ…いい…？」
+
+    %CALLNAME:TARGET%は小声でそうお願いしてきた。
+
+    「んっ…やぁ…%CALLNAME:MASTER%ったら…」
+
+    %CALLNAME:TARGET%はお尻を撫でられて、甘い吐息を漏らしている。
+
+    羽がふわふわと揺れて、体が少しずつ熱くなっていく。
+
+    「…チルノちゃんに見られたら、どうしよう…」
+
+    %CALLNAME:TARGET%は恥ずかしそうに辺りを見回した。
+
+    「…でも、%CALLNAME:MASTER%と二人きりだから…いいの…♪」
+
+    %CALLNAME:TARGET%は安心したように%CALLNAME:MASTER%に身を寄せた。
+
+    %CALLNAME:MASTER%は後ろから%CALLNAME:TARGET%を抱き寄せ、そのお尻を愛撫した。
+
+    「ひゃぅ…っ、%CALLNAME:MASTER%…♪」
+
+    %CALLNAME:TARGET%はびくりと体を震わせたが、すぐに力を抜いた。
+
+    「…んっ、そこ…気持ちいい…の…」
+
+    %CALLNAME:TARGET%は恋人の腕の中で、とろんとした目をしている。
+
+    「わたし、%CALLNAME:MASTER%に触られるの…幸せだよ…」
+
+    控えめな妖精は、蕩けた表情でそう囁いた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ひゃっ…！ %CALLNAME:MASTER%…そ、そこは…」
+
+    %CALLNAME:TARGET%はお尻を撫でられて、顔を真っ赤にした。
+
+    羽がぴくぴくと震えて、動揺を隠せない様子だ。
+
+    「も、もう…いきなりそんなとこ触るなんて…」
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯いた。
+
+    「…で、でも…嫌じゃない…かも…」
+
+    %CALLNAME:TARGET%は小声でそう呟いて、%CALLNAME:MASTER%を見上げた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の小さなお尻を撫でた。
+
+    「んっ…や、やぁ…%CALLNAME:MASTER%…」
+
+    %CALLNAME:TARGET%は恥ずかしさに耐えるように目を閉じた。
+
+    「そんなに…撫でられたら…変な気持ちに…」
+
+    羽がそわそわと揺れている。
+
+    「…%CALLNAME:MASTER%の手、あったかい…」
+
+    %CALLNAME:TARGET%は照れくさそうに、でも離れようとはしなかった。
+
+    「あっ…ん…」
+
+    %CALLNAME:TARGET%はお尻を撫でる%CALLNAME:MASTER%の手を受け入れている。
+
+    「%CALLNAME:MASTER%…こういうの、恥ずかしいよ…」
+
+    %CALLNAME:TARGET%の耳まで真っ赤に染まっていく。
+
+    「…でも、%CALLNAME:MASTER%だから…我慢するの…」
+
+    そう言いながらも、%CALLNAME:TARGET%の表情は嬉しそうだった。
+
+    控えめな妖精は、恋する人の手の温もりを感じていた。
+
+    「ひゃぅ…っ、そ、そこ…！」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%のお尻を撫でている。
+
+    %CALLNAME:TARGET%は体をびくつかせながら、耐えるように立っている。
+
+    「…%CALLNAME:MASTER%、手つき…いやらしいの…」
+
+    羽がぴくぴくと震えて、%CALLNAME:TARGET%の羞恥を表している。
+
+    「…もう少しだけ…撫でてくれる…？」
+
+    %CALLNAME:TARGET%は俯いたまま、消え入りそうな声でお願いした。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「ひゃっ…！？ %CALLNAME:MASTER%さん…！？」
+
+    %CALLNAME:TARGET%は突然お尻を撫でられて、飛び上がるように驚いた。
+
+    羽がばさばさと慌ただしく動いている。
+
+    「お、お尻なんて…急に触らないでくださいぃ…」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして、両手でお尻を庇った。
+
+    「…べ、別に嫌じゃないですけど…心の準備が…」
+
+    %CALLNAME:TARGET%は戸惑いながらも、完全には拒絶しなかった。
+
+    「わわっ…そ、そんなところ…！」
+
+    %CALLNAME:MASTER%に尻を撫でられて、%CALLNAME:TARGET%は慌てた。
+
+    「%CALLNAME:MASTER%さん、いきなりすぎます…」
+
+    %CALLNAME:TARGET%は恥ずかしそうに身をよじった。
+
+    「…も、もうちょっと、段階を踏んでほしいの…」
+
+    困った顔をしながらも、%CALLNAME:TARGET%は怒ってはいない様子だった。
+
+    背中の羽がそわそわと揺れている。
+
+    「きゃっ…！ %CALLNAME:MASTER%さん…？」
+
+    %CALLNAME:TARGET%はお尻に触れた手に驚いて、体を強張らせた。
+
+    「そ、そこは…その…恥ずかしいです…」
+
+    %CALLNAME:TARGET%の羽がぴくぴくと震えている。
+
+    「わたし、こういうの慣れてなくて…」
+
+    %CALLNAME:TARGET%は困惑しながら、%CALLNAME:MASTER%を見上げた。
+
+    「…%CALLNAME:MASTER%さんだから、許しますけど…」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%のお尻に手を伸ばした。
+
+    「あっ…！ えっ、ちょ、ちょっと…！」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして、体を硬くした。
+
+    「%CALLNAME:MASTER%さん、そういうのは…まだ早いです…」
+
+    %CALLNAME:TARGET%は恥ずかしそうに後ずさった。
+
+    「…もっと、仲良くなってから…ね…？」
+
+    控えめな妖精は、戸惑いながらもやんわりと断った。
+  priority: 2
+- id: fallback
+  content: >-
+    「ひゃっ…！？ な、何するんですか！？」
+
+    %CALLNAME:TARGET%は突然お尻を撫でられて、飛び退いた。
+
+    羽がばさばさと激しく動き、明らかに動揺している。
+
+    「い、いきなりそんなところ触るなんて…」
+
+    %CALLNAME:TARGET%は両手でお尻を庇いながら、%CALLNAME:MASTER%を見つめた。
+
+    「…もっと仲良くなってからにしてください…」
+
+    %CALLNAME:TARGET%は困った顔で、でも怒りを抑えるように言った。
+
+    「えっ…！ %CALLNAME:MASTER%さん…？」
+
+    %CALLNAME:TARGET%は驚いて身を引いた。
+
+    「そういうことは…その…まだ親しくないのに…」
+
+    %CALLNAME:TARGET%は困惑した表情を浮かべている。
+
+    「わたし、%CALLNAME:MASTER%さんのこと、よく知らないですから…」
+
+    「…ごめんなさい、そういうのは…ちょっと…」
+
+    %CALLNAME:TARGET%は申し訳なさそうに、でもしっかり距離を取った。
+
+    「きゃあっ…！」
+
+    %CALLNAME:TARGET%は悲鳴を上げて、お尻を両手で押さえた。
+
+    「%CALLNAME:MASTER%さん、何を…！」
+
+    %CALLNAME:TARGET%の羽がばさばさと警戒するように動いている。
+
+    「い、いきなりそんなことしないでください…」
+
+    「わたし、そこまで親しくないですよ…？」
+
+    %CALLNAME:TARGET%は困惑と戸惑いを隠せない様子だった。
+
+    「…え、えっと…」
+
+    %CALLNAME:MASTER%がお尻に触れようとしているのを察して、%CALLNAME:TARGET%は後ずさった。
+
+    「%CALLNAME:MASTER%さん、そういうのは…その…」
+
+    %CALLNAME:TARGET%は困った顔をしている。
+
+    「わたし、チルノちゃんにも触らせないのに…」
+
+    「もう少し、仲良くなってからにしてもらえると…」
+
+    %CALLNAME:TARGET%は遠慮がちに、でもはっきりと断った。
+  priority: 1

@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ11-22
+entries:
+- id: fallback
+  content: >-
+    （・・ごめんなさい・・でも、イけなかったなんて知られたら、%CALLNAME:MASTER%は・・）
+
+    （・・イけなかったなんて知られてたら・・傷つけてしまう・・）
+
+    （・・%CALLNAME:MASTER%相手では・・イけないなんて・・）
+  priority: 1
+  displayMode: newline

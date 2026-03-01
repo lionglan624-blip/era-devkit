@@ -1,0 +1,12 @@
+﻿character: 美鈴
+situation: K1_日常
+entries:
+- id: fallback
+  content: >-
+    「こっちです、%CALLNAME:MASTER%！」
+
+    「逃げますよ！！」
+
+    「そんなことしなくていいんです！」
+  priority: 1
+  displayMode: newline

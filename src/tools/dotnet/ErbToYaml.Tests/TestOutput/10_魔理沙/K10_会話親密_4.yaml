@@ -1,0 +1,239 @@
+﻿character: 魔理沙
+situation: K10_会話親密
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%を後ろからそっと抱きしめた。
+
+    「んっ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は目を閉じて、%CALLNAME:MASTER%の腕に手を重ねた。
+
+    「こうやってると……本当に幸せだぜ」
+
+    普通の魔法使いは照れくさそうに笑いながらも、離れようとしない。
+
+    「魔法の研究よりこっちの方が好きなんて……%CALLNAME:MASTER%のせいだぜ」
+
+    %CALLNAME:TARGET%はそのまま%CALLNAME:MASTER%の腕の中で身を預けた。
+
+    「――ぎゅってして、%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%が珍しく素直にお願いしてきた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%を優しく抱きしめた。
+
+    「……へへ、あったかいな。最高だぜ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の心臓の音を聞くように、胸に耳を当てている。
+
+    「死ぬまで一緒にいてくれよな。……約束だぜ」
+
+    金髪の魔法使いは、照れ隠しのように帽子を深く被った。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の前から抱きついた。
+
+    「んっ……ふふ、そんなに勢いよく抱きつかなくても……」
+
+    %CALLNAME:TARGET%は微笑みながらそう言う。
+
+    「……へへ、%CALLNAME:MASTER%……」
+
+    それから%CALLNAME:TARGET%は甘い声で%CALLNAME:MASTER%の名を呼び、首に腕を回して抱きつき返してきた。
+
+    「……こうしてると、なんか落ち着くんだ。不思議だぜ」
+
+    普通の魔法使いは、恋人の胸に顔を埋めた。
+
+    「……なあ、%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%がこちらを見つめながら、そっと腕を広げている。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%を優しく抱きしめた。
+
+    「……へへ、私からお願いするなんてな。恥ずかしいぜ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中に腕を回し、ぎゅっとしがみついた。
+
+    「でも、%CALLNAME:MASTER%の温もりが好きなんだ。……大好きだぜ」
+
+    金髪の魔法使いは、幸せそうに目を細めた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついた。
+
+    「わっ……な、なんだよいきなり……」
+
+    %CALLNAME:TARGET%は驚きながらも、%CALLNAME:MASTER%を押し退けなかった。
+
+    「……もう、甘えん坊なんだから」
+
+    頬を赤く染めながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%の背中を軽く叩いた。
+
+    「……こうしてると、悪くないな……なんてな」
+
+    照れ隠しで言ったつもりが、その声は確かに嬉しそうだった。
+
+    「あ……%CALLNAME:MASTER%？」
+
+    %CALLNAME:MASTER%に抱きしめられて、%CALLNAME:TARGET%は固まった。
+
+    「……急に甘えてくるなよ、心臓に悪いぜ」
+
+    だが、その声は怒っているようには聞こえない。
+
+    %CALLNAME:TARGET%は恥ずかしそうに、%CALLNAME:MASTER%の体に身を預けた。
+
+    「……あったかいな。こうしてるの、嫌いじゃないぜ」
+
+    普通の魔法使いは、小さく呟いてから顔を背けた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の後ろから抱きついた。
+
+    「うわっ……！　ちょ、ちょっと……」
+
+    %CALLNAME:TARGET%は動揺しながらも、されるがままになっている。
+
+    「……どうかしたのか、%CALLNAME:MASTER%……？」
+
+    %CALLNAME:TARGET%はおずおずと尋ねてくる。
+
+    「……まあ、いいけどさ。もうちょっとだけ、このままでいいぜ」
+
+    そう言いながら、%CALLNAME:TARGET%は体から力を抜いた。
+
+    「……その、いつまでするんだ？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついている。
+
+    「飽きるまで」と%CALLNAME:MASTER%が答えると、
+
+    「……そ、そうか」
+
+    %CALLNAME:TARGET%は半ば諦めたように、そう言った。
+
+    「……べ、別に嫌じゃないからな。勘違いするなよ」
+
+    赤くなった頬を隠すように、%CALLNAME:TARGET%は帽子のつばを下げた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついた。
+
+    「えっ……！？　お、おい%CALLNAME:MASTER%……！」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして固まった。
+
+    「だ、抱きつくなんて……いきなりすぎるだろ……」
+
+    戸惑いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%を押し退けはしなかった。
+
+    「……あったかいな……悪くないかも」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を逸らしながら、小声でそう言った。
+
+    「わわっ！？」
+
+    突然の抱擁に、%CALLNAME:TARGET%は動揺した声を上げた。
+
+    「%CALLNAME:MASTER%、急にどうしたんだよ……」
+
+    %CALLNAME:TARGET%は困惑しながらも、抵抗はしなかった。
+
+    「……べ、別に嫌じゃないけどさ……こういうのって……」
+
+    「……その、もうちょっとだけなら、いいぜ」
+
+    戸惑いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の温もりを感じていた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の肩に手を置いた。
+
+    「ん……？　どうしたんだ、%CALLNAME:MASTER%」
+
+    そのまま%CALLNAME:MASTER%は%CALLNAME:TARGET%を引き寄せ、抱きしめた。
+
+    「なっ……！？　お、おい……！」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして硬直している。
+
+    「……%CALLNAME:MASTER%って、結構大胆なんだな……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、どこか嬉しそうにしていた。
+
+    「……え、ちょっと……」
+
+    %CALLNAME:MASTER%が近づいてきて、%CALLNAME:TARGET%は身構えた。
+
+    だが、%CALLNAME:MASTER%はそのまま%CALLNAME:TARGET%を優しく抱きしめた。
+
+    「……なんだよ、急に……」
+
+    %CALLNAME:TARGET%は困ったような顔をしながらも、押し退けなかった。
+
+    「……まあ、たまにはこういうのも……悪くないかもな」
+
+    普通の魔法使いは、照れくさそうに視線を逸らした。
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きつこうとした。
+
+    「はぁ！？　ちょ、ちょっと何するんだよ！」
+
+    %CALLNAME:TARGET%は慌てて身を引いた。
+
+    金色の瞳が警戒するようにこちらを見ている。
+
+    「い、いきなり抱きつくなんて……どういうつもりだよ！」
+
+    「もっと仲良くなってからにしてくれよな……」
+
+    %CALLNAME:TARGET%は帽子を押さえながら、困惑した表情で呟いた。
+
+    「えっ……ちょっと……」
+
+    %CALLNAME:MASTER%が近づいてきて、%CALLNAME:TARGET%は後ずさった。
+
+    「抱きつくのは……その……私とお前の関係でアリなのか？」
+
+    %CALLNAME:TARGET%は困ったように眉を下げた。
+
+    「……もうちょっと距離を縮めてからにしてくれよな」
+
+    「別にお前が嫌いってわけじゃないんだけどさ……」
+
+    %CALLNAME:TARGET%は帽子のつばを押さえながら、そっぽを向いた。
+
+    「……ちょっと、%CALLNAME:MASTER%？」
+
+    %CALLNAME:TARGET%は抱きついている%CALLNAME:MASTER%に声をかける。
+
+    「……私に抱きついたまま、寝るなよ？」
+
+    %CALLNAME:MASTER%が無言で頷くと、
+
+    「……本当に、寝るなよな……」
+
+    %CALLNAME:TARGET%はため息を吐きながらも、されるがままになっている。
+
+    「……まあ、たまには付き合ってやるぜ」
+
+    「……そろそろ離してくれないか？」
+
+    %CALLNAME:TARGET%が遠慮がちに声を上げる。
+
+    %CALLNAME:MASTER%は渋々、%CALLNAME:TARGET%から離れた。
+
+    「……はぁ……」
+
+    %CALLNAME:TARGET%は斜め上を向いてぼーっとしている。
+
+    「……次はもうちょっと仲良くなってからな」
+
+    そう言いながらも、%CALLNAME:TARGET%の頬はほんのり赤かった。
+  priority: 1

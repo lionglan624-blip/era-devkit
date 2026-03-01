@@ -1,0 +1,55 @@
+﻿character: 美鈴
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「うっ・・うぐっ・・んんっ・・！！」
+
+    「ううっ・・うっ・・んぐうっ！」
+
+    「んっ・・んむっ・・だ、だめっ・・ああっ！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「うっ・・うぐっ・・んんっ・・！！」
+
+    「ううっ・・や、やめっ・・んぐうっ！」
+
+    「んっ・・んむっ・・だ、だめですっ・・ああっ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっはぁ・・んちゅぅ・・はぁ・・んっ・こんな感じでどうですか？」
+
+    %CALLNAME:奴隷%は秘所を客の顔に擦り付けながら、双乳で客のペニスをしごきながら、亀頭に咥えている。
+  priority: 5
+- id: fallback
+  content: >-
+    「んっ、んっんっ・・はぁ・・はむぅ・・んちゅく・・ちゅく・・」
+
+    %CALLNAME:奴隷%は誘うように腰を振りながら%NTR_NAME(0)%のペニスを咥えている。
+  priority: 4
+- id: fallback
+  content: >-
+    「んっ、んっんっ・・はぁ・・はむぅ・・んちゅく・・ちゅく・・」
+
+    %CALLNAME:奴隷%は誘うように腰を振りながら%NTR_NAME(0)%のペニスを咥えている。
+  priority: 3
+- id: fallback
+  content: >-
+    「はっ・・うっ・・んむぅ・・・んぅっ・・・んぅぅっ・・」
+
+    %NTR_NAME(0)%がペニスを咥えた%CALLNAME:奴隷%の秘所に舌を入れると腰を震わせながら敏感に反応した。
+  priority: 2
+- id: fallback
+  content: >-
+    「はっ・・うっ・・んむぅ・・・んぅっ・・・んぅぅっ・・」
+
+    %NTR_NAME(0)%がペニスを咥えた%CALLNAME:奴隷%の秘所に舌を入れると腰を震わせながら敏感に反応した。
+  priority: 1

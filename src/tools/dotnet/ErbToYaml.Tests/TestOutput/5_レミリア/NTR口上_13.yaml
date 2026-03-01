@@ -1,0 +1,48 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「れろ、れろ、ちゅっ・・れろ、れろ、ちゅ、ぢゅ・・」
+
+    「んん・・ちゅっ・・れろ、れろ・・ん・・ちゅ・・」
+
+    「あん・・ん・・うふ・・おいしい・・ん・・ちゅぷっ・・」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「れろ、れろ、ちゅっ・・れろ、れろ、ちゅ、ぢゅ・・」
+
+    「んん・・ちゅっ・・れろ、れろ・・ん・・ちゅ・・」
+
+    「あん・・ん・・うふ・・おいしい・・ん・・ちゅぷっ・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「れろ、れろ、ちゅっ・・れろ、れろ、ちゅ、ぢゅ・・」
+
+    「んん・・ちゅっ・・れろ、れろ・・ん・・ちゅ・・」
+
+    「あん・・ん・・うふ・・おいしい・・ん・・ちゅぷっ・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんっ・・ぐっ・・ちゅっ・・」
+
+    「んん・・じゅっ・・んんっ・・」
+
+    「ん・・む・・ん・・ううっ・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんっ・・ぐっ・・ちゅっ・・」
+
+    「んん・・じゅっ・・んんっ・・」
+
+    「ん・・む・・ん・・ううっ・・」
+  priority: 1
+  displayMode: newline

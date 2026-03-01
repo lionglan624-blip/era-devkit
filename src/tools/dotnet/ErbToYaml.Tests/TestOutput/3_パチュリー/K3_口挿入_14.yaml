@@ -1,0 +1,221 @@
+﻿character: パチュリー
+situation: K3_口挿入
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%、今日は……後ろから、いくわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中に身を寄せながら、静かに宣言した。
+
+    細い腕で%CALLNAME:MASTER%の腰を抱き、ゆっくりと体を押し当てる。
+
+    「……んっ……この体勢だと、あなたに覆いかぶさるみたいね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中に頬を押し当てながら、腰を進めた。
+
+    「……あなたの体温が……直接伝わってきて……嬉しいわ……」
+
+    %CALLNAME:TARGET%は愛しそうに囁いた。
+
+    「……はぁ……ん……っ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背後で小さく喘いでいる。
+
+    大図書館の静寂の中、%CALLNAME:TARGET%が主導権を握っている。
+
+    「……%CALLNAME:MASTER%、力を抜いて……私のペースで動くから……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の耳元で優しく囁いた。
+
+    「……あなたを満たせるなら……体力の消耗も厭わないわ……」
+
+    %CALLNAME:TARGET%は愛する人のために懸命に腰を動かしている。
+
+    「……ぁ……やぁ……後ろからだと、また違う感覚ね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中に体を預けながら、深く繋がっている。
+
+    細い腕で%CALLNAME:MASTER%を抱きながら、%CALLNAME:TARGET%は息を整えた。
+
+    「……むきゅ……体力が……でも、あなたの反応を見ていると……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の首筋にキスをした。
+
+    「……もう少しだけ、続けさせて……」
+
+    %CALLNAME:TARGET%は愛する人のために、力を振り絞った。
+
+    「……後ろから抱きしめられるの……悪くないわね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中に頬を寄せながら囁いた。
+
+    本の山に囲まれた空間で、知識の魔女が愛を紡いでいる。
+
+    「……んっ……あなたの中、熱いわ……本には載っていない感触よ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%との一体感を味わっている。
+
+    「……このまま、もっと深く……繋がっていたいわ……」
+
+    %CALLNAME:TARGET%は珍しく甘えた声を出した。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……こう、後ろから……抱きしめればいいのね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中に手を添えながら、おずおずと体を寄せた。
+
+    「……んっ……入った……あなたの中、熱いわ……」
+
+    %CALLNAME:TARGET%は頬を染めながら、ゆっくりと腰を動かし始めた。
+
+    「……恥ずかしいけれど……あなたを感じられて……嬉しいわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の肩に額を押し当てた。
+
+    「……あ……動くわよ……？」
+
+    %CALLNAME:TARGET%は不安そうに%CALLNAME:MASTER%の背中を見つめながら、腰を揺らし始めた。
+
+    ぎこちない動きだが、%CALLNAME:TARGET%なりに努力している。
+
+    「……むきゅ……体力が持つかしら……」
+
+    %CALLNAME:TARGET%は早くも息を切らし始めている。
+
+    「……でも……あなたのためなら……」
+
+    %CALLNAME:TARGET%は好意を滲ませながら、動きを続けた。
+
+    「……はぁ……はぁ……後ろからだと……力が入りにくいわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中に体を預けながら息を乱していた。
+
+    普段は本を読むだけで、体を動かすことは少ない。
+
+    「……でも……あなたが気持ちよさそうだから……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応を確認しながら、腰を動かした。
+
+    「……もう少し……頑張るわ……」
+
+    %CALLNAME:TARGET%は体が弱いながらも、懸命だった。
+
+    「……ん……後ろから繋がっていると……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腰に手を添えながら呟いた。
+
+    「……あなたの背中が見える……なんだか、守っているみたい……」
+
+    %CALLNAME:TARGET%は頬を染めながら、ゆっくりと腰を動かしている。
+
+    「……恥ずかしいけれど……嫌じゃないわ……」
+
+    %CALLNAME:TARGET%は素直に認めた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……後ろから……こうすればいいの……？」
+
+    %CALLNAME:TARGET%は戸惑いながら%CALLNAME:MASTER%の背後に立った。
+
+    知識としては知っているが、実践するのは別の話だ。
+
+    「……んっ……これが……後ろから繋がるということ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に挿入しながら、表情を曇らせた。
+
+    「……興味深い体勢ね……研究対象としては……」
+
+    %CALLNAME:TARGET%は照れ隠しに学者らしい言い訳をした。
+
+    「……動けばいいのかしら……」
+
+    %CALLNAME:TARGET%はぎこちなく腰を揺らし始めた。
+
+    「……むきゅ……体力が……もう限界よ……」
+
+    %CALLNAME:TARGET%は早くも息を切らしている。
+
+    「……後ろからだと、体勢が安定しなくて……」
+
+    %CALLNAME:TARGET%は困った様子で動きを続けた。
+
+    「……はぁ……はぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背後で息を乱していた。
+
+    「……こんな激しい動きは……普段しないから……」
+
+    %CALLNAME:TARGET%は弱々しく言い訳した。
+
+    「……あなたが望んだから……仕方なく……」
+
+    %CALLNAME:TARGET%は顔を背けながら呟いた。
+
+    「……これで満足なの……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中を見つめながら問いかけた。
+
+    「……私の体力では、これが限界よ……」
+
+    %CALLNAME:TARGET%は息を切らしながら言った。
+
+    「……むきゅ……本を読む時間がなくなるわ……」
+
+    %CALLNAME:TARGET%は不満を漏らしたが、動きは止めなかった。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何故こんな体勢を……」
+
+    %CALLNAME:TARGET%は冷たい目で%CALLNAME:MASTER%の背中を見つめた。
+
+    「……私の体力を消耗させて、何が楽しいの……」
+
+    %CALLNAME:TARGET%は不満を隠さなかった。
+
+    「……早く終わらせなさい。本を読む時間が減るわ」
+
+    %CALLNAME:TARGET%は淡々と言い放った。
+
+    「……むきゅ……何故私がこんな目に……」
+
+    %CALLNAME:TARGET%は苛立ちを隠さずに呟いた。
+
+    「……後ろからだと、余計に体勢が辛いのよ……」
+
+    %CALLNAME:TARGET%は息を切らしながら文句を言った。
+
+    「……あなたの相手をする義理はないはずなのに……」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……」
+
+    %CALLNAME:TARGET%は無表情のまま、機械的に動いていた。
+
+    頭の中では、次に読む本の内容を反芻している。
+
+    「……終わったら、すぐに出て行って」
+
+    %CALLNAME:TARGET%は冷淡に告げた。
+
+    「……私の研究時間を奪わないで」
+
+    「……これは単なる作業よ」
+
+    %CALLNAME:TARGET%は感情のない声で言った。
+
+    「……体を動かすのは好きではないし、意味も感じないわ」
+
+    %CALLNAME:TARGET%は淡々と動きを続けた。
+
+    「……早く終わらせて、大図書館から出て行きなさい」
+
+    %CALLNAME:TARGET%は事務的に言い放った。
+  priority: 1

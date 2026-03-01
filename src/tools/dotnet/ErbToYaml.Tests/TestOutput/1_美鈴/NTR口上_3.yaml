@@ -1,0 +1,42 @@
+﻿character: 美鈴
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んぅぅ・・ふはぁ・・・んんぅ・・んぅぅんぅ・・♪」
+
+    「はぁ・・ん・・もっとしても・・いいのに・・♪」
+
+    「んっ・・ん・・はぁん・・♪」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んぅぅ・・ふはぁ・・・んんぅ・・んぅぅんぅ・・♪」
+
+    「はぁ・・ん・・もっとしても・・いいのに・・♪」
+
+    「んっ・・ん・・はぁん・・♪」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んぅぅ・・ふはぁ・・・んんぅ・・んぅぅんぅ・・」
+
+    「はぁ・・ん・・もっとしても・・いいのに・・」
+
+    「んっ・・ん・・はぁん・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: '%NTR_NAME(0)%の口辱から解放された%CALLNAME:奴隷%は、唇に指を当てながら頬を染めている。'
+  priority: 3
+- id: fallback
+  content: '%NTR_NAME(0)%の口辱から解放された%CALLNAME:奴隷%は、唇に指を当てながら頬を染めている。'
+  priority: 2
+- id: fallback
+  content: >-
+    「・・んぅ・・むぅぅ・・っはぁ・・・・」
+
+    %NTR_NAME(0)%の口辱から解放された%CALLNAME:奴隷%は、唇に指を当てながら俯いている。
+  priority: 1

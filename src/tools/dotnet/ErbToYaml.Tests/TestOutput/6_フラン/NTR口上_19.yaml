@@ -1,0 +1,32 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んむぅぅんんんん・・・・っっっ！！」
+
+    「んーーーーっ！ んっ！！ んんーーーーーっ！！」
+
+    「んんんんっ！ んっ！ んっ！！！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んむぅぅんんんん・・・・っっっ！！」
+
+    %CALLNAME:奴隷%がイクと同時に%NTR_NAME(0)%の射精が始まる。
+
+    達しながらもペニスから口を離す事なく、喉を鳴らしながら全て飲み干した。
+  priority: 2
+- id: fallback
+  content: >-
+    じゅるるるるるるる！！
+
+    %NTR_NAME(0)%はあえて聴こえるように音を立てて秘所を啜った。
+
+    「ひっ！ そんな吸っちゃ・・・・はぁぁぁぁんんっっ」
+
+    ペニスから口を放した%CALLNAME:奴隷%の顔へ噴水のように精子が降り注いだ。
+
+    顔にこびり付いた精子を%CALLNAME:奴隷%は指で掬い、憑かれた様に舐めとった。
+  priority: 1

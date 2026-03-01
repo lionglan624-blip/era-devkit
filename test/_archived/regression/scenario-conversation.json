@@ -1,0 +1,15 @@
+{
+  "name": "core-conversation: 会話テスト",
+  "description": "起床後、キャラと会話できることを確認",
+  "characters": {
+    "紅美鈴": {
+      "CFLAG:2": 1000
+    }
+  },
+  "copy": [
+    {"from": "紅美鈴", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]"]
+  }
+}

@@ -1,0 +1,4 @@
+{"type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_write1","name":"Write","input":{"file_path":"C:\\Era\\erakoumakanNTR\\test-output\\happy-path-file.txt","content":"initial content here"}}]}
+{"type":"message","role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_write1","content":"File created successfully","is_error":false}]}
+{"type":"message","role":"assistant","content":[{"type":"tool_use","id":"toolu_edit1","name":"Edit","input":{"file_path":"C:\\Era\\erakoumakanNTR\\test-output\\happy-path-file.txt","old_string":"initial content here","new_string":"expected test content"}}]}
+{"type":"message","role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_edit1","content":"Edit applied successfully","is_error":false}]}

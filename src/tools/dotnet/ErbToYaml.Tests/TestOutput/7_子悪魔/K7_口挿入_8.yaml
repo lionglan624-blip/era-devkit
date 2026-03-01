@@ -1,0 +1,239 @@
+﻿character: 子悪魔
+situation: K7_口挿入
+entries:
+- id: fallback
+  content: >-
+    「えっ……あたしが……%CALLNAME:MASTER%の中に……入れるの……？」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%の上に跨った。
+
+    「こ、こういうの……初めてで……緊張します……」
+
+    小さな腰をぎこちなく動かして、%CALLNAME:MASTER%のアナルに先端を宛がう。
+
+    「んっ……は、入って……いきます……ね……」
+
+    %CALLNAME:TARGET%は真っ赤な顔で、ゆっくりと腰を沈めた。
+
+    「あっ……%CALLNAME:MASTER%の中……すごく……あったかい……です……」
+
+    「%CALLNAME:MASTER%……あたしでよかったの……？」
+
+    %CALLNAME:TARGET%は照れくさそうに微笑みながら、腰を動かし始めた。
+
+    「えへへ……なんか……%CALLNAME:MASTER%と繋がってる……気持ちいいです……」
+
+    慣れない動きながらも、%CALLNAME:TARGET%は懸命に腰を振っている。
+
+    「あっ……ん……こうすると……いいですか……？」
+
+    %CALLNAME:TARGET%は不安げに%CALLNAME:MASTER%の顔を覗き込んだ。
+
+    「……%CALLNAME:MASTER%が気持ちよくなってくれたら……あたし、嬉しいです……」
+
+    「んふふ……%CALLNAME:MASTER%のこと……あたしが気持ちよくしてあげますね……」
+
+    %CALLNAME:TARGET%は少し得意げな表情で腰を動かした。
+
+    「あっ……%CALLNAME:MASTER%の中……ぎゅって締まって……」
+
+    小さな体が懸命に動いて、%CALLNAME:MASTER%を悦ばせようとしている。
+
+    「こうやって……%CALLNAME:MASTER%のお世話するの……好きなの……」
+
+    %CALLNAME:TARGET%は甘えるような声で囁いた。
+
+    「……もっと……深くまで……いっていいですか……？」
+
+    「%CALLNAME:MASTER%……今日も頑張りますね……」
+
+    %CALLNAME:TARGET%は恥ずかしそうにしながらも、腰を沈めていく。
+
+    「あ……んっ……全部……入りました……」
+
+    %CALLNAME:MASTER%の体の中で%CALLNAME:TARGET%の熱が脈打っている。
+
+    「えへへ……%CALLNAME:MASTER%とこうしてると……幸せです……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に寄り添うように体を密着させた。
+
+    「……あたしのこと……もっと使ってくださいね……？」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「え……あ、あたしが……する側……なんですか……？」
+
+    %CALLNAME:TARGET%は困惑した表情で%CALLNAME:MASTER%を見つめた。
+
+    「こ、こういうの……どうすればいいか……わからないです……」
+
+    言われるがままに%CALLNAME:MASTER%の上に跨り、恐る恐る腰を動かす。
+
+    「あっ……入って……いく……です……」
+
+    %CALLNAME:TARGET%は真っ赤な顔で%CALLNAME:MASTER%のアナルに挿入していった。
+
+    「……は、恥ずかしいけど……%CALLNAME:MASTER%のためなら……頑張ります……」
+
+    「あの……こういうお仕事……初めてで……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで腰を動かし始めた。
+
+    「んっ……あ……こう……ですか……？」
+
+    ぎこちない動きながらも、%CALLNAME:MASTER%を悦ばせようと懸命だ。
+
+    「……%CALLNAME:MASTER%……気持ちいいですか……？」
+
+    %CALLNAME:TARGET%は不安げに問いかけた。
+
+    「……あたし……もっと上手になりたいです……」
+
+    「%CALLNAME:MASTER%が望むなら……あたし、やります……」
+
+    %CALLNAME:TARGET%は覚悟を決めたように腰を沈めていく。
+
+    「あっ……%CALLNAME:MASTER%の中……すごく……きつい……」
+
+    小さな体が%CALLNAME:MASTER%の体内の感触に震えている。
+
+    「んっ……こうやって……動けばいいんですか……」
+
+    %CALLNAME:TARGET%は慣れない動きで腰を振り始めた。
+
+    「……%CALLNAME:MASTER%のこと……好きだから……頑張れます……」
+
+    「あ、あたしがこういうの……するなんて……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、%CALLNAME:MASTER%に言われるまま動いた。
+
+    「んっ……はぅ……なんか……変な感じ……」
+
+    %CALLNAME:MASTER%の体の中の熱さに、%CALLNAME:TARGET%は顔を赤らめた。
+
+    「……こんなこと……他の人には絶対できないです……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯いた。
+
+    「……%CALLNAME:MASTER%だから……我慢できるんです……」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え……あたしが……%CALLNAME:MASTER%に……するんですか……？」
+
+    %CALLNAME:TARGET%は困惑した表情を浮かべた。
+
+    「こ、こういうの……メイドのお仕事じゃないと思うんですけど……」
+
+    しかし%CALLNAME:MASTER%の視線に押されて、渋々と腰を動かし始める。
+
+    「……んっ……入れますよ……」
+
+    %CALLNAME:TARGET%はぎこちなく%CALLNAME:MASTER%のアナルに挿入していった。
+
+    「……%CALLNAME:MASTER%……これで……いいんですか……？」
+
+    「……な、なんであたしがこういうこと……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、言われるがままに動いた。
+
+    「あっ……%CALLNAME:MASTER%の中……なんか……すごいです……」
+
+    慣れない感触に%CALLNAME:TARGET%は顔を赤くした。
+
+    「……こうやって動けばいいんですか……？」
+
+    %CALLNAME:TARGET%は不器用に腰を振った。
+
+    「……咲夜さんには……絶対言わないでくださいね……」
+
+    「……%CALLNAME:MASTER%に言われたから……やりますけど……」
+
+    %CALLNAME:TARGET%は諦めたように腰を沈めていく。
+
+    「あ……んっ……全部……入っちゃいました……」
+
+    %CALLNAME:MASTER%の体の熱さに、%CALLNAME:TARGET%は息を呑んだ。
+
+    「……こういうの……普通じゃないと思います……」
+
+    %CALLNAME:TARGET%は小さく呟いた。
+
+    「……でも……しょうがないです……」
+
+    「あの……これって……お仕事なんですか……？」
+
+    %CALLNAME:TARGET%は首を傾げながら、%CALLNAME:MASTER%の上に跨った。
+
+    「……んっ……入れ……ますね……」
+
+    ぎこちなく腰を動かして、%CALLNAME:MASTER%のアナルを犯していく。
+
+    「……な、なんか……変な感じ……」
+
+    %CALLNAME:TARGET%は困惑した顔のまま腰を振った。
+
+    「……%CALLNAME:MASTER%……これで合ってます……？」
+  priority: 2
+- id: fallback
+  content: >-
+    「……な、なんで……あたしがこんなこと……」
+
+    %CALLNAME:TARGET%は涙目で%CALLNAME:MASTER%を見上げた。
+
+    「こういうの……したくないです……」
+
+    しかし逃げることもできず、言われるがままに腰を動かし始める。
+
+    「……んっ……入れ……ます……」
+
+    %CALLNAME:TARGET%は嫌々ながら%CALLNAME:MASTER%のアナルに挿入していった。
+
+    「……こんなの……ひどい……です……」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%の上に跨った。
+
+    「……はぅ……入って……いきます……」
+
+    屈辱的な行為に耐えながら、言われるがままに腰を動かしている。
+
+    「……こんなの……メイドのお仕事じゃない……」
+
+    %CALLNAME:TARGET%は涙を堪えながら動き続けた。
+
+    「……早く終わってほしい……」
+
+    「や……やめてください……こんなの……」
+
+    %CALLNAME:TARGET%は怯えた顔で%CALLNAME:MASTER%を見つめた。
+
+    「お願いです……他のことなら……なんでもしますから……」
+
+    しかし%CALLNAME:MASTER%は聞き入れない。
+
+    「……うぅ……んっ……」
+
+    %CALLNAME:TARGET%は泣きそうになりながら、腰を動かした。
+
+    「……こんな……ひどい……」
+
+    「……あたし……なんでこんなこと……」
+
+    %CALLNAME:TARGET%は屈辱に震えながら、%CALLNAME:MASTER%の上で動いた。
+
+    「……んっ……はぅ……」
+
+    言われるがままに腰を振っている。
+
+    「……妖精メイドなのに……こんなこと……」
+
+    %CALLNAME:TARGET%は視線を逸らし、耐え忍んでいる。
+
+    「……誰かに見られたら……どうしよう……」
+  priority: 1

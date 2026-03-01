@@ -1,0 +1,12 @@
+﻿character: フラン
+situation: K6_日常
+entries:
+- id: fallback
+  content: >-
+    「ぶ〜〜、今度は呼んでよね！」
+
+    「え〜〜っ、つまんな〜〜い」
+
+    「え〜〜っ、どうしてぇ〜〜？」
+  priority: 1
+  displayMode: newline

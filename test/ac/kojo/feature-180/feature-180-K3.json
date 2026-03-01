@@ -1,0 +1,24 @@
+{
+  "name": "Feature 180: K3 COM_46",
+  "defaults": {
+    "character": "3"
+  },
+  "tests": [
+    {"name": "恋人_pattern0", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [0], "state": {"TALENT:TARGET:16": 1}, "expect": {"output_contains": ["「……ビーズ……後ろに入れるのね……」", "パチュリーはあなたが手にしたアナルビーズを、淡々と見つめた。", "「……一つ……また一つ……数えていくわ……」", "珠が一つ入る度に、パチュリーの体が微かに震える。", "「……あなた……あなたになら……全部……飲み込めるわ……」"]}},
+    {"name": "恋人_pattern1", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [1], "state": {"TALENT:TARGET:16": 1}, "expect": {"output_contains": ["「……んっ……珠が……」", "アナルビーズの珠がパチュリーの菊穴に次々と飲み込まれていく。", "「……腸内で……連なってる感覚……独特ね……」", "「……引き抜く時が……本番かしら……」", "「……楽しみにしてるわ……」"]}},
+    {"name": "恋人_pattern2", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [2], "state": {"TALENT:TARGET:16": 1}, "expect": {"output_contains": ["「……はぁ……全部……入ったわね……」", "珠の一つ一つが腸壁を圧迫し、不思議な充足感を与えている。", "「……あなた……これを……引き抜いて……」", "「……あなたの手で……感じさせて……」"]}},
+    {"name": "恋人_pattern3", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [3], "state": {"TALENT:TARGET:16": 1}, "expect": {"output_contains": ["「……ん……」", "「……珠の数……数えてみようかしら……」", "パチュリーは知識欲と快感の狭間で、微かに唇を緩めた。", "「……あなた……ゆっくり……抜いてね……」", "「……あなたのペースに……委ねるわ……」"]}},
+    {"name": "恋慕_pattern0", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [0], "state": {"TALENT:TARGET:3": 1}, "expect": {"output_contains": ["「……!? そ、それは……ビーズ……？」", "パチュリーはアナルビーズを見て、頬を染めた。", "「後ろに……一つずつ入れていくの……？」", "「……ひぁ……入って……きた……」", "「……あなた……見ないで……変な顔……してるから……」"]}},
+    {"name": "恋慕_pattern1", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [1], "state": {"TALENT:TARGET:3": 1}, "expect": {"output_contains": ["「……や……また……一つ……」", "アナルビーズがパチュリーの菊穴に次々と飲み込まれていく。", "「……む、むきゅ……腸の中……珠が……連なって……」", "「……引き抜く時……どうなるの……怖いわ……」"]}},
+    {"name": "恋慕_pattern2", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [2], "state": {"TALENT:TARGET:3": 1}, "expect": {"output_contains": ["「……っ……全部……入った……」", "パチュリーは腸内の充満感に、深い息を吐いた。", "「……動くと……珠が……腸壁を……」", "「……あなた……お願い……ゆっくり……抜いて……」"]}},
+    {"name": "恋慕_pattern3", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [3], "state": {"TALENT:TARGET:3": 1}, "expect": {"output_contains": ["「……ん……ぁ……珠が……」", "パチュリーはアナルビーズの感触に、言葉を失っていた。", "「……一つ一つが……腸壁を……押してる……」", "「……こんなの……本には……載ってなかった……」"]}},
+    {"name": "思慕_pattern0", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [0], "state": {"TALENT:TARGET:17": 1}, "expect": {"output_contains": ["「……それは……アナルビーズね」", "パチュリーはあなたが持つ道具を、興味深そうに観察した。", "「珠を一つずつ挿入し……引き抜き時に快感を得る道具……」", "「……っ……一つ……入った……」"]}},
+    {"name": "思慕_pattern1", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [1], "state": {"TALENT:TARGET:17": 1}, "expect": {"output_contains": ["「……ふぅん……」", "パチュリーはアナルビーズの感触を分析しようとしている。", "「……珠の直径と間隔……計算された設計ね……」", "「……むきゅ……これは……予想外の刺激……」"]}},
+    {"name": "思慕_pattern2", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [2], "state": {"TALENT:TARGET:17": 1}, "expect": {"output_contains": ["パチュリーは無言でアナルビーズの挿入を受けている。", "珠が一つ入る度に、パチュリーの呼吸が微かに乱れる。", "「……腸内の圧迫感……悪くは……ないわね……」", "「……でも……調子に乗らないで……」"]}},
+    {"name": "思慕_pattern3", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [3], "state": {"TALENT:TARGET:17": 1}, "expect": {"output_contains": ["「……ん……」", "パチュリーはアナルビーズの感触に、小さく声を漏らした。", "「……珠の数……数えて……分析を……」", "「……三つ……四つ……もう……分からないわ……」"]}},
+    {"name": "なし_pattern0", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [0], "state": {}, "expect": {"output_contains": ["「……何の真似かしら」", "パチュリーはあなたが持つアナルビーズを見て、冷ややかな目を向けた。", "「そんな珠を後ろに入れて……何が楽しいの……」", "「……っ……入って……きた……」"]}},
+    {"name": "なし_pattern1", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [1], "state": {}, "expect": {"output_contains": ["パチュリーは無表情でアナルビーズの挿入を受けている。", "珠が一つ入る度に、その表情が微かに歪む。", "「……これで満足……かしら……」", "「……早く終わらせて……」"]}},
+    {"name": "なし_pattern2", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [2], "state": {}, "expect": {"output_contains": ["「……むきゅ」", "パチュリーは不快そうに眉を寄せたが、その反応は本物だった。", "「……珠が……一つ一つ……」", "「……下品な道具ね……でも……悪くは……ない……かも……」"]}},
+    {"name": "なし_pattern3", "call": "KOJO_MESSAGE_COM_K3_46", "mock_rand": [3], "state": {}, "expect": {"output_contains": ["「……はぁ」", "パチュリーは深い溜息をついたが、それは快感を逃がすためだった。", "「……珠を数えろと……？　馬鹿馬鹿しい……」", "「……好きにしなさい……ただし……読書の邪魔だけは……」"]}}
+  ]
+}

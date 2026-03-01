@@ -1,0 +1,18 @@
+{
+  "name": "sc-006: セーブ/ロード 状態復元",
+  "description": "セーブ後ロードで全状態が復元されることを確認（起床フローのみ）",
+  "add_characters": [1],
+  "characters": {
+    "紅美鈴": {
+      "CFLAG:2": 3000,
+      "TALENT:3": 1,
+      "ABL:10": 2
+    }
+  },
+  "copy": [
+    {"from": "紅美鈴", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]", "起床"]
+  }
+}

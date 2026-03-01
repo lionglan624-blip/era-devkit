@@ -1,0 +1,39 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ9
+entries:
+- id: fallback
+  content: >-
+    「んっ・・ああ・・い、いいっ・・%S_HEART%」
+
+    「んああっ・・く、くる・・奥まで・・%S_HEART%」
+
+    「あああっ！ ふ、深いっ・・んんんっ・・%S_HEART%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ああ・・い、いいっ・・%S_HEART%」
+
+    「んああっ・・く、くる・・奥まで・・%S_HEART%」
+
+    「あああっ！ ふ、深いっ・・んんんっ・・%S_HEART%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ああ・・い、いいっ・・%S_HEART%」
+
+    「んああっ・・く、くる・・奥まで・・%S_HEART%」
+
+    「あああっ！ ふ、深いっ・・んんんっ・・%S_HEART%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ああ・・い、いいっ・・%S_HEART%」
+
+    「んああっ・・く、くる・・奥まで・・%S_HEART%」
+
+    「あああっ！ ふ、深いっ・・んんんっ・・%S_HEART%」
+  priority: 1
+  displayMode: newline

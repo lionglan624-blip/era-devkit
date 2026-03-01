@@ -1,0 +1,25 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: talent_159_0
+  content: >-
+    「私が%NTR_KARE()%に抱かれてる間は、%CALLNAME:PLAYER%のセックスは禁止にするわ。これは決定事項よ」
+
+    「%CALLNAME:PLAYER%が望むから、私は%NTR_KARE()%に抱かれてくるわ。でも%CALLNAME:PLAYER%のセックスは禁止よ。まさか私以外の相手を抱くために、あんなことを言ったわけじゃないわよね？」
+
+    「%NTR_KARE()%が私に種付けしたいなんて言うのよ、ククク。%CALLNAME:PLAYER%ともセックスしないようになんて言われてるわ。妬いてるのかしらね？」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 159
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「%CALLNAME:PLAYER%がフランやパチェに悪さをしないようにするのは雇い主としての義務だわ」
+
+    「使用人のことを自由にしても何も問題ないわよね？」
+
+    「館の中の風紀を乱されては、主として面目が立たないのよ」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,83 @@
+﻿character: チルノ
+situation: NTR口上
+entries:
+- id: talent_7_0
+  content: >-
+    「なによ・・お、おしごとって・・や・・やだ！ あんなのもうやだ！」
+
+    「ぐ・・あ、あたい・・もう・・あんなことしたくない・・」
+
+    「うっ・・さ、サイテー！」
+  priority: 8
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「またご指名？ うん、あたいならいつでもオッケーだよ！」
+
+    「お仕事だよね？ えへへ、お客さまマンゾクしてくれるかな？」
+
+    「今度はお客さま、何人来てくれるのかな？」
+  priority: 7
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「それっていいね！こんどあたいもいっしょにね！」
+
+    「すっごいコト教えたげる。ナイショだよ？」
+
+    「こないだのアレ、面白かったね！」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そうなんだ！」
+
+    「あははっ、いまの面白い！」
+
+    「ねぇねぇ知ってる？ この前さ・・」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そうなんだ！」
+
+    「あははっ、いまの面白い！」
+
+    「うそ？ そんなの知らなかった！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えー、そうなの？」
+
+    「それって本当？」
+
+    「そんなことあったんだ？」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふーん、つまんない」
+
+    「そうなんだ」
+
+    「あ、トンボ！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふーん、つまんない」
+
+    「そうなんだ」
+
+    「あ、トンボ！」
+  priority: 1
+  displayMode: newline

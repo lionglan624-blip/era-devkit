@@ -1,0 +1,48 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ9
+entries:
+- id: fallback
+  content: >-
+    「ああ・・おしり・・イイ%S_HEART0%・・いい・・もっと・・もっとよ・・%S_HEART1%」
+
+    「ああっ・・お、奥まで%S_HEART0%・・奥まで、きてぇ・・%S_HEART1%」
+
+    「ああ・・すごい%S_HEART0%・・ああ・・ふとくて・・イイっ・・%S_HEART1%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・おしり・・イイ%S_HEART0%・・いい・・もっと・・もっとよ・・%S_HEART1%」
+
+    「ああっ・・お、奥まで%S_HEART0%・・奥まで、きてぇ・・%S_HEART1%」
+
+    「ああ・・すごい%S_HEART0%・・ああ・・ふとくて・・イイっ・・%S_HEART1%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・おしり・・イイ%S_HEART0%・・いい・・もっと・・もっとよ・・%S_HEART1%」
+
+    「ああっ・・お、奥まで%S_HEART0%・・奥まで、きてぇ・・%S_HEART1%」
+
+    「ああ・・すごい%S_HEART0%・・ああ・・ふとくて・・イイっ・・%S_HEART1%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・そんな・・おしりなんかで・・ああ・・%S_HEART0%」
+
+    「ああっ・・お、奥まで・・奥まで、ああ・・%S_HEART0%」
+
+    「ああ・・くうっ・・ああ・・ふとい・・ああ・・%S_HEART0%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「い、いやっ・・ああっ・・痛っ・・！」
+
+    「いや・・いやあ・・た、たすけ、て・・」
+
+    「くっ・・うっ・・ううっ・・」
+  priority: 1
+  displayMode: newline

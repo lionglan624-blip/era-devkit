@@ -1,0 +1,28 @@
+﻿character: レミリア
+situation: NTR口上_お持ち帰り
+entries:
+- id: talent_148_0
+  content: >-
+    「いやっ・・いやよっ・・！！ ああああっ！！」
+
+    「だ、だめっ・・！ いやあああっ！！」
+
+    「ああっ！ だめ、だめよっ！ ああああっ！！」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ・・いいわ・・意外と大きいじゃない・・さぁ、ご褒美に搾り取ってあげるわ・・」
+
+    %CALLNAME:奴隷%は客の上に馬乗りになると彼のモノを一思いに飲み込み、無数の襞で彼を締め上げながら腰を上下に動かした。
+
+    「ああっ・・そこ、ああっ、ふ、深いっ・・んあああっ！」
+
+    %CALLNAME:奴隷%は四つん這いの姿勢でまるで犬のように犯されている。
+
+    客のペニスが容赦なく%CALLNAME:奴隷%の奥底まで突きこまれ、鎖に繋がれた彼女はまさに発情期の牝犬そのものだった。
+  priority: 1

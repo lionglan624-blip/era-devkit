@@ -1,0 +1,78 @@
+﻿character: 大妖精
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「はい・・わかりました・・」
+
+    「はい・・き、今日はこのままいるんですね？」
+
+    「はい・・お、おおせの通りにっ・・」
+
+    %CALLNAME:奴隷%は言われるままに下着を脱ぎ、%NTR_NAME(0)%に手渡して微笑んだ。
+
+    %CALLNAME:奴隷%は脱いだ下着を%NTR_NAME(0)%に手渡し、真っ赤になりながらも微笑んでみせた。
+
+    %CALLNAME:奴隷%は局部露出の恥じらいに頬を染めている。
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はい・・わかりました・・」
+
+    「はい・・き、今日はこのままいるんですね？」
+
+    「はい・・お、おおせの通りにっ・・」
+
+    %CALLNAME:奴隷%は言われるままに下着を脱ぎ、%NTR_NAME(0)%に手渡して微笑んだ。
+
+    %CALLNAME:奴隷%は脱いだ下着を%NTR_NAME(0)%に手渡し、真っ赤になりながらも微笑んでみせた。
+
+    %CALLNAME:奴隷%は局部露出の恥じらいに頬を染めている。
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はい・・わかりました・・」
+
+    「・・わかりました・・」
+
+    「・・はずかしいです・・」
+
+    命じられた%CALLNAME:奴隷%は仕方なく下着を脱ぎ、%NTR_NAME(0)%に手渡した。
+
+    %CALLNAME:奴隷%は命じられるままに下着を脱ぎ、おずおずと%NTR_NAME(0)%に手渡した。
+
+    %CALLNAME:奴隷%は命じられるままに局部を露出し、羞恥心で真っ赤になっている。
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そんな・・は、はい・・わかりました・・」
+
+    「ぬ・・脱げば・・いいんですか・・」
+
+    「・・は、恥ずかしい・・です・・」
+
+    %NTR_NAME(0)%に脅された%CALLNAME:奴隷%はためらいがちに下着を脱ぎ、羞恥のあまり泣き出しそうだった。
+
+    %NTR_NAME(0)%の脅しに屈した%CALLNAME:奴隷%はためらいがちに下着を脱ぎ、羞恥のあまり泣き出しそうだった。
+
+    %NTR_NAME(0)%に脅され仕方なしに下着を脱いだ%CALLNAME:奴隷%だが、恥ずかしさのあまり涙をにじませている。
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そんな・・は、はい・・わかりました・・」
+
+    「ぬ・・脱げば・・いいんですか・・」
+
+    「・・は、恥ずかしい・・です・・」
+
+    %NTR_NAME(0)%に脅された%CALLNAME:奴隷%はためらいがちに下着を脱ぎ、羞恥のあまり泣き出しそうだった。
+
+    %NTR_NAME(0)%の脅しに屈した%CALLNAME:奴隷%はためらいがちに下着を脱ぎ、羞恥のあまり泣き出しそうだった。
+
+    %NTR_NAME(0)%に脅され仕方なしに下着を脱いだ%CALLNAME:奴隷%だが、恥ずかしさのあまり涙をにじませている。
+  priority: 1
+  displayMode: newline

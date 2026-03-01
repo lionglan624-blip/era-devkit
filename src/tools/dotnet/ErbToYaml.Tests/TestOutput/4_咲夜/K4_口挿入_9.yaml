@@ -1,0 +1,239 @@
+﻿character: 咲夜
+situation: K4_口挿入
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%……後ろから、失礼いたしますわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背後に立ち、その腰を優しく掴んだ。
+
+    「今日は……私がリードさせていただきますわね」
+
+    %CALLNAME:TARGET%は慎重に腰を進め、%CALLNAME:MASTER%の中に入っていく。
+
+    「んっ……%CALLNAME:MASTER%の中……とても熱いですわ……」
+
+    「……お嬢様にはお見せできない姿ですけれど……」
+
+    %CALLNAME:TARGET%は恋人のために主導権を握る覚悟を決めていた。
+
+    「……ふぅ……%CALLNAME:MASTER%、力を抜いてくださいまし……」
+
+    %CALLNAME:TARGET%は四つん這いの%CALLNAME:MASTER%を後ろから抱きながら囁いた。
+
+    瀟洒なメイドの手つきは優しく、しかし確実に%CALLNAME:MASTER%を満たしていく。
+
+    「……あなたの中、私を締め付けていますわ……」
+
+    %CALLNAME:TARGET%はゆっくりと腰を動かし始めた。
+
+    「……んっ……%CALLNAME:MASTER%の声……もっと聞かせてくださいまし……」
+
+    完璧なメイドは、恋人を悦ばせることに専念していた。
+
+    「……%CALLNAME:MASTER%……もう少し深く、入りますわよ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腰を支えながら、奥へと進んだ。
+
+    「あっ……ここが……一番奥……ですわね……」
+
+    %CALLNAME:MASTER%の反応を確かめながら、%CALLNAME:TARGET%はリズムを刻む。
+
+    「……ふふ……そんなに声を出して……可愛らしいですわ……」
+
+    「メイドとして……%CALLNAME:MASTER%のお世話、させていただきますわ……」
+
+    %CALLNAME:TARGET%は愛情を込めて腰を動かし続けた。
+
+    「……%CALLNAME:MASTER%の背中……綺麗ですわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背に身を寄せながら、腰を動かしている。
+
+    「後ろから抱きしめると……鼓動が伝わってきますの……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の耳元に唇を寄せた。
+
+    「……んっ……このまま、もっと深く繋がりたいですわ……」
+
+    「%CALLNAME:MASTER%……愛していますわ……」
+
+    完璧なメイドは、恋人だけに見せる積極的な姿を惜しみなく披露した。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……%CALLNAME:MASTER%……私が……後ろから……」
+
+    %CALLNAME:TARGET%は緊張しながら%CALLNAME:MASTER%の背後に立った。
+
+    「こんな体勢は……初めてですから……少し、緊張しますわ……」
+
+    %CALLNAME:TARGET%は慎重に腰を進めていく。
+
+    「んっ……入りましたわ……」
+
+    「%CALLNAME:MASTER%……痛くありませんか……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の反応を気にしながら動き始めた。
+
+    「……あ……%CALLNAME:MASTER%の中……こんなに……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を後ろから抱きながら、声を漏らした。
+
+    「私が動くと……%CALLNAME:MASTER%の声が……」
+
+    恥ずかしそうに頬を染めながらも、%CALLNAME:TARGET%は腰を動かし続ける。
+
+    「……ふぁ……こんな気持ちになるなんて……」
+
+    「%CALLNAME:MASTER%……もう少し……続けさせてくださいまし……」
+
+    %CALLNAME:TARGET%は想い人との繋がりを確かめていた。
+
+    「……%CALLNAME:MASTER%を……こうして後ろから……」
+
+    %CALLNAME:TARGET%は自分の大胆さに戸惑いながらも腰を動かしている。
+
+    「メイドが……こんなことをするなんて……」
+
+    「……でも……%CALLNAME:MASTER%のためなら……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腰を掴み、深く突いた。
+
+    「あっ……ここ……気持ちいいですか……？」
+
+    葛藤しながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%を悦ばせようとしていた。
+
+    「……んっ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背に身を寄せながら腰を動かしている。
+
+    「後ろから抱くと……%CALLNAME:MASTER%の匂いがして……」
+
+    「……ドキドキしてしまいますわ……」
+
+    %CALLNAME:TARGET%はリズムを保ちながら、深く繋がっていく。
+
+    「……%CALLNAME:MASTER%……もっと……声を聞かせて……」
+
+    恥ずかしさを堪えながら、%CALLNAME:TARGET%は想いを込めて動き続けた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……それでは、後ろからお相手いたしますわ」
+
+    %CALLNAME:TARGET%は事務的に%CALLNAME:MASTER%の背後に立った。
+
+    「これもメイドのサービスの一環ですから……」
+
+    %CALLNAME:TARGET%は慎重に腰を進めていく。
+
+    「……んっ……入りましたわ……」
+
+    「力を抜いてくださいまし……すぐに終わらせますから……」
+
+    %CALLNAME:TARGET%はプロとしての態度を崩さなかった。
+
+    「……ふぅ……%CALLNAME:MASTER%の中……思ったより……」
+
+    %CALLNAME:TARGET%は動きながら、わずかに表情を変えた。
+
+    「……いえ、何でもありませんわ……」
+
+    「これは仕事ですから……感じるわけが……」
+
+    %CALLNAME:TARGET%は自分に言い聞かせながら腰を動かし続ける。
+
+    「……%CALLNAME:MASTER%の反応……悪くありませんわね……」
+
+    言い訳するように、%CALLNAME:TARGET%は淡々と任務を遂行していた。
+
+    「……後ろからですと、お顔を見なくて済みますわね……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腰を掴みながら呟いた。
+
+    「……少しだけ、やりやすいですわ……」
+
+    %CALLNAME:TARGET%は機械的に腰を動かしている。
+
+    「……っ……変な気分になってきましたわ……」
+
+    「%CALLNAME:MASTER%のせいですからね……」
+
+    %CALLNAME:TARGET%は責任を押し付けながらも、動きを止めなかった。
+
+    「……これがお望みでしたら、お相手いたしますわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を後ろから抱く体勢を取った。
+
+    「プロとして……どのような体勢でもこなしてみせますの」
+
+    %CALLNAME:TARGET%は淡々と腰を動かしている。
+
+    「……んっ……少し、熱くなってきましたわね……」
+
+    「……気のせいですわ……仕事ですから……」
+
+    小さく言い訳しながら、%CALLNAME:TARGET%は任務を続行した。
+  priority: 2
+- id: fallback
+  content: >-
+    「……ご要望でしたら、後ろからお相手いたしますわ」
+
+    %CALLNAME:TARGET%は無表情で%CALLNAME:MASTER%の背後に立った。
+
+    「これもメイドの務めですから……」
+
+    %CALLNAME:TARGET%は機械的に腰を進めていく。
+
+    「……入りましたわ……動きますので、お覚悟を」
+
+    瀟洒なメイドは感情を完全に押し殺していた。
+
+    「……早く済ませたいのでしたら、力を抜いてくださいまし」
+
+    「……後ろからの体勢ですか……」
+
+    %CALLNAME:TARGET%は事務的に%CALLNAME:MASTER%を抱く姿勢を取った。
+
+    「お顔を合わせなくて済むのは……少しだけ気が楽ですわね」
+
+    %CALLNAME:TARGET%は無感情に腰を動かしている。
+
+    「……終わりましたらお知らせいたしますので……」
+
+    「それまでお待ちくださいまし」
+
+    完璧なメイドは、あくまでプロフェッショナルを貫いていた。
+
+    「……これは仕事です」
+
+    %CALLNAME:TARGET%は自分に言い聞かせるように呟いた。
+
+    「お客様のお相手をするのも、メイドの務め……」
+
+    %CALLNAME:TARGET%は淡々と腰を動かし続ける。
+
+    「……感情移入などいたしませんわよ」
+
+    「終わりましたらすぐに仕事に戻らせていただきます」
+
+    冷静さを保ちながら、%CALLNAME:TARGET%は義務を果たしていた。
+
+    「……後ろから動いておりますので、反応は見えませんわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中を見つめながら淡々と言った。
+
+    「感情を見せたくありませんので……この体勢は都合が良いですわね」
+
+    瀟洒なメイドは無感情に腰を動かしている。
+
+    「……そろそろ終わりにいたしましょうか」
+
+    「私には、お嬢様のお世話という仕事がありますので」
+
+    完璧なメイドは、あくまで義務として相手をしていた。
+  priority: 1

@@ -1,0 +1,19 @@
+{
+  "name": "sc-034: 訪問者退去（好感度＞屈服度）",
+  "description": "CFLAG:好感度 > CFLAG:屈服度 の場合、訪問者宅から帰宅する確率が高まることを確認",
+  "add_characters": [1],
+  "characters": {
+    "紅美鈴": {
+      "CFLAG:2": 1000,
+      "CFLAG:21": 500,
+      "CFLAG:現在位置": 99,
+      "TALENT:NTR": 1
+    }
+  },
+  "copy": [
+    {"from": "紅美鈴", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]"]
+  }
+}

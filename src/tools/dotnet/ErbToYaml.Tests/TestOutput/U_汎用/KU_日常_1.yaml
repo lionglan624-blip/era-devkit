@@ -1,0 +1,12 @@
+﻿character: 汎用
+situation: KU_日常
+entries:
+- id: fallback
+  content: >-
+    「お断りよっ」
+
+    「お呼びじゃないわ」
+
+    「だ、だめよっ」
+  priority: 1
+  displayMode: newline

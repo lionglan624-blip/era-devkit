@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: K5_日常
+entries:
+- id: fallback
+  content: >-
+    「遠慮しておくわ」
+
+    「お呼びじゃないわね」
+
+    「失礼させてもらうわ」
+  priority: 1
+  displayMode: newline

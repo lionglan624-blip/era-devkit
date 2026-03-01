@@ -1,0 +1,59 @@
+﻿character: 大妖精
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「いやっ・・いやあっ・・！！ ああああっ！！」
+
+    「だ、だめっ・・！ いやあああっ！！」
+
+    「ああっ！ だめ、だめええっ！ ああああっ！！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「いやっ・・いやあっ・・！！ ああああっ！！」
+
+    「だ、だめっ・・！ いやあああっ！！」
+
+    「ああっ！ だめ、だめええっ！ ああああっ！！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ひゃんっ、あっ、んっんっ、はぁっ・・・こんなっ・・太いのって・・きもちいっ・・」
+
+    %CALLNAME:奴隷%は尻穴を客のペニスで突かれながら、淫らな言葉を発している
+  priority: 5
+- id: fallback
+  content: >-
+    「ひゃんっ、あっ、んっんっ、はぁっ・・・こんなっ・・太いのって・・きもちいっ・・」
+
+    %CALLNAME:奴隷%は尻穴を客のペニスで突かれながら、淫らな言葉を発している
+  priority: 4
+- id: fallback
+  content: >-
+    「ひゃんっ、あっ、んっんっ、はぁっ・・・こんなっ・・太いのって・・きもちいっ・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%のペニスでアヌスを突かれながら、淫らな言葉を発している
+  priority: 3
+- id: fallback
+  content: >-
+    「んっ・・ふっ・・うっ・・・ああん・・・」
+
+    %CALLNAME:奴隷%は%CALLNAME:MASTER%への想いとの間で揺らいでいるが、%NTR_NAME(0)%は下卑た笑いを浮かべながら腰の勢いを強め彼女の小菊を犯し続けた。
+
+    %NTR_NAME(奴隷)%に抱かれながら、%CALLNAME:奴隷%は目尻に後悔の涙を滲ませていた。
+  priority: 2
+- id: fallback
+  content: >-
+    「んっ・・ふっ・・うっ・・・ひっく、ひっ、・・」
+
+    %CALLNAME:奴隷%は必死に許しを請うたが、%NTR_NAME(0)%は下卑た笑いを浮かべながら腰の勢いを強めた。
+
+    %NTR_NAME_1_2(奴隷)%に尻穴を犯されながら、%CALLNAME:奴隷%は目尻に恐怖の涙を滲ませていた。
+  priority: 1

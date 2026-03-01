@@ -1,0 +1,12 @@
+﻿character: 美鈴
+situation: K1_会話親密
+entries:
+- id: fallback
+  content: >-
+    「な、何ですかいきなりっ？」
+
+    「はっ！！」
+
+    「遅いっ！」
+  priority: 1
+  displayMode: newline

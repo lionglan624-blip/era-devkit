@@ -1,0 +1,27 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の話にばかりに答えている。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%とばかり話している。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の話しか聞こえていないようだ。
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: '%CALLNAME:奴隷%は%CALLNAME:MASTER%と%NTR_NAME(0)%と交互に話をしている。'
+  priority: 3
+- id: fallback
+  content: '%CALLNAME:奴隷%は%CALLNAME:MASTER%と%NTR_NAME(0)%と交互に話をしている。'
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%CALLNAME:MASTER%の背に隠れるように会話している。
+
+    %CALLNAME:奴隷%は%CALLNAME:MASTER%の陰に隠れるように会話している。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%を警戒して%CALLNAME:MASTER%の背に隠れるように話している。
+  priority: 1
+  displayMode: newline

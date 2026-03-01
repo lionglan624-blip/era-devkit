@@ -1,0 +1,11 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ9
+entries:
+- id: fallback
+  content: >-
+    「こ、こっち・・！？ い、いやああっ！！
+
+    「そんな、こんなのっ、や、やめ、やめなさいっ！
+
+    「こ、こんなところで、だ、だめえっ！
+  priority: 1

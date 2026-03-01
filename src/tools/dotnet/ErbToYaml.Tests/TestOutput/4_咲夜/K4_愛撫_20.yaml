@@ -1,0 +1,18 @@
+﻿character: 咲夜
+situation: K4_愛撫
+entries:
+- id: fallback
+  content: >-
+    「ふふっ、%CALLNAME:MASTER%もそんな所に興味があるのね？」
+
+    「あんっ、%CALLNAME:MASTER%もそんな所が好きなの？」
+
+    「んんっ、%CALLNAME:MASTER%もそんな所を弄ってくるのね？」
+
+    「いい事教えてあげる。あの人も私のアナルに興味津々なのよ」
+
+    「素敵なことを教えてあげる。あの人も私のアナルを狙ってるのよ」
+
+    「%CALLNAME:MASTER%なら喜ぶかしら。あの人も私のアナルにご執心なのよ」
+  priority: 1
+  displayMode: newline

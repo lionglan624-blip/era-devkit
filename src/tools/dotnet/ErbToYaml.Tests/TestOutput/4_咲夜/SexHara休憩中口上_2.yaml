@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「動かないで」
+
+    「動かないで。公衆便所のくせに」
+
+    「動かないで。%CALLNAME:被害者%の『仕事』でしょう」
+  priority: 1
+  displayMode: newline

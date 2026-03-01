@@ -1,0 +1,27 @@
+﻿character: パチュリー
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ん・・んふ・・すてきね・・%MSG_HEART()%」
+
+    「はぁ・・ん・・いいわ・・%MSG_HEART()%」
+
+    「んっ・・ん・・もっと・・%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ん・・んふ・・すてきね・・%MSG_HEART()%」
+
+    「はぁ・・ん・・いいわ・・%MSG_HEART()%」
+
+    「んっ・・ん・・もっと・・%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんっ・・けほっ、こほっ・・」
+
+    %CALLNAME:奴隷%は唇を奪われ憤慨するあまりむせてしまっている。
+  priority: 1

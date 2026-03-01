@@ -1,0 +1,12 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    （…イけたにはイけたけど…。物足りない…）
+
+    （…イけたけど…。もどかしい…）
+
+    （…イけたけど…。何か、%CALLNAME:MASTER%相手だと…、すっきりしない…）
+  priority: 1
+  displayMode: newline

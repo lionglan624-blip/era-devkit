@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「ふふっ、撫でまわしてくださいって言っているようなものね」
+
+    「誘っているのかしら？ こう、撫でまわして欲しいとしか思えないわね」
+
+    「ボディースーツの下をあらためさせてもらうわ」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,12 @@
+﻿character: チルノ
+situation: K8_日常
+entries:
+- id: fallback
+  content: >-
+    「えへへっ、早く行こうよ！」
+
+    「ね、ナニして遊ぶの？」
+
+    「で、どこで遊ぶの？」
+  priority: 1
+  displayMode: newline

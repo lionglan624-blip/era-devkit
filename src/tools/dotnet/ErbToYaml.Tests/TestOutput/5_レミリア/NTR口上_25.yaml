@@ -1,0 +1,50 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: talent_148_0
+  content: >-
+    「そう・・私のことを買ってくれたのね。嬉しいわ」
+
+    「今だけは、%CALLNAME:MASTER%だけのもの・・」
+
+    「ええ、その鍵があれば私のことを自由にできるわ・・」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: talent_3_1
+  content: >-
+    「そう・・私のことを買ってくれたのね。嬉しいわ」
+
+    「あら。よくあの人が%CALLNAME:MASTER%に鍵を売ったものね・・きっとボられてるわよ？」
+
+    「ええ、その鍵があれば私のことを自由にできるわ・・」
+
+    「でも・・%MSG_RE_LOVER(奴隷)%の身体を金で買うなんて、ククク、倒錯してていいじゃない？」
+
+    「金で買われて%MSG_RE_LOVER(奴隷)%に身体を開く・・ククク、倒錯してていいじゃない？」
+
+    「ええ、時間いっぱい楽しみましょう・・%MSG_LOVER(奴隷)%さん？」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「そう・・私のことを買ってくれたのね」
+
+    「あら。よくあの人が%CALLNAME:MASTER%に鍵を売ったものね」
+
+    「ええ、その鍵があれば私のことを自由にできるわ・・」
+
+    「でも、館の使用人に金で身体を買われる主だなんて、ククク、倒錯してていいじゃない」
+
+    「金で買われて使用人に身体を開く・・ククク、倒錯してていいじゃない？」
+
+    「ええ、時間いっぱい楽しみましょう・・ご主人さま？」
+  priority: 1
+  displayMode: newline

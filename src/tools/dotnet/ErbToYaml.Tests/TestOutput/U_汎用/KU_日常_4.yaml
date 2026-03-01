@@ -1,0 +1,12 @@
+﻿character: 汎用
+situation: KU_日常
+entries:
+- id: fallback
+  content: >-
+    「そうそう、こんなことがあったのよ」
+
+    「ねえ、聞いてくれる？」
+
+    「この間の話、どうなったの？」
+  priority: 1
+  displayMode: newline

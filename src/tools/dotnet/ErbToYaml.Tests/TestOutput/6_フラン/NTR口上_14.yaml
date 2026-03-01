@@ -1,0 +1,36 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は%CALLNAME:奴隷%の顔にペニスを擦りつけた。
+
+    「あは♪ 凄いにおい・・・・これスキぃ・・・・ちゅ」
+
+    「やーん♪ んふ、しゃぶってあげるね♪」
+
+    「ん・・いつもの、するね？」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は%CALLNAME:奴隷%にペニスを見せ付ける。
+
+    「あ・・・・おちんちん・・・・えっちなにおいが・・・・」
+
+    「あ・・うん、おしゃぶり、するんだよね・・？」
+
+    「あ・・おちんちん・・おっきぃ・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は%CALLNAME:奴隷%にペニスを見せ付ける。
+
+    「あ・・・・おちんちん・・・・えっちなにおいが・・・・」
+
+    「あ・・うん、おしゃぶり、するんだよね・・？」
+
+    「あ・・おちんちん・・おっきぃ・・」
+  priority: 1
+  displayMode: newline

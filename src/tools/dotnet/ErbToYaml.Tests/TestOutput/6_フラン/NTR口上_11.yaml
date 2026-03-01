@@ -1,0 +1,36 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ふぁ・・・・あったかくてふわふわする・・・・」
+
+    「ん・・気持ちいいよ・・」
+
+    「あ・・うん・・もっと、触って・・%MSG_HEART()%」
+
+    %NTR_NAME(0)%は服の隙間から%CALLNAME:奴隷%の小さな胸を揉みしだいている。
+
+    %NTR_NAME(0)%は服の隙間から%CALLNAME:奴隷%の胸を撫で回している。
+
+    %NTR_NAME(0)%は服の隙間から%CALLNAME:奴隷%の胸の先端を擽っている。
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふぅっ・・うふぅっ・・%CALLNAME:奴隷%のおっぱい、おもちゃにしちゃ、やぁ・・%MSG_HEART()%」
+
+    「んうん・・やぁん・・♪」
+
+    「あ・・もぉう・・おっぱいばっかり・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふぅっ・・うふぅっ・・%CALLNAME:奴隷%のおっぱい、おもちゃにしちゃ、やぁ・・」
+
+    「んうん・・やぁん・・」
+
+    「あ・・もぉう・・おっぱいばっかり・・」
+  priority: 1
+  displayMode: newline

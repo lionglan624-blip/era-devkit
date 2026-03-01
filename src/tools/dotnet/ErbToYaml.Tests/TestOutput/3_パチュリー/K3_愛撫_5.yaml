@@ -1,0 +1,219 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……ん……%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は読みかけの魔導書を閉じ、%CALLNAME:MASTER%の手を受け入れた。
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の胸に触れ、柔らかな感触を確かめている。
+
+    「……あなたに触れられると、魔力が乱れるの」
+
+    %CALLNAME:TARGET%は淡々と言いながらも、頬が微かに紅潮している。
+
+    「……でも、嫌じゃないわ。むしろ……もっと、触れて」
+
+    そう呟いて、%CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に身を預けた。
+
+    「あ……ぁ……」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の乳房を揉みしだいている。
+
+    大図書館の静寂の中、%CALLNAME:TARGET%の甘い吐息だけが響いていた。
+
+    「……%CALLNAME:MASTER%、あなたの手……温かいわ……」
+
+    %CALLNAME:TARGET%は目を閉じ、%CALLNAME:MASTER%の愛撫に身を委ねている。
+
+    「……本には書いていない感覚ね……これは……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手に自分の手を重ねた。
+
+    「……ふぅ……ん……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の膝の上で、胸を愛撫されている。
+
+    %CALLNAME:MASTER%が乳首を指先で弾くと、%CALLNAME:TARGET%の体がびくりと震えた。
+
+    「っ……そこ……敏感なの……知ってるでしょう……」
+
+    %CALLNAME:TARGET%は恨めしそうに%CALLNAME:MASTER%を見上げるが、その瞳は潤んでいる。
+
+    「……意地悪ね……でも、止めないで……」
+
+    普段の知的な雰囲気とは異なる、甘えた声が漏れた。
+
+    「……やぁ……%CALLNAME:MASTER%……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の乳首を摘み、転がしている。
+
+    %CALLNAME:TARGET%は本を手放し、%CALLNAME:MASTER%にしがみついた。
+
+    「……胸だけで、こんなに……頭が真っ白になるなんて……」
+
+    %CALLNAME:TARGET%の吐息が熱を帯び、%CALLNAME:MASTER%の耳を擽った。
+
+    「……%CALLNAME:MASTER%……私の全部、あなたのものよ……」
+
+    動かない大図書館が、%CALLNAME:MASTER%の腕の中で甘く蕩けていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「っ……な、何を……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手が胸に触れた瞬間、身を強張らせた。
+
+    しかし抵抗することなく、%CALLNAME:TARGET%はされるがままになっている。
+
+    「……胸、なんて……恥ずかしいじゃない……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、視線を逸らした。
+
+    「……%CALLNAME:MASTER%、見ないで……」
+
+    そう言いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%から離れようとはしなかった。
+
+    「……ん……あ……」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%の胸を揉み始めると、%CALLNAME:TARGET%は小さく声を漏らした。
+
+    手元の魔導書は開いたまま、ページが止まっている。
+
+    「……集中、できないじゃない……」
+
+    %CALLNAME:TARGET%は恨めしそうに呟くが、その声には熱がこもっている。
+
+    「……%CALLNAME:MASTER%……もう少し、優しくして……」
+
+    %CALLNAME:TARGET%は本を閉じ、%CALLNAME:MASTER%に向き直った。
+
+    「……ひゃ……っ……」
+
+    %CALLNAME:MASTER%が乳首に触れると、%CALLNAME:TARGET%は思わず声を上げた。
+
+    「そ、そこは……だめ……」
+
+    %CALLNAME:TARGET%は弱々しく抗議するが、体は正直に反応している。
+
+    「……むきゅ……変な声、出ちゃう……」
+
+    %CALLNAME:TARGET%は羞恥に顔を伏せながら、%CALLNAME:MASTER%の愛撫を受け入れていた。
+
+    「……%CALLNAME:MASTER%……本当に、意地悪ね……」
+
+    「……ぁ……や……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に胸を揉まれながら、甘い吐息を漏らしている。
+
+    大図書館の埃っぽい空気の中、%CALLNAME:TARGET%の匂いが%CALLNAME:MASTER%を包む。
+
+    「……こんなところで……小悪魔に見られたら……」
+
+    %CALLNAME:TARGET%は周囲を気にしながらも、%CALLNAME:MASTER%の手を払いのけない。
+
+    「……もっと奥に……行きましょう……？」
+
+    %CALLNAME:TARGET%は赤い顔で%CALLNAME:MASTER%を誘った。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……何をしているの」
+
+    %CALLNAME:TARGET%は淡々と問いかけたが、%CALLNAME:MASTER%の手が胸に触れると息を呑んだ。
+
+    「……まあいいわ。観察対象として、興味がないわけじゃないし」
+
+    %CALLNAME:TARGET%は実験でも行うかのように、自分の反応を分析しようとしている。
+
+    「……ふぅん……こういう感覚なのね……」
+
+    しかしその声は、僅かに震えていた。
+
+    「……っ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に胸を揉まれ、小さく息を漏らした。
+
+    「……胸への刺激と快感の相関……本で読んだことはあるわ」
+
+    %CALLNAME:TARGET%は知識人らしい分析を試みるが、声が上擦っている。
+
+    「……興味深いわね……もう少し……データを……」
+
+    言葉の途中で、%CALLNAME:TARGET%は唇を噛んで黙った。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%の愛撫を受けている。
+
+    本を読む手は止まり、視線は虚空を彷徨っている。
+
+    「……悪くないわね……これは……」
+
+    %CALLNAME:TARGET%はぼそりと呟いた。
+
+    「……でも、調子に乗らないで。私はあなたの観察対象になっているだけよ」
+
+    そう言いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を拒まなかった。
+
+    「……ん……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手に、微かに反応している。
+
+    「……そういう行為の理論は……本で学んだけど……」
+
+    %CALLNAME:MASTER%が乳房を揉むと、%CALLNAME:TARGET%の言葉が途切れた。
+
+    「……実践と理論は……違うのね……」
+
+    %CALLNAME:TARGET%は認めたくなさそうに、そう呟いた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……何の真似かしら」
+
+    %CALLNAME:TARGET%は冷ややかな目で%CALLNAME:MASTER%を見た。
+
+    「私に触れる許可は与えていないわよ」
+
+    %CALLNAME:TARGET%は素っ気なく言い放った。
+
+    「……用があるなら、口で言いなさい」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%の手を払いのけた。
+
+    「読書の邪魔よ。出て行って」
+
+    %CALLNAME:TARGET%は冷たく言い放ち、再び本に視線を落とした。
+
+    「……次やったら、精霊魔法で追い出すわ」
+
+    「……むきゅ」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「距離感というものを学びなさい」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%から距離を取った。
+
+    「……私の図書館で何をしているの」
+
+    「……はぁ」
+
+    %CALLNAME:TARGET%は深い溜息をついた。
+
+    「あなたは本を読みに来たんじゃないの？」
+
+    %CALLNAME:TARGET%は呆れたような表情を浮かべている。
+
+    「……まあいいわ。好きにしなさい。ただし、私の邪魔はしないで」
+
+    そう言って、%CALLNAME:TARGET%は本に集中し始めた。
+  priority: 1

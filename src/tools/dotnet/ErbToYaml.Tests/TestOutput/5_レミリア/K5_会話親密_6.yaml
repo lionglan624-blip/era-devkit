@@ -1,0 +1,38 @@
+﻿character: レミリア
+situation: K5_会話親密
+entries:
+- id: fallback
+  content: >-
+    「許してだなんて言えないかもしれないけど・・わかっているでしょう、今の私は売春婦。金で誰にでも身体を開く汚れた女よ」
+
+    %CALLNAME:奴隷%の首には彼女が性奴隷であることを示す首輪がかけられている。
+
+    「%CALLNAME:MASTER%が贈ってくれた指輪を薬指にはめる資格は、私には・・今の私にはないわ」
+
+    「あの指輪を汚すほど落ちぶれたくはないの。だから大切にしまってあるわ。絶対汚さないように」
+  priority: 3
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「指輪？ 今はつけてないわ。お客様に目障りだと言われたら仕方ないじゃない」
+
+    「今の私は金で誰にでも身体を開く公衆便所・・あんな綺麗な指輪より、この首輪の方がふさわしいわ」
+
+    「指輪？ あぁあの指輪ね。大切にしまってあるわよ。今はつけてないだけ」
+
+    「お客様が言うのよ。他人の物みたいで嫌だって。みんな独占欲が強いのね」
+
+    「だからこの首輪・・公衆便所だという証が私のアイデンテティなのよ」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: talent_6_2
+  content: '%"もう"+CALLNAME:MASTER+"のものではないのだから指輪をする必要は無いと言い切られた。"%'
+  priority: 1
+  condition:
+    type: Talent
+    talentType: 6
+    threshold: 1

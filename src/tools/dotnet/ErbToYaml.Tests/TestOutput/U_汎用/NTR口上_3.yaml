@@ -1,0 +1,48 @@
+﻿character: 汎用
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んっ・・ふふ・・いいわ・・んっ・・%MSG_HEART()%」
+
+    「え？ ここで？ そうね・・ん・・%MSG_HEART()%」
+
+    「見てるじゃない・・いいけど・・%MSG_HEART()%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ふふ・・いいわ・・んっ・・%MSG_HEART()%」
+
+    「え？ ここで？ そうね・・ん・・%MSG_HEART()%」
+
+    「見てるじゃない・・いいけど・・%MSG_HEART()%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んむぅっ！！ う・・ん・・」
+
+    「ここで？ やぁ・・ん・・」
+
+    「やだ、見てるじゃない・・んっ・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ？　んむぅっ！！ う・・ん・・」
+
+    「え？ ここで？ やぁ・・ん・・」
+
+    「やだ、見てるじゃない・・んっ・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんっ？　んっ・・んむぅっ！！」
+
+    「え？ なに？ や、やあっ！ んっ！！」
+
+    「やだ、ちょっと、んんっ！！」
+  priority: 1
+  displayMode: newline

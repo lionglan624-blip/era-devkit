@@ -1,0 +1,55 @@
+﻿character: チルノ
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「やだっ・・やだあっ・・！！ ああああっ！！」
+
+    「だ、だめっ・・！ おしりなんて、やだあああっ！！」
+
+    「ああっ！ だめ、だめええっ！ ああああっ！！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「やだっ・・やだあっ・・！！ ああああっ！！」
+
+    「だ、だめっ・・！ おしりなんて、やだあああっ！！」
+
+    「ああっ！ だめ、だめええっ！ ああああっ！！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっん・・んぅあっ・・気持ちっ・・イイ・・もっとぉ・・」
+
+    %CALLNAME:奴隷%はアヌスに名も知らぬ男の肉棒を咥え込み、自ら腰を振っている。
+  priority: 5
+- id: fallback
+  content: >-
+    「あっん・・んぅあっ・・気持ちっ・・イイ・・もっとぉ・・」
+
+    %CALLNAME:奴隷%はアヌスに名も知らぬ男の肉棒を咥え込み、自ら腰を振っている。
+  priority: 4
+- id: fallback
+  content: >-
+    「あんっあっ、おっ、おしりっ、イイっ、んあっはぁっあっくぅん」
+
+    %NTR_NAME(0)%の荒々しい腰使いに%CALLNAME:奴隷%は、息を乱し、涎を垂らしながら喘いでいる
+  priority: 3
+- id: fallback
+  content: >-
+    「あんっあっ、おっ、おしりっ、イイっ、んあっはぁっあっくぅん」
+
+    %NTR_NAME(0)%の荒々しい腰使いに%CALLNAME:奴隷%は、息を乱し、涎を垂らしながら喘いでいる
+  priority: 2
+- id: fallback
+  content: >-
+    「あっ・・や・・やだ・・おしり、だ、だめぇ・・」
+
+    %NTR_NAME(0)%の荒々しい腰使いに%CALLNAME:奴隷%は、息を乱して喘いでいる
+  priority: 1

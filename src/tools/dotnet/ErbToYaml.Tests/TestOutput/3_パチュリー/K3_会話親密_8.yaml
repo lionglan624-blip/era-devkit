@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: K3_会話親密
+entries:
+- id: fallback
+  content: >-
+    「%CALLNAME:MASTER%もこういうの、好きなんじゃないかしら？」
+
+    「%CALLNAME:MASTER%もこういうの、好きなんでしょう？」
+
+    「今の%CALLNAME:MASTER%、いやらしい視線だったわよ？」
+  priority: 1
+  displayMode: newline

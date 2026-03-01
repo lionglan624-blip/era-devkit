@@ -1,0 +1,249 @@
+﻿character: 大妖精
+situation: K9_愛撫
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%がローターを手に取ると、%CALLNAME:TARGET%は恥ずかしそうに視線を逸らした。
+
+    「……また、それ使うの……？」
+
+    小さな翅がそわそわと動いている。
+
+    %CALLNAME:MASTER%がスイッチを入れると、かすかな振動音が響いた。
+
+    「ひゃっ……んっ……」
+
+    %CALLNAME:TARGET%は敏感に反応して、体を震わせた。
+
+    「……%CALLNAME:MASTER%の手の方が、好きなんだけどな……」
+
+    控えめな声でそう呟きながらも、%CALLNAME:TARGET%は逃げようとはしなかった。
+
+    ローターの振動が%CALLNAME:TARGET%の敏感な場所を刺激する。
+
+    「あっ……んっ……」
+
+    %CALLNAME:TARGET%は恋人に身を預けながら、甘い声を漏らした。
+
+    翅がふるふると震え、快感に耐えようとしているのがわかる。
+
+    「……%CALLNAME:MASTER%……やっ、そこ……」
+
+    %CALLNAME:TARGET%は頬を赤く染めながら、%CALLNAME:MASTER%の腕にしがみついた。
+
+    「……でも……嫌じゃないの……%CALLNAME:MASTER%がしてくれるから……」
+
+    %CALLNAME:MASTER%がローターの振動を強くすると、%CALLNAME:TARGET%は声を上げた。
+
+    「やっ……強い……っ！」
+
+    %CALLNAME:TARGET%は体をよじりながら、快感に身を震わせている。
+
+    「んっ……はぁっ……%CALLNAME:MASTER%……」
+
+    潤んだ瞳で恋人を見上げる%CALLNAME:TARGET%。
+
+    「……もう少し、優しく……して……？」
+
+    %CALLNAME:TARGET%は甘えるようにお願いした。
+
+    %CALLNAME:MASTER%がローターを動かすたびに、%CALLNAME:TARGET%は小さく喘いだ。
+
+    「あっ……んんっ……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに顔を%CALLNAME:MASTER%の胸に埋めた。
+
+    翅が小刻みに震え、快感を堪えているのが伝わってくる。
+
+    「……%CALLNAME:MASTER%……声、出ちゃう……」
+
+    %CALLNAME:TARGET%は恋人の服を握りしめながら、幸せそうに微笑んだ。
+
+    「……でも、%CALLNAME:MASTER%の前なら……いいの……」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:MASTER%がローターを見せると、%CALLNAME:TARGET%は目を丸くした。
+
+    「え……それは……何……？」
+
+    %CALLNAME:TARGET%は戸惑いながらも、興味深そうにローターを見つめている。
+
+    %CALLNAME:MASTER%がスイッチを入れると、%CALLNAME:TARGET%は驚いた。
+
+    「ひゃっ……！　動いてる……」
+
+    それが体に押し当てられると、%CALLNAME:TARGET%は声を上げた。
+
+    「あっ……んっ……変な感じ……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、振動に体を震わせていた。
+
+    ローターの振動が%CALLNAME:TARGET%の体を刺激する。
+
+    「やっ……んっ……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに顔を背けた。
+
+    翅がぱたぱたと落ち着きなく動いている。
+
+    「……%CALLNAME:MASTER%……これ、恥ずかしいの……」
+
+    しかし、逃げようとはしない%CALLNAME:TARGET%。
+
+    「……でも……%CALLNAME:MASTER%がするなら……」
+
+    %CALLNAME:TARGET%は照れくさそうに、小さく頷いた。
+
+    %CALLNAME:MASTER%がローターを押し当てると、%CALLNAME:TARGET%は身をすくめた。
+
+    「あっ……そこ……っ」
+
+    %CALLNAME:TARGET%は敏感に反応して、小さな声を漏らす。
+
+    「んっ……はぁっ……」
+
+    %CALLNAME:TARGET%の頬がみるみる赤く染まっていく。
+
+    「……%CALLNAME:MASTER%……わたし、変な声出てる……？」
+
+    不安そうに問いかけながらも、%CALLNAME:TARGET%の体は振動を求めていた。
+
+    ローターの振動に、%CALLNAME:TARGET%は体を震わせた。
+
+    「やっ……んんっ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕をぎゅっと掴んだ。
+
+    翅がふるふると小刻みに震えている。
+
+    「……%CALLNAME:MASTER%……これ、すごい……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯いた。
+
+    「……でも、冷たいから……手で触ってくれる方が好き……かも……」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%がローターを取り出すと、%CALLNAME:TARGET%は困惑した。
+
+    「え……？　あの、%CALLNAME:MASTER%さん、それは……」
+
+    %CALLNAME:TARGET%は何なのかわからず、首を傾げている。
+
+    スイッチが入ると、%CALLNAME:TARGET%は驚いて身を引いた。
+
+    「ひゃっ……！　動いてる……怖い……」
+
+    それでも%CALLNAME:MASTER%が近づくと、%CALLNAME:TARGET%は逃げられなかった。
+
+    「あっ……やっ……何これ……」
+
+    %CALLNAME:TARGET%は初めての感覚に戸惑いながら、体を震わせた。
+
+    ローターの振動が%CALLNAME:TARGET%の体に伝わる。
+
+    「あっ……んっ……変な感じ……」
+
+    %CALLNAME:TARGET%は困惑しながら、%CALLNAME:MASTER%を見上げた。
+
+    翅がそわそわと不安げに動いている。
+
+    「……あの……これ、何するものなの……？」
+
+    %CALLNAME:TARGET%は純粋に疑問を口にした。
+
+    「……なんか……体がおかしくなる……」
+
+    %CALLNAME:MASTER%がローターを押し当てると、%CALLNAME:TARGET%は声を上げた。
+
+    「やっ……！　そこ、駄目……」
+
+    %CALLNAME:TARGET%は体を逃がそうとしたが、%CALLNAME:MASTER%に押さえられた。
+
+    「んっ……あっ……」
+
+    %CALLNAME:TARGET%は抵抗しながらも、声が漏れてしまう。
+
+    「……%CALLNAME:MASTER%さん……恥ずかしい……」
+
+    %CALLNAME:TARGET%は真っ赤になりながら、弱々しく訴えた。
+
+    ローターの振動に、%CALLNAME:TARGET%は体を硬くした。
+
+    「ひゃっ……やっ……」
+
+    %CALLNAME:TARGET%は怯えたように%CALLNAME:MASTER%を見つめている。
+
+    翅がぱたぱたと忙しなく動いて、動揺を隠せない。
+
+    「……%CALLNAME:MASTER%さん……これ、怖い……」
+
+    %CALLNAME:TARGET%は不安そうに呟いた。
+
+    「……でも……止めろって言えないの……」
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%がローターを取り出すと、%CALLNAME:TARGET%は警戒した。
+
+    「……それ、何……？」
+
+    %CALLNAME:TARGET%は不安そうに後ずさった。
+
+    スイッチが入ると、%CALLNAME:TARGET%は驚いて身構えた。
+
+    「ひゃっ……！　な、何これ……！」
+
+    それが体に押し当てられると、%CALLNAME:TARGET%は悲鳴を上げた。
+
+    「やっ……！　やめて……！」
+
+    %CALLNAME:TARGET%は振動に驚きながら、逃げようともがいた。
+
+    ローターの振動が%CALLNAME:TARGET%の体を襲う。
+
+    「あっ……んっ……何これ……」
+
+    %CALLNAME:TARGET%は困惑しながら、体を震わせた。
+
+    翅がばたばたと暴れるように動いている。
+
+    「……やめて……変な感じになる……」
+
+    %CALLNAME:TARGET%は必死に訴えた。
+
+    「……お願い……これ、怖いの……」
+
+    %CALLNAME:MASTER%がローターを押し当てると、%CALLNAME:TARGET%は身をよじった。
+
+    「やっ……！　そこ、駄目……！」
+
+    %CALLNAME:TARGET%は必死に逃げようとするが、逃げられない。
+
+    「んっ……あっ……」
+
+    意図せず声が漏れて、%CALLNAME:TARGET%は顔を真っ赤にした。
+
+    「……嫌……こんなの……知らない……」
+
+    %CALLNAME:TARGET%は涙目になりながら、抵抗を続けた。
+
+    ローターの振動に、%CALLNAME:TARGET%は混乱していた。
+
+    「ひゃっ……やっ……何……」
+
+    %CALLNAME:TARGET%は何が起きているのかわからず、怯えている。
+
+    翅がぐったりと力なく垂れ下がった。
+
+    「……やめて……わたし、妖精だから……こういうの、わからない……」
+
+    %CALLNAME:TARGET%は弱々しく呟いた。
+
+    「……お願い……手加減して……」
+  priority: 1

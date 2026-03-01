@@ -1,0 +1,33 @@
+﻿character: レミリア
+situation: K5_会話親密
+entries:
+- id: fallback
+  content: >-
+    「・・あの人には内緒よ」
+
+    「私を共犯者にしたいのかしら。ふふ」
+
+    「こういうのも悪くはないわね」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「いけないわ。お前は使用人なのに」
+
+    「やめなさい」
+
+    「・・駄目よ。わかっているでしょう」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・」
+
+    %CALLNAME:MASTER%の腕の中で、%CALLNAME:奴隷%は小さく目を逸らした。
+  priority: 2
+- id: fallback
+  content: >-
+    「・・」
+
+    %CALLNAME:MASTER%の腕の中で、%CALLNAME:奴隷%は戸惑うかのように小さく目を逸らした。
+  priority: 1

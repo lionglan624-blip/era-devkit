@@ -1,0 +1,70 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ9
+entries:
+- id: fallback
+  content: >-
+    「んんっ・・あっ・・太いっ%S_HEART%・・い、いいっ・・！」
+
+    「くっ・・ああっ%S_HEART%・・太いっ！」
+
+    「んんっ・・くうっ・・い、いいっ・・！」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんっ・・あっ・・太いっ%S_HEART%・・い、いいっ・・！」
+
+    「くっ・・ああっ%S_HEART%・・太いっ！」
+
+    「んんっ・・くうっ・・い、いいっ・・！」
+
+    四つん這いの姿勢のまま
+
+    犬のようなポーズのまま
+
+    後ろの穴を深々と抉られ、
+
+    肉棒をアヌスに根元まで突き込まれ、
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んんっ・・あっ・・太いっ%S_HEART%・・い、いいっ・・！」
+
+    「くっ・・ああっ%S_HEART%・・太いっ！」
+
+    「んんっ・・くうっ・・い、いいっ・・！」
+
+    四つん這いの姿勢のまま
+
+    犬のようなポーズのまま
+
+    後ろの穴を深々と抉られ、
+
+    肉棒をアヌスに根元まで突き込まれ、
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は
+
+    四つん這いの姿勢のまま
+
+    犬のようなポーズのまま
+
+    後ろの穴を深々と抉られ、
+
+    肉棒をアヌスに根元まで突き込まれ、
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は
+
+    四つん這いの姿勢のまま
+
+    犬のようなポーズのまま
+
+    後ろの穴を深々と犯され、
+
+    堅い肉棒でアヌスを凌辱され、
+  priority: 1

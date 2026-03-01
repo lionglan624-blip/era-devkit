@@ -1,0 +1,19 @@
+{
+  "name": "sc-031: 体力ゼロ状態",
+  "description": "BASE:0 (体力) = 0 の状態で勃起度がリセットされることを確認",
+  "add_characters": [1],
+  "characters": {
+    "紅美鈴": {
+      "BASE:0": 0,
+      "MAXBASE:0": 1000,
+      "CFLAG:勃起度": 100,
+      "CFLAG:2": 1000
+    }
+  },
+  "copy": [
+    {"from": "紅美鈴", "to": "MASTER", "var": "CFLAG:300"}
+  ],
+  "expect": {
+    "output_contains": ["[100]"]
+  }
+}

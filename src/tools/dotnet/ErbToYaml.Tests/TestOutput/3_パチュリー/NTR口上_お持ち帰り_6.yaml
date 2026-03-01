@@ -1,0 +1,16 @@
+﻿character: パチュリー
+situation: NTR口上_お持ち帰り
+entries:
+- id: talent_148_0
+  content: >-
+    「いやっ・・いやああっ・・！！ ああああっ！！」
+
+    「だ、だめっ・・！ いやあああっ！！」
+
+    「ああっ！ だめ、だめええっ！ ああああっ！！」
+  priority: 1
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline

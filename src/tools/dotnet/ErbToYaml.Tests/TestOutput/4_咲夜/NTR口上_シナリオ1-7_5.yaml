@@ -1,0 +1,57 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ1-7
+entries:
+- id: fallback
+  content: >-
+    「んっ・・ふふ・・悪趣味ね・・んっ・・%S_HEART%」
+
+    「ふふ・・見せつけてあげましょう・・んっ・・%S_HEART%」
+
+    「サービス過剰じゃない？ ふふっ・・んっ・・%S_HEART%」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ふふ・・悪趣味ね・・んっ・・%S_HEART%」
+
+    「ふふ・・見せつけてあげましょう・・んっ・・%S_HEART%」
+
+    「サービス過剰じゃない？ ふふっ・・んっ・・%S_HEART%」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ・・ふふ・・悪趣味ね・・んっ・・%S_HEART%」
+
+    「ふふ・・見せつけてあげるの・・？ んんっ・・%S_HEART%」
+
+    「サービス過剰じゃない？ ふふっ・・んっ・・%S_HEART%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ う・・ん・・%S_HEART%」
+
+    「ん・・く・・んん・・%S_HEART%」
+
+    「んっ・・ん・・う・・ううん・・%S_HEART%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ？　んっ、んむぅっ！！ う・・ん・・」
+
+    「やっ・・んんっ！ ん・・く・・んん・・」
+
+    「んんっ！？ んっ・・ん・・う・・ううん・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えっ？　んっ、んむぅっ！！」
+
+    「やっ・・んんっ！」
+
+    「んんっ！？ ん・・」
+  priority: 1
+  displayMode: newline

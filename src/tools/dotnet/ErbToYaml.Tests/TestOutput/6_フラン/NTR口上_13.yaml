@@ -1,0 +1,36 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ひいぃんんん・・っ！ ・・%CALLNAME:奴隷%のおっぱい・・こわれちゃうよ・・♪」
+
+    「あはぁん♪ おっぱい、イイよおっ%MSG_HEART()%」
+
+    「んんんんっ！ ひゃああん♪」
+
+    思うままに反応する敏感な少女に%NTR_NAME(0)%は満足している。
+
+    %NTR_NAME(0)%の愛撫に、%CALLNAME:奴隷%は幼い身体を震わせながらわなないている。
+
+    %CALLNAME:奴隷%の幼い身体はすっかり愛撫に馴染んでしまっている。
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふぁ、ん、あっ・・・・あっ・・・・やあぁぁ・・・・っっ」
+
+    「あはぁん♪ おっぱいで、いっちゃうう%MSG_HEART()%」
+
+    「んんんんっ！ ひゃああん%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふぁ、ん、あっ・・・やあぁぁ・・・・っっ」
+
+    「あはぁん♪ おっぱいで、いっちゃうう・・っ」
+
+    「んんんんっ！ ひゃああん・・っ」
+  priority: 1
+  displayMode: newline

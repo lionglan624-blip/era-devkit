@@ -1,0 +1,207 @@
+﻿character: 大妖精
+situation: K9_挿入
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%が床に座り、%CALLNAME:人物_大妖精%を手招きした。
+
+    「えっ……向かい合って、座るんですか……？」
+
+    %CALLNAME:人物_大妖精%は恥ずかしそうに頬を染めながら、%CALLNAME:MASTER%の膝の上にまたがった。
+
+    「あっ……入って、きます……こうしてると、%CALLNAME:MASTER%のお顔がすごく近くて……」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の首に腕を回し、しがみついた。
+
+    「んっ……恥ずかしいけど……%CALLNAME:MASTER%に抱きしめてもらえて、すごく幸せ……」
+
+    「%CALLNAME:MASTER%……今日は、お膝の上で……？」
+
+    %CALLNAME:人物_大妖精%は嬉しそうに微笑み、自ら%CALLNAME:MASTER%の上に座った。
+
+    「んっ……繋がって……あったかい……」
+
+    向かい合ったまま体を重ね、%CALLNAME:人物_大妖精%は%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「こうしてると、%CALLNAME:MASTER%の心臓の音が聞こえます……ドキドキしてますね、えへへ」
+
+    %CALLNAME:人物_大妖精%は恋人との親密な時間を噛みしめていた。
+
+    %CALLNAME:MASTER%が%CALLNAME:人物_大妖精%を抱き上げ、膝の上に座らせた。
+
+    「わっ……こ、こんなに密着して……恥ずかしいです……」
+
+    %CALLNAME:人物_大妖精%は顔を赤くしながらも、嬉しそうに体を預けた。
+
+    「あっ……入って……奥まで、届いてます……んっ……」
+
+    %CALLNAME:MASTER%が腰を動かすたびに、%CALLNAME:人物_大妖精%は甘い声を漏らす。
+
+    「%CALLNAME:MASTER%……こうして抱きしめてくれると、私、すごく安心するの……」
+
+    「えへへ……%CALLNAME:MASTER%のお膝、温かいです……」
+
+    %CALLNAME:人物_大妖精%は幸せそうに%CALLNAME:MASTER%の膝上に座り、体を密着させた。
+
+    「んっ……繋がると……%CALLNAME:MASTER%のこと、もっと近くに感じられて……」
+
+    %CALLNAME:人物_大妖精%は%CALLNAME:MASTER%を見上げ、潤んだ瞳で微笑んだ。
+
+    「大好き……です……%CALLNAME:MASTER%……こうしていられて、本当に嬉しい……」
+
+    %CALLNAME:人物_大妖精%は恋人に身を委ね、幸せな時間に浸っていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「え……向かい合って、するんですか……？」
+
+    %CALLNAME:人物_大妖精%は顔を真っ赤にしながらも、%CALLNAME:MASTER%の膝上に座った。
+
+    「あっ……こんなに近いと、顔を見られちゃって……恥ずかしい……」
+
+    %CALLNAME:MASTER%が体を進めると、%CALLNAME:人物_大妖精%は思わず%CALLNAME:MASTER%にしがみついた。
+
+    「んっ……入って、きました……%CALLNAME:MASTER%のお顔、見ながらだと……余計にドキドキして……」
+
+    %CALLNAME:人物_大妖精%は恥ずかしさの中に、ほんのり幸せを感じていた。
+
+    %CALLNAME:MASTER%が床に座り、%CALLNAME:人物_大妖精%を呼び寄せた。
+
+    「あの……お膝の上に、座るんですか……？」
+
+    %CALLNAME:人物_大妖精%はおずおずと%CALLNAME:MASTER%の上にまたがった。
+
+    「あぅ……繋がって……こんなに密着してると、心臓の音、聞こえちゃいそうで……」
+
+    %CALLNAME:人物_大妖精%は恥ずかしさに耐えながら、%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「で、でも……嫌じゃないです……%CALLNAME:MASTER%だから……」
+
+    「こ、こっちを向いてするなんて……すごく恥ずかしいです……」
+
+    %CALLNAME:人物_大妖精%は顔を背けながらも、%CALLNAME:MASTER%の膝に座った。
+
+    「あっ……入って……きました……」
+
+    %CALLNAME:MASTER%に抱きしめられ、%CALLNAME:人物_大妖精%は小さく震えた。
+
+    「んっ……でも……こうして抱きしめてもらえると……なんだか、嬉しくて……」
+
+    %CALLNAME:人物_大妖精%は恋心を隠しきれず、%CALLNAME:MASTER%にしがみついた。
+
+    「%CALLNAME:MASTER%……こうして向かい合うと、恥ずかしくて……」
+
+    %CALLNAME:人物_大妖精%は目を伏せながら、%CALLNAME:MASTER%の膝上に座った。
+
+    「でも……%CALLNAME:MASTER%のこと、近くで感じられて……嬉しい、です……」
+
+    体が一つになると、%CALLNAME:人物_大妖精%は甘い吐息を漏らした。
+
+    「あっ……繋がって……%CALLNAME:MASTER%の温もりが、伝わってきます……」
+
+    %CALLNAME:人物_大妖精%は想い人との密着に、胸を高鳴らせていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え……向かい合って、座るんですか……？」
+
+    %CALLNAME:人物_大妖精%は戸惑いながらも、%CALLNAME:MASTER%の膝上にまたがった。
+
+    「こんなに近くで見られると……なんだか、緊張します……」
+
+    %CALLNAME:MASTER%が体を進めると、%CALLNAME:人物_大妖精%は小さく声を上げた。
+
+    「あっ……入って、きました……お腹の奥が、いっぱいです……」
+
+    %CALLNAME:人物_大妖精%は戸惑いながらも、%CALLNAME:MASTER%に身を預けた。
+
+    %CALLNAME:MASTER%が%CALLNAME:人物_大妖精%を膝の上に座らせた。
+
+    「あの……こういう体勢、初めてで……どうしたらいいか……」
+
+    %CALLNAME:人物_大妖精%は困惑しながらも、%CALLNAME:MASTER%に従った。
+
+    「んっ……繋がって……%CALLNAME:MASTER%のこと、すごく近くに感じます……」
+
+    %CALLNAME:MASTER%の体温を感じ、%CALLNAME:人物_大妖精%は少し表情を和らげた。
+
+    「なんだろう……こうしていると、不思議と落ち着くような……」
+
+    「向かい合って……ですか……」
+
+    %CALLNAME:人物_大妖精%は不安げな表情で%CALLNAME:MASTER%を見上げた。
+
+    「あっ……座って……入って、きました……」
+
+    %CALLNAME:MASTER%に抱きしめられ、%CALLNAME:人物_大妖精%は体を強張らせた。
+
+    「んっ……でも……こうしてると、なんだかドキドキして……」
+
+    %CALLNAME:人物_大妖精%は戸惑いの中に、小さな安心を見出していた。
+
+    「%CALLNAME:MASTER%……私、こういうの、よくわからなくて……」
+
+    %CALLNAME:人物_大妖精%はおずおずと%CALLNAME:MASTER%の膝に座った。
+
+    「あぅ……繋がって……%CALLNAME:MASTER%の顔が、すごく近いです……」
+
+    %CALLNAME:MASTER%が優しく抱きしめると、%CALLNAME:人物_大妖精%は少し安心したようだった。
+
+    「でも……%CALLNAME:MASTER%がこうしたいなら……受け入れます……」
+
+    %CALLNAME:人物_大妖精%は徐々に緊張を解いていった。
+  priority: 2
+- id: fallback
+  content: >-
+    「ひっ……こっちを向いて、するんですか……」
+
+    %CALLNAME:人物_大妖精%は怯えた目で%CALLNAME:MASTER%を見上げた。
+
+    「あぅ……座って……入って、きます……」
+
+    %CALLNAME:MASTER%の膝上に座らされ、%CALLNAME:人物_大妖精%は体を震わせた。
+
+    「んっ……こんなに近くで見られると……恥ずかしくて……怖いです……」
+
+    %CALLNAME:人物_大妖精%は必死に恐怖を押し殺し、耐えていた。
+
+    %CALLNAME:MASTER%が%CALLNAME:人物_大妖精%を膝の上に座らせた。
+
+    「あの……こんな体勢……なんで……」
+
+    %CALLNAME:人物_大妖精%は戸惑いながらも、抵抗はしなかった。
+
+    「あっ……繋がって……お腹が、いっぱいで……」
+
+    %CALLNAME:人物_大妖精%は顔を背け、%CALLNAME:MASTER%から目を逸らした。
+
+    「……でも、泣いたりしません……チルノちゃんを守るためなら……」
+
+    「向かい合って……ですか……」
+
+    %CALLNAME:人物_大妖精%は小さく震えながら、%CALLNAME:MASTER%の前に座った。
+
+    「あぅっ……入って……きます……」
+
+    %CALLNAME:MASTER%に抱かれ、%CALLNAME:人物_大妖精%は目を閉じた。
+
+    「んっ……こうされると……自分がどんな顔してるか、見られちゃって……」
+
+    %CALLNAME:人物_大妖精%は恥ずかしさと恐怖に耐え続けていた。
+
+    「……こっちを向いて、座るんですね……」
+
+    %CALLNAME:人物_大妖精%は諦めたように%CALLNAME:MASTER%の膝上に座った。
+
+    「あっ……入って……奥まで……」
+
+    %CALLNAME:人物_大妖精%は無表情を装おうとするが、体は正直に震えていた。
+
+    「……私、負けません……こんなことで、心まで折れたりしないです……」
+
+    小さな妖精は、芯の強さで自分を支えていた。
+  priority: 1

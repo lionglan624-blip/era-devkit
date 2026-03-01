@@ -1,0 +1,14 @@
+﻿character: 咲夜
+situation: K4_EVENT
+entries:
+- id: fallback
+  content: >-
+    「目を閉じなさい。そう。そのままで想像するのよ」
+
+    それが%CALLNAME:MASTER%の望みなんでしょう？」
+
+    そういうのが好きなんでしょう？」
+
+    ゾクゾクしてきたんでしょう？」
+  priority: 1
+  displayMode: newline

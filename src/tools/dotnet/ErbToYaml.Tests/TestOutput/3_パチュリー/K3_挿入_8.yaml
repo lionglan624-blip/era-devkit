@@ -1,0 +1,207 @@
+﻿character: パチュリー
+situation: K3_挿入
+entries:
+- id: fallback
+  content: >-
+    「……っ……あ……そこ、は……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を受け入れながら、苦痛に眉を寄せた。
+
+    アナルへの挿入は、本で読んだよりも遥かに強い刺激だった。
+
+    「……%CALLNAME:MASTER%、痛い……でも、あなたなら……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の目を見つめ、小さく頷いた。
+
+    「……信じているから。あなたに委ねるわ……」
+
+    「はぁ……んっ……奥まで……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に抱かれながら、静かに喘いでいる。
+
+    大図書館の静寂の中、二人だけの秘密の行為。
+
+    「……この体位だと、顔がよく見えるわね……恥ずかしいけれど……」
+
+    %CALLNAME:TARGET%は頬を染めながら、%CALLNAME:MASTER%の頬に手を添えた。
+
+    「……痛みの中にも、あなたの温もりを感じる……不思議ね」
+
+    「ぁ……やぁ……そんなに深く……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きに合わせて、体を震わせている。
+
+    「……アナルというのは、こんなに敏感だったのね……」
+
+    %CALLNAME:TARGET%は自分の体の反応に驚いている。
+
+    「……%CALLNAME:MASTER%……もう少し、ゆっくり……」
+
+    そう言いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%を離そうとしない。
+
+    「……ふぅ……あ……っ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に抱かれながら、切なげな表情を浮かべている。
+
+    「……体が弱いから、この刺激は堪えるわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げ、微笑んだ。
+
+    「……でも、あなたと向かい合えるなら……我慢できる」
+
+    そう言って、%CALLNAME:TARGET%は%CALLNAME:MASTER%の唇にキスを求めた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「っ……あ……そこ、違う……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を受け入れながら、顔を背けた。
+
+    「……正面から見ないで。こんな恥ずかしいところを……」
+
+    %CALLNAME:TARGET%は論理的に説明しようとして、言葉に詰まった。
+
+    「……痛いのに、なぜ……むきゅ……こんな気持ちに……」
+
+    頬を紅潮させながら、%CALLNAME:TARGET%は小さく呟いた。
+
+    「んっ……ふ……っ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きに、体を強張らせている。
+
+    「……本では、アナルは痛みが強いと書いてあったけれど……」
+
+    %CALLNAME:TARGET%は平静を装おうとしているが、声が震えている。
+
+    「……こんなに、頭が真っ白になるとは思わなかった……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%にしがみついた。
+
+    「あ……やぁ……そんなに見ないで……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と目が合い、慌てて目を閉じた。
+
+    「……対面座位というのは、表情が筒抜けなのね……」
+
+    %CALLNAME:TARGET%は知識として理解していたが、こんなに恥ずかしいとは。
+
+    「……%CALLNAME:MASTER%、キスして。そうすれば、顔を隠せるから……」
+
+    照れ隠しのように、%CALLNAME:TARGET%は唇を求めた。
+
+    「……ん……ぁ……っ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に組み敷かれながら、静かに喘いでいる。
+
+    「……私の体が、こんな行為に反応するなんて……」
+
+    %CALLNAME:TARGET%は自分の感情を分析しようとしている。
+
+    「……痛みと快感の境界が、分からなくなってきたわ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の首に腕を回し、身を委ねた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……っ……これが、アナル……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を受け入れながら、苦痛に顔を歪めた。
+
+    「……本で読んだ通り、痛みが強いわね……」
+
+    %CALLNAME:TARGET%は冷静を保とうとしているが、声が震えている。
+
+    「……体が弱いから、この刺激は……むきゅ……」
+
+    分析しようとする言葉が、苦痛で途切れた。
+
+    「んっ……ふぅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きを、なんとか観察しようとしている。
+
+    「……興味深いわ。アナルへの刺激というのは……」
+
+    %CALLNAME:TARGET%は淡々と言おうとしたが、声が上擦った。
+
+    「……なぜ、こんなに体が熱くなるのかしら……」
+
+    自分の反応に、%CALLNAME:TARGET%自身が戸惑っている。
+
+    「あ……そこ……っ」
+
+    %CALLNAME:TARGET%は思わず声を漏らし、慌てて口を押さえた。
+
+    「……不覚だわ。声が出るなんて……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに目を逸らした。
+
+    「……%CALLNAME:MASTER%、今のは聞かなかったことにして……」
+
+    そう言いながらも、体は%CALLNAME:MASTER%を受け入れ続けている。
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って%CALLNAME:MASTER%の行為を受けている。
+
+    研究者としての冷静さを保とうとしているが、表情が揺れている。
+
+    「……%CALLNAME:MASTER%、質問があるわ」
+
+    %CALLNAME:TARGET%は息を整えながら、%CALLNAME:MASTER%を見上げた。
+
+    「……なぜ、わざわざこの場所を選んだの……？」
+  priority: 2
+- id: fallback
+  content: >-
+    「……っ」
+
+    %CALLNAME:TARGET%は無表情のまま、%CALLNAME:MASTER%を受け入れている。
+
+    「……痛いわ。もっと丁寧にして」
+
+    %CALLNAME:TARGET%は淡々と言い放った。
+
+    「……体が弱いのだから、配慮が必要よ」
+
+    それだけを告げ、%CALLNAME:TARGET%は目を閉じた。
+
+    「……ふぅ……むきゅ……」
+
+    %CALLNAME:TARGET%は溜息をつきながら、%CALLNAME:MASTER%の行為を受けている。
+
+    「……アナルなんて、なぜこの場所を選ぶのかしら」
+
+    %CALLNAME:TARGET%は事実を述べるように言った。
+
+    「……まあ、あなたがそうしたいなら、好きにしなさい」
+
+    投げやりな態度で、%CALLNAME:TARGET%は身を委ねた。
+
+    「……」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「……痛みが強すぎるわ。もう少し手加減して」
+
+    %CALLNAME:TARGET%は体の弱さを訴えた。
+
+    「……こういうことをするなら、もっと準備が必要よ」
+
+    冷たい口調で、%CALLNAME:TARGET%は%CALLNAME:MASTER%を窘めた。
+
+    「……」
+
+    %CALLNAME:TARGET%は天井を見つめながら、%CALLNAME:MASTER%の行為を受けている。
+
+    頭の中では、次に読む本のことを考えているようだ。
+
+    「……終わったら、すぐに出て行って」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……大図書館は、私の聖域なのだから」
+  priority: 1

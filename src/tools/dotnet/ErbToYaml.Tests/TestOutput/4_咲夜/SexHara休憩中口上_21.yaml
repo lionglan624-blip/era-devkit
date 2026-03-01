@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「・・そうね。これは後のお楽しみね」
+
+    「・・今は許してあげるわ。その時を楽しみにしていなさい」
+
+    「・・美味しいものはとっておくべきね」
+  priority: 1
+  displayMode: newline

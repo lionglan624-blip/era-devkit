@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: K3_EVENT
+entries:
+- id: fallback
+  content: >-
+    %"「結構出たわね。でもまだ余裕があるんじゃないかしら？」"%
+
+    %"「いい塩梅ね？ でもまだ元気みたいね。もう一度、お願いできるかしら？」"%
+
+    %"「まだまだいけそうね？ 頑張ってみる？」"%
+  priority: 1
+  displayMode: newline

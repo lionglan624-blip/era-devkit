@@ -1,0 +1,16 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: fallback
+  content: 「さ、行きましょう？ 楽しみね・・♪」
+  priority: 2
+- id: fallback
+  content: >-
+    「それじゃ、行ってくるわね♪」
+
+    心なしか綺麗に着飾った
+
+    心なしかいつもよりめかしこんだ
+
+    心なしか美しく装った
+  priority: 1

@@ -1,0 +1,34 @@
+﻿character: 魔理沙
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は%CALLNAME:奴隷%に公衆便所としての作法を躾けた。
+
+    彼女の尻穴を便器代わりに、白濁した劣情を排泄したのだ。
+
+    「んっ…んああっ！そ、そんな、おく、に、ああっ！！」
+
+    「いっ、いやだああっ！ 助けて、助けて%CALLNAME:MASTER%！！」
+
+    「いっ、いやだああっ！ お、お尻にっ…あああっ！！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ…おしり、おしり、あついいいいいっ%MSG_HEART()%」
+
+    「ああっ…奥に、おしりの奥に出てるぅぅっ%MSG_HEART()%」
+
+    「ああっ…出してっ、おしりで、出してぇぇっ%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ…おしり、おしり、あついいいいいっ%MSG_HEART()%」
+
+    「ああっ…奥に、おしりの奥に出てるぅぅっ%MSG_HEART()%」
+
+    「ああっ…出してっ、おしりで、出してぇぇっ%MSG_HEART()%」
+  priority: 1
+  displayMode: newline

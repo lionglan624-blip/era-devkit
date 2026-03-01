@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ11-22
+entries:
+- id: fallback
+  content: >-
+    「はぁ・・はっ・・あっ、はっ・ああっ・・いい・・イク・・イク・・ああっ！」
+
+    「あっ・・ああああっ・・イク・・イクぅぅぅっ！」
+
+    「そ、そう、そこ、そこよ・・イク・・イクぅぅぅっ！」
+  priority: 1
+  displayMode: newline

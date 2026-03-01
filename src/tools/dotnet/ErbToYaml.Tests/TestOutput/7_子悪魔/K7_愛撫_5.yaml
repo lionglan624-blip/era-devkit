@@ -1,0 +1,237 @@
+﻿character: 子悪魔
+situation: K7_愛撫
+entries:
+- id: fallback
+  content: >-
+    「ふぇっ……%CALLNAME:MASTER%、そこ……舐めてるの……？」
+
+    %CALLNAME:TARGET%は四つん這いになって、後ろを%CALLNAME:MASTER%に晒している。
+
+    %CALLNAME:MASTER%の舌が菊穴を這うと、妖精の小さな体がびくりと震えた。
+
+    「んっ……やぁ……くすぐったいの……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、シーツを握りしめている。
+
+    「……でも……%CALLNAME:MASTER%にされると、嫌じゃないの……」
+
+    妖精は恥じらいながらも、お尻を突き出して%CALLNAME:MASTER%を受け入れていた。
+
+    「あっ……そこ、舌で……んぅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の舌を感じて、甘い声を漏らしている。
+
+    後ろの窄みを舐められる初めての感覚に、体が熱くなっていく。
+
+    「%CALLNAME:MASTER%……あたしの、そんなとこ……」
+
+    %CALLNAME:TARGET%は恥ずかしさに耐えながらも、腰を小さく揺らした。
+
+    「……なんか、お腹の奥がきゅってなるの……」
+
+    妖精は困惑しながらも、%CALLNAME:MASTER%の愛撫に蕩けていく。
+
+    「ひゃぁっ……！　%CALLNAME:MASTER%、舌、入ってきそう……」
+
+    %CALLNAME:TARGET%は驚いて声を上げたが、逃げようとはしなかった。
+
+    %CALLNAME:MASTER%の舌先が窄みを押し広げる感覚に、妖精の体が震える。
+
+    「んっ……ふぁ……変な感じ……」
+
+    %CALLNAME:TARGET%は枕に顔を埋めながら、されるがままになっている。
+
+    「……恥ずかしいけど……%CALLNAME:MASTER%になら、いいの……」
+
+    妖精の小さなお尻が、%CALLNAME:MASTER%の舌の動きに合わせてぴくぴくと反応した。
+
+    「やぁん……そこ、敏感なの……」
+
+    %CALLNAME:TARGET%は目を潤ませながら、%CALLNAME:MASTER%に後ろを舐められている。
+
+    舌が這うたびに、甘い痺れが背筋を駆け上がっていく。
+
+    「……あたしね、こんなとこで気持ちよくなるなんて、知らなかったの……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに顔を隠しながら、腰を揺らしている。
+
+    「……%CALLNAME:MASTER%に教えてもらっちゃった……えへへ……」
+
+    妖精は照れながらも、幸せそうに%CALLNAME:MASTER%の愛撫を受けていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ふぇっ……！　%CALLNAME:MASTER%、そこは……お尻なのに……」
+
+    %CALLNAME:TARGET%は驚いて肩を跳ねさせた。
+
+    %CALLNAME:MASTER%の舌が後ろの窄みに触れる感覚に、頬が真っ赤に染まる。
+
+    「……な、舐めちゃうなんて……恥ずかしいよ……」
+
+    %CALLNAME:TARGET%は抗議の声を上げながらも、逃げようとはしない。
+
+    「……でも……%CALLNAME:MASTER%がしたいなら……」
+
+    妖精は俯きながら、おずおずとお尻を突き出した。
+
+    「んっ……やっ……そんなとこ、舐めないでぇ……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに身をよじっている。
+
+    後ろを舐められる初めての感覚に、どう反応していいか分からない。
+
+    「……へ、変な感じがする……」
+
+    %CALLNAME:TARGET%は困惑した顔で振り返った。
+
+    「……こういうのも、仲良しさんはするの……？」
+
+    妖精は問いかけながらも、体は%CALLNAME:MASTER%の舌を受け入れていた。
+
+    「ひぅ……そこ、舌で触られると……」
+
+    %CALLNAME:TARGET%は小さく声を漏らし、体を震わせた。
+
+    %CALLNAME:MASTER%の舌が後ろの窄みを愛撫するたび、甘い痺れが走る。
+
+    「……なんか、お腹の奥が……きゅってなるの……」
+
+    %CALLNAME:TARGET%は初めての感覚に戸惑いながら、シーツを掴んだ。
+
+    「……恥ずかしいけど……嫌じゃない、かも……」
+
+    小さな声で、%CALLNAME:TARGET%は正直に打ち明けた。
+
+    「あっ……%CALLNAME:MASTER%、そこは……」
+
+    %CALLNAME:TARGET%は赤くなった顔を枕に埋めた。
+
+    「……お尻なんて、舐めないでって思うのに……」
+
+    %CALLNAME:TARGET%の体は正直で、%CALLNAME:MASTER%の舌に少しずつ力が抜けていく。
+
+    「……んっ……」
+
+    %CALLNAME:TARGET%は小さく声を漏らし、腰をもじもじとさせた。
+
+    「……%CALLNAME:MASTER%のせいで……変になっちゃう……」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「ひゃっ……！　な、何……！？」
+
+    %CALLNAME:TARGET%は驚いて体を硬くした。
+
+    %CALLNAME:MASTER%の舌が後ろに触れている。
+
+    「え、えっと……そこは……お尻、なんですけど……」
+
+    %CALLNAME:TARGET%は困惑した表情で振り返った。
+
+    「……あの、もしかして、間違えてます……？」
+
+    妖精は%CALLNAME:MASTER%の真意を測りかねている様子だった。
+
+    「あ、あの……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は戸惑いながら、%CALLNAME:MASTER%の顔を見ている。
+
+    「……そこ、舐められるの……恥ずかしいです……」
+
+    %CALLNAME:TARGET%は小さく身を縮こまらせた。
+
+    「……でも……%CALLNAME:MASTER%がそうしたいなら……」
+
+    %CALLNAME:TARGET%はおずおずと、お尻を突き出した。
+
+    「……優しくしてくださいね……？」
+
+    「んっ……ふぇ……変な感じ……」
+
+    %CALLNAME:TARGET%は後ろを舐められる感覚に、小さく声を漏らした。
+
+    何が起きているのか、よく分かっていない様子。
+
+    「……あの、%CALLNAME:MASTER%……これって……」
+
+    %CALLNAME:TARGET%は不安げに振り返った。
+
+    「……痛くしないですよね……？」
+
+    妖精は臆病な瞳で、%CALLNAME:MASTER%の反応を窺っていた。
+
+    「……あの、そこは……」
+
+    %CALLNAME:TARGET%は困った顔で、%CALLNAME:MASTER%の愛撫を受けている。
+
+    拒絶するほどではないが、理解できていない。
+
+    「……こういうのも、するんですか……？」
+
+    %CALLNAME:TARGET%は首を傾げながら、%CALLNAME:MASTER%を見つめた。
+
+    「……あたし、よくわからないけど……」
+
+    妖精はおとなしく、%CALLNAME:MASTER%に身を任せていた。
+  priority: 2
+- id: fallback
+  content: >-
+    「ひゃっ……！　な、なに……！？」
+
+    %CALLNAME:TARGET%は驚いて身を引いた。
+
+    %CALLNAME:MASTER%が後ろを舐めようとしていることに気づき、顔を真っ赤にしている。
+
+    「そ、そんなとこ舐めないでください……！」
+
+    %CALLNAME:TARGET%は慌てて距離を取ろうとしている。
+
+    「……咲夜さんに言いつけますよ……！」
+
+    妖精は怯えながら、%CALLNAME:MASTER%を警戒していた。
+
+    「え、えっと……%CALLNAME:MASTER%……？」
+
+    %CALLNAME:TARGET%は困惑した表情で立ち尽くしている。
+
+    「……どうしてお尻なんか舐めるんですか……」
+
+    %CALLNAME:TARGET%は理解できないという顔で%CALLNAME:MASTER%を見上げた。
+
+    「……あたし、何か悪いことしました……？」
+
+    不安そうな瞳で、%CALLNAME:TARGET%は%CALLNAME:MASTER%の真意を探っていた。
+
+    「ちょ、ちょっと……！」
+
+    %CALLNAME:TARGET%は驚いてお尻を押さえた。
+
+    「いきなりそんなとこ舐めないでください……！」
+
+    %CALLNAME:TARGET%は抗議の声を上げながら、%CALLNAME:MASTER%から距離を取った。
+
+    「……もう、びっくりしたの……」
+
+    妖精は警戒しながら、%CALLNAME:MASTER%を見つめている。
+
+    「……そういうのは、もっと仲良くなってから……」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%を見つめている。
+
+    何が起きているのか分からない様子だ。
+
+    「……あの、%CALLNAME:MASTER%……何がしたいの……？」
+
+    %CALLNAME:TARGET%は困惑した表情で首を傾げた。
+
+    「……あたし、お尻舐められるの、よくわからないです……」
+
+    妖精は不思議そうに、%CALLNAME:MASTER%の反応を待っていた。
+  priority: 1

@@ -1,0 +1,207 @@
+﻿character: パチュリー
+situation: K3_挿入
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%、後ろから……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の膝の上に座り、背中を預けた。
+
+    大図書館の静寂の中、二人は密着したまま絡み合う。
+
+    「……んっ……この体勢、あなたに包まれているみたい……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕に身を委ねた。
+
+    「……後ろから抱かれていると、安心する……不思議ね」
+
+    「はぁ……ん……っ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に背中を預けながら、静かに喘いでいる。
+
+    後ろから抱きしめられ、胸を弄られながらの挿入。
+
+    「……この体位、本で読んだわ……結合部が見えるのよね……」
+
+    %CALLNAME:TARGET%は頬を紅く染めながら、下を見つめた。
+
+    「……恥ずかしい……でも、目が離せないの……」
+
+    「ぁ……やぁ……そこ、胸……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に後ろから胸を揉まれ、小さく声を漏らした。
+
+    「……背面座位というのは、胸も同時に弄れるのね……」
+
+    %CALLNAME:TARGET%は知識として理解していたが、実感は格別だった。
+
+    「……%CALLNAME:MASTER%……もっと、強く抱きしめて……」
+
+    %CALLNAME:TARGET%は珍しく甘えた声を出した。
+
+    「……ふぅ……あ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕の中で、満ち足りた表情を浮かべている。
+
+    「……体が弱いから、この体勢は楽でいいわ……支えてもらえるから」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に体重を預けた。
+
+    「……あなたの体温が、背中から伝わってくる……心地いいわ」
+
+    そう言って、%CALLNAME:TARGET%は%CALLNAME:MASTER%の手を自分の胸に導いた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……っ……後ろから……座って……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の膝の上に座り、背中を預けた。
+
+    「……顔が見えないのは楽だけど……結合部が……」
+
+    %CALLNAME:TARGET%は下を見て、顔を真っ赤にした。
+
+    「……んっ……見ないで……恥ずかしいから……」
+
+    後ろから抱かれながら、%CALLNAME:TARGET%は動揺を隠せない。
+
+    「んっ……ふ……あ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に後ろから抱きしめられながら、小さく喘いでいる。
+
+    「……本では、この体位は胸を弄りやすいと書いてあったけれど……」
+
+    %CALLNAME:TARGET%は知識と実感を照らし合わせようとしている。
+
+    「……ひゃっ……そ、そこ……むきゅ……」
+
+    胸を揉まれ、%CALLNAME:TARGET%は声を抑えきれなかった。
+
+    「あ……やぁ……下、見ないで……」
+
+    %CALLNAME:TARGET%は結合部が丸見えになることに、羞恥を感じている。
+
+    「……この体位、恥ずかしすぎるわ……全部見えてしまう……」
+
+    %CALLNAME:TARGET%は手で目を覆おうとした。
+
+    「……%CALLNAME:MASTER%、もう少し優しく……体力がないの……」
+
+    照れ隠しのように、%CALLNAME:TARGET%は体力的な理由を述べた。
+
+    「……ん……ぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に背中を預けながら、静かに喘いでいる。
+
+    「……後ろから抱かれていると、心臓の音が聞こえる……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の胸に耳を当てた。
+
+    「……あなたの鼓動……私のより、少し速い……」
+
+    そう呟いて、%CALLNAME:TARGET%は%CALLNAME:MASTER%に身を委ねた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……これが、背面座位……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の膝の上に座りながら、興味深そうな目をしている。
+
+    「……本で読んだ通り、後ろから胸を弄れる体位ね……」
+
+    %CALLNAME:TARGET%は冷静を保とうとしているが、頬が上気している。
+
+    「……んっ……結合部が見える……これは、観察しにくいわ……」
+
+    観察者でいるつもりが、羞恥に動揺している。
+
+    「んっ……ふぅ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の動きを、なんとか分析しようとしている。
+
+    「……興味深いわ。この体位だと、体重を預けられるから楽……」
+
+    %CALLNAME:TARGET%は淡々と言おうとしたが、声が震えた。
+
+    「……なぜ、胸を触られると……むきゅ……集中できない……」
+
+    自分の反応に、%CALLNAME:TARGET%自身が戸惑っている。
+
+    「あ……そこ……っ」
+
+    %CALLNAME:TARGET%は思わず声を漏らし、慌てて口を押さえた。
+
+    「……不覚だわ。後ろから抱かれていると、油断してしまう……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯いた。
+
+    「……%CALLNAME:MASTER%、今の声は聞かなかったことにして……」
+
+    そう言いながらも、体は%CALLNAME:MASTER%に預けたままだ。
+
+    「……」
+
+    %CALLNAME:TARGET%は黙って%CALLNAME:MASTER%に背中を預けている。
+
+    研究者として、この体位の特性を記録しておくべきだろう。
+
+    「……%CALLNAME:MASTER%、質問があるわ」
+
+    %CALLNAME:TARGET%は息を整えながら、振り返った。
+
+    「……背面座位を選んだ理由は？　私の胸に興味があるから？」
+  priority: 2
+- id: fallback
+  content: >-
+    「……」
+
+    %CALLNAME:TARGET%は無表情のまま、%CALLNAME:MASTER%の膝の上に座っている。
+
+    「……この体位なら、体力は温存できるわね」
+
+    %CALLNAME:TARGET%は淡々と言い放った。
+
+    「……好きにしなさい。支えてもらえるなら楽だから」
+
+    それだけを告げ、%CALLNAME:TARGET%は%CALLNAME:MASTER%に背中を預けた。
+
+    「……ふぅ……」
+
+    %CALLNAME:TARGET%は溜息をつきながら、%CALLNAME:MASTER%の行為を受けている。
+
+    「……後ろからなら顔を見られなくて済むわ」
+
+    %CALLNAME:TARGET%は事実を述べるように言った。
+
+    「……早く終わらせて。読みかけの本があるの」
+
+    投げやりな態度で、%CALLNAME:TARGET%は目を閉じた。
+
+    「……むきゅ……」
+
+    %CALLNAME:TARGET%は不快そうに眉を寄せた。
+
+    「……胸を触らないで。集中できないわ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の手を払おうとした。
+
+    「……こういうことをするなら、もっと配慮が必要よ」
+
+    冷たい口調で、%CALLNAME:TARGET%は%CALLNAME:MASTER%を窘めた。
+
+    「……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に背中を預けながら、興味なさそうにしている。
+
+    頭の中では、次に読む本のことを考えているようだ。
+
+    「……終わったら、すぐに出て行って」
+
+    %CALLNAME:TARGET%は冷淡に言った。
+
+    「……大図書館は、私の聖域なのだから」
+  priority: 1

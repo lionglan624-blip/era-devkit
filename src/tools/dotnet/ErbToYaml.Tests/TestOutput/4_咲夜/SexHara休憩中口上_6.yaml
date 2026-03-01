@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「公衆便所にふさわしい恰好ね。でも、その姿でお客様の前に出ないようにね」
+
+    「少しは恥というものを知りなさい。恥じらう姿にそそられるお客様もおみえなのよ」
+
+    「公衆便所なのだから、恥ずかしいと思っても隠す権利なんてないのよ」
+  priority: 1
+  displayMode: newline

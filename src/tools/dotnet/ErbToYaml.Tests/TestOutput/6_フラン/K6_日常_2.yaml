@@ -1,0 +1,12 @@
+﻿character: フラン
+situation: K6_日常
+entries:
+- id: fallback
+  content: >-
+    「二人で遊ぶの？ 私も混ぜてよ！」
+
+    「どうせなら、みんなで遊ぼうよ！」
+
+    「ねぇ・・私も、いいよね？」
+  priority: 1
+  displayMode: newline

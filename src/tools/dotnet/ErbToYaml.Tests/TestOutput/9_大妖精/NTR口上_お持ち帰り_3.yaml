@@ -1,0 +1,70 @@
+﻿character: 大妖精
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「うっ・・うぐっ・・んむっ・・！！」
+
+    「ううっ・・や、やぁっ・・んむうっ！」
+
+    「んっ・・んむっ・・だ、だめっ・・ああっ！」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「うっ・・うぐっ・・んんっ・・！！」
+
+    「ううっ・・い、いやっ・・んぐうっ！」
+
+    「んっ・・んむっ・・だ、だめっ・・ああっ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あむぅ・・ちゅっ・・・ふわぁっ・・あっ・・あっ・・♪」
+
+    「ちゅっ・・むっ・・うン・・おっきぃ・・♪」
+
+    「あん・・きもち・・いいっ・・んっ・・♪」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あむぅ・・ちゅっ・・・ふわぁっ・・あっ・・あっ・・♪」
+
+    「ちゅっ・・むっ・・うン・・おっきぃ・・♪」
+
+    「あん・・きもち・・いいっ・・んっ・・♪」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あむぅ・・ちゅっ・・・ふわぁっ・・あっ・・あっ・・%MSG_HEART()%」
+
+    「ちゅっ・・むっ・・うン・・おっきぃ・・%MSG_HEART()%」
+
+    「あん・・きもち・・いいっ・・んっ・・%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あむぅ・・ちゅっ・・・ふわぁっ・・あっ・・あっ・・」
+
+    「ちゅっ・・むっ・・うン・・おっきぃ・・」
+
+    「あん・・きもち・・いいっ・・んっ・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「うっ、ぐすっ・・・んっ、ちゅぷ・・」
+
+    「ぐすっ・・ううっ・・んああっ」
+
+    「あん・・いや・・んんんん！」
+  priority: 1
+  displayMode: newline

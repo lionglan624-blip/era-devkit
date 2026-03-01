@@ -1,0 +1,10 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「私のここはまだ処女なんだが、いつ使ってくれるんだ？」
+
+    「そろそろ私の処女を奪う気になったか？早くここでも奉仕できるようになりたいぜ」
+  priority: 1
+  displayMode: newline

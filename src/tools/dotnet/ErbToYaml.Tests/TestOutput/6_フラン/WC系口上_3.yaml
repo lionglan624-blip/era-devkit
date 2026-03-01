@@ -1,0 +1,33 @@
+﻿character: フラン
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    気持ちいいんだよね？」
+
+    %CALLNAME:MASTER%、カワイ〜♪」
+
+    %CALLNAME:MASTER%のお顔、エッチくなってる♪」
+
+    「ねぇ、気持ちいいでしょ？　ほら……」
+
+    「ちゃんとわかってるんだよ、%CALLNAME:MASTER%の好きなこと%UNICODE(0x2764)%」
+
+    「どうかなぁ？　ふふ……%CALLNAME:TARGET%も、ドキドキして来ちゃった」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    こことかは？
+
+    えへへ。
+
+    ねぇ、ねぇ、
+
+    %CALLNAME:TARGET%、ちゃんと気持ちよく出来てる？」
+
+    %CALLNAME:TARGET%にしてもらうの、好き？」
+
+    どんな感じかなぁ？　教えて、%CALLNAME:MASTER%」
+  priority: 1
+  displayMode: newline

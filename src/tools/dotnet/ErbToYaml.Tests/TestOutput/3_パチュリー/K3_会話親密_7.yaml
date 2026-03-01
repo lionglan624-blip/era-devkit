@@ -1,0 +1,36 @@
+﻿character: パチュリー
+situation: K3_会話親密
+entries:
+- id: fallback
+  content: >-
+    「・・指輪は今はつけてないわ。金を出せば誰でも使うことのできる『公衆便所』には似合わないわ」
+
+    「あの指輪を汚したくないの。だから・・ごめんなさい」
+  priority: 3
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「指輪は今つけてないわ。お客様の反応も良くないし」
+
+    「寝取り趣味のお客様をお相手する時くらいね」
+
+    「なによりもこの首輪の方が今の私に相応しいわ」
+
+    「指輪は今つけてないわ。『公衆便所』には似合わないわ」
+
+    「私は%MSG_LOVER(奴隷)%のものではなくお客様のもの。そういうことよ」
+
+    「この首輪と貞操帯が、私の所有者の証なのよ」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: talent_6_2
+  content: '%"もう"+CALLNAME:MASTER+"のものではないのだから指輪をする必要は無いと言い切られた。"%'
+  priority: 1
+  condition:
+    type: Talent
+    talentType: 6
+    threshold: 1

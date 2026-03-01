@@ -1,0 +1,35 @@
+{
+  "name": "Feature 216 AC8: Negative Value Handling",
+  "defaults": {
+    "character": "1"
+  },
+  "tests": [
+    {
+      "name": "ABL=-1 returns 0 (default)",
+      "call": "TEST_GET_ABL_BRANCH",
+      "args": [0],
+      "state": {"ABL:TARGET:0": -1},
+      "expect": {
+        "output_contains": ["0"]
+      }
+    },
+    {
+      "name": "TALENT=-1 returns 0 (default)",
+      "call": "TEST_GET_TALENT_BRANCH",
+      "args": [0],
+      "state": {"TALENT:TARGET:0": -1},
+      "expect": {
+        "output_contains": ["0"]
+      }
+    },
+    {
+      "name": "EXP=-1 returns 0 (default)",
+      "call": "TEST_GET_EXP_BRANCH",
+      "args": [0],
+      "state": {"EXP:TARGET:0": -1},
+      "expect": {
+        "output_contains": ["0"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+﻿character: レミリア
+situation: K5_会話親密
+entries:
+- id: fallback
+  content: >-
+    「あ……んっ……ふぁ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に秘所を弄ばれ、甘い吐息を漏らしている。
+
+    500年を生きた吸血鬼の身体は、驚くほど敏感だった。
+
+    「……ん、ふ……貴方の指、上手くなったわね……」
+
+    %CALLNAME:TARGET%は蕩けた表情で、%CALLNAME:MASTER%を見つめている。
+
+    「……もっと、私を悦ばせなさい……永遠に……」
+
+    %CALLNAME:TARGET%は熱い吐息とともに、%CALLNAME:MASTER%にしがみついた。
+
+    「やっ……あ、んっ……そこ……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の敏感な蕾を優しく撫でている。
+
+    「……くっ、ふ……ぁ……」
+
+    %CALLNAME:TARGET%は威厳を保とうとしながらも、快感に身悶えしている。
+
+    「……ククク、貴方は私を堕とすのが上手いわね……」
+
+    紅い瞳が潤み、%CALLNAME:TARGET%は甘えるように%CALLNAME:MASTER%の肩に顔を埋めた。
+
+    「……もう少しだけ……このままでいさせて……」
+
+    「ひ、ぁ……んんっ……！」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の愛撫に、小さく身体を震わせた。
+
+    「……ふふ、貴方には敵わないわね……」
+
+    500年の孤独を埋めるように、%CALLNAME:TARGET%は%CALLNAME:MASTER%に身を任せている。
+
+    「私の弱点を知っているのは……貴方だけよ……」
+
+    %CALLNAME:TARGET%は上気した頬で、恋人だけに見せる笑みを浮かべた。
+
+    「あっ……ん、ふ……や、ぁ……」
+
+    %CALLNAME:MASTER%の指先が%CALLNAME:TARGET%の秘所を弄び、甘い蜜を引き出している。
+
+    「……っ……貴方、本当に……私を堕としたいのね……」
+
+    %CALLNAME:TARGET%は潤んだ瞳で%CALLNAME:MASTER%を見上げた。
+
+    「……いいわ、全部受け入れてあげる……永遠を感じなさい……」
+
+    紅魔館の主は、愛する者にだけ見せる脆さを曝け出した。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ひっ……な、何を……！」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に秘所を触れられ、身体をビクッと震わせた。
+
+    「……こ、こんなところを……」
+
+    威厳を保とうとしているが、頬がほのかに紅く染まっている。
+
+    「……っ、調子に乗らないことね……ふ、ぁ……」
+
+    %CALLNAME:TARGET%は息を乱しながらも、抵抗はしなかった。
+
+    「やっ……あ、ん……そこは……」
+
+    %CALLNAME:MASTER%の指が%CALLNAME:TARGET%の敏感な場所を撫でている。
+
+    「……っ、貴方……大胆ね……」
+
+    %CALLNAME:TARGET%は目を閉じ、快感に耐えている様子だ。
+
+    「……まあ、悪くはないわ……ふ、ぁ……」
+
+    紅い瞳が潤み始め、%CALLNAME:TARGET%は%CALLNAME:MASTER%にしがみついた。
+
+    「あっ……ん、んっ……」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の愛撫に、甘い声を漏らした。
+
+    「……い、いきなり何を……」
+
+    戸惑いながらも、%CALLNAME:TARGET%の身体は正直に反応している。
+
+    「……もう、仕方ないわね……少しだけ許してあげるわ……」
+
+    %CALLNAME:TARGET%は上気した頬で、%CALLNAME:MASTER%から視線を逸らした。
+
+    「ひ、ぁっ……やっ……！」
+
+    %CALLNAME:MASTER%の指先が%CALLNAME:TARGET%の秘所をくすぐり、身体が跳ねた。
+
+    「……っ、貴方、どこでそんなこと覚えたの……」
+
+    %CALLNAME:TARGET%は威厳を崩さぬよう努めているが、息が荒くなっている。
+
+    「……次も、期待しているわよ……ふ、ぅ……」
+
+    %CALLNAME:TARGET%は熱い吐息とともに、そう呟いた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「っ……！」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%に秘所を触れられ、驚いて身体を強張らせた。
+
+    「……な、何をしているの……」
+
+    %CALLNAME:TARGET%は紅い瞳を見開き、%CALLNAME:MASTER%を睨んだ。
+
+    「……紅魔館の主に対して、無礼よ……」
+
+    しかしその声には、怒りよりも動揺が滲んでいた。
+
+    「や……！」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の秘所に触れ、身体がビクッと跳ねた。
+
+    「……い、いきなり何をするの……」
+
+    %CALLNAME:TARGET%は顔を赤らめながら、%CALLNAME:MASTER%の腕を掴んだ。
+
+    「……今回だけは許してあげるわ……次は作法を弁えなさい……」
+
+    「ひっ……！」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の愛撫に、小さく声を上げた。
+
+    「……っ、貴方……大胆すぎるわ……」
+
+    驚きと戸惑いが入り混じった表情で、%CALLNAME:TARGET%は%CALLNAME:MASTER%を見ている。
+
+    「……ま、まあ……悪くはなかったけど……」
+
+    「やっ……あ……！」
+
+    %CALLNAME:MASTER%の指先が%CALLNAME:TARGET%の敏感な場所に触れ、身体が震えた。
+
+    「……な、何を……」
+
+    %CALLNAME:TARGET%は戸惑いながらも、完全に拒絶はしなかった。
+
+    「……もう、貴方って本当に……」
+
+    %CALLNAME:TARGET%は顔を赤くしながら、視線を逸らした。
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の秘所に手を伸ばした。
+
+    「……何のつもり？」
+
+    %CALLNAME:TARGET%は冷たい瞳で%CALLNAME:MASTER%を見据え、その手を払いのけた。
+
+    「私は紅魔館の主よ。そのような無礼は許されないわ。」
+
+    「……身の程を弁えなさい。貴方はまだその域に達していないのよ。」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%に近づいた。
+
+    「……触れないで。」
+
+    %CALLNAME:TARGET%は指一本で%CALLNAME:MASTER%を押し留めた。
+
+    「紅魔館の主に触れることが許されるのは、選ばれた者だけよ。」
+
+    「……運命の糸が見えるようになったら、また来なさい。」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の身体に手を伸ばした。
+
+    「……無礼者ね。」
+
+    %CALLNAME:TARGET%は冷ややかな笑みを浮かべた。
+
+    「500年を生きた吸血鬼を軽んじるとは……」
+
+    「……貴方には何も許されていないのよ。覚えておきなさい。」
+
+    %CALLNAME:MASTER%の手が%CALLNAME:TARGET%の秘所に向かった。
+
+    「……愚かね。」
+
+    %CALLNAME:TARGET%は冷たい視線で%CALLNAME:MASTER%を見下ろした。
+
+    「私の身体に触れる権利は、まだ貴方にはないわ。」
+
+    「……紅魔館の主を侮る者には、それなりの報いがあるわよ。」
+  priority: 1

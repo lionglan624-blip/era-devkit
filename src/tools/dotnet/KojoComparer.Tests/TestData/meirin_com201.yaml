@@ -1,0 +1,15 @@
+entries:
+- id: talent_16_1
+  content: >-
+    最近一緒にいると心が落ち着くの。
+
+    %CALLNAME:MASTER%のこと、好きになっちゃったみたい。
+  condition:
+    type: Talent
+    talentType: "16"
+    threshold: 1
+  priority: 4
+- id: fallback
+  content: >-
+    こんにちは、%CALLNAME:MASTER%。
+  priority: 0

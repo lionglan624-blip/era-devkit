@@ -1,0 +1,48 @@
+﻿character: 小悪魔
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああン・・お・・しり、・・イ・・イ・・・」
+
+    「あっ・・ああ・・もっ・・と・・ふか・・くぅ・・」
+
+    「あン・・ああっ・・おしりっ・・いいっ・・！」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああン・・お・・しり、・・イ・・イ・・・」
+
+    「あっ・・ああ・・もっ・・と・・ふか・・くぅ・・」
+
+    「あン・・ああっ・・おしりっ・・いいっ・・！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「お・・しり、・・イ・・イ・・・」
+
+    「ああ・・もっ・・と・・ふか・・くぅ・・」
+
+    「ああっ・・おしりっ・・いいっ・・！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「お・・しり、・・イ・・イ・・・」
+
+    「ああ・・もっ・・と・・ふか・・くぅ・・」
+
+    「ああっ・・おしりっ・・いいっ・・！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ぐっ・・うっ・・くっ・・・ふっ・・」
+
+    「うっ・・ぐ・・い・・痛っ・・」
+
+    「ああっ・・い・・いや・・」
+  priority: 1
+  displayMode: newline

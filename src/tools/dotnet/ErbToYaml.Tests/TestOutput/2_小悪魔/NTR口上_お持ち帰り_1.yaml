@@ -1,0 +1,12 @@
+﻿character: 小悪魔
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「うふふっ、ただいま帰りましたっ♪」
+
+    「ただいまぁ。今帰りましよぉ♪」
+
+    「ただいまですぅ♪」
+  priority: 1
+  displayMode: newline

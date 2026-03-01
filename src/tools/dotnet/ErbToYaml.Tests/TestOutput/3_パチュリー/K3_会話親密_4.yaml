@@ -1,0 +1,237 @@
+﻿character: パチュリー
+situation: K3_会話親密
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%をそっと後ろから抱きしめた。
+
+    「……ん」
+
+    %CALLNAME:TARGET%は手にしていた本をそっと閉じ、%CALLNAME:MASTER%の腕の中に身を預けた。
+
+    「……本の中では得られない温もり、というやつかしら」
+
+    %CALLNAME:TARGET%は小さく息を吐き、%CALLNAME:MASTER%の胸に頬を寄せた。
+
+    「……もう少しだけ、このままでいさせて」
+
+    そう言いながらも、%CALLNAME:TARGET%の表情は珍しく穏やかだった。
+
+    「あ……%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を迎え入れるように、本を脇に置いた。
+
+    ぎゅっと抱きしめ合う。静かな図書館に、二人分の息遣いだけが響く。
+
+    「……体温の伝達効率を考えると、これは理にかなっているわ」
+
+    %CALLNAME:TARGET%は照れ隠しのように理屈を並べながらも、離れようとはしなかった。
+
+    「……あなたの傍は、本を読んでいる時より落ち着くの」
+
+    小さく呟いて、%CALLNAME:TARGET%は目を閉じた。
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%に抱きつくと、彼女は読んでいた本を静かに閉じた。
+
+    「……来たの。待っていたわ」
+
+    珍しく素直な言葉が、%CALLNAME:TARGET%の口から零れた。
+
+    「あなたがいると、この図書館も少し明るく感じるの」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の背中にそっと手を回した。
+
+    「……これも一種の魔法なのかしら。私には、まだ解明できていないけれど」
+
+    静かに微笑んで、%CALLNAME:TARGET%は%CALLNAME:MASTER%の温もりを受け入れた。
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は自分から本を置き、%CALLNAME:MASTER%に身を寄せた。
+
+    「今日は……少し疲れたの。抱きしめてくれないかしら」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%をそっと抱きしめた。
+
+    「……ありがとう。あなたの腕の中は、どんな本より心地いいわ」
+
+    %CALLNAME:TARGET%は小さく呟き、%CALLNAME:MASTER%の胸元に額を預けた。
+
+    大図書館の静寂の中、二人は穏やかな時間を過ごした。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついた。
+
+    「むきゅっ……%CALLNAME:MASTER%？」
+
+    %CALLNAME:TARGET%は本を取り落としそうになりながらも、%CALLNAME:MASTER%を押し退けはしなかった。
+
+    「……急に抱きつくなんて。心臓に悪いわ」
+
+    頬を薄く染めながら、%CALLNAME:TARGET%はぎこちなく腕を回した。
+
+    「……でも、温かいわね。本では学べないことだわ」
+
+    そう言って、%CALLNAME:TARGET%は照れくさそうに視線を逸らした。
+
+    「あっ……」
+
+    突然の抱擁に、%CALLNAME:TARGET%は小さく声を上げた。
+
+    「……何かあったの？ 急に甘えてきて」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%の頭を軽く撫でた。
+
+    「……まあいいわ。読書の休憩には、ちょうどいいかもしれないし」
+
+    本を傍らに置いて、%CALLNAME:TARGET%は静かに目を閉じた。
+
+    「……少しだけよ。あまり長いと、私も慣れてしまうから」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%に抱きつく。
+
+    「……っ！」
+
+    %CALLNAME:TARGET%は驚いたように本を胸に抱えたが、すぐに表情が和らいだ。
+
+    「もう……いきなりは心臓に悪いと言っているのに」
+
+    そう言いつつも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の頭を撫でている。
+
+    「……まあ、たまには研究を中断してもいいか」
+
+    %CALLNAME:TARGET%の声は、どこか嬉しそうだった。
+
+    %CALLNAME:TARGET%が本を読んでいると、%CALLNAME:MASTER%がそっと抱きついてきた。
+
+    「……ん。%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は本に栞を挟み、%CALLNAME:MASTER%の方に身体を向けた。
+
+    「あなたって、甘えん坊なのね。……嫌いじゃないけれど」
+
+    小さく微笑んで、%CALLNAME:TARGET%は%CALLNAME:MASTER%を受け入れた。
+
+    「……このくらいの温もりなら、喘息も悪化しないでしょう」
+
+    照れ隠しの理屈を並べながら、%CALLNAME:TARGET%は目を細めた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きついた。
+
+    「……っ！？ な、何をするの」
+
+    %CALLNAME:TARGET%は目を見開き、手にしていた本を胸元で抱きしめた。
+
+    「だ、抱きつくなんて……こういうのは本にも載っていなかったわ」
+
+    戸惑いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%を押し退けようとはしなかった。
+
+    「……まあ、温かいのは認めるけど」
+
+    %CALLNAME:TARGET%は小声でそう言い、視線を逸らした。
+
+    「むきゅ……」
+
+    突然の抱擁に、%CALLNAME:TARGET%は思わず変な声を出してしまった。
+
+    「%CALLNAME:MASTER%……いきなりすぎるわ」
+
+    %CALLNAME:TARGET%は顔を赤くして、本で顔を隠そうとしている。
+
+    「……体温が上昇しているわ。これは、その……」
+
+    理屈で誤魔化そうとするも、動揺は隠せなかった。
+
+    「……少しだけなら、いいけど」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%に腕を回す。
+
+    「……え？」
+
+    %CALLNAME:TARGET%は本を取り落としそうになり、慌てて抱え直した。
+
+    「ちょ、ちょっと……こういうのは、その……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして、どうしていいか分からない様子だ。
+
+    「……本には、こういう時の対処法は書いてなかったわ」
+
+    困った表情で、%CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げた。
+
+    「……あ」
+
+    %CALLNAME:MASTER%に抱きつかれ、%CALLNAME:TARGET%は固まってしまった。
+
+    「……なんで急に」
+
+    %CALLNAME:TARGET%の声は小さく、動揺を隠せていない。
+
+    「……私、人に触れられるのは、あまり慣れていなくて」
+
+    本を胸に抱いたまま、%CALLNAME:TARGET%は身じろぎした。
+
+    「……でも、あなたなら……まあ、いいかしら」
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に抱きつこうとした。
+
+    「……何をしているの」
+
+    %CALLNAME:TARGET%は冷たい目でこちらを見据え、一歩後ずさった。
+
+    「抱擁？ そういうのは、もっと親しい間柄でするものよ」
+
+    困惑した表情で、%CALLNAME:TARGET%は%CALLNAME:MASTER%を見つめた。
+
+    「距離感というものを学びなさい。本でも読んで」
+
+    %CALLNAME:TARGET%は冷淡に言い放ち、再び本に視線を落とした。
+
+    「……近いわ」
+
+    %CALLNAME:MASTER%が近づいてくると、%CALLNAME:TARGET%は魔法書を盾のように構えた。
+
+    「私は人に触れられるのが得意ではないの。知っているでしょう？」
+
+    %CALLNAME:TARGET%は居心地悪そうに視線を泳がせた。
+
+    「……もう少し、知り合ってからにしてくれないかしら」
+
+    丁重に、しかし明確に、%CALLNAME:TARGET%は距離を置いた。
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%に手を伸ばす。
+
+    「……そこの人。私の書斎で暴れないで」
+
+    %CALLNAME:TARGET%は本を抱えて立ち上がり、%CALLNAME:MASTER%から離れた。
+
+    「抱擁などという非効率的な行為は、理解に苦しむわ」
+
+    %CALLNAME:TARGET%は本棚の影に移動しながら、冷ややかに言った。
+
+    「……友人でもないのに、馴れ馴れしいわね」
+
+    そう言って、%CALLNAME:TARGET%は再び読書に戻った。
+
+    「……何の用かしら」
+
+    %CALLNAME:MASTER%が近づくと、%CALLNAME:TARGET%は警戒するように本を構えた。
+
+    「抱きつく？ 私に？ 正気とは思えないわね」
+
+    %CALLNAME:TARGET%は眉をひそめ、%CALLNAME:MASTER%を見据えた。
+
+    「私は本以外に興味はないの。分かったら出て行って」
+
+    冷淡な声で、%CALLNAME:TARGET%は%CALLNAME:MASTER%を追い払おうとした。
+
+    「読書の邪魔をされるのは、一番嫌いなのよ」
+  priority: 1

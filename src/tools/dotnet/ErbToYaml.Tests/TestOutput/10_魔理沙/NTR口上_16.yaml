@@ -1,0 +1,21 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「え…口で…？ 見せつけるのか…？ ははっ…いいぜ…」
+
+    「口で…？ まあ、%呼称%が言うなら…」
+
+    「ああ…欲しい…たっぷり…ください…」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「なっ…やめっ…いやあっ、うっ、うぐうううっ！！」
+
+    「いやっ…たすけて…たすけて%CALLNAME:MASTER%…うっ、ううううっ！！！」
+
+    「ああ…た、たすけてっ…！ ああっ…んっ、ううう！！」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,239 @@
+﻿character: 子悪魔
+situation: K7_口挿入
+entries:
+- id: fallback
+  content: >-
+    「えへへ……%CALLNAME:MASTER%、あたしのおっぱいで気持ちよくなってね？」
+
+    %CALLNAME:TARGET%は嬉しそうに%CALLNAME:MASTER%の前に跪いた。
+
+    小さな胸で%CALLNAME:MASTER%のものを挟み込み、上下に動かし始める。
+
+    「んっ……こう？　あたしのおっぱい、柔らかい……？」
+
+    %CALLNAME:TARGET%は一生懸命な顔で%CALLNAME:MASTER%を見上げている。
+
+    「あたし、%CALLNAME:MASTER%のこと大好きだから……いっぱいしてあげるの」
+
+    妖精の小さな胸が、懸命に%CALLNAME:MASTER%を包み込んでいく……
+
+    「今日もあたしのおっぱいで、していい？」
+
+    %CALLNAME:TARGET%は満面の笑みで%CALLNAME:MASTER%の股間に胸を近づけた。
+
+    「むにゅ……んっ……挟まってる……」
+
+    %CALLNAME:TARGET%は慣れた様子で%CALLNAME:MASTER%の一物を胸で擦り始めた。
+
+    「ふふっ……%CALLNAME:MASTER%の、あたしのおっぱいの中で元気になってる……」
+
+    嬉しそうに%CALLNAME:TARGET%は胸を揺らしている。
+
+    「えへへ、いっぱい気持ちよくなってね……？」
+
+    「%CALLNAME:MASTER%……あたし、もっと上手にしたいの……」
+
+    %CALLNAME:TARGET%は真剣な表情で%CALLNAME:MASTER%の一物を胸で挟んだ。
+
+    「だから……いっぱい練習させてね？」
+
+    小さな胸が%CALLNAME:MASTER%のものを包み込み、ゆっくりと上下する。
+
+    「んしょ……こう動かすと、気持ちいいって……」
+
+    %CALLNAME:TARGET%は胸を押し付けながら、期待に満ちた目で見上げた。
+
+    「……ね、あたし、ちゃんとできてる……？」
+
+    「あ……%CALLNAME:MASTER%の、元気いっぱいだね……えへへ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の一物を愛おしそうに見つめた。
+
+    「あたしのおっぱいで挟むと、もっと元気になるかな……？」
+
+    %CALLNAME:TARGET%は嬉しそうに%CALLNAME:MASTER%の一物を胸で包んだ。
+
+    「ふふっ……ぴくってした……かわいい」
+
+    %CALLNAME:TARGET%はくすくす笑いながら、優しく胸を動かしている。
+
+    「%CALLNAME:MASTER%……大好き。あたしのおっぱいでいっぱい出していいよ……？」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「え、えっと……お、おっぱいで……するの……？」
+
+    %CALLNAME:TARGET%は真っ赤になりながら、おずおずと%CALLNAME:MASTER%のものに胸を近づけた。
+
+    「あたしのおっぱい、小さいけど……大丈夫かな……」
+
+    %CALLNAME:TARGET%は困惑しながらも、胸で挟もうとした。
+
+    「んっ……熱い……こんなに硬いんだ……」
+
+    小さな胸で精一杯挟もうとしている。
+
+    「……%CALLNAME:MASTER%、気持ちいい……ですか……？」
+
+    「あの……%CALLNAME:MASTER%のために……おっぱいで、頑張ります……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで%CALLNAME:MASTER%の一物を胸で挟んだ。
+
+    「むにゅ……こういうの、初めてだから……」
+
+    ぎこちない動きで、%CALLNAME:TARGET%は懸命に胸を動かしている。
+
+    「んしょ……こう……？」
+
+    一生懸命な%CALLNAME:TARGET%の姿は、どこか健気だった。
+
+    「……気持ちよくなって、くれたら……嬉しいな……」
+
+    「は、恥ずかしいよぅ……でも……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、%CALLNAME:MASTER%の一物を胸で挟んだ。
+
+    「%CALLNAME:MASTER%が気持ちよくなるなら……あたし、頑張る……」
+
+    小さな胸が%CALLNAME:MASTER%のものを包み、ゆっくりと動き出す。
+
+    「……んっ……ぬるっとしてきた……これ、気持ちいいってこと……？」
+
+    %CALLNAME:TARGET%は先走りの感触に驚きながらも、胸を止めなかった。
+
+    「……%CALLNAME:MASTER%……あたしのこと、好き……？」
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は上目遣いに%CALLNAME:MASTER%を見つめた。
+
+    「あたし……%CALLNAME:MASTER%のこと、好きだから……」
+
+    恥ずかしそうに俯きながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%のものを胸で挟んだ。
+
+    「だから……おっぱいで、させて……ね……？」
+
+    小さな胸がたどたどしく動き、%CALLNAME:MASTER%に快感を与えようと頑張っている。
+
+    %CALLNAME:TARGET%は真剣な表情で、%CALLNAME:MASTER%の反応を見守っていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え……おっぱいで……これを……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の一物を見つめて固まっている。
+
+    「その……こういうこと、したことないです……」
+
+    おずおずと胸を近づけ、恐る恐る挟んでみる。
+
+    「わっ……熱い……こんなの初めて……」
+
+    %CALLNAME:TARGET%は驚きながらも、言われた通りに胸を動かし始めた。
+
+    「……こう……ですか……？　あたし、ちゃんとできてますか……？」
+
+    「あの……%CALLNAME:MASTER%……これって……」
+
+    %CALLNAME:TARGET%は戸惑いながら、%CALLNAME:MASTER%の一物を胸で挟んだ。
+
+    「えっと……上下に動かせばいいんですよね……？」
+
+    ぎこちない動きで、%CALLNAME:TARGET%は見よう見まねで胸を動かし始めた。
+
+    「……熱い……なんか、すごい……」
+
+    初めての感触に%CALLNAME:TARGET%は困惑しながらも、胸を動かし続けている。
+
+    「……%CALLNAME:MASTER%……あたし、上手にできてますか……？」
+
+    「……はい……やります……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで%CALLNAME:MASTER%の前に跪いた。
+
+    「あの……あたしのおっぱい、小さいけど……大丈夫ですか……？」
+
+    小さな胸が震えながら%CALLNAME:MASTER%のものを挟み込んだ。
+
+    「……こう……？　もっと押し付けた方が……？」
+
+    %CALLNAME:TARGET%は不安そうに%CALLNAME:MASTER%の顔色を窺いながら、胸を動かしている。
+
+    「……%CALLNAME:MASTER%が満足してくれたら……嬉しいです……」
+
+    「……えっと……%CALLNAME:MASTER%のお手伝い……ですか？」
+
+    %CALLNAME:TARGET%は首を傾げながら、%CALLNAME:MASTER%の一物を見つめた。
+
+    「妖精メイドのお仕事……なのかな……」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%のものを胸で挟んだ。
+
+    「……むにゅ……こうかな……」
+
+    たどたどしい動きで、%CALLNAME:TARGET%は懸命に胸を動かし始めた。
+
+    「……咲夜さんには、絶対内緒ですよ……？」
+  priority: 2
+- id: fallback
+  content: >-
+    「え……えっ……お、おっぱいで……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の一物を見つめて顔を青くした。
+
+    「あの……あたしのおっぱい、小さいですけど……」
+
+    困惑した表情で、%CALLNAME:TARGET%は後ずさりしようとした。
+
+    「……で、でも……やらないとダメ……ですか……」
+
+    観念したように、%CALLNAME:TARGET%は恐る恐る胸を近づけた。
+
+    「……む……こうですか……」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%の一物を見つめている。
+
+    「……あたし、こういうの、どうすればいいかわからないです……」
+
+    仕方なさそうに胸を近づけ、ぎこちなく挟んだ。
+
+    「……こう……ですか……」
+
+    機械的に胸を動かしながら、%CALLNAME:TARGET%は視線を逸らしている。
+
+    「……早く終わってほしいな……」
+
+    「ひっ……こ、これを……おっぱいで……？」
+
+    %CALLNAME:TARGET%は怯えた表情で%CALLNAME:MASTER%のものを見つめた。
+
+    「あの……あたしのおっぱい小さいし、できるかな……」
+
+    %CALLNAME:TARGET%は逃げ出したそうな顔をしているが、従わざるを得ない。
+
+    「……う……挟みます……」
+
+    嫌々ながら%CALLNAME:TARGET%は%CALLNAME:MASTER%のものを胸で挟んだ。
+
+    「……こういうの、苦手なんです……ごめんなさい……」
+
+    「……%CALLNAME:MASTER%……なんでこんなこと……」
+
+    %CALLNAME:TARGET%は困惑と戸惑いの表情を浮かべている。
+
+    「あたし、お掃除とかお茶汲みの方が得意なんですけど……」
+
+    渋々と%CALLNAME:TARGET%は%CALLNAME:MASTER%の前に跪いた。
+
+    「……えっと……むにゅ……こう……？」
+
+    不慣れな動きで、%CALLNAME:TARGET%は%CALLNAME:MASTER%のものを胸で挟み始めた。
+
+    「……咲夜さんに見つかったら、怒られちゃいます……」
+  priority: 1

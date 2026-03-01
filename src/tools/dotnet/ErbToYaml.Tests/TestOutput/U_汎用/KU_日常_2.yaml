@@ -1,0 +1,12 @@
+﻿character: 汎用
+situation: KU_日常
+entries:
+- id: fallback
+  content: >-
+    「楽しそうな話ね。私も混ざっていい？」
+
+    「二人だけで楽しむなんて、ずるいわ」
+
+    「私抜きで何を話してるのかしら？」
+  priority: 1
+  displayMode: newline

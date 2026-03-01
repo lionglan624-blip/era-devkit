@@ -1,0 +1,42 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んっ…ふふ…悪趣味な%呼称%…んっ…」
+
+    「ふふ…見せつけてやろう…ぜ…んっ…」
+
+    「%CALLNAME:MASTER%には指を咥えて見ててもらおうぜ？ ふふっ…んっ…」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ…ふふ…悪趣味な奴…んっ…」
+
+    「ふふ…見せつけてやろうぜ…んっ…」
+
+    「サービス過剰じゃない？ ふふっ…んっ…」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ…ふふ…悪趣味…んっ…」
+
+    「ふふ…見せつけるのか…？ んんっ…」
+
+    「サービス過剰じゃない？ ふふっ…んっ…」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: '%CALLNAME:奴隷%は%ANATA_LOVER(奴隷)%の目の前で唇を重ねられた。'
+  priority: 2
+- id: fallback
+  content: >-
+    「えっ？　んっ、んむぅっ！！」
+
+    「やっ…んんっ！」
+
+    「んんっ！？ ん…」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「ふふっ、ただいま。今帰ったわ」
+
+    「ただいま。今帰ったわ」
+
+    「ただいま、今帰ったわ。館のこと、何もなかった？」
+  priority: 1
+  displayMode: newline

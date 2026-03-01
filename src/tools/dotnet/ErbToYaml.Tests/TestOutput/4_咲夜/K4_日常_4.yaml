@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: K4_日常
+entries:
+- id: fallback
+  content: >-
+    「そうそう、こんなことがあったのよ」
+
+    「ねえ、聞いてくれる？」
+
+    「この間の話、どうなったの？」
+  priority: 1
+  displayMode: newline

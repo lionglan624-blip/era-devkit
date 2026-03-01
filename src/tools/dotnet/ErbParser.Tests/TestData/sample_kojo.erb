@@ -1,0 +1,16 @@
+﻿;Sample kojo excerpt
+@COM_ABLE100
+#DIM 思慕
+
+IF TALENT:MASTER:恋慕 != 0
+    思慕 = 1
+ENDIF
+
+DATALIST
+DATAFORM 0, 1, "一緒にいると落ち着く"
+DATAFORM 1, 2, "いつも見守ってくれる"
+ENDLIST
+
+IF 思慕 == 1
+    PRINTFORML 最近一緒にいると心が温かくなる
+ENDIF

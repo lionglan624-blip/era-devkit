@@ -1,0 +1,27 @@
+﻿character: パチュリー
+situation: K3_会話親密
+entries:
+- id: fallback
+  content: >-
+    「・・仕方ないわね・・少しだけよ？」
+
+    「・・ええ、あの人には内緒で・・」
+
+    「・・ふふ、二人だけの秘密・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・いけないわ」
+
+    「・・やめてちょうだい」
+
+    「・・だ・・だめよ・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・・」
+
+    抱き寄せられた%CALLNAME:奴隷%は%CALLNAME:MASTER%からわずかに顔を背け何かに怯えたような表情を浮かべていた。
+  priority: 1

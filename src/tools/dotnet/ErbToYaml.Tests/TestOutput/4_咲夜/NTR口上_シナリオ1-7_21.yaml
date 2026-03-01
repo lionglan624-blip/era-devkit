@@ -1,0 +1,30 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ1-7
+entries:
+- id: fallback
+  content: >-
+    「きて%S_HEART%・・いっぱい、いっぱい出してっ%S_HEART%・・んっ、んんんんっ！！」
+
+    「ちょうだい%S_HEART%・・ザーメン、いっぱいちょうだいっ%S_HEART%・・んんんんんっ！！」
+
+    「んっ%S_HEART%・・いくの・・いくのね・・？ んむっ、んっ！ んんんんっ！！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「きて%S_HEART%・・いっぱい、いっぱい出してっ%S_HEART%・・んっ、んんんんっ！！」
+
+    「ちょうだい%S_HEART%・・ザーメン、いっぱいちょうだいっ%S_HEART%・・んんんんんっ！！」
+
+    「んっ%S_HEART%・・いくの・・いくのね・・？ んむっ、んっ！ んんんんっ！！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・だ、だめっ、んんっ！ んんんんんっ！！」
+
+    「いやっ・・うっ、うぐっ！！ うううううううっ！！」
+
+    「んっ・・いやあっ・・ううっ、うぐううーーーーっ！！」
+  priority: 1
+  displayMode: newline

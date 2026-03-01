@@ -1,0 +1,78 @@
+﻿character: パチュリー
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ふふ・・このまま日光浴でもさせるつもり・・？」
+
+    「ふふ・・風が吹いたら大変なことになりそうね・・」
+
+    「ふふ・・落ち着かないわね」
+
+    %CALLNAME:奴隷%はうっすらと頬を染め、羞恥プレイの快楽に胸をときめかせている。
+
+    %CALLNAME:奴隷%はうっすらと頬を染めながらも、羞恥プレイを楽しんでいるようだ。
+
+    %CALLNAME:奴隷%は羞恥プレイに快楽を覚えたのか、頬を染めうっとりとしている。
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふふ・・このまま日光浴でもさせるつもり・・？」
+
+    「ふふ・・風が吹いたら大変なことになりそうね・・」
+
+    「ふふ・・落ち着かないわね」
+
+    %CALLNAME:奴隷%はうっすらと頬を染め、羞恥プレイの快楽に胸をときめかせている。
+
+    %CALLNAME:奴隷%はうっすらと頬を染めながらも、羞恥プレイを楽しんでいるようだ。
+
+    %CALLNAME:奴隷%は羞恥プレイに快楽を覚えたのか、頬を染めうっとりとしている。
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・恥ずかしいわね・・」
+
+    「・・これは恥ずかしいわ・・」
+
+    「・・さすがに落ち着かないわね・・」
+
+    %CALLNAME:奴隷%は剥き出しの性器を誰かに見られたら、と落ち着かないようだ。
+
+    %CALLNAME:奴隷%は風が吹いて剥き出しの局部が晒しだされないかと不安なようだ。
+
+    %CALLNAME:奴隷%は誰かに見られやしないかと不安なようだ。
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「もう・・風邪を引いたらどうするつもり？」
+
+    「もう・・女は下半身を冷やしてはいけないのよ？」
+
+    「もう・・私、冷え性なのに・・」
+
+    %CALLNAME:奴隷%は唇を尖らせて%NTR_NAME(0)%を睨みつけた。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%を睨みつけたがそれほど怒っているわけではなさそうだ。
+
+    %CALLNAME:奴隷%は唇を尖らせて%NTR_NAME(0)%を睨みつけたが本気ではないのか迫力不足もいいところであった。
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・風邪を引いたらどうするつもり？」
+
+    「・・女は下半身を冷やしてはいけないのよ？」
+
+    「・・私、冷え性なのに・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%を睨みつけた。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%を睨みつけたが彼に従うしかなかった。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の脅迫に屈し下着を脱いで渡さざるをえなかった。
+  priority: 1
+  displayMode: newline

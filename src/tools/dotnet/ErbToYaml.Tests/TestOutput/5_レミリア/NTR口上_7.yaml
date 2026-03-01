@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「離しなさい！ こ、この無礼者っ！」
+
+    「は、離しなさいっ！」
+
+    「んっ、やめ、やめなさいっ！！」
+  priority: 1
+  displayMode: newline

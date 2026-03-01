@@ -1,0 +1,33 @@
+﻿character: 咲夜
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は%CALLNAME:奴隷%に公衆便所としての作法を躾けた。
+
+    彼女の性器を便器代わりに、白濁した劣情を排泄したのだ。
+
+    %NTR_NAME(0)%は組み敷いた%CALLNAME:奴隷%を容赦なく犯し、子宮口めがけて射精した。
+  priority: 5
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の上で腰を振り、熱い白濁を搾り取った。
+
+    %NTR_NAME(0)%の肉棒を、%NTR_KARE()%の精液を心から望んでいた。
+
+    （ああん・・いっぱい・・おなか・・いっぱい・・%MSG_HEART()%）
+
+    （ああ・・いい・・熱いの・・いい・・%MSG_HEART()%）
+
+    （ああん・・もっと・・もっと、注いで・・%MSG_HEART()%）
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: '%CALLNAME:奴隷%は%NTR_NAME(0)%の上で腰を振り、熱い白濁を搾り取った。'
+  priority: 3
+- id: fallback
+  content: '%CALLNAME:奴隷%は%NTR_NAME(0)%に抱きつきながら腰を振り、膣内深くに精を飲み込んだ。'
+  priority: 2
+- id: fallback
+  content: '%NTR_NAME(0)%は組み敷いた%CALLNAME:奴隷%を容赦なく犯し、子宮口めがけて射精した。'
+  priority: 1

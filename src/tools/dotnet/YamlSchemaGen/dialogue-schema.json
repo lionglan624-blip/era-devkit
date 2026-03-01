@@ -1,0 +1,300 @@
+{
+  "schema": "https://json-schema.org/draft-07/schema#",
+  "title": "ERA Dialogue YAML Schema",
+  "description": "Schema for character dialogue files with TALENT/ABL/EXP condition branching",
+  "type": "object",
+  "properties": {
+    "character": {
+      "type": "string",
+      "description": "Character identifier"
+    },
+    "situation": {
+      "type": "string",
+      "description": "Dialogue situation code (e.g., \u0027K4\u0027, \u0027K100\u0027)"
+    },
+    "com_id": {
+      "oneOf": [
+        { "type": "integer" },
+        { "type": "string", "pattern": "^[0-9]+$" }
+      ],
+      "description": "COM ID extracted from ERB function name (e.g., 0 for COM_K1_0). Used by KojoComparer FileDiscovery for direct YAML lookup."
+    },
+    "branches": {
+      "type": "array",
+      "description": "Alternative format: array of dialogue branches with conditions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lines": {
+            "type": "array",
+            "description": "Array of dialogue lines for this branch",
+            "items": {
+              "type": "string"
+            }
+          },
+          "condition": {
+            "oneOf": [
+              { "$ref": "#/definitions/conditionElement" },
+              {
+                "type": "object",
+                "description": "Empty condition (unconditional/fallback)",
+                "properties": {},
+                "additionalProperties": false
+              }
+            ],
+            "description": "Condition for this branch to be selected"
+          }
+        },
+        "required": ["lines"]
+      }
+    },
+    "entries": {
+      "type": "array",
+      "description": "Dialogue entries with optional conditions and priority",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this entry"
+          },
+          "content": {
+            "type": "string",
+            "description": "Dialogue content text"
+          },
+          "priority": {
+            "oneOf": [
+              { "type": "integer" },
+              { "type": "string", "pattern": "^[0-9]+$" }
+            ],
+            "description": "Priority for entry selection (default 0, higher = higher priority)",
+            "default": 0
+          },
+          "condition": {
+            "oneOf": [
+              {
+                "type": "object",
+                "description": "Single condition with type field",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["Talent", "Abl", "Exp", "Flag", "CFlag"],
+                    "description": "Type of condition check"
+                  },
+                  "talentType": {
+                    "oneOf": [
+                      { "type": "integer" },
+                      { "type": "string" }
+                    ],
+                    "description": "TALENT constant name or number (for type: Talent)"
+                  },
+                  "ablType": {
+                    "type": "string",
+                    "description": "ABL constant name (for type: Abl)"
+                  },
+                  "threshold": {
+                    "oneOf": [
+                      { "type": "integer" },
+                      { "type": "string", "pattern": "^[0-9]+$" }
+                    ],
+                    "description": "Threshold value for comparison"
+                  },
+                  "operand": {
+                    "type": "string",
+                    "description": "Comparison operator (e.g., GreaterThan, Equals)"
+                  },
+                  "operands": {
+                    "type": "array",
+                    "description": "Array of operands for complex conditions",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "singleOperand": {
+                    "type": "object",
+                    "description": "Single operand object for simple conditions"
+                  }
+                },
+                "required": ["type"]
+              },
+              {
+                "$ref": "#/definitions/conditionElement",
+                "description": "Nested variable condition (TALENT/ARG/etc.) or compound (AND/OR/NOT)"
+              },
+              {
+                "type": "object",
+                "description": "Empty condition (unconditional/fallback)",
+                "properties": {},
+                "additionalProperties": false
+              }
+            ]
+          },
+          "displayMode": {
+            "type": "string",
+            "description": "Display variant mode (PRINTDATA suffix semantics)",
+            "enum": [
+              "newline",
+              "wait",
+              "keyWait",
+              "keyWaitNewline",
+              "keyWaitWait",
+              "display",
+              "displayNewline",
+              "displayWait"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ]
+      }
+    }
+  },
+  "required": [
+    "character",
+    "situation"
+  ],
+  "anyOf": [
+    { "required": ["entries"] },
+    { "required": ["branches"] }
+  ],
+  "definitions": {
+    "conditionElement": {
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "TALENT condition",
+          "properties": {
+            "TALENT": {
+              "type": "object"
+            }
+          },
+          "required": ["TALENT"]
+        },
+        {
+          "type": "object",
+          "description": "CFLAG condition",
+          "properties": {
+            "CFLAG": {
+              "type": "object"
+            }
+          },
+          "required": ["CFLAG"]
+        },
+        {
+          "type": "object",
+          "description": "TCVAR condition",
+          "properties": {
+            "TCVAR": {
+              "type": "object"
+            }
+          },
+          "required": ["TCVAR"]
+        },
+        {
+          "type": "object",
+          "description": "ABL condition",
+          "properties": {
+            "ABL": {
+              "type": "object"
+            }
+          },
+          "required": ["ABL"]
+        },
+        {
+          "type": "object",
+          "description": "EXP condition",
+          "properties": {
+            "EXP": {
+              "type": "object"
+            }
+          },
+          "required": ["EXP"]
+        },
+        {
+          "type": "object",
+          "description": "FLAG condition",
+          "properties": {
+            "FLAG": {
+              "type": "object"
+            }
+          },
+          "required": ["FLAG"]
+        },
+        {
+          "type": "object",
+          "description": "ARG condition",
+          "properties": {
+            "ARG": {
+              "type": "object"
+            }
+          },
+          "required": ["ARG"]
+        },
+        {
+          "type": "object",
+          "description": "Nested AND",
+          "properties": {
+            "AND": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/conditionElement" }
+            }
+          },
+          "required": ["AND"]
+        },
+        {
+          "type": "object",
+          "description": "Nested OR",
+          "properties": {
+            "OR": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/conditionElement" }
+            }
+          },
+          "required": ["OR"]
+        },
+        {
+          "type": "object",
+          "description": "Nested NOT",
+          "properties": {
+            "NOT": { "$ref": "#/definitions/conditionElement" }
+          },
+          "required": ["NOT"]
+        }
+      ]
+    },
+    "bitwiseOperators": {
+      "description": "Bitwise operators that appear as value-level constructs within variable type conditions (e.g., TALENT > key > operator)",
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "bitwise AND with comparison condition: (VAR & mask) op value",
+          "properties": {
+            "bitwise_and_cmp": {
+              "type": "object",
+              "properties": {
+                "mask": { "type": "string", "description": "Bitmask value for bitwise AND" },
+                "op": { "type": "string", "enum": ["eq", "ne", "gt", "gte", "lt", "lte"], "description": "Normalized comparison operator" },
+                "value": { "type": "string", "description": "Comparison target value" }
+              },
+              "required": ["mask", "op", "value"]
+            }
+          },
+          "required": ["bitwise_and_cmp"]
+        },
+        {
+          "type": "object",
+          "description": "bitwise AND truthiness condition: (VAR & mask) evaluates non-zero",
+          "properties": {
+            "bitwise_and": {
+              "type": "string",
+              "description": "Mask value for bitwise AND truthiness check"
+            }
+          },
+          "required": ["bitwise_and"]
+        }
+      ]
+    }
+  }
+}

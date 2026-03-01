@@ -1,0 +1,231 @@
+﻿character: パチュリー
+situation: K3_愛撫
+entries:
+- id: fallback
+  content: >-
+    「……ん、そこ……」
+
+    %CALLNAME:TARGET%は本を置いて、%CALLNAME:MASTER%に身を委ねている。
+
+    「%CALLNAME:MASTER%、あなたの舌……熱いわ」
+
+    %CALLNAME:TARGET%は淡々と呟くが、頬は微かに上気している。
+
+    「……動かない大図書館が、あなたにだけは動かされてしまうのね」
+
+    そう言って%CALLNAME:TARGET%は、%CALLNAME:MASTER%の頭に手を添えた。
+
+    「……もっと、してくれて、いいわ」
+
+    「あ……ぁ……」
+
+    %CALLNAME:TARGET%は珍しく声を漏らしている。
+
+    %CALLNAME:MASTER%の舌が敏感な場所を這う度に、%CALLNAME:TARGET%の体が微かに震える。
+
+    「……本で読んだ知識とは……違うわね……」
+
+    %CALLNAME:TARGET%は熱い息を吐きながら、%CALLNAME:MASTER%を見下ろした。
+
+    「実体験は……得難い、わ……ん……」
+
+    %CALLNAME:TARGET%の指が%CALLNAME:MASTER%の髪を掴んだ。
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は静かに%CALLNAME:MASTER%の名を呼んだ。
+
+    「あなたがそうしてくれると……考えがまとまらなくなるの」
+
+    %CALLNAME:MASTER%が舌を動かし続けると、%CALLNAME:TARGET%は目を細めた。
+
+    「……困った人ね。私の思考を乱すなんて」
+
+    そう言いながらも、%CALLNAME:TARGET%は%CALLNAME:MASTER%の頭を離そうとはしない。
+
+    「……でも、嫌では……ないわ……」
+
+    「ふぅ……ん……」
+
+    %CALLNAME:TARGET%は小さく喘ぎながら、椅子の肘掛けを握っている。
+
+    「%CALLNAME:MASTER%……あなた、上達したわね」
+
+    %CALLNAME:MASTER%が舌を這わせると、%CALLNAME:TARGET%の腰が僅かに浮いた。
+
+    「……ひゃ……ん……」
+
+    思わず漏れた声に、%CALLNAME:TARGET%は顔を赤くした。
+
+    「……今の、忘れなさい」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……な、何をするの」
+
+    %CALLNAME:TARGET%は動揺しながらも、抵抗はしなかった。
+
+    %CALLNAME:MASTER%が秘所に顔を埋めると、%CALLNAME:TARGET%は小さく身じろぎした。
+
+    「そ、そんなところ……汚いわよ……」
+
+    しかし%CALLNAME:TARGET%の声は、拒絶というより羞恥に震えている。
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は本で顔を隠そうとしたが、手が震えて上手くいかない。
+
+    「……っ」
+
+    %CALLNAME:TARGET%は声を殺して快感に耐えている。
+
+    %CALLNAME:MASTER%の舌が敏感な突起を撫でると、%CALLNAME:TARGET%の体が跳ねた。
+
+    「や……そこは、だめ……」
+
+    %CALLNAME:TARGET%は弱々しく抗議するが、その声は熱を帯びている。
+
+    「本には……こんなこと……書いてなかった、わ……」
+
+    %CALLNAME:TARGET%は羞恥で顔を真っ赤にしている。
+
+    「あ……ぁ……」
+
+    %CALLNAME:TARGET%は、%CALLNAME:MASTER%にされるがままになっている。
+
+    「%CALLNAME:MASTER%……あなたは……何を考えているの……」
+
+    %CALLNAME:MASTER%が答える代わりに舌を這わせると、%CALLNAME:TARGET%は小さく喘いだ。
+
+    「……んっ……変な、気持ち……」
+
+    %CALLNAME:TARGET%は淡々とした口調を保とうとするが、声が上ずっている。
+
+    「……もう、知らないわ……」
+
+    「……%CALLNAME:MASTER%、待って」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を制止しようとした。
+
+    しかし%CALLNAME:MASTER%が舌を動かし始めると、その手は力を失った。
+
+    「……ひ……ぅ……」
+
+    %CALLNAME:TARGET%は唇を噛んで声を堪えている。
+
+    「……どうして、あなたは……私を……こんな……」
+
+    %CALLNAME:TARGET%の瞳は潤んで、%CALLNAME:MASTER%を見つめている。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……何をしているの」
+
+    %CALLNAME:TARGET%は淡々と言うが、声には動揺が混じっている。
+
+    %CALLNAME:MASTER%が秘所に舌を這わせると、%CALLNAME:TARGET%は僅かに身を強張らせた。
+
+    「……そういう行為は、本で十分知っているわ」
+
+    しかしその声は普段より少し高い。
+
+    「……む、むきゅ……」
+
+    思わず漏れた声に、%CALLNAME:TARGET%自身が驚いた顔をした。
+
+    「……止めなさい」
+
+    %CALLNAME:TARGET%は冷静を装って言った。
+
+    だが%CALLNAME:MASTER%が舌を動かし続けると、%CALLNAME:TARGET%の体は正直に反応した。
+
+    「っ……な、何も感じないわ」
+
+    %CALLNAME:TARGET%は虚勢を張るが、頬は紅潮している。
+
+    「……ほ、本当よ……」
+
+    %CALLNAME:TARGET%は自分自身を説得するように呟いた。
+
+    「……理解できないわ」
+
+    %CALLNAME:TARGET%は本を読むふりをしながら言った。
+
+    %CALLNAME:MASTER%の行為を無視しようとしているが、ページをめくる手は震えている。
+
+    「……あなたは何が、したいの……」
+
+    %CALLNAME:MASTER%が敏感な場所を舐めると、%CALLNAME:TARGET%の声が途切れた。
+
+    「っ……」
+
+    %CALLNAME:TARGET%は唇を引き結び、必死に声を堪えている。
+
+    「……%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を睨みつけた。
+
+    「私を何だと思っているの」
+
+    しかし%CALLNAME:MASTER%が舌を這わせると、その視線は揺らいだ。
+
+    「……ん……」
+
+    %CALLNAME:TARGET%は視線を逸らし、小さく息を吐いた。
+
+    「……勝手に、しなさい……」
+  priority: 2
+- id: fallback
+  content: >-
+    「……何をするつもり」
+
+    %CALLNAME:TARGET%は冷たい目で%CALLNAME:MASTER%を見下ろしている。
+
+    「私の許可なく、そんなことをするなんて」
+
+    %CALLNAME:TARGET%の声は硬く、警戒の色が滲んでいる。
+
+    「……まあいいわ。好きにしなさい」
+
+    %CALLNAME:TARGET%は興味を失ったかのように、本に視線を戻した。
+
+    「……下らないわね」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の行為を見て、溜息をついた。
+
+    「獣のような行為に、何の意味があるの」
+
+    %CALLNAME:MASTER%が舌を動かしても、%CALLNAME:TARGET%は無表情を保っている。
+
+    「……ふぅん」
+
+    だがその頬が僅かに紅いのは、気のせいではないだろう。
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%を見ている。
+
+    「私には理解できないわ。あなたの行動原理が」
+
+    %CALLNAME:MASTER%が続けると、%CALLNAME:TARGET%は僅かに眉を顰めた。
+
+    「……まあ、観察対象としては、興味深いかもしれないわね」
+
+    %CALLNAME:TARGET%は淡々と呟いた。
+
+    「……止めないわよ」
+
+    %CALLNAME:TARGET%は本から目を離さずに言った。
+
+    「ただし、私の読書を邪魔しないこと」
+
+    %CALLNAME:MASTER%が行為を続けても、%CALLNAME:TARGET%は平静を装っている。
+
+    「……」
+
+    だがページをめくる間隔は、普段より明らかに長かった。
+  priority: 1

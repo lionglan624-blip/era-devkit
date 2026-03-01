@@ -1,0 +1,265 @@
+﻿character: 大妖精
+situation: K9_会話親密
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の顔をそっと両手で包み込んだ。
+
+    「んっ…%CALLNAME:MASTER%…わたしの大好きな人…♪」
+
+    %CALLNAME:TARGET%は嬉しそうに目を閉じて、唇を重ねてきた。
+
+    「ん、ちゅ…れろ…んん…♪」
+
+    柔らかな唇が触れ合い、二人の息遣いが一つになっていく。
+
+    「ぷはっ…えへへ、%CALLNAME:MASTER%の唇、あったかいの…♪」
+
+    %CALLNAME:TARGET%は蕩けた表情で、恋人の胸に頬を寄せた。
+
+    「わたし、%CALLNAME:MASTER%のこと…ずっとずっと大好きだよ…」
+
+    「――ねえ、%CALLNAME:MASTER%…キス、してほしいな…」
+
+    %CALLNAME:TARGET%がおずおずとお願いしてきた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇にそっと口づけた。
+
+    「んむ…ちゅ、ちゅる…ん…♪」
+
+    %CALLNAME:TARGET%は恋人の首に腕を回して、甘い口づけに身を委ねている。
+
+    「んっ…ぷ、はぁ…%CALLNAME:MASTER%…♪」
+
+    唇を離した%CALLNAME:TARGET%は、とろんとした目で%CALLNAME:MASTER%を見上げた。
+
+    「…もう一回…いい…？ ううん、何度でも…してほしいの…」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%を優しく抱き寄せて、唇を重ねた。
+
+    「んっ…ちゅ、む…んん…♪」
+
+    %CALLNAME:TARGET%は控えめに、でも確かに舌を絡めてきた。
+
+    「れろ…ちゅ、ぷ…んむ…♪」
+
+    甘い時間がゆっくりと流れていく。
+
+    「ん…ぷはっ…はぁ…%CALLNAME:MASTER%…」
+
+    %CALLNAME:TARGET%は頬を桜色に染めて、幸せそうに微笑んだ。
+
+    「こうしてると…心があったかくなるの…ずっと一緒にいたいな…」
+
+    「%CALLNAME:MASTER%…」
+
+    %CALLNAME:TARGET%は静かに%CALLNAME:MASTER%の目を見つめ、自分から唇を近づけた。
+
+    「ちゅっ…ん、む…れろ…♪」
+
+    普段控えめな妖精が、今は自分からキスを求めている。
+
+    「ん…ちゅる…ぷはっ…♪」
+
+    「えへへ…わたしから、しちゃった…」
+
+    %CALLNAME:TARGET%は恥ずかしそうに、でも幸せそうに笑った。
+
+    「%CALLNAME:MASTER%がいると、わたし、勇気が出るの…♪」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の顔を覗き込んで、そっと唇を近づけた。
+
+    「んっ…！ あ、%CALLNAME:MASTER%…♪」
+
+    %CALLNAME:TARGET%は目を閉じて、%CALLNAME:MASTER%の唇を受け入れた。
+
+    「ちゅ…ん、むっ…♪」
+
+    緊張しながらも、%CALLNAME:TARGET%は懸命に応えようとしている。
+
+    「んっ…ぷ、はぁ…えへへ、キス、されちゃった…」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして、でも嬉しそうに微笑んだ。
+
+    「…また、してくれると…嬉しいな…」
+
+    「あ…%CALLNAME:MASTER%…？」
+
+    %CALLNAME:MASTER%が顔を近づけると、%CALLNAME:TARGET%は照れくさそうに目を閉じた。
+
+    「ん…ちゅっ…むっ…」
+
+    柔らかな唇が触れ合い、%CALLNAME:TARGET%の体がぴくんと震えた。
+
+    「んっ…ぷは…%CALLNAME:MASTER%…///」
+
+    「ど、どうだった…？ わたし、キスとか…あんまり上手じゃないから…」
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯きながら、%CALLNAME:MASTER%の反応を窺った。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の肩を引き寄せて、唇を重ねた。
+
+    「ふゃっ…！ んっ、ちゅ…ん…」
+
+    %CALLNAME:TARGET%は驚きながらも、目を閉じて身を預けた。
+
+    「ん、む…ぷ、は…はぁ…」
+
+    唇を離した%CALLNAME:TARGET%は、上気した顔で息を整えている。
+
+    「%CALLNAME:MASTER%…こういうの、嬉しいの…」
+
+    控えめな妖精は、照れくさそうに、でも幸せそうに笑った。
+
+    「あの…%CALLNAME:MASTER%…」
+
+    %CALLNAME:TARGET%は何か言いかけて、恥ずかしそうに口をつぐんだ。
+
+    %CALLNAME:MASTER%はその意図を汲み取り、%CALLNAME:TARGET%の唇に口づけた。
+
+    「んっ…ちゅ…んん…♪」
+
+    %CALLNAME:TARGET%の背中の羽が、嬉しそうにぱたぱたと動いている。
+
+    「ぷ、は…えへへ…わかってくれたんだ…」
+
+    %CALLNAME:TARGET%は頬を染めながら、%CALLNAME:MASTER%の服の裾をぎゅっと握った。
+
+    「…%CALLNAME:MASTER%と一緒にいると、胸がぽかぽかするの…」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に顔を近づけた。
+
+    「え、えっ…%CALLNAME:MASTER%さん…？」
+
+    %CALLNAME:TARGET%は固まったまま、そっと唇を重ねられた。
+
+    「んっ…！」
+
+    一瞬の触れ合いの後、%CALLNAME:TARGET%は目を丸くして%CALLNAME:MASTER%を見つめた。
+
+    「キ、キス…されちゃった…」
+
+    頬を真っ赤に染めて、%CALLNAME:TARGET%は慌てて顔を逸らした。
+
+    「…嫌じゃ、ないです…けど、心臓がドキドキして…」
+
+    「あの、%CALLNAME:MASTER%さん…近い、です…」
+
+    %CALLNAME:MASTER%は構わず%CALLNAME:TARGET%の唇に口づけた。
+
+    「んむっ…！」
+
+    %CALLNAME:TARGET%は驚いて目を見開いたが、抵抗はしなかった。
+
+    「…ん、ぷ…は…」
+
+    唇が離れると、%CALLNAME:TARGET%は恥ずかしそうに俯いた。
+
+    「い、いきなりキスなんて…びっくりしちゃった…」
+
+    「…で、でも…嫌じゃなかった…です…」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の手を取り、そっと引き寄せた。
+
+    「え…あの…%CALLNAME:MASTER%さん…？」
+
+    %CALLNAME:TARGET%は戸惑いながらも、されるがままになっている。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇に軽く口づけた。
+
+    「んっ…！」
+
+    %CALLNAME:TARGET%の背中の羽が、驚いたようにぴくっと跳ねた。
+
+    「あ、あの…キス…されちゃいました…」
+
+    %CALLNAME:TARGET%は頬を赤らめて、困ったように微笑んだ。
+
+    「%CALLNAME:MASTER%さん…あの、お顔が…」
+
+    %CALLNAME:TARGET%の言葉を遮るように、%CALLNAME:MASTER%は唇を重ねた。
+
+    「んっ…ふ、む…」
+
+    %CALLNAME:TARGET%は目を閉じて、ぎこちなくキスを受け入れた。
+
+    「ぷ、は…あ、あの…」
+
+    %CALLNAME:TARGET%は真っ赤になって、両手で顔を隠した。
+
+    「こ、こういうの…初めてで…どうしていいか…」
+
+    指の隙間から覗く目は、困惑しながらも嫌がってはいないようだった。
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%に顔を近づけた。
+
+    「え…あの、%CALLNAME:MASTER%さん…？」
+
+    %CALLNAME:TARGET%は戸惑いながらも、じっとしていた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇にそっと触れた。
+
+    「んっ…！」
+
+    %CALLNAME:TARGET%は驚いて身を引いた。
+
+    「キ、キス…ですか…？ わたしたち、まだそこまで…」
+
+    「…ごめんなさい、もう少し仲良くなってからにしてほしいの…」
+
+    「あの…%CALLNAME:MASTER%さん…？ 何を…」
+
+    %CALLNAME:MASTER%が唇を近づけてくるのを見て、%CALLNAME:TARGET%は困惑した。
+
+    「えっと…キス、したいんですか…？」
+
+    %CALLNAME:TARGET%は困ったように眉を下げた。
+
+    「わたし、こういうの…慣れてなくて…」
+
+    「…もうちょっと、お話とかしてからの方が…いいと思うの…」
+
+    %CALLNAME:TARGET%は申し訳なさそうに、でもやんわりと距離を取った。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の顔を覗き込んだ。
+
+    「ひゃっ…！ ち、近いです…」
+
+    %CALLNAME:TARGET%は慌てて後ずさった。
+
+    背中の羽がそわそわと落ち着かない様子で揺れている。
+
+    「あの…キスとか…まだ早いと思うの…」
+
+    %CALLNAME:TARGET%は困ったように両手を振った。
+
+    「で、でも…%CALLNAME:MASTER%さんのこと、嫌いじゃないです…」
+
+    「もう少し…お話してからでも、いいですか…？」
+
+    「%CALLNAME:MASTER%さん…？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の意図に気づいて、身を固くした。
+
+    「あ、あの…キス、ですか…？」
+
+    %CALLNAME:TARGET%は困惑した表情で%CALLNAME:MASTER%を見上げた。
+
+    「わたし…よくわからないの…こういうの…」
+
+    %CALLNAME:TARGET%はおろおろと視線を彷徨わせた。
+
+    「ごめんなさい…もうちょっと、心の準備が…」
+
+    「嫌いとかじゃなくて…ただ、まだ…その…」
+  priority: 1

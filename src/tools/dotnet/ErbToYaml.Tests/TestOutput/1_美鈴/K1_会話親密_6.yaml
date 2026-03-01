@@ -1,0 +1,213 @@
+﻿character: 美鈴
+situation: K1_会話親密
+entries:
+- id: fallback
+  content: >-
+    「んっ……ふぁ……%CALLNAME:MASTER%の手、あったかい……」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%に胸を揉まれながら、蕩けた表情を浮かべている。
+
+    「はぁ……ん……そこ、気持ちいい……」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の肩に頭を預けて、甘い吐息を漏らしている。
+
+    「……%CALLNAME:MASTER%……もっと、触って……？」
+
+    潤んだ瞳で見上げながら、%CALLNAME:人物_美鈴%は自分から胸を押し付けてきた。
+
+    %CALLNAME:MASTER%は%CALLNAME:人物_美鈴%の胸にそっと手を添えた。
+
+    「あ……ん……%CALLNAME:MASTER%……」
+
+    %CALLNAME:人物_美鈴%は目を閉じて、その感触を味わっている。
+
+    「ふふ……門番の仕事中なのに……こんなことされちゃって……」
+
+    %CALLNAME:人物_美鈴%は照れくさそうに笑いながらも、逃げようとはしない。
+
+    「……%CALLNAME:MASTER%に触られると、体がぽかぽかしてくるの……」
+
+    %CALLNAME:人物_美鈴%は幸せそうに微笑んで、%CALLNAME:MASTER%に身を寄せた。
+
+    「やん……んっ……%CALLNAME:MASTER%、上手……」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%に胸を揉みしだかれ、艶めいた声を上げている。
+
+    「はぁ……はぁ……そうやって揉まれると……声、出ちゃう……」
+
+    %CALLNAME:人物_美鈴%の体がびくびくと震えている。
+
+    「%CALLNAME:MASTER%……私の胸、好き……？」
+
+    熱を帯びた瞳で見つめながら、%CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の手に自分の手を重ねた。
+
+    %CALLNAME:人物_美鈴%は自分から%CALLNAME:MASTER%の手を取って、胸に導いた。
+
+    「……触って、ほしかったの……」
+
+    %CALLNAME:人物_美鈴%は恥ずかしそうに、でも嬉しそうに微笑んでいる。
+
+    「んっ……ふぁ……%CALLNAME:MASTER%の手、大きくて……好き……」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%に胸を揉まれながら、甘い声を漏らしている。
+
+    「……門番の特権、かしら……ふふ……」
+
+    %CALLNAME:人物_美鈴%は冗談めかしながらも、幸せそうに%CALLNAME:MASTER%に寄り添っていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「ひゃっ……%CALLNAME:MASTER%……そ、そこは……」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%に胸を触られて、顔を真っ赤にしている。
+
+    「んっ……む、胸なんて……恥ずかしいわよ……」
+
+    %CALLNAME:人物_美鈴%は抵抗するそぶりを見せながらも、体は逃げようとしない。
+
+    「……で、でも……%CALLNAME:MASTER%になら……いい、かな……」
+
+    %CALLNAME:人物_美鈴%は恥ずかしそうに目を逸らしながら、小さく呟いた。
+
+    %CALLNAME:MASTER%は%CALLNAME:人物_美鈴%の胸にそっと触れた。
+
+    「あ……！ ちょ、ちょっと……」
+
+    %CALLNAME:人物_美鈴%は驚いて身を固くしたが、すぐに力を抜いた。
+
+    「……%CALLNAME:MASTER%……そんなに見つめられたら、照れちゃうわ……」
+
+    %CALLNAME:人物_美鈴%は頬を染めながら、%CALLNAME:MASTER%から目を逸らしている。
+
+    「……嫌じゃ、ないの……だから……」
+
+    %CALLNAME:人物_美鈴%はか細い声でそう言って、静かに目を閉じた。
+
+    「んっ……やぁ……%CALLNAME:MASTER%、急に……」
+
+    %CALLNAME:人物_美鈴%は胸を揉まれながら、甘い声を漏らしている。
+
+    「こ、こんなこと……門のところでしなくても……」
+
+    %CALLNAME:人物_美鈴%は周囲を気にしながらも、%CALLNAME:MASTER%から離れようとしない。
+
+    「……誰かに見られたら……恥ずかしいのに……」
+
+    そう言いながらも、%CALLNAME:人物_美鈴%の体は%CALLNAME:MASTER%の手に馴染んでいった。
+
+    「ひゃうっ……！ そ、そこ……」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%に胸を触られて、声を上げてしまった。
+
+    「も、もう……%CALLNAME:MASTER%ったら……」
+
+    %CALLNAME:人物_美鈴%は恥ずかしそうに%CALLNAME:MASTER%を睨んでいるが、怒っている様子はない。
+
+    「……こういうの、慣れてないから……」
+
+    %CALLNAME:人物_美鈴%は照れくさそうに、%CALLNAME:MASTER%の胸に顔を埋めた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「えっ……！ ちょ、ちょっと%CALLNAME:MASTER%……！」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%に胸を触られて、驚いて体を固くした。
+
+    「む、胸は……さすがに……」
+
+    %CALLNAME:人物_美鈴%は戸惑いながらも、強く拒絶はしない。
+
+    「……もう少し、心の準備させてよ……」
+
+    %CALLNAME:人物_美鈴%は困ったような表情で%CALLNAME:MASTER%を見つめている。
+
+    %CALLNAME:MASTER%は%CALLNAME:人物_美鈴%の胸に手を伸ばした。
+
+    「ひゃっ……！ な、何……」
+
+    %CALLNAME:人物_美鈴%は驚いて身を引こうとしたが、%CALLNAME:MASTER%に捕まってしまった。
+
+    「%CALLNAME:MASTER%……そういうのは……まだ早いんじゃ……」
+
+    %CALLNAME:人物_美鈴%は困惑した様子で、%CALLNAME:MASTER%を見上げている。
+
+    「……嫌いじゃないけど……恥ずかしいわ……」
+
+    「あ……っ！」
+
+    %CALLNAME:人物_美鈴%は胸を触られて、思わず声を上げてしまった。
+
+    「%CALLNAME:MASTER%……い、いきなりは……」
+
+    %CALLNAME:人物_美鈴%は顔を真っ赤にして、腕で胸を隠そうとしている。
+
+    「……もうちょっと、順序ってものがあるんじゃないの……」
+
+    %CALLNAME:人物_美鈴%は恥ずかしそうに抗議しながらも、逃げ出しはしなかった。
+
+    「ひゃうっ……そ、そこは……」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%に胸を触られて、体をびくりと震わせた。
+
+    「……%CALLNAME:MASTER%、急にそういうことしないでよ……」
+
+    %CALLNAME:人物_美鈴%は困ったような顔をしているが、声は怒っていない。
+
+    「……私、まだそういうの慣れてないんだから……」
+
+    %CALLNAME:人物_美鈴%は恥ずかしそうに俯いて、小さな声で呟いた。
+  priority: 2
+- id: fallback
+  content: >-
+    「な……っ！ 何するの！？」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%に胸を触られて、驚きと怒りの表情を浮かべた。
+
+    「い、いきなり胸なんて……失礼じゃない！」
+
+    %CALLNAME:人物_美鈴%は腕で胸を隠して、%CALLNAME:MASTER%を睨んでいる。
+
+    「……門番だからって、何されてもいいわけじゃないのよ……」
+
+    %CALLNAME:人物_美鈴%は怒りながらも、どこか寂しそうな目をしていた。
+
+    「ちょっ……！ やめてよ！」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%の手を払いのけようとした。
+
+    「そういうことする人だと思わなかったわ……」
+
+    %CALLNAME:人物_美鈴%は傷ついたような表情を浮かべている。
+
+    「……もう少し、信頼関係ってものを考えてよ……」
+
+    %CALLNAME:人物_美鈴%は警戒するように、%CALLNAME:MASTER%から距離を取った。
+
+    「っ……！ な、何を……」
+
+    %CALLNAME:人物_美鈴%は胸を触られて、体を硬直させた。
+
+    「……%CALLNAME:MASTER%、さすがにそれは……」
+
+    %CALLNAME:人物_美鈴%は戸惑いと不快感が混じった表情を浮かべている。
+
+    「私たち、まだそういう関係じゃないでしょ……」
+
+    %CALLNAME:人物_美鈴%は%CALLNAME:MASTER%から一歩引いて、腕で胸を守るようにした。
+
+    「えっ……や、やめて……！」
+
+    %CALLNAME:人物_美鈴%は慌てて%CALLNAME:MASTER%の手を止めようとした。
+
+    「いきなりそんなこと……びっくりするわ……」
+
+    %CALLNAME:人物_美鈴%は困惑しながらも、どこか傷ついた様子を見せている。
+
+    「……もっと仲良くなってから、にしてよ……」
+
+    %CALLNAME:人物_美鈴%は小さく呟いて、%CALLNAME:MASTER%から顔を背けた。
+  priority: 1

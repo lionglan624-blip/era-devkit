@@ -1,0 +1,76 @@
+﻿character: フラン
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「やっ、やだああっ！ 中は、中はだめええええっ！！」
+
+    「ああっ・・いやああっ！ 熱いよおおっ！」
+
+    「だ、だめえええっ！ ぬ、ぬいてええええ！」
+
+    客は泣いて許しを請う%CALLNAME:奴隷%の身体に深々と肉棒を突き入れたまま射精した。
+
+    小さな身体をよじって逃れようとする%CALLNAME:奴隷%だったが、男に組み敷かれたまま膣奥深く精を浴びせられてしまった。
+
+    %CALLNAME:奴隷%の泣き声にほくそ笑みながら、客は彼女の子宮めがけて白く濁った欲望を解き放った。
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「やっ、やだああっ！ 中は、中はだめええええっ！！」
+
+    「ああっ・・いやああっ！ 熱いよおおっ！」
+
+    「だ、だめえええっ！ ぬ、ぬいてええええ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっ、あっ、くるっ、いっぱいきてるぅぅぅ！！」
+
+    「ああっ・・出してっ！ 熱いの出してええっ！」
+
+    「あああっ、いっしょ、いっしょにいくのおおお！」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっ、あっ、くるっ、いっぱいきてるぅぅぅ！！」
+
+    「ああっ・・出してっ！ 熱いの出してええっ！」
+
+    「あああっ、いっしょ、いっしょにいくのおおお！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっ、あっ、くるっ、いっぱいきてるぅぅぅ%MSG_HEART()%」
+
+    「ああっ・・出してっ！ 熱いの出してええっ%MSG_HEART()%」
+
+    「あああっ、いっしょ、いっしょにいくのおおお%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっ、あっ、くるっ、いっぱいきてるぅぅぅ%MSG_HEART()%」
+
+    「ああっ・・出してっ！ 熱いの出してええっ%MSG_HEART()%」
+
+    「あああっ、いっしょ、いっしょにいくのおおお%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「あっ、あっ、きてる！ なにかきてる！ ああああんっ♪」
+
+    「ああっ・・熱いの・・熱いの、きてるうぅぅ♪」
+
+    「あああっ、やあああっ、いっちゃうううっ♪」
+  priority: 1
+  displayMode: newline

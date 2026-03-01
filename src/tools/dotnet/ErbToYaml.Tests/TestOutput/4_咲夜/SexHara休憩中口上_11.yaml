@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「ふふっ、便器でも恥は残っているのね」
+
+    「それでいいわ。恥じらいもないモノを虐めても楽しくないもの」
+
+    「その表情、誘っているのかしら？」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: K5_会話親密
+entries:
+- id: fallback
+  content: >-
+    「・・無礼者っ」
+
+    「・・遅いっ」
+
+    「・・そんな気分じゃないわ」
+  priority: 1
+  displayMode: newline

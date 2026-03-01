@@ -1,0 +1,25 @@
+﻿character: 大妖精
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「・・い、痛いことは、しないでください・・」
+
+    「・・せ、せめて、優しく・・してください・・」
+
+    「・・言うこと・・聞きますから・・ひどいこと・・しないで・・」
+  priority: 2
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「い・・いやあ・・、こ、こないで・・！」
+
+    「こ、こないでっ・・こないでくださいっ！」
+
+    「い、いや・・帰して・・帰してください・・！」
+  priority: 1
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline

@@ -1,0 +1,39 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああっ・・出して、出して！ おしりの奥で出してええっ！！」
+
+    「ああっ・・出して・・おしりの中にいっぱい出してええっ！！」
+
+    「ああ・・ちょうだい、おしりに、ああっ、おしりに、ちょうだい！！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ・・い、いくっ！ おしりで、いくうぅっ！！」
+
+    「ああっ・・いいっ、いいのおおっ！！」
+
+    「ああ・・い・・いくっ・・いくううううっ！！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああっ・・い、いくっ！ おしりで、いくうぅっ！！」
+
+    「ああっ・・いいっ、いいのおおっ！！」
+
+    「ああ・・い・・いくっ・・いくううううっ！！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「や、やめ、やめなさいっ・・いやああっ！」
+
+    「だ、だめっ、だめだったらっ・・あああっ！！」
+
+    「ああ・・だめ・・だめよ、だめえええっ！！」
+  priority: 1
+  displayMode: newline

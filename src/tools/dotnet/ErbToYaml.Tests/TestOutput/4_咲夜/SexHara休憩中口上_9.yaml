@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「ふふっ、貞操帯を外してあげるわ・・弄ってほしくてたまらなかったでしょう？」
+
+    「さあ、お楽しみの時間よ・・貞操帯を外してあげるわ」
+
+    「この鍵を外して欲しいんでしょう？」
+  priority: 1
+  displayMode: newline

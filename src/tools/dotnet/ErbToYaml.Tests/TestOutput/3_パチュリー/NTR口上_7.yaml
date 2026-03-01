@@ -1,0 +1,57 @@
+﻿character: パチュリー
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ふふ・・ああん・・・」
+
+    「ああん・・もう・・ふふっ・・」
+
+    「ええ・・いいわ・・好きにしてちょうだい・・」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふふ・・ああん・・・」
+
+    「ああん・・もう・・ふふっ・・」
+
+    「ええ・・いいわ・・好きにしてちょうだい・・」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・・いけないわ・・ふふっ・」
+
+    「ああん・・もう・・」
+
+    「ええ・・いいわ・・好きにしなさい」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・・いけないわ・・」
+
+    「ああん・・もう・・だめよ・・」
+
+    「ええ・・いいわ・・内緒よ・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「なっ・・や、やめてっ・・」
+
+    「ああっ・・だめ・・駄目よ・・！」
+
+    「い、いやっ、やめなさいっ」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「なっ！やめなさいっ！」
+
+    「ああっ・・駄目っ・・やめなさいっ！！」
+
+    「い、嫌っ、やめなさいっ！！」
+  priority: 1
+  displayMode: newline

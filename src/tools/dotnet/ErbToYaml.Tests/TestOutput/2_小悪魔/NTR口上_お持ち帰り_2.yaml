@@ -1,0 +1,12 @@
+﻿character: 小悪魔
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「ええ、%NTR_KARE()%のところから。もちろん、いっぱい抱かれてきましたよぉ」
+
+    「抱かれてきたのかって？ うふふっ、もちろんです！」
+
+    「抱かれてきたのかって？ ええ、すごかったですよぉ♪」
+  priority: 1
+  displayMode: newline

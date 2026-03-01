@@ -1,0 +1,11 @@
+﻿character: パチュリー
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    もうしばらく触っていてあげるわ。ほら、
+
+    もう少し相手してあげないとね。ほら、
+
+    一度すっきりしておく？　ほら、
+  priority: 1

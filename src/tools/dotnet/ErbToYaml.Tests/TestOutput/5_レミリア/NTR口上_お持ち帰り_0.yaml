@@ -1,0 +1,24 @@
+﻿character: レミリア
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    屋敷の主とも思えない汚れた姿を隠そうとするかのようにこっそり帰ってきた。
+
+    虚勢を張って堂々と帰ってくることもできた。だがそれでは却って皆に心配をかけてしまうだけであろう。
+
+    何名かの妖精メイド達は主に気付いたかもしれない。しかし誰もが、見てみぬふりをしてくれた。
+
+    %NTR_NAME(0)%への呪詛を吐くよりも、まず汚れた身体をどうにかしたかった。
+  priority: 3
+  displayMode: newline
+- id: talent_7_1
+  content: 屋敷の主とも思えないその汚れきった姿を隠そうともせずに堂々と帰ってきた。
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+- id: fallback
+  content: 屋敷の主とも思えないその汚れた姿を隠そうともせずに部屋に戻っていった。
+  priority: 1

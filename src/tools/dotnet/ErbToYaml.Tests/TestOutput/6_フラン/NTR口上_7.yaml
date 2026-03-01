@@ -1,0 +1,48 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた
+
+    「んふ・・キスってすっごく美味しいね%MSG_HEART()%」
+
+    「ん・・これ・・だぁいすき%MSG_HEART()%」
+
+    「んふ・・ね・・もっと、いい？」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた
+
+    「んふ・・キスってすっごく美味しいね%MSG_HEART()%」
+
+    「ん・・これ・・だぁいすき%MSG_HEART()%」
+
+    「んふ・・ね・・もっと、いい？」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた
+
+    「・・ん・・もう・・」
+
+    「ん・・だめだったら・・」
+
+    「んふ・・いきなりはだめだよ？」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: '%NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた'
+  priority: 3
+- id: fallback
+  content: '%NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた'
+  priority: 2
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた
+
+    唇を奪われ呆然としていたが、その怒りの矛先は助けの手を伸ばさなかった%CALLNAME:MASTER%にも向けられてしまっていた。
+  priority: 1

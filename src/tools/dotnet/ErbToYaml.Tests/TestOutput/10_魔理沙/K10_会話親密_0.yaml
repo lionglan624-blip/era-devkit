@@ -1,0 +1,201 @@
+﻿character: 魔理沙
+situation: K10_会話親密
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の言葉に、眩しい笑顔を見せた。
+
+    「――へへ、%CALLNAME:MASTER%の話は聞いてて飽きないぜ」
+
+    %CALLNAME:TARGET%は嬉しそうに笑いながら、%CALLNAME:MASTER%の腕に手を回した。
+
+    「こうやって二人で話してる時間って、なんか落ち着くんだよな」
+
+    「……あー、恥ずかしいこと言っちまったな。笑うなよ？」
+
+    %CALLNAME:TARGET%は照れ隠しなのか、%CALLNAME:MASTER%の肩にそっと頭を預けた。
+
+    「――なぁ、%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%が珍しく真剣な顔でこちらを見ている。
+
+    「私さ、魔法使いになるって決めた時、一人で頑張るしかないと思ってたんだ」
+
+    「でも今は%CALLNAME:MASTER%がいるから……なんつーか、心強いぜ」
+
+    「……ばか、そんな顔するなよ。照れるだろ」
+
+    %CALLNAME:TARGET%は顔を赤くして、そっぽを向いた。
+
+    「――%CALLNAME:MASTER%ってさ、私のこと好きか？」
+
+    唐突に%CALLNAME:TARGET%がそう尋ねてきた。
+
+    好きだよ、と答えると、
+
+    「へへ、知ってたぜ。私も%CALLNAME:MASTER%のこと、大好きだ」
+
+    %CALLNAME:TARGET%は照れくさそうに笑って、%CALLNAME:MASTER%の手を握った。
+
+    「……死ぬまで一緒にいてくれよな。約束だぜ」
+
+    「――今度さ、私の家に遊びに来いよ」
+
+    %CALLNAME:TARGET%がそう提案してきた。
+
+    「最近キノコ料理の腕を上げたんだ。%CALLNAME:MASTER%に食べさせたくてさ」
+
+    「霊夢にも負けないくらい美味しいから、期待しててくれよな！」
+
+    %CALLNAME:TARGET%は得意げに胸を張りながらも、少し不安げな表情を見せた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%と話をしながら、いつもより少し緊張した様子だ。
+
+    「――へぇ、そうなんだ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の話に相槌を打ちながら聞いている。
+
+    「%CALLNAME:MASTER%っていろんなこと知ってるよな」
+
+    「私も負けてられないぜ。今度とっておきの話を聞かせてやる」
+
+    %CALLNAME:TARGET%は張り合うように言ったが、その表情は嬉しそうだ。
+
+    「――なぁ、%CALLNAME:MASTER%は私と話してて楽しいか？」
+
+    %CALLNAME:TARGET%が不安そうにそう尋ねてきた。
+
+    楽しいよ、と答えると、
+
+    「そ、そうか！　当然だよな、私の話は面白いからな！」
+
+    「……また、こうやって話してくれよな」
+
+    %CALLNAME:TARGET%は安心したように、小さく笑みを浮かべた。
+
+    「――あのさ、%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%が何か言いたげにこちらを見ている。
+
+    「……いや、なんでもないぜ。気にするなよ」
+
+    「……%CALLNAME:MASTER%といると、なんか落ち着くんだよな」
+
+    %CALLNAME:TARGET%は顔を赤くしながら、小さな声でそう言った。
+
+    「――%CALLNAME:MASTER%、この前借りた本、読んだぜ」
+
+    %CALLNAME:TARGET%はどこか得意げに話を切り出した。
+
+    「面白かったから、感想でも言ってやろうかと思ってさ」
+
+    「……え？　返さないのかって？　……そのうち、な」
+
+    %CALLNAME:TARGET%は誤魔化すように笑いながら、話を続けた。
+
+    「……%CALLNAME:MASTER%と本の話ができるの、結構嬉しいんだぜ」
+
+    小声でそう言った%CALLNAME:TARGET%の頬は、ほんのり赤く染まっていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:TARGET%は興味深そうに%CALLNAME:MASTER%の話を聞いている。
+
+    「――ふーん、そうなんだ」
+
+    %CALLNAME:TARGET%は軽く頷きながら話を聞いている。
+
+    「%CALLNAME:MASTER%って結構面白いやつだな」
+
+    「でも私の話の方がもっと面白いんだぜ？　今度聞かせてやるよ」
+
+    %CALLNAME:TARGET%は自信満々に言いながら、どこか嬉しそうにしている。
+
+    「――なぁ、%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%が珍しく改まった口調で話しかけてきた。
+
+    「%CALLNAME:MASTER%って、私といて退屈じゃないか？」
+
+    つまらなくないよ、と答えると、
+
+    「……そ、そうか。まあ当然だよな、私だし」
+
+    %CALLNAME:TARGET%は少し照れた様子で、そっぽを向いた。
+
+    「――そういえば、最近いい実験材料を見つけたんだ」
+
+    %CALLNAME:TARGET%は目を輝かせながら話し始めた。
+
+    「キノコの新種でさ、魔法の触媒に使えそうなんだよな」
+
+    「……興味あるか？　まあ、%CALLNAME:MASTER%には難しいかもしれないけど」
+
+    %CALLNAME:TARGET%はそう言いながらも、どこか期待するような目でこちらを見ている。
+
+    「……話、聞いてくれるだけでも嬉しいぜ」
+
+    「――あ、そうだ。この前、霊夢のところに行ってきたんだ」
+
+    %CALLNAME:TARGET%は思い出したように話し始めた。
+
+    「あいつ、相変わらず怠けてたぜ。私の爪の垢でも煎じて飲ませてやりたいよ」
+
+    「……まあ、私も人のことは言えないけどな」
+
+    %CALLNAME:TARGET%は苦笑しながら肩をすくめた。
+
+    「%CALLNAME:MASTER%には……負けたくないな、いろいろと」
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:TARGET%は特に興味なさそうに、%CALLNAME:MASTER%と話をしている。
+
+    「――へぇ、それで？」
+
+    %CALLNAME:TARGET%は腕を組みながら話を聞いている。
+
+    「まあ、悪くない話だったぜ」
+
+    「でも次はもっと面白い話を持ってきてくれよな」
+
+    %CALLNAME:TARGET%は素っ気なくそう言ったが、完全に興味がないわけではなさそうだ。
+
+    「――ふーん、そういうもんか」
+
+    %CALLNAME:TARGET%はぶっきらぼうにそう言った。
+
+    「紅魔館の話って結構面白いな」
+
+    「……まあ、また話くらいなら聞いてやってもいいぜ」
+
+    %CALLNAME:TARGET%は興味なさそうに言いつつ、どこか楽しそうにしている。
+
+    「――なんだ、まだ話があるのか？」
+
+    %CALLNAME:TARGET%は腕を組んだまま、こちらを見ている。
+
+    「暇だから付き合ってやってるんだぜ？　感謝しろよな」
+
+    「……まあ、%CALLNAME:MASTER%の話もそこまでつまらなくはないけどさ」
+
+    %CALLNAME:TARGET%はぶっきらぼうに言いながらも、その場を離れようとはしなかった。
+
+    「……次はもっと面白い話を用意しとけよな」
+
+    「――へぇ、%CALLNAME:MASTER%って物知りなんだな」
+
+    %CALLNAME:TARGET%は意外そうな顔でそう言った。
+
+    「私より詳しいことがあるなんて、ちょっと悔しいぜ」
+
+    「……今度、私の知ってることも教えてやるよ。借りは返す主義だからな」
+
+    %CALLNAME:TARGET%は負けず嫌いそうに言いながらも、その表情は楽しげだった。
+  priority: 1

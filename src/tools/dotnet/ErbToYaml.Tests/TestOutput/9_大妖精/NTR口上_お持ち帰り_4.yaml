@@ -1,0 +1,25 @@
+﻿character: 大妖精
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「いやっ・・やっぱり、いやあっ・・！！ ああああっ！！」
+
+    「だ、だめっ・・！ ゆるしてくださいいっ！！」
+
+    「ああっ！ だめ、だめええっ！ ああーーーっ！」
+  priority: 2
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「いやっ・・いやあっ・・！！ ああああっ！！」
+
+    「だ、だめっ・・！ いやあああっ！！」
+
+    「ああっ！ だめ、だめええっ！ ああああっ！！」
+  priority: 1
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline

@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ11-22
+entries:
+- id: fallback
+  content: >-
+    （・・イキたい・・でも、%CALLNAME:MASTER%じゃ・・ああっ、ダメ・・そんな事考えちゃ・・）
+
+    （・・どうして・・どうしてイけないの・・ああ・・疼く・・身体が疼くのに・・）
+
+    （・・ああ・・イかせて・・誰でもいいから、イかせて・・）
+  priority: 1
+  displayMode: newline

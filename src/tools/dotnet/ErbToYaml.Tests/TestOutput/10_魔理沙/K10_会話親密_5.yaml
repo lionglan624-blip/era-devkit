@@ -1,0 +1,257 @@
+﻿character: 魔理沙
+situation: K10_会話親密
+entries:
+- id: fallback
+  content: >-
+    「――%CALLNAME:MASTER%」
+
+    %CALLNAME:TARGET%は甘えるように%CALLNAME:MASTER%を見上げた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇にそっと口付けた。
+
+    「ん……ちゅ、れろ……んむ……」
+
+    %CALLNAME:TARGET%は目を閉じて、%CALLNAME:MASTER%の唇を受け入れている。
+
+    しばらく互いの舌を絡め合ってから、二人は唇を離した。
+
+    「はぁっ……はぁ……%CALLNAME:MASTER%のキス、星が見えるぜ……」
+
+    普通の魔法使いは蕩けた表情で、自分から%CALLNAME:MASTER%の首に腕を回した。
+
+    「――%CALLNAME:MASTER%、キス……してくれよ」
+
+    %CALLNAME:TARGET%が珍しく素直にお願いしてきた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の顎を持ち上げ、深く口付けた。
+
+    「んっ……ちゅる……れろ、ん……」
+
+    %CALLNAME:TARGET%と%CALLNAME:MASTER%は熱く深く口付け合っている。
+
+    「ぷはっ……はぁ、はぁっ……%CALLNAME:MASTER%……最高だぜ……」
+
+    %CALLNAME:TARGET%は頬を紅潮させ、蕩けた顔で%CALLNAME:MASTER%を見つめている。
+
+    「……こういうの、%CALLNAME:MASTER%とじゃなきゃ嫌だからな」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%を抱き寄せ、唇を重ねた。
+
+    「んむ……ちゅ、ちゅる……れろ……」
+
+    二人は長い時間、互いの唾液を味わうように口付けを交わした。
+
+    「……ん、ぷはっ……はぁっ、はぁっ……」
+
+    %CALLNAME:TARGET%は唇を離すと、熱に浮かされたような表情をしている。
+
+    「%CALLNAME:MASTER%……私、%CALLNAME:MASTER%のこと、大好きだぜ……」
+
+    「……死ぬまで一緒にいてくれよな。約束だ」
+
+    普通の魔法使いは、照れ隠しのように%CALLNAME:MASTER%の胸に顔を埋めた。
+
+    「――なぁ、%CALLNAME:MASTER%……もっと、近くに来てくれよ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の服を引っ張った。
+
+    %CALLNAME:MASTER%が近づくと、%CALLNAME:TARGET%から唇を重ねてきた。
+
+    「ちゅ……れろ……んむ、ぢゅる……」
+
+    %CALLNAME:TARGET%は自分から舌を絡め、貪るようにキスを続けた。
+
+    「……ぷはっ……はぁ、はぁっ……」
+
+    「私からするキス、%CALLNAME:MASTER%に効いてるか？」
+
+    金髪の魔法使いは、いたずらっぽく笑いながらも頬を染めていた。
+  priority: 4
+- id: talent_3_1
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%にそっとキスをした。
+
+    「んっ……ちゅ、む……」
+
+    %CALLNAME:TARGET%は目を閉じて、%CALLNAME:MASTER%の唇を受け入れている。
+
+    「……ぷは……はぁ……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして、熱い息を吐いた。
+
+    「……キスなんて……し、しょうがないな、許してやるぜ……」
+
+    「……ばか、嬉しいに決まってるだろ……」
+
+    %CALLNAME:TARGET%は照れくさそうにそっぽを向いた。
+
+    「……%CALLNAME:MASTER%？」
+
+    %CALLNAME:MASTER%が近づいてくると、%CALLNAME:TARGET%は目を閉じた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇にキスをした。
+
+    「ん……ちゅ、ぷ……はぁ……」
+
+    %CALLNAME:TARGET%は頬を赤く染めながら、逃げようとはしなかった。
+
+    「……%CALLNAME:MASTER%といると……なんか、ドキドキするんだよな……」
+
+    %CALLNAME:TARGET%は恥ずかしそうに視線を逸らした。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の頬に手を添え、キスをした。
+
+    「んっ……む、ちゅ……」
+
+    %CALLNAME:TARGET%は少し戸惑いながらも、%CALLNAME:MASTER%の唇に応えた。
+
+    「……ぷはっ……あつい……」
+
+    %CALLNAME:TARGET%は熱に浮かされたように呟いた。
+
+    「……もっと……してくれてもいいんだぜ……？」
+
+    小さな声で言ってから、%CALLNAME:TARGET%は慌てて視線を逸らした。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の手を取り、引き寄せてキスをした。
+
+    「んっ……ちゅ、む……れろ……」
+
+    %CALLNAME:TARGET%は最初こそ戸惑っていたが、次第に身を委ねた。
+
+    「……ぷはっ……はぁ、はぁ……」
+
+    「……%CALLNAME:MASTER%、ずるいぜ……こんなの、逃げられないだろ……」
+
+    %CALLNAME:TARGET%は上気した顔で、%CALLNAME:MASTER%を見つめている。
+
+    「……また、してくれよな……約束だぜ」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%にキスをした。
+
+    「んっ！？　ちゅ……ぷはっ」
+
+    %CALLNAME:TARGET%は驚いて唇を離した。
+
+    「な、なっ……キスっ……！？」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして固まっている。
+
+    「お、おい……そういうのはもっと順序ってもんがあるだろ……」
+
+    「……心臓が爆発しそうなんだぜ……」
+
+    %CALLNAME:TARGET%は帽子を深く被って顔を隠した。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇に軽く触れた。
+
+    「んっ……む……」
+
+    %CALLNAME:TARGET%は目を見開いたが、逃げはしなかった。
+
+    「……ぷ、は……」
+
+    %CALLNAME:TARGET%は顔を少し紅くして%CALLNAME:MASTER%の顔を見つめている。
+
+    「……い、いきなりすぎるだろ……もうちょっと考えてくれよな……」
+
+    「……べ、別に嫌じゃなかったけどさ……」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%にそっとキスをした。
+
+    「んっ……む……」
+
+    %CALLNAME:TARGET%は一瞬身を強張らせたが、すぐに力を抜いた。
+
+    「……ぷは……」
+
+    「……な、なんだよ……急にさ……」
+
+    %CALLNAME:TARGET%は顔を赤くしながらも、どこか嬉しそうだ。
+
+    「……ま、まあ……%CALLNAME:MASTER%なら……許してやらなくもないぜ……」
+
+    普通の魔法使いは、帽子のつばを引っ張りながらそっぽを向いた。
+
+    「……%CALLNAME:MASTER%？」
+
+    %CALLNAME:MASTER%が顔を近づけてくると、%CALLNAME:TARGET%は動けなくなった。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の唇にそっと口付けた。
+
+    「……んっ……ぷ、は……」
+
+    %CALLNAME:TARGET%は真っ赤な顔で%CALLNAME:MASTER%を見つめている。
+
+    「……き、キスなんてさ……私、あんまり慣れてないんだぜ……」
+
+    「……でも、%CALLNAME:MASTER%となら……悪くないかもな」
+
+    小さくそう言って、%CALLNAME:TARGET%は照れ隠しに笑った。
+  priority: 2
+- id: fallback
+  content: >-
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%にキスをしようとした。
+
+    「んっ！？　ちょ、ちょっと待て！」
+
+    %CALLNAME:TARGET%は慌てて唇を離してしまった。
+
+    「いきなりキスなんてどういうつもりだ！？」
+
+    %CALLNAME:TARGET%は顔を赤くしながらも、警戒するような目でこちらを見ている。
+
+    「私とお前はそういう関係じゃないだろ……」
+
+    「……もっと親しくなってから出直してきなよ」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%に近づくと、
+
+    「……なんだ、近いぞ」
+
+    %CALLNAME:TARGET%は一歩後ずさった。
+
+    %CALLNAME:MASTER%が唇に軽く触れようとすると、
+
+    「おい！　何する気だ！」
+
+    %CALLNAME:TARGET%の唇は固く閉ざされ、それ以上近づけなかった……
+
+    「……キスするような仲じゃないだろ。まずは仲良くなってからだぜ」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%にキスをしようとした。
+
+    「なっ……！？」
+
+    %CALLNAME:TARGET%は反射的に身を引いた。
+
+    「お、お前な……いきなり何してくるんだよ！」
+
+    %CALLNAME:TARGET%は顔を真っ赤にして、怒ったような表情をしている。
+
+    「……勘違いするなよな。私は誰にでもそういうことさせるわけじゃないんだぜ」
+
+    %CALLNAME:TARGET%は帽子を押さえながら、少し離れた場所に移動した。
+
+    %CALLNAME:MASTER%が顔を近づけると、
+
+    「……おい、何のつもりだ？」
+
+    %CALLNAME:TARGET%は怪訝な顔で%CALLNAME:MASTER%を見ている。
+
+    %CALLNAME:MASTER%がキスをしようとすると、
+
+    「やめろって！」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を押し返した。
+
+    「……ったく、順序ってもんがあるだろ。まずは友達からだぜ」
+
+    %CALLNAME:TARGET%は不機嫌そうに、しかしどこか動揺した様子で腕を組んだ。
+  priority: 1

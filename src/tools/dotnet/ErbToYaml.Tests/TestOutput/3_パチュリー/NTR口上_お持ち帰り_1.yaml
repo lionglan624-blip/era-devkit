@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「どこで泊まったかって？ もちろん、%NTR_KARE()%のところよ。いっぱい抱かれてきたわ」
+
+    「抱かれてきたのかって？ ええ、当然ね。そのために泊まったのだから」
+
+    「何をしてきたかって？ セックス以外何をするのかしら？」
+  priority: 1
+  displayMode: newline

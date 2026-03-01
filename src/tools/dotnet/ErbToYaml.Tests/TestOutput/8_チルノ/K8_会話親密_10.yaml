@@ -1,0 +1,27 @@
+﻿character: チルノ
+situation: K8_会話親密
+entries:
+- id: fallback
+  content: >-
+    「・・仕方ないなぁ・・うん、いいよ・・」
+
+    「・・へへ、あの人には内緒だよ・・」
+
+    「・・えへへ、二人だけの秘密だね？」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・いけないよ・・」
+
+    「・・やめてってば」
+
+    「・・だめだったら・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・・うん」
+
+    抱き寄せられた%CALLNAME:奴隷%は%CALLNAME:MASTER%からわずかに顔を背け何かに怯えたような表情を浮かべていた。
+  priority: 1

@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: K5_日常
+entries:
+- id: fallback
+  content: >-
+    「あら、楽しそうな話ね。私も混ざっていいかしら？」
+
+    「二人だけで楽しむなんて、ずるいわね」
+
+    「この私抜きで何を話してるのかしら？」
+  priority: 1
+  displayMode: newline

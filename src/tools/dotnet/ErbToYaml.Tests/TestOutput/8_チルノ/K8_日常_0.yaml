@@ -1,0 +1,12 @@
+﻿character: チルノ
+situation: K8_日常
+entries:
+- id: fallback
+  content: >-
+    「だめだよ、%CALLNAME:MASTER%！」
+
+    「%CALLNAME:MASTER%！こっち！」
+
+    「いいからこっち！！」
+  priority: 1
+  displayMode: newline

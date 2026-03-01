@@ -1,0 +1,33 @@
+﻿character: フラン
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ちゅぅっ・・・・れろ、うふ♪・・・・ちゅうっ・・・・♪」
+
+    「ちゅっ・・・・ちゅ、ちゅっ・・・・んちゅっ・・・・♪」
+
+    「んっ・・・・んんっ・・・・ちゅっ・・・・♪」
+
+    %CALLNAME:奴隷%と%NTR_NAME(0)%はお互いの舌を使い、口内を蹂躙しあった。
+
+    %CALLNAME:奴隷%と%NTR_NAME(0)%は互いに舌を差し伸べ合い、口内をしゃぶりあった。
+
+    %CALLNAME:奴隷%は舌を伸ばして%NTR_NAME(0)%の口内を美味しそうに貪った。
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ちゅぅっ・・・・れろ、うふ♪・・・・ちゅうっ・・・・♪」
+
+    「ちゅっ・・・・ちゅ、ちゅっ・・・・んちゅっ・・・・♪」
+
+    「んっ・・・・んんっ・・・・ちゅっ・・・・♪」
+
+    %CALLNAME:奴隷%と%NTR_NAME(0)%はお互いの舌を使い、口内を蹂躙しあった。
+
+    %CALLNAME:奴隷%と%NTR_NAME(0)%は互いに舌を差し伸べ合い、口内をしゃぶりあった。
+
+    %CALLNAME:奴隷%は舌を伸ばして%NTR_NAME(0)%の口内を美味しそうに貪った。
+  priority: 1
+  displayMode: newline

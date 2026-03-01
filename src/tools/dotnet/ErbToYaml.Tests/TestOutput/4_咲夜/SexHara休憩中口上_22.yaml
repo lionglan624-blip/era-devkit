@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「もっと愉しみなさい」
+
+    「物足りないみたいね。もっと愉しませてあげるわ」
+
+    「ローターが気に入ったみたいね」
+  priority: 1
+  displayMode: newline

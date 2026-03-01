@@ -1,0 +1,12 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああっ！ いいっ！ いいのぉ！！」
+
+    「ああっ、そこ、そこっ、もっとぉ！」
+
+    「もっと、もっと突いて！ もっと深く！」
+  priority: 1
+  displayMode: newline

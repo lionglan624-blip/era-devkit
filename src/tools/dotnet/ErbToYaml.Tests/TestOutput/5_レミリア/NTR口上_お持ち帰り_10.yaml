@@ -1,0 +1,82 @@
+﻿character: レミリア
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%はいつもの部屋で目覚めた。
+
+    相変わらず見た目だけは豪奢を装った、しかし吐き気を催すような悪趣味な部屋であった。
+
+    %NTR_NAME(0)%の手によって%CALLNAME:奴隷%の首輪に部屋の壁から伸びた鎖もそのままだった。
+
+    哀れな奴隷を繋ぎ止めた部屋に彼女を買った男が入ってくる。
+
+    せめてもの虚勢・・%CALLNAME:奴隷%は逃げも隠れもせず、わざとらしく笑みを浮かべて見せた。
+  priority: 7
+- id: talent_148_1
+  content: >-
+    「・・助けて・・%CALLNAME:MASTER%・・」
+
+    「・・まだ・・帰らせてもらえないのね・・」
+
+    「・・こんなことで、負けるものですか・・」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: talent_7_2
+  content: >-
+    目覚めた%CALLNAME:奴隷%は首輪を指でなぞりながらたずねた。
+
+    「さて、今日のお客様はどんな奉仕をお望みなのかしら？」
+
+    さらなる快楽への期待に頬を染めながらたずねる%CALLNAME:奴隷%に、%NTR_NAME(0)%は今日のオーダーを告げた。
+
+    ：
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%NTR_NAME(0)%宅で首輪に鎖を繋がれたまま目覚めた。
+
+    今ここにいるのは飼い主の哀願を求める一匹の牝犬でしかなかった。
+
+    %NTR_NAME(0)%は%CALLNAME:奴隷%を繋ぐ鎖を引き、手元へと引き寄せた。
+  priority: 4
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%宅で目覚めた%CALLNAME:奴隷%は傍らにいる%NTR_OTOKO()%微笑んだ。
+
+    %NTR_NAME(0)%は恋人のような態度で%CALLNAME:奴隷%を抱き寄せ、%CALLNAME:奴隷%もまたそれに応じ%NTR_KARE()%に抱きついた。
+  priority: 3
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%宅で目覚めた%CALLNAME:奴隷%は傍らにいる%NTR_OTOKO()%微笑んだ。
+
+    %NTR_NAME(0)%は恋人のような態度で%CALLNAME:奴隷%を抱き寄せ、%CALLNAME:奴隷%もまたそれに応じ%NTR_KARE()%に抱きついた。
+  priority: 2
+- id: fallback
+  content: >-
+    「ええ、始めましょう。愉しませてくれるのよね？」
+
+    %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は%NTR_KARE()%の腕に身をゆだねた。
+
+    外泊してくることは%MSG_LOVER(奴隷)%も承知していることであり、彼女はもはや後ろめたさを感じてはいなかった。
+
+    （・・%CALLNAME:MASTER%・・帰ったら、聞かせてあげるわ・・ククク、楽しみにしてなさい）
+
+    「ええ、始めましょう」
+
+    %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は%NTR_KARE()%の腕に身をゆだねた。
+
+    （・・%CALLNAME:MASTER%・・帰ったら、聞かせてあげるわ・・ククク、楽しみにしてなさい）
+
+    「ふん、まだ帰すつもりはないみたいね」
+
+    %NTR_NAME(0)%の家で目覚めた%CALLNAME:奴隷%は半ばあきらめたかのように%NTR_KARE()%の腕に身をゆだねた。
+  priority: 1

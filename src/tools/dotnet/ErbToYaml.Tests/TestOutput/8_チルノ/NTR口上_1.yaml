@@ -1,0 +1,78 @@
+﻿character: チルノ
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「えへ・・すーすーする・・」
+
+    「このまま飛んだらみえちゃうよね？」
+
+    「あたいは寒くないからへっちゃらだよ！」
+
+    %CALLNAME:奴隷%はうっすらと頬を染め、誰かに見られることを望んでいるかのようだ。
+
+    %CALLNAME:奴隷%は脱いだ下着を%NTR_NAME(0)%に手渡しにこにこ笑っている。
+
+    %CALLNAME:奴隷%は脱いだ下着を%NTR_NAME(0)%にかぶせようとしてたしなめられた。
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えへ・・すーすーする・・」
+
+    「このまま飛んだらみえちゃうよね？」
+
+    「あたいは寒くないからへっちゃらだよ！」
+
+    %CALLNAME:奴隷%はうっすらと頬を染め、誰かに見られることを望んでいるかのようだ。
+
+    %CALLNAME:奴隷%は脱いだ下着を%NTR_NAME(0)%に手渡しにこにこ笑っている。
+
+    %CALLNAME:奴隷%は脱いだ下着を%NTR_NAME(0)%にかぶせようとしてたしなめられた。
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「えへへ、すーすーするね」
+
+    「えへへ、見える？」
+
+    「うんっ、このままでいればいいんだよね？」
+
+    %CALLNAME:奴隷%は剥き出しの局部を誰かに見られでも気にしなさそうだ。
+
+    %CALLNAME:奴隷%は何かの遊びだと思っているようだ。
+
+    %CALLNAME:奴隷%は脱いだばかりの下着を%NTR_NAME(0)%に手渡した。
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「むぅ・・ぱんつなんてほしいの？」
+
+    「ぱんつなんてどうするの？」
+
+    「あとで返してよね？」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%から下着を取り返そうとしたが、返してもらえなかった。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%がなぜ下着を欲しがるのかよくわかっていないようだ。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%では自分の下着ははけないだろうと不思議に思っている。
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ぱんつ返して！」
+
+    「返してようばかばかばか！」
+
+    「かーえーせー！」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%から下着を取り返そうとしたが、返してもらえなかった。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%から下着を取り返そうとしたが失敗した。
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に下着を奪われ怒っている。
+  priority: 1
+  displayMode: newline

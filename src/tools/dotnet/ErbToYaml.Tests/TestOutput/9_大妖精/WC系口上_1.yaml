@@ -1,0 +1,10 @@
+﻿character: 大妖精
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    「%CALLNAME:MASTER%のお尻って、ひんやりして気持ちいいですね♪」
+
+    「こういうことでも、エッチな気持ちになっちゃいますか？」
+  priority: 1
+  displayMode: newline

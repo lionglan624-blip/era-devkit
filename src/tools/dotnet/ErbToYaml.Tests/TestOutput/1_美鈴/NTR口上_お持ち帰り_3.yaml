@@ -1,0 +1,49 @@
+﻿character: 美鈴
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「んっ！んむぅ！・・んっ、んっ・・！」
+
+    「・・んっ、んんっ・・むうっ！」
+
+    「んんっ！ ・・んんんっ！」
+  priority: 6
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「んっ！んむぅ！・・んっ、んっ・・いやあっ・・んぅ！」
+
+    「いっ、いやよっ・・んっ、んんっ・・むうっ！」
+
+    「んんっ！ は、はなして・・んんんっ！」
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっはぁ・・んちゅぅ・・はぁ・・んっ・こくん」
+
+    豊満な胸を客の胸板に押し付けながら%CALLNAME:奴隷%は客と舌を絡ませている。
+  priority: 4
+- id: fallback
+  content: >-
+    「んっはぁ・・んちゅぅ・・はぁ・・んっ・こくん」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と舌を絡ませあいながら、流し込まれた唾液を飲み込んでいる。
+  priority: 3
+- id: fallback
+  content: >-
+    「んっはぁ・・んちゅぅ・・はぁ・・んっ・こくん」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と舌を絡ませあいながら、流し込まれた唾液を飲み込んでいる。
+  priority: 2
+- id: fallback
+  content: >-
+    「んっ・・ちゅ・・・・んっ・・」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%と唇を重ね、舌を絡ませ合っている。
+  priority: 1

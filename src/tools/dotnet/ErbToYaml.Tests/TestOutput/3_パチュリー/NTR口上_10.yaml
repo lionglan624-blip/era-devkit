@@ -1,0 +1,48 @@
+﻿character: パチュリー
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ああ・・いい・・いいわ・・もっと、もっと深くっ・・！」
+
+    「ああ・・もっ・・と・・もっと・・おしり・・ああ・・！」
+
+    「ああ・・ああっ・・おしりっ・・い・・いいっ・・！」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・いい・・いいわ・・もっと、もっと深くっ・・！」
+
+    「ああ・・もっ・・と・・もっと・・おしり・・ああ・・！」
+
+    「ああ・・ああっ・・おしりっ・・い・・いいっ・・！」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・いい・・いいわ・・もっと、もっと・・」
+
+    「ああ・・もっと・・おしり・・ついて・・！」
+
+    「ああ・・ああっ・・い・・いいっ・・！」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ああ・・う・・うそ・・こんな・・こんなのっ・・」
+
+    「ああ・・そんな・・おしり・・で・・」
+
+    「ああ・・いや・・こんな・・ああっ・・！」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「うっ・・ぐ・・くうっ・・！」
+
+    「ああ・・い・・痛っ・・うごか、ない、で・・！」
+
+    「ああ・・いや・・んんっ・・！」
+  priority: 1
+  displayMode: newline

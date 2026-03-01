@@ -1,0 +1,12 @@
+﻿character: パチュリー
+situation: K3_日常
+entries:
+- id: fallback
+  content: >-
+    「どういうつもり？ まぁいいけど」
+
+    「この次は呼びなさい。いいわね？」
+
+    「こんなときばかり人の身体を気にかけるのね」
+  priority: 1
+  displayMode: newline

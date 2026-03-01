@@ -1,0 +1,24 @@
+﻿character: レミリア
+situation: K5_EVENT
+entries:
+- id: talent_159_0
+  content: >-
+    「さ、私は%NTR_KARE()%の所に行ってくるから、
+
+    「それじゃ、私はお望みどおり%NTR_KARE()%に抱かれてくるから、
+
+    「私は私で愉しんでくるから、
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 159
+    threshold: 1
+- id: fallback
+  content: >-
+    「私の手でシてもらえるんだから、感謝すべきね」
+
+    「紅魔館の主に搾精させるなんて、光栄な話よね？」
+
+    「なんなら、白いほうじゃなくて紅いほうの血を絞ってあげてもいいのよ？ククク・・」
+  priority: 1
+  displayMode: newline

@@ -1,0 +1,12 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「ククッ、いつになったら私の初めてを奪ってくれるのかしら？」
+
+    「そろそろ私のヴァージンを奪う気になったかしら？」
+
+    「私の初めて・・興味ないかしら？」
+  priority: 1
+  displayMode: newline

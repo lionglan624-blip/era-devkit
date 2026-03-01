@@ -1,0 +1,27 @@
+﻿character: 汎用
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「はぁ・・はぁ・・ふふっ・・%MSG_HEART()%」
+
+    「はぁ・・ん・・うふっ・・%MSG_HEART()%」
+
+    「んっ・・ん・・素敵・・%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「はぁ・・はぁ・・ふふっ・・%MSG_HEART()%」
+
+    「はぁ・・ん・・うふっ・・%MSG_HEART()%」
+
+    「んっ・・ん・・素敵・・%MSG_HEART()%」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「なんっ・・で、こ・・んなこと」
+
+    突然、唇を奪われ呆然としている。
+  priority: 1

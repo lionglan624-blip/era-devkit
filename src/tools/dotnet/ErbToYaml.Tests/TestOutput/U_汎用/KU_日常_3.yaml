@@ -1,0 +1,12 @@
+﻿character: 汎用
+situation: KU_日常
+entries:
+- id: fallback
+  content: >-
+    「そう。それじゃ、また後でね」
+
+    「この次は呼んでね」
+
+    「つまらないわね」
+  priority: 1
+  displayMode: newline

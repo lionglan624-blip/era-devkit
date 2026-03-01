@@ -1,0 +1,237 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "COM Definition Schema",
+  "description": "Schema for ERA game COM (Command) definitions in YAML format. COMs define actions that can be performed in the game, including their costs, conditions, and effects.",
+  "x-modding-level": "tier-1",
+  "x-modding-note": "Adding new COMs with existing effect types requires no C# compilation. Adding new effect types requires C# handler implementation (Tier 3).",
+  "type": "object",
+  "required": ["id", "name", "category"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique COM identifier (ComId). Must match [ComId(N)] attribute in C# (if migrated from C#).",
+      "minimum": 0
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the COM (Japanese or localized text)",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "description": "COM category for organization and UI grouping",
+      "enum": [
+        "Training/Touch",
+        "Training/Oral",
+        "Training/Penetration",
+        "Training/Equipment",
+        "Training/Bondage",
+        "Training/Undressing",
+        "Training/Utility",
+        "Daily",
+        "Masturbation",
+        "Utility",
+        "Visitor",
+        "System",
+        "Special"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description or notes about the COM"
+    },
+    "cost": {
+      "type": "object",
+      "description": "Resource costs required to execute this COM",
+      "properties": {
+        "stamina": {
+          "type": "integer",
+          "description": "Stamina cost",
+          "minimum": 0
+        },
+        "energy": {
+          "type": "integer",
+          "description": "Energy cost",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "conditions": {
+      "type": "array",
+      "description": "Conditions that must be met for the COM to be executable (CAN_COM checks)",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of condition check",
+            "enum": [
+              "talent",
+              "ability",
+              "flag",
+              "cflag",
+              "palam",
+              "exp",
+              "source",
+              "equipment",
+              "location",
+              "time",
+              "custom"
+            ]
+          },
+          "target": {
+            "type": "string",
+            "description": "Target of the condition (e.g., talent name, flag name, palam index)"
+          },
+          "operator": {
+            "type": "string",
+            "description": "Comparison operator",
+            "enum": ["eq", "ne", "gt", "gte", "lt", "lte", "contains", "not_contains"]
+          },
+          "value": {
+            "description": "Value to compare against (type depends on condition type)"
+          },
+          "threshold": {
+            "type": "number",
+            "description": "Numeric threshold for comparison (alternative to value)"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "effects": {
+      "type": "array",
+      "description": "Effects applied when the COM executes successfully",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type of effect to apply",
+            "enum": [
+              "source",
+              "source_scale",
+              "downbase",
+              "exp",
+              "flag",
+              "cflag",
+              "equipment",
+              "custom"
+            ]
+          },
+          "target": {
+            "type": "string",
+            "description": "Target of the effect (e.g., source index name, exp index name)"
+          },
+          "value": {
+            "description": "Effect value (type depends on effect type: integer, string, or object)"
+          },
+          "formula": {
+            "type": "string",
+            "description": "Formula expression for calculated effects (used in source_scale, etc.)"
+          },
+          "pain": {
+            "type": "number",
+            "description": "SOURCE:苦痛 (pain) value for source-type effects"
+          },
+          "pleasure": {
+            "type": "number",
+            "description": "SOURCE:快楽 (pleasure) value for source-type effects"
+          },
+          "fear": {
+            "type": "number",
+            "description": "SOURCE:恐怖 (fear) value for source-type effects"
+          },
+          "submission": {
+            "type": "number",
+            "description": "SOURCE:従属 (submission) value for source-type effects"
+          },
+          "lust": {
+            "type": "number",
+            "description": "SOURCE:欲情 (lust) value for source-type effects"
+          },
+          "love": {
+            "type": "number",
+            "description": "SOURCE:恋慕 (love) value for source-type effects"
+          },
+          "shame": {
+            "type": "number",
+            "description": "SOURCE:羞恥 (shame) value for source-type effects"
+          },
+          "dependence": {
+            "type": "number",
+            "description": "SOURCE:依存 (dependence) value for source-type effects"
+          }
+        },
+        "additionalProperties": true,
+        "x-extensibility": "Additional effect properties can be added for custom effect types. Effect handlers must be registered in C# to process custom effect types."
+      }
+    },
+    "kojo_file": {
+      "type": "string",
+      "description": "Reference to the associated kojo (dialogue) YAML file (optional, inferred from COM id if not specified)",
+      "pattern": "^[a-zA-Z0-9_/.-]+\\.yaml$"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata for documentation, tooling, or modding purposes",
+      "properties": {
+        "migrated_from_cs": {
+          "type": "string",
+          "description": "Original C# class path if migrated (for reference)"
+        },
+        "migration_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of migration from C# to YAML"
+        },
+        "author": {
+          "type": "string",
+          "description": "Author or contributor name"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version identifier for this COM definition"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tags for categorization and search"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "effect_type_extensibility": {
+      "description": "Effect types can be extended by implementing IEffectHandler in C# and registering in the effect handler registry. Custom effect types should use the 'custom' type with additional properties.",
+      "x-tier": "tier-3",
+      "x-requires": "C# IEffectHandler implementation + handler registration"
+    },
+    "condition_type_extensibility": {
+      "description": "Condition types can be extended by implementing condition evaluators in C# and registering in the condition evaluator registry. Custom condition types should use the 'custom' type with additional properties.",
+      "x-tier": "tier-3",
+      "x-requires": "C# condition evaluator implementation + evaluator registration"
+    },
+    "moddability_tiers": {
+      "tier-1": {
+        "description": "Fully moddable - no C# compilation required",
+        "examples": ["Adding new COM with existing effect types", "Modifying COM costs/values", "Character definitions with existing talents"]
+      },
+      "tier-2": {
+        "description": "Parameter adjustment - no C# compilation required",
+        "examples": ["Adjusting existing COM parameters", "Modifying configuration values"]
+      },
+      "tier-3": {
+        "description": "Engine extension - C# compilation required",
+        "examples": ["Adding new effect types", "Adding new condition types", "Adding new talents/abilities"]
+      }
+    }
+  }
+}

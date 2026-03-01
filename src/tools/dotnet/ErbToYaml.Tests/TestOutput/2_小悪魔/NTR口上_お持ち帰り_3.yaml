@@ -1,0 +1,80 @@
+﻿character: 小悪魔
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    首輪を身につけた%CALLNAME:奴隷%は薄暗い部屋に鎖で繋がれていた。
+
+    「私%CALLNAME:奴隷%は皆様専用の精液便所です・・。私の穴という穴に皆様のお情けを注いでくださいませ・・」
+
+    何人もの男たちに囲まれ、何本もの肉棒を突きつけられた%CALLNAME:奴隷%は命じられた通りの台詞を口にした。
+  priority: 6
+- id: talent_148_1
+  content: >-
+    「いっ、いやああっ！ 助けて、助けて%CALLNAME:MASTER%！！」
+
+    「いっ、いやああっ！ ひ、人さらいぃぃ！！」
+
+    「いやああっ！ や、やめてくださいぃぃぃ！！」
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: talent_7_2
+  content: >-
+    首輪を身につけた%CALLNAME:奴隷%は薄暗い部屋に鎖で繋がれていた。
+
+
+    「私%CALLNAME:奴隷%は皆様専用の精液便所です。私のあらゆる穴という穴に皆様のお情けを注いでくださいませ♪」
+
+    「今日は私をお買い上げいただきまして、まことにありがとうございまぁす♪」
+
+    「今日も淫らな私のオマンコをお買い上げいただきまして、まことにありがとうございます♪」
+  priority: 4
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に手渡された首輪を自ら身につけた。
+
+    「ふふっ、卑しい牝犬の身体をどうか好きなようにお使いください」
+
+    「うふふっ、雌犬と悪魔と、どちらが淫らな存在なんでしょうね？」
+
+    「はい、私は%NTR_NAME(0)%様の忠実な雌犬です♪」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%NTR_NAME(0)%に手渡された首輪を自ら身につけた。
+
+    「ふふっ、卑しい牝犬の身体をどうか好きなようにお使いください」
+
+    「うふふっ、雌犬と悪魔と、どちらが淫らな存在なんでしょうね？」
+
+    「はい、私は%NTR_NAME(0)%様の忠実な雌犬です♪」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ええ、行きましょう♪」
+
+    %CALLNAME:奴隷%は大人しく%NTR_NAME(0)%の家に同行した。
+
+    外泊してくると%MSG_LOVER(奴隷)%相手に宣言していることもあり、彼女は躊躇しなかった。
+
+    「・・ええ、行きましょう」
+
+    %CALLNAME:奴隷%は大人しく%NTR_NAME(0)%の家に同行した。
+
+    （・・%CALLNAME:MASTER%・・本当に・・これでいいんですよね・・）
+
+    「・・紅魔館の皆には言わないでください・・おねがいします・・」
+
+    %CALLNAME:奴隷%は表面上大人しく%NTR_NAME(0)%の家に同行した。
+  priority: 1

@@ -1,0 +1,67 @@
+﻿character: 魔理沙
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%は%CALLNAME:奴隷%に公衆便所としての作法を躾けた。
+
+    彼女の唇を便器代わりに、白濁した劣情を排泄したのだ。
+
+    「んっ…んんんっ！ …こく、こく…」
+
+    「うっ、うっ…ううっ！！ …んっ…こくっ…」
+
+    「んんっ！ んっ！！ …こくんっ…」
+
+    （%CALLNAME:MASTER%…許してくれ…）
+
+    （%CALLNAME:MASTER%…すまない…）
+
+    （%CALLNAME:MASTER%以外の…だなんて…）
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ…ちゅ…んんんっ！ …こく、こく…%MSG_HEART()%」
+
+    「ちゅっ、ぢゅっ…うっ！！ …んっ…こくっ…%MSG_HEART()%」
+
+    「んんっ！ んっ！！ …こくんっ…%MSG_HEART()%」
+
+    （ああ…精液の味…好き%MSG_HEART()%）
+
+    （ああ…濃い%MSG_HEART()%）
+
+    （ああ…精液で子宮も疼いてきちゃった%MSG_HEART()%）
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ…ちゅ…んんんっ！ …こく、こく…%MSG_HEART()%」
+
+    「ちゅっ、ぢゅっ…うっ！！ …んっ…こくっ…%MSG_HEART()%」
+
+    「んんっ！ んっ！！ …こくんっ…%MSG_HEART()%」
+
+    （ああ…精液の味…好き%MSG_HEART()%）
+
+    （ああ…濃い%MSG_HEART()%）
+
+    （ああ…精液で子宮も疼いてきちゃった%MSG_HEART()%）
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ…ちゅ…んんんっ！ …こく、こく…%MSG_HEART()%」
+
+    「ちゅっ、ぢゅっ…うっ！！ …んっ…こくっ…%MSG_HEART()%」
+
+    「んんっ！ んっ！！ …こくんっ…%MSG_HEART()%」
+
+    （ああ…精液の味…好き…）
+
+    （ああ…濃い…）
+
+    （ああ…精液で子宮も疼いてきちゃった…）
+  priority: 1
+  displayMode: newline

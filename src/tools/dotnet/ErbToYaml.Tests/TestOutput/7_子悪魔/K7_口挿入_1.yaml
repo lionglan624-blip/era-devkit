@@ -1,0 +1,239 @@
+﻿character: 子悪魔
+situation: K7_口挿入
+entries:
+- id: fallback
+  content: >-
+    「えへへ……%CALLNAME:MASTER%の、お口でしてあげるね？」
+
+    %CALLNAME:TARGET%は嬉しそうに%CALLNAME:MASTER%の前に跪いた。
+
+    小さな口を開けて、%CALLNAME:MASTER%の一物を頬張る。
+
+    「んっ……んむ……おっきい……」
+
+    %CALLNAME:TARGET%は一生懸命に舌を動かしながら、%CALLNAME:MASTER%を見上げた。
+
+    「れろ……ちゅる……気持ちいい……？」
+
+    妖精の小さな口が、懸命に%CALLNAME:MASTER%を咥え込んでいる……
+
+    「今日もあたしのお口、使っていいよ？」
+
+    %CALLNAME:TARGET%は満面の笑みで%CALLNAME:MASTER%の股間に顔を近づけた。
+
+    「あむっ……ん、ちゅ……おいしい……」
+
+    %CALLNAME:TARGET%は慣れた様子で%CALLNAME:MASTER%の一物を舐め始めた。
+
+    「じゅる……れろれろ……%CALLNAME:MASTER%の、好き……」
+
+    嬉しそうに%CALLNAME:TARGET%は舌を這わせている。
+
+    「んふふ……あたしのお口で、いっぱい気持ちよくなってね……」
+
+    「%CALLNAME:MASTER%……あたし、もっと上手にしたいの……」
+
+    %CALLNAME:TARGET%は真剣な表情で%CALLNAME:MASTER%の一物に口づけた。
+
+    「だから……いっぱい練習させてね？」
+
+    小さな口が%CALLNAME:MASTER%のものを包み込み、ゆっくりと吸い上げる。
+
+    「ちゅぅ……んむ……ここ、舐めると気持ちいいって……」
+
+    %CALLNAME:TARGET%は裏筋を舌先でなぞりながら、期待に満ちた目で見上げた。
+
+    「……ね、あたし、ちゃんとできてる……？」
+
+    「あ……%CALLNAME:MASTER%の、元気いっぱいだね……えへへ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の一物を愛おしそうに見つめた。
+
+    「あたしがペロペロすると、もっと元気になるかな……？」
+
+    %CALLNAME:TARGET%は嬉しそうに%CALLNAME:MASTER%の一物を口に含んだ。
+
+    「んっ……ちゅる……ぴくってした……かわいい」
+
+    %CALLNAME:TARGET%はくすくす笑いながら、優しく舐め上げている。
+
+    「%CALLNAME:MASTER%……大好き。いっぱい出していいよ……？」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「え、えっと……お、お口で……するの……？」
+
+    %CALLNAME:TARGET%は真っ赤になりながら、おずおずと%CALLNAME:MASTER%の一物に顔を近づけた。
+
+    「あ、あむ……んっ……おっきくて、入らない……」
+
+    %CALLNAME:TARGET%は困惑しながらも、舌を出して先端を舐め始めた。
+
+    「れろ……ちゅ……こ、こう……？」
+
+    小さな口で精一杯咥えようとしている。
+
+    「……%CALLNAME:MASTER%、痛くないですか……？」
+
+    「あの……%CALLNAME:MASTER%のために……お口で、頑張ります……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで%CALLNAME:MASTER%の一物に口づけた。
+
+    「ちゅ……んむ……こういうの、初めてだから……」
+
+    ぎこちない舌使いで、%CALLNAME:TARGET%は懸命に舐め上げている。
+
+    「れろ……じゅる……こう……？」
+
+    一生懸命な%CALLNAME:TARGET%の姿は、どこか健気だった。
+
+    「……気持ちよくなって、くれたら……嬉しいな……」
+
+    「は、恥ずかしいよぅ……でも……」
+
+    %CALLNAME:TARGET%は顔を真っ赤にしながら、%CALLNAME:MASTER%の一物に口を近づけた。
+
+    「%CALLNAME:MASTER%が気持ちよくなるなら……あたし、頑張る……」
+
+    小さな舌が%CALLNAME:MASTER%のものを舐め上げ、やがて口に含んだ。
+
+    「んっ……ちゅる……しょっぱい……でも……」
+
+    %CALLNAME:TARGET%は先走りの味に驚きながらも、舐めるのを止めなかった。
+
+    「……%CALLNAME:MASTER%……あたしのこと、好き……？」
+
+    「……%CALLNAME:MASTER%……」
+
+    %CALLNAME:TARGET%は上目遣いに%CALLNAME:MASTER%を見つめながら、一物に口づけた。
+
+    「あたし……%CALLNAME:MASTER%のこと、好きだから……」
+
+    恥ずかしそうに俯きながら、%CALLNAME:TARGET%は%CALLNAME:MASTER%のものを舐め始めた。
+
+    「ちゅ……れろ……んむ……こうすると……いいの……？」
+
+    小さな舌がたどたどしく動き、%CALLNAME:MASTER%に快感を与えようと頑張っている。
+
+    %CALLNAME:TARGET%は真剣な表情で、%CALLNAME:MASTER%の反応を見守っていた。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「え……お口で……これを……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の一物を見つめて固まっている。
+
+    「その……こういうこと、したことないです……」
+
+    おずおずと顔を近づけ、恐る恐る舌を伸ばしてみる。
+
+    「ぺろ……んっ……変な味……」
+
+    %CALLNAME:TARGET%は驚きながらも、言われた通りに舐め始めた。
+
+    「……こう……ですか……？　あたし、ちゃんとできてますか……？」
+
+    「あの……%CALLNAME:MASTER%……これって……」
+
+    %CALLNAME:TARGET%は戸惑いながら、%CALLNAME:MASTER%の一物に顔を近づけた。
+
+    「えっと……舐めればいいんですよね……？」
+
+    ぎこちない舌使いで、%CALLNAME:TARGET%は見よう見まねで舐め始めた。
+
+    「れろ……ちゅ……んっ……こう……？」
+
+    初めての行為に%CALLNAME:TARGET%は困惑しながらも、舌を動かし続けている。
+
+    「……%CALLNAME:MASTER%……あたし、上手にできてますか……？」
+
+    「……はい……やります……」
+
+    %CALLNAME:TARGET%は緊張した面持ちで%CALLNAME:MASTER%の前に跪いた。
+
+    「あの……優しくしてくださいね……？　あたし、怖いので……」
+
+    小さな口が震えながら%CALLNAME:MASTER%のものを咥えようとした。
+
+    「んっ……あむ……入らない……」
+
+    %CALLNAME:TARGET%は不安そうに%CALLNAME:MASTER%の顔色を窺いながら、舌で舐め始めた。
+
+    「……%CALLNAME:MASTER%が満足してくれたら……嬉しいです……」
+
+    「……えっと……%CALLNAME:MASTER%のお手伝い……ですか？」
+
+    %CALLNAME:TARGET%は首を傾げながら、%CALLNAME:MASTER%の一物を見つめた。
+
+    「妖精メイドのお仕事……なのかな……」
+
+    %CALLNAME:TARGET%は困惑しながらも、%CALLNAME:MASTER%のものに口づけた。
+
+    「ちゅ……れろ……こうかな……」
+
+    たどたどしい舌使いで、%CALLNAME:TARGET%は懸命に舐め始めた。
+
+    「……咲夜さんには、絶対内緒ですよ……？」
+  priority: 2
+- id: fallback
+  content: >-
+    「え……えっ……お、お口で……？」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の一物を見つめて顔を青くした。
+
+    「あの……こういうの、あたしにはわからないです……」
+
+    困惑した表情で、%CALLNAME:TARGET%は後ずさりしようとした。
+
+    「……で、でも……やらないとダメ……ですか……」
+
+    観念したように、%CALLNAME:TARGET%は恐る恐る舌を伸ばした。
+
+    「……ぺろ……んっ……変な味がする……」
+
+    「……」
+
+    %CALLNAME:TARGET%は無言で%CALLNAME:MASTER%の一物を見つめている。
+
+    「……あたし、こういうの、どうすればいいかわからないです……」
+
+    仕方なさそうに顔を近づけ、ぎこちなく舐め始めた。
+
+    「……れろ……ちゅ……こう……ですか……」
+
+    機械的に舌を動かしながら、%CALLNAME:TARGET%は視線を逸らしている。
+
+    「……早く終わってほしいな……」
+
+    「ひっ……こ、これを……お口で……？」
+
+    %CALLNAME:TARGET%は怯えた表情で%CALLNAME:MASTER%のものを見つめた。
+
+    「あの……お仕事なら他のことの方が……」
+
+    %CALLNAME:TARGET%は逃げ出したそうな顔をしているが、従わざるを得ない。
+
+    「……う……舐めます……」
+
+    嫌々ながら%CALLNAME:TARGET%は%CALLNAME:MASTER%のものに舌を這わせた。
+
+    「……ぺろ……んっ……苦手なんです……ごめんなさい……」
+
+    「……%CALLNAME:MASTER%……なんでこんなこと……」
+
+    %CALLNAME:TARGET%は困惑と戸惑いの表情を浮かべている。
+
+    「あたし、お掃除とかお茶汲みの方が得意なんですけど……」
+
+    渋々と%CALLNAME:TARGET%は%CALLNAME:MASTER%の前に跪いた。
+
+    「……えっと……ぺろ……ちゅ……こう……？」
+
+    不慣れな舌使いで、%CALLNAME:TARGET%は%CALLNAME:MASTER%のものを舐め始めた。
+
+    「……咲夜さんに見つかったら、怒られちゃいます……」
+  priority: 1

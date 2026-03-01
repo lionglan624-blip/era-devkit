@@ -1,0 +1,11 @@
+﻿character: 美鈴
+situation: WC系口上
+entries:
+- id: fallback
+  content: >-
+    お仕事もままならない
+
+    なにも手につかない
+
+    何度もイッちゃった
+  priority: 1

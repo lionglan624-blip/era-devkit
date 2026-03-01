@@ -1,0 +1,57 @@
+﻿character: 魔理沙
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    「んっ…ちゅっくちゅっ…んふっ…れるっ…」
+
+    「んん…ああ…もっと…んんっ…ちゅ…」
+
+    「あん…ん…うふ…いい…ん…くちゅっ…」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ…ちゅっくちゅっ…んふっ…れるっ…」
+
+    「んん…ああ…もっと…んんっ…ちゅ…」
+
+    「あん…ん…うふ…いい…ん…くちゅっ…」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んっ…ちゅっくちゅっ…んふっ…」
+
+    「んん…ああ…んんっ…ちゅ…」
+
+    「あん…ん…いい…ん…くちゅっ…」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ん…んっ…ちゅ…」
+
+    「んっ…ん…うん…」
+
+    「う…んっ…くちゅっ…」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ん…んぅ……・」
+
+    「んっ…ん…うん…」
+
+    「う…んっ…くちゅっ…」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「んーっ！んーっ！…んぅっ！？……・」
+
+    「んんっ！ んっ！ う…ううっ…」
+
+    「ううんっ！ うっ…う…ちゅ…」
+  priority: 1
+  displayMode: newline

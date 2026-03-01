@@ -1,0 +1,61 @@
+﻿character: 小悪魔
+situation: K2_会話親密
+entries:
+- id: fallback
+  content: >-
+    「はい・・ありがとうございます・・私は・・%CALLNAME:MASTER%だけの・・」
+
+    %CALLNAME:奴隷%の目尻には涙が滲んでいた。
+  priority: 7
+- id: fallback
+  content: >-
+    「ふふっ、こんなのもスリリングでいいですね♪」
+
+    「ご主人様にはナイショですよぉ」
+
+    「二人だけのヒミツですね♪」
+  priority: 6
+  displayMode: newline
+- id: fallback
+  content: >-
+    「やぁん、怒られちゃいますぅ」
+
+    「ご主人様に怒られちゃいますよぉ？」
+
+    「だめですってばぁ」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    「・・ええ、%MSG_RE_LOVER(奴隷)%ですからね。ふふ」
+
+    %CALLNAME:MASTER%の腕の中で、%CALLNAME:奴隷%は小さく目を逸らし妖しげに微笑えんだ。
+  priority: 4
+- id: fallback
+  content: >-
+    「・・ええ、%MSG_RE_LOVER(奴隷)%ですから」
+
+    %CALLNAME:MASTER%の腕の中で、%CALLNAME:奴隷%は小さく目を逸らし妖しげに微笑えんだ。
+  priority: 3
+- id: talent_3_5
+  content: >-
+    「あン・・もう、エッチなんだから」
+
+    「ふふっ、いつでも、こうしていいんですよ？」
+
+    「ええ、%MSG_RE_LOVER(奴隷)%ですから。アナタのものですよ？」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「ふふっ、悪魔を押し倒すなんて、大胆ですね？」
+
+    「やぁん、パチュリー様に怒られちゃいますぅ」
+
+    「ちょっとだけですよ？」
+  priority: 1
+  displayMode: newline

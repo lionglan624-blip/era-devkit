@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: NTR口上_シナリオ11-22
+entries:
+- id: fallback
+  content: >-
+    「ああっ！ いいっ！ いいのぉ！！」
+
+    「ああっ、そこ、そこよっ、もっとぉ！」
+
+    「もっと、もっと突いて！ もっと深く！」
+  priority: 1
+  displayMode: newline

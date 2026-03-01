@@ -1,0 +1,92 @@
+﻿character: フラン
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「ど、どうしても、しないとダメなの・・？」
+
+    「やっ、やだ・・やだよぉ・・は、離して・・」
+
+    「やだ・・帰る・・」
+  priority: 7
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「やっ、やだああっ！ 助けて、助けて%CALLNAME:MASTER%！！」
+
+    「やっ、やだああっ！ 離してっ、離してええっ！」
+
+    「やだああっ！ は、離してっ！」
+  priority: 6
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: talent_7_2
+  content: >-
+    幼い身体に淫らな下着を身に着けた%CALLNAME:奴隷%は薄暗い部屋で男たちに笑顔を見せていた。
+
+    「わあーっ、今日は何人いるのかな♪ よろしくおねがいしまぁす♪」
+
+    「えへへっ、%CALLNAME:奴隷%っていいます。いっぱい遊んでくれるんだよね？」
+
+    「うん・・どんなお遊びでも、オッケーだよ%MSG_HEART()%」
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%NTR_NAME(0)%宅の地下室につながれていた。
+
+    「えへっ、やっぱりこういうのって落ち着くな♪」
+
+    「薄暗い部屋っていいよね♪」
+
+    「うん・・いっぱいしようね%MSG_HEART()%」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    %CALLNAME:奴隷%は%NTR_NAME(0)%宅の地下室につながれていた。
+
+    「えへっ、やっぱりこういうのって落ち着くな♪」
+
+    「薄暗い部屋っていいよね♪」
+
+    「うん・・いっぱいしようね%MSG_HEART()%」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    「うふふっ、いっぱいエッチしようね♪」
+
+    「うん、今日は何して遊ぶの？」
+
+    「うん・・お口ですればいいのかな？」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    「うん、行こうよ。ふふっ、楽しみ♪」
+
+    「うん、お泊りなんだよね？」
+
+    「うん・・ね、何すればいいの？」
+
+    「うん、行こうよ。ふふっ、楽しみ♪」
+
+    「うん、お泊りなんだよね？」
+
+    「うん・・ね、何すればいいの？」
+
+    「や・・やっぱりやだ・・私帰る・・！」
+
+    「や、やっぱり、駄目だよ・・しかられちゃう・・」
+
+    「ど・・どうしても・・なの・・？」
+  priority: 1
+  displayMode: newline

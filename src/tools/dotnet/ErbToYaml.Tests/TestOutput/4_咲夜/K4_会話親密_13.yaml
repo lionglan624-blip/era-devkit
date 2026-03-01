@@ -1,0 +1,31 @@
+﻿character: 咲夜
+situation: K4_会話親密
+entries:
+- id: fallback
+  content: >-
+    「・・本当に、いいの・・？」
+
+    「・・いいの・・？ 本当に、それでいいの？」
+
+    「・・いいのね、それで・・？」
+  priority: 2
+  displayMode: newline
+- id: talent_7_1
+  content: >-
+    「ふふっ、本当にいいのね？
+
+    「本当に、それでいいのね？
+
+    「そう言うと思っていたわ。
+
+    あの人もお客様も、喜んでくれるわ」
+
+    あの人だけでなくお客様達も、みんな喜んでくれるわ」
+
+    今まで通り、あの人にもお客様にも抱かれてくるわ」
+  priority: 1
+  condition:
+    type: Talent
+    talentType: 7
+    threshold: 1
+  displayMode: newline

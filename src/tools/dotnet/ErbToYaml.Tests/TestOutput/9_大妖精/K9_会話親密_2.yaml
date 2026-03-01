@@ -1,0 +1,235 @@
+﻿character: 大妖精
+situation: K9_会話親密
+entries:
+- id: fallback
+  content: >-
+    「……%CALLNAME:MASTER%、手…繋いでもいい…？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の小さな手をそっと握った。
+
+    温かくて柔らかな感触が、%CALLNAME:MASTER%の手のひらに伝わってくる。
+
+    「……ふふ、あったかいの。%CALLNAME:MASTER%の手、大好き…です」
+
+    %CALLNAME:TARGET%は嬉しそうに目を細めて、%CALLNAME:MASTER%の手を握り返してきた。
+
+    「ねえ、%CALLNAME:MASTER%……ずっと、こうしていてもいい…？」
+
+    控えめに、でも心の底から幸せそうに、%CALLNAME:TARGET%は微笑んだ。
+
+    「……髪、撫でてくれるの…？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の緑色の髪を優しく撫でている。
+
+    %CALLNAME:TARGET%は目を閉じて、気持ちよさそうに身を任せた。
+
+    「んっ……きもちいいの…%CALLNAME:MASTER%」
+
+    「チルノちゃんには内緒にしてね…？ こういうの、恥ずかしいから…」
+
+    %CALLNAME:TARGET%は甘えるように%CALLNAME:MASTER%にもたれかかった。
+
+    その頬は、ほんのりと桜色に染まっている。
+
+    「……ぎゅって、してほしいな…」
+
+    %CALLNAME:TARGET%がおずおずとお願いしてきた。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の小さな体を後ろから抱きしめた。
+
+    「……うん、あったかいの。%CALLNAME:MASTER%といると、安心するんだ」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%の腕に自分の手を重ねている。
+
+    「わたし、%CALLNAME:MASTER%のこと……大好き…です」
+
+    %CALLNAME:TARGET%は照れくさそうに、でも幸せそうに%CALLNAME:MASTER%の胸に背中を預けた。
+
+    「……ほっぺ、触っても、いいよ…？」
+
+    %CALLNAME:TARGET%は恥ずかしそうに頬を差し出した。
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の柔らかな頬をそっと撫でた。
+
+    「んふふ……くすぐったいけど、嫌いじゃないの…」
+
+    「%CALLNAME:MASTER%の手、優しいね……とっても、落ち着くんだ」
+
+    %CALLNAME:TARGET%は目を細めて、%CALLNAME:MASTER%の手のひらに頬を預けた。
+
+    「……えへへ、わたしも、%CALLNAME:MASTER%のこと、触っていい…？」
+  priority: 4
+- id: talent_3_1
+  content: >-
+    「……手？ 繋いでくれるの…？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の手を取った。
+
+    %CALLNAME:TARGET%は戸惑った表情を浮かべたが、手を引っ込めなかった。
+
+    「……あの、嬉しいです…こういうの」
+
+    %CALLNAME:TARGET%の頬がほんのりと赤く染まっている。
+
+    「あったかいね……%CALLNAME:MASTER%の手」
+
+    %CALLNAME:TARGET%は照れながら、そっと指を絡めてきた。
+
+    「……髪、触るの…？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の緑色の髪に触れた。
+
+    %CALLNAME:TARGET%は驚いた表情を見せたが、されるがままになっている。
+
+    「……えへへ、くすぐったいの。でも、嫌じゃないよ…」
+
+    目を閉じて%CALLNAME:MASTER%に身を任せる%CALLNAME:TARGET%。
+
+    「……もう少しだけ、いいですか…？」
+
+    %CALLNAME:TARGET%は心地よさそうに、背中の羽をゆったりと揺らしている。
+
+    「……あ、%CALLNAME:MASTER%…」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の肩に手を置いた。
+
+    %CALLNAME:TARGET%は一瞬身を強張らせたが、すぐに力を抜いた。
+
+    「……触ってくれるの、嬉しいです…」
+
+    %CALLNAME:TARGET%は%CALLNAME:MASTER%を見上げながら、控えめに微笑んだ。
+
+    「%CALLNAME:MASTER%のこと……好き、だから…」
+
+    そう呟いて、%CALLNAME:TARGET%はそっと%CALLNAME:MASTER%に寄り添った。
+
+    「……あ、わたしの頬…？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の頬にそっと手を当てた。
+
+    %CALLNAME:TARGET%は驚いたように目を見開いたが、逃げなかった。
+
+    「……%CALLNAME:MASTER%の手、あったかいの…」
+
+    %CALLNAME:TARGET%は照れくさそうに目を伏せた。
+
+    「……こうしてると、ドキドキするの…変なの…」
+
+    %CALLNAME:TARGET%の頬が、%CALLNAME:MASTER%の手のひらの下でほんのり熱くなっていく。
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+- id: fallback
+  content: >-
+    「……手？ 握りたいの…？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の手に触れようとした。
+
+    %CALLNAME:TARGET%は少し戸惑った表情を浮かべている。
+
+    「……えっと、いいですけど…恥ずかしいの…」
+
+    おずおずと手を差し出す%CALLNAME:TARGET%。
+
+    「……あったかいですね、%CALLNAME:MASTER%さんの手…」
+
+    %CALLNAME:TARGET%は緊張しながらも、その温もりを感じていた。
+
+    「……何するんですか…？」
+
+    %CALLNAME:MASTER%は%CALLNAME:TARGET%の髪に触れた。
+
+    %CALLNAME:TARGET%は困惑した表情で%CALLNAME:MASTER%を見つめている。
+
+    「……髪に興味があるんですか？ 変なの…」
+
+    されるがままに髪を撫でられながら、%CALLNAME:TARGET%は小首を傾げた。
+
+    「……でも、嫌じゃないです…」
+
+    %CALLNAME:TARGET%は少しずつ緊張を解いていく。
+
+    「……あの、%CALLNAME:MASTER%さん…？」
+
+    %CALLNAME:MASTER%が肩に手を置くと、%CALLNAME:TARGET%は身を強張らせた。
+
+    背中の羽がピクリと動いている。
+
+    「……こういうの、あんまり慣れてなくて…」
+
+    「……でも、%CALLNAME:MASTER%さんだから…いい、です…」
+
+    %CALLNAME:TARGET%は恥ずかしそうに俯きながら、小さく頷いた。
+
+    「……ありがとうございます…触ってくれて…」
+
+    「……え、頬を…？」
+
+    %CALLNAME:MASTER%が手を伸ばすと、%CALLNAME:TARGET%は一瞬たじろいだ。
+
+    「……あの、くすぐったいですよ…？」
+
+    それでも%CALLNAME:TARGET%は逃げなかった。
+
+    %CALLNAME:MASTER%の手のひらが、%CALLNAME:TARGET%の柔らかな頬に触れる。
+
+    「……あったかい…です…」
+
+    %CALLNAME:TARGET%は照れながらも、その温もりを受け入れた。
+  priority: 2
+- id: fallback
+  content: >-
+    「……あの、何をするんですか…？」
+
+    %CALLNAME:MASTER%が%CALLNAME:TARGET%に触れようとすると、
+
+    %CALLNAME:TARGET%は緑色の瞳を不安そうに揺らしてこちらを見つめた。
+
+    「触りたいの…？ わたしを…？」
+
+    「……わたし、こういうの、慣れてなくて…」
+
+    %CALLNAME:TARGET%は困惑した様子で、そわそわと羽を動かしている。
+
+    「……えっと…」
+
+    %CALLNAME:MASTER%が近づくと、%CALLNAME:TARGET%は遠慮がちにこちらを見た。
+
+    「あの、もう少し仲良くなってから…じゃダメですか…？」
+
+    「急にこういうの…恥ずかしいの…」
+
+    %CALLNAME:TARGET%は困ったように眉を下げた。
+
+    「……ごめんなさい、わたし、臆病で…」
+
+    「……あ、あの…」
+
+    %CALLNAME:MASTER%が手を伸ばすと、%CALLNAME:TARGET%は小さく身を引いた。
+
+    背中の羽が緊張でピンと張っている。
+
+    「……わたし、人間の人とあまり接したことがなくて…」
+
+    「チルノちゃんなら平気だと思うけど…わたしは…」
+
+    %CALLNAME:TARGET%は申し訳なさそうに俯いた。
+
+    「……ごめんなさい、緊張しちゃって…」
+
+    「……え、触るの…？」
+
+    %CALLNAME:MASTER%が近づくと、%CALLNAME:TARGET%は戸惑った顔になった。
+
+    「あの…わたし、普通の妖精だから…特別なことなんて…」
+
+    %CALLNAME:TARGET%は困った様子で%CALLNAME:MASTER%を見つめている。
+
+    「……どうして、わたしなんかに…？」
+
+    「……変なの…でも、嫌…ではないです…」
+
+    %CALLNAME:TARGET%は複雑な表情で、そっと視線を逸らした。
+  priority: 1

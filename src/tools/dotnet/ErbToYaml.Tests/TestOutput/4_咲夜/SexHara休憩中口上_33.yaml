@@ -1,0 +1,12 @@
+﻿character: 咲夜
+situation: SexHara休憩中口上
+entries:
+- id: fallback
+  content: >-
+    「動かないで・・悪くはしないわ」
+
+    「弄ばれることも大事な『仕事』よ、ふふっ・・」
+
+    「そうよ・・逆らわないことが一番よ・・」
+  priority: 1
+  displayMode: newline

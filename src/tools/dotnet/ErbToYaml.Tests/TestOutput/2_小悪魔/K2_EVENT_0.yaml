@@ -1,0 +1,12 @@
+﻿character: 小悪魔
+situation: K2_EVENT
+entries:
+- id: fallback
+  content: >-
+    「後ろを向いて、壁に手をついてください」
+
+    「後ろを向いてください。そのまま壁に手をついてくださいね」
+
+    「壁に手をついてください。抵抗は無意味ですよお？」
+  priority: 1
+  displayMode: newline

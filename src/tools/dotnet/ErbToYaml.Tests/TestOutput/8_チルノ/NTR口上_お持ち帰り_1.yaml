@@ -1,0 +1,49 @@
+﻿character: チルノ
+situation: NTR口上_お持ち帰り
+entries:
+- id: fallback
+  content: >-
+    「あ・・やだ・・、やあ・・」
+
+    「いたいこと・・しないよね・・？」
+
+    「あ、あたい、%CALLNAME:奴隷%っていうの・・」
+  priority: 6
+  displayMode: newline
+- id: talent_148_1
+  content: >-
+    「や・・やだ・・、こ、こないで・・」
+
+    「こ、こないでっ」
+
+    「く、くるなあっ！」
+  priority: 5
+  condition:
+    type: Talent
+    talentType: 148
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: >-
+    「気持ちイイこと、なんでもするよ？」
+
+    %CALLNAME:奴隷%は対面座位の姿勢で客の上に腰掛け、下着ごしに局部を擦りつけながら話している。
+  priority: 4
+- id: fallback
+  content: >-
+    「今日は、ナニするの？」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の膝の上に腰掛けて話している。
+  priority: 3
+- id: fallback
+  content: >-
+    「今日は、ナニするの？」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の膝の上に腰掛けて話している。
+  priority: 2
+- id: fallback
+  content: >-
+    「痛いことはしないよね？」
+
+    %CALLNAME:奴隷%は%NTR_NAME(0)%の隣に腰掛けて話している。
+  priority: 1

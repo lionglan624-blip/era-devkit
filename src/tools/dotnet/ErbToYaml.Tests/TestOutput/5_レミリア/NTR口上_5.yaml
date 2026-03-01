@@ -1,0 +1,53 @@
+﻿character: レミリア
+situation: NTR口上
+entries:
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた
+
+    「ん・・ふふ・・よかったわ・・」
+
+    「んっ・・ふふっ・・素敵ね・・」
+
+    「ちゅっ・・ん・・いいわ・・」
+  priority: 5
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた
+
+    「ん・・ふふ・・よかったわ・・」
+
+    「んっ・・ふふっ・・素敵ね・・」
+
+    「ちゅっ・・ん・・いいわ・・」
+  priority: 4
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた
+
+    「ん・・ふふ・・」
+
+    「んっ・・ふふっ・・」
+
+    「ちゅっ・・ん・・」
+  priority: 3
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた。
+
+    「ん・・ふふ・・」
+
+    「んっ・・ふふっ・・」
+
+    「ちゅっ・・ん・・」
+  priority: 2
+  displayMode: newline
+- id: fallback
+  content: >-
+    %NTR_NAME(0)%と%CALLNAME:奴隷%が唇を離すと混ざり合った唾液が糸を引いた。
+
+    突然唇を奪われたその怒りは、%NTR_NAME(0)%だけでなく助けの手を差し伸べなかった%CALLNAME:MASTER%にも向けられている。
+  priority: 1

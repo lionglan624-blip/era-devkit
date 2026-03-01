@@ -1,0 +1,28 @@
+﻿character: レミリア
+situation: WC系口上
+entries:
+- id: talent_3_0
+  content: >-
+    「ホント、オモチャのし甲斐があるわ、%CALLNAME:MASTER%は♪」
+
+    「気持ちよくしてあげるから、いやらしい声で鳴きなさい」
+  priority: 3
+  condition:
+    type: Talent
+    talentType: 3
+    threshold: 1
+  displayMode: newline
+- id: talent_38_1
+  content: >-
+    「いくら躾けても、切りがないわね、これじゃ……ふふふ」
+
+    「もっと調教して欲しければ、もっと楽しい反応をしてみせるのよ」
+  priority: 2
+  condition:
+    type: Talent
+    talentType: 38
+    threshold: 1
+  displayMode: newline
+- id: fallback
+  content: 「こんな便器、どこを探してもないでしょうね。くくく……」
+  priority: 1

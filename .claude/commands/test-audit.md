@@ -24,8 +24,6 @@ Audit test quality for the specified target. Collects coverage, mutation scores,
 | Keyword | Directories | Type |
 |---------|-------------|------|
 | `dashboard` | `src/tools/node/feature-dashboard/backend/`, `src/tools/node/feature-dashboard/frontend/` | JS |
-| `core` | `src/Era.Core/` + `src/Era.Core.Tests/` | C# |
-| `engine` | `engine/` + `src/engine.Tests/` | C# |
 | `erb-parser` | `src/tools/dotnet/ErbParser/` + `src/tools/dotnet/ErbParser.Tests/` | C# |
 | `erb-to-yaml` | `src/tools/dotnet/ErbToYaml/` + `src/tools/dotnet/ErbToYaml.Tests/` | C# |
 | `kojo-comparer` | `src/tools/dotnet/KojoComparer/` + `src/tools/dotnet/KojoComparer.Tests/` | C# |
@@ -34,7 +32,6 @@ Audit test quality for the specified target. Collects coverage, mutation scores,
 | `save-analyzer` | `src/tools/dotnet/SaveAnalyzer/` + `src/tools/dotnet/SaveAnalyzer.Tests/` | C# |
 | `kojo-quality` | `src/tools/dotnet/KojoQualityValidator/` + `src/tools/dotnet/KojoQualityValidator.Tests/` | C# |
 | `entries-migrator` | `src/tools/dotnet/EntriesFormatMigrator/` + `src/tools/dotnet/EntriesFormatMigrator.Tests/` | C# |
-| `talent-migrator` | `src/tools/dotnet/YamlTalentMigrator/` + `src/tools/dotnet/YamlTalentMigrator.Tests/` | C# |
 
 **Path fallback**: If `$ARGUMENTS` is not a keyword, treat as directory path. Auto-detect type by checking for `*.csproj` (C#) or `package.json` (JS).
 
@@ -44,7 +41,7 @@ Audit test quality for the specified target. Collects coverage, mutation scores,
 
 1. Parse `$ARGUMENTS` to determine targets
 2. If empty, build full target list:
-   - **C#**: `src/Era.Core.Tests/`, all `src/tools/dotnet/*Tests/` directories (Glob for `src/tools/dotnet/*Tests/*.csproj`)
+   - **C#**: All `src/tools/dotnet/*Tests/` directories (Glob for `src/tools/dotnet/*Tests/*.csproj`)
    - **JS**: `src/tools/node/feature-dashboard/backend/`, `src/tools/node/feature-dashboard/frontend/`
 3. If keyword, use mapping table above
 4. If path, verify directory exists, detect type
@@ -272,48 +269,48 @@ Display results in structured format:
 
 | Project | Line % | Branch % | Mutation % | Status |
 |---------|-------:|---------:|-----------:|--------|
-| Era.Core | 72.3% | 58.1% | - | MODERATE |
-| engine | 45.2% | 33.0% | - | LOW |
+| ErbParser | 88.0% | 81.2% | - | GOOD |
+| KojoComparer | 75.3% | 62.1% | - | MODERATE |
 | dashboard/backend | 81.5% | 74.2% | 68.3% | GOOD |
 | dashboard/frontend | 55.0% | 42.1% | - | LOW |
-| ErbParser | 88.0% | 81.2% | - | GOOD |
+| ErbToYaml | 60.2% | 48.0% | - | MODERATE |
 
 ═══ Quality Metrics ═══
 
 | Project | Assert Density | Dead Tests | T:C Ratio | Slow (>1s) | Assertionless | Status |
 |---------|---------------:|-----------:|----------:|-----------:|--------------:|--------|
-| Era.Core | 2.4 | 0 (0.0%) | 1.2 | 1 | 0 | GOOD |
-| engine | 1.1 | 3 (4.2%) | 0.4 | 5 | 2 | LOW |
+| ErbParser | 2.0 | 0 (0.0%) | 1.5 | 0 | 0 | GOOD |
+| KojoComparer | 2.4 | 0 (0.0%) | 1.2 | 1 | 0 | GOOD |
 | dashboard/backend | 3.1 | 0 (0.0%) | 0.8 | 0 | 0 | GOOD |
 | dashboard/frontend | 1.8 | 1 (2.0%) | 0.6 | 0 | 1 | MODERATE |
-| ErbParser | 2.0 | 0 (0.0%) | 1.5 | 0 | 0 | GOOD |
+| ErbToYaml | 1.1 | 2 (3.5%) | 0.4 | 3 | 1 | LOW |
 
 ═══ Low Coverage Files (< 60%) ═══
 
 | File | Line % | Branch % |
 |------|-------:|---------:|
-| src/Era.Core/Commands/Foo.cs | 23.1% | 10.0% |
-| engine/Sub/Bar.cs | 41.0% | 25.0% |
+| src/tools/dotnet/ErbToYaml/Converter.cs | 38.1% | 22.0% |
+| src/tools/dotnet/YamlValidator/SchemaLoader.cs | 51.0% | 35.0% |
 
 ═══ Assertionless Tests (false-positive risk) ═══
 
 | File:Line | Test Method | Framework |
 |-----------|-------------|-----------|
-| src/engine.Tests/FooTests.cs:42 | Should_Process_Input | xUnit |
-| src/engine.Tests/BarTests.cs:88 | Constructor_Works | xUnit |
+| src/tools/dotnet/ErbToYaml.Tests/ConverterTests.cs:42 | Should_Process_Input | xUnit |
+| src/tools/dotnet/KojoComparer.Tests/DiffTests.cs:88 | Constructor_Works | xUnit |
 
 ═══ Dead Tests (skipped/disabled) ═══
 
 | File:Line | Test Method | Reason |
 |-----------|-------------|--------|
-| src/engine.Tests/OldTests.cs:15 | Legacy_Format_Parse | Skip="Pending migration" |
-| src/engine.Tests/OldTests.cs:30 | Legacy_Encoding | Skip="Pending migration" |
+| src/tools/dotnet/ErbToYaml.Tests/LegacyTests.cs:15 | Legacy_Format_Parse | Skip="Pending migration" |
+| src/tools/dotnet/ErbToYaml.Tests/LegacyTests.cs:30 | Legacy_Encoding | Skip="Pending migration" |
 
 ═══ Slow Tests (> 1000ms) ═══
 
 | File | Test Method | Duration |
 |------|-------------|----------|
-| src/Era.Core.Tests/IntegrationTests.cs:55 | FullPipeline_Renders | 2340ms |
+| src/tools/dotnet/KojoComparer.Tests/IntegrationTests.cs:55 | FullPipeline_Compares | 2340ms |
 
 ═══ Flaky Tests (if --flaky) ═══
 
@@ -452,9 +449,9 @@ Run tests after fixing: dotnet test {test_project.csproj}
 Dead tests are **not auto-deleted**. Instead, report recommendations:
 
 ```
-[DEAD] src/engine.Tests/OldTests.cs:15 → Skip="Pending migration" (since 2025-11-20)
+[DEAD] src/tools/dotnet/ErbToYaml.Tests/LegacyTests.cs:15 → Skip="Pending migration" (since 2025-11-20)
   Recommendation: Remove or re-enable. Skipped > 90 days.
-[DEAD] src/engine.Tests/OldTests.cs:30 → Skip="Pending migration" (since 2025-11-20)
+[DEAD] src/tools/dotnet/ErbToYaml.Tests/LegacyTests.cs:30 → Skip="Pending migration" (since 2025-11-20)
   Recommendation: Remove or re-enable. Skipped > 90 days.
 ```
 
@@ -474,18 +471,18 @@ After all phases complete, print final summary:
 ═══ Auto-Fix Results ═══
 
 ── Coverage ──
-[FIX] src/Era.Core/Foo.cs → 23.1% → 67.2% (+44.1%)
-[FIX] engine/Bar.cs → 41.0% → 72.0% (+31.0%)
+[FIX] src/tools/dotnet/ErbToYaml/Converter.cs → 38.1% → 67.2% (+29.1%)
+[FIX] src/tools/dotnet/YamlValidator/SchemaLoader.cs → 51.0% → 72.0% (+21.0%)
 [SKIP] src/tools/dotnet/_archived/Baz.cs (archived)
-[FAIL] src/Era.Core/Qux.cs (test compilation error)
+[FAIL] src/tools/dotnet/ErbToYaml/Legacy.cs (test compilation error)
 
 ── Assertionless ──
-[FIX] src/engine.Tests/FooTests.cs:42 → Added 2 assertions
-[FIX] src/engine.Tests/BarTests.cs:88 → Added 1 assertion
+[FIX] src/tools/dotnet/ErbToYaml.Tests/ConverterTests.cs:42 → Added 2 assertions
+[FIX] src/tools/dotnet/KojoComparer.Tests/DiffTests.cs:88 → Added 1 assertion
 
 ── Dead Tests ──
-[DEAD] src/engine.Tests/OldTests.cs:15 → Remove or re-enable (skipped > 90 days)
-[DEAD] src/engine.Tests/OldTests.cs:30 → Remove or re-enable (skipped > 90 days)
+[DEAD] src/tools/dotnet/ErbToYaml.Tests/LegacyTests.cs:15 → Remove or re-enable (skipped > 90 days)
+[DEAD] src/tools/dotnet/ErbToYaml.Tests/LegacyTests.cs:30 → Remove or re-enable (skipped > 90 days)
 
 ── Flaky ──
 (not detected / not run)

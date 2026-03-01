@@ -26,7 +26,7 @@ CLAUDE.md
 ├── .claude/skills/*/SKILL.md (Skills table)
 ├── pm/index-features.md (Key Documents table)
 ├── pm/reference/*.md (Key Documents table)
-└── tools/*/README.md (Project Structure)
+└── src/tools/*/README.md (Project Structure)
 ```
 
 ### A1.1 Reachability Check
@@ -70,7 +70,8 @@ For each feature marked `[DONE]`:
 
 ## B3. Interface Documentation
 
-Check `engine/Assets/Scripts/Emuera/Sub/I*.cs` files:
+Check interface files in the engine repo (`$ENGINE_PATH` / `C:\Era\engine`):
+- Path: `Assets/Scripts/Emuera/Sub/I*.cs`
 - List all interface files found
 - Verify each is documented in `docs/reference/engine-reference.md`
 - Report undocumented interfaces
@@ -127,14 +128,14 @@ Check `.claude/skills/testing/*.md` files:
 - Check `test/**/*.json` exist and are valid JSON
 - Directories: `ac/`
 - Check for orphaned scenarios (reference deleted functions)
-- Ignore `archive/` and `output/` directories
+- Ignore `_archived/` and `output/` directories
 
 ---
 
 ## B7. Tool Documentation
 
 ### 7.1 Tool Directory Inventory
-- Scan all subdirectories under `tools/` (excluding `_archived/`, `tests/`, `*Tests/`)
+- Scan all subdirectories under `src/tools/` (excluding `_archived/`, `tests/`, `*Tests/`)
 - For each tool directory, check if `README.md` exists
 - Cross-check against CLAUDE.md Project Structure section: every tool listed there must have a directory, and every directory should be listed
 - Report missing README as `[WARN]`, unregistered directory as `[ORPHAN]`
@@ -212,7 +213,7 @@ Check `.claude/commands/*.md` files:
 Check `.githooks/` files:
 
 ### 8b.1 Hook Existence
-- Verify expected hooks exist: `pre-commit`, `post-build-shortcut.ps1`
+- Verify expected hooks exist: `pre-commit`, `schema-sync-check`
 - Report missing expected hooks
 
 ### 8b.2 Hook Executability
@@ -232,7 +233,7 @@ Check `.githooks/` files:
 ## B9. CSV/Kojo Consistency
 
 ### 9.1 Talent.csv vs kojo-reference.md
-- TALENT numbers in kojo-reference.md match Game/data/Talent.yaml definitions
+- TALENT numbers in kojo-reference.md match Talent data definitions in the game repo (`$GAME_PATH` / `C:\Era\game`)
 - Lover/Admiration/Affection branch numbers match
 
 ---
@@ -249,9 +250,9 @@ Check `docs/architecture/` files:
 - Count DRAFT designs older than 60 days
 - Suggest archive or deletion
 
-### 10.3 designs/README.md Sync
-- Verify README.md lists all design files
-- Report orphan designs not in README
+### 10.3 Architecture README Sync
+- Verify `docs/architecture/README.md` lists all design subdirectories and key files
+- Report orphan design files not referenced from README
 
 ---
 
@@ -274,12 +275,12 @@ Check `pm/templates/KOJO_KX.ERB` against actual kojo files:
 Track test file changes:
 
 ### 12.1 Test File Count
-- Count files in `tests/ac/`
+- Count files in `test/ac/`
 - Compare with previous audit (if available in `_out/tmp/audit-last.json`)
 - Report delta: `+N new tests` or `-N removed tests`
 
 ### 12.2 Feature Coverage
-- List Features with AC tests in `tests/ac/kojo/feature-*/`
+- List Features with AC tests in `test/ac/kojo/feature-*/`
 - Identify recent DONE features without AC test directories
 
 ---
@@ -290,7 +291,7 @@ Cross-check `Skill(kojo-writing)` COM → File Placement and `content-roadmap.md
 
 ### 13.1 Kojo Function Existence
 - For each COM in kojo-writing SKILL (COM → File Placement section):
-  - Check if `KOJO_MESSAGE_COM_K*_{COM}` functions exist in ERB files
+  - Check if `KOJO_MESSAGE_COM_K*_{COM}` functions exist in ERB files in the game repo (`$GAME_PATH` / `C:\Era\game`)
   - Report missing implementations by COM range
 
 ### 13.2 index-features.md Sync
@@ -414,20 +415,20 @@ Technical documents should be written in English. Documents requiring Japanese n
 - `docs/architecture/*.md` — Design documents
 - `docs/reference/engine-reference.md` — Engine technical reference
 - `pm/reference/feature-template.md` — Feature template
-- `tools/*/README.md` — Tool documentation
+- `src/tools/*/README.md` — Tool documentation
 - `CLAUDE.md` — Project instructions
 - `NOTICE.md` — License information
 
 **Japanese exempt** (skip):
-- `Game/ERB/` — Game scripts (in-game text)
-- `Game/CSV/` — Game data definitions
+- Game repo ERB files (`$GAME_PATH`) — Game scripts (in-game text)
+- Game repo CSV files (`$GAME_PATH`) — Game data definitions
 - `pm/content-roadmap.md` — Content planning (character/plot nuance)
 - `docs/reference/kojo-reference.md` — Character dialogue reference
 - `docs/reference/ntr-system-map.md` — NTR system (game-domain nuance)
 - `pm/features/feature-*.md` — Feature files (mixed: Japanese game content descriptions acceptable)
 - `pm/index-features.md` — Feature index (Japanese feature names acceptable)
 - `.claude/skills/kojo-writing/` — Kojo skill (Japanese examples expected)
-- `src/tools/node/feature-dashboard/HANDOFF.md` — Dashboard handoff (user-facing, mixed OK)
+- `C:\Era\dashboard\HANDOFF.md` — Dashboard handoff (user-facing, mixed OK)
 
 ### 19.2 Detection Method
 

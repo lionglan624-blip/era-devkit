@@ -60,16 +60,14 @@ test/
   scripts/            # Test runner scripts
 docs/
   architecture/       # systems/, migration/, infrastructure/, analysis/
-  game/               # Game docs (COM-YAML-Guide etc.)
+  game/               # Game docs
   reference/          # Generic references
   tools/              # Tool docs (lsp-daemon.md)
   strategy/           # Test strategy
-  legacy/             # Archived docs
 pm/
   features/           # feature-{ID}.md (275+ files)
   reference/          # feature-template, ac-matcher-mapping
   audit/              # Audit reports
-  archive/            # Archived features, investigations
   templates/          # Content creation templates
   provenance/         # Original source attribution
   index-features.md
@@ -247,11 +245,13 @@ See `.claude/reference/email-notification.md` (user-requested task completion em
 
 ## File Placement
 
-| Target | Location |
-|--------|----------|
-| Temporary files | `_out/tmp/` (Git Bash: `/dev/null`, NOT `NUL`) |
-| Debug logs | `_out/logs/debug/` (gitignored) |
-| CI logs | `_out/logs/ci/` (pre-commit, 30-day rotation) |
+| Target | Location | Lifecycle |
+|--------|----------|-----------|
+| Temporary files | `_out/tmp/` (Git Bash: `/dev/null`, NOT `NUL`) | 7-day rotation (pre-commit) |
+| Test results | `_out/test-results/` (use `--results-directory`) | 7-day rotation (pre-commit) |
+| Debug logs | `_out/logs/debug/` (gitignored) | manual |
+| CI logs | `_out/logs/ci/` (pre-commit, 30-day rotation) | 30-day rotation (pre-commit) |
+| AC logs | `_out/logs/prod/ac/` | per-feature (finalizer deletes on [DONE]) |
 
 ## LSP Daemon (C# Semantic Operations)
 
@@ -340,22 +340,22 @@ The dialogue system loads character speech (COM) from YAML files through a cache
 dotnet build devkit.sln
 
 # Run all tool tests (requires GAME_PATH for integration tests)
-GAME_PATH=/mnt/c/Era/game dotnet test devkit.sln --blame-hang-timeout 10s
+GAME_PATH=/mnt/c/Era/game dotnet test devkit.sln --blame-hang-timeout 10s --results-directory _out/test-results
 
 # Run a specific tool's tests
-dotnet test src/tools/dotnet/KojoComparer.Tests/ --blame-hang-timeout 10s
+dotnet test src/tools/dotnet/KojoComparer.Tests/ --blame-hang-timeout 10s --results-directory _out/test-results
 
 # Run tests by class or method name
-dotnet test src/tools/dotnet/ErbParser.Tests/ --blame-hang-timeout 10s --filter "FullyQualifiedName~ErbParserTests"
+dotnet test src/tools/dotnet/ErbParser.Tests/ --blame-hang-timeout 10s --results-directory _out/test-results --filter "FullyQualifiedName~ErbParserTests"
 
 # Run tests by category trait (Unit, Integration, Schema)
-dotnet test src/tools/dotnet/KojoComparer.Tests/ --blame-hang-timeout 10s --filter "Category=Unit"
+dotnet test src/tools/dotnet/KojoComparer.Tests/ --blame-hang-timeout 10s --results-directory _out/test-results --filter "Category=Unit"
 
 # Code coverage
-GAME_PATH=/mnt/c/Era/game dotnet test devkit.sln --blame-hang-timeout 10s --collect:"XPlat Code Coverage"
+GAME_PATH=/mnt/c/Era/game dotnet test devkit.sln --blame-hang-timeout 10s --results-directory _out/test-results --collect:"XPlat Code Coverage"
 ```
 
-Note: All `dotnet` commands must be run via WSL (see WSL section above).
+Note: All `dotnet` commands must be run via WSL (see WSL section above). `--results-directory _out/test-results` prevents TestResults/ from accumulating in source dirs.
 
 ## Code Conventions
 

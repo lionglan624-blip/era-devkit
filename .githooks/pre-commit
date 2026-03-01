@@ -87,7 +87,7 @@ fi
 
 echo "[3/5] dotnet test devkit.sln..." | tee -a "$LOG_FILE"
 set +e
-wsl_dotnet test devkit.sln --nologo -v m --no-build --blame-hang-timeout 10s 2>&1 | tee -a "$LOG_FILE" "$TMP_OUTPUT"
+wsl_dotnet test devkit.sln --nologo -v m --no-build --blame-hang-timeout 10s --results-directory _out/test-results 2>&1 | tee -a "$LOG_FILE" "$TMP_OUTPUT"
 TEST_EXIT_CODE=${PIPESTATUS[0]}
 set -e
 TEST_OUTPUT=$(cat "$TMP_OUTPUT" 2>/dev/null)
@@ -95,6 +95,12 @@ rm -f "$TMP_OUTPUT"
 
 # Log rotation - delete ci-*.log files older than 30 days
 find _out/logs/ci -name "ci-*.log" -mtime +30 -delete 2>/dev/null || true
+
+# Temp file rotation - delete files in _out/tmp older than 7 days
+find _out/tmp -type f -mtime +7 -delete 2>/dev/null || true
+
+# Test results rotation - delete files in _out/test-results older than 7 days
+find _out/test-results -type f -mtime +7 -delete 2>/dev/null || true
 
 # Check dotnet test exit code first (test failures take precedence)
 if [ $TEST_EXIT_CODE -ne 0 ]; then

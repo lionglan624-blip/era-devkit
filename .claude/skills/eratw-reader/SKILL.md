@@ -136,6 +136,14 @@ When eratw-reader returns an error, the caller (Opus in /run workflow) must foll
 1. **STOP** → Report to user: "eraTW file not found. Please verify ERATW_PATH."
 2. **Do NOT proceed**: This is an environment configuration issue requiring user intervention
 
+## Cache Lifecycle
+
+Cache files in `pm/cache/` are **transient workflow artifacts**:
+- Created by eratw-reader during `/run` workflow
+- Consumed by kojo-writer in the same session
+- Cleaned up by finalizer on `[DONE]` transition (via `_out/tmp/` rotation)
+- Safe to delete at any time — regenerated on next `/run`
+
 ## Decision Criteria
 
 - NEVER use Bash for file read/write (use Read/Write tools instead)

@@ -106,6 +106,10 @@ Remove feature-scoped AC logs on [DONE] transition (log cleanup):
 rm -rf _out/logs/prod/ac/*/feature-{ID}
 # Remove feature-scoped engine TRX files (root-level)
 rm -f _out/logs/prod/ac/engine/feature-{ID}*.trx
+# Remove workflow intermediate files
+rm -f _out/tmp/feature-{ID}-*.json
+rm -f _out/tmp/feature-{ID}-*.log
+rm -f _out/tmp/fl-{ID}-*.md
 ```
 
 **Note**: `{ID}` must be expanded to the actual feature ID at runtime. These are agent instructions — the implementing agent substitutes the real feature number.

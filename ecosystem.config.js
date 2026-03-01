@@ -10,8 +10,8 @@ module.exports = {
       kill_timeout: 5000,
       treekill: true,
       watch: false,
-      error_file: "_out/tmp/lsp-daemon-error.log",
-      out_file: "_out/tmp/lsp-daemon-out.log",
+      error_file: "_out/logs/lsp-daemon-error.log",
+      out_file: "_out/logs/lsp-daemon-out.log",
       merge_logs: true,
       env: {
         NO_PROXY: "127.0.0.1,localhost",

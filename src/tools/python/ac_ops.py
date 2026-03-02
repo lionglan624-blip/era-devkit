@@ -25,6 +25,7 @@ VALID_MATCHERS = frozenset({
     "succeeds", "fails", "gt", "gte", "lt", "lte",
     "count_equals", "exists", "not_exists",
 })
+THRESHOLD_MATCHERS = frozenset({"gte", "gt", "lt", "lte", "count_equals"})
 
 _MATCHER_FIX_MAP = {
     "count_gte": "gte",
@@ -815,7 +816,7 @@ _CHECK_ID_PATTERNS: dict[str, list[str]] = {
     "N9": ["Goal Coverage row has no AC# reference"],
     "N10": ["50 hard limit"],
     "N11": ["30 soft limit"],
-    "N12": ["gte' matcher but AC Details lacks derivation"],
+    "N12": ["matcher but AC Details lacks derivation"],
 }
 
 
@@ -867,11 +868,12 @@ def ac_check(fid: str, fix: bool = False, dry_run: bool = False,
         if ref.section_type == SectionType.AC_DETAILS:
             details_numbers.add(ref.ac_number)
 
-    in_table_not_details = defined_numbers - details_numbers
+    threshold_ac_numbers = {row.number for row in ac_rows if row.matcher in THRESHOLD_MATCHERS}
+    in_table_not_details = threshold_ac_numbers - details_numbers
     in_details_not_table = details_numbers - defined_numbers
 
     for num in sorted(in_table_not_details):
-        issues.append(f"AC#{num}: In Definition Table but no AC Details block found.")
+        issues.append(f"AC#{num}: Uses threshold matcher but no AC Details block found (Derivation required).")
     for num in sorted(in_details_not_table):
         issues.append(f"AC#{num}: In AC Details but not in Definition Table.")
 
@@ -1028,9 +1030,9 @@ def ac_check(fid: str, fix: bool = False, dry_run: bool = False,
         elif actual_count > 30:
             issues.append(f"AC count is {actual_count} (> 30 soft limit). Consider splitting.")
 
-    # N12. gte matcher without derivation in AC Details
-    gte_ac_numbers = {row.number for row in ac_rows if row.matcher == "gte"}
-    if gte_ac_numbers:
+    # N12. Threshold matcher without derivation in AC Details
+    threshold_ac_numbers = {row.number for row in ac_rows if row.matcher in THRESHOLD_MATCHERS}
+    if threshold_ac_numbers:
         # Scan AC Details for derivation notes
         details_re = re.compile(r'^\*\*AC#(\d+):')
         derivation_keywords = re.compile(
@@ -1053,14 +1055,15 @@ def ac_check(fid: str, fix: bool = False, dry_run: bool = False,
             if m:
                 current_ac_detail = int(m.group(1))
                 continue
-            if current_ac_detail in gte_ac_numbers:
+            if current_ac_detail in threshold_ac_numbers:
                 if (derivation_keywords.search(stripped)
                         or count_gte_pattern.search(stripped)
                         or explicit_derivation.match(stripped)):
                     has_derivation.add(current_ac_detail)
-        missing_derivation = gte_ac_numbers - has_derivation
+        missing_derivation = threshold_ac_numbers - has_derivation
         for num in sorted(missing_derivation):
-            issues.append(f"AC#{num}: Uses 'gte' matcher but AC Details lacks derivation.")
+            matcher_name = next(row.matcher for row in ac_rows if row.number == num)
+            issues.append(f"AC#{num}: Uses '{matcher_name}' matcher but AC Details lacks derivation.")
 
     # Filter skipped checks
     if skip:

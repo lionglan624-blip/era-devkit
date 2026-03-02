@@ -121,12 +121,42 @@ def test_ac_check_missing_details(feature_file, capsys):
     # Find the AC#2 table row and insert AC#3 after it
     for i, line in enumerate(lines):
         if "| 2 | Second AC" in line:
-            lines.insert(i + 1, "| 3 | Third AC | file | Glob(z) | exists | - | [ ] |")
+            lines.insert(i + 1, "| 3 | Third AC | code | Grep(z) | gte | 5 | [ ] |")
             break
     content = "\n".join(lines)
     feature_file("999", content)
     issues = ac_check("999")
-    assert any("AC#3" in i and "Details" in i for i in issues)
+    assert any("AC#3" in i and "threshold matcher" in i for i in issues)
+
+
+def test_nonthreshold_no_details_ok(feature_file, capsys):
+    """Non-threshold matchers (matches/exists) need no AC Details block."""
+    lines = MINIMAL_FEATURE.split("\n")
+    # Add AC#3 with non-threshold matcher but no Details block
+    for i, line in enumerate(lines):
+        if "| 2 | Second AC" in line:
+            lines.insert(i + 1, "| 3 | Third AC | file | Glob(z) | exists | - | [ ] |")
+            break
+    # Add AC#3 to Goal Coverage
+    for i, line in enumerate(lines):
+        if "| 1 | AC#1, AC#2 |" in line:
+            lines[i] = "| 1 | AC#1, AC#2, AC#3 |"
+            break
+    # Add to Tasks
+    for i, line in enumerate(lines):
+        if "| 1 | 1, 2 | Do stuff" in line:
+            lines[i] = "| 1 | 1, 2, 3 | Do stuff | | [ ] |"
+            break
+    # Update counts
+    content = "\n".join(lines).replace("All 2 ACs", "All 3 ACs")
+    # Add AC#3 to Tech Design
+    content = content.replace("| 2 | do thing 2 |", "| 2 | do thing 2 |\n| 3 | do thing 3 |")
+    # Add AC#3 to Success Criteria
+    content = content.replace("AC#1-2", "AC#1-3")
+    feature_file("999", content)
+    issues = ac_check("999")
+    # AC#3 uses exists (non-threshold) → no missing-details error
+    assert not any("AC#3" in i and "threshold" in i.lower() for i in issues)
 
 
 def test_ac_check_count_mismatch(feature_file, capsys):
@@ -519,6 +549,19 @@ def test_n12_derivation_explicit_rationale(feature_file, capsys):
     feature_file("999", FEATURE_GTE_EXPLICIT_RATIONALE)
     issues = ac_check("999")
     assert not any("derivation" in i.lower() for i in issues)
+
+
+FEATURE_GT_NO_DERIVATION = FEATURE_GTE_NO_DERIVATION.replace(
+    "| gte | 5 |",
+    "| gt | 5 |"
+)
+
+
+def test_n12_gt_no_derivation(feature_file, capsys):
+    """N12: gt matcher without derivation in AC Details triggers error."""
+    feature_file("999", FEATURE_GT_NO_DERIVATION)
+    issues = ac_check("999")
+    assert any("gt'" in i and "derivation" in i.lower() for i in issues)
 
 
 # --- --fix mode tests ---

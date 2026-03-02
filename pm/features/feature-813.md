@@ -63,6 +63,8 @@ N+4 --unit deprecation: NOT_FEASIBLE — trigger condition: C# migration functio
 4. **KOJO 3-param overload verification**: F806 uses 2-param KojoMessageWcCounter for all 28 TRYCALLFORM patterns. Verify no pattern requires a 3rd parameter.
 5. **WcCounterMessageSex responsibility review (16 deps)**: Evaluate if handler groups should be split into separate classes.
 6. **WcCounterMessageSex duplicate constant names**: TalentVirginity2/TalentGender2 duplicate TalentVirginity/TalentGender; consolidation needed.
+7. **Dispatch() dual offender convention unification**: SEX handlers (F806) use explicit `CharacterId offender` parameter; ITEM/NTR (F808) and TEASE (F807) use implicit `_engine.GetTarget()`. Dual convention persists in WcCounterMessage.Dispatch(). Unify to one pattern.
+8. **NOITEM photography bug (ERB原文バグ)**: TOILET_COUNTER_MESSAGE_SEX.ERB line 411 uses `NOITEM != 0 &&` instead of `NOITEM != 0 ||`. Photography scene is dead code in normal gameplay (NOITEM==0). C# migration at WcCounterMessageSex.cs:1922 faithfully preserved bug. Fix requires changing guard clause logic.
 
 **F808 Mandatory Handoffs** (DEFERRED from F808 → F813):
 1. **WcCounterMessageNtr責務分割**: ERBファイル `TOILET_COUNTER_MESSAGE_NTR.ERB` は「ペッティングとNTR関連」の寄せ集めだった。6メソッド中4つがNTR無関係（RotorOut=デバイス操作、OshikkoLooking=観察、WithFirstSex/WithPetting=性行為）。9依存コンストラクタはNTR管理クラスタ(2メソッド)のみが`_kojoMessage`,`_counterUtilities`,`_ntrUtility`を使用し、残り4メソッドは3-5依存で済む。分割推奨: IWcCounterMessageNtrObservation + IWcCounterMessageNtrRevelation。

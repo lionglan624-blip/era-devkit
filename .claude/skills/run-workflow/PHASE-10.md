@@ -120,11 +120,11 @@ Phase 10.0 Handoff Completeness Gate verified their existence.
 
 **Always dispatch finalizer** (both normal and blocked paths):
 
-**CRITICAL**: Use Task() with explicit `model: "haiku"`, NOT Skill(). Skill frontmatter cannot enforce model (Claude Code Issue #14882/#17283). Without explicit model override, finalizer inherits session model (opus), wasting ~85K opus tokens on mechanical status updates.
+**CRITICAL**: Use Task() with explicit `model: "sonnet"`, NOT Skill(). Skill frontmatter cannot enforce model (Claude Code Issue #14882/#17283). Without explicit model override, finalizer inherits session model (opus), wasting ~85K opus tokens on mechanical status updates.
 
 ```
 Task(subagent_type: "general-purpose",
-     model: "haiku",
+     model: "sonnet",
      prompt: "Read .claude/skills/finalizer/SKILL.md and execute for Feature {ID}.
               OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON is a protocol violation.")
 ```
@@ -170,7 +170,7 @@ EOF
 |------|--------|--------|
 | engine | Execute | C# code changes |
 | infra | Execute | C#/Python changes がある場合 |
-| erb | **Skip** | ERBはpath_filtersで除外済み |
+| erb | Execute | C#移行コードをcore repoで生成。対象repoでCodeRabbit実行 |
 | kojo | **Skip** | ERBはpath_filtersで除外済み |
 | research | **Skip** | DRAFTドキュメント作成のみ、コード変更なし |
 
@@ -184,6 +184,9 @@ EOF
 
    > **⚠️ `2>&1` 必須**: CodeRabbit CLIはstdout出力だが、Bash tool経由で出力が空になるケースが確認されている。
    > `2>&1` を付与してstderr/stdoutを統合すること。exit 0 で出力が空の場合は異常 — 再実行して確認すること。
+
+   > **⚠️ ブランチ名スラッシュ禁止**: CodeRabbit CLIはブランチ名の `/` を除去して `git rev-parse` に渡すため、`refactor/xxx` のようなブランチで失敗する。
+   > パラレポでCodeRabbit実行時はブランチ名にスラッシュがないことを確認すること。
 
 2. 結果の判定：
 

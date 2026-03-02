@@ -235,6 +235,16 @@ FOR each row:
 
 **No user confirmation needed. Execute immediately after decision.**
 
+**Handoff Destination Status Gate (MANDATORY)**:
+```
+FOR each destination Feature (Action A or B):
+  status = Read feature-{dest_id}.md Status
+  IF status != [DRAFT]:
+    REJECT: "F{dest_id} is {status}, not [DRAFT]. Handoff destinations must be [DRAFT] to ensure the handoff is incorporated into the feature's design phase."
+    → Create new [DRAFT] feature instead (Action A)
+```
+Rationale: Features in [PROPOSED]/[WIP]/[DONE] have already passed their design phase and cannot reliably incorporate new requirements. F806→F807 lesson: F807 was [WIP] when handoffs were created, resulting in handoffs being acknowledged but not executed.
+
 Verify all destinations are valid before proceeding to 9.4.1.
 
 ### 9.4.1: Transfer Execution (F805 Lesson)

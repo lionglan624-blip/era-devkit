@@ -13,8 +13,10 @@ export default function ExecutionPanel({
   onCloseTab,
   onCloseFinishedTabs,
   onResumeTerminal,
+  onAnswer,
 }) {
   const [copyFeedback, setCopyFeedback] = useState(null);
+  const [answerPending, setAnswerPending] = useState(false);
 
   const handleCopyResumeCommand = (sessionId) => {
     if (!sessionId) return;
@@ -55,7 +57,7 @@ export default function ExecutionPanel({
     const state = executionStates.get(eid) || {};
 
     // Priority: input > stalled > status
-    if (inputRequests.has(eid)) return '◐';
+    if (inputRequests.has(eid) || state.waitingForInput) return '◐';
     if (state.taskDepth > 0) return '⧖';
     if (state.isStalled) return '⏸';
 
@@ -72,7 +74,10 @@ export default function ExecutionPanel({
 
     // Priority: input > stalled > handed-off > status
     if (inputRequest) {
-      return { icon: '◐', text: 'Waiting for input' };
+      return { icon: '◐', text: 'Choose an option' };
+    }
+    if (state.waitingForInput) {
+      return { icon: '◐', text: state.waitingInputPattern || 'Waiting for input' };
     }
     if (state.taskDepth > 0) {
       return { icon: '⧖', text: `Subagent running (depth=${state.taskDepth})` };
@@ -181,16 +186,45 @@ export default function ExecutionPanel({
         </div>
       </div>
 
-      {execState.waitingForInput && (
+      {execState.waitingForInput && !inputRequest && (
         <div className="terminal-input-panel">
-          <div className="panel-header">Terminal Input Required</div>
-          <div className="input-pattern">{execState.waitingInputPattern}</div>
+          <div className="panel-header">{execState.waitingInputPattern || 'Input Required'}</div>
+          <div className="input-actions">
+            <button
+              className="btn-answer btn-answer-y"
+              disabled={answerPending}
+              onClick={() => {
+                setAnswerPending(true);
+                onAnswer?.(execId, 'y');
+              }}
+            >
+              Yes
+            </button>
+            <button
+              className="btn-answer btn-answer-n"
+              disabled={answerPending}
+              onClick={() => {
+                setAnswerPending(true);
+                onAnswer?.(execId, 'n');
+              }}
+            >
+              No
+            </button>
+            <button
+              className="btn-answer-terminal"
+              disabled={answerPending}
+              onClick={() => onResumeTerminal?.(execId)}
+              title="Open in Terminal instead"
+            >
+              Terminal
+            </button>
+          </div>
         </div>
       )}
 
       {inputRequest && (
         <div className="input-request-panel">
-          <div className="panel-header">AskUserQuestion detected (handed off to Terminal):</div>
+          <div className="panel-header">Input Required</div>
           {inputRequest.context && <div className="request-context">{inputRequest.context}</div>}
           {inputRequest.questions?.map((q, i) => (
             <div key={i} className="question-block">
@@ -199,15 +233,33 @@ export default function ExecutionPanel({
               {q.options && (
                 <div className="question-options">
                   {q.options.map((opt, j) => (
-                    <div key={j} className="option">
+                    <button
+                      key={j}
+                      className="btn-answer-option"
+                      disabled={answerPending}
+                      onClick={() => {
+                        setAnswerPending(true);
+                        onAnswer?.(execId, opt.label);
+                      }}
+                    >
                       <span className="option-label">{opt.label}</span>
                       {opt.description && <span className="option-desc">{opt.description}</span>}
-                    </div>
+                    </button>
                   ))}
                 </div>
               )}
             </div>
           ))}
+          <div className="input-actions">
+            <button
+              className="btn-answer-terminal"
+              disabled={answerPending}
+              onClick={() => onResumeTerminal?.(execId)}
+              title="Open in Terminal instead"
+            >
+              Terminal
+            </button>
+          </div>
         </div>
       )}
 

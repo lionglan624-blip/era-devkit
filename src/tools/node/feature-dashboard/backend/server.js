@@ -127,11 +127,13 @@ function triggerAutoDR() {
     });
     // Persist DR success to shell states so green button survives restart
     claudeService._setShellState('dr', true);
-    // Small delay to let WS message reach clients
+    // Delegate to VBScript which launches cmd.exe in a NEW process group.
+    // Cannot use pm2 restart (starts new before old dies → EADDRINUSE on Windows).
+    // Cannot spawn detached (pm2 ForkMode detached:false patch → same process group).
+    // WScript.Shell.Run with vbHide(0) + async(False) spawns independently.
     setTimeout(() => {
-      spawn('pm2', ['restart', 'dashboard-backend'], {
+      spawn('wscript', [path.join(__dirname, 'restart-backend.vbs')], {
         stdio: 'ignore',
-        shell: true,
         windowsHide: true,
       });
     }, 500);
@@ -307,15 +309,21 @@ function cleanupPort(port) {
   return killed;
 }
 
-// Layer 3: EADDRINUSE handler — retry with increasing delay after cleanup
-let eaddrinuseRetries = 0;
-const MAX_EADDRINUSE_RETRIES = 3;
+// EADDRINUSE handler — poll until port is free, cleanup after 10s, never exit
+// pm2 restart starts new process while old is still dying (kill_timeout: 3s).
+// On Windows, port release lags process death. We wait patiently instead of crashing.
+let eaddrinuseStart = 0;
 server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE' && eaddrinuseRetries < MAX_EADDRINUSE_RETRIES) {
-    eaddrinuseRetries++;
-    const delay = eaddrinuseRetries * 1000; // 1s, 2s, 3s
-    serverLog.error(`Port ${PORT} already in use (attempt ${eaddrinuseRetries}/${MAX_EADDRINUSE_RETRIES}), retrying in ${delay}ms...`);
-    cleanupPort(PORT);
+  if (err.code === 'EADDRINUSE') {
+    if (!eaddrinuseStart) eaddrinuseStart = Date.now();
+    const elapsed = Date.now() - eaddrinuseStart;
+    if (elapsed > 10000) {
+      // After 10s, force-kill whatever holds the port
+      serverLog.warn(`Port ${PORT} still in use after ${Math.round(elapsed / 1000)}s, forcing cleanup...`);
+      cleanupPort(PORT);
+    }
+    const delay = Math.min(2000, 500 + elapsed / 5); // 500ms → 2s adaptive
+    serverLog.info(`Port ${PORT} in use, retrying in ${Math.round(delay)}ms (${Math.round(elapsed / 1000)}s elapsed)...`);
     setTimeout(() => server.listen(PORT), delay);
   } else {
     serverLog.error(`Server error: ${err.message}`);
@@ -323,24 +331,18 @@ server.on('error', (err) => {
   }
 });
 
-// Start — kill stale processes, wait for port release, then listen
-const killed = cleanupPort(PORT);
-const startDelay = killed > 0 ? 1500 : 0; // Wait for Windows socket cleanup
-if (startDelay > 0) {
-  serverLog.info(`[Port Cleanup] Killed ${killed} stale process(es), waiting ${startDelay}ms for port release...`);
-}
-setTimeout(() => server.listen(PORT, () => {
+// Start — listen immediately, EADDRINUSE handler polls until port is free
+const onListening = () => {
   serverLog.info(`Backend running on http://localhost:${PORT}`);
   serverLog.info(`WebSocket on ws://localhost:${PORT}/ws`);
   fileWatcher.start();
-  // Background rate limit capture on startup + periodic polling
   rateLimitService.capture({ forceRefresh: true }).catch(() => {});
   setInterval(() => rateLimitService.capture().catch(() => {}), RATE_LIMIT_POLL_INTERVAL_MS);
   statusMailService.start();
   cleanupService.start();
-  // Weekly insights report (email)
   insightsService.startScheduler();
-}), startDelay);
+};
+server.listen(PORT, onListening);
 
 // Error handling
 process.on('uncaughtException', (err) => {

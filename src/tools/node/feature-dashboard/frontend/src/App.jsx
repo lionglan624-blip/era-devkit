@@ -297,8 +297,8 @@ export default function App() {
         dispatch({ type: 'WS_INPUT_WAIT', msg });
         addNotification({
           type: 'attention',
-          title: 'Terminal Input Required',
-          message: `Detected: ${msg.pattern}. Continue in Terminal.`,
+          title: 'Input Required',
+          message: `${msg.pattern} — answer in panel`,
           executionId: msg.executionId,
           persistent: true,
         });
@@ -632,6 +632,33 @@ export default function App() {
     [addNotification],
   );
 
+  const handleAnswer = useCallback(
+    async (executionId, answer) => {
+      try {
+        const res = await fetch(`/api/execution/${executionId}/answer`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ answer }),
+        });
+        if (!res.ok) {
+          const err = await res.json();
+          addNotification({ type: 'warning', title: 'Answer Failed', message: err.error });
+        } else {
+          const data = await res.json();
+          // Clear input state for old execution
+          dispatch({ type: 'CLEAR_INPUT', executionId });
+          // Select the new execution tab
+          if (data.executionId) {
+            setActiveExecutionId(data.executionId);
+          }
+        }
+      } catch (err) {
+        addNotification({ type: 'warning', title: 'Answer Error', message: err.message });
+      }
+    },
+    [dispatch, addNotification],
+  );
+
   const handleResumeTerminal = useCallback(
     async (executionId) => {
       try {
@@ -726,6 +753,11 @@ export default function App() {
 
   const handleCloseTab = useCallback(
     (executionId) => {
+      // Kill running session before closing tab
+      const exec = executionsRef.current.get(executionId);
+      if (exec && exec.status === 'running') {
+        killExecution(executionId);
+      }
       unsubscribe(executionId);
       dispatch({ type: 'CLOSE_TAB', executionId });
       // If this was the last tab, close panel synchronously (don't wait for useEffect)
@@ -736,7 +768,7 @@ export default function App() {
         setShowExecutionPanel(false);
       }
     },
-    [unsubscribe, dispatch],
+    [unsubscribe, dispatch, killExecution],
   );
 
   const handleCloseFinishedTabs = useCallback(() => {
@@ -990,6 +1022,7 @@ export default function App() {
           onCloseTab={handleCloseTab}
           onCloseFinishedTabs={handleCloseFinishedTabs}
           onResumeTerminal={handleResumeTerminal}
+          onAnswer={handleAnswer}
         />
       )}
 

@@ -1,5 +1,9 @@
 import { claudeLog } from '../utils/logger.js';
-import { DEFAULT_CONTEXT_WINDOW, PENDING_HANDOFF_TIMEOUT_MS } from '../config.js';
+import {
+  DEFAULT_CONTEXT_WINDOW,
+  PENDING_HANDOFF_TIMEOUT_MS,
+  ASK_USER_HANDOFF_TIMEOUT_MS,
+} from '../config.js';
 import { INPUT_WAIT_PATTERNS } from './inputPatterns.js';
 import { detectPhase, detectIteration, getTotalPhases } from './phaseUtils.js';
 
@@ -262,7 +266,7 @@ export class StreamParser {
         execution.lastAssistantText = textContent.trim();
       }
 
-      // If AskUserQuestion found, store context, notify, and handoff to terminal
+      // If AskUserQuestion found, store context and notify (defer handoff for browser answer)
       if (askUserQuestion) {
         execution.inputRequired = {
           toolUseId: askUserQuestion.id,
@@ -272,8 +276,15 @@ export class StreamParser {
         this.broadcastState(execution);
         this.broadcastInputRequired(execution);
 
-        // Auto-handoff to terminal for user input
-        this.handoffToTerminal(execution, 'AskUserQuestion requires user input');
+        // Defer handoff — allow browser UI to answer first, terminal handoff as fallback timeout
+        // AskUserQuestion uses longer timeout (120s) since process blocks on stdin
+        const reason = 'AskUserQuestion requires user input';
+        execution.pendingHandoff = { reason, timestamp: Date.now() };
+        execution.pendingHandoffTimeout = setTimeout(() => {
+          if (execution.pendingHandoff && execution.status === 'running') {
+            this.handoffToTerminal(execution, execution.pendingHandoff.reason);
+          }
+        }, ASK_USER_HANDOFF_TIMEOUT_MS);
       }
     }
 
@@ -328,11 +339,17 @@ export class StreamParser {
       // to ensure stderr (rate limit detection) is fully drained first
       execution.resultExitCode = event.is_error ? 1 : 0;
       if (execution.pendingHandoff) {
-        // y/n detected earlier — result event confirms session is saved, now handoff
+        // Input detected earlier — result event confirms session is saved.
+        // Cancel handoff timeout — let process complete normally.
+        // Browser UI shows answer buttons; terminal handoff is user-initiated fallback.
         claudeLog.info(
-          `[ClaudeService] Result event received with pending handoff — session saved, proceeding with handoff`,
+          `[ClaudeService] Result event received with pending handoff — session saved, cancelling auto-handoff (browser-first)`,
         );
-        this.handoffToTerminal(execution, execution.pendingHandoff.reason);
+        if (execution.pendingHandoffTimeout) {
+          clearTimeout(execution.pendingHandoffTimeout);
+          execution.pendingHandoffTimeout = null;
+        }
+        execution.pendingHandoff = null;
       }
       // Do NOT call handleCompletion here — let process 'close' event drive it
       // This prevents a race where stdout result fires before stderr rate-limit detection

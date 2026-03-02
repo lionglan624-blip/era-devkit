@@ -203,6 +203,25 @@ export function createExecutionRouter(claudeService) {
     }
   });
 
+  // POST /api/execution/:id/answer - Answer input prompt in browser
+  router.post('/:id/answer', (req, res) => {
+    const { answer } = req.body;
+    if (!answer) {
+      return res.status(400).json({ error: 'answer is required' });
+    }
+    const sanitizedAnswer = sanitizeInput(answer, 1000);
+    try {
+      const result = claudeService.answerInBrowser(req.params.id, sanitizedAnswer);
+      if (result.error) {
+        return res.status(400).json(result);
+      }
+      res.json(result);
+    } catch (err) {
+      serverLog.error(`Error answering execution ${req.params.id}:`, err);
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   // POST /api/execution/:id/resume/terminal - Resume in terminal (interactive)
   router.post('/:id/resume/terminal', (req, res) => {
     try {

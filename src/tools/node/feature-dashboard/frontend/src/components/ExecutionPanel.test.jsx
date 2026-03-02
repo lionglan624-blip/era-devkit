@@ -465,18 +465,20 @@ describe('ExecutionPanel', () => {
   });
 
   describe('Terminal Input Panel', () => {
-    it('shows terminal input panel when waitingForTerminalInput', () => {
+    it('shows y/n buttons when waitingForTerminalInput', () => {
       const executions = new Map([
         ['exec-1', createExecution({ status: 'running', logs: [{ line: 'test' }] })],
       ]);
       const executionStates = new Map([
-        ['exec-1', { waitingForInput: true, waitingInputPattern: 'y/n' }],
+        ['exec-1', { waitingForInput: true, waitingInputPattern: 'y/n prompt' }],
       ]);
       const props = createPanelProps(executions, { executionStates });
       render(<ExecutionPanel {...props} />);
 
-      expect(screen.getByText('Terminal Input Required')).toBeInTheDocument();
-      expect(screen.getByText('y/n')).toBeInTheDocument();
+      expect(screen.getAllByText('y/n prompt').length).toBeGreaterThanOrEqual(1);
+      expect(screen.getByText('Yes')).toBeInTheDocument();
+      expect(screen.getByText('No')).toBeInTheDocument();
+      expect(screen.getByText('Terminal')).toBeInTheDocument();
     });
 
     it('does not show terminal input panel when not waiting for input', () => {
@@ -486,12 +488,13 @@ describe('ExecutionPanel', () => {
       const props = createPanelProps(executions);
       render(<ExecutionPanel {...props} />);
 
-      expect(screen.queryByText('Terminal Input Required')).not.toBeInTheDocument();
+      expect(screen.queryByText('Yes')).not.toBeInTheDocument();
+      expect(screen.queryByText('No')).not.toBeInTheDocument();
     });
   });
 
   describe('Input Request Panel', () => {
-    it('shows input request panel when inputRequest present', () => {
+    it('shows clickable option buttons when inputRequest present', () => {
       const executions = new Map([
         ['exec-1', createExecution({ status: 'running', logs: [{ line: 'test' }] })],
       ]);
@@ -516,13 +519,13 @@ describe('ExecutionPanel', () => {
       const props = createPanelProps(executions, { inputRequests });
       render(<ExecutionPanel {...props} />);
 
-      expect(
-        screen.getByText('AskUserQuestion detected (handed off to Terminal):'),
-      ).toBeInTheDocument();
+      expect(screen.getByText('Input Required')).toBeInTheDocument();
       expect(screen.getByText('Please answer the following question')).toBeInTheDocument();
       expect(screen.getByText('Choose one')).toBeInTheDocument();
+      // Options are now buttons
       expect(screen.getByText('A')).toBeInTheDocument();
       expect(screen.getByText('First option')).toBeInTheDocument();
+      expect(screen.getByText('Terminal')).toBeInTheDocument();
     });
 
     it('does not show input request panel when no inputRequest', () => {
@@ -532,9 +535,7 @@ describe('ExecutionPanel', () => {
       const props = createPanelProps(executions);
       render(<ExecutionPanel {...props} />);
 
-      expect(
-        screen.queryByText('AskUserQuestion detected (handed off to Terminal):'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByText('Input Required')).not.toBeInTheDocument();
     });
   });
 

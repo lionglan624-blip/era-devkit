@@ -1,8 +1,12 @@
 import { spawn, spawnSync, execSync } from 'child_process';
 import { mkdir } from 'fs/promises';
 import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'fs';
+import { fileURLToPath } from 'url';
 import crypto from 'crypto';
 import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 import net from 'net';
 import { claudeLog } from '../utils/logger.js';
 import {
@@ -935,10 +939,13 @@ export class ClaudeService {
 
     // Check if normal completion ended with a question → handoff to terminal directly
     // Must check before setting status to avoid completed→handed-off flicker on frontend
+    // Skip if execution was waiting for browser input (y/n or AskUserQuestion) — let browser handle it
     if (
       !error &&
       exitCode === 0 &&
       execution.sessionId &&
+      !execution.waitingForInput &&
+      !execution.inputRequired &&
       endsWithQuestion(execution.lastAssistantText)
     ) {
       claudeLog.info(`[ClaudeService] Completed with pending question - handing off to terminal`);
@@ -2072,6 +2079,94 @@ export class ClaudeService {
     );
   }
 
+  /**
+   * Answer a pending input prompt in browser mode (instead of terminal handoff).
+   * Cancels any pending handoff, kills current process, and resumes with user's answer.
+   * @param {string} executionId - Execution waiting for input
+   * @param {string} answer - User's answer (e.g., 'y', 'n', or selected option text)
+   * @returns {{ executionId: string, sessionId: string } | { error: string }}
+   */
+  answerInBrowser(executionId, answer) {
+    const execution = this.executions.get(executionId);
+    if (!execution) {
+      return { error: 'Execution not found' };
+    }
+    if (!execution.sessionId) {
+      return { error: 'No session ID available' };
+    }
+    // Allow answering if execution was waiting for input (even if process already completed)
+    if (!execution.waitingForInput && !execution.inputRequired) {
+      return { error: 'Execution is not waiting for input' };
+    }
+
+    claudeLog.info(
+      `[ClaudeService] Answering in browser: exec=${executionId}, status=${execution.status}, answer="${answer.substring(0, 100)}"`,
+    );
+
+    // Cancel pending handoff if still active
+    if (execution.pendingHandoffTimeout) {
+      clearTimeout(execution.pendingHandoffTimeout);
+      execution.pendingHandoffTimeout = null;
+    }
+    execution.pendingHandoff = null;
+
+    // Persist sessionId
+    this._saveSessionId(execution.id, execution.sessionId, execution.featureId, execution.command);
+
+    // Capture state from old execution for the new one
+    const sessionId = execution.sessionId;
+    const featureId = execution.featureId;
+    const command = execution.command;
+    const currentPhase = execution.currentPhase;
+    const currentPhaseName = execution.currentPhaseName;
+    const chain = execution.chain;
+
+    // Clear input state
+    execution.waitingForInput = false;
+    execution.waitingInputPattern = null;
+    execution.inputRequired = null;
+    execution.inputContext = null;
+
+    // Kill the current process if still running
+    if (execution.process && execution.status === 'running') {
+      this._killProcess(execution.process);
+    }
+    if (execution.stallCheckInterval) {
+      clearInterval(execution.stallCheckInterval);
+      execution.stallCheckInterval = null;
+    }
+
+    // Mark old execution as answered
+    if (execution.status !== 'completed' && execution.status !== 'failed') {
+      execution.status = 'completed';
+      execution.completedAt = new Date().toISOString();
+    }
+
+    const entry = {
+      line: `[Answer] User answered in browser: "${answer.substring(0, 100)}" — resuming session...`,
+      timestamp: new Date().toISOString(),
+      level: 'info',
+    };
+    this._pushLog(execution, entry);
+    this.logStreamer?.broadcast(execution.id, { type: 'log', executionId: execution.id, ...entry });
+    this._broadcastState(execution);
+
+    // Resume with the answer
+    const result = this._resumeInBrowserWithSession(sessionId, featureId, command, answer);
+
+    // Transfer chain state to new execution if applicable
+    if (chain && result.executionId) {
+      const newExec = this.executions.get(result.executionId);
+      if (newExec) {
+        newExec.chain = chain;
+        newExec.currentPhase = currentPhase;
+        newExec.currentPhaseName = currentPhaseName;
+      }
+    }
+
+    return result;
+  }
+
   /** Internal: spawn a resume session in browser mode */
   _resumeInBrowserWithSession(sessionId, featureId, command, prompt, oldExec = null) {
     const execution = this._createExecution({
@@ -2275,9 +2370,9 @@ export class ClaudeService {
     claudeLog.info(`[ClaudeService] Running shell command: ${command}`);
 
     if (command === 'dr') {
-      // Special handling: 'dr' restarts the dashboard via pm2.
-      // Broadcast shell-complete and persist state BEFORE restart,
-      // because pm2 restart all kills this process — the close callback never fires.
+      // Special handling: 'dr' restarts the dashboard backend via pm2.
+      // Only restart backend — frontend uses HMR, proxy is a shared long-lived process.
+      // Using 'restart all' caused proxy crash loops and prolonged EADDRINUSE conflicts.
       this.logStreamer?.broadcastAll({
         type: 'shell-complete',
         command,
@@ -2285,14 +2380,16 @@ export class ClaudeService {
         timestamp: new Date().toISOString(),
       });
       this._setShellState(command, true);
-      // Small delay to let WS message reach clients before we die
+      // Delegate to external script: stop → wait → start.
+      // Cannot use pm2 restart (starts new before old dies → EADDRINUSE on Windows).
+      // Delegate to VBScript which launches cmd.exe in a NEW process group.
+      // Cannot spawn detached (pm2 ForkMode detached:false patch → same process group).
+      const restartVbs = path.join(__dirname, '..', '..', 'restart-backend.vbs');
       setTimeout(() => {
-        spawn('pm2', ['restart', 'all'], {
-          cwd: this.projectRoot,
+        spawn('wscript', [restartVbs], {
           stdio: 'ignore',
-          shell: true,
           windowsHide: true,
-        }).unref();
+        });
       }, 500);
     } else if (command === 'upd') {
       // Special handling: 'upd' updates CCS itself with version tracking

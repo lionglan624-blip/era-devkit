@@ -1280,7 +1280,7 @@ describe('ClaudeService', () => {
       if (execution.pendingHandoffTimeout) clearTimeout(execution.pendingHandoffTimeout);
     });
 
-    it('defers y/n handoff until result event arrives', () => {
+    it('defers y/n handoff — result event cancels auto-handoff (browser-first)', () => {
       const { service } = createService();
       service._broadcastState = vi.fn();
       service._handoffToTerminal = vi.fn();
@@ -1298,19 +1298,15 @@ describe('ClaudeService', () => {
       expect(execution.pendingHandoff).toBeTruthy();
       expect(service._handoffToTerminal).not.toHaveBeenCalled();
 
-      // 2. result event arrives - should trigger handoff
+      // 2. result event arrives - should cancel auto-handoff (browser answers first)
       service.streamParser.handleStreamEvent(execution, {
         type: 'result',
         subtype: 'success',
         is_error: false,
       });
-      expect(service._handoffToTerminal).toHaveBeenCalledWith(
-        execution,
-        expect.stringContaining('y/n'),
-      );
-
-      // Cleanup
-      if (execution.pendingHandoffTimeout) clearTimeout(execution.pendingHandoffTimeout);
+      expect(service._handoffToTerminal).not.toHaveBeenCalled();
+      expect(execution.pendingHandoff).toBeNull();
+      expect(execution.pendingHandoffTimeout).toBeNull();
     });
 
     it('forces handoff after timeout when result event never arrives', () => {
@@ -1496,7 +1492,7 @@ describe('ClaudeService', () => {
   });
 
   describe('_handleStreamEvent - AskUserQuestion detection', () => {
-    it('detects AskUserQuestion and triggers handoff', () => {
+    it('detects AskUserQuestion and defers handoff (browser-first)', () => {
       const { service } = createService();
       service._broadcastState = vi.fn();
       service._broadcastInputRequired = vi.fn();
@@ -1523,7 +1519,13 @@ describe('ClaudeService', () => {
 
       expect(execution.inputRequired).toBeTruthy();
       expect(execution.inputRequired.toolUseId).toBe('ask-1');
-      expect(service._handoffToTerminal).toHaveBeenCalled();
+      // Should defer handoff, not trigger immediately
+      expect(service._handoffToTerminal).not.toHaveBeenCalled();
+      expect(execution.pendingHandoff).toBeTruthy();
+      expect(execution.pendingHandoff.reason).toContain('AskUserQuestion');
+
+      // Cleanup
+      if (execution.pendingHandoffTimeout) clearTimeout(execution.pendingHandoffTimeout);
     });
   });
 
@@ -3766,7 +3768,7 @@ describe('ClaudeService', () => {
       expect(result.status).toBe('launched');
     });
 
-    it('uses pm2 restart for dr command', async () => {
+    it('uses restart-backend.cmd for dr command', async () => {
       vi.useFakeTimers();
       const { service } = createService();
       const { spawn: mockSpawn } = await import('child_process');
@@ -3775,7 +3777,7 @@ describe('ClaudeService', () => {
       // dr delays spawn by 500ms to let shell-complete WS message reach clients first
       vi.advanceTimersByTime(500);
 
-      expect(mockSpawn).toHaveBeenCalledWith('pm2', ['restart', 'all'], expect.any(Object));
+      expect(mockSpawn).toHaveBeenCalledWith(expect.stringContaining('restart-backend.cmd'), [], expect.any(Object));
       vi.useRealTimers();
     });
 

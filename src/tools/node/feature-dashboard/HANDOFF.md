@@ -64,7 +64,8 @@ dr button                                   # pm2 restart all
 | Stall detection | 60s | Mark execution as stalled |
 | Execution TTL | 1h | Keep completed executions in memory |
 | Stuck cleanup | 2h | Force-terminate unresponsive executions |
-| Pending handoff timeout | 10s | Fallback kill for deferred y/n handoff if result event never arrives |
+| Pending handoff timeout (y/n) | 10s | Fallback terminal handoff if result event never arrives for y/n prompts |
+| Pending handoff timeout (AskUserQuestion) | 120s | Fallback terminal handoff for AskUserQuestion (longer since process blocks on stdin, browser UI can answer) |
 | Account limit (429) | auto-retry | API rate limit (`rate_limit_error` / `hit your limit` / `exceed your account's rate limit`). Detection: (1) stderr regex, (2) non-JSON stdout regex, (3) **two-pass debug log tail scan** at completion (last 16KB of `--debug-file` for `rate_limit_error`/`429`; 16KB needed because CLI writes hooks/telemetry after 429, pushing the error >4KB from EOF in long sessions). Sets `accountLimitHit` flag → blocks context retry and FL retry. For **all executions** (chain and non-chain): (1) tries auto-switch to safe profile (immediate retry after 5s), (2) if no safe profile, schedules timed retry at earliest `resetsAt` + 1min buffer. Sets `_rateLimitPaused` to block queue. **Session resume**: when failed execution has `sessionId`, retry uses `claude -p "continue" --resume <sessionId>` to preserve conversation context (avoids re-reading files and re-establishing state); falls back to fresh `executeCommand()` when no sessionId. WS event: `rate-limit-retry` includes `resumed: true/false` field. Broadcasts `account-limit` → `rate-limit-waiting` → `rate-limit-retry` or `rate-limit-exhausted` WS events. Email: `account-limit` with retry schedule, then `rate-limit-recovered` or `rate-limit-exhausted` |
 | Auto-switch (≥80%) | proactive | When active profile reaches ≥80% on any rate limit type (weekly/session/sonnet), `_checkAutoSwitch` fires `onAutoSwitch(safeProfile)` callback → runs `ccs auth default "<safeProfile>"` to switch to a specific safe profile. Triggers on every `capture()` completion. Prevents 429 before it happens. Config: `AUTO_SWITCH_THRESHOLD` in `config.js`. WS event: `auto-switch` |
 | Context retry | 3x (5s delay) | Retry on **conversation context** exhaustion (error_max_turns, max_tokens, prompt too long, success+is_error **only when `!accountLimitHit`**, exit code 3 with null subtype). Counter: `contextRetryCount` (independent from FL). Blocked by `accountLimitHit`. On exhaustion: email subject `context-limit 3/3` |
@@ -72,7 +73,7 @@ dr button                                   # pm2 restart all
 | FL incomplete retry | 3x (5s delay) | Retry FL when exit 0 + `subtype=success` but feature status didn't advance (still `[PROPOSED]`, not `[REVIEWED]`). Detects context/max_turns exhaustion mid-work where CLI reports success but FL didn't finish. Uses `fileWatcher.statusCache` for status check. Shares `retryCount` with FL auto-retry. Skips when status is `[BLOCKED]` (legitimate). WS event: `chain-retry` with `retryType: 'incomplete'`. On exhaustion: falls through to email notification |
 | Stale waiter → Auto-DR | 5min + 10min | Chain waiters older than `CHAIN_WAITER_TIMEOUT_MS` (5min) are cleaned by `_cleanupOldExecutions()` (runs every 10min). On cleanup, `onExecutionComplete()` is called to trigger deferred Auto-DR re-check |
 | Tmp cleanup interval | 6h | Purge old dashboard debug/daily logs (debug-*.log: 3 days, daily logs: 7 days) |
-| Insights capture | ~2min | `/insights` via node-pty ConPTY. Completion: dual detection (report.html mtime change + PTY `"report is ready"` pattern). Emails HTML report via `emailService.sendHtml()`. Scheduler: 7-day `setInterval`. API: `POST /api/insights/capture`, `GET /api/insights/status` |
+| Insights capture | ~2min | `/insights` via node-pty ConPTY. Completion: dual detection (report.html mtime change + PTY `"report is ready"` pattern). Emails HTML report via `emailService.sendHtml()`. Scheduler: cron-style `setTimeout` (Monday 07:00 JST). API: `POST /api/insights/capture`, `GET /api/insights/status` |
 
 Full config: `backend/src/config.js`
 
@@ -85,6 +86,7 @@ Full config: `backend/src/config.js`
 | `/api/execution/shell` | POST | Run cs, dr, upd |
 | `/api/execution/slash` | POST | Run /commit, /sync-deps |
 | `/api/execution/:id/resume/{browser,terminal}` | POST | Resume session |
+| `/api/execution/:id/answer` | POST | Answer input prompt in browser (y/n or AskUserQuestion option) |
 | `/api/execution/:id` | GET | Execution status |
 | `/api/execution/:id/logs` | GET | Execution logs (with offset) |
 | `/api/execution/:id` | DELETE | Stop execution |
@@ -138,10 +140,11 @@ Frontend (React+Vite :5173)  →  Backend (Express :3001)  →  claude.exe (spaw
      ↕ WebSocket /ws                  ↕ spawn + pipe            stdio: ['ignore', 'pipe', 'pipe']
   Tile UI + Log viewer           stream-json parse            --output-format stream-json
   + Toast notifications          + Chain execution            --verbose
+  + Input answer buttons         + answerInBrowser()
 
-                                      ↓ (Auto Handoff)
-                                 wt.exe --resume <sessionId>
-                                 Interactive session
+                                      ↓ (Browser Answer)
+                                 claude -p "answer" --resume <sessionId>
+                                 (or: wt.exe --resume via Terminal fallback)
 ```
 
 ### Chain Execution Flow
@@ -152,16 +155,35 @@ Frontend (React+Vite :5173)  →  Backend (Express :3001)  →  claude.exe (spaw
 
 **Stop conditions**: Error, Handoff, [BLOCKED], User kill
 
-### Auto Handoff
+### Input Handling (Browser-First)
 
-Since `stdin: 'ignore'` prevents user input, the dashboard automatically hands off to Windows Terminal when input is required.
+Since `stdin: 'ignore'` prevents user input, the dashboard detects input prompts and shows interactive UI in the browser ExecutionPanel. Terminal handoff is a user-initiated fallback.
 
-**Triggers**:
-- `AskUserQuestion` tool_use detected (immediate kill + context display in terminal)
-- y/n patterns: `(y/n)`, `[Y/n]`, `Continue?`, `Proceed?` (deferred kill — waits for `result` event so session saves the text; 10s timeout fallback)
-- Normal completion with output ending in `?`
+**Detection triggers**:
+- **y/n patterns**: `(y/n)`, `[Y/n]`, `Continue?`, `Proceed?` → Yes/No buttons in ExecutionPanel
+- **AskUserQuestion** tool_use → Clickable option buttons in ExecutionPanel
+- Normal completion with output ending in `?` → Terminal handoff (only when not already waiting for input)
 
-**Session preservation**: y/n text handoffs defer the process kill until the `result` stream event confirms the session JSONL is saved. On `--resume`, the y/n prompt text is visible. AskUserQuestion tool_use cannot be saved (incomplete turn), so the question context is displayed in the terminal via `_out/tmp/resume-context.txt` before `claude --resume`.
+**Browser answer flow**:
+
+```
+1. Pattern/AskUserQuestion detected → broadcast input-wait / input-required WS event
+2. FE shows answer buttons (Yes/No or option list) + "Terminal" fallback button
+3a. User clicks answer → POST /api/execution/:id/answer { answer }
+    → answerInBrowser() kills process, resumes with -p "answer" --resume <sessionId>
+3b. User clicks "Terminal" → POST /api/execution/:id/resume/terminal
+    → Opens wt.exe --resume (old behavior)
+```
+
+**y/n flow detail**: CLI emits `result` event (session saved) → streamParser cancels pendingHandoff timeout → process exits naturally via `_handleCompletion` → execution status = `completed` but `waitingForInput` remains `true` → FE shows Yes/No buttons on the completed execution → user clicks → `answerInBrowser` resumes session.
+
+**AskUserQuestion flow detail**: CLI blocks on stdin (incomplete tool_use turn, no `result` event) → process stays `running` → FE shows option buttons → user clicks → `answerInBrowser` kills stuck process, resumes with `-p "selected option"` → CLI receives answer as new user message in context. Fallback: 120s timeout forces terminal handoff if no browser answer.
+
+**Session preservation**: y/n text is saved to session JSONL (`result` event confirms this). AskUserQuestion tool_use is NOT saved (incomplete turn) — the answer is sent as a `-p` prompt on `--resume`, and Claude infers context from the conversation history. Terminal "Resume" button still writes `resume-context.txt` for AskUserQuestion context display.
+
+**Revert to terminal-first**: To restore the old immediate-handoff behavior, revert 2 changes in `streamParser.js`:
+1. AskUserQuestion handler (L269-290): replace deferred `pendingHandoff` + `ASK_USER_HANDOFF_TIMEOUT_MS` timeout with `this.handoffToTerminal(execution, 'AskUserQuestion requires user input')`
+2. Result event handler (L339-349): replace `pendingHandoff` cancellation with `this.handoffToTerminal(execution, execution.pendingHandoff.reason)`
 
 ### Data Flow
 
@@ -287,6 +309,7 @@ All user input is whitelist-validated before passing to spawn:
 | `validateCommand()` | `fc`, `fl`, `run` only |
 | `runShellCommand()` | `cs`, `dr`, `upd` only |
 | `executeSlashCommand()` | `commit`, `sync-deps` only |
+| `answerInBrowser()` | `sanitizeInput(answer, 1000)` — control chars stripped, 1000 char limit |
 
 ---
 
@@ -463,14 +486,23 @@ node tools/feature-dashboard/patch-pm2.js && pm2 kill && pm2 start tools/feature
 
 **Symptom**: After Auto-DR or manual `pm2 restart`, old process retains port 3001. New process fails with `EADDRINUSE`. DR button does not light up (browser connects to stale process).
 
-**Root cause**: `server.close()` in SIGINT handler blocks indefinitely when WebSocket clients are connected (no `closeAllConnections()`). pm2's `kill_timeout` (default 1600ms) sends SIGKILL, but on Windows the port isn't released immediately.
+**Root cause**: `pm2 restart` sends SIGTERM to the old process and starts a new one **simultaneously**. On Windows, port release lags process death. The new process hits EADDRINUSE because the old one hasn't released port 3001 yet. See `docs/architecture/infrastructure/dr-restart-investigation.md` for the full investigation log.
 
-**Fix (3-layer defense in `server.js`)**:
+**Fix (2026-03-03, VBScript delegation)**:
+
+Auto-DR and DR button delegate restart to `restart-backend.vbs` → `restart-backend.cmd`:
+1. `pm2 stop dashboard-backend` — kill old process cleanly
+2. `ping -n 4` — wait ~3s for Windows to release port
+3. `pm2 restart dashboard-backend` — start new process on free port
+
+VBScript (`WScript.Shell.Run`) is used because it spawns cmd.exe in a **new process group**, independent of pm2's process tree. Direct `spawn({detached: true})` does NOT work due to the pm2 ForkMode `detached: false` patch — all pm2 children share the daemon's process group, so `pm2 stop` kills them all.
+
+**Defense layers in `server.js`**:
 1. **Graceful shutdown**: `server.closeAllConnections()` + 1500ms forced exit timeout in SIGINT/SIGTERM handlers
-2. **Startup port cleanup**: `cleanupPort(PORT)` kills stale processes on the port before `server.listen()`
-3. **EADDRINUSE retry**: `server.on('error')` handler retries once after cleanup
+2. **EADDRINUSE polling**: On port conflict, poll with adaptive delay (500ms → 2s) without crashing. Never `process.exit(1)` on EADDRINUSE.
+3. **Last-resort cleanup**: `cleanupPort(PORT)` after 10s of polling, kills whatever holds the port
 
-`ecosystem.config.cjs`: `kill_timeout: 3000` (accommodates 1500ms graceful timeout + margin).
+`ecosystem.config.cjs`: `kill_timeout: 3000` + `exp_backoff_restart_delay: 200`.
 
 ### `-p --resume` File Writing (Resolved)
 
@@ -569,7 +601,7 @@ Root tiles reserve space to prevent layout shift when execution starts. Child ti
 
 **FL incomplete termination detection (claudeService.js)**: When FL exits with code 0 and `resultSubtype === 'success'` but the feature status (from `fileWatcher.statusCache`) is still `[PROPOSED]` instead of `[REVIEWED]`, the chain system detects this as an incomplete termination (context/max_turns exhausted mid-work). Instead of registering a dead chain waiter, it auto-retries FL as a new execution (up to `MAX_FL_RETRIES`, shared counter with FL auto-retry). Skipped when status is `[BLOCKED]` (legitimate FL outcome) or when `fileWatcher` is null (fallback: register waiter normally). WS event: `chain-retry` with `retryType: 'incomplete'`. When retries exhausted: falls through to normal email notification path.
 
-**Deferred y/n handoff (streamParser.js)**: When `checkInputWaitPatterns()` detects a y/n pattern during streaming, it does NOT immediately call `handoffToTerminal()`. Instead, it sets `execution.pendingHandoff = { reason, timestamp }` and starts a 10s fallback timeout (`PENDING_HANDOFF_TIMEOUT_MS`). When the `result` stream event arrives (meaning the CLI has finished and saved the session JSONL), `handleStreamEvent()` checks for `pendingHandoff` and triggers the actual handoff. This ensures the final assistant message (containing the y/n prompt text) is preserved in the session file and visible on `--resume`. If the `result` event never arrives (e.g., CLI blocks), the timeout forces the handoff as a fallback. AskUserQuestion handoffs remain immediate (the incomplete tool_use turn cannot be saved regardless), but the question context is displayed in the terminal via `_writeResumeContext()` which writes `_out/tmp/resume-context.txt` and prefixes the `cmd /k` command with `type`.
+**Browser-first input handling (streamParser.js + claudeService.js)**: Both y/n patterns and AskUserQuestion are handled browser-first. When detected, `pendingHandoff` is set with a timeout (`PENDING_HANDOFF_TIMEOUT_MS` 10s for y/n, `ASK_USER_HANDOFF_TIMEOUT_MS` 120s for AskUserQuestion), and WS events (`input-wait` / `input-required`) notify the FE to show interactive buttons. **y/n**: `result` event arrives → `pendingHandoff` is **cancelled** (not triggered) → process exits naturally → `_handleCompletion` completes with `waitingForInput: true` preserved → FE shows Yes/No buttons on the completed execution. **AskUserQuestion**: process blocks on stdin (no `result` event) → FE shows option buttons while process is `running` → 120s timeout forces terminal handoff if user doesn't answer. In both cases, the user can click "Terminal" fallback button for manual handoff. `answerInBrowser(executionId, answer)` kills any stuck process, resumes with `-p "answer" --resume <sessionId>`, and transfers chain/phase state to the new execution. `_handleCompletion` skips the `endsWithQuestion` terminal handoff when `waitingForInput` or `inputRequired` is set. **Revert**: see "Input Handling (Browser-First)" section above for 2-line revert instructions.
 
 **Tmp cleanup (cleanupService.js)**: Purges old files from `_out/tmp/dashboard/` to prevent unbounded disk growth. Targets: per-execution debug logs (`debug-*.log`, 3-day retention), daily rotated logs (`*-YYYY-MM-DD.log`, 7-day retention), term debug logs (`term-*.debug.log`, 7 days), exec artifacts (`exec-*.jsonl/sh`, 7 days). Runs initial purge on startup + every 6 hours (`TMP_CLEANUP_INTERVAL_MS`). Protected files (never deleted): `ratelimit-cache.json`, `sessions.json`, `latest` symlink, `logs/` directory. Uses regex pattern matching + `fs.stat` mtime comparison. Errors on individual files are logged but never crash the service. Logs summary with file count and MB freed.
 
@@ -614,8 +646,11 @@ Since `-p --resume` works in v2.1.0+, many terminal handoff scenarios can be han
 
 **Completed**:
 - [x] Rate limit (429): `_startRateLimitRetry()` uses `--resume` when sessionId available, preserving conversation context
+- [x] y/n prompts: Yes/No buttons in ExecutionPanel → `answerInBrowser(id, 'y'|'n')` → `-p --resume`
+- [x] AskUserQuestion: Clickable option buttons in ExecutionPanel → `answerInBrowser(id, selectedOption)` → `-p --resume`
+- [x] Terminal handoff is opt-in only ("Terminal" fallback button in input panels)
 
-**TODO**:
-- [ ] y/n prompts: Show Y/N buttons in ExecutionPanel on `input-wait` WS event → `resumeInBrowser(id, 'y'|'n')`
-- [ ] AskUserQuestion: Show options in ExecutionPanel on `input-required` WS event → `resumeInBrowser(id, selectedOption)`
-- [ ] Terminal handoff becomes opt-in only (user explicitly wants interactive shell)
+**Known limitation**: AskUserQuestion incomplete tool_use turn is NOT saved to session JSONL. The browser answer is sent as a `-p` prompt on `--resume`, relying on Claude to infer context from conversation history. If this proves unreliable, revert AskUserQuestion to immediate terminal handoff (see revert instructions in "Input Handling" section).
+
+**Remaining**:
+- [ ] Verify AskUserQuestion browser-answer reliability across multi-option and multiSelect scenarios

@@ -24,7 +24,7 @@ module.exports = {
       watch: false,
       autorestart: true,
       max_restarts: 10,
-      restart_delay: 2000,
+      exp_backoff_restart_delay: 200,
       kill_timeout: 3000,
       env: {
         PROJECT_ROOT: path.resolve(__dirname, '..', '..', '..', '..'),

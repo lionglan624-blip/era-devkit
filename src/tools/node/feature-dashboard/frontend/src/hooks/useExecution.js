@@ -294,6 +294,27 @@ function reducer(state, action) {
       return changed ? { ...state, executions: next } : state;
     }
 
+    case 'CLEAR_INPUT': {
+      const { executionId } = action;
+      const changes = {};
+      if (state.inputRequests.has(executionId)) {
+        const nextIR = new Map(state.inputRequests);
+        nextIR.delete(executionId);
+        changes.inputRequests = nextIR;
+      }
+      const es = state.executionStates.get(executionId);
+      if (es?.waitingForInput) {
+        const nextES = new Map(state.executionStates);
+        nextES.set(executionId, { ...es, waitingForInput: false });
+        changes.executionStates = nextES;
+      }
+      return Object.keys(changes).length > 0 ? { ...state, ...changes } : state;
+    }
+
+    case 'SELECT_EXECUTION': {
+      return { ...state, selectedExecutionId: action.executionId };
+    }
+
     default:
       return state;
   }

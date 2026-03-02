@@ -48,6 +48,13 @@ N+4 --unit deprecation: NOT_FEASIBLE — trigger condition: C# migration functio
 5. **EquipIndex typed struct**: DATUI helper methods use raw int EQUIP constants (装備:17 レオタード, etc.) instead of typed EquipIndex. Cross-class reuse not yet needed; deferred per Key Decision.
 6. **IShrinkageSystem runtime implementation**: F803 creates IShrinkageSystem interface (Era.Core/Counter/IShrinkageSystem.cs) with no engine-layer implementation; production calls use stub/no-op until implemented. Runtime 締り具合変動 logic requires engine-layer integration.
 
+**F808 Mandatory Handoffs** (DEFERRED from F808 → F813):
+1. **WcCounterMessageNtr責務分割**: ERBファイル `TOILET_COUNTER_MESSAGE_NTR.ERB` は「ペッティングとNTR関連」の寄せ集めだった。6メソッド中4つがNTR無関係（RotorOut=デバイス操作、OshikkoLooking=観察、WithFirstSex/WithPetting=性行為）。9依存コンストラクタはNTR管理クラスタ(2メソッド)のみが`_kojoMessage`,`_counterUtilities`,`_ntrUtility`を使用し、残り4メソッドは3-5依存で済む。分割推奨: IWcCounterMessageNtrObservation + IWcCounterMessageNtrRevelation。
+2. **NtrReversalSource/NtrAgreeSource計算式乖離**: ERBは除算ベース動的スケーリング `(LOCAL:21/10)+10` 、C#は固定定数 `subReduction=50` 。等価性テストで検証が必要。
+
+**F808 /fc教訓（プロセス改善）**:
+Phase 21の分解（F783）はERBファイル単位で行い、/fcはその境界を無検証で踏襲した。結果、ERBの「残り物寄せ集めファイル」がそのままC#クラス境界になった。今後の/fcでは「ERBファイル境界 ≠ ドメイン境界」の検証ステップが必要。
+
 ---
 
 ## Dependencies
@@ -84,6 +91,8 @@ N+4 --unit deprecation: NOT_FEASIBLE — trigger condition: C# migration functio
 | 8 | - | Stryker.NET baseline計測: `cd Era.Core.Tests && dotnet stryker` を実行し、mutation score (killed%, survived%, total mutants) をprogress logに記録。これが以降のPost-Phase Reviewの比較baselineとなる | | [ ] |
 | 9 | - | Dashboard lint/format verification: `cd src/tools/node/feature-dashboard && npm run lint` で0 errors確認 + `npm run format:check` でclean確認。warningは許容するがerrorは修正必須 | | [ ] |
 | 10 | - | Push all commits to remote | | [ ] |
+| 11 | - | F808 WcCounterMessageNtr責務分割: IWcCounterMessageNtrを2インターフェースに分割。(1) IWcCounterMessageNtrObservation (RotorOut, OshikkoLooking, WithFirstSex, WithPetting — 5依存) (2) IWcCounterMessageNtrRevelation (NtrRevelation, NtrRevelationAttack + private helpers — 7依存)。現状9依存コンストラクタはERBファイル境界の盲目的踏襲が原因。RotorOutのIWcCounterMessageItem移動も検討（デバイスライフサイクルの同一ドメイン）。F806/F807のインジェクション変更が必要 | | [ ] |
+| 12 | - | F808 NtrReversalSource/NtrAgreeSource計算式等価性検証: ERBは動的スケーリング（除算ベース: (delta/10)+10等）、C#は固定定数（50,200,500等）。意図的簡略化か回帰バグか判定し、ERB等価が必要なら修正。対象: WcCounterMessageNtr.cs:512-602 vs TOILET_COUNTER_MESSAGE_NTR.ERB:960-1034 | | [ ] |
 
 ---
 

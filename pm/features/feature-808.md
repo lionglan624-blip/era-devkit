@@ -1291,6 +1291,8 @@ MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/core && GAME_PATH=/mnt/c/Era/ga
 |-------|--------|-------------|----------------|---------------|:-----------:|--------|
 | NTR_NAME(0) unmigrated | ShopSystem.NtrName throws NotImplementedException; stub returns "" until NTR_UTIL migration | Phase | Phase 25 (NTR_UTIL) | - | [x] | 記載済み |
 | NTR_RESET_VISITOR_ACTION no-op stub | NTR_UTIL.ERB:1110 visitor state reset silently dropped; no-op until NTR_UTIL migration | Phase | Phase 25 (NTR_UTIL) | - | [x] | 記載済み |
+| WcCounterMessageNtr責務分割 | ERBファイル境界の盲目的踏襲。9依存中4つがNTR管理のみ使用。6メソッド中4つがNTR無関係 | Feature | F813 T11 | - | [x] | 追記済み |
+| NtrReversalSource/NtrAgreeSource計算式乖離 | ERB動的スケーリング vs C#固定定数。等価性未検証 | Feature | F813 T12 | - | [x] | 追記済み |
 
 <!-- Validation (FL PHASE-7):
 - Option A: Creation Task exists → OK (file created during /run)
@@ -1327,6 +1329,7 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 | 2026-03-02 15:00 | START | ac-tester | Phase 7 AC verification | 90 ACs |
 | 2026-03-02 15:05 | END | ac-tester | Phase 7 AC verification | 88/90 PASS, 2 DEFINITION FIX (AC#68 pattern broadened for computed FlagIndex, AC#82 pattern changed to AddSource) |
 | 2026-03-02 15:05 | END | orchestrator | Phase 7 re-verify | 90/90 PASS after AC definition fixes |
+| 2026-03-02 15:30 | DEVIATION | Bash | git commit (pre-commit hook) | exit 1: PRE-EXISTING ErbToYaml.Tests failures (missing Talent.csv/GAME_PATH), not F808 related |
 
 ---
 

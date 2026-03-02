@@ -127,6 +127,13 @@ For each deliverable category, verify AC completeness:
 - [ ] Comment update ACs exist when Tasks include documentation updates
 - [ ] Every sub-deliverable within a Task has a verifying AC
 
+**ERB Responsibility Boundary (erb/engine migration — F808 Lesson)**:
+- [ ] Each source ERB file's functions analyzed for dependency clustering (not just file-level migration)
+- [ ] If ERB file header lists multiple concerns ("X and Y") → class split evaluated
+- [ ] If proposed constructor has >7 dependencies → split analysis mandatory
+- [ ] If function subsets use <50% overlapping dependencies → separate class candidates documented in Key Decisions
+- [ ] ERB "leftover" files (functions not fitting elsewhere) explicitly identified and split candidates flagged
+
 **Constructor Dependencies (erb/engine migration)**:
 - [ ] Every constructor parameter of each new class has an injection verification AC (Grep for field/parameter type in target file)
 - [ ] Investigation's Interface Dependency Scan entries are 1:1 mapped to constructor injection ACs

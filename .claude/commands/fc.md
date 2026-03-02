@@ -145,6 +145,20 @@ Details: `python src/tools/python/ac_ops.py --help`, `python src/tools/python/fe
       - Constraint gaps → orchestrator edits AC Design Constraints directly
       - Interface API gaps → orchestrator adds to Mandatory Handoffs + AC Design Constraints
     - IF empty: proceed
+5c. **ERB Responsibility Boundary Gate** (erb/engine type only, after tech-designer):
+    - **Trigger**: Feature type is `erb` or `engine` AND Technical Design proposes a class that migrates an ERB file
+    - **Check**: For each proposed C# class, verify the source ERB file is a cohesive domain unit:
+      1. Read the ERB file's function list (first 50 lines or `@` function headers)
+      2. For each function, identify its dependency profile (which global variables/functions it calls)
+      3. If dependency clusters separate into 2+ groups with <50% overlap → **FLAG**
+      4. If constructor dependencies > 7 → **FLAG**
+      5. If ERB file name/header contains "and" or lists multiple concerns → **FLAG**
+    - **On FLAG**:
+      - Report to user: "ERBファイル境界 ≠ ドメイン境界の可能性: {evidence}"
+      - Propose class split in Technical Design (re-dispatch tech-designer with split instruction)
+      - OR user waives → proceed with note in Upstream Issues
+    - **On PASS**: proceed
+    - **Lesson**: F808 blindly migrated TOILET_COUNTER_MESSAGE_NTR.ERB (a grab-bag of 4 unrelated + 2 NTR functions) into one 9-dependency class. ERB files are often organized by file size or historical accident, not domain cohesion.
 6. If resume_from <= 5: Task(wbs-generator) → Tasks + Implementation Contract
 7. If resume_from <= 6: Task(quality-fixer, model: "sonnet") → Quality Auto-Fix (feature-quality checklist)
 7b. **AC Structural Lint Gate** (always execute after quality-fixer)

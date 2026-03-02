@@ -212,7 +212,7 @@ Type: engine  # -> uses implementer (sonnet)
 | `.claude/reference/ssot-update-rules.md` | SSOT update rules |
 | `NOTICE.md` | License |
 | `src/tools/node/feature-dashboard/HANDOFF.md` | Feature Dashboard spec (devkit内、PM2実行パス) |
-| `src/tools/python/session-search.py` | Session JSONL search (`--help`) |
+| `src/tools/python/session-search.py` | Session JSONL search — see "Session JSONL Investigation" section for task→flag table |
 | `src/tools/python/feature-status.py` | Status/dependency sync (`--help`) |
 | `src/tools/python/ac_ops.py` | AC operations (`python src/tools/python/ac_ops.py --help`) |
 
@@ -288,6 +288,21 @@ Zero-token alternative to Serena MCP. Persistent HTTP daemon wrapping Serena's P
 - **PM2**: `pm2 start ecosystem.config.js` / `pm2 stop lsp-daemon` / `dr` (restart all)
 - **Commands**: `status`, `symbols`, `find`, `refs`, `rename`, `replace`, `insert-before`, `insert-after`, `restart`
 - **Details**: `docs/tools/lsp-daemon.md` (error handling, PM2 management)
+
+## Session JSONL Investigation
+
+**Session JSONL investigation: use session-search.py first.** Never write manual python one-liners for JSONL parsing.
+
+Run from project root: `cd /c/Era/devkit && python src/tools/python/session-search.py`
+
+| Task | Flags | Example |
+|------|-------|---------|
+| Find tool usage | `--tool Name` | `python src/tools/python/session-search.py --tool AskUserQuestion --session 37ef` |
+| Extract raw JSON | `--line N --raw` | `python src/tools/python/session-search.py --session 37ef --line 158 --raw` |
+| Session timeline | `--timeline` | `python src/tools/python/session-search.py --session 37ef --timeline` |
+| Text search | `"pattern"` | `python src/tools/python/session-search.py "handoff" --after 2026-03-01` |
+| Session overview | `--summary` | `python src/tools/python/session-search.py --session 37ef --summary` |
+| Context around match | `-C N` | `python src/tools/python/session-search.py "error" --session 37ef -C 3` |
 
 ## Shell Environment
 

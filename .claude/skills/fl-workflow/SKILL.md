@@ -367,19 +367,31 @@ Pending issues cannot be auto-fixed and are persisted via `persist_pending()`.
 
 **Purpose**: Prevent context exhaustion when many `[pending]` items accumulate in POST-LOOP.
 
-**Mechanism**: Statusline script writes context usage % to `_out/tmp/claude-ctx-f{feature_id}.txt` after each message. File contains a single integer (e.g., `78`).
+**Mechanism**: Statusline script writes context usage % to `_out/tmp/` after each message. Two file types:
+- **Feature-ID file**: `_out/tmp/claude-ctx-f{feature_id}.txt` — written when `/fl` or `/run` detected from transcript
+- **Session-ID file**: `_out/tmp/claude-ctx-{session_id}.txt` — always written (reliable fallback)
+
+Both files contain a single number (e.g., `78`).
 
 **Detection**:
 ```
 CONTEXT_PRESSURE_THRESHOLD = 80
 
 check_context_pressure(feature_id):
+    # Primary: feature-ID file (written by statusline + dashboard)
     pct_file = "_out/tmp/claude-ctx-f{feature_id}.txt"
     IF file exists:
         context_pct = int(Read(pct_file).strip())
         RETURN context_pct
-    ELSE:
-        RETURN -1  # Unknown (file not available)
+
+    # Fallback: session-ID file (always written by statusline)
+    session_id = Bash("basename $(ls -t _out/tmp/claude-ctx-*.txt 2>/dev/null | head -1) .txt 2>/dev/null | sed 's/claude-ctx-//'")
+    session_file = "_out/tmp/claude-ctx-{session_id}.txt"
+    IF session_file exists:
+        context_pct = int(Read(session_file).strip())
+        RETURN context_pct
+
+    RETURN -1  # Unknown (file not available)
 ```
 
 **Behavior**: When `context_pct >= CONTEXT_PRESSURE_THRESHOLD` at POST-LOOP entry:
@@ -390,7 +402,7 @@ check_context_pressure(feature_id):
 - Report uses "Context Pressure" template
 - Next `/fl` invocation processes pending items with fresh context
 
-**Fallback**: If file does not exist (`context_pct == -1`), proceed normally (no batch mode). This gracefully handles sessions where statusline is not configured.
+**Fallback**: If neither file exists (`context_pct == -1`), proceed normally (no batch mode). This gracefully handles sessions where statusline is not configured.
 
 See POST-LOOP Step 2 "Context Pressure Gate" for execution details.
 

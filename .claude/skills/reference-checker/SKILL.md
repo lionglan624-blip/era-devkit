@@ -1,6 +1,6 @@
 ---
 name: reference-checker
-description: Feature reference and link validator. Requires haiku model.
+description: Feature reference and link validator. Requires sonnet model.
 context: fork
 agent: general-purpose
 allowed-tools: Read, Glob, Grep

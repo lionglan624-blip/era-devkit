@@ -22,28 +22,28 @@
 
 | Agent | Type | Model | Purpose |
 |-------|------|:-----:|---------|
-| initializer | skill (fork) | haiku | Feature state init |
+| initializer | skill (fork) | sonnet | Feature state init |
 | ~~tech-investigator~~ | ~~general-purpose~~ | ~~opus~~ | ~~Deep investigation~~ (archived → use deep-explorer) |
 | tech-designer | general-purpose | sonnet | Technical Design (to satisfy ACs) |
 | ~~goal-setter~~ | ~~skill (fork)~~ | ~~haiku~~ | ~~Version goal concretization~~ (archived) |
 | ~~spec-writer~~ | ~~general-purpose~~ | ~~sonnet~~ | ~~Design specification writer~~ (archived) |
 | ~~dependency-analyzer~~ | ~~skill (fork)~~ | ~~sonnet~~ | ~~Dependency analysis and risk identification~~ (archived) |
 | feature-reviewer | feature-reviewer | opus | Holistic feature review |
-| reference-checker | skill (fork) | haiku | Feature reference/link validation |
+| reference-checker | skill (fork) | sonnet | Feature reference/link validation |
 | feasibility-checker | feasibility-checker | sonnet | Task feasibility |
-| ac-task-aligner | ac-task-aligner | haiku | AC:Task 1:1 alignment |
+| ac-task-aligner | ac-task-aligner | sonnet | AC:Task 1:1 alignment |
 | ac-validator | ac-validator | opus | AC TDD validation |
 | planning-validator | general-purpose | opus | Research feature validation (pre: design, post: coverage) |
-| eratw-reader | skill (fork) | haiku | eraTW reference extraction |
+| eratw-reader | skill (fork) | sonnet | eraTW reference extraction |
 | kojo-writer | kojo-writer | opus | Dialogue creation (ERB only) |
 | implementer | implementer | sonnet | ERB/Engine code |
 | smart-implementer | smart-implementer | opus | Complex ERB/Engine code (multi-file, architectural) |
 | ac-tester | ac-tester | sonnet | AC verification (read-only) |
 | doc-reviewer | doc-reviewer | sonnet | Documentation review |
 | debugger | debugger | sonnet→opus | Error fix (escalates) |
-| finalizer | skill (fork) | haiku | Status update |
+| finalizer | skill (fork) | sonnet | Status update |
 | philosophy-deriver | skill (fork) | opus | Derive tasks from Philosophy |
-| task-comparator | skill (fork) | haiku | Compare derived/current tasks |
+| task-comparator | skill (fork) | sonnet | Compare derived/current tasks |
 | ac-designer | general-purpose | opus | Design ACs with philosophy derivation patterns |
 | wbs-generator | general-purpose | sonnet | Generate Tasks with AC:Task alignment |
 | quality-fixer | quality-fixer | sonnet | Apply feature-quality checklist fixes before validation |

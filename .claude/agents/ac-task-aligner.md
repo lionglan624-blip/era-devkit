@@ -1,7 +1,7 @@
 ---
 name: ac-task-aligner
-description: AC-Task alignment checker. MUST BE USED after feature creation to ensure AC coverage of all Tasks. Requires haiku model.
-model: haiku
+description: AC-Task alignment checker. MUST BE USED after feature creation to ensure AC coverage of all Tasks. Requires sonnet model.
+model: sonnet
 tools: Read, Edit, Glob
 ---
 

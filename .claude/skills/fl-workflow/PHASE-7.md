@@ -30,7 +30,7 @@ TaskUpdate(subject: "Phase 7: Final Reference Check", status: "in_progress")
 IF target_type == "feature":
     final_ref_check = Task(
       subagent_type: "general-purpose",
-      model: "haiku",
+      model: "sonnet",
       prompt: `Read .claude/skills/reference-checker/SKILL.md and execute for Feature {target_id}
 
 OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON (analysis, reasoning, "Let me", explanations) is a protocol violation.`

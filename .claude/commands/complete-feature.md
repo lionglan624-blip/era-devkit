@@ -59,7 +59,7 @@ For EACH AC in the table, dispatch ac-tester:
 ```
 Task(
   subagent_type: "general-purpose",
-  model: "haiku",
+  model: "sonnet",
   prompt: "Read .claude/agents/ac-tester.md and verify Feature {ID} AC {N}"
 )
 ```

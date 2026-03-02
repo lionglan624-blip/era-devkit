@@ -40,7 +40,7 @@ When dispatched by FL Phase 2 with a `PERSPECTIVE` directive, apply the perspect
 
 **Behavior**: The mode (spec/pre/post) determines WHAT to review. The perspective determines HOW to filter results. Without a PERSPECTIVE directive, report all findings (default behavior).
 
-**MAX_ISSUES**: When `MAX_ISSUES: N` is specified, report only the top N most critical issues.
+**MAX_ISSUES**: Not used (report all issues found). Historical: was `MAX_ISSUES: 3` per perspective, removed for faster FL convergence.
 
 ## Mode Selection
 

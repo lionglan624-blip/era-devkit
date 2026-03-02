@@ -1,6 +1,6 @@
 ---
 name: initializer
-description: Feature initialization agent. MUST BE USED at start of /run. Requires haiku model.
+description: Feature initialization agent. MUST BE USED at start of /run. Requires sonnet model.
 context: fork
 agent: general-purpose
 allowed-tools: Read, Edit, Glob

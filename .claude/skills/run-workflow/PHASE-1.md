@@ -74,11 +74,11 @@ IF feature.type IN ["erb", "engine"]:
 
 ## Step 1.1: Dispatch Initializer
 
-**CRITICAL**: Use Task() with explicit `model: "haiku"`, NOT Skill(). Skill frontmatter cannot enforce model (Claude Code Issue #14882/#17283). Without explicit model override, initializer inherits session model (opus), wasting ~50K opus tokens on mechanical status updates.
+**CRITICAL**: Use Task() with explicit `model: "sonnet"`, NOT Skill(). Skill frontmatter cannot enforce model (Claude Code Issue #14882/#17283). Without explicit model override, initializer inherits session model (opus), wasting ~50K opus tokens on mechanical status updates.
 
 ```
 Task(subagent_type: "general-purpose",
-     model: "haiku",
+     model: "sonnet",
      prompt: "Read .claude/skills/initializer/SKILL.md and execute for Feature {ID}.
               OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON is a protocol violation.")
 ```

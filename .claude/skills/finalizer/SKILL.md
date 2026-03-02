@@ -1,6 +1,6 @@
 ---
 name: finalizer
-description: Feature completion agent. MUST BE USED at end of /run to finalize status. Requires haiku model.
+description: Feature completion agent. MUST BE USED at end of /run to finalize status. Requires sonnet model.
 context: fork
 agent: general-purpose
 allowed-tools: Read, Edit, Bash, Glob, Grep

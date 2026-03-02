@@ -201,7 +201,7 @@ Detect references to features in narrative sections that have become stale.
 ### Dispatch: Haiku Subagent
 
 ```
-Task(subagent_type: "general-purpose", model: "haiku", prompt: "...")
+Task(subagent_type: "general-purpose", model: "sonnet", prompt: "...")
 ```
 
 **Subagent prompt must include**:
@@ -257,7 +257,7 @@ Detect duplicate or overlapping work across active features.
 ### Dispatch: Haiku Subagent
 
 ```
-Task(subagent_type: "general-purpose", model: "haiku", prompt: "...")
+Task(subagent_type: "general-purpose", model: "sonnet", prompt: "...")
 ```
 
 **Subagent prompt must include**:
@@ -310,7 +310,7 @@ Detect active features whose goals may already be accomplished by completed feat
 ### Dispatch: Haiku Subagent
 
 ```
-Task(subagent_type: "general-purpose", model: "haiku", prompt: "...")
+Task(subagent_type: "general-purpose", model: "sonnet", prompt: "...")
 ```
 
 **Subagent prompt must include**:

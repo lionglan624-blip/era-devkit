@@ -27,7 +27,12 @@ TaskUpdate(subject: "Post-loop: pending_user confirmation", status: "in_progress
 ### Context Pressure Gate
 
 ```
-context_pct = check_context_pressure(target_id)  # See SKILL.md
+# Primary: feature-ID file (written by statusline when /fl or /run detected)
+context_pct = Bash("cat _out/tmp/claude-ctx-f{target_id}.txt 2>/dev/null") → int, or -1
+
+# Fallback: most-recent session-ID file (always written by statusline)
+IF context_pct == -1:
+    context_pct = Bash("cat $(ls -t _out/tmp/claude-ctx-*.txt 2>/dev/null | grep -v 'claude-ctx-f' | head -1) 2>/dev/null") → int, or -1
 
 IF context_pct >= 80:
     # Batch Completion Mode: preserve context by skipping interactive processing
@@ -335,7 +340,7 @@ OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside
 ```
 comparison = Task(
   subagent_type: "general-purpose",
-  model: "haiku",
+  model: "sonnet",
   prompt: `Read .claude/skills/task-comparator/SKILL.md and execute for Feature {target_id}. Derived tasks: {derived.derived_tasks}
 
 OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON (analysis, reasoning, "Let me", explanations) is a protocol violation.`

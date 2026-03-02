@@ -116,7 +116,6 @@ IF target_type == "feature":
 PERSPECTIVE: STRUCTURAL
 FOCUS: Format compliance, section completeness, table column count, markdown syntax, template adherence.
 IGNORE: Semantic validity, design quality, philosophy coverage.
-MAX_ISSUES: 3 (report only top 3 most critical)
 
 OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON (analysis, reasoning, "Let me", explanations) is a protocol violation.`
         )
@@ -133,7 +132,6 @@ OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside
 PERSPECTIVE: SEMANTIC
 FOCUS: Philosophy-to-AC derivation, AC coverage completeness, Task-to-AC alignment, SSOT consistency, design coherence.
 IGNORE: Format, spelling, template structure.
-MAX_ISSUES: 3 (report only top 3 most critical)
 
 OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON (analysis, reasoning, "Let me", explanations) is a protocol violation.`
     )
@@ -142,7 +140,7 @@ OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside
     IF structural_result.issues:
         result.issues = merge_and_dedupe(structural_result.issues, semantic_result.issues)
     ELSE:
-        result.issues = semantic_result.issues[:3]
+        result.issues = semantic_result.issues
 
     # ESCALATION: If sonnet found 0 issues → opus verification (Tier 2)
     IF result.issues.count == 0:
@@ -154,12 +152,11 @@ OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside
 PERSPECTIVE: SEMANTIC
 FOCUS: Philosophy-to-AC derivation, AC coverage completeness, Task-to-AC alignment, SSOT consistency, design coherence.
 IGNORE: Format, spelling, template structure.
-MAX_ISSUES: 3 (report only top 3 most critical)
 CONTEXT: Sonnet review found 0 issues. Verify this is genuinely clean — check for subtle gaps sonnet may have missed.
 
 OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON (analysis, reasoning, "Let me", explanations) is a protocol violation.`
         )
-        result.issues = opus_result.issues[:3] if opus_result.issues else []
+        result.issues = opus_result.issues if opus_result.issues else []
 
     result.status = "NEEDS_REVISION" if result.issues.count > 0 else "OK"
 
@@ -213,7 +210,7 @@ def merge_and_dedupe(structural_issues, semantic_issues):
             if severity_rank(issue) > severity_rank(existing):
                 replace(all_issues, existing, issue)
 
-    return all_issues[:6]  # Max 6 total (3 per perspective)
+    return all_issues  # No cap — report all unique issues
 ```
 
 ## Step 2.4: Check Issue Count

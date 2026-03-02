@@ -268,6 +268,48 @@ Issues specific to `Type: erb` features (ERB game scripts).
 
 ---
 
+### Issue 16: Handler Group Matcher Uses Representative ID Instead of Range
+
+**Symptom**: AC matcher for a handler group (e.g., MESSAGE70-75) uses a single exact ID (`Message70`) instead of a character class range (`Message7[0-5]`). Tests for other handlers in the group (Message71-75) produce no matches, allowing the threshold to be satisfied without coverage of non-representative handlers.
+
+**Example (Bad)**:
+```markdown
+| 23 | Simple handler coverage | code | Grep(Tests.cs) | gte | `Message70\|Message80` = 15 | [ ] |
+<!-- Message71-75 and Message81-83 don't match, threshold satisfied from other groups -->
+```
+
+**Example (Good)**:
+```markdown
+| 23 | Simple handler coverage | code | Grep(Tests.cs) | gte | `Message7[0-5]\|Message8[0-3]` = 15 | [ ] |
+<!-- Character class ranges cover all handlers in each sub-group -->
+```
+
+**Fix**: When an AC matcher counts test references across a handler group, use character class ranges (`[0-5]`, `[0-3]`) instead of single representative IDs. Verify the range matches exactly the handler IDs in the group.
+
+---
+
+### Issue 17: Impl/Test AC Pair Scope Mismatch
+
+**Symptom**: Implementation-side AC covers multiple operations (e.g., `SetBase|SetDownbase`) but the corresponding test-side AC only covers a subset (e.g., `SetDownbase` only). Tests may exist for the uncovered operations but don't contribute to the threshold.
+
+**Example (Bad)**:
+```markdown
+| 67 | SetBase/SetDownbase impl | code | Grep(Impl.cs) | gte | `SetBase\|SetDownbase` = 1 | [ ] |
+| 18 | SetDownbase tests | code | Grep(Tests.cs) | gte | `SetDownbase` = 2 | [ ] |
+<!-- SetBase tests exist but don't count toward AC#18 -->
+```
+
+**Example (Good)**:
+```markdown
+| 67 | SetBase/SetDownbase impl | code | Grep(Impl.cs) | gte | `SetBase\|SetDownbase` = 1 | [ ] |
+| 18 | SetBase/SetDownbase tests | code | Grep(Tests.cs) | gte | `SetBase\|SetDownbase` = 2 | [ ] |
+<!-- Both ACs cover the same operation scope -->
+```
+
+**Fix**: When creating impl/test AC pairs, ensure the test-side pattern covers the same scope as the impl-side pattern. Verify by comparing the OR-alternation members in both patterns.
+
+---
+
 ## Checklist
 
 - [ ] RETURN rules followed per erb-syntax skill
@@ -289,3 +331,5 @@ Issues specific to `Type: erb` features (ERB game scripts).
 - [ ] Multiline regex alternation groups are parenthesized for co-location enforcement
 - [ ] Bare enum names in matchers use fully-qualified `EnumType.Member` form to prevent cross-contamination
 - [ ] SSOT claims in Philosophy have negative enforcement ACs (`lte 1` on interface implementations)
+- [ ] Handler group matchers use character class ranges (`[0-5]`) not single representative IDs
+- [ ] Impl/test AC pairs cover the same operation scope (OR-alternation members match)

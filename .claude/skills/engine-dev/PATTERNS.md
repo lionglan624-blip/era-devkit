@@ -944,7 +944,7 @@ See `pm/features/feature-487.md` for implementation details.
 
 Phase 20 introduces two ISP-segregated interfaces for engine built-in variable access and CSV constant name resolution.
 
-### IEngineVariables (F790, extended F775, F776, F777, F801)
+### IEngineVariables (F790, extended F775, F776, F777, F801, F806)
 
 ```csharp
 // src/Era.Core/Interfaces/IEngineVariables.cs - Engine built-in variable access (mixed read/write since F775)
@@ -990,6 +990,10 @@ int GetAssiPlay();                     // ASSIPLAY:0 (default interface method r
 // F811: Previous command tracking
 int GetPrevCom();                      // PREVCOM (previous command number)
 void SetPrevCom(int value);            // PREVCOM setter
+
+// F806: TIME access (default interface methods, backward-compatible)
+int GetTime() => 0;                    // TIME:0 getter (default: 0)
+void SetTime(int value) { }           // TIME:0 setter (default: no-op)
 ```
 
 ### IUpVariables (F811)

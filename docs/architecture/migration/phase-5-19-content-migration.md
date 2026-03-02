@@ -741,7 +741,7 @@ dotnet test Era.Core.Tests --filter "Category=Commands"
 
 **Background**: Era.Core開発が進行中（Phase 9完了時点）。Phase 12以降のCOM実装・DDD基盤でC# 14の新機能（primary constructors, extension members等）を活用するため、早期にランタイムをアップグレード。
 
-**Scope**: Era.Core + tools + Headless（Unity GUI 除外）
+**Scope**: Era.Core + tools + Headless（WPF GUI 除外）
 
 | Project | Current | Target |
 |---------|---------|--------|
@@ -750,7 +750,7 @@ dotnet test Era.Core.Tests --filter "Category=Commands"
 | engine/uEmuera.Headless | net8.0 / C# 12 | net10.0 / C# 14 |
 | engine.Tests | net8.0 | net10.0 |
 | tools/* | net8.0 | net10.0 |
-| **Unity GUI** | Unity 6 | **変更なし** |
+| **WPF GUI** | - | Phase 29 で新規作成 |
 
 **Tasks**:
 1. TargetFramework を net10.0 に変更（6プロジェクト）
@@ -867,7 +867,7 @@ dotnet test engine.Tests
 **Implementation Notes**:
 - 6 projects upgraded: Era.Core, Era.Core.Tests, uEmuera.Headless, engine.Tests, tools/* (ErbParser, ErbToYaml, KojoComparer, YamlSchemaGen, YamlValidator and their test projects)
 - Existing version inconsistencies resolved (uEmuera.Tests, ErbLinter.Tests, YamlValidator)
-- Unity GUI excluded from upgrade (remains on Unity 6 / .NET Framework)
+- WPF GUI は Phase 29 で .NET 10 上に新規作成
 - All 1246 tests pass successfully (Era.Core.Tests: 773, uEmuera.Tests: 382, ErbParser.Tests: 65, ErbToYaml.Tests: 10, KojoComparer.Tests: 12, YamlSchemaGen.Tests: 4)
 - Microsoft.NET.Test.Sdk unified to version 18.0.1 across all test projects
 

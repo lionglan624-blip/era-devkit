@@ -210,93 +210,289 @@ dotnet test Era.Core.Tests --filter "Category=DomainEvents"
 >
 > **Post-Phase Review 必須**: 本ドキュメントの該当 Phase セクションと実装の整合性を確認し、Success Criteria を更新、差異があれば本ドキュメントを修正すること。**残課題発生時は Redux Pattern 適用必須** (Feature Progression Protocol 参照)。
 
-### Phase 29: Unity UI (was Phase 28)
+### Phase 29: WPF UI (was Phase 28, revised from Unity UI)
 
 **Phase Status**: TODO
 
-**Goal**: Unity-based UI implementation + グラフィック表示統合
+**Goal**: WPF-based UI implementation（双方向インタラクション + グラフィック表示統合）
+
+> **⚠️ プラットフォーム変更 (2026-03-02)**
+>
+> Unity UI -> WPF に変更。理由:
+> - Era.Core (.NET 10 / C# 14) との直接プロジェクト参照が可能（DLL互換性問題ゼロ）
+> - テキスト主体のeraゲームに WPF DirectWrite が最適
+> - 配布先は Windows 直接配布のみ（成人向けコンテンツでストア審査不可）
+> - Unity の .NET Standard 2.1 制約と CoreCLR 対応待ちのリスクを排除
 
 > **⚠️ Phase 4 Design Requirements（必須）**
 >
 > **UI層はEra.Coreに依存、逆は禁止**:
 > ```
-> Era.Core (Logic Layer) <- Unity UI (Presentation Layer)
+> Era.Core (Logic Layer) <- WPF (Presentation Layer)
 >     |                         |
-> Pure C#, no Unity      Unity-specific code
+> Pure C#, no WPF        WPF-specific code
 > ```
 >
-> **Era.Coreとのインターフェース**:
+> **DIコンテナ**: WPF 側で `AddEraCore()` を呼び出し、WPF 実装を登録
+
+> **⚠️ AA マップ等価性制約（必須）**
+>
+> ゲーム内マップは全角文字によるアスキーアート（AA）で描画される。テキストレイアウトのピクセル等価性が必須。
+>
+> **制約1: ピクセル吸着モード**
+> ```xml
+> <!-- 全テキスト表示領域に適用必須 -->
+> <RichTextBox TextOptions.TextFormattingMode="Display"
+>              FontFamily="MS Gothic" FontSize="18" />
+> ```
+> `TextFormattingMode="Display"` は DirectWrite のサブピクセル配置を無効化し、GDI 互換のピクセルグリッド吸着を有効にする。
+>
+> **制約2: エンジン互換レイアウト計算**
 > ```csharp
-> // Era.Core側 (Unity依存なし)
-> public interface IOutputWriter
+> // uEmuera の Utils.GetDisplayLength を Era.Core に移植
+> // WPF の DirectWrite 文字計測には依存しない
+> public static int GetDisplayLength(string s, float fontSize)
 > {
->     void Write(string text);
->     void WriteLine(string text);
->     void Clear();
+>     float x = 0;
+>     foreach (char c in s)
+>         x += IsHalfWidth(c) ? fontSize / 2 : fontSize;
+>     return (int)x;
 > }
->
-> // Unity側で実装
-> public class UnityOutputWriter : IOutputWriter { }
+> // IsHalfWidth: c < 0x127 → half, else → full（エンジン同等のバイナリ判定）
 > ```
 >
-> **⚠️ 既存インターフェースとの整合**: 設計ドキュメントの `IOutputWriter` は未定義。既存の `IConsoleOutput` (173行, 15+メソッド) が同等の機能を提供。設計衝突回避のため、新規 `IOutputWriter` の代わりに `IConsoleOutput` の拡張を検討すること。
+> **制約3: 精密描画フォールバック**
 >
-> **DIコンテナ**: Unity側で `AddEraCore()` を呼び出し、UI実装を登録
+> FlowDocument の自動レイアウトで AA がずれる場合、マップ等の精密描画部分のみ `DrawingVisual` + `FormattedText` でピクセル座標指定描画に切り替える。
+>
+> **検証方法**: Headless 出力と WPF 出力の文字位置を MAP_PRINT で比較。1px 以上のずれがあれば FAIL。
+>
+> **背景**: 元 Emuera は WinForms + GDI（ピクセルグリッド描画）。uEmuera で GDI が使えなくなり `GetDisplayLength` のバイナリ判定に簡略化。WPF はこのバイナリ判定を移植し、`TextFormattingMode="Display"` でピクセル吸着することで同等の描画を実現する。
+
+---
+
+#### UI Interaction Model（重要: 表示だけではない）
+
+WPF UI は「流れてきた API を表示するだけ」ではない。**双方向通信 + 状態管理**が必要。
+
+**通信フロー**:
+```
+Era.Core ──Print/Button/Bar/Wait──→ WPF 表示
+Era.Core ←─Click/Enter/Input──────── WPF 入力
+Era.Core ←→ 状態同期（WaitInput? InputType? ButtonGeneration?）
+```
+
+##### 1. Era.Core 接続インターフェース（既存・片方向）
+
+Era.Core の UI 境界インターフェースはプラットフォーム非依存。WPF は同じインターフェースを実装する。
+
+| Era.Core Interface | WPF 実装 | 責務 |
+|-------------------|----------|------|
+| `IConsoleOutput` | `WpfConsoleOutput` | Print*, DrawLine, Bar, Wait -> FlowDocument |
+| `IInputHandler` | (Era.Core 提供の `InputHandler` をそのまま使用) | `ProvideInput()` を WPF から呼ぶ |
+| `IStyleManager` | `WpfStyleManager` | SetColor/Font/Alignment -> WPF Brush/FontFamily |
+| `IGameState` | `WpfGameState` | Save/Load Dialog -> WPF OpenFileDialog |
+| `ITextFormatting` | `WpfTextFormatting` | 服装/体型テキスト生成 |
+| `IEngineVariables` | `WpfEngineVariables` | ゲーム変数ブリッジ |
+
+##### 2. WPF 側が追加で担う責務（既存インターフェースでカバーされない）
+
+現エンジン (`EmueraConsole`, `EmueraThread`, `EmueraContent`) にハードコードされている UI 挙動を WPF 側で再実装する必要がある。
+
+**ボタンインタラクション**:
+
+| 挙動 | 詳細 | 現エンジン実装 |
+|------|------|---------------|
+| **ボタンクリック→入力** | PRINTBUTTON クリック時に値をゲームスレッドに返す | `EmueraThread.Input(code, true)` → 共有変数 |
+| **ボタン世代管理** | 前の INPUT の古いボタンを無効化し、現在の INPUT のボタンのみクリック可能にする | `button_generation` カウンタ。`ConsoleButtonString.Generation >= lastButtonGeneration` でフィルタ |
+| **QuickButtons パネル** | 現在有効なボタンを一覧表示するパネル | `EmueraContent.SetLastButtonGeneration()` で抽出 |
+
+**入力制御**:
+
+| 挙動 | 詳細 | 現エンジン実装 |
+|------|------|---------------|
+| **入力ボックス表示切替** | 数値/文字列入力時 → 表示、WAIT/EnterKey時 → 非表示 | `InputType` に応じて `Inputpad` を show/hide |
+| **@コマンド** | `@REBOOT`, `@CONFIG`, `@QUIT` 等のシステムコマンド | 入力文字列先頭 `@` を検出 → `doSystemCommand()` |
+| **ONEINPUT** | 単一キー押下で即座に入力確定 | `InputType.OneInput` で1文字バリデーション |
+
+**メッセージ送り・スキップ**:
+
+| 挙動 | 詳細 | 現エンジン実装 |
+|------|------|---------------|
+| **背景クリック / Enter** | WAIT/EnterKey 待ちを進める | `PressEnterKey(false, "", false)` |
+| **ダブルクリックスキップ** | 200ms以内の連打で `MesSkip` フラグ ON → WAIT を自動通過 | `(nowtick - last_click_tic < 200)` で検出 |
+| **SKIPDISP** | ゲームスクリプトが表示を抑制 | `SetSkipPrint(true)` → Print 出力を破棄 |
+
+**タイムアウト入力 (TINPUT)**:
+
+| 挙動 | 詳細 | 現エンジン実装 |
+|------|------|---------------|
+| **カウントダウン表示** | 「残り X.X」秒を100ms間隔で更新 | 10ms Timer + 一時行（Temporary Line）の上書き |
+| **一時行** | 最終表示行を上書き可能にする概念 | カウントダウン表示・デフォルト値表示で使用 |
+| **タイムアウト時** | 空入力をゲームスレッドに送信 | `endTimer()` → `callEmueraProgram("")` |
+
+**スクロール**:
+
+| 挙動 | 詳細 | 現エンジン実装 |
+|------|------|---------------|
+| **自動スクロール** | 新しい行の追加時にビューポートを最下部に移動 | `drag_delta.y += LineHeight * 1.5f` |
+| **手動スクロールバック** | ユーザーが上にスクロールして履歴を閲覧 | ドラッグ + 慣性スクロール |
+| **仮想レンダリング** | ビューポート内の行のみ描画（MaxLog リングバッファ） | viewport culling + オブジェクトプール |
+| **スクロール位置によるボタン制御** | スクロールバック中はボタン無効化の判定に影響 | `ScrollBar.Value != Maximum` で判定 |
+
+**スレッド間通信**:
+
+| 挙動 | 詳細 | 現エンジン実装 |
+|------|------|---------------|
+| **ゲームスレッド** | バックグラウンドで ERB/C# ロジックを実行 | `ThreadPool.QueueUserWorkItem` |
+| **UI→ゲーム** | 入力値をスレッドセーフに渡す | 共有 `string input` フィールド + 1ms ポーリング |
+| **ゲーム→UI** | 表示更新を UI スレッドに通知 | 直接 UI オブジェクト操作（Unity は thread-unsafe を許容） |
+
+> **⚠️ WPF スレッドモデル**
+>
+> WPF は `Dispatcher` による厳密な UI スレッドアフィニティを持つ。現エンジンの「共有変数 + ポーリング」は WPF でも使えるが、ゲームスレッド→UI更新は必ず `Dispatcher.InvokeAsync()` 経由にする必要がある。
+>
+> **推奨**: 入力は `SemaphoreSlim` + `ConcurrentQueue<string>` でポーリングを排除。表示は `IProgress<DisplayUpdate>` パターンで Dispatcher マーシャリング。
+
+**その他**:
+
+| 挙動 | 詳細 |
+|------|------|
+| **ウィンドウタイトル** | `SetWindowTitle(str)` — ゲーム名・状態を反映 |
+| **処理中インジケータ** | ゲーム処理が1.5秒以上続いた場合にスピナー表示 |
+| **オプション画面** | 解像度・言語・タイトルへ戻る・再起動・ログ保存・終了 |
+| **CBG ボタンマップ** | ピクセル色ベースのクリッカブル領域（稀、グラフィック表示と連動） |
+
+---
 
 **Tasks**:
-1. Refactor existing Unity project structure
-2. Implement `UnityGameUI`
-3. Create text display system
-4. Create menu system
-5. Integrate Era.Core via DLL
-6. **グラフィック表示統合**（ERBからUnityへ）
-7. **Create Phase 29 Post-Phase Review feature** (type: infra) - 本ドキュメント Phase 29 セクションとの整合確認必須
-8. **Create Phase 30 Planning feature** (type: research, include transition feature tasks)
-9. **(Optional) GUI DisplayMode Visualization** - デバッグ用にdisplayMode（newline/wait/key-wait）を視覚化するトグル機能。F678で実装したDisplayModeCaptureをGUI側に拡張。現在kojoではPRINTDATALのみ使用のため、他variant使用時に実装検討。
+1. Create WPF project (`Era.WPF`) with .NET 10 TargetFramework
+2. Implement game thread infrastructure（`SemaphoreSlim` ベースのスレッド間通信、`Dispatcher` マーシャリング）
+3. Implement `WpfConsoleOutput`（FlowDocument ベーステキスト描画 + ボタン世代管理）
+4. Implement virtual scroll system（仮想レンダリング + 自動スクロール + 手動スクロールバック）
+5. Implement button interaction system（クリック→入力、世代フィルタ、QuickButtons パネル）
+6. Implement input system（TextBox + 表示切替 + @コマンド + ONEINPUT）
+7. Implement TINPUT countdown（DispatcherTimer + 一時行 + タイムアウト処理）
+8. Implement message skip（ダブルクリック検出 + MesSkip フラグ + SKIPDISP）
+9. Implement `WpfStyleManager`（color, font, alignment）
+10. Implement `WpfGameState`（save/load dialogs, quit, restart, option screen）
+11. Implement menu system（MVVM pattern）
+12. **グラフィック表示統合**（画像・立ち絵の WPF Image 表示 + CBG ボタンマップ）
+13. **Create Phase 29 Post-Phase Review feature** (type: infra) - 本ドキュメント Phase 29 セクションとの整合確認必須
+14. **Create Phase 30 Planning feature** (type: research, include transition feature tasks)
+15. **(Optional) GUI DisplayMode Visualization** - デバッグ用にdisplayMode（newline/wait/key-wait）を視覚化するトグル機能。F678で実装したDisplayModeCaptureをGUI側に拡張。
+
+**WPF Architecture**:
+
+```
+Era.WPF/
+├── App.xaml                    # Application entry + DI container setup
+├── MainWindow.xaml             # Main game window
+├── ViewModels/
+│   ├── MainViewModel.cs        # MVVM root
+│   ├── ConsoleViewModel.cs     # Text display + scroll state
+│   ├── InputViewModel.cs       # Input state + box visibility
+│   └── ButtonPanelViewModel.cs # QuickButtons panel
+├── Views/
+│   ├── ConsoleView.xaml        # FlowDocument-based text area (virtual scroll)
+│   ├── InputView.xaml          # Command input area (show/hide by InputType)
+│   ├── ButtonPanelView.xaml    # QuickButtons panel
+│   └── MenuView.xaml           # Option/system menu
+├── Services/
+│   ├── WpfConsoleOutput.cs     # IConsoleOutput -> FlowDocument + button generation
+│   ├── WpfStyleManager.cs      # IStyleManager -> WPF resources
+│   ├── WpfGameState.cs         # IGameState -> WPF dialogs
+│   ├── WpfTextFormatting.cs    # ITextFormatting
+│   └── GameThreadHost.cs       # Game thread lifecycle + SemaphoreSlim input handoff
+├── Interaction/
+│   ├── ButtonGenerationTracker.cs  # Button generation counter + stale button filter
+│   ├── MessageSkipController.cs    # Double-click detection + MesSkip flag
+│   ├── TimedInputController.cs     # TINPUT countdown + temporary line
+│   └── SystemCommandParser.cs      # @REBOOT, @CONFIG, @QUIT dispatch
+├── Graphics/
+│   ├── GraphicsManager.cs      # 画像表示管理 (WPF Image)
+│   ├── PortraitDisplay.cs      # 立ち絵表示 (WPF Canvas + Image)
+│   └── CbgButtonMap.cs         # CBG pixel-color clickable regions
+└── Converters/                 # MVVM value converters
+```
 
 **Graphics Display Migration** (from Phase 27 Extensions):
 
-| ERB File | Unity Component | Purpose |
-|----------|-----------------|---------|
-| `グラフィック表示.ERB` | `GraphicsManager.cs` | 画像表示管理 |
+| ERB File | WPF Component | Purpose |
+|----------|--------------|---------|
+| `グラフィック表示.ERB` | `GraphicsManager.cs` | 画像表示管理 (WPF Image) |
 | `グラフィック表示.ERH` | (設定) | 設定定義 |
-| `立ち絵表示.ERB` | `PortraitDisplay.cs` | 立ち絵表示 |
+| `立ち絵表示.ERB` | `PortraitDisplay.cs` | 立ち絵表示 (WPF Canvas + Image) |
 | `立ち絵表示.ERH` | (設定) | 立ち絵設定 |
 
-**Directory Structure**:
+**DI Registration (WPF Host)**:
+
+```csharp
+// App.xaml.cs
+var services = new ServiceCollection();
+
+// Era.Core の全サービスを登録
+services.AddEraCore();
+
+// WPF 実装で Era.Core のスタブを上書き
+services.AddSingleton<IConsoleOutput, WpfConsoleOutput>();
+services.AddSingleton<IStyleManager, WpfStyleManager>();
+services.AddSingleton<IGameState, WpfGameState>();
+services.AddSingleton<ITextFormatting, WpfTextFormatting>();
+services.AddSingleton<IEngineVariables, WpfEngineVariables>();
+
+// WPF 固有サービス（Era.Core に存在しない UI 挙動）
+services.AddSingleton<GameThreadHost>();
+services.AddSingleton<ButtonGenerationTracker>();
+services.AddSingleton<MessageSkipController>();
+services.AddSingleton<TimedInputController>();
+services.AddSingleton<SystemCommandParser>();
 ```
-engine/
-├── Assets/
-│   ├── Scripts/
-│   │   ├── UnityUI/
-│   │   └── Graphics/
-│   │       ├── GraphicsManager.cs
-│   │       └── PortraitDisplay.cs
-│   ├── Prefabs/
-│   ├── Scenes/
-│   └── Resources/
-│       └── Portraits/
-└── Era.Core.dll (referenced)
-```
+
+**Key Design Decisions**:
+
+| 項目 | 決定 | 理由 |
+|------|------|------|
+| テキスト描画 | FlowDocument + RichTextBox + `TextFormattingMode="Display"` | DirectWrite ピクセル吸着モードで AA マップ等価性を保証 |
+| AA レイアウト | `GetDisplayLength` 移植 + `DrawingVisual` 併用 | エンジン同等のバイナリ半角/全角判定でピクセル座標計算。精密描画が必要な箇所は `FormattedText` + 座標指定 |
+| スレッド間通信 | `SemaphoreSlim` + `IProgress<T>` | ポーリング排除、WPF Dispatcher 準拠 |
+| ボタン管理 | `ButtonGenerationTracker` | 世代カウンタで古いボタンを無効化 |
+| スクロール | VirtualizingStackPanel or custom | 大量行で OOM 防止 |
+| MVVM | CommunityToolkit.Mvvm | .NET 公式、軽量 |
+| DI | Microsoft.Extensions.DependencyInjection | Era.Core と同じ |
+| 画像 | WPF Image + BitmapImage | 立ち絵・CBG に十分 |
+| レイアウト | Grid + DockPanel | テキストゲーム向きの固定レイアウト |
 
 **Verification**:
 ```bash
-# Unity build test
-Unity -batchmode -quit -executeMethod BuildScript.PerformBuild
+# WPF build test
+MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/devkit && /home/siihe/.dotnet/dotnet build src/Era.WPF/'
+
+# Era.Core integration test
+MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/devkit && /home/siihe/.dotnet/dotnet test src/Era.WPF.Tests/ --blame-hang-timeout 10s'
 ```
 
 **Success Criteria**:
-- [ ] Unity UI 基盤確立
+- [ ] WPF プロジェクト作成 + ビルド成功
+- [ ] Era.Core プロジェクト参照 + DI 統合
+- [ ] テキスト表示（FlowDocument + 仮想スクロール）
+- [ ] ボタンクリック→入力（世代管理付き）
+- [ ] 入力ボックス表示切替 + @コマンド
+- [ ] TINPUT カウントダウン + タイムアウト
+- [ ] ダブルクリックスキップ + SKIPDISP
 - [ ] グラフィック表示統合
-- [ ] Unity ビルド成功
+- [ ] AA マップ等価性（MAP_PRINT の Headless 出力と WPF 出力でレイアウト一致）
+- [ ] Headless モードとの共存（Era.Core のインターフェースが同一であること）
 
 **Sub-Feature Requirements** (Planning Feature がこのセクションを読んで sub-feature に反映):
 
 | 項目 | 要件 | 検証方法 |
 |------|------|----------|
-| **Philosophy** | 全 sub-feature に「Phase 29: Unity UI」を継承 | Grep |
+| **Philosophy** | 全 sub-feature に「Phase 29: WPF UI」を継承 | Grep |
 | **Tasks: 負債解消** | TODO/FIXME/HACK コメント削除タスクを含む | AC に not_contains |
 | **AC: 負債ゼロ** | 技術負債ゼロを検証する AC を含む | AC 一覧確認 |
+| **AC: インタラクション** | ボタン・入力・スキップ・TINPUT の動作検証 AC を含む | AC 一覧確認 |
+| **AC: AA 等価性** | MAP_PRINT レイアウト等価性テストを含む | Headless vs WPF 出力比較 |
 
 **Next**: Create Phase 30 planning feature when this phase completes
 
@@ -649,7 +845,7 @@ git commit --allow-empty -m "test" --dry-run
 | **Skills** | `erb-syntax.md` | Archive (legacy reference) |
 | | `kojo-writing.md` | Rewrite for YAML |
 | | `testing.md` | Update to dotnet test |
-| | `engine-dev.md` | Update for Unity |
+| | `engine-dev.md` | Update for WPF |
 | **Agents** | `implementer.md` | ERB->C#/YAML |
 | | `kojo-writer.md` | ERB->YAML |
 | | `ac-tester.md` | Update matchers |
@@ -697,7 +893,7 @@ git commit --allow-empty -m "test" --dry-run
 > - [ ] 技術的負債 = 0（意図的受け入れは文書化済み）
 
 **Tasks**:
-1. Run parallel: old (uEmuera) vs new (Unity)
+1. Run parallel: old (uEmuera) vs new (WPF)
 2. Compare outputs for same inputs
 3. Fix any discrepancies
 4. Final regression test suite (20+ scenarios)
@@ -859,7 +1055,7 @@ dotnet test Era.Core.Tests --filter "Category=SaveMigration"
 
 | Risk | Probability | Impact | Mitigation |
 |------|:-----------:|:------:|------------|
-| Unity learning curve | Low | Medium | Team training, reference Unity projects |
+| WPF text rendering complexity | Low | Medium | DirectWrite proven for CJK text, FlowDocument well-documented |
 | Performance regression | Low | Medium | Profile early, optimize hot paths |
 | Feature parity gaps | Medium | High | Detailed ERB analysis, acceptance tests |
 | Save compatibility | Medium | Medium | Converter tool for old saves |
@@ -880,8 +1076,8 @@ dotnet test Era.Core.Tests --filter "Category=SaveMigration"
 | Component | Technology | Rationale |
 |-----------|------------|-----------|
 | Content | YAML | Human-readable, widely supported |
-| Logic | C# 12 / .NET 8 | Modern features, strong typing |
-| UI | Unity 6000.3.1f1 | Existing engine familiarity |
+| Logic | C# 14 / .NET 10 | Modern features, strong typing |
+| UI | WPF (.NET 10) | DirectWrite text rendering, native .NET integration |
 | YAML Parser | YamlDotNet | Mature, well-documented |
 | Testing | MSTest + Moq | .NET standard |
 | CI | GitHub Actions | Existing infrastructure |
@@ -897,7 +1093,7 @@ dotnet test Era.Core.Tests --filter "Category=SaveMigration"
 | Variable syntax | `{master}` | Simpler, matches existing ERB patterns | 2026-01 |
 | Weighted selection | Pure random | Simpler implementation, matches legacy behavior | 2026-01 |
 | Save format | JSON | Human-readable, debuggable, standard tooling | 2026-01 |
-| Unity version | 6000.3.1f1 | Current stable, existing infrastructure | 2026-01 |
+| UI platform | WPF (.NET 10) | Native .NET 10, DirectWrite text, Windows-only distribution | 2026-03 |
 
 ---
 

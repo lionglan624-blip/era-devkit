@@ -1,4 +1,4 @@
-# Full C#/Unity Architecture Design
+# Full C# Architecture Design
 
 **Status**: FINAL
 **Version**: v1.9-v1.11 (Migration phases) - **Revised 2026-01-12**
@@ -51,7 +51,7 @@
 | **Phase 1-4** | [phases/phase-1-4-foundation.md](phases/phase-1-4-foundation.md) | Tools, Test Infrastructure, System Infrastructure, Architecture Refactoring |
 | **Phase 5-19** | [phases/phase-5-19-content-migration.md](phases/phase-5-19-content-migration.md) | Variable System through Kojo Conversion |
 | **Phase 20-27** | [phases/phase-20-27-game-systems.md](phases/phase-20-27-game-systems.md) | Equipment, Counter, State, NTR Analysis/Design, AI/Visitor, Special Modes, Extensions |
-| **Phase 28-34** | [phases/phase-28-34-integration.md](phases/phase-28-34-integration.md) | Domain Events, Unity UI, Integration, Directory, Documentation, Validation, Save Migration |
+| **Phase 28-34** | [phases/phase-28-34-integration.md](phases/phase-28-34-integration.md) | Domain Events, WPF UI, Integration, Directory, Documentation, Validation, Save Migration |
 
 ---
 
@@ -291,23 +291,25 @@ CP-2 は Phase 22 Post-Phase Review で一括実装するのではなく、Phase
 
 ## External Dependencies & Roadmap
 
-| 依存 | 現状 | Phase 10 後 | 将来対応 |
-|------|------|-------------|----------|
-| **.NET** | 8.0 | **10.0** | - |
-| **C#** | 12 | **14** | - |
-| **Unity** | 6 (Mono/.NET Standard 2.1) | 変更なし | 6.7 LTS CoreCLR (2026後半) |
+| 依存 | 現状 | Phase 10 後 |
+|------|------|-------------|
+| **.NET** | 8.0 | **10.0** |
+| **C#** | 12 | **14** |
+| **WPF** | - | .NET 10 (Phase 29) |
 
-### Unity CoreCLR 移行予定
+### UI プラットフォーム選定
 
-| バージョン | 時期 | 内容 |
-|------------|------|------|
-| Unity 6.7 LTS | 2026年後半 | CoreCLR Desktop Player (experimental) |
-| Unity 7.x? | 2027年以降? | CoreCLR Editor + full .NET 10+ support |
+| 候補 | 評価 | 結論 |
+|------|------|------|
+| **Unity** | .NET Standard 2.1 制約、Era.Core (.NET 10) との不一致、CoreCLR 対応時期不明 | **却下** |
+| **Avalonia** | クロスプラットフォーム対応だが、配布先がストア審査不可のためメリット薄い | 将来検討 |
+| **WPF** | .NET 10 ネイティブ、テキスト描画(DirectWrite)得意、DI直接統合、ライセンス不要 | **採用** |
 
-**戦略**:
-1. **Era.Core + tools + Headless**: Phase 10 で .NET 10 / C# 14 に先行移行
-2. **Unity GUI**: CoreCLR 対応待ち（6.7 LTS experimental -> 安定版）
-3. **統合**: Unity CoreCLR 安定後に全体を統一
+**決定根拠**:
+- メイン配布: Windows 直接配布(DLSite, Ci-en) -- iOS/Android ストアは成人向けで審査不可
+- Era.Core が .NET 10 / C# 14 -> WPF なら直接プロジェクト参照(DLL互換性問題ゼロ)
+- テキスト主体のeraゲーム -> WPF の DirectWrite テキスト描画が最適
+- 将来 Android APK サイドロード対応が必要になれば Avalonia で薄いUI層を追加する方がコスト低
 
 ---
 
@@ -342,8 +344,8 @@ All POC tasks and success criteria completed.
 |---------|-------------|
 | **Single Language** | C# only, no ERB knowledge required |
 | **Full Testability** | Unit tests for all logic, integration tests for flows |
-| **Modern Tooling** | Visual Studio, Rider, Unity debugger, profiler |
-| **Extensibility** | Unity ecosystem (animations, audio, localization) |
+| **Modern Tooling** | Visual Studio, Rider, .NET profiler, diagnostics |
+| **Extensibility** | WPF custom controls, .NET ecosystem (audio, localization) |
 | **Maintainability** | Standard C# patterns, clear architecture |
 
 ---
@@ -396,7 +398,7 @@ For detailed design guidelines, see [phases/design-reference.md](phases/design-r
 | 26 | Special Modes & Messaging | SexHara (9 files), WC_SexHara (7 files), MSG_FUNC, 住人交流 |
 | 27 | Extensions | 経歴, 会話(10), 外出, 妖精メイド(16), CORE8666 |
 | **28** | **Domain Events統合** | **IDomainEvent, EventPublisher, Cross-cutting Handlers** |
-| 29 | Unity UI | UnityGameUI, グラフィック表示 integration |
+| 29 | WPF UI | WpfGameUI, グラフィック表示 integration |
 | 30 | Integration | Full game on new stack, ERB archived |
 | **31** | **Directory Structure** | **Zero-base directory refactoring, reference link preservation** |
 | 32 | Documentation | Skills, CLAUDE.md, Agents updated |
@@ -473,7 +475,7 @@ Phase 27 (Extensions)
     |
 Phase 28 (Domain Events)
     |
-Phase 29 (Unity UI)
+Phase 29 (WPF UI)
     |
 Phase 30 (Integration)
     |

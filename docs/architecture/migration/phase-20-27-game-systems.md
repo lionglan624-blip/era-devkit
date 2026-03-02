@@ -1083,7 +1083,7 @@ dotnet test Era.Core.Tests --filter "Category=Messaging"
 9. **E2E Checkpoint CP-3 実装** (System E2E) - Phase 20-27 全統合検証。詳細は [architecture.md Incremental E2E Test Strategy](../full-csharp-architecture.md#incremental-e2e-test-strategy) 参照
 10. **NetArchTest アーキテクチャテスト導入**: Phase 20-27 で全サブシステム完成後、レイヤー依存関係を自動テスト化。`Era.Core.Domain` → `Era.Core.Infrastructure` 依存禁止、Handler internal 強制等。参考: `<PackageReference Include="NetArchTest.Rules" Version="1.*" />`
 
-**Note**: グラフィック表示は Phase 29 (Unity UI) に統合
+**Note**: グラフィック表示は Phase 29 (WPF UI) に統合
 
 **1. 経歴拡張 (History/Memorial)**:
 

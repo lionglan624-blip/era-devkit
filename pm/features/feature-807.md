@@ -43,7 +43,7 @@ Phase 21: Counter System — WC Counter Message TEASE is a high-volume message c
 | Predecessor | F783 | [DONE] | Phase 21 Planning (parent decomposition) |
 | Predecessor | F805 | [DONE] | WC Counter Source + Message Core -- defines message dispatch interface that F807 TEASE handlers implement |
 | Successor | F813 | [DRAFT] | Post-Phase Review Phase 21 |
-| Predecessor | F808 | [PROPOSED] | WC Counter Message ITEM + NTR — TRYCALL EVENT_WC_COUNTER_MESSAGE_NTRrevelation, _setITEMs, _bottomITEM_SHOW |
+| Predecessor | F808 | [DONE] | WC Counter Message ITEM + NTR — TRYCALL EVENT_WC_COUNTER_MESSAGE_NTRrevelation, _setITEMs, _bottomITEM_SHOW |
 
 ---
 

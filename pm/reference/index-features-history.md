@@ -5,6 +5,7 @@ Complete feature history and wishlist details. For active features, see [index-f
 ---
 
 ## Completed Features (Full List)
+| **816** | [DONE] | Extract StubVariableStore Base Class in Era.Core.Tests | (moved from Recently Completed 2026-03-02) |
 | **789** | [DONE] | IVariableStore Phase 20 Extensions | (orphan recovery 2026-02-28) |
 | **777** | [DONE] | Customization (SHOP_CUSTOM.ERB + CHARA_CUSTUM.ERB + TALENTCOPY.ERB) | (orphan recovery 2026-02-28) |
 | **776** | [DONE] | Items (SHOP_ITEM.ERB + アイテム説明.ERB) | (orphan recovery 2026-02-28) |

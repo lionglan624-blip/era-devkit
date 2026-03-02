@@ -62,7 +62,7 @@ N+4 --unit deprecation: NOT_FEASIBLE — trigger condition: C# migration functio
 | Predecessor | F805 | [DONE] | WC Counter Source + Message Core |
 | Predecessor | F806 | [DRAFT] | WC Counter Message SEX |
 | Predecessor | F807 | [DRAFT] | WC Counter Message TEASE |
-| Predecessor | F808 | [DRAFT] | WC Counter Message ITEM + NTR |
+| Predecessor | F808 | [DONE] | WC Counter Message ITEM + NTR |
 | Predecessor | F809 | [DONE] | COMABLE Core |
 | Predecessor | F810 | [DONE] | COMABLE Extended |
 | Predecessor | F811 | [DONE] | SOURCE Entry System |

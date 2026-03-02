@@ -464,6 +464,8 @@ Phase 23 (NTR Kojo Reference Analysis)
 Phase 24 (NTR Bounded Context)
     |
 Phase 25 (AI & Visitor + NTR Implementation)
+    - F808 Handoff: Implement NTR_NAME(0) in NTR_UTIL migration (INtrUtilityService.GetNtrName currently returns "")
+    - F808 Handoff: Implement NTR_RESET_VISITOR_ACTION in NTR_UTIL migration (INtrUtilityService.NtrResetVisitorAction currently no-op)
     |
 Phase 26 (Special Modes & Messaging)
     |

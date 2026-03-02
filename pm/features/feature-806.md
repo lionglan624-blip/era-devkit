@@ -43,7 +43,7 @@ Phase 21: Counter System — WC Counter Message SEX is the largest single messag
 | Predecessor | F783 | [DONE] | Phase 21 Planning (parent decomposition) |
 | Predecessor | F805 | [DONE] | WC Counter Source + Message Core -- defines message dispatch interface that F806 SEX handlers implement |
 | Successor | F813 | [DRAFT] | Post-Phase Review Phase 21 |
-| Predecessor | F808 | [PROPOSED] | WC Counter Message ITEM + NTR — TRYCALL EVENT_WC_COUNTER_MESSAGE_bottomCLOTH_OFF (TOILET_COUNTER_MESSAGE_ITEM.ERB:1182) |
+| Predecessor | F808 | [DONE] | WC Counter Message ITEM + NTR — TRYCALL EVENT_WC_COUNTER_MESSAGE_bottomCLOTH_OFF (TOILET_COUNTER_MESSAGE_ITEM.ERB:1182) |
 
 ---
 

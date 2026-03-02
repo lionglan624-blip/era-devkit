@@ -65,9 +65,8 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F806 | [DRAFT] | WC Counter Message SEX | F783, F805 | [feature-806.md](feature-806.md) |
-| F807 | [DRAFT] | WC Counter Message TEASE | F783, F805 | [feature-807.md](feature-807.md) |
-| F813 | [DRAFT] | Post-Phase Review Phase 21 | F783, F801, F802, F803, F804, F805, **F806**, **F807**, F808, F809, F810, F811, F812 | [feature-813.md](feature-813.md) |
+| F806 | [WIP] | WC Counter Message SEX | F783, F805, F808 | [feature-806.md](feature-806.md) |
+| F813 | [DRAFT] | Post-Phase Review Phase 21 | F783, F801, F802, F803, F804, F805, **F806**, F807, F808, F809, F810, F811, F812 | [feature-813.md](feature-813.md) |
 | F814 | [DRAFT] | Phase 22 Planning | F783, **F813** | [feature-814.md](feature-814.md) |
 
 ### Other
@@ -87,12 +86,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 807 | ✅ | WC Counter Message TEASE | [feature-807.md](feature-807.md) |
 | 808 | ✅ | WC Counter Message ITEM + NTR | [feature-808.md](feature-808.md) |
 | 805 | ✅ | WC Counter Source + Message Core | [feature-805.md](feature-805.md) |
 | 811 | ✅ | SOURCE Entry System | [feature-811.md](feature-811.md) |
 | 803 | ✅ | Main Counter Source | [feature-803.md](feature-803.md) |
 | 810 | ✅ | COMABLE Extended | [feature-810.md](feature-810.md) |
-| 802 | ✅ | Main Counter Output | [feature-802.md](feature-802.md) |
 
 ---
 

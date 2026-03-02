@@ -966,6 +966,7 @@ services.AddSingleton<WcCounterMessageTease>();
 | 2026-03-02 | /run P7 | ac-tester | All 61 ACs PASS (OK:61/61) | SUCCESS |
 | 2026-03-02 | /run P8 | feature-reviewer | Quality review READY, 8.2 skip (no extensibility), 8.3 N/A | SUCCESS |
 | 2026-03-02 | DEVIATION | verify-logs.py | --scope feature:807 | exit 1: _out/logs/prod not found (cross-repo: ac-static-verifier incompatible with feature-in-devkit+code-in-core; AC verification done by ac-tester) |
+| 2026-03-02 | DEVIATION | pre-commit | core build | exit 1: WcCounterMessageTests.cs missing WcCounterMessageTease constructor param (PRE-EXISTING test not updated for new dependency); fixed by debugger |
 
 ---
 

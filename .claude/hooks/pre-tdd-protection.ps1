@@ -10,18 +10,13 @@
 $inputJson = [Console]::In.ReadToEnd()
 if (-not $inputJson) { exit 0 }
 
-try {
-    $data = $inputJson | ConvertFrom-Json -ErrorAction Stop
-} catch {
-    Write-Error "[BLOCKED] Failed to parse JSON input: $_"
-    exit 2
+# Extract file_path only via regex to avoid ConvertFrom-Json failures
+# on large tool_input.old_string containing escape sequences
+if ($inputJson -match '"file_path"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"') {
+    $path = $Matches[1] -replace '\\/', '/' -replace '\\\\', '\'
+} else {
+    exit 0
 }
-if (-not $data) {
-    Write-Error "[BLOCKED] Empty JSON input"
-    exit 2
-}
-
-$path = $data.tool_input.file_path
 if (-not $path) { exit 0 }
 
 # Check if path is a TDD-protected test file (devkit repo)

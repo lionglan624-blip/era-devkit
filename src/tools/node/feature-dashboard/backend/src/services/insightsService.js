@@ -28,7 +28,7 @@ export class InsightsService {
     this._emailService = emailService || null;
     this._running = false;
     this._lastResult = null;
-    this._schedulerInterval = null;
+    this._schedulerTimeout = null;
   }
 
   _getReportPath(profile) {
@@ -230,25 +230,47 @@ export class InsightsService {
   }
 
   /**
-   * Start weekly scheduler.
-   * @param {number} intervalMs - Interval in milliseconds (default: 7 days)
+   * Calculate ms until next Monday 07:00 JST (= Sunday 22:00 UTC).
+   * @param {Date} [now] - Current time (for testing)
+   * @returns {number}
    */
-  startScheduler(intervalMs = 7 * 24 * 60 * 60 * 1000) {
-    if (this._schedulerInterval) return;
-    claudeLog.info(`[Insights] Scheduler started: interval=${Math.round(intervalMs / 3600000)}h`);
-    this._schedulerInterval = setInterval(() => {
-      claudeLog.info('[Insights] Scheduled capture triggered');
+  _msUntilNextMonday7JST(now = new Date()) {
+    // Monday 07:00 JST = Sunday 22:00 UTC
+    const target = new Date(now);
+    const daysUntilSunday = (7 - target.getUTCDay()) % 7;
+    target.setUTCDate(target.getUTCDate() + daysUntilSunday);
+    target.setUTCHours(22, 0, 0, 0);
+    if (target.getTime() <= now.getTime()) {
+      target.setUTCDate(target.getUTCDate() + 7);
+    }
+    return target.getTime() - now.getTime();
+  }
+
+  _scheduleNext() {
+    const ms = this._msUntilNextMonday7JST();
+    const nextDate = new Date(Date.now() + ms);
+    claudeLog.info(`[Insights] Next scheduled capture: ${nextDate.toISOString()} (in ${Math.round(ms / 3600000)}h)`);
+    this._schedulerTimeout = setTimeout(() => {
+      claudeLog.info('[Insights] Scheduled capture triggered (Monday 07:00 JST)');
       this.capture().catch((err) => {
         claudeLog.error(`[Insights] Scheduled capture failed: ${err.message}`);
       });
-    }, intervalMs);
+      this._schedulerTimeout = null;
+      this._scheduleNext();
+    }, ms);
+  }
+
+  /** Start weekly scheduler (Monday 07:00 JST). */
+  startScheduler() {
+    if (this._schedulerTimeout) return;
+    this._scheduleNext();
   }
 
   /** Stop the scheduler. */
   stopScheduler() {
-    if (this._schedulerInterval) {
-      clearInterval(this._schedulerInterval);
-      this._schedulerInterval = null;
+    if (this._schedulerTimeout) {
+      clearTimeout(this._schedulerTimeout);
+      this._schedulerTimeout = null;
       claudeLog.info('[Insights] Scheduler stopped');
     }
   }

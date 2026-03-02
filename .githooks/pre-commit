@@ -8,7 +8,7 @@ WSL_DOTNET="/home/siihe/.dotnet/dotnet"
 WIN_REPO=$(git rev-parse --show-toplevel)
 WSL_REPO=$(echo "$WIN_REPO" | sed -E 's|^([a-zA-Z]):/|/mnt/\L\1/|')
 wsl_dotnet() {
-    MSYS_NO_PATHCONV=1 wsl -- bash -c "cd $WSL_REPO && DEVKIT_ROOT=$WSL_REPO $WSL_DOTNET $*"
+    MSYS_NO_PATHCONV=1 wsl -- bash -c "cd $WSL_REPO && DEVKIT_ROOT=$WSL_REPO GAME_PATH=/mnt/c/Era/game $WSL_DOTNET $*"
 }
 
 # Log setup - timestamp generated once at top

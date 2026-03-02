@@ -26,7 +26,7 @@ Validate complete feature file for structural correctness and consistency. This 
 4. Verify all required sections exist by checking against the Section Ownership table in `pm/reference/feature-template.md`:
    - **Static** (DRAFT): Status, Scope Discipline, Type
    - **Phase 1** (consensus-synthesizer): Background, Root Cause Analysis, Related Features, Feasibility Assessment, Impact Analysis, Technical Constraints, Risks, Baseline Measurement (skip for kojo/research), AC Design Constraints, Dependencies
-   - **Phase 3** (ac-designer): Acceptance Criteria (with Philosophy Derivation, AC Definition Table, AC Details, Goal Coverage Verification)
+   - **Phase 3** (ac-designer): Acceptance Criteria (with Philosophy Derivation, AC Definition Table, AC Details (threshold matchers require Derivation), Goal Coverage Verification)
    - **Phase 4** (tech-designer): Technical Design (with Approach, AC Coverage, Key Decisions)
    - **Phase 5** (wbs-generator): Tasks, Implementation Contract, Mandatory Handoffs, Execution Log, Links
    - **Optional**: Deviation Context OR Review Context (at least one should exist)
@@ -83,7 +83,7 @@ Validate complete feature file for structural correctness and consistency. This 
     For each AC with Grep matcher:
     - `not_matches` patterns: Grep the target path to confirm pattern currently matches (non-vacuous)
     - `matches` patterns: Grep the target path to confirm pattern does NOT currently match (RED state)
-    - AC Definition Table patterns == AC Details patterns (consistency)
+    - For ACs with AC Details: AC Definition Table patterns == AC Details patterns (consistency)
     Note: V3 pipe check (`|` vs `\|`) is already handled by quality-fixer C5.
     Severity: [critical] for vacuous not_matches, [major] for non-RED matches
 

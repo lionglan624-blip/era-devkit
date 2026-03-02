@@ -44,7 +44,7 @@ Scan and auto-fix the following patterns. **Only fix 100% deterministic patterns
 | C4 | contains matcher with regex | Expected has `.*` or `\|` with `contains` | Change matcher to `matches` |
 | C5 | Grep escaped pipe | Pattern has `\\|` (grep-style) | Replace with `\|` (ripgrep-style) |
 | C6 | Missing Links entries | Related Features not in Links section | Add missing Links entries |
-| C7 | AC Expected contains path | Expected has path mixed into matcher value | Move path to AC Details |
+| C7 | AC Expected contains path | Expected has path mixed into matcher value | Move path to AC Details (create Details block if needed) |
 | C8 | Grep Method missing path | Method = "Grep" without `(path)` | Log warning (needs context) |
 | C9 | AC Details tool mismatch | AC table Method differs from AC Details method | Align AC Details to match table |
 | C10 | AC count Note stale | Note mentions count != actual AC rows | Update count in Note |

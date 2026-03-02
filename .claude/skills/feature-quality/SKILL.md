@@ -41,7 +41,7 @@ description: REQUIRED before writing any feature-{ID}.md file. Skipping causes F
 - [ ] File existence → Glob, content check → Grep
 - [ ] AC table includes Method column (Glob/Grep/dotnet test)
 - [ ] AC matchers use specific identifiers (not broad patterns)
-- [ ] AC Details methods all have corresponding ACs in table
+- [ ] Threshold-matcher ACs all have AC Details with Derivation
 - [ ] Every getter AC has corresponding setter AC when interface defines both (V2)
 - [ ] Stub replacement ACs include positive call verification (V2)
 - [ ] Grep patterns use `|` not `\|` for ripgrep alternation (V3)
@@ -162,11 +162,11 @@ For each AC with Grep matcher, verify pattern quality:
 - [ ] Pattern matches within a single line — no cross-line assumptions (method name + exception on different lines)
 - [ ] `not_matches` patterns: confirm pattern DOES currently match in codebase (ensures non-vacuous test)
 - [ ] `matches` patterns: confirm pattern does NOT currently match (ensures RED state for TDD)
-- [ ] AC Definition Table patterns consistent with AC Details patterns
+- [ ] For ACs with Details: AC Definition Table patterns consistent with AC Details patterns
 - [ ] Matcher name is in allowed list: `matches`, `not_matches`, `gte`, `lte`, `count_equals`, `file_exists`, `dotnet_test` (F805 lesson: `count_gte` is invalid)
 - [ ] Regex has no trailing `\\|` or unclosed groups (F805 lesson: AC#53 had stray `\\|`)
 - [ ] Matcher/Expected/Method columns are not swapped (F805 lesson: AC#56 had Matcher↔Expected swap)
-- [ ] `gte` ACs include derivation in AC Details (e.g., "17 ITEM functions in ERB source")
+- [ ] Threshold-matcher ACs (gte/gt/lt/lte/count_equals) include derivation in AC Details
 
 ### V4: Source Re-verification
 

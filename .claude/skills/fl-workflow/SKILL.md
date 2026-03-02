@@ -308,7 +308,7 @@ Detect mode by status:
 |------------------------|------------------------------|
 | AC/Task Definition Table row addition | AC/Task removal (reduce count) |
 | AC Coverage row addition (for existing ACs) | Constraint modifications that alter verified design boundaries |
-| AC Details block addition (for existing ACs) | Genuinely novel architectural choice with no project precedent |
+| AC Details block addition (for threshold-matcher ACs) | Genuinely novel architectural choice with no project precedent |
 | Implementation Contract subsection addition (for existing Tasks) | |
 | **Design decision with established project precedent** (e.g., F802 delegation pattern, fail-loud stub pattern) | |
 | **DI pattern decidable from MS DI conventions** (e.g., null sentinel for nullable interface, AddSingleton for new class) | |
@@ -421,7 +421,7 @@ The following issues are **NOT user-pending**. Orchestrator autonomously applies
 | AC:Task 1:1 alignment | ac-task-aligner | Apply fix directly (unless BLOCKED) |
 | AC/Task Definition Table row addition | Any reviewer/validator | Apply fix directly |
 | AC Coverage row addition (existing ACs) | Any reviewer/validator | Apply fix directly |
-| AC Details block addition (existing ACs) | Any reviewer/validator | Apply fix directly |
+| AC Details block addition (threshold-matcher ACs) | Any reviewer/validator | Apply fix directly |
 | Implementation Contract subsection addition (existing Tasks) | Any reviewer/validator | Apply fix directly |
 | Doc fix: feature.md content correction (verifiable against source) | Any reviewer/validator | Apply fix directly |
 | Doc fix: AC matcher improvement (fragile → robust) | Any reviewer/validator | Apply fix directly |

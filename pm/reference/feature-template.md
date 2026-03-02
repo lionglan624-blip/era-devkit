@@ -329,9 +329,13 @@ Example:
 
 ### AC Details
 
-**AC#1: {Description}**
+<!-- Threshold matchers (gte, gt, lt, lte, count_equals): Details block MANDATORY with Derivation.
+     Non-threshold matchers (matches, exists, etc.): Details block OPTIONAL. -->
+
+**AC#1: {Description}**  <!-- Required only for threshold matchers -->
 - **Test**: `{command}`
 - **Expected**: `{output/pattern}`
+- **Derivation**: {why this number — e.g., "17 ITEM functions in ERB source, 1:1 migration"}
 - **Rationale**: {why this AC is necessary}
 
 ### Goal Coverage Verification

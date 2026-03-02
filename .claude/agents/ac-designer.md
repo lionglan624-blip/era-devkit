@@ -87,8 +87,8 @@ Design Acceptance Criteria table and details from Philosophy/Goal sections. This
 
 7. Merge Philosophy-derived ACs (Step 5) + Deliverable-derived ACs (Step 6.5) + Goal-derived ACs (Step 6)
 8. Design AC table with Type/Method/Matcher/Expected columns
-9. Create AC Details section explaining each AC
-10. For each AC, reference applicable Constraint ID in AC Details if relevant
+9. Create AC Details section: MANDATORY for threshold matchers (gte/gt/lt/lte/count_equals) with Derivation; OPTIONAL for others
+10. For threshold-matcher ACs, reference applicable Constraint ID in AC Details
 
 ### Step 10.5: Matcher Verification (MANDATORY for Grep ACs)
 
@@ -182,12 +182,12 @@ Copy these exact headers, column structures, and sub-section names. Do NOT renam
 | 1 | {goal item from Goal section} | AC#{N} |
 ```
 
-**All 4 sub-sections are MANDATORY. Missing any sub-section is a blocking error.**
+**All 4 sub-sections are MANDATORY (section headers required). AC Details blocks required only for threshold matchers.**
 
 **AC Details format rules**:
 - Header: `**AC#{N}: {Description}**` (bold, matches AC Definition Table Description)
 - 3 fields: **Test**, **Expected**, **Rationale** (exactly these names)
-- Every AC in the Definition Table MUST have a corresponding AC Details block
+- Every threshold-matcher AC (gte/gt/lt/lte/count_equals) MUST have a Details block with Derivation. Non-threshold ACs MAY have Details.
 
 **AC Table Columns**:
 - **AC#**: Sequential number (center-aligned `:---:`)
@@ -211,7 +211,7 @@ Copy these exact headers, column structures, and sub-section names. Do NOT renam
 
 **CRITICAL**: Do NOT use `test` type for pytest. Use `exit_code` for all script executions including pytest.
 
-**AC Details**: Detailed explanation for each AC including rationale, edge cases, and verification notes.
+**AC Details**: Derivation for threshold-matcher ACs. Optional for non-threshold matchers.
 
 ## Goal Coverage Verification (MANDATORY)
 
@@ -242,9 +242,9 @@ Copy these exact headers, column structures, and sub-section names. Do NOT renam
 - Use strict matchers (prefer `equals` over `contains` when possible)
 - Binary judgment only (PASS/FAIL, no confidence levels)
 
-### gte Derivation Rule
+### Threshold Derivation Rule
 
-`gte` matcherのACは必ずAC Detailsに導出を記載:
+Threshold matchers (gte/gt/lt/lte/count_equals) のACは必ずAC Detailsに導出を記載:
 - Count >= 17 (17 ITEM functions in ERB source, 1:1 migration)
 - Count >= 5 (5 constructor-injected interfaces present in file)
 
@@ -267,5 +267,5 @@ Copy these exact headers, column structures, and sub-section names. Do NOT renam
 
 - **DO NOT generate Tasks table** - This is wbs-generator's responsibility
 - **DO NOT generate Implementation Contract** - This is wbs-generator's responsibility
-- Output AC table and AC Details only
+- Output AC table and AC Details (threshold matchers) only
 - If tempted to add Tasks, STOP and return AC-only output

@@ -1163,14 +1163,14 @@ After every AC addition/split, update ALL of:
 - [ ] AC matchers use specific identifiers (not broad patterns)
 - [ ] Grep methods use explicit file paths (not glob patterns)
 - [ ] AC table includes Method column (Glob/Grep/dotnet test)
-- [ ] AC Details methods all have corresponding ACs
+- [ ] Threshold-matcher AC Details all have corresponding ACs and Derivation
 - [ ] Refactor+Remove tasks merged into atomic task
 - [ ] Philosophy includes SSOT claim and scope
 - [ ] Function descriptions match legacy implementation behavior
 - [ ] Output file has existence AC as first AC
 - [ ] AC Expected column has matcher value only (paths in AC Details)
 - [ ] Cross-references in related features use current name
-- [ ] AC Details uses same tool as AC table Method column
+- [ ] For ACs with Details: AC Details uses same tool as AC table Method column
 - [ ] Test naming convention documented when using FullyQualifiedName filter
 - [ ] DI registration code snippet in Implementation Contract
 - [ ] Error message format specified for Result.Fail cases

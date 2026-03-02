@@ -420,11 +420,11 @@ When user chooses option A (wait for blocker):
 
 ## Step 9.7: AC Coverage Check
 
-Verify AC Details match implementation:
+Verify threshold-matcher AC Details match implementation:
 
 | Status | Action |
 |--------|--------|
-| All AC Details requirements satisfied | → Continue |
+| All threshold AC Details (Derivation) requirements satisfied | → Continue |
 | Intentionally unimplemented requirements | → Record in Handoff Destinations section |
 
 **Unimplemented Record Format**:

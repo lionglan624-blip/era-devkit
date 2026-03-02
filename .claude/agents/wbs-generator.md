@@ -13,7 +13,7 @@ Generate Tasks table and Implementation Contract from Acceptance Criteria. This 
 
 ## Input
 
-- Feature file (feature-{ID}.md) with all sections up to AC Details
+- Feature file (feature-{ID}.md) with all sections up to AC Details (threshold ACs)
 - Feature ID
 
 ## Process

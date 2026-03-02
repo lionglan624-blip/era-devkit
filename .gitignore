@@ -71,3 +71,6 @@ src/tools/node/feature-dashboard/frontend/dist/
 
 # Stryker
 StrykerOutput/
+
+# Stale runtime directories
+Game/

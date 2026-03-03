@@ -11,6 +11,7 @@ if (-not $data) { exit 0 }
 
 # exit codeを取得（複数の形式に対応）
 $exitCode = $null
+if (-not $data.tool_result) { exit 0 }
 if ($data.tool_result.PSObject.Properties['exit_code']) {
     $exitCode = $data.tool_result.exit_code
 } elseif ($data.tool_result.PSObject.Properties['exitCode']) {

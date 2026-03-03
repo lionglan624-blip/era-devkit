@@ -9,7 +9,8 @@
       "Edit",
       "Glob",
       "Grep",
-      "Task"
+      "Task",
+      "AskUserQuestion"
     ],
     "deny": [],
     "ask": [

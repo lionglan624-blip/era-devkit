@@ -65,7 +65,7 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F813 | [DRAFT] | Post-Phase Review Phase 21 | F783, F801, F802, F803, F804, F805, F806, F807, F808, F809, F810, F811, F812 | [feature-813.md](feature-813.md) |
+| F813 | [PROPOSED] | Post-Phase Review Phase 21 | F783, F801, F802, F803, F804, F805, F806, F807, F808, F809, F810, F811, F812 | [feature-813.md](feature-813.md) |
 | F814 | [DRAFT] | Phase 22 Planning | F783, **F813** | [feature-814.md](feature-814.md) |
 
 ### Other

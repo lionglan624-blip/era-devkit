@@ -1,6 +1,7 @@
 # Feature 813: Post-Phase Review Phase 21
 
-## Status: [PROPOSED]
+## Status: [DONE]
+<!-- fl-reviewed: 2026-03-03T16:37:53Z -->
 
 ## Scope Discipline
 
@@ -33,8 +34,8 @@ Phase 21's per-feature decomposition (F783) divided the Counter System by ERB fi
 ### Goal (What to Achieve)
 
 1. Register all Phase 21 services in `AddEraCore()` and verify full DI resolution (CP-2 Step 2a)
-2. Resolve or properly track all 28+ deferred obligations from F803-F808, F810-F811
-3. Establish E2E test foundation with Training-to-Counter cross-system flow
+2. Resolve or properly track all 35 deferred obligations from F803-F808, F810-F811
+3. Establish E2E test foundation with structural Training-to-Counter cross-system flow (Training side uses NullTrainingCheckService stub; behavioral integration deferred to future phase)
 4. Reconcile architecture documentation (Phase 21 Status, Success Criteria)
 5. Record Stryker.NET mutation testing baseline
 6. Evaluate Redux trigger and create Redux DRAFT if threshold exceeded
@@ -46,7 +47,7 @@ Phase 21's per-feature decomposition (F783) divided the Counter System by ERB fi
 <!-- Non-template top-level section: infra post-phase features require prominent deferred obligation tracking. Moved from Background subsection per Phase2-Review iter1. -->
 
 **N+4 --unit deprecation obligation** (DEFERRED from F782 -> F783 -> F813):
-N+4 --unit deprecation: NOT_FEASIBLE -- trigger condition: C# migration functionally complete (kojo no longer requires ERB test runner; kojo testing pipeline dependency resolved). Tracking destination: this feature -- /fc時にdeprecation追跡タスクとして具体化する。
+N+4 --unit deprecation: NOT_FEASIBLE -- trigger condition: C# migration functionally complete (kojo no longer requires ERB test runner; kojo testing pipeline dependency resolved). Tracking destination: this feature -- to be concretized as a deprecation tracking task during /fc.
 
 **F810 Mandatory Handoffs** (DEFERRED from F810 -> F813):
 1. **IComableUtilities/ICounterUtilities method duplication consolidation**: 4 methods overlap between IComableUtilities (F809/F810) and ICounterUtilities (F801/F804): TimeProgress (int vs int), IsAirMaster (int vs CharacterId), GetTargetNum (no param vs CharacterId), MasterPose (int,int,int vs int,int returning CharacterId). Consolidation to eliminate parallel interfaces with incompatible signatures for the same ERB functions.
@@ -64,12 +65,12 @@ N+4 --unit deprecation: NOT_FEASIBLE -- trigger condition: C# migration function
 6. **IShrinkageSystem runtime implementation**: F803 creates IShrinkageSystem interface (Era.Core/Counter/IShrinkageSystem.cs) with no engine-layer implementation; production calls use stub/no-op until implemented. Runtime 締り具合変動 logic requires engine-layer integration.
 
 **F807 Mandatory Handoffs** (DEFERRED from F807 -> F813):
-1. **WcCounterMessageTease行動テストカバレッジ**: F807 ACは全て静的コードチェック（Grepパターン、ビルド成功）。ハンドラ分岐、INPUTループパス、NTR revelation、EQUIP mutationの行動等価性テストが未検証。F807 Philosophyは「structural migration equivalence」に限定済み；行動等価性はF813スコープ内で検証予定だったが、F813タスク数超過（14タスク/30AC）のためF814に再延期。Mandatory Handoffs参照。
-2. **IWcCounterMessageTeaseインターフェース抽出検討**: WcCounterMessageTeaseは具象型で注入（Key Decision Row 1）。WcCounterMessage.Dispatch()の単体テストに全11依存の実体が必要。選択肢: (A) IWcCounterMessageTease作成、(B) 恒久的技術的負債として許容。
-3. **キャラクターID定数統合**: MESSAGE27の13個のprivate const（キャラクターID）がF806 SEXと重複の可能性。共有CharacterConstantsクラスが存在しない。統合追跡が必要。
-4. **WcCounterMessageコンストラクタ肥大化対策**: F807後11パラメータ、F806追加で12パラメータ。パラメータオブジェクト化またはハンドラディスパッチサービスへの統合を検討。
-5. **CFlag/Cflag命名規則正規化**: WcCounterMessage.cs（F805）はCFlag prefix、WcCounterMessageItem/Ntr（F808）はCflag prefix。F807はF808パターンに従うが、WcCounterMessage.cs内の既存CFlag定数は未修正。命名規則統一が必要。
-6. **F807 AC#34ローカル関数施行ギャップ追跡**: F807 AC#34のgrepパターン `private (static )?int \w+\(` はC#ローカル関数（`private`キーワードなし）を検出不可。Technical Designはローカル関数を明示的に禁止するが、機械的AC強制が存在しない。WcCounterMessageTeaseでのローカル関数使用は未検証。F813スコープ外として検証未実施のままF814に繰り越し（Mandatory Handoffs参照）。
+1. **WcCounterMessageTease behavioral test coverage**: All F807 ACs are static code checks (Grep patterns, build success). Behavioral equivalence tests for handler branching, INPUT loop paths, NTR revelation, and EQUIP mutation are unverified. F807 Philosophy is limited to "structural migration equivalence"; behavioral equivalence was planned for F813 scope but re-deferred to F814 due to F813 task count exceeding capacity (14 tasks/36 ACs). See Mandatory Handoffs.
+2. **IWcCounterMessageTease interface extraction**: WcCounterMessageTease is injected as a concrete type (Key Decision Row 1). Extract IWcCounterMessageTease interface and replace concrete type injection in WcCounterMessage constructor. Tracked in Mandatory Handoffs (Destination=F814).
+3. **Character ID constant consolidation**: MESSAGE27 has 13 private const character IDs that may duplicate F806 SEX. Shared CharacterConstants class does not exist. Consolidation tracking needed.
+4. **WcCounterMessage constructor bloat mitigation**: 11 parameters after F807, 12 after F806 additions. Consider parameter object pattern or integration into handler dispatch service.
+5. **CFlag/Cflag naming convention normalization**: WcCounterMessage.cs (F805) uses CFlag prefix; WcCounterMessageItem/Ntr (F808) uses Cflag prefix. F807 follows F808 pattern, but existing CFlag constants in WcCounterMessage.cs are not yet corrected. Naming convention unification needed.
+6. **F807 AC#34 local function enforcement gap tracking**: F807 AC#34 grep pattern `private (static )?int \w+\(` cannot detect C# local functions (no `private` keyword). Technical Design explicitly prohibits local functions, but mechanical AC enforcement does not exist. Local function usage in WcCounterMessageTease is unverified. Carried over to F814 as unverified outside F813 scope (see Mandatory Handoffs).
 
 **F806 Mandatory Handoffs** (DEFERRED from F806 -> F813):
 1. **IEngineVariables GetTime/SetTime NuGet packaging**: Default interface methods added in F806 are source-only; if Era.Core NuGet is re-published, package version must be bumped.
@@ -82,11 +83,11 @@ N+4 --unit deprecation: NOT_FEASIBLE -- trigger condition: C# migration function
 8. **NOITEM photography bug (ERB原文バグ)**: TOILET_COUNTER_MESSAGE_SEX.ERB line 411 uses `NOITEM != 0 &&` instead of `NOITEM != 0 ||`. Photography scene is dead code in normal gameplay (NOITEM==0). C# migration at WcCounterMessageSex.cs:1922 faithfully preserved bug. Fix requires changing guard clause logic.
 
 **F808 Mandatory Handoffs** (DEFERRED from F808 -> F813):
-1. **WcCounterMessageNtr責務分割**: ERBファイル `TOILET_COUNTER_MESSAGE_NTR.ERB` は「ペッティングとNTR関連」の寄せ集めだった。6メソッド中4つがNTR無関係（RotorOut=デバイス操作、OshikkoLooking=観察、WithFirstSex/WithPetting=性行為）。9依存コンストラクタはNTR管理クラスタ(2メソッド)のみが`_kojoMessage`,`_counterUtilities`,`_ntrUtility`を使用し、残り4メソッドは3-5依存で済む。分割推奨: IWcCounterMessageNtrObservation + IWcCounterMessageNtrRevelation。
-2. **NtrReversalSource/NtrAgreeSource計算式乖離**: ERBは除算ベース動的スケーリング `(LOCAL:21/10)+10` 、C#は固定定数 `subReduction=50` 。等価性テストで検証が必要。
+1. **WcCounterMessageNtr responsibility split**: ERB file `TOILET_COUNTER_MESSAGE_NTR.ERB` was a "petting and NTR-related miscellany" collection. 4 of 6 methods are unrelated to NTR (RotorOut=device operation, OshikkoLooking=observation, WithFirstSex/WithPetting=sexual acts). The 9-dependency constructor only requires `_kojoMessage`, `_counterUtilities`, `_ntrUtility` for the NTR management cluster (2 methods); the remaining 4 methods only need 3-5 dependencies. Recommended split: IWcCounterMessageNtrAction + IWcCounterMessageNtrRevelation.
+2. **NtrReversalSource/NtrAgreeSource calculation divergence**: ERB uses division-based dynamic scaling `(LOCAL:21/10)+10`; C# uses fixed constants `subReduction=50`. Equivalence verification required via tests.
 
-**F808 /fc教訓（プロセス改善）**:
-Phase 21の分解（F783）はERBファイル単位で行い、/fcはその境界を無検証で踏襲した。結果、ERBの「残り物寄せ集めファイル」がそのままC#クラス境界になった。今後の/fcでは「ERBファイル境界 ≠ ドメイン境界」の検証ステップが必要。
+**F808 /fc lessons (process improvement)**:
+Phase 21 decomposition (F783) was performed per ERB file, and /fc followed those boundaries without validation. As a result, ERB "leftover miscellany files" became C# class boundaries directly. Future /fc runs must include a verification step for "ERB file boundary != domain boundary".
 
 ---
 
@@ -312,50 +313,54 @@ Example:
 
 | Absolute Claim | Derived Requirement | AC Coverage |
 |----------------|---------------------|-------------|
-| "Post-Phase Review is the SSOT gate ensuring phase closure with zero untracked obligations" | All deferred obligations must be resolved or explicitly tracked with concrete destination | AC#2, AC#5, AC#6, AC#9, AC#11, AC#12, AC#13, AC#14, AC#15, AC#17, AC#20, AC#22, AC#24, AC#26, AC#27, AC#28, AC#31, AC#32, AC#33, AC#34, AC#35 |
-| "verified DI composition" | All Phase 5-21 services must resolve via BuildServiceProvider() without exceptions | AC#1, AC#25, AC#29, AC#30 |
+| "Post-Phase Review is the SSOT gate ensuring phase closure with zero untracked obligations" | All deferred obligations must be resolved or explicitly tracked with concrete destination | AC#2, AC#5, AC#6, AC#9, AC#11, AC#12, AC#13, AC#14, AC#15, AC#17, AC#20, AC#22, AC#24, AC#26, AC#27, AC#28, AC#29, AC#30, AC#31, AC#32, AC#33, AC#34, AC#35 |
+| "verified DI composition" | All Phase 5-21 services must resolve via BuildServiceProvider() without exceptions | AC#1, AC#25 |
 | "reconciled architecture documentation before progressing to the next phase" | Phase 21 Status and Success Criteria must be updated from TODO | AC#7, AC#16 |
-| "Pipeline Continuity" | E2E foundation, Stryker baseline, and dashboard compliance must be verified before phase progression | AC#3, AC#4, AC#8, AC#10, AC#18, AC#19, AC#21, AC#23 |
+| "Pipeline Continuity" | E2E foundation, Stryker baseline, and dashboard compliance must be verified before phase progression | AC#3, AC#4, AC#8, AC#10, AC#18, AC#19, AC#21, AC#23, AC#36, AC#37 |
 
 ### AC Definition Table
+<!-- Deviation: 37 ACs exceed infra 8-15 guideline. Post-Phase Review scope (13 predecessors, 35 deferred obligations, Redux evaluation, E2E foundation, Stryker baseline) mandates comprehensive coverage. Redux threshold evaluation is Task 7. -->
 
 | AC# | Description | Type | Method | Matcher | Expected | Status |
 |:---:|-------------|------|--------|---------|----------|:------:|
-| 1 | DI all-resolve test exists and passes | test | dotnet test C:/Era/core/src/Era.Core.Tests --filter "FullyQualifiedName~DiResolutionTests" --blame-hang-timeout 10s | succeeds | - | [ ] |
-| 2 | ICounterUtilities MasterPose removed after consolidation | code | Grep(path="C:/Era/core/src/Era.Core/") | not_contains | "MasterPose(int poseType, int poseSlot)" | [ ] |
-| 3 | E2E test directory created | file | Glob("C:/Era/core/src/Era.Core.Tests/E2E/*Tests.cs") | exists | - | [ ] |
-| 4 | Dashboard lint zero errors | exit_code | npm run lint --prefix src/tools/node/feature-dashboard | succeeds | - | [ ] |
-| 5 | N+4 --unit NOT_FEASIBLE re-deferred with concrete destination | code | Grep(path="pm/features/feature-813.md") | matches | "NOT_FEASIBLE: destination F\\d+" | [ ] |
-| 6 | Redux trigger evaluation result documented in Execution Log | code | Grep(path="pm/features/feature-813.md") | matches | "Redux evaluation result: (below threshold|Redux DRAFT created as F\\d+)" | [ ] |
-| 7 | Phase 21 architecture status reconciled (Phase 20 baseline DONE; Phase 21 updated to DONE) | code | Grep(path="docs/architecture/migration/phase-20-27-game-systems.md", pattern="Phase Status.*DONE") | gte | 2 | [ ] |
-| 8 | Stryker baseline recorded in execution log | code | Grep(path="pm/features/feature-813.md") | matches | "mutation score.*\\d+\\.\\d+%" | [ ] |
-| 9 | ITouchSet interface removed after consolidation | code | Grep(path="C:/Era/core/src/Era.Core/") | not_contains | "interface ITouchSet" | [ ] |
-| 10 | Build succeeds after all changes | build | dotnet build | succeeds | - | [ ] |
-| 11 | DatuiMessage extracted to shared service | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "IDatuiMessageService" | [ ] |
-| 12 | WcCounterMessageNtr split into observation and revelation | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "IWcCounterMessageNtrObservation" | [ ] |
-| 13 | NtrReversalSource equivalence verification result documented | code | Grep(path="pm/features/feature-813.md") | matches | "NtrReversalSource verification result: (INTENTIONAL|REGRESSION)" | [ ] |
-| 14 | IComableUtilities MasterPose removed after consolidation | code | Grep(path="C:/Era/core/src/Era.Core/") | not_contains | "MasterPose(int pose, int arg1, int arg2)" | [ ] |
-| 15 | NtrAgreeSource equivalence verification result documented | code | Grep(path="pm/features/feature-813.md") | matches | "NtrAgreeSource verification result: (INTENTIONAL|REGRESSION)" | [ ] |
-| 16 | Phase 21 CP-2 Step 2a Success Criterion checked | code | Grep(path="docs/architecture/migration/phase-20-27-game-systems.md") | matches | "\\[x\\].*CP-2 Step 2a PASS" | [ ] |
-| 17 | WcCounterMessageNtr Revelation interface created | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "IWcCounterMessageNtrRevelation" | [ ] |
-| 18 | E2E test class contains at least one test method | code | Grep(path="C:/Era/core/src/Era.Core.Tests/E2E/") | contains | "[Fact]" | [ ] |
-| 19 | E2E test uses seeded IRandomProvider for determinism | code | Grep(path="C:/Era/core/src/Era.Core.Tests/E2E/") | contains | "IRandomProvider" | [ ] |
-| 20 | Original IWcCounterMessageNtr interface removed after split | code | Grep(path="C:/Era/core/src/Era.Core/") | not_matches | "interface IWcCounterMessageNtr\\b" | [ ] |
-| 21 | Dashboard format check clean | exit_code | npm run format:check --prefix src/tools/node/feature-dashboard | succeeds | - | [ ] |
-| 22 | Canonical MasterPose preserved in ITouchStateManager | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "MasterPose(int targetPart, int masterPart" | [ ] |
-| 23 | Cross-system flow E2E test passes | test | dotnet test C:/Era/core/src/Era.Core.Tests --filter "FullyQualifiedName~CrossSystemFlow" --blame-hang-timeout 10s | succeeds | - | [ ] |
-| 24 | All existing Era.Core unit tests pass after refactoring | test | dotnet test C:/Era/core/src/Era.Core.Tests --blame-hang-timeout 10s | succeeds | - | [ ] |
-| 25 | Phase 5-21 DI registrations present in AddEraCore | code | Grep(path="C:/Era/core/src/Era.Core/", pattern="services\\.Add(Singleton|Transient|Scoped)") | gte | 25 | [ ] |
-| 26 | TODO/FIXME/HACK audit in Era.Core source documented | code | Grep(path="pm/features/feature-813.md") | matches | "TODO/FIXME/HACK audit: \\d+ found, 0 untracked" | [ ] |
-| 27 | CA1510 NoWarn removal outcome documented | code | Grep(path="pm/features/feature-813.md") | matches | "CA1510 removal: (REMOVED|DEFERRED to F\\d+)" | [ ] |
-| 28 | Deferred obligation transfer count documented | code | Grep(path="pm/features/feature-813.md") | contains | "Transferred 34 obligations to F814" | [ ] |
-| 29 | CounterCombinationAdapter exists for DI adapter wiring | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "CounterCombinationAdapter" | [ ] |
-| 30 | WcCounterCombinationAdapter exists for DI adapter wiring | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "WcCounterCombinationAdapter" | [ ] |
-| 31 | Private DatuiMessage removed after extraction to shared service | code | Grep(path="C:/Era/core/src/Era.Core/") | not_contains | "private void DatuiMessage" | [ ] |
-| 32 | E2E test files contain no TODO/FIXME/HACK comments | code | Grep(path="C:/Era/core/src/Era.Core.Tests/E2E/") | not_matches | "TODO\|FIXME\|HACK" | [ ] |
-| 33 | CounterSourceHandler.cs no longer references ITouchSet after migration | code | Grep(path="C:/Era/core/src/Era.Core/Counter/CounterSourceHandler.cs") | not_matches | "\\bITouchSet\\b" | [ ] |
-| 34 | WcCounterMessageNtr class references IWcCounterMessageNtrObservation | code | Grep(path="C:/Era/core/src/Era.Core/Counter/WcCounterMessageNtr.cs") | contains | "IWcCounterMessageNtrObservation" | [ ] |
-| 35 | WcCounterMessageNtr class references IWcCounterMessageNtrRevelation | code | Grep(path="C:/Era/core/src/Era.Core/Counter/WcCounterMessageNtr.cs") | contains | "IWcCounterMessageNtrRevelation" | [ ] |
+| 1 | DI all-resolve test exists and passes | test | dotnet test C:/Era/core/src/Era.Core.Tests --filter "FullyQualifiedName~DiResolutionTests" --blame-hang-timeout 10s | succeeds | - | [x] |
+| 2 | ICounterUtilities MasterPose removed after consolidation | code | Grep(path="C:/Era/core/src/Era.Core/") | not_contains | "MasterPose(int poseType, int poseSlot)" | [x] |
+| 3 | E2E test directory created | file | Glob("C:/Era/core/src/Era.Core.Tests/E2E/*Tests.cs") | exists | - | [x] |
+| 4 | Dashboard lint zero errors | exit_code | npm run lint --prefix src/tools/node/feature-dashboard | succeeds | - | [x] |
+| 5 | N+4 --unit NOT_FEASIBLE re-deferred with concrete destination | code | Grep(path="pm/features/feature-813.md") | matches | "NOT_FEASIBLE: destination F\\d+" | [x] |
+| 6 | Redux trigger evaluation result documented in Execution Log | code | Grep(path="pm/features/feature-813.md") | matches | "Redux evaluation result: (below threshold|Redux DRAFT created as F\\d+)" | [x] |
+| 7 | Phase 21 architecture status reconciled (Phase 20 baseline DONE; Phase 21 updated to DONE) | code | Grep(path="docs/architecture/migration/phase-20-27-game-systems.md", pattern="Phase Status.*DONE") | gte | 2 | [x] |
+| 8 | Stryker baseline recorded in execution log | code | Grep(path="pm/features/feature-813.md") | matches | "mutation score.*\\d+\\.\\d+%" | [x] |
+| 9 | ITouchSet interface removed after consolidation | code | Grep(path="C:/Era/core/src/Era.Core/") | not_contains | "interface ITouchSet" | [x] |
+| 10 | Devkit build succeeds (no devkit-side regressions) | build | dotnet build devkit.sln | succeeds | - | [x] |
+| 11 | DatuiMessage extracted to shared service | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "IDatuiMessageService" | [x] |
+| 12 | WcCounterMessageNtr split into action and revelation | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "IWcCounterMessageNtrAction" | [x] |
+| 13 | NtrReversalSource equivalence verification result documented | code | Grep(path="pm/features/feature-813.md") | matches | "NtrReversalSource verification result: (INTENTIONAL|REGRESSION)" | [x] |
+| 14 | IComableUtilities MasterPose removed after consolidation | code | Grep(path="C:/Era/core/src/Era.Core/") | not_contains | "MasterPose(int pose, int arg1, int arg2)" | [x] |
+| 15 | NtrAgreeSource equivalence verification result documented | code | Grep(path="pm/features/feature-813.md") | matches | "NtrAgreeSource verification result: (INTENTIONAL|REGRESSION)" | [x] |
+| 16 | Phase 21 CP-2 Step 2a Success Criterion checked | code | Grep(path="docs/architecture/migration/phase-20-27-game-systems.md") | matches | "\\[x\\].*CP-2 Step 2a PASS" | [x] |
+| 17 | WcCounterMessageNtr Revelation interface created | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "IWcCounterMessageNtrRevelation" | [x] |
+| 18 | E2E test class contains at least one test method | code | Grep(path="C:/Era/core/src/Era.Core.Tests/E2E/") | contains | "[Fact]" | [x] |
+| 19 | E2E test uses seeded IRandomProvider for determinism | code | Grep(path="C:/Era/core/src/Era.Core.Tests/E2E/") | contains | "IRandomProvider" | [x] |
+| 20 | Original IWcCounterMessageNtr interface removed after split | code | Grep(path="C:/Era/core/src/Era.Core/") | not_matches | "interface IWcCounterMessageNtr\\b" | [x] |
+| 21 | Dashboard format check clean | exit_code | npm run format:check --prefix src/tools/node/feature-dashboard | succeeds | - | [x] |
+| 22 | Canonical MasterPose preserved in ITouchStateManager | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "MasterPose(int targetPart, int masterPart" | [x] |
+| 23 | Cross-system flow E2E test passes | test | dotnet test C:/Era/core/src/Era.Core.Tests --filter "FullyQualifiedName~CrossSystemFlow" --blame-hang-timeout 10s | succeeds | - | [x] |
+| 24 | All existing Era.Core unit tests pass after refactoring | test | dotnet test C:/Era/core/src/Era.Core.Tests --blame-hang-timeout 10s | succeeds | - | [x] |
+| 25 | Phase 5-21 DI registrations present in AddEraCore | code | Grep(path="C:/Era/core/src/Era.Core/", pattern="services\\.Add(Singleton|Transient|Scoped)") | gte | 25 | [x] |
+| 26 | TODO/FIXME/HACK audit in Era.Core source documented | code | Grep(path="pm/features/feature-813.md") | matches | "TODO/FIXME/HACK audit: \\d+ found, 0 untracked" | [x] |
+| 27 | CA1510 NoWarn removal outcome documented | code | Grep(path="pm/features/feature-813.md") | matches | "CA1510 removal: (REMOVED|DEFERRED to F\\d+)" | [x] |
+| 28 | Deferred obligation transfer count documented | code | Grep(path="pm/features/feature-813.md") | contains | "Transferred 35 obligations to F814" | [x] |
+| 29 | CounterCombinationAdapter exists for DI adapter wiring | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "CounterCombinationAdapter" | [x] |
+| 30 | WcCounterCombinationAdapter exists for DI adapter wiring | code | Grep(path="C:/Era/core/src/Era.Core/") | contains | "WcCounterCombinationAdapter" | [x] |
+| 31 | Private DatuiMessage removed after extraction to shared service | code | Grep(path="C:/Era/core/src/Era.Core/") | not_contains | "private void DatuiMessage" | [x] |
+| 32 | E2E test files contain no TODO/FIXME/HACK comments | code | Grep(path="C:/Era/core/src/Era.Core.Tests/E2E/") | not_matches | "TODO\|FIXME\|HACK" | [x] |
+| 33 | CounterSourceHandler.cs no longer references ITouchSet after migration | code | Grep(path="C:/Era/core/src/Era.Core/Counter/CounterSourceHandler.cs") | not_matches | "\\bITouchSet\\b" | [x] |
+| 34 | WcCounterMessageNtr class references IWcCounterMessageNtrAction | code | Grep(path="C:/Era/core/src/Era.Core/Counter/WcCounterMessageNtr.cs") | contains | "IWcCounterMessageNtrAction" | [x] |
+| 35 | WcCounterMessageNtr class references IWcCounterMessageNtrRevelation | code | Grep(path="C:/Era/core/src/Era.Core/Counter/WcCounterMessageNtr.cs") | contains | "IWcCounterMessageNtrRevelation" | [x] |
+| 36 | E2E cross-system flow test references Training system component | code | Grep(path="C:/Era/core/src/Era.Core.Tests/E2E/") | contains | "ITrainingCheckService" | [x] |
+| 37 | E2E test uses fixed seed for IRandomProvider (C8 behavioral enforcement) | code | Grep(path="C:/Era/core/src/Era.Core.Tests/E2E/") | matches | "new.*RandomProvider\\(\\d+\\)" | [x] |
+
 
 ### AC Details
 
@@ -375,25 +380,31 @@ Example:
 - **Rationale**: Technical Design Work Area 6 states "If it is a regression bug, apply fix." AC#13/AC#15 alone only verify documentation of the finding, not resolution. The conditional path ensures REGRESSION findings are not silently ignored.
 
 **AC#28: Deferred obligation transfer count**
-- **Expected exact value**: 34 (count of Mandatory Handoffs rows with Destination=F814 at spec completion after iter10 additions + NullComHandler + NuGet version bump)
-- **Verification**: The implementer MUST count Mandatory Handoffs rows with Destination=F814 and write the exact count (34) in the Execution Log entry. The `contains` matcher enforces the exact literal string "Transferred 34 obligations to F814".
+- **Expected exact value**: 35 (count of Mandatory Handoffs rows with Destination=F814 at spec completion after iter10 additions + NullComHandler + NuGet version bump + WcCounterMessageNtr class split)
+- **Verification**: The implementer MUST count Mandatory Handoffs rows with Destination=F814 and write the exact count (35) in the Execution Log entry. The `contains` matcher enforces the exact literal string "Transferred 35 obligations to F814".
 - **Rationale**: Defense against documenting an incorrect/incomplete count that would satisfy the regex pattern.
-- **Conditional row note**: Row 23 (NtrReversalSource/NtrAgreeSource REGRESSION fix) is counted regardless of Task 14 outcome. If Task 14 finds INTENTIONAL, write "Transferred 34 obligations to F814" — the row persists as an inactive placeholder and is still counted in the Mandatory Handoffs table.
-- **Implementation-time discovery**: If implementation discovers obligations beyond the 34 counted at spec-time, the implementer MUST: (1) add rows to Mandatory Handoffs table, (2) update the AC#28 Details expected count, (3) update the AC#28 Expected column literal, (4) document the delta in Review Notes as `[fix]` entry. This ensures Zero Debt Upfront compliance when new obligations emerge during `/run`.
+- **Conditional row note**: Row 23 (NtrReversalSource/NtrAgreeSource REGRESSION fix) is counted regardless of Task 14 outcome. If Task 14 finds INTENTIONAL, write "Transferred 35 obligations to F814" — the row persists as an inactive placeholder and is still counted in the Mandatory Handoffs table.
+- **Implementation-time spec correction**: If `/run` discovers obligations beyond the 35 counted at spec-time, the implementer MUST: (1) add rows to Mandatory Handoffs table, (2) document the delta in Review Notes as `[fix]` entry. The AC#28 expected count (35) and literal are then corrected via `/fl` re-review to match the updated Mandatory Handoffs table — this is a standard spec correction (obligation discovery changes the spec), not an AC mutation during implementation. The implementer does NOT modify AC#28 directly; the orchestrator applies the correction through the normal review-fix loop.
 
 **AC#25: Phase 5-21 DI registrations present in AddEraCore**
 - **Test**: `Grep(path="C:/Era/core/src/Era.Core/", pattern="services\\.Add(Singleton|Transient|Scoped)")`
 - **Expected**: `>= 25`
 - **Derivation**: Baseline is ~10 registrations (Phase 5-20 only). After Task 5 adds ~21 Phase 21 registrations, total should be ~30. Threshold of 25 accounts for adapter pattern variations.
 - **Rationale**: Defense-in-depth alongside AC#1 (DiResolutionTests). Prevents vacuous test pass if DiResolutionTests covers only a subset of services.
+- **Scope note**: Grep path covers all Era.Core/ source files, not just ServiceCollectionExtensions.cs (AddEraCore()). This is intentional: DI registrations may also appear in extension methods or adapter classes. Non-DI `services.Add*` calls in Era.Core/ source (excluding tests) are not expected in the current codebase. If false positives emerge, narrow to ServiceCollectionExtensions.cs.
+
+**AC#19: E2E test uses seeded IRandomProvider for determinism**
+- **Test**: `Grep(path="C:/Era/core/src/Era.Core.Tests/E2E/", pattern="IRandomProvider")`
+- **Expected**: contains `"IRandomProvider"`
+- **Limitation**: `contains "IRandomProvider"` is a structural check only — verifying the determinism interface is wired into E2E tests. C8 behavioral seed construction is partially verified by AC#37 (which checks for a numeric seed literal in the constructor call, e.g., `new SeededRandomProvider(42)`). Implementation Contract requires: Task 15 must use a fixed seed value and the cross-system flow test must assert specific deterministic output, not just pass/fail. AC#23 (single test run) cannot detect nondeterminism.
 
 ### Goal Coverage Verification
 
 | Goal Item | Description | Covering AC(s) |
 |:---------:|-------------|:---------------:|
-| 1 | Register all Phase 21 services in AddEraCore() and verify full DI resolution | AC#1, AC#25, AC#29, AC#30 |
-| 2 | Resolve or properly track all 28+ deferred obligations | AC#2, AC#5, AC#6, AC#9, AC#11, AC#12, AC#13, AC#14, AC#15, AC#17, AC#20, AC#22, AC#24, AC#26, AC#27, AC#28, AC#31, AC#32, AC#33, AC#34, AC#35 |
-| 3 | Establish E2E test foundation with Training-to-Counter cross-system flow | AC#3, AC#10, AC#18, AC#19, AC#23, AC#32 |
+| 1 | Register all Phase 21 services in AddEraCore() and verify full DI resolution | AC#1, AC#25 |
+| 2 | Resolve or properly track all 35 deferred obligations | AC#2, AC#5, AC#6, AC#9, AC#11, AC#12, AC#13, AC#14, AC#15, AC#17, AC#20, AC#22, AC#24, AC#26, AC#27, AC#28, AC#29, AC#30, AC#31, AC#32, AC#33, AC#34, AC#35 |
+| 3 | Establish E2E test foundation with structural Training-to-Counter cross-system flow (stub Training) | AC#3, AC#10, AC#18, AC#19, AC#23, AC#32, AC#36, AC#37 |
 | 4 | Reconcile architecture documentation | AC#7, AC#16 |
 | 5 | Record Stryker.NET mutation testing baseline | AC#8 |
 | 6 | Evaluate Redux trigger and create Redux DRAFT if threshold exceeded | AC#6 |
@@ -438,10 +449,10 @@ E2E test: create `src/Era.Core.Tests/E2E/` directory. Add `DiResolutionTests.cs`
 **Work Area 5: WcCounterMessageNtr Split (AC#12, AC#17, AC#20, Task 13)**
 
 `IWcCounterMessageNtr` has 6 methods across 2 responsibility domains:
-- **Observation group** (4 methods): `RotorOut`, `OshikkoLooking`, `WithFirstSex`, `WithPetting` — no `_kojoMessage`, `_counterUtilities`, `_ntrUtility` dependencies
+- **Action group** (4 methods): `RotorOut`, `OshikkoLooking`, `WithFirstSex`, `WithPetting` — no `_kojoMessage`, `_counterUtilities`, `_ntrUtility` dependencies
 - **Revelation group** (2 methods): `NtrRevelation`, `NtrRevelationAttack` — full NTR dependency cluster
 
-Create `IWcCounterMessageNtrObservation` (4 methods) and `IWcCounterMessageNtrRevelation` (2 methods). The existing `WcCounterMessageNtr` class can implement both interfaces (or split into two classes). Update callers (`WcCounterMessage.Dispatch()` etc.) to inject by new interface. Register both in DI. Remove the original `IWcCounterMessageNtr` interface after splitting into Observation and Revelation. Update all callers to inject `IWcCounterMessageNtrObservation` or `IWcCounterMessageNtrRevelation` as appropriate. AC#20 verifies removal. AC verifies `"IWcCounterMessageNtrObservation"` exists in codebase.
+Create `IWcCounterMessageNtrAction` (4 methods) and `IWcCounterMessageNtrRevelation` (2 methods). The existing `WcCounterMessageNtr` class implements both interfaces as a single class (Key Decision row 4: minimal file churn; responsibility split at the interface level for DI seam so callers inject only the subset they need; the 9-dependency constructor is unchanged since the class retains all dependencies). Update callers (`WcCounterMessage.Dispatch()` etc.) to inject by new interface. Register both in DI. Remove the original `IWcCounterMessageNtr` interface after splitting into Action and Revelation. Update all callers to inject `IWcCounterMessageNtrAction` or `IWcCounterMessageNtrRevelation` as appropriate. AC#20 verifies removal. AC verifies `"IWcCounterMessageNtrAction"` exists in codebase.
 
 **Work Area 6: NtrReversalSource/NtrAgreeSource Verification (AC#13, AC#15, Task 14 [I])**
 
@@ -482,9 +493,9 @@ After all C# changes: run `dotnet build devkit.sln` (via WSL). TreatWarningsAsEr
 | 7 | Update `phase-20-27-game-systems.md` Phase 21 Status from `TODO` to `DONE`. After update, at least 2 occurrences of `"Phase Status.*DONE"` exist in the file (Phase 20 + Phase 21). |
 | 8 | Run `dotnet stryker` in `src/Era.Core.Tests/`. Record `"mutation score: XX.XX%"` in Execution Log. Grep of feature-813.md matches `"mutation score.*\d+\.\d+%"`. |
 | 9 | Migrate `CounterSourceHandler.cs` from `ITouchSet` to `ITouchStateManager`. Delete `ITouchSet.cs`. Grep of core/src/Era.Core/ must find zero matches for `"interface ITouchSet"`. |
-| 10 | After all C# changes, `dotnet build devkit.sln` (WSL) must exit 0 with zero errors. |
+| 10 | After all changes, `dotnet build devkit.sln` (WSL) must exit 0 with zero errors. Verifies devkit-side build only; core repo build is implicitly verified by AC#24 (all Era.Core.Tests pass, which requires core build success). |
 | 11 | Create `IDatuiMessageService.cs` interface and `DatuiMessageService.cs` implementation in `Era.Core/Counter/`. Update `CounterMessage.cs` and `WcCounterMessage.cs` to use it. Register in DI. Grep finds `"IDatuiMessageService"`. |
-| 12 | Create `IWcCounterMessageNtrObservation.cs` interface in `Era.Core/Counter/`. Update `WcCounterMessageNtr.cs` to implement it. Register in DI. Grep finds `"IWcCounterMessageNtrObservation"`. |
+| 12 | Create `IWcCounterMessageNtrAction.cs` interface in `Era.Core/Counter/`. Update `WcCounterMessageNtr.cs` to implement it. Register in DI. Grep finds `"IWcCounterMessageNtrAction"`. |
 | 13 | Compare `NtrReversalSource()` C# vs ERB. Write result as `"NtrReversalSource verification result: INTENTIONAL"` or `"NtrReversalSource verification result: REGRESSION"` in Execution Log. Grep of feature-813.md matches `"NtrReversalSource verification result: (INTENTIONAL\|REGRESSION)"`. |
 | 14 | Grep of core/src/Era.Core/ must find zero matches for `"MasterPose(int pose, int arg1, int arg2)"` (the IComableUtilities signature to be removed). Verified alongside AC#2. |
 | 15 | Compare `NtrAgreeSource()` C# vs ERB. Write result as `"NtrAgreeSource verification result: INTENTIONAL"` or `"NtrAgreeSource verification result: REGRESSION"` in Execution Log. Grep of feature-813.md matches `"NtrAgreeSource verification result: (INTENTIONAL\|REGRESSION)"`. |
@@ -492,22 +503,24 @@ After all C# changes: run `dotnet build devkit.sln` (via WSL). TreatWarningsAsEr
 | 17 | Create `IWcCounterMessageNtrRevelation` interface in `Era.Core/Counter/`. Update `WcCounterMessageNtr.cs` to implement it. Grep finds `"IWcCounterMessageNtrRevelation"`. |
 | 18 | E2E test file must contain at least one `[Fact]` attribute to prevent AC#1 vacuous pass. Grep of E2E directory must find literal string `"[Fact]"` (contains matcher, not regex). |
 | 19 | E2E test must reference `IRandomProvider` to satisfy C8 determinism constraint. Grep of E2E directory must match `"IRandomProvider"`. |
-| 20 | After splitting IWcCounterMessageNtr into Observation + Revelation interfaces, remove the original IWcCounterMessageNtr. Grep of Era.Core/ must find zero matches for `"interface IWcCounterMessageNtr\b"` (word boundary excludes the two new suffixed interfaces IWcCounterMessageNtrObservation and IWcCounterMessageNtrRevelation). |
+| 20 | After splitting IWcCounterMessageNtr into Action + Revelation interfaces, remove the original IWcCounterMessageNtr. Grep of Era.Core/ must find zero matches for `"interface IWcCounterMessageNtr\b"` (word boundary excludes the two new suffixed interfaces IWcCounterMessageNtrAction and IWcCounterMessageNtrRevelation). |
 | 21 | Run `npm run format:check --prefix src/tools/node/feature-dashboard`. Exit code 0 = clean formatting. Fix any issues found. |
 | 22 | After removing MasterPose from ICounterUtilities and IComableUtilities, verify ITouchStateManager.MasterPose canonical signature `(int targetPart, int masterPart, ...)` still exists. Grep of Era.Core/ must match. |
 | 23 | Create cross-system flow test (Training→Counter) in E2E directory. Test must pass with `dotnet test C:/Era/core/src/Era.Core.Tests --filter "FullyQualifiedName~CrossSystemFlow"`. Uses seeded IRandomProvider for determinism. |
 | 24 | After all refactoring changes (MasterPose consolidation, ITouchSet migration, DatuiMessage extraction, NTR split), run full Era.Core unit test suite. All existing tests must pass, verifying adapter wiring and backward compatibility (C3 constraint). |
 | 25 | After registering ~21 Phase 21 services in AddEraCore() (Task 5), verify that the total DI registration count across Era.Core/ source files reaches >= 25 (baseline ~10). Grep path is `C:/Era/core/src/Era.Core/` (excludes test files). Defense-in-depth alongside AC#1 DiResolutionTests. |
-| 26 | Run `Grep(path="C:/Era/core/src/Era.Core/", pattern="TODO\|FIXME\|HACK")`. Document count and tracking status in Execution Log: `"TODO/FIXME/HACK audit: N found, 0 untracked"`. All found items must be tracked in Mandatory Handoffs or Redux. Satisfies C4 constraint. |
+| 26 | Run `Grep(path="C:/Era/core/src/Era.Core/", pattern="TODO\|FIXME\|HACK")`. Document count and tracking status in Execution Log: `"TODO/FIXME/HACK audit: N found, 0 untracked"`. All found items must be tracked in Mandatory Handoffs or Redux. Satisfies C4 constraint. **Cross-verification**: During AC testing, the tester must independently re-run the same Grep command and verify the count matches the Execution Log claim. A mismatch between the independent grep result and the documented count constitutes AC#26 failure. |
 | 27 | After Task 8 CA1510 removal attempt, document outcome in Execution Log: `"CA1510 removal: REMOVED"` if successful, or `"CA1510 removal: DEFERRED to F{ID}"` if reverted. Satisfies Task 8 conditional verification. |
-| 28 | After all obligation categorization (Task 7), document total transferred count in Execution Log: `"Transferred 34 obligations to F814"`. Count must exactly match 34 (Mandatory Handoffs table row count with Destination=F814). |
+| 28 | After all obligation categorization (Task 7), document total transferred count in Execution Log: `"Transferred 35 obligations to F814"`. Count must exactly match 35 (Mandatory Handoffs table row count with Destination=F814). |
 | 29 | Create `CounterCombinationAdapter : ICombinationCounter` in Era.Core. Register in AddEraCore(). Grep must find `"CounterCombinationAdapter"`. WcCounterCombinationAdapter is verified independently by AC#30. |
 | 30 | Create `WcCounterCombinationAdapter : IWcCombinationCounter` in Era.Core. Register in AddEraCore(). Grep must find `"WcCounterCombinationAdapter"` independently of AC#29. |
 | 31 | After DatuiMessage extraction to IDatuiMessageService (Task 12), verify private `DatuiMessage` methods are removed from `CounterMessage.cs` and `WcCounterMessage.cs`. Grep of core/src/Era.Core/ must find zero matches for `"private void DatuiMessage"`. Pairs with AC#11 (contains IDatuiMessageService) following MasterPose precedent (AC#2/AC#14 not_contains + AC#22 contains). |
 | 32 | After E2E test creation (Task 15), verify no TODO/FIXME/HACK comments remain in E2E test files. Grep of `C:/Era/core/src/Era.Core.Tests/E2E/` must find zero matches. Extends C4 zero-debt audit (AC#26 covers production source) to newly created test files per Implementation Contract. |
 | 33 | After Task 3 migration, verify CounterSourceHandler.cs no longer references `ITouchSet` (word-boundary match excludes `ITouchStateManager`). Grep of CounterSourceHandler.cs must find zero matches for `\bITouchSet\b`. Task 3 migration verification is separate from Task 4 deletion verification (AC#9). |
-| 34 | Verify WcCounterMessageNtr.cs contains reference to `IWcCounterMessageNtrObservation` (structural wiring confirmation — interface exists in class file, not just as standalone definition). Grep of the specific class file must find the interface name. |
+| 34 | Verify WcCounterMessageNtr.cs contains reference to `IWcCounterMessageNtrAction` (structural wiring confirmation — interface exists in class file, not just as standalone definition). Grep of the specific class file must find the interface name. |
 | 35 | Verify WcCounterMessageNtr.cs contains reference to `IWcCounterMessageNtrRevelation` (structural wiring confirmation — interface exists in class file, not just as standalone definition). Grep of the specific class file must find the interface name. |
+| 36 | E2E cross-system flow test must reference `ITrainingCheckService` to verify Training system components are exercised in the cross-system test (not just Counter). Grep of E2E directory finds the interface name. Prevents vacuous CrossSystemFlow test that only exercises Counter components. |
+| 37 | Create seeded IRandomProvider with a fixed numeric seed in E2E test. Grep of E2E directory must match `"new.*RandomProvider(\d+)"`. Complements AC#19 (structural) with behavioral seed verification. |
 
 ### Key Decisions
 
@@ -532,8 +545,8 @@ public interface IDatuiMessageService
     void SendDatuiMessage(CharacterId offender);
 }
 
-// Era.Core/Counter/IWcCounterMessageNtrObservation.cs
-public interface IWcCounterMessageNtrObservation
+// Era.Core/Counter/IWcCounterMessageNtrAction.cs
+public interface IWcCounterMessageNtrAction
 {
     void RotorOut(CharacterId offender);
     void OshikkoLooking(CharacterId offender);
@@ -573,21 +586,21 @@ public interface IWcCounterMessageNtrRevelation
 
 | Task# | AC# | Description | Tag | Status |
 |:-----:|:---:|-------------|:---:|:------:|
-| 1 | 2,14,22 | Unify MasterPose SSOT: consolidate ICounterUtilities.MasterPose (F803, (int,int)→CharacterId), IComableUtilities.MasterPose (F809, (int,int,int)→int), and ITouchStateManager.MasterPose (F811, (int,int,bool)→int canonical) into single canonical implementation. Adapter specs in F811 Mandatory Handoffs. | | [ ] |
-| 2 | 29,30 | Register DI adapters: ICombinationCounter→F802 CounterCombination, IWcCombinationCounter→F802 WcCounterCombination (F811 stub replacement handoff). Create CounterCombinationAdapter and WcCounterCombinationAdapter classes wrapping the concrete classes to match ICombinationCounter/IWcCombinationCounter signatures. | | [ ] |
-| 3 | 33 | Migrate CounterSourceHandler.cs from ITouchSet→ITouchStateManager. Parameter mapping: mode→targetPart, type→masterPart, target.Value→character, reset=false (F811 Mandatory Handoffs) | | [ ] |
-| 4 | 9 | Delete ITouchSet.cs after migration (Task 3). Verify Grep finds zero matches for "interface ITouchSet" in Era.Core/. | | [ ] |
-| 5 | 25 | Register all ~21 missing Phase 21 Counter interfaces in AddEraCore(). **Sub-step ordering**: (1) Investigate IComHandler and IComAvailabilityChecker registration strategies (see Upstream Issues), (2) Create Null-prefixed stub classes for unimplemented interfaces (ICounterUtilities, IWcSexHaraService, INtrUtilityService, IShrinkageSystem, ITrainingCheckService, IKnickersSystem, IEjaculationProcessor, IKojoMessageService) following StubComableUtilities pattern, (3) Register all ~21 services in AddEraCore() including NullComHandler default if appropriate and correct IComAvailabilityChecker concrete class. | | [ ] |
-| 6 | 7,16 | Reconcile Phase 21 architecture documentation: update phase-20-27-game-systems.md Phase 21 Status from "TODO" to "DONE" and mark Success Criteria checkboxes as completed. | | [ ] |
-| 7 | 5,6,26,28 | Document deferred obligation tracking in Execution Log: (1) N+4 --unit NOT_FEASIBLE re-deferral with concrete destination feature ID, (2) Redux trigger evaluation result after all obligations categorized. If Redux DRAFT created, verify: (a) pm/features/feature-{N}.md exists with [DRAFT] status, (b) pm/index-features.md includes the new entry. (3) Run Grep(path="C:/Era/core/src/Era.Core/", pattern="TODO\|FIXME\|HACK") and document result in Execution Log: "TODO/FIXME/HACK audit: N found, 0 untracked". All found items must be tracked in Mandatory Handoffs or Redux. Note: The 34 Mandatory Handoffs table entries (all Destination=F814) serve as the structural tracking record; this Task documents the summary Execution Log entries only. | | [ ] |
-| 8 | 27 | Analyzer NoWarn debt一括修正: (1) NoWarnからCA1510を除去, (2) `dotnet format analyzers devkit.sln --diagnostics CA1510 --severity error` で自動修正, (3) `dotnet build` で0 errors確認, (4) `dotnet test` で全テスト通過確認。失敗時はNoWarnに戻して次Phaseに繰り越し。対象ルールの優先順位と手順は auto-memory `analyzer-nowarn-debt.md` 参照 | [I] | [ ] |
-| 9 | 8 | Stryker.NET baseline計測: `cd src/Era.Core.Tests && dotnet stryker` を実行し、mutation score (killed%, survived%, total mutants) をExecution Logに記録。これが以降のPost-Phase Reviewの比較baselineとなる | [I] | [ ] |
-| 10 | 4,21 | Dashboard lint/format verification: `cd src/tools/node/feature-dashboard && npm run lint` で0 errors確認 + `npm run format:check` でclean確認。warningは許容するがerrorは修正必須 | | [ ] |
-| 11 | - | _(Removed: procedural git push step — no verifiable AC output)_ | | [-] |
-| 12 | 11,31 | DatuiMessage DRY extraction: create IDatuiMessageService interface and DatuiMessageService concrete class in Era.Core/Counter/. Update CounterMessage.cs and WcCounterMessage.cs to inject and delegate to IDatuiMessageService. Register in AddEraCore(). (F805 Mandatory Handoff) | | [ ] |
-| 13 | 12,17,20,34,35 | F808 WcCounterMessageNtr責務分割: IWcCounterMessageNtrを2インターフェースに分割。(1) IWcCounterMessageNtrObservation (RotorOut, OshikkoLooking, WithFirstSex, WithPetting — 5依存) (2) IWcCounterMessageNtrRevelation (NtrRevelation, NtrRevelationAttack + private helpers — 7依存)。現状9依存コンストラクタはERBファイル境界の盲目的踏襲が原因。F806/F807のインジェクション変更が必要 | | [ ] |
-| 14 | 13,15 | F808 NtrReversalSource/NtrAgreeSource計算式等価性検証: ERBは動的スケーリング（除算ベース: (delta/10)+10等）、C#は固定定数（50,200,500等）。意図的簡略化か回帰バグか判定し、ERB等価が必要なら修正。対象: WcCounterMessageNtr.cs:512-602 vs TOILET_COUNTER_MESSAGE_NTR.ERB:960-1034 | [I] | [ ] |
-| 15 | 1,3,10,18,19,23,24,32 | CP-2 Step 2a E2E基盤構築: (1) `src/Era.Core.Tests/E2E/` ディレクトリ作成 (2) `AddEraCore()` DI全解決テスト（Phase 5-21 全サービス登録、例外なし） (3) Training→Counter cross-system フロー（seeded IRandomProvider 決定的実行）。設計根拠: `docs/architecture/migration/full-csharp-architecture.md` CP-2 Step 2a。**E2E失敗時の対応**: DI解決またはcross-systemフローが失敗し、障害箇所の切り分けが困難な場合、**実装を中断して F815 Golden Test Design アプローチ（[DONE]）を適用する**。理由: 150+ COMF × COMABLE × Counter が統合された状態で障害点を特定するには、関数単位の等価性検証（ERB出力 vs C#出力のゴールデンテスト）が障害分離レイヤーとして必要。ゴールデンテスト基盤を先に整備し、個別関数の等価性を確認した上でE2Eに再挑戦する。 | | [ ] |
+| 1 | 2,14,22 | Unify MasterPose SSOT: consolidate ICounterUtilities.MasterPose (F804, (int,int)→CharacterId), IComableUtilities.MasterPose (F809, (int,int,int)→int), and ITouchStateManager.MasterPose (F811, (int,int,bool)→int canonical) into single canonical implementation. Adapter specs in F811 Mandatory Handoffs. | | [x] |
+| 2 | 29,30 | Register DI adapters: ICombinationCounter→F802 CounterCombination, IWcCombinationCounter→F802 WcCounterCombination (F811 stub replacement handoff). Create CounterCombinationAdapter and WcCounterCombinationAdapter classes wrapping the concrete classes to match ICombinationCounter/IWcCombinationCounter signatures. | | [x] |
+| 3 | 33 | Migrate CounterSourceHandler.cs from ITouchSet→ITouchStateManager. Parameter mapping: mode→targetPart, type→masterPart, target.Value→character, reset=false (F811 Mandatory Handoffs) | | [x] |
+| 4 | 9 | Delete ITouchSet.cs after migration (Task 3). Verify Grep finds zero matches for "interface ITouchSet" in Era.Core/. | | [x] |
+| 5 | 25 | Register all ~21 missing Phase 21 Counter interfaces in AddEraCore(). **Sub-step ordering**: (1) Investigate IComHandler and IComAvailabilityChecker registration strategies (see Upstream Issues), (2) Create Null-prefixed stub classes for unimplemented interfaces (ICounterUtilities, IWcSexHaraService, INtrUtilityService, IShrinkageSystem, ITrainingCheckService, IKnickersSystem, IEjaculationProcessor, IKojoMessageService) following StubComableUtilities pattern, (3) Register all ~21 services in AddEraCore() including NullComHandler default if appropriate and correct IComAvailabilityChecker concrete class. | | [x] |
+| 6 | 7,16 | Reconcile Phase 21 architecture documentation: update phase-20-27-game-systems.md Phase 21 Status from "TODO" to "DONE" and mark Success Criteria checkboxes as completed. | | [x] |
+| 7 | 5,6,26,28 | Document deferred obligation tracking in Execution Log: (1) N+4 --unit NOT_FEASIBLE re-deferral with concrete destination feature ID, (2) Redux trigger evaluation result after all obligations categorized. If Redux DRAFT created, verify: (a) pm/features/feature-{N}.md exists with [DRAFT] status, (b) pm/index-features.md includes the new entry. (3) Run Grep(path="C:/Era/core/src/Era.Core/", pattern="TODO\|FIXME\|HACK") and document result in Execution Log: "TODO/FIXME/HACK audit: N found, 0 untracked". All found items must be tracked in Mandatory Handoffs or Redux. Note: The 35 Mandatory Handoffs table entries (all Destination=F814) serve as the structural tracking record; this Task documents the summary Execution Log entries only. | | [x] |
+| 8 | 27 | Analyzer NoWarn debt bulk fix: (1) remove CA1510 from NoWarn, (2) auto-fix with `dotnet format analyzers devkit.sln --diagnostics CA1510 --severity error`, (3) verify 0 errors with `dotnet build`, (4) verify all tests pass with `dotnet test`. On failure, revert NoWarn and carry over to next Phase. Priority order and procedure: see auto-memory `analyzer-nowarn-debt.md` | [I] | [x] |
+| 9 | 8 | Stryker.NET baseline measurement: run `cd src/Era.Core.Tests && dotnet stryker` and record mutation score (killed%, survived%, total mutants) in Execution Log. This becomes the comparison baseline for subsequent Post-Phase Reviews | [I] | [x] |
+| 10 | 4,21 | Dashboard lint/format verification: verify 0 errors with `cd src/tools/node/feature-dashboard && npm run lint` + verify clean with `npm run format:check`. Warnings are acceptable but errors must be fixed | | [x] |
+
+| 12 | 11,31 | DatuiMessage DRY extraction: create IDatuiMessageService interface and DatuiMessageService concrete class in Era.Core/Counter/. Update CounterMessage.cs and WcCounterMessage.cs to inject and delegate to IDatuiMessageService. Register in AddEraCore(). (F805 Mandatory Handoff) | | [x] |
+| 13 | 12,17,20,34,35 | F808 WcCounterMessageNtr responsibility split: split IWcCounterMessageNtr at the interface level into IWcCounterMessageNtrAction (RotorOut, OshikkoLooking, WithFirstSex, WithPetting) and IWcCounterMessageNtrRevelation (NtrRevelation, NtrRevelationAttack + private helpers). WcCounterMessageNtr retains its 9-dependency constructor and implements both new interfaces (Key Decision row 4: single class, interface-level ISP). Callers inject the appropriate interface. The current 9-dependency constructor is a result of blindly following ERB file boundaries. F806/F807 injection changes required | | [x] |
+| 14 | 13,15 | F808 NtrReversalSource/NtrAgreeSource calculation equivalence verification: ERB uses dynamic scaling (division-based: (delta/10)+10 etc.), C# uses fixed constants (50, 200, 500 etc.). Determine whether intentional simplification or regression bug; apply fix if ERB equivalence is required. Target: WcCounterMessageNtr.cs:512-602 vs TOILET_COUNTER_MESSAGE_NTR.ERB:960-1034 | [I] | [x] |
+| 15 | 1,3,10,18,19,23,24,32,36,37 | CP-2 Step 2a E2E foundation build: (1) create `src/Era.Core.Tests/E2E/` directory (2) `AddEraCore()` full DI resolution test — name the test class `DiResolutionTests` (required by AC#1 filter `FullyQualifiedName~DiResolutionTests`) (3) Training→Counter cross-system flow — name the test class or method to contain `CrossSystemFlow` (required by AC#23 filter `FullyQualifiedName~CrossSystemFlow`), use seeded IRandomProvider with fixed seed value for deterministic execution. Design basis: `docs/architecture/migration/full-csharp-architecture.md` CP-2 Step 2a. **E2E failure response**: If DI resolution or cross-system flow fails and fault isolation is difficult, **stop implementation and apply F815 Golden Test Design approach ([DONE])**. Reason: identifying fault points in the integrated state of 150+ COMF x COMABLE x Counter requires function-level equivalence verification (ERB output vs C# output golden tests) as a fault isolation layer. Establish golden test foundation first, verify individual function equivalence, then retry E2E. | | [x] |
 
 <!-- AC Coverage Rule: Every Task must be verified by at least one AC. Multiple ACs per Task allowed. -->
 
@@ -626,6 +639,7 @@ public interface IWcCounterMessageNtrRevelation
 | Task 14 REGRESSION conditional | If Task 14 finds REGRESSION for NtrReversalSource or NtrAgreeSource: (1) apply fix and verify via AC#24 (all tests pass), OR (2) fill Mandatory Handoffs "NtrReversalSource/NtrAgreeSource REGRESSION fix" row Result column with concrete deferral rationale. REGRESSION without either action is a protocol violation. | AC Details AC#13/AC#15 |
 | E2E test code quality | E2E test files under `Era.Core.Tests/E2E/` must not contain TODO/FIXME/HACK comments at commit time. C4 zero-debt audit (AC#26) covers production source only; this rule extends the obligation to newly created test files. | C4 constraint extension |
 | AC#6 Redux DRAFT file gap | AC#6 matcher only verifies Execution Log text pattern. If Redux DRAFT is created, DRAFT file existence and [DRAFT] status are verified procedurally during Task 7 (not by AC#6 matcher). Human verification required before marking AC#6 PASS when result is "Redux DRAFT created as F{N}". | AC Details AC#6 |
+| E2E determinism (C8) | Cross-system flow test must use a fixed seed value (e.g., `new SeededRandomProvider(42)`) and assert specific deterministic output. AC#19 only verifies structural IRandomProvider reference; behavioral determinism enforcement is an Implementation Contract obligation, not AC-enforced. | C8 constraint, AC#19 Details |
 
 ---
 
@@ -638,40 +652,41 @@ public interface IWcCounterMessageNtrRevelation
 
 | Issue | Reason | Destination | Destination ID | Creation Task | Transferred | Result |
 |-------|--------|-------------|----------------|---------------|:-----------:|--------|
-| N+4 --unit deprecation NOT_FEASIBLE re-deferral | NOT_FEASIBLE tracking chain: F782->F783->F813->next. Must document concrete successor destination in Execution Log. | Feature | F814 | Task 7 | [ ] | |
-| IShrinkageSystem runtime implementation | No concrete implementation exists; engine-layer change required. Stub registered in DI is acceptable for now. | Feature (engine-layer) | F814 | Task 7 (track) | [ ] | |
-| IEngineVariables GetTime/SetTime behavioral override | Default bodies are no-ops; engine implementor must override for TIME operations. Silent failure risk in production. | Feature (engine-layer) | F814 | Task 7 (track) | [ ] | |
-| WcCounterMessageSex responsibility review (16 deps) | 16 constructor dependencies may warrant class split. Deferred from F806. | Feature | F814 | Task 7 (track) | [ ] | |
-| CFlag/Cflag naming normalization | WcCounterMessage.cs uses CFlag prefix; WcCounterMessageItem/Ntr use Cflag prefix. Inconsistency deferred from F807. | Feature | F814 | Task 7 (track) | [ ] | |
-| WC_VA_FITTING caller documentation | 9 kojo ERB files call WC_VA_FITTING; after C# migration external callers must use IWcCounterMessageSex.VaFitting. Deferred from F806. | Feature | F814 | Task 7 (track) | [ ] | |
-| IComHandler DI registration strategy | IComHandler uses strategy pattern -- no single concrete class. NullComHandler registered as default is a known gap. | Feature | F814 | Task 7 (track) | [ ] | |
-| WcCounterMessage constructor bloat (12 params) | Parameter object or handler dispatch consolidation needed. Deferred from F807. | Feature | F814 | Task 7 (track) | [ ] | |
-| WcCounterMessageTease behavioral test coverage | F807 deferred; structural migration equivalence only -- behavioral equivalence (handler branching, INPUT loop paths, NTR revelation, EQUIP mutation) unverified | Feature | F814 | Task 7 (track) | [ ] | |
-| NOITEM photography bug (ERB原文バグ) | F806 deferred; TOILET_COUNTER_MESSAGE_SEX.ERB line 411 uses `NOITEM != 0 &&` instead of `||`. C# faithfully preserved bug at WcCounterMessageSex.cs:1922. Fix requires guard clause logic change. | Feature | F814 | Task 7 (track) | [ ] | |
-| KOJO 3-param overload verification | F806 deferred; F806 uses 2-param KojoMessageWcCounter for all 28 TRYCALLFORM patterns. Verify no pattern requires a 3rd parameter. | Feature | F814 | Task 7 (track) | [ ] | |
-| WcCounterMessageSex duplicate constant names | F806 deferred; TalentVirginity2/TalentGender2 duplicate TalentVirginity/TalentGender. Consolidation needed. | Feature | F814 | Task 7 (track) | [ ] | |
-| Dispatch() dual offender convention unification | F806 deferred; SEX handlers use explicit `CharacterId offender` param; ITEM/NTR/TEASE use implicit `_engine.GetTarget()`. Dual convention in WcCounterMessage.Dispatch(). | Feature | F814 | Task 7 (track) | [ ] | |
-| IWcCounterMessageTease interface extraction | F807 deferred; WcCounterMessageTease is concrete type injection. Decision: (A) create IWcCounterMessageTease or (B) accept as permanent technical debt. | Feature | F814 | Task 7 (track) | [ ] | |
-| Character ID constant consolidation | F807 deferred; MESSAGE27 has 13 private const character IDs that may duplicate F806 SEX. Shared CharacterConstants class does not exist. | Feature | F814 | Task 7 (track) | [ ] | |
-| F807 AC#34 local function enforcement gap | F807 deferred; F807 AC#34 grep pattern cannot detect C# local functions (no `private` keyword). WcCounterMessageTease local function usage unverified. Static analysis or additional grep needed. | Feature | F814 | Task 7 (track) | [ ] | |
-| ICharacterStringVariables VariableStore implementation | F803 deferred; CSTR not stored in VariableStore. Interface definition + stub only; runtime extension requires engine-layer changes. | Feature (engine-layer) | F814 | Task 7 (track) | [ ] | |
-| EXP_UP logic duplication | F803 deferred; CheckExpUp exists as private in AbilityGrowthProcessor and public in ICounterUtilities. Extraction to shared implementation needed. | Feature | F814 | Task 7 (track) | [ ] | |
-| ICounterSourceHandler ISP violation | F803 deferred; single interface exposes 3 responsibilities (dispatch, undressing, pain check). F805 DI impact when extracting IUndressingHandler. | Feature | F814 | Task 7 (track) | [ ] | |
-| CFlagIndex typed struct | F803 deferred; CFLAG dispatch uses raw int constants instead of typed CFlagIndex. Cross-class reuse not yet needed. | Feature | F814 | Task 7 (track) | [ ] | |
-| EquipIndex typed struct | F803 deferred; DATUI helpers use raw int EQUIP constants instead of typed EquipIndex. Cross-class reuse not yet needed. | Feature | F814 | Task 7 (track) | [ ] | |
-| IComableUtilities/ICounterUtilities TimeProgress/IsAirMaster/GetTargetNum consolidation | F810 Mandatory Handoff; 3 of 4 overlapping methods remain after MasterPose consolidation (Task 1). Need interface unification or removal of duplicates. | Feature | F814 | Task 7 (track) | [ ] | |
-| NtrReversalSource/NtrAgreeSource REGRESSION fix if found | Task 14 [I] investigation may find REGRESSION. If REGRESSION found but fix is not feasible within F813 scope, track here with concrete fix plan. | Feature | F814 | Task 14 | [ ] | |
-| NullCounterUtilities concrete implementation | Stub class for ICounterUtilities; needs real implementation with counter utility methods | Feature | F814 | Task 7 (track) | [ ] | |
-| NullWcSexHaraService concrete implementation | Stub class for IWcSexHaraService; needs real implementation for WC sex hara processing | Feature | F814 | Task 7 (track) | [ ] | |
-| NullNtrUtilityService concrete implementation | Stub class for INtrUtilityService; needs real implementation for NTR utility operations | Feature | F814 | Task 7 (track) | [ ] | |
-| NullTrainingCheckService concrete implementation | Stub class for ITrainingCheckService; needs real implementation for training check logic | Feature | F814 | Task 7 (track) | [ ] | |
-| NullKnickersSystem concrete implementation | Stub class for IKnickersSystem; needs real implementation for knickers system logic | Feature | F814 | Task 7 (track) | [ ] | |
-| NullEjaculationProcessor concrete implementation | Stub class for IEjaculationProcessor; needs real implementation for ejaculation processing | Feature | F814 | Task 7 (track) | [ ] | |
-| NullKojoMessageService concrete implementation | Stub class for IKojoMessageService; needs real implementation for kojo message handling | Feature | F814 | Task 7 (track) | [ ] | |
-| RotorOut IWcCounterMessageItem 移動検討 | RotorOut はデバイスライフサイクルの同一ドメイン（IWcCounterMessageItem）への移動が妥当な可能性がある。F813 Task 13 のスコープ外として分離。 | Feature | F814 | Task 7 (track) | [ ] | |
-| ERB file boundary != domain boundary /fc検証ステップ | F808教訓: ERB残物寄せ集めファイルがC#クラス境界になった。今後の/fcでERBファイル境界≠ドメイン境界の検証が必要。 | Feature (infra) | F814 | Task 7 (track) | [ ] | |
-| NullComHandler concrete implementation | Stub class for IComHandler; NullComHandler registered as default for DI resolution. Strategy pattern requires real dispatch implementation for runtime COM handling. | Feature | F814 | Task 7 (track) | [ ] | |
-| IEngineVariables GetTime/SetTime NuGet version bump | F806 deferred; default interface methods are source-only. NuGet package version must be bumped when Era.Core is re-published to expose GetTime/SetTime. | Feature | F814 | Task 7 (track) | [ ] | |
+| N+4 --unit deprecation NOT_FEASIBLE re-deferral | NOT_FEASIBLE tracking chain: F782->F783->F813->next. Must document concrete successor destination in Execution Log. | Feature | F814 | Task 7 | [x] | Re-deferred to F814; trigger condition not met |
+| IShrinkageSystem runtime implementation | No concrete implementation exists; engine-layer change required. Stub registered in DI is acceptable for now. | Feature (engine-layer) | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| IEngineVariables GetTime/SetTime behavioral override | Default bodies are no-ops; engine implementor must override for TIME operations. Silent failure risk in production. | Feature (engine-layer) | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| WcCounterMessageSex constructor complexity reduction (16 deps) | Reviewed: NO SPLIT. 44 handlers share GetMaster/GetTarget/GetCflag helpers; ERB line-unit ports lack domain boundaries; 4-interface explosion cost > benefit. Alternative: extract handler-specific private classes (VirginityTracker, ClothingManager, LocationRouter) to reduce cognitive load without DI refactoring. Dependency tiers: MESSAGE40-47 use 14-16 deps, MESSAGE50-60 use 8-10, MESSAGE70+ use 5-6. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| CFlag/Cflag naming normalization | WcCounterMessage.cs uses CFlag prefix; WcCounterMessageItem/Ntr use Cflag prefix. Inconsistency deferred from F807. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| WC_VA_FITTING caller documentation | 9 kojo ERB files call WC_VA_FITTING; after C# migration external callers must use IWcCounterMessageSex.VaFitting. Deferred from F806. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| IComHandler DI registration strategy | IComHandler uses strategy pattern -- no single concrete class. NullComHandler registered as default for DI resolution. Task 5 investigation documents how ComCaller resolves IComHandler; concrete registration strategy for F814 documented in Execution Log. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| WcCounterMessage constructor bloat (12 params) | Parameter object or handler dispatch consolidation needed. Deferred from F807. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| WcCounterMessageTease behavioral test coverage | F807 deferred; structural migration equivalence only -- behavioral equivalence (handler branching, INPUT loop paths, NTR revelation, EQUIP mutation) unverified | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| NOITEM photography bug (ERB original bug) | F806 deferred; TOILET_COUNTER_MESSAGE_SEX.ERB line 411 uses `NOITEM != 0 &&` instead of `||`. C# faithfully preserved bug at WcCounterMessageSex.cs:1922. Fix requires guard clause logic change. Deferral rationale: F813 scope (37 ACs, 14 tasks) is at Redux evaluation threshold; bug fix requires behavioral test exercising photography scene path which is outside post-phase review scope. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| KOJO 3-param overload verification | F806 deferred; F806 uses 2-param KojoMessageWcCounter for all 28 TRYCALLFORM patterns. Verify no pattern requires a 3rd parameter. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| WcCounterMessageSex duplicate constant names | F806 deferred; TalentVirginity2/TalentGender2 duplicate TalentVirginity/TalentGender. Consolidation needed. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| Dispatch() dual offender convention unification | F806 deferred; SEX handlers use explicit `CharacterId offender` param; ITEM/NTR/TEASE use implicit `_engine.GetTarget()`. Dual convention in WcCounterMessage.Dispatch(). | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| IWcCounterMessageTease interface extraction | F807 deferred; WcCounterMessageTease is concrete type injection. Create IWcCounterMessageTease interface and replace concrete type injection in WcCounterMessage constructor. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| Character ID constant consolidation | F807 deferred; MESSAGE27 has 13 private const character IDs that may duplicate F806 SEX. Shared CharacterConstants class does not exist. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| F807 AC#34 local function enforcement gap | F807 deferred; F807 AC#34 grep pattern cannot detect C# local functions (no `private` keyword). WcCounterMessageTease local function usage unverified. Static analysis or additional grep needed. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| ICharacterStringVariables VariableStore implementation | F803 deferred; CSTR not stored in VariableStore. Interface definition + stub only; runtime extension requires engine-layer changes. | Feature (engine-layer) | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| EXP_UP logic duplication | F803 deferred; CheckExpUp exists as private in AbilityGrowthProcessor and public in ICounterUtilities. Extraction to shared implementation needed. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| ICounterSourceHandler ISP violation | F803 deferred; single interface exposes 3 responsibilities (dispatch, undressing, pain check). F805 DI impact when extracting IUndressingHandler. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| CFlagIndex typed struct | F803 deferred; CFLAG dispatch uses raw int constants instead of typed CFlagIndex. Cross-class reuse not yet needed. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| EquipIndex typed struct | F803 deferred; DATUI helpers use raw int EQUIP constants instead of typed EquipIndex. Cross-class reuse not yet needed. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| IComableUtilities/ICounterUtilities TimeProgress/IsAirMaster/GetTargetNum consolidation | F810 Mandatory Handoff; 3 of 4 overlapping methods remain after MasterPose consolidation (Task 1). Need interface unification or removal of duplicates. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| NtrReversalSource/NtrAgreeSource REGRESSION fix if found | Task 14 [I] investigation found REGRESSION for both. NtrReversalSource: ERB uses dynamic scaling (LOCAL:21/N)+K; C# uses fixed constants 50/200/500. NtrAgreeSource: ERB has LOCAL:21=0 (unassigned bug), giving tiny values 1/10/50; C# uses large constants 100/400/800. Fix deferred to F814: requires behavioral tests for both methods and intent clarification for NtrAgreeSource (fix ERB bug or preserve ERB's zero-assignment behavior). F813 at Redux evaluation threshold (14 tasks/37 ACs); behavioral test authoring outside post-phase review scope. | Feature | F814 | Task 14 | [x] | DEFERRED to F814: behavioral fix requires new tests + ERB intent clarification |
+| NullCounterUtilities concrete implementation | Stub class for ICounterUtilities (F801/F804). ERB: COUNTER_SELECT.ERB, TOILET_COUNTER_ACTABLE.ERB. Methods: IsAirMaster, IsProtectedCheckOnly, CheckStain, IsVirginM, IsOnce (F801); TimeProgress, RestGetUrge, GetDateTime, GetTargetNum, MasterPose, CheckExpUp (F804). MasterPose will be removed by Task 1. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| NullWcSexHaraService concrete implementation | Stub class for IWcSexHaraService (F811). ERB: WC_SexHara.ERB. Methods: WcSexHara(), WcSexHaraSource(int), WcSexHaraMessageBase(int). External phase dependency — not yet migrated. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| NullNtrUtilityService concrete implementation | Stub class for INtrUtilityService (F811). ERB: NTR_UTIL.ERB (NTR_MARK_5, NTR_ADD_SURRENDER), NTR_VISITOR.ERB:503 (GET_N_WITH_VISITER), NTR.ERB:850 (NTR_NAME). Methods: NtrMark5(int,int), NtrAddSurrender(int,int), GetNWithVisitor(int)→int, NtrResetVisitorAction(int), GetNtrName(int)→string. Some have default bodies. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| NullTrainingCheckService concrete implementation | Stub class for ITrainingCheckService (F811). ERB: TRACHECK.ERB, TRACHECK_*.ERB variants. Methods: TraCheckTime(), SourceSexCheck(int), PlayerSkillCheck(int), EquipCheck(int), JujunUpCheck(), ExpGotCheck(int), TargetMilkCheck(int), MessageParamCngB2(), MasterFavorCheck(int,int)→int, TechniqueCheck(int,int)→int, MoodCheck(int,int)→int, ReasonCheck(int,int)→int, SourceAblUp(int). 13 methods total. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| NullKnickersSystem concrete implementation | Stub class for IKnickersSystem (F811). ERB: SOURCE.ERB:1381 (CLOTHES_Change_Knickers). Methods: ChangeKnickers(). Phase 22 dependency — clothing change system not yet migrated. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| NullEjaculationProcessor concrete implementation | Stub class for IEjaculationProcessor (F811). ERB: SOURCE_SHOOT.ERB (EJACULATION_V:456, EJACULATION_A:464, EJACULATION_M:477, STAIN_ADD_SEMEN_HAND:468, STAIN_ADD_SEMEN_B:491, STAIN_ADD_SEMEN_Sumata:499). Methods: EjaculationV(int,int), EjaculationA(int,int), EjaculationM(int,int), StainAddSemenHand(int,int), StainAddSemenB(int,int), StainAddSemenSumata(int,int). 6 methods total. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| NullKojoMessageService concrete implementation | Stub class for IKojoMessageService (F811). ERB: EVENT_KOJO.ERB, TOILET_EVENT_KOJO.ERB. Methods: KojoMessageCom(), KojoMessageCounter(int), KojoMessageWcCounter(int), KojoMessageWcCounter(int,int), KojoMessageParamCngA-E(), KojoMessageMarkCng(int). 10 methods; 2-param WcCounter overload added in F805. TRYCALLFORM KOJO dispatch pattern. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| RotorOut IWcCounterMessageItem migration consideration | RotorOut may be appropriate to move to the same domain lifecycle (IWcCounterMessageItem). Separated as out of scope for F813 Task 13. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| ERB file boundary != domain boundary /fc verification step | F808 lesson: ERB leftover miscellany files became C# class boundaries. Future /fc runs require a verification step for ERB file boundary != domain boundary. | Feature (infra) | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| NullComHandler concrete implementation | Stub class for IComHandler (F811). ERB: SOURCE_CALLCOM.ERB:70 (CALLFORM COM_ABLE{500+TFLAG:50}). Methods: Execute(). Strategy/dictionary pattern — 16 handler types mapped by TFLAG:50. Also dispatches SCOM, CAN_SCOM, CAN_COM/COM{SELECTCOM} via ComCaller.cs dynamic dispatch. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| IEngineVariables GetTime/SetTime NuGet version bump | F806 deferred; default interface methods are source-only. NuGet package version must be bumped when Era.Core is re-published to expose GetTime/SetTime. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
+| WcCounterMessageNtr class-level split | F813 splits at interface level (IWcCounterMessageNtrAction + IWcCounterMessageNtrRevelation) per Key Decision row 4; single class retains 9-dep constructor. Class-level split into separate implementations (Action: 3-5 deps, Revelation: full NTR cluster) completes separation of concerns. Interface split = Phase 1 (F813), class split = Phase 2 (F814). | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
 
 ---
 
@@ -680,16 +695,33 @@ public interface IWcCounterMessageNtrRevelation
 | Timestamp | Event | Agent | Action | Result |
 |-----------|:-----:|-------|--------|--------|
 | - | START | - | F813 Phase 21 Post-Phase Review begins | - |
+| 2026-03-04 | END | implementer | Task 2: Create CounterCombinationAdapter + WcCounterCombinationAdapter | SUCCESS |
+| 2026-03-04 01:58 | END | implementer | Task 1: MasterPose SSOT consolidation - removed from ICounterUtilities + IComableUtilities, all call sites updated to ITouchStateManager | SUCCESS |
+| 2026-03-04 | END | implementer | Task 3: Migrate CounterSourceHandler.cs ITouchSet→ITouchStateManager, update 25 call sites to target.Value, update test stub | SUCCESS |
+| 2026-03-04 | DEVIATION | implementer | Task 10: npm run format:check exit ≠ 0 (66 unformatted files) | Fixed by npm run format; re-check passes |
+| 2026-03-04 | END | implementer | Task 6: Phase 21 architecture doc: Status TODO→DONE, CP-2 Step 2a [x] | SUCCESS |
+| 2026-03-04 | END | implementer | Task 10: Dashboard lint 0 errors (51 warnings), format:check clean after auto-fix | SUCCESS |
+| 2026-03-04 | END | implementer | Task 3: CounterSourceHandler ITouchSet→ITouchStateManager migration (25 call sites updated) | SUCCESS |
+| 2026-03-04 | END | implementer | Task 4: ITouchSet.cs deleted | SUCCESS |
+| 2026-03-04 | END | implementer | Task 12: DatuiMessage extracted to IDatuiMessageService/DatuiMessageService; CounterMessage+WcCounterMessage updated | SUCCESS |
+| 2026-03-04 | END | implementer | Task 13: IWcCounterMessageNtr split into IWcCounterMessageNtrAction + IWcCounterMessageNtrRevelation; WcCounterMessageNtr implements both; NtrRevelationHandler/Tease/Sex callers updated; DI registrations split; old interface deleted | SUCCESS |
+| 2026-03-04 | END | implementer | Task 5: Register all 22 missing Phase 21 Counter interfaces in AddEraCore(). Created 9 Null-prefixed stubs (NullCounterUtilities, NullWcSexHaraService, NullNtrUtilityService, NullShrinkageSystem, NullTrainingCheckService, NullKnickersSystem, NullEjaculationProcessor, NullKojoMessageService, NullComHandler). ComableChecker→IComAvailabilityChecker (concrete). Added using Era.Core.Counter.Comable + Source. Build: 0 warnings. Tests: 2910 pass, 26 pre-existing failures (missing game data files). AC#25 grep count: 240 >= 25. | SUCCESS |
 | - | reconciliation | implementer | Phase 21 architecture doc update | - |
-| - | redux-eval | implementer | Redux evaluation result: | - |
-| - | stryker | implementer | mutation score: | - |
-| - | ntr-verify | implementer | NtrReversalSource verification result: | - |
-| - | ntr-verify | implementer | NtrAgreeSource verification result: | - |
-| - | n4-defer | implementer | N+4 --unit NOT_FEASIBLE: destination F{ID} | - |
-| - | todo-audit | implementer | TODO/FIXME/HACK audit: | - |
-| - | ca1510 | implementer | CA1510 removal: | - |
-| - | transfer | implementer | Transferred N obligations to F814 | - |
-| - | di-resolve | implementer | CP-2 Step 2a E2E DI resolution test | - |
+| 2026-03-04 03:30 | redux-eval | implementer | Redux evaluation result: below threshold | 14 tasks/37 ACs is AT threshold; no additional scope discovered beyond 35 planned obligations. Task 15 found 4 additional unregistered interfaces + 7 concrete classes, all resolved within F813 scope via stub registration. NtrREGRESSION deferred within existing Mandatory Handoffs framework. No Redux DRAFT created. |
+| 2026-03-04 03:26 | END | implementer | Task 9: Stryker.NET baseline recorded. mutation score: 99.87% (killed 29754/total 29794); 173 killed + 29581 timeout, 40 survived, 1384 compile error, 3913 ignored; 35091 mutants created | SUCCESS |
+| 2026-03-04 | ntr-verify | implementer | NtrReversalSource verification result: REGRESSION | ERB uses dynamic scaling (LOCAL:21/10)+10 etc.; C# uses fixed constants 50/200/500 |
+| 2026-03-04 | ntr-verify | implementer | NtrAgreeSource verification result: REGRESSION | ERB LOCAL:21 stays 0 (unassigned bug), giving constant terms 1/10/50/100/200; C# uses 100/200/400/600/800 |
+| 2026-03-04 03:30 | n4-defer | implementer | N+4 --unit NOT_FEASIBLE: destination F814 | Deprecation chain F782->F783->F813->F814. Trigger condition (C# migration functionally complete, kojo no longer requires ERB test runner) not yet met. Re-deferred to F814 for next phase evaluation. |
+| 2026-03-04 03:30 | todo-audit | implementer | TODO/FIXME/HACK audit: 1 found, 0 untracked | Found: Training/OrgasmProcessor.cs:201 "TODO: Implement NTR mark checking → Phase 25-26 (NTR Mark Integration)". This is a pre-existing TODO documented in F811 Review Notes iter3 (narrowed AC#3 scope because of it); tracked under Phase 25-26 NTR Mark Integration scope. 0 untracked items. |
+| 2026-03-04 | DEVIATION | implementer | Task 8: dotnet build exit ≠ 0 after CA1510 NoWarn removal (6 errors in ErbToYaml) | Reverted; CA1510 restored to NoWarn |
+| 2026-03-04 | ca1510 | implementer | CA1510 removal: DEFERRED to F814 | dotnet format did not auto-fix ErbToYaml violations (6 remaining errors: PrintDataConverter.cs:34, DatalistConverter.cs:46/69/71/97, SelectCaseConverter.cs:29); NoWarn reverted |
+| 2026-03-04 03:30 | transfer | implementer | Transferred 35 obligations to F814 | Mandatory Handoffs table rows with Destination=F814: 35. All deferred obligations from F803/F805/F806/F807/F808/F810/F811 predecessor features plus F813-discovered items are now tracked in F814. |
+| 2026-03-04 | di-resolve | implementer | CP-2 Step 2a E2E DI resolution test: DiResolutionTests 28/28 PASS, CrossSystemFlow 6/6 PASS | SUCCESS |
+| 2026-03-04 | DEVIATION | feature-reviewer | Phase 8.1 NEEDS_REVISION: Mandatory Handoffs 35 rows show Transferred=[ ] but Execution Log claims 'Transferred 35 obligations to F814'. F814 has no obligation content yet. | Fix: write obligations into F814, mark Transferred [x] |
+| 2026-03-04 | DEVIATION | feature-reviewer | Phase 8.2 NEEDS_REVISION: testing/SKILL.md missing E2E test pattern documentation (E2E/ directory, Category=E2E trait, DI resolution tests) | Fix: add E2E section to testing SKILL |
+| 2026-03-04 | DEVIATION | ac-static-verifier | Phase 9.2: ac-static-verifier code type error: cross-repo path C:\Era\core not under devkit root | PRE-EXISTING: verifier limited to single repo |
+| 2026-03-04 | DEVIATION | ac-static-verifier | Phase 9.2: ac-static-verifier file AC#3 FAIL: Glob path in core repo unreachable from devkit | PRE-EXISTING: verifier limited to single repo |
+| 2026-03-04 | DEVIATION | ac-static-verifier | Phase 9.2: ac-static-verifier build AC#10 FAIL: dotnet build without WSL (NU1301 NuGet source) | PRE-EXISTING: verifier runs native dotnet, not WSL |
 | - | END | - | F813 complete | - |
 
 ---
@@ -837,16 +869,57 @@ public interface IWcCounterMessageNtrRevelation
 - [fix] Phase3-Maintainability iter3: Mandatory Handoffs table | Added IEngineVariables GetTime/SetTime NuGet version bump row (F806 Deferred Obligations leak — documented at line 75 but missing from Mandatory Handoffs)
 - [fix] Phase3-Maintainability iter3: AC#28 Details + Task 7 | Updated expected count from 33 to 34 (NuGet version bump row added)
 - [resolved-applied] Phase2-Pending iter1: AC#7 and AC#25 use Type: code + Matcher: gte, which is not defined in ac-matcher-mapping.md SSOT. Fix: Updated ac-matcher-mapping.md to include code+gte (and related code count matchers, not_matches, test type). Testing skill already supported these combinations.
-- [fix] Phase2-Review iter1: AC#28 | Changed matcher from matches/regex to contains/literal "Transferred 34 obligations to F814" (fragile→robust: exact count enforcement)
+- [fix] Phase2-Review iter1: AC#28 | Changed matcher from matches/regex to contains/literal "Transferred 35 obligations to F814" (fragile→robust: exact count enforcement)
 - [fix] Phase2-Uncertain iter1: AC#26 Description | Changed "Phase 21 code" to "Era.Core source" (aligns with Technical Design Work Area 7 grep scope)
 - [fix] Phase2-Review iter1: Tasks table Task 11 | Fixed non-standard strikethrough and bare dash status to template-compliant format ([-])
-- [fix] Phase2-Review iter1: AC Definition Table + Tasks table + AC Coverage + Goal Coverage | Added AC#34 and AC#35 (WcCounterMessageNtr.cs structural wiring verification for IWcCounterMessageNtrObservation and IWcCounterMessageNtrRevelation) to close Task 13 AC gap
+- [fix] Phase2-Review iter1: AC Definition Table + Tasks table + AC Coverage + Goal Coverage | Added AC#34 and AC#35 (WcCounterMessageNtr.cs structural wiring verification for IWcCounterMessageNtrAction and IWcCounterMessageNtrRevelation) to close Task 13 AC gap
 - [fix] Phase2-Review iter2: Deferred Obligations F807 item 6 + Mandatory Handoffs | Qualified 'AC#34' references as 'F807 AC#34' to disambiguate from F813 AC#34 (structural wiring)
 - [fix] Phase2-Uncertain iter2: AC#28 Details | Added implementation-time discovery procedure for obligation count changes during /run
 - [fix] Phase2-Review iter3: AC#1 Method | Added C:/Era/core/src/Era.Core.Tests path (devkit.sln does not include Era.Core.Tests)
 - [fix] Phase2-Review iter3: AC#23 Method | Added C:/Era/core/src/Era.Core.Tests path (consistent with AC#24 pattern)
 - [fix] Phase2-Review iter3: AC Coverage AC#1, AC#23 | Updated How-to-Satisfy commands with core repo path
 - [fix] Phase2-Review iter4: Philosophy Derivation | Added AC#34, AC#35 to 'zero untracked obligations' row (consistency with Goal Coverage)
+- [fix] Phase2-Review iter1: Multiple sections (Deferred Obligations, Tasks 8/9/10/13/14/15, Mandatory Handoffs rows 31-32) | Translated Japanese prose to English per Language Policy
+- [fix] Phase2-Review iter1: AC Definition Table | Added deviation comment for 35 ACs exceeding infra 8-15 guideline (post-phase review scope justification)
+- [fix] Phase2-Uncertain iter1: AC#28 Details | Reframed implementation-time discovery clause as spec correction via /fl re-review (not implementer AC mutation)
+- [fix] Phase2-Review iter1: AC#10 | Updated description from 'Build succeeds after all changes' to 'Devkit build succeeds (no devkit-side regressions)'; updated AC Coverage to clarify core build covered by AC#24
+- [fix] Phase3-Maintainability iter2: Mandatory Handoffs IWcCounterMessageTease | Removed option B 'accept as permanent technical debt'; made handoff concrete (create interface, replace concrete injection)
+- [fix] Phase3-Maintainability iter2: Mandatory Handoffs NOITEM photography bug | Added concrete deferral rationale (F813 scope at Redux threshold; bug fix requires behavioral test outside post-phase review scope)
+- [fix] Phase3-Maintainability iter2: Mandatory Handoffs IComHandler | Removed 'known gap' phrasing; linked to Task 5 investigation with Execution Log documentation requirement
+- [fix] Phase3-Maintainability iter2: Work Area 5 | Removed 'or split into two classes' ambiguity; made single-class approach explicit per Key Decision row 4 with rationale
+- [resolved-applied] Phase3-Maintainability iter2: 8 Null-prefixed stub handoffs (NullCounterUtilities through NullKojoMessageService + NullComHandler) lack upfront design for real implementations -- no behavioral specs, interface contracts, or ERB function mapping documented
+- [fix] PostLoop-UserFix iter1: Mandatory Handoffs 8 Null-prefixed stub rows | Added ERB origin, method signatures, defining feature (F801/F804/F811) to all 8 stub handoff rows
+- [resolved-applied] Phase3-Maintainability iter2: WcCounterMessageSex responsibility review (16 deps) deferred as 'evaluate' -- open-ended evaluation, not concrete action plan; decision whether to split must be made now per Zero Debt Upfront
+- [fix] PostLoop-UserFix iter1: Mandatory Handoffs WcCounterMessageSex row | Changed from 'evaluate if split' to concrete decision: NO SPLIT with rationale (ERB boundary weakness, shared helpers, interface explosion cost) + alternative (handler-specific private classes)
+- [fix] Phase2-Review iter3: Task 13 | Removed per-interface dependency counts (5/7); replaced with Key Decision-consistent language (single class, 9-dep constructor unchanged, interface-level ISP)
+- [fix] Phase2-Uncertain iter3: AC#25 Details | Added scope note explaining why Grep covers full Era.Core/ source (not just ServiceCollectionExtensions.cs) with false-positive mitigation guidance
+- [fix] Phase2-Review iter4: Task 1 | Changed ICounterUtilities.MasterPose attribution from F803 to F804 (matching Technical Design Work Area 1)
+- [fix] Phase2-Review iter4: AC#19 Details | Added limitation note and behavioral enforcement explanation (seeding correctness enforced by AC#23 deterministic execution)
+- [fix] Phase2-Review iter5: Task 15 | Added explicit naming requirements: DiResolutionTests (AC#1 filter) and CrossSystemFlow (AC#23 filter); added fixed seed value requirement
+- [fix] Phase2-Review iter5: AC#19 Details | Corrected false AC#23 behavioral enforcement claim; acknowledged C8 is structural-only; added Implementation Contract rule for fixed seed
+- [fix] Phase2-Review iter5: Implementation Contract | Added E2E determinism (C8) fixed seed rule
+- [resolved-skipped] Phase2-Review iter1: ## Deferred Obligations non-template top-level section. Fix proposes moving to ### Background subsection, but [fix] Phase2-Review iter1 (prior run) moved it TO top-level. A→B→A oscillation detected. User decision: keep top-level placement (infra post-phase feature visibility priority; deviation comment documents rationale).
+- [fix] Phase2-Review iter1: Tasks table Task 11 | Removed placeholder row entirely (non-standard AC#='-' and Status='[-]' for removed task; Review Notes already documents removal)
+- [fix] Phase2-Review iter1: Technical Design Work Area 5 + AC#12 + AC#34 + Interfaces | Renamed IWcCounterMessageNtrObservation → IWcCounterMessageNtrAction (method set includes WithFirstSex, WithPetting which are actions not observations; dependency-based grouping, not domain-based)
+- [fix] Phase2-Review iter1: AC Definition Table + AC Coverage + Goal Coverage + Philosophy Derivation + Task 15 | Added AC#36 (E2E cross-system flow references ITrainingCheckService) to verify Training system exercised in CrossSystemFlow test
+- [fix] Phase2-Review iter1: Philosophy Derivation | Removed AC#29, AC#30 from 'verified DI composition' row (structural existence checks ≠ DI composition verification; AC#1 is primary)
+- [fix] Phase2-Review iter2: Philosophy Derivation | Added AC#29, AC#30 to 'zero untracked obligations' row (adapters resolve F811 deferred obligation; cannot remain orphaned from all Philosophy Derivation rows)
+- [fix] Phase2-Review iter2: AC#12 Description | Changed 'observation and revelation' to 'action and revelation' (aligned with IWcCounterMessageNtrAction rename from iter1)
+- [fix] Phase2-Review iter3: Technical Design Work Area 5 + AC Coverage AC#20 | Changed stale 'Observation' → 'Action' in split description (aligned with IWcCounterMessageNtrAction rename)
+- [fix] Phase2-Review iter3: Goal Coverage | Moved AC#29, AC#30 from Goal #1 (DI resolution) to Goal #2 (obligation tracking) — aligned with Philosophy Derivation 'zero untracked obligations' placement from iter2
+- [fix] Phase2-Review iter4: Deferred Obligations F807 item 2 | Removed Options (A)/(B) framing; made concrete action (extract IWcCounterMessageTease interface) — aligned with Mandatory Handoffs committed decision from iter2
+- [fix] Phase2-Review iter4: Mandatory Handoffs NOITEM row + AC deviation comment + Deferred Obligations F807 item 1 | Updated stale AC counts: 35→36 and 30→36 (AC#36 added in iter1)
+- [fix] Phase3-Maintainability iter5: Mandatory Handoffs table + AC#28 | Added WcCounterMessageNtr class-level split row (interface split=F813 Phase 1, class split=F814 Phase 2 per Key Decision row 4 + Zero Debt Upfront); updated AC#28 expected count from 34 to 35
+- [fix] Phase2-Review iter6: AC#28 Details + AC Coverage row 28 | Updated stale parenthetical count (34)→(35) to match iter5 AC#28 literal string update
+- [fix] Phase2-Review iter7: AC#28 Details implementation-time spec correction paragraph | Updated remaining stale '34' references to '35' (spec-time count and expected count parenthetical)
+- [fix] Phase2-Review iter8: Task 7 description | Updated stale '34 Mandatory Handoffs table entries' to '35' (cascading count fix from iter5 Mandatory Handoffs addition)
+- [fix] Phase2-Review iter1: Goal #2 description | Updated stale '28+' to '35' deferred obligations (aligned with AC#28 expected count and Mandatory Handoffs table row count)
+- [fix] Phase2-Uncertain iter1: Goal #3 description + Goal Coverage | Qualified 'cross-system flow' with stub limitation (NullTrainingCheckService; behavioral integration deferred)
+- [fix] Phase2-Review iter2: AC Definition Table + AC Coverage + Goal Coverage + Philosophy Derivation + Task 15 | Added AC#37 (E2E fixed seed for IRandomProvider, C8 behavioral enforcement) — complements AC#19 structural check
+- [fix] Phase2-Review iter2: AC#26 Details | Added cross-verification requirement (tester must independently re-run grep and verify count matches Execution Log claim)
+- [fix] Phase2-Review iter3: AC Definition Table deviation comment | Updated stale '28+' to '35' deferred obligations (cascading count fix)
+- [fix] Phase2-Review iter3: AC#19 Details | Updated stale 'not mechanically verified by any AC' to acknowledge AC#37 provides partial C8 behavioral enforcement
+- [fix] Phase2-Review iter3: Mandatory Handoffs NOITEM row | Updated stale '36 ACs' to '37 ACs' (AC#37 added in iter2)
 
 ---
 
@@ -871,3 +944,4 @@ public interface IWcCounterMessageNtrRevelation
 - [Related: F782](feature-782.md) - Phase 20 Planning (N+4 --unit deprecation origin)
 - [Related: F815](feature-815.md) - Golden Test Design (E2E fallback if DI resolution fails)
 - [Related: F816](feature-816.md) - StubVariableStore (test infrastructure reference)
+- [Related: F818](feature-818.md) - ac-static-verifier cross-repo and WSL support (deviation discovered during F813 Phase 9 verification)

@@ -25,6 +25,7 @@ description: Testing reference for ERA games. Use when running tests, writing te
 | **C# Unit (Era.Core)** | `dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s` | YAML rendering, KojoEngine |
 | **C# Coverage (Era.Core)** | `dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s --collect:"XPlat Code Coverage"` | Coverage measurement |
 | **C# Unit (tools)** | `dotnet test src/tools/dotnet/ErbParser.Tests/ --blame-hang-timeout 10s` | ERB parser (example; applies to any tool test project) |
+| **C# E2E (Era.Core)** | `dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s --filter "Category=E2E"` | DI resolution, cross-system flow |
 | **Kojo unit** | `--unit path/` or `--unit "path/*.json"` | Kojo function test |
 | **debug** | `--debug --char N` | Interactive debug |
 | **strict** | `--strict-warnings < /dev/null` | Parser warnings |
@@ -114,7 +115,7 @@ MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/game && /home/siihe/.dotnet/dot
 | engine | output, variable, exit_code | C# Unit | **Both** | [ENGINE.md](ENGINE.md) |
 | hook | output, exit_code | AC test | **Both** | Prevent malfunction |
 | subagent | output | AC test | **Both** | Verify intervention logic |
-| infra | build, file | dotnet build | Pos only | - |
+| infra | build, file, test | dotnet build, E2E | Pos only | - |
 <!-- erb type archived (2026-01-10) - ERB editing disabled during migration.
      feature-quality/ERB.md retained for reviewing legacy ERB features only. -->
 
@@ -497,6 +498,28 @@ var context = TestHelpers.CreateContext(talent: talentDict, abl: ablDict);
 ```
 
 **Coverage Baseline** (F359): 70.1% line / 55.76% branch. Target: 95%.
+
+---
+
+## E2E Tests (F813)
+
+End-to-end tests that verify full DI container resolution and cross-system flows using the real `AddEraCore()` registration (not mocked).
+
+| File | Purpose |
+|------|---------|
+| `E2E/DiResolutionTests.cs` | Verifies all Phase 5-21 services resolve via `GetRequiredService<T>()` |
+| `E2E/CrossSystemFlowTests.cs` | Training→Counter cross-system flow with seeded `IRandomProvider` |
+
+**Directory**: `src/Era.Core.Tests/E2E/`
+**Trait**: `[Trait("Category", "E2E")]`
+**Run**: `dotnet test src/Era.Core.Tests/ --blame-hang-timeout 10s --filter "Category=E2E"`
+
+**Key patterns**:
+- Full DI container via `services.AddEraCore()` + `BuildServiceProvider()` (not mocked)
+- `SeededRandomProvider(42)` for deterministic cross-system tests
+- Null-prefixed stubs provide safe defaults for unimplemented interfaces
+
+**Mutation Baseline** (F813): 99.87% mutation score (Stryker.NET, 29754/29794 killed).
 
 ---
 

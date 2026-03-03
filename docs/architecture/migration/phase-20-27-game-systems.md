@@ -108,7 +108,7 @@ dotnet test Era.Core.Tests --filter "Category=Shop"
 
 > **⚠️ 粒度警告**: 本Phaseは ~25,862行・~30ファイルと Phase 20 の6倍。Planning Feature では作業を複数 sub-feature に分割すること (Main Counter / WC Counter / COMABLE+SOURCE)。
 
-**Phase Status**: TODO
+**Phase Status**: DONE
 
 **Goal**: 行動選択システムの移行（メイン + WC + COMABLE + SOURCE）
 
@@ -229,7 +229,7 @@ dotnet test Era.Core.Tests --filter "Category=Source"
 - [ ] Comable 判定移行完了
 - [ ] Source システム移行完了
 - [ ] 全テスト PASS
-- [ ] **CP-2 Step 2a PASS**: E2E基盤 + DI全解決 + Training->Counter cross-system
+- [x] **CP-2 Step 2a PASS**: E2E基盤 + DI全解決 + Training->Counter cross-system
 
 **Sub-Feature Requirements** (Planning Feature がこのセクションを読んで sub-feature に反映):
 

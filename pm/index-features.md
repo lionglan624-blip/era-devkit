@@ -65,8 +65,8 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F813 | [PROPOSED] | Post-Phase Review Phase 21 | F783, F801, F802, F803, F804, F805, F806, F807, F808, F809, F810, F811, F812 | [feature-813.md](feature-813.md) |
-| F814 | [DRAFT] | Phase 22 Planning | F783, **F813** | [feature-814.md](feature-814.md) |
+| F814 | [DRAFT] | Phase 22 Planning | F783, F813 | [feature-814.md](feature-814.md) |
+| F818 | [DRAFT] | ac-static-verifier cross-repo and WSL support | - | [feature-818.md](feature-818.md) |
 
 ### Other
 
@@ -85,7 +85,7 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
-| 806 | ✅ | WC Counter Message SEX | [feature-806.md](feature-806.md) |
+| 813 | ✅ | Post-Phase Review Phase 21 | [feature-813.md](feature-813.md) |
 | 807 | ✅ | WC Counter Message TEASE | [feature-807.md](feature-807.md) |
 | 808 | ✅ | WC Counter Message ITEM + NTR | [feature-808.md](feature-808.md) |
 | 805 | ✅ | WC Counter Source + Message Core | [feature-805.md](feature-805.md) |
@@ -181,4 +181,4 @@ See [kojo-mapper](../../tools/kojo-mapper/) for detailed coverage analysis.
 
 ---
 
-**Next Feature number**: 818
+**Next Feature number**: 819

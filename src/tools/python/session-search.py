@@ -15,6 +15,10 @@ Usage:
     python session-search.py "feature-806" --tool Agent --subagents
     python session-search.py -r "feature-8[01]\\d" --count
     python session-search.py --session be309 --tool Agent --no-results
+    python session-search.py --list
+    python session-search.py --list --after 2026-03-01 --limit 10
+    python session-search.py --session be309 "issue" --type text
+    python session-search.py --session be309 --type tool_use
 
 Exit codes:
     0 = Success (matches found, or no matches without --strict)
@@ -212,6 +216,10 @@ def _content_to_text(content) -> str:
     return str(content)
 
 
+# Virtual content types that filter at the block level, not the record level
+_VIRTUAL_CONTENT_TYPES = {"text", "tool_use", "tool_result"}
+
+
 def _extract_match_summary(
     obj: dict,
     pattern: str,
@@ -220,6 +228,7 @@ def _extract_match_summary(
     no_results: bool,
     ignore_case: bool = False,
     compiled_re: Optional[re.Pattern] = None,
+    content_type_filter: Optional[str] = None,
 ) -> Optional[str]:
     """
     Return a human-readable summary string for a matched JSON line,
@@ -229,6 +238,7 @@ def _extract_match_summary(
     no_results: if True, suppress tool_result matches entirely.
     ignore_case: if True, perform case-insensitive pattern matching.
     compiled_re: if set, use regex matching instead of substring.
+    content_type_filter: if set (text/tool_use/tool_result), only match that block type.
     """
     scan_all = not pattern
     record_type = obj.get("type", "")
@@ -244,12 +254,17 @@ def _extract_match_summary(
             return pattern in haystack.lower()
         return pattern in haystack
 
+    # Content type filter: skip non-matching block types
+    want_text = content_type_filter is None or content_type_filter == "text"
+    want_tool_use = content_type_filter is None or content_type_filter == "tool_use"
+    want_tool_result = content_type_filter is None or content_type_filter == "tool_result"
+
     # assistant messages: look for tool_use blocks
     if record_type == "assistant" and isinstance(content, list):
         for block in content:
             if not isinstance(block, dict):
                 continue
-            if block.get("type") == "tool_use":
+            if block.get("type") == "tool_use" and want_tool_use:
                 tool_name = block.get("name", "")
                 if tool_filter and tool_name not in tool_filter:
                     continue
@@ -261,12 +276,17 @@ def _extract_match_summary(
                     return _extract_tool_use_summary(block, pattern)
                 if _match(tool_name) or _match(inp_str):
                     return _extract_tool_use_summary(block, pattern)
-            elif block.get("type") == "text":
+            elif block.get("type") == "text" and want_text:
                 if tool_filter:
+                    continue
+                text = block.get("text", "")
+                if scan_all and content_type_filter == "text":
+                    # In text-only mode, show all text blocks
+                    if text.strip():
+                        return f"text - {_truncate(text, 100)}"
                     continue
                 if scan_all:
                     continue
-                text = block.get("text", "")
                 if _match(text):
                     return f"text - {_snippet_around(text, pattern, ignore_case=ignore_case, compiled_re=compiled_re)}"
 
@@ -275,22 +295,31 @@ def _extract_match_summary(
         for block in content:
             if not isinstance(block, dict):
                 continue
-            if block.get("type") == "tool_result":
+            if block.get("type") == "tool_result" and want_tool_result:
                 if tool_filter or no_results:
                     continue
-                if scan_all:
+                if scan_all and content_type_filter != "tool_result":
                     continue
                 raw = _content_to_text(block.get("content", ""))
+                if scan_all and content_type_filter == "tool_result":
+                    use_id = block.get("tool_use_id", "")
+                    origin = tool_id_map.get(use_id, "")
+                    prefix = f"result({origin})" if origin else "tool_result"
+                    return f"{prefix} - \"{_truncate(raw, 100)}\""
                 if _match(raw):
                     # Annotate with originating tool name
                     use_id = block.get("tool_use_id", "")
                     origin = tool_id_map.get(use_id, "")
                     prefix = f"result({origin})" if origin else "tool_result"
                     return f"{prefix} - \"{_snippet_around(raw, pattern, ignore_case=ignore_case, compiled_re=compiled_re)}\""
-            elif block.get("type") == "text":
+            elif block.get("type") == "text" and want_text:
                 if tool_filter:
                     continue
                 text = block.get("text", "")
+                if scan_all and content_type_filter == "text":
+                    if text.strip():
+                        return f"user_text - {_truncate(text, 100)}"
+                    continue
                 if scan_all and not tool_filter:
                     # Include user text blocks in scan-all mode (task prompts)
                     if text.strip():
@@ -301,6 +330,8 @@ def _extract_match_summary(
 
     # user messages with plain string content
     elif record_type == "user" and isinstance(content, str):
+        if not want_text:
+            return None
         if tool_filter:
             return None
         if scan_all and not tool_filter:
@@ -312,7 +343,7 @@ def _extract_match_summary(
 
     # For other types (system, file-history-snapshot, queue-operation)
     # Note: 'progress' is excluded before reaching here (see scan_file)
-    elif not tool_filter and not scan_all:
+    elif not tool_filter and not scan_all and content_type_filter is None:
         raw = json.dumps(obj, ensure_ascii=False)
         if _match(raw):
             return f"{record_type} - {_snippet_around(raw, pattern, ignore_case=ignore_case, compiled_re=compiled_re)}"
@@ -509,9 +540,14 @@ def scan_file(
                 if record_type == "progress" and not include_progress:
                     continue
 
-                # Apply type filter
-                if type_filter and record_type != type_filter:
-                    continue
+                # Apply type filter (record-level only; virtual types handled below)
+                content_type_filter: Optional[str] = None
+                if type_filter:
+                    if type_filter in _VIRTUAL_CONTENT_TYPES:
+                        # Virtual type: don't filter records, filter content blocks instead
+                        content_type_filter = type_filter
+                    elif record_type != type_filter:
+                        continue
 
                 # For context mode, collect brief summary for every record
                 if context > 0:
@@ -539,7 +575,7 @@ def scan_file(
                 summary = _extract_match_summary(
                     obj, pattern_lower if ignore_case else pattern,
                     tool_filter, tool_id_map, no_results, ignore_case,
-                    compiled_re,
+                    compiled_re, content_type_filter,
                 )
                 if summary is not None:
                     if context > 0:
@@ -642,9 +678,13 @@ def scan_timeline(
                     if before and ts >= before:
                         continue
 
-                # Apply type filter
-                if type_filter and record_type != type_filter:
-                    continue
+                # Apply type filter (record-level; virtual types filter content blocks)
+                ct_filter: Optional[str] = None
+                if type_filter:
+                    if type_filter in _VIRTUAL_CONTENT_TYPES:
+                        ct_filter = type_filter
+                    elif record_type != type_filter:
+                        continue
 
                 # Skip progress, queue-operation, system
                 if record_type not in ("assistant", "user"):
@@ -653,21 +693,24 @@ def scan_timeline(
                 message = obj.get("message", {})
                 content = message.get("content", []) if isinstance(message, dict) else []
 
+                want_text = ct_filter is None or ct_filter == "text"
+                want_tool_use = ct_filter is None or ct_filter == "tool_use"
+
                 if record_type == "assistant" and isinstance(content, list):
                     for block in content:
                         if not isinstance(block, dict):
                             continue
-                        if block.get("type") == "tool_use":
+                        if block.get("type") == "tool_use" and want_tool_use:
                             tool_name = block.get("name", "")
                             if tool_name in effective_tools:
                                 summary = _extract_tool_use_summary(block, "")
                                 events.append((format_time(ts), summary))
-                        elif block.get("type") == "text":
+                        elif block.get("type") == "text" and want_text:
                             text = block.get("text", "").strip()
                             if text and len(text) > 5:
                                 events.append((format_time(ts), f"text: {_truncate(text, 90)}"))
 
-                elif record_type == "user":
+                elif record_type == "user" and want_text:
                     if isinstance(content, str):
                         text = content.strip()
                         if text:
@@ -797,15 +840,23 @@ def scan_summary(jsonl_path: Path) -> Optional[dict]:
 
                 # First user text
                 if first_user_text is None and record_type == "user":
+                    _found_text = None
                     if isinstance(content, str) and content.strip():
-                        first_user_text = _truncate(content.strip(), 100)
+                        _found_text = content.strip()
                     elif isinstance(content, list):
                         for block in content:
                             if isinstance(block, dict) and block.get("type") == "text":
                                 text = block.get("text", "").strip()
-                                if text and not text.startswith("<"):
-                                    first_user_text = _truncate(text, 100)
+                                if text:
+                                    _found_text = text
                                     break
+                    if _found_text:
+                        # Extract clean text from command-message XML tags
+                        cmd_match = re.search(r"<command-name>(/\S+)</command-name>\s*<command-args>(.*?)</command-args>", _found_text)
+                        if cmd_match:
+                            first_user_text = f"{cmd_match.group(1)} {cmd_match.group(2)}".strip()
+                        elif not _found_text.startswith("<"):
+                            first_user_text = _truncate(_found_text, 100)
 
                 # Tool counts
                 if record_type == "assistant" and isinstance(content, list):
@@ -901,6 +952,51 @@ def print_summary(summary: dict) -> None:
             parts.append(f"cache_create={_fmt_tokens(cache_create)}")
         parts.append(f"output={_fmt_tokens(output_t)}")
         print(f"  Last tokens: {', '.join(parts)}")
+
+
+def print_session_list(summaries: list[dict], verbose: bool) -> None:
+    """Print a compact session list table."""
+    print("=== Recent Sessions ===")
+    print()
+    for idx, s in enumerate(summaries, 1):
+        sid = s["session_id"]
+        earliest_dt = s["earliest"]
+        latest_dt = s["latest"]
+        lines = s["total_lines"]
+        first = s["first_user_text"]
+
+        # Date range: compact "YYYY-MM-DD HH:MM~HH:MM"
+        if earliest_dt and latest_dt:
+            date_str = format_dt(earliest_dt)
+            end_time = latest_dt.strftime("%H:%M")
+            date_range = f"{date_str}~{end_time}"
+        else:
+            date_range = "unknown"
+
+        # Duration
+        duration_str = "?"
+        if earliest_dt and latest_dt:
+            delta = latest_dt - earliest_dt
+            minutes = int(delta.total_seconds() / 60)
+            if minutes >= 60:
+                duration_str = f"{minutes // 60}h{minutes % 60:02d}m"
+            else:
+                duration_str = f"{minutes}m"
+
+        # Truncate first message for non-verbose
+        display_first = first if verbose else _truncate(first, 50)
+
+        print(f"  {idx:>2}  {sid}  {date_range}  {duration_str:>6}  {lines:>4}L  {display_first}")
+
+        if verbose:
+            tools = s.get("tool_counts", {})
+            if tools:
+                top = list(tools.items())[:5]
+                tools_str = " ".join(f"{k}:{v}" for k, v in top)
+                print(f"      Tools: {tools_str}")
+
+    print()
+    print(f"{len(summaries)} sessions found")
 
 
 # -- output formatting --------------------------------------------------------
@@ -1127,7 +1223,11 @@ Examples:
   python session-search.py --session be309 --line 99
   python session-search.py --session be309 --line 97-104 --raw
   python session-search.py --session be309 --summary
+  python session-search.py --list
+  python session-search.py --list --after 2026-03-01 --limit 10
   python session-search.py --session be309 "Context at" -C 2
+  python session-search.py --session be309 "issue" --type text
+  python session-search.py --session be309 --type tool_use
   python session-search.py -r "feature-8[01]\\d" --count
   python session-search.py "nonexistent" --strict  # exit code 2 if no match
         """,
@@ -1190,7 +1290,8 @@ Examples:
         "--type",
         dest="record_type",
         metavar="TYPE",
-        help="Record type filter (user, assistant, progress, etc.)",
+        help="Filter by record type (user, assistant, progress) or "
+             "content block type (text, tool_use, tool_result)",
     )
     parser.add_argument(
         "--limit",
@@ -1251,6 +1352,11 @@ Examples:
         "--summary",
         action="store_true",
         help="Show session summary: first message, duration, tool counts, errors, tokens (requires --session)",
+    )
+    parser.add_argument(
+        "--list",
+        action="store_true",
+        help="List recent sessions with summary info (no pattern required). Compatible with --after, --before, --limit.",
     )
     parser.add_argument(
         "-C", "--context",
@@ -1430,8 +1536,40 @@ def main() -> int:
         print_summary(summary)
         return 0
 
+    # --list mode (early branch)
+    if args.list:
+        all_files = _collect_jsonl_files(ccs_dirs, args.session, False)
+        if not all_files:
+            print("No sessions found.", file=sys.stderr)
+            return 1
+
+        summaries = []
+        for jsonl_path in all_files:
+            summary = scan_summary(jsonl_path)
+            if summary is None:
+                continue
+            # Apply date filters
+            if args.after and summary["latest"] and summary["latest"] < args.after:
+                continue
+            if args.before and summary["earliest"] and summary["earliest"] >= args.before:
+                continue
+            summaries.append(summary)
+
+        # Sort by latest timestamp (newest first)
+        summaries.sort(
+            key=lambda s: s["latest"] or datetime.min.replace(tzinfo=timezone.utc),
+            reverse=True,
+        )
+
+        # Apply limit (default 20 for list mode)
+        limit = args.limit if args.limit is not None else 20
+        summaries = summaries[:limit]
+
+        print_session_list(summaries, args.verbose)
+        return 0
+
     # Validate: pattern is required unless --session or --timeline is specified
-    if not pattern and not args.session and not args.timeline:
+    if not pattern and not args.session and not args.timeline and not args.list:
         parser.error("pattern is required unless --session or --timeline is specified")
 
     # Timeline mode

@@ -42,6 +42,10 @@ export class ClaudeStatusService {
     }
   }
 
+  refresh() {
+    this._poll().catch((err) => this.logger.error('Refresh poll failed:', err.message));
+  }
+
   async _poll() {
     try {
       const response = await this._fetchFn(CLAUDE_STATUS_URL, {

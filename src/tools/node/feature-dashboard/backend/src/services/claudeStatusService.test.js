@@ -175,4 +175,18 @@ describe('ClaudeStatusService', () => {
       expect(() => service.stop()).not.toThrow();
     });
   });
+
+  describe('refresh', () => {
+    it('triggers a poll', async () => {
+      service.refresh();
+      await vi.advanceTimersByTimeAsync(0);
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not throw on fetch failure', async () => {
+      service._fetchFn = vi.fn().mockRejectedValue(new Error('fail'));
+      expect(() => service.refresh()).not.toThrow();
+      await vi.advanceTimersByTimeAsync(0);
+    });
+  });
 });

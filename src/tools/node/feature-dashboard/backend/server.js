@@ -222,6 +222,7 @@ app.get('/api/health', async (req, res) => {
   // Trigger fresh rate limit capture if requested (e.g., on browser refresh)
   if (req.query.refresh) {
     rateLimitService.capture({ forceRefresh: true }).catch(() => {});
+    claudeStatusService.refresh();
   }
 
   res.json({

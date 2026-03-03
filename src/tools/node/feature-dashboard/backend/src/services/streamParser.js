@@ -2,7 +2,6 @@ import { claudeLog } from '../utils/logger.js';
 import {
   DEFAULT_CONTEXT_WINDOW,
   PENDING_HANDOFF_TIMEOUT_MS,
-  ASK_USER_HANDOFF_TIMEOUT_MS,
 } from '../config.js';
 import { INPUT_WAIT_PATTERNS } from './inputPatterns.js';
 import { detectPhase, detectIteration, getTotalPhases } from './phaseUtils.js';
@@ -276,15 +275,8 @@ export class StreamParser {
         this.broadcastState(execution);
         this.broadcastInputRequired(execution);
 
-        // Defer handoff — allow browser UI to answer first, terminal handoff as fallback timeout
-        // AskUserQuestion uses longer timeout (120s) since process blocks on stdin
-        const reason = 'AskUserQuestion requires user input';
-        execution.pendingHandoff = { reason, timestamp: Date.now() };
-        execution.pendingHandoffTimeout = setTimeout(() => {
-          if (execution.pendingHandoff && execution.status === 'running') {
-            this.handoffToTerminal(execution, execution.pendingHandoff.reason);
-          }
-        }, ASK_USER_HANDOFF_TIMEOUT_MS);
+        // No auto-handoff timeout — process blocks on stdin pipe until browser answers
+        // or user manually clicks "Terminal" fallback button
       }
     }
 

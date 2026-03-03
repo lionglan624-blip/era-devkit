@@ -31,6 +31,7 @@ import {
   SHELL_STATE_TTL_MS,
   RATE_LIMIT_RETRY_BUFFER_MS,
   RATE_LIMIT_SAFE_THRESHOLD,
+  MAX_PROFILE_SWITCHES,
 } from '../config.js';
 
 // Import extracted modules
@@ -142,12 +143,27 @@ export class ClaudeService {
         // 16KB tail: CLI writes hooks/telemetry/session-save after 429, which can
         // push the rate_limit_error line >4KB from the end in long-running sessions
         const tail = readFileSync(execution.debugLogPath, 'utf8').slice(-16384);
-        if (/rate_limit_error|429.*rate.?limit/i.test(tail)) {
+
+        // rate_limit_error is always a conversation API error (SDK error type)
+        if (/rate_limit_error/i.test(tail)) {
           execution.accountLimitHit = true;
           claudeLog.info(
             `[ClaudeService] Rate limit detected from debug log for F${execution.featureId} ${execution.command}`,
           );
           return true;
+        }
+
+        // 429.*rate.?limit needs line-level filtering to exclude telemetry endpoints
+        const TELEMETRY_PATTERN = /client_data|event.?logging|events? failed to export|datadoghq|OTEL|telemetry/i;
+        const lines = tail.split('\n');
+        for (const line of lines) {
+          if (/429.*rate.?limit/i.test(line) && !TELEMETRY_PATTERN.test(line)) {
+            execution.accountLimitHit = true;
+            claudeLog.info(
+              `[ClaudeService] Rate limit detected from debug log for F${execution.featureId} ${execution.command}`,
+            );
+            return true;
+          }
         }
       }
     } catch (err) {
@@ -577,14 +593,16 @@ export class ClaudeService {
 
     const proc = spawn(claudePath, args, {
       cwd: this.projectRoot,
-      stdio: ['ignore', 'pipe', 'pipe'],
+      stdio: ['pipe', 'pipe', 'pipe'],
       shell: false,
       windowsHide: true,
       env: this._buildClaudeEnv(execution),
     });
 
     execution.process = proc;
-    execution.stdin = null; // stdin disabled for now
+    execution.stdin = proc.stdin;
+    proc.stdin.on('error', () => {}); // Suppress EPIPE on kill
+    proc.stdin.end(); // Close stdin immediately — -p provides prompt, open pipe causes CLI hang
 
     claudeLog.info(`[ClaudeService] Spawned claude PID=${proc.pid}`);
 
@@ -1398,22 +1416,31 @@ export class ClaudeService {
     const currentProfile = this.getCcsProfile();
 
     // Strategy 1: Find a safe profile and switch immediately
+    const switchCount = execution._profileSwitchCount || 0;
     const safeProfile = this.rateLimitService?.getSafeProfile(currentProfile);
     if (safeProfile) {
-      this._switchProfile(safeProfile);
-      execution.rateLimitSwitchedTo = safeProfile;
+      if (switchCount >= MAX_PROFILE_SWITCHES) {
+        claudeLog.warn(
+          `[RateLimit] Profile switch limit reached (${switchCount}/${MAX_PROFILE_SWITCHES}). Falling through to timed retry.`,
+        );
+        // Fall through to Strategy 2
+      } else {
+        this._switchProfile(safeProfile);
+        execution.rateLimitSwitchedTo = safeProfile;
+        execution._profileSwitchCount = switchCount + 1;
 
-      claudeLog.info(
-        `[RateLimit] Switched to ${safeProfile}, retrying F${execution.featureId} ${execution.command} immediately`,
-      );
+        claudeLog.info(
+          `[RateLimit] Switched to ${safeProfile}, retrying F${execution.featureId} ${execution.command} immediately`,
+        );
 
-      setTimeout(() => {
-        this._startRateLimitRetry(execution);
-      }, RETRY_DELAY_MS);
+        setTimeout(() => {
+          this._startRateLimitRetry(execution);
+        }, RETRY_DELAY_MS);
 
-      return {
-        message: `Switching to profile ${safeProfile}, retrying in ${RETRY_DELAY_MS / 1000}s.`,
-      };
+        return {
+          message: `Switching to profile ${safeProfile}, retrying in ${RETRY_DELAY_MS / 1000}s.`,
+        };
+      }
     }
 
     // Strategy 2: Schedule timed retry based on earliest reset time
@@ -1563,6 +1590,7 @@ export class ClaudeService {
       newExec.startedAt = new Date().toISOString();
       newExec.lastOutputTime = Date.now();
       newExec.sessionId = execution.sessionId;
+      newExec._profileSwitchCount = execution._profileSwitchCount || 0;
       newExec.debugLogPath = path.join(this.tmpDir, `debug-${newExec.id}.log`);
       newExec.logs = [
         {
@@ -1589,13 +1617,16 @@ export class ClaudeService {
 
       const proc = spawn(claudePath, args, {
         cwd: this.projectRoot,
-        stdio: ['ignore', 'pipe', 'pipe'],
+        stdio: ['pipe', 'pipe', 'pipe'],
         shell: false,
         windowsHide: true,
         env: this._buildClaudeEnv(newExec),
       });
 
       newExec.process = proc;
+      newExec.stdin = proc.stdin;
+      proc.stdin.on('error', () => {}); // Suppress EPIPE on kill
+      proc.stdin.end(); // Close stdin immediately — -p provides prompt, open pipe causes CLI hang
 
       this._attachStdoutHandler(newExec, proc);
       this._attachStderrHandler(newExec, proc);
@@ -2211,13 +2242,16 @@ export class ClaudeService {
 
     const proc = spawn(claudePath, args, {
       cwd: this.projectRoot,
-      stdio: ['ignore', 'pipe', 'pipe'],
+      stdio: ['pipe', 'pipe', 'pipe'],
       shell: false,
       windowsHide: true,
       env: this._buildClaudeEnv(execution),
     });
 
     execution.process = proc;
+    execution.stdin = proc.stdin;
+    proc.stdin.on('error', () => {}); // Suppress EPIPE on kill
+    proc.stdin.end(); // Close stdin immediately — -p provides prompt, open pipe causes CLI hang
 
     this._attachStdoutHandler(execution, proc);
     this._attachStderrHandler(execution, proc);

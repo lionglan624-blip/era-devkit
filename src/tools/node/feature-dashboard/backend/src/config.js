@@ -54,9 +54,6 @@ export const HANDOFF_DELAY_MS = 300;
 /** Timeout for deferred y/n handoff — fallback if result event never arrives (ms) */
 export const PENDING_HANDOFF_TIMEOUT_MS = 10000;
 
-/** Timeout for deferred AskUserQuestion handoff — longer since browser UI can answer (ms) */
-export const ASK_USER_HANDOFF_TIMEOUT_MS = 120000;
-
 /** Margin for log trimming (trim when exceeds MAX_LOG_ENTRIES + margin) */
 export const LOG_TRIM_MARGIN = 100;
 
@@ -134,6 +131,9 @@ export const RATE_LIMIT_SAFE_THRESHOLD = 95;
 
 /** Threshold (percent) at which auto-switch to a safe profile triggers */
 export const AUTO_SWITCH_THRESHOLD = 80;
+
+/** Maximum number of profile switches allowed per execution chain (prevents ping-pong loops) */
+export const MAX_PROFILE_SWITCHES = 2;
 
 // =============================================================================
 // Auto-DR (Auto Dashboard Restart) Configuration

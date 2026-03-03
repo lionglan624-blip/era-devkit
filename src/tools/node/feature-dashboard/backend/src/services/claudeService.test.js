@@ -16,6 +16,7 @@ vi.mock('child_process', async (importOriginal) => {
     ...actual,
     spawn: vi.fn(() => ({
       pid: 12345,
+      stdin: { on: vi.fn() },
       stdout: { on: vi.fn() },
       stderr: { on: vi.fn() },
       on: vi.fn(),
@@ -1521,11 +1522,9 @@ describe('ClaudeService', () => {
       expect(execution.inputRequired.toolUseId).toBe('ask-1');
       // Should defer handoff, not trigger immediately
       expect(service._handoffToTerminal).not.toHaveBeenCalled();
-      expect(execution.pendingHandoff).toBeTruthy();
-      expect(execution.pendingHandoff.reason).toContain('AskUserQuestion');
-
-      // Cleanup
-      if (execution.pendingHandoffTimeout) clearTimeout(execution.pendingHandoffTimeout);
+      // No pendingHandoff — process blocks on stdin pipe, no auto-timeout
+      expect(execution.pendingHandoff).toBeFalsy();
+      expect(execution.pendingHandoffTimeout).toBeFalsy();
     });
   });
 
@@ -3768,7 +3767,7 @@ describe('ClaudeService', () => {
       expect(result.status).toBe('launched');
     });
 
-    it('uses restart-backend.cmd for dr command', async () => {
+    it('uses restart-backend.vbs for dr command', async () => {
       vi.useFakeTimers();
       const { service } = createService();
       const { spawn: mockSpawn } = await import('child_process');
@@ -3777,7 +3776,11 @@ describe('ClaudeService', () => {
       // dr delays spawn by 500ms to let shell-complete WS message reach clients first
       vi.advanceTimersByTime(500);
 
-      expect(mockSpawn).toHaveBeenCalledWith(expect.stringContaining('restart-backend.cmd'), [], expect.any(Object));
+      expect(mockSpawn).toHaveBeenCalledWith(
+        'wscript',
+        [expect.stringContaining('restart-backend.vbs')],
+        expect.objectContaining({ stdio: 'ignore', windowsHide: true }),
+      );
       vi.useRealTimers();
     });
 

@@ -57,7 +57,7 @@ dr button                                   # pm2 restart all
 
 | Setting | Value | Purpose |
 |---------|------:|---------|
-| Rate limit cache | dynamic | Tracks CCS **profile-level** usage (weekly/session/sonnet — these are API quota limits, NOT conversation context). **expiresAt**: min(weekly reset, session reset, sonnet reset, 1 week); **refreshAt**: adaptive 5min-2h based on activity and max percent — idle (no running/queued executions)=2h, active: 90%+=5min, 80-89%=10min, <80%=30min; **session burn rate prediction**: when session elapsed ≥30min, percent ≥5%, and <100%, projects usage to end of 5h window — projected >150%=5min, >100%=10min (weekly unchanged). On-start `capture()`, on-completion `capture({ forceRefresh: true })`, and on-FE-refresh (`/api/health?refresh=1`) ensure fresh data when activity resumes. `/usage` data preserves all types; capture failure preserves cache. Persisted to `_out/tmp/dashboard/ratelimit-cache.json` |
+| Rate limit cache | dynamic | CCS profile-level usage cache (weekly/session/sonnet). See [details below](#rate-limit-cache-details) |
 | Rate limit polling | 5min | Periodic background capture interval |
 | Rate limit capture | 20s | Overall timeout for node-pty capture (typical: 7-10s via `/usage` command) |
 | Stall check interval | 30s | Check for stall (worst-case detection ≤90s) |
@@ -65,9 +65,9 @@ dr button                                   # pm2 restart all
 | Execution TTL | 1h | Keep completed executions in memory |
 | Stuck cleanup | 2h | Force-terminate unresponsive executions |
 | Pending handoff timeout (y/n) | 10s | Fallback terminal handoff if result event never arrives for y/n prompts |
-| Pending handoff timeout (AskUserQuestion) | 120s | Fallback terminal handoff for AskUserQuestion (longer since process blocks on stdin, browser UI can answer) |
-| Account limit (429) | auto-retry | API rate limit (`rate_limit_error` / `hit your limit` / `exceed your account's rate limit`). Detection: (1) stderr regex, (2) non-JSON stdout regex, (3) **two-pass debug log tail scan** at completion (last 16KB of `--debug-file` for `rate_limit_error`/`429`; 16KB needed because CLI writes hooks/telemetry after 429, pushing the error >4KB from EOF in long sessions). Sets `accountLimitHit` flag → blocks context retry and FL retry. For **all executions** (chain and non-chain): (1) tries auto-switch to safe profile (immediate retry after 5s), (2) if no safe profile, schedules timed retry at earliest `resetsAt` + 1min buffer. Sets `_rateLimitPaused` to block queue. **Session resume**: when failed execution has `sessionId`, retry uses `claude -p "continue" --resume <sessionId>` to preserve conversation context (avoids re-reading files and re-establishing state); falls back to fresh `executeCommand()` when no sessionId. WS event: `rate-limit-retry` includes `resumed: true/false` field. Broadcasts `account-limit` → `rate-limit-waiting` → `rate-limit-retry` or `rate-limit-exhausted` WS events. Email: `account-limit` with retry schedule, then `rate-limit-recovered` or `rate-limit-exhausted` |
-| Auto-switch (≥80%) | proactive | When active profile reaches ≥80% on any rate limit type (weekly/session/sonnet), `_checkAutoSwitch` fires `onAutoSwitch(safeProfile)` callback → runs `ccs auth default "<safeProfile>"` to switch to a specific safe profile. Triggers on every `capture()` completion. Prevents 429 before it happens. Config: `AUTO_SWITCH_THRESHOLD` in `config.js`. WS event: `auto-switch` |
+| AskUserQuestion stdin | pipe | Process blocks on stdin until browser answers; no auto-timeout |
+| Account limit (429) | auto-retry | 429 detection + auto-recovery (profile switch / timed retry). See [details below](#account-limit-429-details) |
+| Auto-switch (≥80%) | proactive | Proactive profile switch at ≥80% usage. See [details below](#auto-switch-details) |
 | Context retry | 3x (5s delay) | Retry on **conversation context** exhaustion (error_max_turns, max_tokens, prompt too long, success+is_error **only when `!accountLimitHit`**, exit code 3 with null subtype). Counter: `contextRetryCount` (independent from FL). Blocked by `accountLimitHit`. On exhaustion: email subject `context-limit 3/3` |
 | FL auto-retry | 3x (5s delay) | Retry FL on non-context failure (non-zero exit) or re-run request (text pattern). Counter: `retryCount` (independent from context). Blocked by `accountLimitHit` and `isContextExhausted`. On exhaustion: `fl-retry-exhausted` WS event + email subject `fl-retry 3/3` |
 | FL incomplete retry | 3x (5s delay) | Retry FL when exit 0 + `subtype=success` but feature status didn't advance (still `[PROPOSED]`, not `[REVIEWED]`). Detects context/max_turns exhaustion mid-work where CLI reports success but FL didn't finish. Uses `fileWatcher.statusCache` for status check. Shares `retryCount` with FL auto-retry. Skips when status is `[BLOCKED]` (legitimate). WS event: `chain-retry` with `retryType: 'incomplete'`. On exhaustion: falls through to email notification |
@@ -76,6 +76,51 @@ dr button                                   # pm2 restart all
 | Insights capture | ~2min | `/insights` via node-pty ConPTY. Completion: dual detection (report.html mtime change + PTY `"report is ready"` pattern). Emails HTML report via `emailService.sendHtml()`. Scheduler: cron-style `setTimeout` (Monday 07:00 JST). API: `POST /api/insights/capture`, `GET /api/insights/status` |
 
 Full config: `backend/src/config.js`
+
+#### Rate Limit Cache Details
+
+Tracks CCS **profile-level** usage (weekly/session/sonnet — API quota limits, NOT conversation context).
+
+- **expiresAt**: `min(weekly reset, session reset, sonnet reset, 1 week)`
+- **refreshAt**: Adaptive 5min–2h based on activity and max percent
+  - Idle (no running/queued executions): 2h
+  - Active ≥90%: 5min
+  - Active 80–89%: 10min
+  - Active <80%: 30min
+- **Session burn rate prediction**: When session elapsed ≥30min, percent ≥5%, and <100%, projects usage to end of 5h window
+  - Projected >150%: 5min refresh
+  - Projected >100%: 10min refresh (weekly unchanged)
+- **Triggers**: On-start `capture()`, on-completion `capture({ forceRefresh: true })`, on-FE-refresh (`/api/health?refresh=1`)
+- **Persistence**: `/usage` data preserves all types; capture failure preserves cache. Persisted to `_out/tmp/dashboard/ratelimit-cache.json`
+
+#### Account Limit (429) Details
+
+**Detection** (3 layers):
+1. stderr regex: `rate_limit_error` / `hit your limit` / `exceed your account's rate limit`
+2. Non-JSON stdout regex (same patterns)
+3. Two-pass debug log tail scan — last 16KB of `--debug-file` for `rate_limit_error`/`429` (16KB needed: CLI writes hooks/telemetry after 429, pushing error >4KB from EOF)
+
+**Behavior**: Sets `accountLimitHit` → blocks context retry and FL retry
+
+**Recovery** (all executions, chain and non-chain):
+1. Try auto-switch to safe profile → immediate retry after 5s
+2. If no safe profile → timed retry at earliest `resetsAt` + 1min buffer. Sets `_rateLimitPaused` to block queue
+
+**Session resume**: When failed execution has `sessionId`, retry uses `claude -p "continue" --resume <sessionId>` (preserves context); falls back to fresh `executeCommand()` when no sessionId
+
+**Events**:
+- WS: `account-limit` → `rate-limit-waiting` → `rate-limit-retry` or `rate-limit-exhausted`. `rate-limit-retry` includes `resumed: true/false`
+- Email: `account-limit` (with retry schedule) → `rate-limit-recovered` or `rate-limit-exhausted`
+
+#### Auto-Switch Details
+
+When active profile reaches ≥80% on any rate limit type (weekly/session/sonnet):
+
+- `_checkAutoSwitch` fires `onAutoSwitch(safeProfile)` → runs `ccs auth default "<safeProfile>"`
+- **Trigger**: Every `capture()` completion
+- **Purpose**: Prevent 429 before it happens
+- **Config**: `AUTO_SWITCH_THRESHOLD` in `config.js`
+- **WS event**: `auto-switch`
 
 ### API Endpoints
 
@@ -177,13 +222,11 @@ Since `stdin: 'ignore'` prevents user input, the dashboard detects input prompts
 
 **y/n flow detail**: CLI emits `result` event (session saved) → streamParser cancels pendingHandoff timeout → process exits naturally via `_handleCompletion` → execution status = `completed` but `waitingForInput` remains `true` → FE shows Yes/No buttons on the completed execution → user clicks → `answerInBrowser` resumes session.
 
-**AskUserQuestion flow detail**: CLI blocks on stdin (incomplete tool_use turn, no `result` event) → process stays `running` → FE shows option buttons → user clicks → `answerInBrowser` kills stuck process, resumes with `-p "selected option"` → CLI receives answer as new user message in context. Fallback: 120s timeout forces terminal handoff if no browser answer.
+**AskUserQuestion flow detail**: CLI blocks on stdin (`stdio: 'pipe'`, incomplete tool_use turn, no `result` event) → process stays `running` → FE shows option buttons → user clicks → `answerInBrowser` kills process, resumes with `-p "selected option"` → CLI receives answer as new user message in context. No auto-timeout; "Terminal" button is the manual fallback.
 
 **Session preservation**: y/n text is saved to session JSONL (`result` event confirms this). AskUserQuestion tool_use is NOT saved (incomplete turn) — the answer is sent as a `-p` prompt on `--resume`, and Claude infers context from the conversation history. Terminal "Resume" button still writes `resume-context.txt` for AskUserQuestion context display.
 
-**Revert to terminal-first**: To restore the old immediate-handoff behavior, revert 2 changes in `streamParser.js`:
-1. AskUserQuestion handler (L269-290): replace deferred `pendingHandoff` + `ASK_USER_HANDOFF_TIMEOUT_MS` timeout with `this.handoffToTerminal(execution, 'AskUserQuestion requires user input')`
-2. Result event handler (L339-349): replace `pendingHandoff` cancellation with `this.handoffToTerminal(execution, execution.pendingHandoff.reason)`
+**Revert to terminal-first**: To restore the old immediate-handoff behavior, add `this.handoffToTerminal(execution, 'AskUserQuestion requires user input')` in the AskUserQuestion handler in `streamParser.js` (after `broadcastInputRequired`).
 
 ### Data Flow
 
@@ -591,33 +634,153 @@ Root tiles reserve space to prevent layout shift when execution starts. Child ti
 
 **Stream parser (streamParser.js)**: Extracted from claudeService.js for separation of concerns. Handles all stream-json output parsing: JSON line parsing, event type dispatch, phase/iteration detection, input wait pattern matching, AskUserQuestion detection, token usage calculation, and context percentage. Uses constructor DI for all callbacks (pushLog, broadcast, broadcastState, handoffToTerminal, handleCompletion). claudeService.js retains wrapper methods for backward compatibility.
 
-**Rate limit capture (ratelimitService.js)**: Captures Claude Code's exact usage percentages by sending the `/usage` slash command via `node-pty` (ConPTY wrapper) + `VtScreenBuffer` (minimal VT terminal emulator). Profile enumeration: runs `ccs auth list` (via `getCcsProfiles()` in `ccsUtils.js`) to get only `[OK]` profiles. **Capture flow per profile**: (1) spawns `claude` via `pty.spawn('cmd.exe', ['/c', 'claude'], { cols: 120, rows: 30, useConptyDll: true })` in headless ConPTY, (2) feeds VT output into `VtScreenBuffer` for TUI detection, (3) detects TUI loaded (status bar `Context:N%`), (4) waits 1.5s for TUI stabilization, (5) types `/usage` then 800ms later creates a clean `VtScreenBuffer` and sends Enter (autocomplete menu settle delay), (6) detects `/usage` output completion (`Esc to cancel` or `Sonnet only` + `%used` pattern), waits 500ms for full render, (7) resolves with captured text (clean buffer preferred, fallback to main buffer). `_parseUsageOutput()` parses positionally: finds section headers (`Current session`, `Current week (all models)`, `Sonnet only`), then maps subsequent `(\d+)%[^\d%]{0,15}used` and `Resets (.+?)(\(|$)` to nearest preceding section. `useConptyDll: true` uses bundled `conpty.dll` + `OpenConsole.exe` to bypass Windows Terminal's default terminal interception. Kills via `pty.kill()` with `taskkill /F /T` fallback. DI: constructor accepts `ptySpawn` for testing. Per-profile cache (`Map<profileName, {data, timestamp, expiresAt}>`), dynamic TTL: `expiresAt` = `min(weekly resetsAt, session resetsAt, sonnet resetsAt, 1 week)`. Triggers: startup (background) + 5min periodic polling + after each command completion (fire-and-forget). FE header shows `{profile} W:XX% S:XX%` with reset times (`↻W:` / `↻S:`) when percent > 75% (yellow >=70%, red pulse >=90%). Sonnet data captured but not displayed in FE (used for auto-switch and rate limit retry logic). Public helpers: `getEarliestResetTime()` returns earliest reset across all profiles (used for timed retry scheduling), `getSafeProfile(excludeProfile)` finds a profile below 90% (used for profile switch retry). Capture time: ~7-10s per profile (TUI startup + autocomplete wait + /usage response). **Cache behavior**: When `/usage` returns data, all three types (session/weekly/sonnet) are stored directly. When capture fails, existing cache is preserved if not expired. Cache persisted to `_out/tmp/dashboard/ratelimit-cache.json` (loaded on startup, saved on every update). Manual injection via `POST /api/ratelimit/:profile` with body `{ weekly: { percent, resetsAt }, session: { percent, resetsAt } }`.
+#### Rate Limit Capture (`ratelimitService.js`)
 
-**Auto-switch (ratelimitService.js + server.js)**: Proactive profile switching to prevent 429. `_checkAutoSwitch()` runs after every `capture()` completion. When active profile reaches ≥`AUTO_SWITCH_THRESHOLD` (80%, configurable in `config.js`) on any rate limit type (weekly/session/sonnet) and another profile is below the threshold, fires `onAutoSwitch(safeProfile)` callback. server.js callback validates `safeProfile` against `getCcsProfiles()` (command injection prevention) and runs `ccs auth default "<safeProfile>"` to switch the CCS default. Next spawned claude.exe picks up the new profile via `getCcsProfile()` → `CLAUDE_CONFIG_DIR`. WS event: `auto-switch` with `safeProfile` field.
+Captures Claude Code's exact usage percentages via `/usage` slash command through `node-pty` (ConPTY) + `VtScreenBuffer` (minimal VT terminal emulator).
 
-**Rate limit retry (claudeService.js)**: When an execution hits 429, `_scheduleRateLimitRetry()` attempts recovery before giving up. **Strategy 1 (immediate)**: calls `rateLimitService.getSafeProfile(currentProfile)` to find an alternative profile below 90%. If found, runs `_switchProfile(safeProfile)` (`ccs auth default` with validation) and retries after 5s. **Strategy 2 (timed)**: calls `rateLimitService.getEarliestResetTime()` and schedules a timer at `resetTime + RATE_LIMIT_RETRY_BUFFER_MS` (1min). Sets `_rateLimitPaused = true` (service-level flag) which blocks `_dequeueNext()` to prevent cascading 429 failures. When the timer fires, `_executeRateLimitRetry()` re-captures rate limits, checks if safe (< `RATE_LIMIT_SAFE_THRESHOLD` 95%), and either retries via `_startRateLimitRetry()` or gives up. **Session resume**: `_startRateLimitRetry()` checks if the failed execution has a `sessionId`. If yes, spawns `claude -p "continue" --resume <sessionId>` to preserve conversation context (files already read, patterns already understood — avoids re-reading and re-establishing state). If no sessionId (e.g., 429 hit before session was established), falls back to fresh `executeCommand()`. The resume path creates a new execution with the original command name (not `resume:` prefix) to maintain chain progression compatibility. WS `rate-limit-retry` event includes `resumed: true/false`. Cleanup: `killExecution()` and `killAllRunning()` clear the retry timer and pause flag. `getQueueStatus()` exposes `rateLimitWaiting` state. Email: `account-limit` (with retry schedule), `rate-limit-recovered` (retry succeeded), `rate-limit-exhausted` (retry failed, manual re-run needed).
+**Profile enumeration**: `ccs auth list` via `getCcsProfiles()` in `ccsUtils.js` — only `[OK]` profiles.
 
-**Auto-DR (server.js)**: Watches backend source files (`src/**/*.js`, `server.js`) via chokidar with 2s debounce. On file change, checks `claudeService.getQueueStatus()` — if no running/queued executions, triggers `pm2 restart dashboard-backend`. If executions are active, sets `pendingRestart` flag. `claudeService.onExecutionComplete` callback fires after each `_handleCompletion` **and after stale chain waiter cleanup** — triggers deferred restart when queue becomes idle. Broadcasts `auto-dr` WS event 500ms before restart to allow FE notification. Watcher excludes `*.test.js` and `node_modules/`. Graceful shutdown ensures port release: SIGINT/SIGTERM handlers call `server.closeAllConnections()` before `server.close()`, with a 1500ms forced exit fallback. Startup runs `cleanupPort(PORT)` to kill stale processes, with EADDRINUSE retry as final safety net.
+**Capture flow per profile**:
+1. Spawn `claude` via `pty.spawn('cmd.exe', ['/c', 'claude'], { cols: 120, rows: 30, useConptyDll: true })` in headless ConPTY
+2. Feed VT output into `VtScreenBuffer` for TUI detection
+3. Detect TUI loaded (status bar `Context:N%`)
+4. Wait 1.5s for TUI stabilization
+5. Type `/usage`, wait 800ms (autocomplete menu settle), create clean `VtScreenBuffer`, send Enter
+6. Detect `/usage` output completion (`Esc to cancel` or `Sonnet only` + `%used` pattern), wait 500ms for full render
+7. Resolve with captured text (clean buffer preferred, fallback to main buffer)
 
-**FL incomplete termination detection (claudeService.js)**: When FL exits with code 0 and `resultSubtype === 'success'` but the feature status (from `fileWatcher.statusCache`) is still `[PROPOSED]` instead of `[REVIEWED]`, the chain system detects this as an incomplete termination (context/max_turns exhausted mid-work). Instead of registering a dead chain waiter, it auto-retries FL as a new execution (up to `MAX_FL_RETRIES`, shared counter with FL auto-retry). Skipped when status is `[BLOCKED]` (legitimate FL outcome) or when `fileWatcher` is null (fallback: register waiter normally). WS event: `chain-retry` with `retryType: 'incomplete'`. When retries exhausted: falls through to normal email notification path.
+**Parsing** (`_parseUsageOutput()`): Positional — finds section headers (`Current session`, `Current week (all models)`, `Sonnet only`), maps subsequent `(\d+)%[^\d%]{0,15}used` and `Resets (.+?)(\(|$)` to nearest preceding section.
 
-**Browser-first input handling (streamParser.js + claudeService.js)**: Both y/n patterns and AskUserQuestion are handled browser-first. When detected, `pendingHandoff` is set with a timeout (`PENDING_HANDOFF_TIMEOUT_MS` 10s for y/n, `ASK_USER_HANDOFF_TIMEOUT_MS` 120s for AskUserQuestion), and WS events (`input-wait` / `input-required`) notify the FE to show interactive buttons. **y/n**: `result` event arrives → `pendingHandoff` is **cancelled** (not triggered) → process exits naturally → `_handleCompletion` completes with `waitingForInput: true` preserved → FE shows Yes/No buttons on the completed execution. **AskUserQuestion**: process blocks on stdin (no `result` event) → FE shows option buttons while process is `running` → 120s timeout forces terminal handoff if user doesn't answer. In both cases, the user can click "Terminal" fallback button for manual handoff. `answerInBrowser(executionId, answer)` kills any stuck process, resumes with `-p "answer" --resume <sessionId>`, and transfers chain/phase state to the new execution. `_handleCompletion` skips the `endsWithQuestion` terminal handoff when `waitingForInput` or `inputRequired` is set. **Revert**: see "Input Handling (Browser-First)" section above for 2-line revert instructions.
+**Infrastructure**:
+- `useConptyDll: true` — bundled `conpty.dll` + `OpenConsole.exe` bypasses Windows Terminal's default terminal interception
+- Kill: `pty.kill()` with `taskkill /F /T` fallback
+- DI: constructor accepts `ptySpawn` for testing
 
-**Tmp cleanup (cleanupService.js)**: Purges old files from `_out/tmp/dashboard/` to prevent unbounded disk growth. Targets: per-execution debug logs (`debug-*.log`, 3-day retention), daily rotated logs (`*-YYYY-MM-DD.log`, 7-day retention), term debug logs (`term-*.debug.log`, 7 days), exec artifacts (`exec-*.jsonl/sh`, 7 days). Runs initial purge on startup + every 6 hours (`TMP_CLEANUP_INTERVAL_MS`). Protected files (never deleted): `ratelimit-cache.json`, `sessions.json`, `latest` symlink, `logs/` directory. Uses regex pattern matching + `fs.stat` mtime comparison. Errors on individual files are logged but never crash the service. Logs summary with file count and MB freed.
+**Cache**: Per-profile `Map<profileName, {data, timestamp, expiresAt}>`, dynamic TTL (see [Rate Limit Cache Details](#rate-limit-cache-details)). On `/usage` success: all three types stored. On failure: existing cache preserved if not expired. Persisted to `_out/tmp/dashboard/ratelimit-cache.json` (loaded on startup, saved on every update). Manual injection via `POST /api/ratelimit/:profile`.
 
-**Browser refresh resilience**: State is split into backend-authoritative and frontend-only. Backend stores: execution objects (process, logs, phase, context%, tokenUsage — in-memory Map, 1h TTL), shell command results (`shellStates` Map — persisted in memory, exposed via `/api/health`), rate limit cache (persisted to disk). Frontend stores: UI interaction state (selected tab, panel visibility, notifications). On browser F5: (1) `fetchExecutions()` rehydrates `executions` + `executionStates` + `featurePhases` from `GET /api/execution` + logs API, (2) `checkHealth(true)` restores `shellStates` button colors and triggers background rate limit `capture({ forceRefresh: true })` via `?refresh=1` query param, (3) health poll at 8s/30s picks up fresh rate limit data. WS `shell-complete` and `state` events continue to provide real-time updates after rehydration.
+**Triggers**: Startup (background) + 5min periodic polling + after each command completion (fire-and-forget).
 
-**Three distinct "limit" concepts** — the word "session" appears in two unrelated contexts:
+**FE display**: Header shows `{profile} W:XX% S:XX%` with reset times (`↻W:` / `↻S:`) when percent > 75% (yellow ≥70%, red pulse ≥90%). Sonnet data captured but not displayed (used for auto-switch and rate limit retry).
+
+**Helpers**: `getEarliestResetTime()` — earliest reset across all profiles (for timed retry). `getSafeProfile(excludeProfile)` — profile below 90% (for switch retry). Capture time: ~7-10s per profile.
+
+**Auto-switch (`ratelimitService.js` + `server.js`)**: Proactive profile switching to prevent 429.
+- `_checkAutoSwitch()` runs after every `capture()` completion
+- When active profile reaches ≥`AUTO_SWITCH_THRESHOLD` (80%, in `config.js`) on any rate limit type and another profile is below threshold → fires `onAutoSwitch(safeProfile)`
+- server.js callback validates `safeProfile` against `getCcsProfiles()` (command injection prevention) → `ccs auth default "<safeProfile>"`
+- Next spawned claude.exe picks up new profile via `getCcsProfile()` → `CLAUDE_CONFIG_DIR`
+- WS event: `auto-switch` with `safeProfile` field
+
+#### Rate Limit Retry (`claudeService.js`)
+
+When an execution hits 429, `_scheduleRateLimitRetry()` attempts recovery:
+
+**Strategy 1 (immediate — profile switch)**:
+- `rateLimitService.getSafeProfile(currentProfile)` finds alternative profile below 90%
+- If found: `_switchProfile(safeProfile)` (`ccs auth default` with validation) → retry after 5s
+
+**Strategy 2 (timed — wait for reset)**:
+- `rateLimitService.getEarliestResetTime()` → schedule timer at `resetTime + RATE_LIMIT_RETRY_BUFFER_MS` (1min)
+- Sets `_rateLimitPaused = true` → blocks `_dequeueNext()` to prevent cascading 429
+- On timer: `_executeRateLimitRetry()` re-captures rate limits, checks safe (< `RATE_LIMIT_SAFE_THRESHOLD` 95%), retries or gives up
+
+**Session resume**: `_startRateLimitRetry()` checks for `sessionId`:
+- With sessionId: `claude -p "continue" --resume <sessionId>` (preserves context — avoids re-reading files)
+- Without sessionId: falls back to fresh `executeCommand()`
+- Resume creates new execution with original command name (not `resume:` prefix) for chain compatibility
+
+**Cleanup**: `killExecution()` and `killAllRunning()` clear retry timer and pause flag. `getQueueStatus()` exposes `rateLimitWaiting`.
+
+**Events**: WS `rate-limit-retry` includes `resumed: true/false`. Email: `account-limit` → `rate-limit-recovered` or `rate-limit-exhausted`.
+
+**Auto-DR (`server.js`)**: Watches backend source files (`src/**/*.js`, `server.js`) via chokidar with 2s debounce.
+- On change: checks `claudeService.getQueueStatus()` → if idle, `pm2 restart dashboard-backend`
+- If executions active: sets `pendingRestart` flag
+- `onExecutionComplete` callback (after `_handleCompletion` **and** stale chain waiter cleanup) triggers deferred restart when queue becomes idle
+- Broadcasts `auto-dr` WS event 500ms before restart
+- Excludes: `*.test.js`, `node_modules/`
+- Graceful shutdown: `server.closeAllConnections()` → `server.close()` → 1500ms forced exit fallback
+- Startup: `cleanupPort(PORT)` + EADDRINUSE retry safety net
+
+**FL incomplete termination detection (`claudeService.js`)**: Detects context/max_turns exhaustion mid-work where CLI reports success but FL didn't finish.
+- **Condition**: Exit 0 + `resultSubtype === 'success'` but status still `[PROPOSED]` (not `[REVIEWED]`, via `fileWatcher.statusCache`)
+- **Action**: Auto-retries FL as new execution (up to `MAX_FL_RETRIES`, shared counter with FL auto-retry)
+- **Skipped**: `[BLOCKED]` (legitimate) or `fileWatcher` null (fallback: register waiter normally)
+- **WS**: `chain-retry` with `retryType: 'incomplete'`. On exhaustion: falls through to email notification
+
+#### Browser-First Input Handling (`streamParser.js` + `claudeService.js`)
+
+Both y/n patterns and AskUserQuestion are handled browser-first. When detected, `pendingHandoff` is set with a timeout, and WS events notify FE.
+
+**y/n flow**:
+- `result` event arrives → `pendingHandoff` **cancelled** (not triggered) → process exits naturally
+- `_handleCompletion` completes with `waitingForInput: true` → FE shows Yes/No buttons on completed execution
+- Timeout: `PENDING_HANDOFF_TIMEOUT_MS` (10s)
+
+**AskUserQuestion flow**:
+- Process blocks on stdin pipe (no `result` event) → FE shows option buttons while `running`
+- No auto-timeout; "Terminal" button is the manual fallback
+
+**Common**:
+- "Terminal" fallback button always available
+- `answerInBrowser(executionId, answer)` kills stuck process, resumes with `-p "answer" --resume <sessionId>`, transfers chain/phase state
+- `_handleCompletion` skips `endsWithQuestion` handoff when `waitingForInput` or `inputRequired` is set
+
+**Revert**: See "Input Handling (Browser-First)" section above for 2-line revert instructions.
+
+**Tmp cleanup (`cleanupService.js`)**: Purges old files from `_out/tmp/dashboard/` to prevent unbounded disk growth.
+- **Targets**: `debug-*.log` (3d), `*-YYYY-MM-DD.log` (7d), `term-*.debug.log` (7d), `exec-*.jsonl/sh` (7d)
+- **Schedule**: Initial purge on startup + every 6h (`TMP_CLEANUP_INTERVAL_MS`)
+- **Protected** (never deleted): `ratelimit-cache.json`, `sessions.json`, `latest` symlink, `logs/` dir
+- Regex pattern matching + `fs.stat` mtime. Errors logged, never crash. Logs summary (count + MB freed)
+
+**Browser refresh resilience**: State is split into backend-authoritative and frontend-only.
+- **Backend stores**: Execution objects (process, logs, phase, context%, tokenUsage — in-memory Map, 1h TTL), shell command results (`shellStates` Map, exposed via `/api/health`), rate limit cache (persisted to disk)
+- **Frontend stores**: UI interaction state (selected tab, panel visibility, notifications)
+- **On F5**:
+  1. `fetchExecutions()` rehydrates `executions` + `executionStates` + `featurePhases` from `GET /api/execution` + logs API
+  2. `checkHealth(true)` restores `shellStates` button colors + triggers `capture({ forceRefresh: true })` via `?refresh=1`
+  3. Health poll at 8s/30s picks up fresh rate limit data
+- WS `shell-complete` and `state` events continue real-time updates after rehydration
+
+#### Three Limit Concepts
+
+The word "session" appears in two unrelated contexts:
 
 | Concept | What it means | Retryable | Detection |
 |---------|--------------|-----------|-----------|
-| **Conversation context** exhaustion | Single `-p` session's token window is full | Yes (3x, fresh session) | `error_max_turns`, `max_tokens`, `promptTooLong`, `exitCode≠0 && subtype=success && !accountLimitHit`, `exitCode===3 && !subtype` (max turns) |
-| **CCS session** rate limit | Profile's per-session API quota (hours) | **Yes** (all executions) | `accountLimitHit` flag (429 `rate_limit_error`) |
-| **CCS weekly** rate limit | Profile's weekly API quota | **Yes** (all executions) | Same `accountLimitHit` flag |
+| **Conversation context** exhaustion | Single `-p` session's token window is full | Yes (3x, fresh session) | `error_max_turns`, `max_tokens`, `promptTooLong`, `exitCode≠0 && subtype=success && !accountLimitHit`, `exitCode===3 && !subtype` |
+| **CCS session** rate limit | Profile's per-session API quota (hours) | Yes (all executions) | `accountLimitHit` flag (429 `rate_limit_error`) |
+| **CCS weekly** rate limit | Profile's weekly API quota | Yes (all executions) | Same `accountLimitHit` flag |
 
-Detection: (1) stderr regex `/hit your limit|rate_limit_error|exceed your (organization|account)('s|s)? rate limit/i`, (2) non-JSON stdout regex (same), (3) **two-pass debug log tail scan** — reads last 16KB of `--debug-file` for `rate_limit_error` or `429.*rate.?limit` (16KB because CLI writes hooks/telemetry/session-save after 429, pushing the error >4KB from EOF in long sessions). Pass 1: immediate scan at process `close` event. Pass 2: deferred 500ms re-scan if Pass 1 missed (Windows file lock/flush timing — CLI may still hold the debug file handle when Node.js `close` fires). Deferred detection cancels in-flight `_contextRetryTimer` (RETRY_DELAY_MS=5s > 500ms, so timer hasn't fired yet) and routes to `_scheduleRateLimitRetry()` instead. Errors in scan are logged to `claudeLog.debug` (previously silent `catch{}`). Guards in `needsContextRetry` and `flWantsRetry` block all retries when `accountLimitHit` is true. The `exitCode≠0 && subtype=success` context heuristic is guarded by `!accountLimitHit` — if the debug log scan promotes a short-lived 429 to `accountLimitHit`, it no longer triggers context retry. **Rate limit retry** (all executions — chain gate removed): `_scheduleRateLimitRetry()` attempts (1) profile switch to safe profile (immediate retry), or (2) timed retry at earliest `resetsAt` + 1min buffer. Sets `_rateLimitPaused` to block queue dequeue. Re-captures rate limits before retry; gives up if still ≥95%. Email subjects: `account-limit` (429, with retry schedule), `rate-limit-recovered` (retry succeeded), `rate-limit-exhausted` (retry failed), `context-limit N/3` (context exhausted), `fl-retry N/3` (FL retries exhausted). Email result is derived from chain history's last entry (single source from claudeService), not re-computed in emailService.
+**429 detection** (3 layers):
+1. stderr regex: `/hit your limit|rate_limit_error|exceed your (organization|account)('s|s)? rate limit/i`
+2. Non-JSON stdout regex (same patterns)
+3. Two-pass debug log tail scan — last 16KB of `--debug-file` for `rate_limit_error` or `429.*rate.?limit`
+   - 16KB needed: CLI writes hooks/telemetry/session-save after 429, pushing error >4KB from EOF
+   - Pass 1: immediate scan at process `close` event
+   - Pass 2: deferred 500ms re-scan if Pass 1 missed (Windows file lock/flush timing)
 
-**Session ID persistence (claudeService.js)**: Session IDs are persisted to `_out/tmp/dashboard/sessions.json` on completion and handoff. The in-memory `sessions.json` map is loaded on startup and pruned (entries older than 7 days are removed on each save). When `resumeInBrowser()` or `resumeInTerminal()` cannot find the execution in the in-memory Map (evicted by 1h TTL), it falls back to `_lookupSessionId()` which reads from the persistent map. This enables resume hours or days after execution without increasing `EXECUTION_TTL_MS`. Cleanup service should add `sessions.json` to the protected files list (already excluded by pattern — only `debug-*.log` and `*-YYYY-MM-DD.log` are targeted).
+**Deferred detection behavior**:
+- Cancels in-flight `_contextRetryTimer` (RETRY_DELAY_MS=5s > 500ms, timer hasn't fired yet) → routes to `_scheduleRateLimitRetry()`
+- Errors logged to `claudeLog.debug` (previously silent `catch{}`)
+
+**Retry guards**:
+- `needsContextRetry` and `flWantsRetry` block all retries when `accountLimitHit` is true
+- `exitCode≠0 && subtype=success` context heuristic guarded by `!accountLimitHit` — debug log scan promoting 429 prevents false context retry
+
+**Rate limit retry** (all executions — chain gate removed):
+- `_scheduleRateLimitRetry()`: (1) profile switch (immediate), or (2) timed retry at `resetsAt` + 1min
+- Sets `_rateLimitPaused` to block queue dequeue
+- Re-captures before retry; gives up if still ≥95%
+
+**Email subjects**: `account-limit` (429), `rate-limit-recovered`, `rate-limit-exhausted`, `context-limit N/3`, `fl-retry N/3`. Result derived from chain history's last entry (single source from claudeService).
+
+**Session ID persistence (`claudeService.js`)**: Session IDs persisted to `_out/tmp/dashboard/sessions.json` on completion and handoff.
+- Loaded on startup, pruned (entries >7 days removed on each save)
+- `resumeInBrowser()`/`resumeInTerminal()` falls back to `_lookupSessionId()` when execution evicted from in-memory Map (1h TTL)
+- Enables resume hours/days after execution without increasing `EXECUTION_TTL_MS`
+- Protected from cleanup (excluded by pattern — only `debug-*.log` and `*-YYYY-MM-DD.log` targeted)
 
 **Context percent cap (streamParser.js)**: `contextPercent` is capped at 100%. Subagent-heavy executions (`/run` with many Task tool invocations) can report cumulative `cache_read_input_tokens` that exceed the single-session context window, producing misleading values like 1015% or 4383%. The cap prevents UI confusion while preserving the raw token counts in `tokenUsage` for debugging.
 

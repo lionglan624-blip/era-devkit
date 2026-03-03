@@ -1,6 +1,6 @@
 import { spawn, spawnSync, execSync } from 'child_process';
 import { mkdir } from 'fs/promises';
-import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'fs';
+import { writeFileSync, mkdirSync, readFileSync, existsSync, statSync, unlinkSync } from 'fs';
 import { fileURLToPath } from 'url';
 import crypto from 'crypto';
 import path from 'path';
@@ -118,6 +118,7 @@ export class ClaudeService {
       broadcastInputRequired: (exec) => this._broadcastInputRequired(exec),
       handoffToTerminal: (exec, reason) => this._handoffToTerminal(exec, reason),
       handleCompletion: (exec, exitCode) => this._handleCompletion(exec, exitCode),
+      killProcess: (exec) => { if (exec.process) this._killProcess(exec.process); },
       debugLog: debugLog,
     });
 
@@ -554,7 +555,8 @@ export class ClaudeService {
 
   _startExecution(execution) {
     const { id: executionId, featureId, command } = execution;
-    const cliPrompt = featureId ? `/${command} ${featureId}` : `/${command}`;
+    const cliPrompt = execution._debugPrompt
+      || (featureId ? `/${command} ${featureId}` : `/${command}`);
 
     execution.status = 'running';
     execution.startedAt = new Date().toISOString();
@@ -932,6 +934,21 @@ export class ClaudeService {
   _handleCompletion(execution, exitCode, error = null) {
     // Guard against double completion
     if (execution.status !== 'running') {
+      return;
+    }
+
+    // If killed for AskUserQuestion, don't complete — wait for browser answer → resume
+    if (execution._killedForAskUser) {
+      claudeLog.info(
+        `[ClaudeService] Process killed for AskUserQuestion — waiting for browser answer (exec ${execution.id})`,
+      );
+      if (execution.stallCheckInterval) {
+        clearInterval(execution.stallCheckInterval);
+        execution.stallCheckInterval = null;
+      }
+      execution.process = null;
+      execution.stdin = null;
+      // Keep status as 'running' and inputRequired intact for browser UI
       return;
     }
 
@@ -2279,6 +2296,13 @@ export class ClaudeService {
 
     this._broadcastState(execution);
 
+    // Notify frontend so it auto-subscribes to the new resume execution
+    this.logStreamer?.broadcastAll({
+      type: 'execution-started',
+      executionId: execution.id,
+      command: `resume:${command}`,
+    });
+
     return { executionId: execution.id, sessionId };
   }
 
@@ -2498,10 +2522,57 @@ export class ClaudeService {
 
     this.executions.set(executionId, execution);
 
+    // Notify frontend so it subscribes to this execution (needed for API-spawned commands)
+    this.logStreamer?.broadcastAll({
+      type: 'execution-started',
+      executionId,
+      command: slashCommand,
+    });
+
     // Refresh rate limit on command start (fire-and-forget)
     if (this.rateLimitService) {
       this.rateLimitService.capture().catch(() => {});
     }
+
+    if (this.runningCount < this.maxConcurrent) {
+      this._startExecution(execution);
+    } else {
+      this.queue.push(executionId);
+      this._pushLog(execution, {
+        line: `Queued (position ${this.queue.length}). Waiting for slot...`,
+        timestamp: new Date().toISOString(),
+        level: 'info',
+      });
+      this._broadcastQueueUpdate();
+    }
+
+    return executionId;
+  }
+
+  /** Execute arbitrary prompt for debugging (requires .debug-enabled file, 30-min TTL) */
+  executeDebugPrompt(prompt) {
+    const enableFile = path.join(this.tmpDir, '.debug-enabled');
+    if (!existsSync(enableFile)) {
+      throw new Error('Debug endpoint not enabled. Create _out/tmp/dashboard/.debug-enabled to activate.');
+    }
+    const ageMs = Date.now() - statSync(enableFile).mtimeMs;
+    if (ageMs > 30 * 60 * 1000) {
+      unlinkSync(enableFile);
+      throw new Error('Debug token expired (30-min TTL). Re-create .debug-enabled to activate.');
+    }
+
+    const execution = this._createExecution({ command: 'debug' });
+    execution._debugPrompt = prompt;
+    const executionId = execution.id;
+
+    this.executions.set(executionId, execution);
+
+    // Notify frontend so it subscribes
+    this.logStreamer?.broadcastAll({
+      type: 'execution-started',
+      executionId,
+      command: 'debug',
+    });
 
     if (this.runningCount < this.maxConcurrent) {
       this._startExecution(execution);

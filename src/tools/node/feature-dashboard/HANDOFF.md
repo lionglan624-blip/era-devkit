@@ -65,7 +65,7 @@ dr button                                   # pm2 restart all
 | Execution TTL | 1h | Keep completed executions in memory |
 | Stuck cleanup | 2h | Force-terminate unresponsive executions |
 | Pending handoff timeout (y/n) | 10s | Fallback terminal handoff if result event never arrives for y/n prompts |
-| AskUserQuestion stdin | pipe | Process blocks on stdin until browser answers; no auto-timeout |
+| AskUserQuestion | kill+resume | Process killed on tool_use detection; browser answer resumes via `--resume` |
 | Account limit (429) | auto-retry | 429 detection + auto-recovery (profile switch / timed retry). See [details below](#account-limit-429-details) |
 | Auto-switch (≥80%) | proactive | Proactive profile switch at ≥80% usage. See [details below](#auto-switch-details) |
 | Context retry | 3x (5s delay) | Retry on **conversation context** exhaustion (error_max_turns, max_tokens, prompt too long, success+is_error **only when `!accountLimitHit`**, exit code 3 with null subtype). Counter: `contextRetryCount` (independent from FL). Blocked by `accountLimitHit`. On exhaustion: email subject `context-limit 3/3` |
@@ -130,6 +130,7 @@ When active profile reaches ≥80% on any rate limit type (weekly/session/sonnet
 | `/api/execution/terminal` | POST | Open terminal |
 | `/api/execution/shell` | POST | Run cs, dr, upd |
 | `/api/execution/slash` | POST | Run /commit, /sync-deps |
+| `/api/execution/debug` | POST | Run arbitrary prompt (requires `.debug-enabled` file gate, 30-min TTL). Body: `{ "prompt": "..." }` |
 | `/api/execution/:id/resume/{browser,terminal}` | POST | Resume session |
 | `/api/execution/:id/answer` | POST | Answer input prompt in browser (y/n or AskUserQuestion option) |
 | `/api/execution/:id` | GET | Execution status |
@@ -167,6 +168,7 @@ When active profile reaches ≥80% on any rate limit type (weekly/session/sonnet
 | `features-updated` | S→C (all) | Feature file changed |
 | `status-changed` | S→C (all) | Feature status changed (e.g., [DRAFT]→[PROPOSED]) |
 | `queue-updated` | S→C (all) | Queue state changed |
+| `execution-started` | S→C (all) | New execution started (API-spawned slash/debug). FE auto-subscribes |
 | `upd-complete` | S→C (all) | CCS update completed |
 | `shell-complete` | S→C (all) | Shell command (cs/dr/upd) completed |
 | `auto-dr` | S→C (all) | Backend auto-restarting (file change detected) |
@@ -222,9 +224,9 @@ Since `stdin: 'ignore'` prevents user input, the dashboard detects input prompts
 
 **y/n flow detail**: CLI emits `result` event (session saved) → streamParser cancels pendingHandoff timeout → process exits naturally via `_handleCompletion` → execution status = `completed` but `waitingForInput` remains `true` → FE shows Yes/No buttons on the completed execution → user clicks → `answerInBrowser` resumes session.
 
-**AskUserQuestion flow detail**: CLI blocks on stdin (`stdio: 'pipe'`, incomplete tool_use turn, no `result` event) → process stays `running` → FE shows option buttons → user clicks → `answerInBrowser` kills process, resumes with `-p "selected option"` → CLI receives answer as new user message in context. No auto-timeout; "Terminal" button is the manual fallback.
+**AskUserQuestion flow detail**: StreamParser detects `AskUserQuestion` tool_use in assistant message → sets `execution._killedForAskUser = true` → kills process immediately (before CLI auto-responds with empty answer) → `_handleCompletion` guard preserves `inputRequired` and keeps status `running` → FE shows option buttons → user clicks → `answerInBrowser` resumes with `-p "selected option" --resume sessionId` → CLI receives answer as new user message in context. Guard also ignores buffered tool_result that arrives after kill. "Terminal" button is the manual fallback.
 
-**Session preservation**: y/n text is saved to session JSONL (`result` event confirms this). AskUserQuestion tool_use is NOT saved (incomplete turn) — the answer is sent as a `-p` prompt on `--resume`, and Claude infers context from the conversation history. Terminal "Resume" button still writes `resume-context.txt` for AskUserQuestion context display.
+**Session preservation**: y/n text is saved to session JSONL (`result` event confirms this). AskUserQuestion tool_use IS saved (process is killed after tool_use but before tool_result, so the session has the pending tool call) — the answer is sent as a `-p` prompt on `--resume`, and Claude continues with the user's actual choice. Terminal "Resume" button still writes `resume-context.txt` for AskUserQuestion context display.
 
 **Revert to terminal-first**: To restore the old immediate-handoff behavior, add `this.handoffToTerminal(execution, 'AskUserQuestion requires user input')` in the AskUserQuestion handler in `streamParser.js` (after `broadcastInputRequired`).
 
@@ -451,10 +453,15 @@ CCS sync runs on `claude` launch (NOT on `ccs auth default`). On first launch af
 ### Debugging
 
 ```bash
-DASHBOARD_DEBUG=1 npm start
+DASHBOARD_DEBUG=1 npm start    # Verbose logging (spawn args, non-JSON stream lines, Task tool depth)
 ```
 
-Enables `debugLog()` calls (spawn args, non-JSON stream lines, Task tool depth).
+**Debug endpoint activation** (separate from verbose logging):
+```bash
+# Claude: Write(_out/tmp/dashboard/.debug-enabled) with any content
+# Manual: echo 1 > _out/tmp/dashboard/.debug-enabled
+# TTL: 30 minutes from file mtime. Expired files auto-deleted on next request.
+```
 
 **Log and session files**:
 
@@ -506,7 +513,7 @@ Backend logs rotate automatically at midnight (UTC). Session JSONL files are man
 
 - `shell: false` required (shell:true breaks piping)
 - `windowsHide: true` hides console window
-- `stdin: 'ignore'` required (pipe causes hang) → solved by Auto Handoff
+- `stdio: ['pipe', 'pipe', 'pipe']` with immediate `proc.stdin.end()` — stdin must be closed to prevent CLI hang in `-p` mode
 - `--verbose` must precede `--output-format stream-json`
 - `taskkill /F /T /PID` kills entire process tree
 
@@ -606,6 +613,14 @@ Root cause: v2.1.0 fixed "files and skills not being properly discovered when re
 **Dynamic project path**: ExecutionPanel "Copy ID" button fetches `projectRoot` from `/api/health` to generate paths dynamically. Eliminates hardcoded path issues.
 
 **Process termination safety**: `_killProcess()` checks for null pid to prevent taskkill execution with undefined pid.
+
+**stdin handling (`proc.stdin.end()`)**: Claude CLI in `-p` mode hangs if stdin is an open pipe (waits for EOF before processing the prompt). Solution: `stdio: ['pipe', 'pipe', 'pipe']` with immediate `proc.stdin.end()` after spawn. This closes stdin, letting the CLI process the `-p` prompt immediately. AskUserQuestion uses kill+resume (not stdin), so closing stdin has no side effects.
+
+**AskUserQuestion kill-on-detect**: StreamParser kills the process immediately on detecting `AskUserQuestion` tool_use to prevent the CLI from auto-responding with an empty answer. Guard `_killedForAskUser` ensures: (1) buffered tool_result doesn't clear `inputRequired`, (2) `_handleCompletion` preserves `running` status for browser UI. The session is saved with the pending tool call, so `--resume` continues correctly with the user's actual answer.
+
+**Debug endpoint**: `POST /api/execution/debug` accepts arbitrary prompts. Gated by file-based activation: `_out/tmp/dashboard/.debug-enabled` must exist and be less than 30 minutes old. Claude activates by writing this file (`Write(_out/tmp/dashboard/.debug-enabled)` with any content); expired files are auto-deleted on next request. `DASHBOARD_DEBUG=1` env var now controls only verbose logging, not endpoint access. Essential for testing AskUserQuestion flow, stream parsing, and other behaviors without running real feature commands. Sends `execution-started` WebSocket event so the FE auto-subscribes and shows the execution tab.
+
+**Security hardening**: Backend binds to `127.0.0.1` only (not `0.0.0.0`). CORS restricted to `localhost:5173` and `localhost:3001`. Debug endpoint defaults to closed; requires explicit file-based activation with 30-min TTL.
 
 **Module extraction (claudeService.js)**: Extracted utilities and constants into separate modules:
 - `streamParser.js`: Stream-json parsing, event handling, state detection (StreamParser class)
@@ -718,7 +733,8 @@ Both y/n patterns and AskUserQuestion are handled browser-first. When detected, 
 - Timeout: `PENDING_HANDOFF_TIMEOUT_MS` (10s)
 
 **AskUserQuestion flow**:
-- Process blocks on stdin pipe (no `result` event) → FE shows option buttons while `running`
+- StreamParser detects tool_use → kills process (`_killedForAskUser` guard) → FE shows option buttons while `running`
+- User answer → kill + `--resume` with answer as `-p` prompt
 - No auto-timeout; "Terminal" button is the manual fallback
 
 **Common**:

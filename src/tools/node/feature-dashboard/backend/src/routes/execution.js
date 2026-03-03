@@ -152,6 +152,21 @@ export function createExecutionRouter(claudeService) {
     }
   });
 
+  // POST /api/execution/debug - Execute arbitrary prompt (DASHBOARD_DEBUG=1 only)
+  router.post('/debug', (req, res) => {
+    const { prompt } = req.body;
+    if (!prompt) {
+      return res.status(400).json({ error: 'prompt is required' });
+    }
+    try {
+      const executionId = claudeService.executeDebugPrompt(sanitizeInput(prompt));
+      const exec = claudeService.getExecution(executionId);
+      res.json(exec);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
+  });
+
   // GET /api/execution/queue - Queue status
   router.get('/queue', (req, res) => {
     res.json(claudeService.getQueueStatus());

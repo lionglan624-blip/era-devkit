@@ -44,7 +44,7 @@ body {
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 200;
 }
 
 .app-header h1 {
@@ -85,7 +85,7 @@ body {
 }
 
 .app-main.with-panel {
-  padding-bottom: calc(50vh + 24px);
+  padding-bottom: calc(100vh + 24px);
 }
 
 .app-loading,
@@ -746,10 +746,10 @@ body {
 /* Execution Panel */
 .execution-panel {
   position: fixed;
+  top: 46px;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 50vh;
   background: var(--bg-surface);
   border-top: 2px solid var(--accent);
   z-index: 150;

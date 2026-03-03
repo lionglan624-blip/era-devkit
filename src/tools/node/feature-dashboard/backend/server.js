@@ -184,7 +184,9 @@ claudeService.onExecutionComplete = () => {
 
 // Express app
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:3001', 'http://127.0.0.1:5173', 'http://127.0.0.1:3001'],
+}));
 app.use(express.json());
 
 // Request logging middleware
@@ -347,7 +349,7 @@ const onListening = () => {
   insightsService.startScheduler();
   claudeStatusService.start();
 };
-server.listen(PORT, onListening);
+server.listen(PORT, '127.0.0.1', onListening);
 
 // Error handling
 process.on('uncaughtException', (err) => {

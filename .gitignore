@@ -69,6 +69,9 @@ src/tools/kojo-mapper/test_branch_map.json
 # Dashboard build output
 src/tools/node/feature-dashboard/frontend/dist/
 
+# Dashboard debug gate
+_out/tmp/dashboard/.debug-enabled
+
 # Stryker
 StrykerOutput/
 

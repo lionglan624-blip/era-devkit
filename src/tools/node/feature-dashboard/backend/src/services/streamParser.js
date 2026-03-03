@@ -32,6 +32,7 @@ export class StreamParser {
     broadcastInputRequired,
     handoffToTerminal,
     handleCompletion,
+    killProcess,
     debugLog,
   }) {
     this.pushLog = pushLog;
@@ -41,6 +42,7 @@ export class StreamParser {
     this.broadcastInputRequired = broadcastInputRequired;
     this.handoffToTerminal = handoffToTerminal;
     this.handleCompletion = handleCompletion;
+    this.killProcess = killProcess || (() => {});
     this.debugLog = debugLog || (() => {});
     this.outputRingBuffers = new Map();
     this.RING_BUFFER_SIZE = 20;
@@ -265,18 +267,22 @@ export class StreamParser {
         execution.lastAssistantText = textContent.trim();
       }
 
-      // If AskUserQuestion found, store context and notify (defer handoff for browser answer)
+      // If AskUserQuestion found, kill process immediately to prevent auto-empty-response,
+      // then store context and notify browser for user answer → resume flow
       if (askUserQuestion) {
         execution.inputRequired = {
           toolUseId: askUserQuestion.id,
           questions: askUserQuestion.input?.questions || [],
         };
         execution.inputContext = textContent.trim();
+        execution._killedForAskUser = true; // Guard: ignore buffered tool_result after kill
+
+        // Kill process BEFORE tool_result (auto-empty-response) arrives.
+        // Session is saved with AskUserQuestion pending; answerInBrowser resumes with user's choice.
+        this.killProcess(execution);
+
         this.broadcastState(execution);
         this.broadcastInputRequired(execution);
-
-        // No auto-handoff timeout — process blocks on stdin pipe until browser answers
-        // or user manually clicks "Terminal" fallback button
       }
     }
 
@@ -315,10 +321,15 @@ export class StreamParser {
             );
           }
           // Clear input required if this was a response to AskUserQuestion
+          // BUT skip if process was killed for AskUserQuestion (buffered auto-response)
           if (execution.inputRequired?.toolUseId === block.tool_use_id) {
-            execution.inputRequired = null;
-            execution.inputContext = null;
-            this.broadcastState(execution);
+            if (execution._killedForAskUser) {
+              this.debugLog(`[StreamParser] Ignoring buffered AskUserQuestion tool_result after kill`);
+            } else {
+              execution.inputRequired = null;
+              execution.inputContext = null;
+              this.broadcastState(execution);
+            }
           }
         }
       }

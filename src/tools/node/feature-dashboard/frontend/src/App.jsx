@@ -66,6 +66,8 @@ export default function App() {
   const [selectedFeatureId, setSelectedFeatureId] = useState(null);
   const [activeExecutionId, setActiveExecutionId] = useState(null);
   const [showExecutionPanel, setShowExecutionPanel] = useState(false);
+  const headerRef = useRef(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
   const [notifications, setNotifications] = useState([]);
   const [shellStates, setShellStates] = useState({});
   const [drPending, setDrPending] = useState(false);
@@ -90,6 +92,16 @@ export default function App() {
 
   // CCS enabled status (read-only, managed via ~/.ccs/)
   const [ccsProfile, setCcsProfile] = useState(null);
+
+  // Measure header height for execution panel positioning
+  useEffect(() => {
+    if (!headerRef.current) return;
+    const ro = new ResizeObserver(() => {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    });
+    ro.observe(headerRef.current);
+    return () => ro.disconnect();
+  }, []);
 
   // Keep refs in sync
   useEffect(() => {
@@ -842,7 +854,7 @@ export default function App() {
         </div>
       )}
 
-      <header className="app-header">
+      <header className="app-header" ref={headerRef}>
         <div className="header-left">
           <h1>
             <a
@@ -1039,6 +1051,7 @@ export default function App() {
           executionStates={executionStates}
           inputRequests={inputRequests}
           projectRoot={healthStatus.projectRoot}
+          headerHeight={headerHeight}
           onSelectExecution={setActiveExecutionId}
           onKill={killExecution}
           onClose={() => setShowExecutionPanel(false)}
@@ -1049,7 +1062,7 @@ export default function App() {
         />
       )}
 
-      {!showExecutionPanel && hasActiveExecutions && (
+      {!showExecutionPanel && (
         <button className="floating-panel-btn" onClick={() => setShowExecutionPanel(true)}>
           <span className="fpb-icon">&#9654;</span>
           <span className="fpb-label">

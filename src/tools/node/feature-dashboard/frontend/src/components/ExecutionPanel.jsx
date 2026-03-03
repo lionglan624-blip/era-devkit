@@ -7,6 +7,7 @@ export default function ExecutionPanel({
   executionStates = new Map(),
   inputRequests = new Map(),
   projectRoot = null,
+  headerHeight = 0,
   onSelectExecution,
   onClose,
   onKill,
@@ -42,7 +43,23 @@ export default function ExecutionPanel({
       return (b.logs?.length || 0) - (a.logs?.length || 0);
     });
 
-  if (visibleExecs.length === 0) return null;
+  const panelStyle = headerHeight ? { top: `${headerHeight}px` } : undefined;
+
+  if (visibleExecs.length === 0) {
+    return (
+      <div className="execution-panel" style={panelStyle}>
+        <div className="execution-tabs">
+          <button className="btn-close-panel" onClick={onClose} title="Close panel">
+            ✕
+          </button>
+          <span style={{ color: 'var(--text-dim)', fontSize: '12px', padding: '8px 0' }}>No executions</span>
+        </div>
+        <div className="log-viewer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-dim)', opacity: 0.4, fontSize: '14px' }}>
+          Waiting for execution...
+        </div>
+      </div>
+    );
+  }
 
   const activeExec = executions.get(activeId) || visibleExecs[0];
   if (!activeExec) return null;
@@ -109,7 +126,7 @@ export default function ExecutionPanel({
   );
 
   return (
-    <div className="execution-panel">
+    <div className="execution-panel" style={panelStyle}>
       <div className="execution-tabs">
         <button className="btn-close-panel" onClick={onClose} title="Close panel">
           ✕

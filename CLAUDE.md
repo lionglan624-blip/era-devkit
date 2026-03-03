@@ -211,7 +211,7 @@ Type: engine  # -> uses implementer (sonnet)
 | `docs/reference/ntr-system-map.md` | NTR system reference |
 | `.claude/reference/ssot-update-rules.md` | SSOT update rules |
 | `NOTICE.md` | License |
-| `src/tools/node/feature-dashboard/HANDOFF.md` | Feature Dashboard spec (devkit内、PM2実行パス) |
+| `src/tools/node/feature-dashboard/HANDOFF.md` | Feature Dashboard spec (devkit内、PM2実行パス). **「HANDOFF.md読んで」と言われたら無条件で全文Read（セクション確認不要）** |
 | `src/tools/python/session-search.py` | Session JSONL search — see "Session JSONL Investigation" section for task→flag table |
 | `src/tools/python/feature-status.py` | Status/dependency sync (`--help`) |
 | `src/tools/python/ac_ops.py` | AC operations (`python src/tools/python/ac_ops.py --help`) |

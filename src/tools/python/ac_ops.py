@@ -5,7 +5,7 @@ AC Manipulation Operations
 Provides parser, transform, and command layers for manipulating
 Acceptance Criteria in feature-{ID}.md files.
 
-Used by feature-status.py subcommands: ac-check, ac-renumber, ac-insert, ac-delete, ac-fix.
+Used by feature-status.py subcommands: ac-check, ac-renumber, ac-insert, ac-delete, ac-fix, ac-link, ac-update, ac-add.
 """
 
 import dataclasses
@@ -758,6 +758,186 @@ def residual_scan(
                 warnings.append(warning)
 
     return warnings
+
+
+# =============================================================================
+# Transform Helpers (ac-add / ac-link / ac-update)
+# =============================================================================
+
+
+def _find_ac_table_end(lines: list[str], section_map: dict[int, SectionType]) -> int:
+    """Return 0-based line index of the last data row in the AC Definition Table."""
+    last_idx = -1
+    for idx, line in enumerate(lines):
+        stype = section_map.get(idx, SectionType.OTHER)
+        if stype == SectionType.AC_DEFINITION_TABLE:
+            stripped = line.strip()
+            if stripped.startswith("|") and "| AC# |" not in stripped:
+                parts = split_pipe_row(stripped)
+                if len(parts) > 1 and parts[1].strip().isdigit():
+                    last_idx = idx
+    return last_idx
+
+
+def _add_ac_to_task_row(
+    lines: list[str],
+    section_map: dict[int, SectionType],
+    task_num: int,
+    ac_num: int,
+) -> list[str]:
+    """Add ac_num to the AC# column of Task# task_num. Idempotent."""
+    result = list(lines)
+    for idx, line in enumerate(lines):
+        stype = section_map.get(idx, SectionType.OTHER)
+        if stype != SectionType.TASKS_TABLE:
+            continue
+        stripped = line.strip()
+        if not stripped.startswith("|") or "| Task# |" in stripped:
+            continue
+        # Skip separator rows
+        if set(stripped.replace("|", "").strip()) <= {"-", ":"}:
+            continue
+        parts = split_pipe_row(stripped)
+        # parts layout: ['', Task#, AC#, Description, Tag, Status, '']
+        if len(parts) < 3:
+            continue
+        task_str = parts[1].strip()
+        if not task_str.isdigit() or int(task_str) != task_num:
+            continue
+        # Found the task row — check AC# column (index 2)
+        ac_col = parts[2].strip()
+        existing = [t.strip() for t in ac_col.split(",") if t.strip()] if ac_col else []
+        if str(ac_num) in existing:
+            return result  # Already present — idempotent
+        existing.append(str(ac_num))
+        # Detect separator style from original
+        sep = ", " if ", " in parts[2] else ","
+        if not ac_col:
+            sep = ", "  # default for empty column
+        new_parts = list(parts)
+        new_parts[2] = sep.join(existing)
+        result[idx] = _rebuild_pipe_row(line, parts, new_parts)
+        break
+    return result
+
+
+def _add_ac_to_goal_row(
+    lines: list[str],
+    section_map: dict[int, SectionType],
+    goal_num: int,
+    ac_num: int,
+) -> list[str]:
+    """Add AC#ac_num to the Covering AC(s) column of Goal# goal_num. Idempotent."""
+    result = list(lines)
+    for idx, line in enumerate(lines):
+        stype = section_map.get(idx, SectionType.OTHER)
+        if stype != SectionType.GOAL_COVERAGE:
+            continue
+        stripped = line.strip()
+        if not stripped.startswith("|"):
+            continue
+        # Skip header and separator rows
+        if "| Goal" in stripped:
+            continue
+        if set(stripped.replace("|", "").strip()) <= {"-", ":"}:
+            continue
+        parts = split_pipe_row(stripped)
+        if len(parts) < 3:
+            continue
+        goal_str = parts[1].strip()
+        if not goal_str.isdigit() or int(goal_str) != goal_num:
+            continue
+        # Found goal row — check Covering ACs column (index 2)
+        ac_col = parts[2].strip()
+        ac_ref = f"AC#{ac_num}"
+        if ac_ref in ac_col:
+            return result  # Already present — idempotent
+        if ac_col:
+            new_val = f"{ac_col}, {ac_ref}"
+        else:
+            new_val = ac_ref
+        new_parts = list(parts)
+        new_parts[2] = new_val
+        result[idx] = _rebuild_pipe_row(line, parts, new_parts)
+        break
+    return result
+
+
+def _add_ac_coverage_row(
+    lines: list[str],
+    section_map: dict[int, SectionType],
+    ac_num: int,
+    text: str,
+) -> list[str]:
+    """Append a row to the Technical Design AC Coverage table."""
+    result = list(lines)
+    # Find the last row in the AC Coverage table
+    last_cov_idx = -1
+    for idx, line in enumerate(lines):
+        stype = section_map.get(idx, SectionType.OTHER)
+        if stype == SectionType.TECH_DESIGN_AC_COV:
+            stripped = line.strip()
+            if stripped.startswith("|") and not set(stripped.replace("|", "").strip()) <= {"-", ":"}:
+                last_cov_idx = idx
+    if last_cov_idx == -1:
+        return result  # No AC Coverage table found — skip silently
+    new_row = f"| {ac_num} | {text} |\n"
+    result.insert(last_cov_idx + 1, new_row)
+    return result
+
+
+def _build_ac_row_line(
+    ac_num: int,
+    desc: str,
+    type_: str,
+    method: str,
+    matcher: str,
+    expected: str,
+) -> str:
+    """Build a Definition Table row string."""
+    return f"| {ac_num} | {desc} | {type_} | {method} | {matcher} | {expected} | [ ] |\n"
+
+
+def _build_details_block(
+    ac_num: int,
+    desc: str,
+    method: str,
+    expected: str,
+    derivation: str | None = None,
+    rationale: str | None = None,
+) -> list[str]:
+    """Build AC Details block lines (for threshold matchers)."""
+    block = [
+        f"\n**AC#{ac_num}: {desc}**\n",
+        f"- **Method**: {method}\n",
+        f"- **Expected**: {expected}\n",
+    ]
+    if derivation:
+        block.append(f"- **Derivation**: {derivation}\n")
+    if rationale:
+        block.append(f"- **Rationale**: {rationale}\n")
+    return block
+
+
+def _find_details_insertion_point(lines: list[str], section_map: dict[int, SectionType]) -> int:
+    """Return line index for inserting new AC Details (end of AC Details section)."""
+    last_details_idx = -1
+    for idx, line in enumerate(lines):
+        stype = section_map.get(idx, SectionType.OTHER)
+        if stype == SectionType.AC_DETAILS:
+            last_details_idx = idx
+    if last_details_idx == -1:
+        return -1
+    # Move past the last non-empty line in the AC Details section
+    # Insert after last_details_idx + any trailing blank lines
+    insert_at = last_details_idx + 1
+    while insert_at < len(lines) and lines[insert_at].strip() == "":
+        stype = section_map.get(insert_at, SectionType.OTHER)
+        # If next section begins, stop
+        if stype != SectionType.AC_DETAILS and stype != SectionType.OTHER:
+            break
+        insert_at += 1
+    return insert_at
 
 
 # =============================================================================
@@ -1652,6 +1832,442 @@ def ac_fix(
         return 1
 
 
+def ac_link(
+    fid: str,
+    ac_num: int,
+    task: int | None = None,
+    goal: int | None = None,
+    dry_run: bool = False,
+) -> int:
+    """
+    Link an existing AC to a Task and/or Goal row.
+    Idempotent: skips if already linked.
+    Returns 0 on success, 1 on error.
+    """
+    if task is None and goal is None:
+        print("ERROR: Provide --task and/or --goal.", file=sys.stderr)
+        return 1
+
+    path = feature_path(fid)
+    if not path.exists():
+        print(f"ERROR: Feature file not found: {path}", file=sys.stderr)
+        return 1
+
+    with open(path, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    ac_rows = parse_ac_table(lines)
+    if not ac_rows:
+        print("ERROR: No AC Definition Table found.", file=sys.stderr)
+        return 1
+
+    defined_numbers = {row.number for row in ac_rows}
+    if ac_num not in defined_numbers:
+        print(f"ERROR: AC#{ac_num} not found in Definition Table.", file=sys.stderr)
+        return 1
+
+    section_map = classify_sections(lines)
+    result = list(lines)
+    actions = []
+
+    if task is not None:
+        new_result = _add_ac_to_task_row(result, section_map, task, ac_num)
+        if new_result != result:
+            actions.append(f"Linked AC#{ac_num} to Task#{task}")
+        else:
+            actions.append(f"AC#{ac_num} already linked to Task#{task} (skipped)")
+        result = new_result
+        # Reclassify after modification
+        section_map = classify_sections(result)
+
+    if goal is not None:
+        new_result = _add_ac_to_goal_row(result, section_map, goal, ac_num)
+        if new_result != result:
+            actions.append(f"Linked AC#{ac_num} to Goal#{goal}")
+        else:
+            actions.append(f"AC#{ac_num} already linked to Goal#{goal} (skipped)")
+        result = new_result
+
+    for a in actions:
+        print(f"ac-link: {a}")
+
+    if dry_run:
+        print("ac-link: [DRY RUN] No changes written.")
+        return 0
+
+    if result == lines:
+        print("ac-link: No changes needed.")
+        return 0
+
+    backup = _create_backup(path)
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            f.writelines(result)
+        _remove_backup(path)
+        print(f"ac-link: Wrote updated feature-{fid}.md.")
+        return 0
+    except Exception as e:
+        print(f"ERROR: Exception during link: {e}. Restoring backup.", file=sys.stderr)
+        _restore_backup(path)
+        return 1
+
+
+def ac_update(
+    fid: str,
+    ac_num: int,
+    description: str | None = None,
+    expected: str | None = None,
+    matcher: str | None = None,
+    method: str | None = None,
+    sync_coverage: bool = False,
+    dry_run: bool = False,
+) -> int:
+    """
+    Update AC metadata: description, expected, matcher, method.
+    Extended version of ac_fix with matcher/method support and --sync-coverage.
+    Returns 0 on success, 1 on error.
+    """
+    path = feature_path(fid)
+    if not path.exists():
+        print(f"ERROR: Feature file not found: {path}", file=sys.stderr)
+        return 1
+
+    if description is None and expected is None and matcher is None and method is None:
+        print("ERROR: Provide at least one of --description, --expected, --matcher, --method.", file=sys.stderr)
+        return 1
+
+    with open(path, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    ac_rows = parse_ac_table(lines)
+    if not ac_rows:
+        print("ERROR: No AC Definition Table found.", file=sys.stderr)
+        return 1
+
+    target_row = None
+    for row in ac_rows:
+        if row.number == ac_num:
+            target_row = row
+            break
+
+    if target_row is None:
+        print(f"ERROR: AC#{ac_num} not found in Definition Table.", file=sys.stderr)
+        return 1
+
+    old_desc = target_row.description
+    old_expected = target_row.expected
+    old_matcher = target_row.matcher
+    old_method = target_row.method
+
+    changes = []
+    if description is not None and description != old_desc:
+        changes.append(f"  Description: '{old_desc}' -> '{description}'")
+    if expected is not None and expected != old_expected:
+        changes.append(f"  Expected: '{old_expected}' -> '{expected}'")
+    if matcher is not None and matcher != old_matcher:
+        changes.append(f"  Matcher: '{old_matcher}' -> '{matcher}'")
+    if method is not None and method != old_method:
+        changes.append(f"  Method: '{old_method}' -> '{method}'")
+
+    if not changes:
+        print(f"ac-update: AC#{ac_num} already has the specified values. Nothing to do.")
+        return 0
+
+    print(f"ac-update: Updating AC#{ac_num} in feature-{fid}.md.")
+    for c in changes:
+        print(c)
+
+    if dry_run:
+        print("ac-update: [DRY RUN] No changes written.")
+        return 0
+
+    backup = _create_backup(path)
+    try:
+        section_map = classify_sections(lines)
+        new_lines = list(lines)
+
+        # Update Definition Table row
+        for idx, line in enumerate(lines):
+            stype = section_map.get(idx, SectionType.OTHER)
+            if stype == SectionType.AC_DEFINITION_TABLE:
+                stripped = line.strip()
+                if stripped.startswith("|") and "| AC# |" not in stripped:
+                    parts = split_pipe_row(stripped)
+                    if len(parts) > 1 and parts[1].strip() == str(ac_num):
+                        new_parts = list(parts)
+                        # Column layout: ['', AC#, Description, Type, Method, Matcher, Expected, Status, '']
+                        if description is not None and len(new_parts) > 2:
+                            new_parts[2] = description
+                        if method is not None and len(new_parts) > 4:
+                            new_parts[4] = method
+                        if matcher is not None and len(new_parts) > 5:
+                            new_parts[5] = matcher
+                        if expected is not None and len(new_parts) > 6:
+                            new_parts[6] = expected
+                        new_lines[idx] = _rebuild_pipe_row(line, parts, new_parts)
+                        break
+
+        # Update AC Details block heading + Expected line
+        details_heading_re = re.compile(rf'^\*\*AC#{ac_num}:')
+        in_details_block = False
+        heading_line_re = re.compile(r'^\*\*AC#\d+:')
+        expected_line_re = re.compile(r'^-\s+\*\*Expected\*\*:')
+        method_line_re = re.compile(r'^-\s+\*\*(?:Method|Test)\*\*:')
+
+        for idx, line in enumerate(new_lines):
+            stripped = line.strip()
+            if details_heading_re.match(stripped):
+                in_details_block = True
+                if description is not None:
+                    new_lines[idx] = re.sub(
+                        rf'(\*\*AC#{ac_num}:\s*)(.+?)(\*\*)',
+                        rf'\g<1>{description}\g<3>',
+                        line,
+                    )
+                continue
+            if in_details_block:
+                if heading_line_re.match(stripped) or stripped.startswith("## ") or stripped.startswith("### "):
+                    in_details_block = False
+                    break
+                if expected is not None and expected_line_re.match(stripped):
+                    new_lines[idx] = re.sub(
+                        r'(-\s+\*\*Expected\*\*:\s*)(.+)',
+                        rf'\g<1>{expected}',
+                        line,
+                    )
+                if method is not None and method_line_re.match(stripped):
+                    new_lines[idx] = re.sub(
+                        r'(-\s+\*\*(?:Method|Test)\*\*:\s*)(.+)',
+                        rf'\g<1>{method}',
+                        line,
+                    )
+
+        # --sync-coverage: update AC Coverage table
+        if sync_coverage and description is not None:
+            cov_section_map = classify_sections(new_lines)
+            for idx, line in enumerate(new_lines):
+                stype = cov_section_map.get(idx, SectionType.OTHER)
+                if stype == SectionType.TECH_DESIGN_AC_COV:
+                    stripped = line.strip()
+                    if stripped.startswith("|"):
+                        parts = split_pipe_row(stripped)
+                        if len(parts) > 1 and parts[1].strip() == str(ac_num):
+                            new_parts = list(parts)
+                            if len(new_parts) > 2:
+                                new_parts[2] = description
+                            new_lines[idx] = _rebuild_pipe_row(line, parts, new_parts)
+                            break
+
+        # Report prose occurrences (don't auto-replace)
+        prose_warnings = []
+        for idx, line in enumerate(lines):
+            stype = section_map.get(idx, SectionType.OTHER)
+            if stype in (SectionType.TECH_DESIGN_PROSE, SectionType.REVIEW_NOTES, SectionType.SUCCESS_CRITERIA):
+                if old_expected and old_expected != "-" and expected is not None and old_expected in line:
+                    prose_warnings.append(
+                        f"  Line {idx + 1}: old Expected value found in prose (manual review): {line.rstrip()}"
+                    )
+                if old_desc and description is not None and old_desc in line:
+                    prose_warnings.append(
+                        f"  Line {idx + 1}: old Description found in prose (manual review): {line.rstrip()}"
+                    )
+
+        # Pre-write validation
+        validation_rows = parse_ac_table(new_lines)
+        if not validation_rows:
+            print("ERROR: Update would destroy AC Definition Table. Aborting.", file=sys.stderr)
+            _remove_backup(path)
+            return 1
+
+        with open(path, "w", encoding="utf-8") as f:
+            f.writelines(new_lines)
+
+        _remove_backup(path)
+        print(f"ac-update: Updated AC#{ac_num} successfully.")
+        if prose_warnings:
+            print("ac-update: WARNING - old values found in prose (not auto-replaced):")
+            for w in prose_warnings:
+                print(w)
+
+        return 0
+    except Exception as e:
+        print(f"ERROR: Exception during update: {e}. Restoring backup.", file=sys.stderr)
+        _restore_backup(path)
+        return 1
+
+
+def ac_add(
+    fid: str,
+    desc: str,
+    method: str,
+    matcher: str,
+    expected: str,
+    type_: str = "test",
+    after: int | None = None,
+    task: int | None = None,
+    goal: int | None = None,
+    coverage: str | None = None,
+    derivation: str | None = None,
+    rationale: str | None = None,
+    dry_run: bool = False,
+    force: bool = False,
+) -> int:
+    """
+    Add a new AC to the feature file.
+    Creates Definition Table row, optional Details block (for threshold matchers),
+    and links to Task/Goal/AC Coverage if specified.
+    Returns 0 on success, 1 on error.
+    """
+    path = feature_path(fid)
+    if not path.exists():
+        print(f"ERROR: Feature file not found: {path}", file=sys.stderr)
+        return 1
+
+    if matcher not in VALID_MATCHERS:
+        print(f"ERROR: Invalid matcher '{matcher}'. Valid: {sorted(VALID_MATCHERS)}", file=sys.stderr)
+        return 1
+
+    with open(path, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    ac_rows = parse_ac_table(lines)
+    if not ac_rows:
+        print("ERROR: No AC Definition Table found.", file=sys.stderr)
+        return 1
+
+    # Sub-numbered guard
+    if not force and _detect_sub_numbered_in_lines(lines):
+        print(
+            "ERROR: Sub-numbered ACs detected (e.g., AC#3b). "
+            "Cannot safely add. Use --force to override.",
+            file=sys.stderr,
+        )
+        return 1
+
+    defined_numbers = sorted({row.number for row in ac_rows})
+    section_map = classify_sections(lines)
+
+    # Determine new AC number and apply renumber if --after
+    new_lines = list(lines)
+    if after is not None:
+        if after not in set(defined_numbers) and after != 0:
+            print(f"ERROR: AC#{after} not found in Definition Table.", file=sys.stderr)
+            return 1
+        # Shift ACs > after by +1
+        rmap = {}
+        for num in defined_numbers:
+            if num > after:
+                rmap[num] = num + 1
+            else:
+                rmap[num] = num
+        changes = {old: new for old, new in rmap.items() if old != new}
+        if changes:
+            new_lines = apply_renumber_map(new_lines, section_map, rmap, update_counts=False)
+            section_map = classify_sections(new_lines)
+        new_ac_num = after + 1
+    else:
+        new_ac_num = max(defined_numbers) + 1
+
+    # Find insertion point in Definition Table
+    table_end = _find_ac_table_end(new_lines, section_map)
+    if table_end == -1:
+        print("ERROR: Could not find AC Definition Table end.", file=sys.stderr)
+        return 1
+
+    # If --after, insert after the shifted AC position; else append at table end
+    if after is not None:
+        # Find the row for `after` (which was NOT shifted)
+        insert_after_idx = table_end  # fallback
+        for idx, line in enumerate(new_lines):
+            stype = section_map.get(idx, SectionType.OTHER)
+            if stype == SectionType.AC_DEFINITION_TABLE:
+                stripped = line.strip()
+                if stripped.startswith("|") and "| AC# |" not in stripped:
+                    parts = split_pipe_row(stripped)
+                    if len(parts) > 1 and parts[1].strip() == str(after):
+                        insert_after_idx = idx
+                        break
+    else:
+        insert_after_idx = table_end
+
+    new_row = _build_ac_row_line(new_ac_num, desc, type_, method, matcher, expected)
+
+    print(f"ac-add: Adding AC#{new_ac_num} to feature-{fid}.md.")
+
+    if matcher in THRESHOLD_MATCHERS:
+        if not derivation:
+            print("ac-add: WARNING - Threshold matcher without --derivation. AC Details will lack derivation.")
+        print(f"ac-add: Will generate AC Details block (threshold matcher '{matcher}').")
+
+    if dry_run:
+        print(f"ac-add: [DRY RUN] Would insert: {new_row.rstrip()}")
+        if task is not None:
+            print(f"ac-add: [DRY RUN] Would link to Task#{task}")
+        if goal is not None:
+            print(f"ac-add: [DRY RUN] Would link to Goal#{goal}")
+        if coverage is not None:
+            print(f"ac-add: [DRY RUN] Would add AC Coverage row")
+        print("ac-add: [DRY RUN] No changes written.")
+        return 0
+
+    backup = _create_backup(path)
+    try:
+        # Insert new row into Definition Table
+        new_lines.insert(insert_after_idx + 1, new_row)
+        # Reclassify after insertion
+        section_map = classify_sections(new_lines)
+
+        # Add AC Details block if threshold matcher
+        if matcher in THRESHOLD_MATCHERS:
+            details_block = _build_details_block(
+                new_ac_num, desc, method, expected, derivation, rationale
+            )
+            insert_pt = _find_details_insertion_point(new_lines, section_map)
+            if insert_pt != -1:
+                for i, detail_line in enumerate(details_block):
+                    new_lines.insert(insert_pt + i, detail_line)
+                section_map = classify_sections(new_lines)
+
+        # Link to Task
+        if task is not None:
+            new_lines = _add_ac_to_task_row(new_lines, section_map, task, new_ac_num)
+            section_map = classify_sections(new_lines)
+
+        # Link to Goal
+        if goal is not None:
+            new_lines = _add_ac_to_goal_row(new_lines, section_map, goal, new_ac_num)
+            section_map = classify_sections(new_lines)
+
+        # Add AC Coverage row
+        if coverage is not None:
+            new_lines = _add_ac_coverage_row(new_lines, section_map, new_ac_num, coverage)
+
+        # Pre-write validation
+        validation_rows = parse_ac_table(new_lines)
+        if not validation_rows:
+            print("ERROR: Add would destroy AC Definition Table. Aborting.", file=sys.stderr)
+            _remove_backup(path)
+            return 1
+        if len(validation_rows) != len(ac_rows) + 1:
+            print(
+                f"ERROR: Expected {len(ac_rows) + 1} ACs after add, got {len(validation_rows)}. Aborting.",
+                file=sys.stderr,
+            )
+            _remove_backup(path)
+            return 1
+
+        with open(path, "w", encoding="utf-8") as f:
+            f.writelines(new_lines)
+
+        _remove_backup(path)
+        print(f"ac-add: Wrote updated feature-{fid}.md (AC#{new_ac_num} added, total {len(validation_rows)} ACs).")
+        return 0
+    except Exception as e:
+        print(f"ERROR: Exception during add: {e}. Restoring backup.", file=sys.stderr)
+        _restore_backup(path)
+        return 1
+
+
 # =============================================================================
 # CLI entry point (when run directly for testing)
 # =============================================================================
@@ -1674,6 +2290,9 @@ def main() -> int:
             "  python ac_ops.py ac-insert 808 --after 5     Insert slot after AC#5\n"
             "  python ac_ops.py ac-delete 808 --ac 3        Delete AC#3 and renumber\n"
             "  python ac_ops.py ac-fix 808 --ac 3 --expected '`pattern`'\n"
+            "  python ac_ops.py ac-link 813 --ac 25 --task 5 --goal 1\n"
+            "  python ac_ops.py ac-update 813 --ac 7 --description 'New desc' --expected '>=3'\n"
+            "  python ac_ops.py ac-add 813 --description 'test' --method 'echo' --matcher succeeds --expected '-'\n"
             "\n"
             "also callable via: python tools/feature-status.py ac-check 808"
         ),
@@ -1793,6 +2412,93 @@ def main() -> int:
     p_fix.add_argument("--dry-run", action="store_true",
                        help="Show changes without writing")
 
+    # ac-link
+    p_link = subparsers.add_parser(
+        "ac-link",
+        help="Link existing AC to Task and/or Goal rows",
+        description=(
+            "Add AC# to a Task's AC# column and/or a Goal's Covering AC(s) column.\n"
+            "Idempotent: skips if the link already exists."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    p_link.add_argument("fid", metavar="FID", help="Feature ID (e.g. 813)")
+    p_link.add_argument("--ac", type=int, required=True, dest="ac_num",
+                        help="AC# to link")
+    p_link.add_argument("--task", type=int, default=None,
+                        help="Task# to add AC reference to")
+    p_link.add_argument("--goal", type=int, default=None,
+                        help="Goal# to add AC reference to")
+    p_link.add_argument("--dry-run", action="store_true",
+                        help="Show changes without writing")
+
+    # ac-update
+    p_update = subparsers.add_parser(
+        "ac-update",
+        help="Update AC metadata (description, expected, matcher, method)",
+        description=(
+            "Update one or more columns of an AC in the Definition Table and AC Details.\n"
+            "Extended version of ac-fix with matcher/method support.\n"
+            "With --sync-coverage: also update Tech Design AC Coverage row."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    p_update.add_argument("fid", metavar="FID", help="Feature ID (e.g. 813)")
+    p_update.add_argument("--ac", type=int, required=True, dest="ac_num",
+                          help="AC# to update")
+    p_update.add_argument("--description", default=None,
+                          help="New Description column value")
+    p_update.add_argument("--expected", default=None,
+                          help="New Expected column value")
+    p_update.add_argument("--matcher", default=None,
+                          help="New Matcher column value")
+    p_update.add_argument("--method", default=None,
+                          help="New Method column value")
+    p_update.add_argument("--sync-coverage", action="store_true",
+                          help="Also update Tech Design AC Coverage row")
+    p_update.add_argument("--dry-run", action="store_true",
+                          help="Show changes without writing")
+
+    # ac-add
+    p_add = subparsers.add_parser(
+        "ac-add",
+        help="Add new AC with full linkage (table row + details + task/goal/coverage)",
+        description=(
+            "Add a new AC to the feature file. Creates the Definition Table row,\n"
+            "optionally generates AC Details block (for threshold matchers),\n"
+            "and links to Task/Goal/AC Coverage in one command.\n"
+            "Use --after N to insert after AC#N (shifts subsequent ACs by +1)."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    p_add.add_argument("fid", metavar="FID", help="Feature ID (e.g. 813)")
+    p_add.add_argument("--description", required=True,
+                       help="AC description text")
+    p_add.add_argument("--type", default="test", dest="type_",
+                       help="AC type (default: test)")
+    p_add.add_argument("--method", required=True,
+                       help="Test method (e.g. 'Grep ...', 'dotnet test ...')")
+    p_add.add_argument("--matcher", required=True,
+                       help=f"Matcher name: {sorted(VALID_MATCHERS)}")
+    p_add.add_argument("--expected", required=True,
+                       help="Expected value")
+    p_add.add_argument("--after", type=int, default=None,
+                       help="Insert after this AC# (shifts subsequent). Omit to append at end.")
+    p_add.add_argument("--task", type=int, default=None,
+                       help="Task# to link the new AC to")
+    p_add.add_argument("--goal", type=int, default=None,
+                       help="Goal# to link the new AC to")
+    p_add.add_argument("--coverage", default=None,
+                       help="Text for Tech Design AC Coverage row")
+    p_add.add_argument("--derivation", default=None,
+                       help="Derivation text for AC Details (threshold matchers)")
+    p_add.add_argument("--rationale", default=None,
+                       help="Rationale text for AC Details (threshold matchers)")
+    p_add.add_argument("--dry-run", action="store_true",
+                       help="Show changes without writing")
+    p_add.add_argument("--force", action="store_true",
+                       help="Allow add even with sub-numbered ACs")
+
     args = parser.parse_args()
 
     if args.command == "ac-check":
@@ -1813,6 +2519,42 @@ def main() -> int:
             expected=args.expected,
             description=args.description,
             dry_run=args.dry_run,
+        )
+    elif args.command == "ac-link":
+        return ac_link(
+            args.fid,
+            ac_num=args.ac_num,
+            task=args.task,
+            goal=args.goal,
+            dry_run=args.dry_run,
+        )
+    elif args.command == "ac-update":
+        return ac_update(
+            args.fid,
+            ac_num=args.ac_num,
+            description=args.description,
+            expected=args.expected,
+            matcher=args.matcher,
+            method=args.method,
+            sync_coverage=args.sync_coverage,
+            dry_run=args.dry_run,
+        )
+    elif args.command == "ac-add":
+        return ac_add(
+            args.fid,
+            desc=args.description,
+            method=args.method,
+            matcher=args.matcher,
+            expected=args.expected,
+            type_=args.type_,
+            after=args.after,
+            task=args.task,
+            goal=args.goal,
+            coverage=args.coverage,
+            derivation=args.derivation,
+            rationale=args.rationale,
+            dry_run=args.dry_run,
+            force=args.force,
         )
     return 0
 

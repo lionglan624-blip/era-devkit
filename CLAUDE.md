@@ -297,10 +297,12 @@ Run from project root: `cd /c/Era/devkit && python src/tools/python/session-sear
 
 | Task | Flags | Example |
 |------|-------|---------|
+| List recent sessions | `--list` | `python src/tools/python/session-search.py --list --after 2026-03-03` |
 | Find tool usage | `--tool Name` | `python src/tools/python/session-search.py --tool AskUserQuestion --session 37ef` |
 | Extract raw JSON | `--line N --raw` | `python src/tools/python/session-search.py --session 37ef --line 158 --raw` |
 | Session timeline | `--timeline` | `python src/tools/python/session-search.py --session 37ef --timeline` |
 | Text search | `"pattern"` | `python src/tools/python/session-search.py "handoff" --after 2026-03-01` |
+| Text-only search | `--type text` | `python src/tools/python/session-search.py --session 37ef "issue" --type text` |
 | Session overview | `--summary` | `python src/tools/python/session-search.py --session 37ef --summary` |
 | Context around match | `-C N` | `python src/tools/python/session-search.py "error" --session 37ef -C 3` |
 

@@ -11,11 +11,11 @@
  * @throws {Error} - If featureId is invalid
  */
 export function validateFeatureId(featureId) {
-  const id = String(featureId);
-  if (!/^\d+$/.test(id)) {
-    throw new Error(`Invalid featureId: ${featureId}. Must be numeric.`);
-  }
-  return id;
+    const id = String(featureId);
+    if (!/^\d+$/.test(id)) {
+        throw new Error(`Invalid featureId: ${featureId}. Must be numeric.`);
+    }
+    return id;
 }
 
 /**
@@ -25,10 +25,10 @@ export function validateFeatureId(featureId) {
  * @throws {Error} - If command is invalid
  */
 export function validateCommand(command) {
-  const allowed = ['fc', 'fl', 'run'];
-  const cmd = String(command).toLowerCase();
-  if (!allowed.includes(cmd)) {
-    throw new Error(`Invalid command: ${command}. Must be one of: ${allowed.join(', ')}`);
-  }
-  return cmd;
+    const allowed = ['fc', 'fl', 'run'];
+    const cmd = String(command).toLowerCase();
+    if (!allowed.includes(cmd)) {
+        throw new Error(`Invalid command: ${command}. Must be one of: ${allowed.join(', ')}`);
+    }
+    return cmd;
 }

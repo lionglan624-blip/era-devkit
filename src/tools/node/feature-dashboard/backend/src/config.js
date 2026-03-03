@@ -90,7 +90,7 @@ export const PROXY_ENABLED = process.env.PROXY_ENABLED !== 'false'; // enabled b
 import path from 'path';
 
 export const CCS_DIR =
-  process.env.CCS_DIR || path.join(process.env.USERPROFILE || process.env.HOME || '', '.ccs');
+    process.env.CCS_DIR || path.join(process.env.USERPROFILE || process.env.HOME || '', '.ccs');
 export const CCS_CONFIG_PATH = path.join(CCS_DIR, 'config.yaml');
 export const CCS_INSTANCES_DIR = process.env.CCS_INSTANCES_DIR || path.join(CCS_DIR, 'instances');
 

@@ -30,6 +30,14 @@ This mapping ensures consistency between feature specs and implementation.
 | code | contains | Grep/grep (manual) | ac-tester |
 | code | not_contains | Grep/grep (manual) | ac-tester |
 | code | matches | Grep/grep (manual) | ac-tester |
+| code | not_matches | Grep/grep (manual) | ac-tester |
+| code | count_equals | Grep match count == N | ac-static-verifier |
+| code | gt | Grep match count > N | ac-static-verifier |
+| code | gte | Grep match count >= N | ac-static-verifier |
+| code | lt | Grep match count < N | ac-static-verifier |
+| code | lte | Grep match count <= N | ac-static-verifier |
+| test | succeeds | dotnet test exit_code == 0 | Bash |
+| test | fails | dotnet test exit_code != 0 | Bash |
 
 ## AC Type Descriptions
 

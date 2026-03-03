@@ -14,6 +14,7 @@ import { RateLimitService } from './src/services/ratelimitService.js';
 import { StatusMailService } from './src/services/statusMailService.js';
 import { InsightsService } from './src/services/insightsService.js';
 import { CleanupService } from './src/services/cleanupService.js';
+import { ClaudeStatusService } from './src/services/claudeStatusService.js';
 import { EmailService } from './src/services/emailService.js';
 import { getCcsProfiles } from './src/services/ccsUtils.js';
 import { createFeaturesRouter } from './src/routes/features.js';
@@ -108,6 +109,7 @@ const statusMailService = new StatusMailService({
 
 // Tmp file cleanup (debug logs, old daily logs, term artifacts)
 const cleanupService = new CleanupService(PROJECT_ROOT);
+const claudeStatusService = new ClaudeStatusService();
 
 // =============================================================================
 // Auto-DR: Watch backend source files, restart when idle
@@ -239,6 +241,7 @@ app.get('/api/health', async (req, res) => {
     git: { dirty: totalCount > 0, changedCount: totalCount, main: mainCount, engine: engineCount },
     pendingRestart,
     shellStates: claudeService.getShellStates(),
+    claudeStatus: claudeStatusService.getCached(),
   });
 });
 
@@ -341,6 +344,7 @@ const onListening = () => {
   statusMailService.start();
   cleanupService.start();
   insightsService.startScheduler();
+  claudeStatusService.start();
 };
 server.listen(PORT, onListening);
 
@@ -360,6 +364,7 @@ process.on('SIGINT', async () => {
   setTimeout(() => { serverLog.warn('Shutdown timeout, forcing exit'); process.exit(1); }, 1500).unref();
   await statusMailService.stop();
   cleanupService.stop();
+  claudeStatusService.stop();
   claudeService.killAllRunning();
   fileWatcher.stop();
   autoDRWatcher.close();
@@ -372,6 +377,7 @@ process.on('SIGTERM', async () => {
   setTimeout(() => { serverLog.warn('Shutdown timeout, forcing exit'); process.exit(1); }, 1500).unref();
   await statusMailService.stop();
   cleanupService.stop();
+  claudeStatusService.stop();
   claudeService.killAllRunning();
   fileWatcher.stop();
   autoDRWatcher.close();

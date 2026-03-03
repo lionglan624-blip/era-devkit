@@ -155,3 +155,19 @@ export const DEBUG_LOG_RETENTION_DAYS = 3;
 
 /** Retention period for daily rotated logs and other artifacts */
 export const DAILY_LOG_RETENTION_DAYS = 7;
+
+// =============================================================================
+// Claude Status Monitoring Configuration
+// =============================================================================
+
+/** Polling interval for Claude platform status (5 minutes) */
+export const CLAUDE_STATUS_POLL_INTERVAL_MS = 300000;
+
+/** Atlassian Statuspage API URL for Claude */
+export const CLAUDE_STATUS_URL = 'https://status.claude.com/api/v2/components.json';
+
+/** Timeout for status API fetch (10 seconds) */
+export const CLAUDE_STATUS_TIMEOUT_MS = 10000;
+
+/** Component IDs to monitor: Claude Code, Claude API */
+export const CLAUDE_STATUS_COMPONENT_IDS = ['yyzkbfz2thpt', 'k8w3r06qmzrp'];

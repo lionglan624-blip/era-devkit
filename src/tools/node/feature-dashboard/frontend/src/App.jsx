@@ -80,6 +80,7 @@ export default function App() {
     gitDirty: false,
     gitChangedCount: 0,
     rateLimit: null,
+    claudeStatus: null,
   });
   const healthCheckRef = useRef(null);
   const recentNotificationsRef = useRef(new Set()); // Track recent notification keys for deduplication
@@ -183,6 +184,7 @@ export default function App() {
           gitDirty: data.git?.dirty || false,
           gitChangedCount: data.git?.changedCount || 0,
           rateLimit: data.rateLimit || null,
+          claudeStatus: data.claudeStatus || null,
           ccsProfiles: data.ccsProfiles || [],
         });
         // Sync CCS profile
@@ -913,6 +915,27 @@ export default function App() {
                     PX {healthStatus.proxy.status === 'online' ? '●' : '✗'}
                   </span>
                 )}
+                {(() => {
+                  const cs = healthStatus.claudeStatus;
+                  const worst = cs?.worst || 'unknown';
+                  const statusClass = worst === 'major_outage' ? 'error'
+                    : worst === 'degraded_performance' || worst === 'partial_outage' ? 'warning'
+                    : worst === 'under_maintenance' ? 'maintenance'
+                    : '';
+                  const statusIcon = worst === 'major_outage' ? '✗'
+                    : worst === 'degraded_performance' || worst === 'partial_outage' ? '▲'
+                    : worst === 'under_maintenance' ? '⚙'
+                    : worst === 'operational' ? '●'
+                    : '?';
+                  const title = cs?.components
+                    ? cs.components.map(c => `${c.name}: ${c.status}`).join('\n')
+                    : 'Claude platform status unknown';
+                  return (
+                    <span className={`status-item ${statusClass}`} title={title}>
+                      API {statusIcon}
+                    </span>
+                  );
+                })()}
               </div>
               <div className="rate-limit-group">
                 {(healthStatus.ccsProfiles?.length > 0

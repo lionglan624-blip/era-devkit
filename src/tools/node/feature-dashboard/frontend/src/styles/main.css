@@ -1639,6 +1639,14 @@ body {
   color: var(--danger);
 }
 
+.status-item.warning {
+  color: #fbbf24;
+}
+
+.status-item.maintenance {
+  color: var(--accent);
+}
+
 /* =============================================================================
    Execution Panel - Tabs Enhancement
    ============================================================================= */

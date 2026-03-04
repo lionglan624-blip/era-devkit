@@ -1,6 +1,6 @@
 # Feature 814: Phase 22 Planning
 
-## Status: [REVIEWED]
+## Status: [DONE]
 <!-- fl-reviewed: 2026-03-04T12:54:56Z -->
 
 ## Scope Discipline
@@ -31,7 +31,7 @@ Phase 22 decomposition requires two distinct scoping activities that the current
 
 ### Goal (What to Achieve)
 
-Decompose Phase 22 into 7 implementation sub-features (F819-F825, per Technical Design allocation) plus 2 transition features (Post-Phase Review Phase 22 + Phase 23 Planning) with correct inter-feature Predecessor dependencies derived from CALL/TRYCALL/CALLFORM analysis, and triage all 35 deferred obligations into Phase 22 scope (13 items: #7, #20-22, #24-30, #32-33), Counter Redux carry-forward (20 items: #2-6, #8-19, #31, #34-35), user decision pending (#23), or N+4 re-deferral (#1) as documented in Technical Design.
+Decompose Phase 22 into 6 implementation sub-features (F819, F821-F825; F820 欠番) plus 2 transition features (Post-Phase Review Phase 22 + Phase 23 Planning) with correct inter-feature Predecessor dependencies derived from CALL/TRYCALL/CALLFORM analysis, and triage all 35 deferred obligations into Phase 22 scope (13 items: #7, #20-22, #24-30, #32-33), Counter Redux carry-forward (20 items: #2-6, #8-19, #31, #34-35), user decision pending (#23), or N+4 re-deferral (#1) as documented in Technical Design.
 
 **Deferred Obligations from F813**
 
@@ -300,7 +300,7 @@ The following 35 obligations were transferred from F813 (Post-Phase Review Phase
 | Related | F782 | [DONE] | Post-Phase Review Phase 20 -- N+4 obligation origin chain |
 | Related | F811 | [DONE] | SOURCE Entry System -- deferred IKnickersSystem to Phase 22 |
 | Successor | F819 | [DRAFT] | Clothing Core (created by this feature) |
-| Successor | F820 | [DRAFT] | Clothing Extended (created by this feature) |
+| Successor | F820 | [N/A] | Clothing Extended — 欠番 (merged into F819) |
 | Successor | F821 | [DRAFT] | Weather System (created by this feature) |
 | Successor | F822 | [DRAFT] | Pregnancy System (created by this feature) |
 | Successor | F823 | [DRAFT] | Room & Stain (created by this feature) |
@@ -346,45 +346,45 @@ Example:
 
 | AC# | Description | Type | Method | Matcher | Expected | Status |
 |:---:|-------------|------|--------|---------|----------|:------:|
-| 1 | Implementation sub-feature DRAFT files created (7 per Technical Design) | file | Glob(pm/features/feature-819.md) + Glob(pm/features/feature-820.md) + Glob(pm/features/feature-821.md) + Glob(pm/features/feature-822.md) + Glob(pm/features/feature-823.md) + Glob(pm/features/feature-824.md) + Glob(pm/features/feature-825.md) | count_equals | 7 | [ ] |
-| 2 | Phase 22 section header exists in index-features.md with sub-feature entries | file | Grep(pm/index-features.md, pattern="### Phase 22: State Systems") + Grep(pm/index-features.md, pattern="\| F819 |\| F820 |\| F821 |\| F822 |\| F823 |\| F824 |\| F825 |\| F826 |\| F827 ") | matches | "### Phase 22: State Systems" AND gte 9 table row matches for sub-feature IDs (compound: both checks must pass) | [ ] |
-| 3 | Transition features created with correct types (infra + research) | file | Glob(pm/features/feature-826.md) + Glob(pm/features/feature-827.md) + Grep(pm/features/feature-826.md, pattern="Type: infra") + Grep(pm/features/feature-827.md, pattern="Type: research") | matches | 2 files exist AND "Type: infra" AND "Type: research" | [ ] |
-| 4 | All 14 Phase 22 ERB files assigned to sub-feature DRAFTs | file | 14 individual Grep(pm/features/feature-{819..825}.md, pattern=FILENAME) for each of: CLOTHES.ERB, CLOTHE_EFFECT.ERB, CLOTHES_SYSTEM.ERB, CLOTHES_Cosplay.ERB, 天候.ERB, PREGNACY_S.ERB, PREGNACY_S_CHILD_MOVEMENT.ERB, PREGNACY_S_EVENT.ERB, PREGNACY_S_EVENT0.ERB, ROOM_SMELL.ERB, STAIN.ERB, 睡眠深度.ERB, 生理機能追加パッチ.ERB, 続柄.ERB; each must return files_with_matches >= 1 | count_equals | 14 | [ ] |
-| 5 | CALL-derived Predecessor dependencies exist (not only F814) | file | Grep(pm/features/feature-822.md, pattern="Predecessor.*F821") | matches | "Predecessor.*F821" | [ ] |
-| 6 | CP-2 Step 2c + obligations #1/#32 assigned to Post-Phase Review transition feature (C7, C10) | file | Grep(pm/features/feature-826.md, pattern="CP-2 Step 2c") + Grep(pm/features/feature-826.md, pattern="obligation.*#1[^0-9]") + Grep(pm/features/feature-826.md, pattern="obligation.*#32[^0-9]") | matches | "CP-2 Step 2c" AND "obligation.*#1[^0-9]" AND "obligation.*#32[^0-9]" | [ ] |
-| 7 | Philosophy "Phase 22: State Systems" in all implementation sub-features (C1) | file | Grep(pm/features/feature-{819..825}.md, pattern="Phase 22: State Systems") | count_equals | 7 | [ ] |
-| 8 | Debt resolution task in all implementation sub-features (C2) | file | Grep(pm/features/feature-{819..825}.md, pattern="Remove.*TODO.*FIXME.*HACK") | count_equals | 7 | [ ] |
-| 9 | All 35 deferred obligations triaged with documented destinations (C10) | file | Grep(pm/features/feature-814.md, pattern="## Obligation Triage") + Grep(pm/features/feature-814.md, pattern="obligation #1:\|obligation #23:\|obligation #35:") + Grep(pm/features/feature-814.md, pattern="obligation #24:") + Grep(pm/features/feature-814.md, pattern="obligation #8:") + Grep(pm/features/feature-814.md, pattern="obligation #7:") | matches | "## Obligation Triage" AND "obligation #1:\|obligation #23:\|obligation #35:" AND "obligation #24:" AND "obligation #8:" AND "obligation #7:" | [ ] |
-| 10 | Specific assignments verified: IKnickersSystem (C9), Roslynator (C8), ClothingSystem stubs (C13), CFlagIndex (#20), EquipIndex (#21), NullKnickersSystem (#28 in F819), IComableUtilities consolidation (#22 in F825), NullComHandler (#33 in F825) | file | Grep(pm/features/feature-819.md, pattern="IKnickersSystem") + Grep(pm/features/feature-820.md, pattern="Roslynator") + Grep(pm/features/feature-819.md, pattern="ClothingSystem.*stub") + Grep(pm/features/feature-819.md, pattern="CFlagIndex") + Grep(pm/features/feature-819.md, pattern="EquipIndex") + Grep(pm/features/feature-819.md, pattern="NullKnickersSystem") + Grep(pm/features/feature-825.md, pattern="IComableUtilities") + Grep(pm/features/feature-825.md, pattern="NullComHandler") | matches | "IKnickersSystem" in F819 AND "Roslynator" in F820 AND "ClothingSystem.*stub" in F819 AND "CFlagIndex" in F819 AND "EquipIndex" in F819 AND "NullKnickersSystem" in F819 AND "IComableUtilities" in F825 AND "NullComHandler" in F825 | [ ] |
-| 11 | Next Feature number incremented past all allocated IDs (C12) | file | Grep(pm/index-features.md, pattern="Next Feature number.*828") | matches | "Next Feature number.*828" | [ ] |
-| 12 | F825 CP-2 E2E covers DI integration / cross-subsystem wiring | file | Grep(pm/features/feature-825.md, pattern="CP-2.*E2E.*DI|DI.*integration.*E2E") | matches | "CP-2.*E2E.*DI\|DI.*integration.*E2E" | [ ] |
-| 13 | Additional CALL-derived Predecessor dependency: F820 has F819 as Predecessor (C5) | file | Grep(pm/features/feature-820.md, pattern="Predecessor.*F819") | matches | "Predecessor.*F819" | [ ] |
-| 14 | F825 (DI Integration) has all Phase 22 sub-feature Predecessors (C5) | file | Grep(pm/features/feature-825.md, pattern="Predecessor.*F81[9]\|Predecessor.*F82[0-4]") | count_equals | 6 | [ ] |
-| 15 | Counter Redux carry-forward obligations appended to F813 Mandatory Handoffs with representative obligation numbers + GetNWithVisitor transfer | file | Grep(pm/features/feature-813.md, pattern="Counter Redux") + Grep(pm/features/feature-813.md, pattern="obligation.*#2[^0-9]\|obligation.*#19[^0-9]\|obligation.*#35[^0-9]") + Grep(pm/features/feature-813.md, pattern="obligation.*#10[^0-9]") + Grep(pm/features/feature-813.md, pattern="GetNWithVisitor") | matches | "Counter Redux" AND "obligation.*#2[^0-9]\|obligation.*#19[^0-9]\|obligation.*#35[^0-9]" AND "obligation.*#10[^0-9]" AND "GetNWithVisitor" | [ ] |
-| 16 | F826 (Post-Phase Review) has all Phase 22 implementation sub-features as Predecessors | file | Grep(pm/features/feature-826.md, pattern="Predecessor.*F81[9]\|Predecessor.*F82[0-5]") | count_equals | 7 | [ ] |
-| 17 | F827 (Phase 23 Planning) has F826 as Predecessor and contains Phase 23 reference | file | Grep(pm/features/feature-827.md, pattern="Predecessor.*F826") + Grep(pm/features/feature-827.md, pattern="Phase 23") | matches | "Predecessor.*F826" AND "Phase 23" | [ ] |
-| 18 | Equivalence test task in all implementation sub-features (C3) | file | Grep(pm/features/feature-{819..825}.md, pattern="equivalence.*test") | count_equals | 7 | [ ] |
-| 19 | Zero-debt AC in all implementation sub-features (C4) | file | Grep(pm/features/feature-{819..825}.md, pattern="zero.*debt") | count_equals | 7 | [ ] |
-| 20 | CP-2 E2E AC in all implementation sub-features (C14) | file | Grep(pm/features/feature-{819..825}.md, pattern="CP-2 E2E checkpoint:") | count_equals | 7 | [ ] |
-| 21 | Task 1 CALL analysis output file exists | file | Glob(_out/tmp/phase22-callgraph.txt) | matches | file exists | [ ] |
-| 22 | Null*Service obligations (#24-27, #29-30) assigned to F825 DI Integration | file | Grep(pm/features/feature-825.md, pattern="NullCounterUtilities") + Grep(pm/features/feature-825.md, pattern="NullWcSexHaraService") + Grep(pm/features/feature-825.md, pattern="NullNtrUtilityService") + Grep(pm/features/feature-825.md, pattern="NullTrainingCheckService") + Grep(pm/features/feature-825.md, pattern="NullEjaculationProcessor") + Grep(pm/features/feature-825.md, pattern="NullKojoMessageService") | matches | all 6 Null*Service names present in feature-825.md | [ ] |
-| 23 | Phase22 metrics file exists | file | Glob(_out/tmp/phase22-metrics.txt) | matches | _out/tmp/phase22-metrics.txt | [ ] |
-| 24 | Phase22 callgraph contains cross-subsystem dependency | file | Grep(_out/tmp/phase22-callgraph.txt, pattern="PREGNACY_S\|子供気温耐性取得") | matches | PREGNACY_S or 子供気温耐性取得 | [ ] |
+| 1 | Implementation sub-feature DRAFT files created (6 per merge decision) | file | Glob(pm/features/feature-819.md) + Glob(pm/features/feature-821.md) + Glob(pm/features/feature-822.md) + Glob(pm/features/feature-823.md) + Glob(pm/features/feature-824.md) + Glob(pm/features/feature-825.md) | count_equals | 6 | [x] |
+| 2 | Phase 22 section header exists in index-features.md with sub-feature entries | file | Grep(pm/index-features.md, pattern="### Phase 22: State Systems") + Grep(pm/index-features.md, pattern="\| F819 |\| F821 |\| F822 |\| F823 |\| F824 |\| F825 |\| F826 |\| F827 ") | matches | "### Phase 22: State Systems" AND gte 8 table row matches for sub-feature IDs (compound: both checks must pass) | [x] |
+| 3 | Transition features created with correct types (infra + research) | file | Glob(pm/features/feature-826.md) + Glob(pm/features/feature-827.md) + Grep(pm/features/feature-826.md, pattern="Type: infra") + Grep(pm/features/feature-827.md, pattern="Type: research") | matches | 2 files exist AND "Type: infra" AND "Type: research" | [x] |
+| 4 | All 14 Phase 22 ERB files assigned to sub-feature DRAFTs | file | 14 individual Grep(pm/features/feature-{819..825}.md, pattern=FILENAME) for each of: CLOTHES.ERB, CLOTHE_EFFECT.ERB, CLOTHES_SYSTEM.ERB, CLOTHES_Cosplay.ERB, 天候.ERB, PREGNACY_S.ERB, PREGNACY_S_CHILD_MOVEMENT.ERB, PREGNACY_S_EVENT.ERB, PREGNACY_S_EVENT0.ERB, ROOM_SMELL.ERB, STAIN.ERB, 睡眠深度.ERB, 生理機能追加パッチ.ERB, 続柄.ERB; each must return files_with_matches >= 1 | count_equals | 14 | [x] |
+| 5 | CALL-derived Predecessor dependencies exist (not only F814) | file | Grep(pm/features/feature-822.md, pattern="Predecessor.*F821") | matches | "Predecessor.*F821" | [x] |
+| 6 | CP-2 Step 2c + obligations #1/#32 assigned to Post-Phase Review transition feature (C7, C10) | file | Grep(pm/features/feature-826.md, pattern="CP-2 Step 2c") + Grep(pm/features/feature-826.md, pattern="obligation.*#1[^0-9]") + Grep(pm/features/feature-826.md, pattern="obligation.*#32[^0-9]") | matches | "CP-2 Step 2c" AND "obligation.*#1[^0-9]" AND "obligation.*#32[^0-9]" | [x] |
+| 7 | Philosophy "Phase 22: State Systems" in all implementation sub-features (C1) | file | Grep(pm/features/feature-{819..825}.md, pattern="Phase 22: State Systems") | count_equals | 6 | [x] |
+| 8 | Debt resolution task in all implementation sub-features (C2) | file | Grep(pm/features/feature-{819..825}.md, pattern="Remove.*TODO.*FIXME.*HACK") | count_equals | 6 | [x] |
+| 9 | All 35 deferred obligations triaged with documented destinations (C10) | file | Grep(pm/features/feature-814.md, pattern="## Obligation Triage") + Grep(pm/features/feature-814.md, pattern="obligation #1:\|obligation #23:\|obligation #35:") + Grep(pm/features/feature-814.md, pattern="obligation #24:") + Grep(pm/features/feature-814.md, pattern="obligation #8:") + Grep(pm/features/feature-814.md, pattern="obligation #7:") | matches | "## Obligation Triage" AND "obligation #1:\|obligation #23:\|obligation #35:" AND "obligation #24:" AND "obligation #8:" AND "obligation #7:" | [x] |
+| 10 | Specific assignments verified: IKnickersSystem (C9), Roslynator (C8), ClothingSystem stubs (C13), CFlagIndex (#20), EquipIndex (#21), NullKnickersSystem (#28 in F819), IComableUtilities consolidation (#22 in F825), NullComHandler (#33 in F825) | file | Grep(pm/features/feature-819.md, pattern="IKnickersSystem") + Grep(pm/features/feature-819.md, pattern="Roslynator") + Grep(pm/features/feature-819.md, pattern="ClothingSystem.*stub") + Grep(pm/features/feature-819.md, pattern="CFlagIndex") + Grep(pm/features/feature-819.md, pattern="EquipIndex") + Grep(pm/features/feature-819.md, pattern="NullKnickersSystem") + Grep(pm/features/feature-825.md, pattern="IComableUtilities") + Grep(pm/features/feature-825.md, pattern="NullComHandler") | matches | "IKnickersSystem" in F819 AND "Roslynator" in F819 AND "ClothingSystem.*stub" in F819 AND "CFlagIndex" in F819 AND "EquipIndex" in F819 AND "NullKnickersSystem" in F819 AND "IComableUtilities" in F825 AND "NullComHandler" in F825 | [x] |
+| 11 | Next Feature number incremented past all allocated IDs (C12) | file | Grep(pm/index-features.md, pattern="Next Feature number.*828") | matches | "Next Feature number.*828" | [x] |
+| 12 | F825 CP-2 E2E covers DI integration / cross-subsystem wiring | file | Grep(pm/features/feature-825.md, pattern="CP-2.*E2E.*DI|DI.*integration.*E2E") | matches | "CP-2.*E2E.*DI\|DI.*integration.*E2E" | [x] |
+| 13 | Additional CALL-derived Predecessor dependency: F820 has F819 as Predecessor (C5) — [N/A] F820 merged into F819 (欠番) | file | Grep(pm/features/feature-820.md, pattern="Predecessor.*F819") | matches | "Predecessor.*F819" | [N/A] |
+| 14 | F825 (DI Integration) has all Phase 22 sub-feature Predecessors (C5) | file | Grep(pm/features/feature-825.md, pattern="Predecessor.*F81[9]\|Predecessor.*F82[1-4]") | count_equals | 5 | [x] |
+| 15 | Counter Redux carry-forward obligations appended to F813 Mandatory Handoffs with representative obligation numbers + GetNWithVisitor transfer | file | Grep(pm/features/feature-813.md, pattern="Counter Redux") + Grep(pm/features/feature-813.md, pattern="obligation.*#2[^0-9]\|obligation.*#19[^0-9]\|obligation.*#35[^0-9]") + Grep(pm/features/feature-813.md, pattern="obligation.*#10[^0-9]") + Grep(pm/features/feature-813.md, pattern="GetNWithVisitor") | matches | "Counter Redux" AND "obligation.*#2[^0-9]\|obligation.*#19[^0-9]\|obligation.*#35[^0-9]" AND "obligation.*#10[^0-9]" AND "GetNWithVisitor" | [x] |
+| 16 | F826 (Post-Phase Review) has all Phase 22 implementation sub-features as Predecessors | file | Grep(pm/features/feature-826.md, pattern="Predecessor.*F81[9]\|Predecessor.*F82[1-5]") | count_equals | 6 | [x] |
+| 17 | F827 (Phase 23 Planning) has F826 as Predecessor and contains Phase 23 reference | file | Grep(pm/features/feature-827.md, pattern="Predecessor.*F826") + Grep(pm/features/feature-827.md, pattern="Phase 23") | matches | "Predecessor.*F826" AND "Phase 23" | [x] |
+| 18 | Equivalence test task in all implementation sub-features (C3) | file | Grep(pm/features/feature-{819..825}.md, pattern="equivalence.*test") | count_equals | 6 | [x] |
+| 19 | Zero-debt AC in all implementation sub-features (C4) | file | Grep(pm/features/feature-{819..825}.md, pattern="zero.*debt") | count_equals | 6 | [x] |
+| 20 | CP-2 E2E AC in all implementation sub-features (C14) | file | Grep(pm/features/feature-{819..825}.md, pattern="CP-2 E2E checkpoint:") | count_equals | 6 | [x] |
+| 21 | Task 1 CALL analysis output file exists | file | Glob(_out/tmp/phase22-callgraph.txt) | matches | file exists | [x] |
+| 22 | Null*Service obligations (#24-27, #29-30) assigned to F825 DI Integration | file | Grep(pm/features/feature-825.md, pattern="NullCounterUtilities") + Grep(pm/features/feature-825.md, pattern="NullWcSexHaraService") + Grep(pm/features/feature-825.md, pattern="NullNtrUtilityService") + Grep(pm/features/feature-825.md, pattern="NullTrainingCheckService") + Grep(pm/features/feature-825.md, pattern="NullEjaculationProcessor") + Grep(pm/features/feature-825.md, pattern="NullKojoMessageService") | matches | all 6 Null*Service names present in feature-825.md | [x] |
+| 23 | Phase22 metrics file exists | file | Glob(_out/tmp/phase22-metrics.txt) | matches | _out/tmp/phase22-metrics.txt | [x] |
+| 24 | Phase22 callgraph contains cross-subsystem dependency | file | Grep(_out/tmp/phase22-callgraph.txt, pattern="PREGNACY_S\|子供気温耐性取得") | matches | PREGNACY_S or 子供気温耐性取得 | [x] |
 
 ### AC Details
 
-**AC#1: Implementation sub-feature DRAFT files created (7 per Technical Design)**
-- **Test**: Glob existence check for each of the 7 allocated implementation sub-feature files: `feature-819.md` through `feature-825.md`
-- **Expected**: Exactly 7 implementation sub-feature DRAFT files exist on disk (F819-F825)
-- **Derivation**: Technical Design allocated 7 implementation sub-features (F819-F825). `count_equals 7` ensures all allocated files are created. Individual Glob checks per file avoid matching existing features (F810-F818) that a range pattern like `feature-8[12]*.md` would include
+**AC#1: Implementation sub-feature DRAFT files created (6 per merge decision)**
+- **Test**: Glob existence check for each of the 6 active implementation sub-feature files: `feature-819.md`, `feature-821.md` through `feature-825.md`
+- **Expected**: Exactly 6 implementation sub-feature DRAFT files exist on disk (F819, F821-F825); F820 is 欠番 (merged into F819)
+- **Derivation**: F819 and F820 were merged; F820 is now 欠番. Active implementation sub-features are F819, F821-F825 (6 total). `count_equals 6` ensures all active files are created. Individual Glob checks per file avoid matching existing features (F810-F818) that a range pattern like `feature-8[12]*.md` would include
 - **Rationale**: Satisfies Goal Item 1. Uses explicit file list to prevent vacuous pre-pass against existing features. Content quality verified separately by AC#7/AC#8/AC#18/AC#19/AC#20
-- **Note**: The 7 files are: F819 (Clothing Core), F820 (Clothing Extended), F821 (Weather), F822 (Pregnancy), F823 (Room & Stain), F824 (Sleep & Menstrual), F825 (Relationships & DI)
+- **Note**: The 6 files are: F819 (Clothing Core + Extended), F821 (Weather), F822 (Pregnancy), F823 (Room & Stain), F824 (Sleep & Menstrual), F825 (Relationships & DI)
 
 **AC#2: Phase 22 section header exists in index-features.md with sub-feature entries**
-- **Test**: (1) `Grep("### Phase 22: State Systems", "pm/index-features.md")` -- verify section header exists. (2) `Grep("| F819 || F820 || F821 || F822 || F823 || F824 || F825 || F826 || F827 ", "pm/index-features.md")` -- verify each ID appears as a table row entry (pipe-prefixed), gte 9 matches
-- **Expected**: Section header "### Phase 22: State Systems" exists AND at least 9 table row matches for the 9 sub-feature IDs (F819-F827) in the Active Features table
-- **Derivation**: C12 requires index registration for each allocated feature. The second Grep uses table-row-anchored patterns (`| F819 ` with pipe prefix) to ensure each ID appears as an Active Features table entry, not merely as a cross-reference or mention anywhere in the file. This prevents false positives where IDs appear in obligation lists, review notes, or other non-table contexts. gte 9 accounts for the 9 allocated features (F819-F827: 7 implementation + 2 transition)
-- **Rationale**: Table-row-anchored pattern is stricter than bare ID matching (`F819|F820|...`), eliminating false positives from IDs that appear in non-table positions. Compound format (both checks must pass) ensures both the section and its entries exist
+- **Test**: (1) `Grep("### Phase 22: State Systems", "pm/index-features.md")` -- verify section header exists. (2) `Grep("| F819 || F821 || F822 || F823 || F824 || F825 || F826 || F827 ", "pm/index-features.md")` -- verify each ID appears as a table row entry (pipe-prefixed), gte 8 matches
+- **Expected**: Section header "### Phase 22: State Systems" exists AND at least 8 table row matches for the 8 active sub-feature IDs (F819, F821-F827) in the Active Features table; F820 is 欠番 and excluded
+- **Derivation**: C12 requires index registration for each allocated feature. F820 is 欠番 (merged into F819) so only 8 active features are registered (F819, F821-F827). The second Grep uses table-row-anchored patterns (`| F819 ` with pipe prefix) to ensure each ID appears as an Active Features table entry, not merely as a cross-reference or mention anywhere in the file. This prevents false positives where IDs appear in obligation lists, review notes, or other non-table contexts. gte 8 accounts for the 8 active features (F819, F821-F827: 6 implementation + 2 transition)
+- **Rationale**: Table-row-anchored pattern is stricter than bare ID matching (`F819|F821|...`), eliminating false positives from IDs that appear in non-table positions. Compound format (both checks must pass) ensures both the section and its entries exist
 
 **AC#4: All 14 Phase 22 ERB files assigned to sub-feature DRAFTs**
 - **Test**: For each of the 14 ERB files (CLOTHES.ERB, CLOTHE_EFFECT.ERB, CLOTHES_SYSTEM.ERB, CLOTHES_Cosplay.ERB, 天候.ERB, PREGNACY_S.ERB, PREGNACY_S_CHILD_MOVEMENT.ERB, PREGNACY_S_EVENT.ERB, PREGNACY_S_EVENT0.ERB, ROOM_SMELL.ERB, STAIN.ERB, 睡眠深度.ERB, 生理機能追加パッチ.ERB, 続柄.ERB), Grep the sub-feature DRAFT files (feature-{819..825}.md) to confirm each filename appears in at least one DRAFT
@@ -397,18 +397,18 @@ Example:
 - **Test**: `Grep("Predecessor.*F821", "pm/features/feature-822.md")` -- verify Pregnancy sub-feature (F822) has Weather sub-feature (F821) as Predecessor
 - **Expected**: Pattern `Predecessor.*F821` matches in feature-822.md, confirming the CALL-derived dependency is recorded
 - **Derivation**: C5 requires inter-feature Predecessors from CALL analysis. The known cross-subsystem dependency (PREGNACY_S.ERB:426 calls `子供気温耐性取得` in 天候.ERB:822) requires Weather (F821) to be a Predecessor of Pregnancy (F822). Scoping to feature-822.md specifically avoids matching existing features that already contain "Predecessor" entries
-- **Rationale**: Satisfies C5. Targets the specific known CALL dependency rather than broadly grepping all of `pm/features/`. Additional inter-sub-feature Predecessors (F820->F819, F825->all) are structurally required by Technical Design but this AC verifies the empirically-derived one
+- **Rationale**: Satisfies C5. Targets the specific known CALL dependency rather than broadly grepping all of `pm/features/`. Additional inter-sub-feature Predecessors (F825->all) are structurally required by Technical Design but this AC verifies the empirically-derived cross-subsystem one; F820->F819 dependency was resolved by the merge (F820 欠番)
 
 **AC#7: Philosophy "Phase 22: State Systems" in all implementation sub-features (C1)**
-- **Test**: `Grep("Phase 22: State Systems", feature-{819..825}.md)` -- count files_with_matches == 7
-- **Expected**: All 7 implementation sub-features contain "Phase 22: State Systems" philosophy string
-- **Derivation**: AC#1 fixes the sub-feature count at exactly 7 (F819-F825). C1 mandates philosophy inheritance "in each sub-feature" per `docs/architecture/migration/phase-20-27-game-systems.md:373`. `count_equals 7` enforces the "mandatory in each" constraint without allowing silent gaps
+- **Test**: `Grep("Phase 22: State Systems", feature-{819..825}.md)` -- count files_with_matches == 6
+- **Expected**: All 6 active implementation sub-features contain "Phase 22: State Systems" philosophy string (F820 is 欠番; not expected)
+- **Derivation**: AC#1 fixes the sub-feature count at exactly 6 (F819, F821-F825). C1 mandates philosophy inheritance "in each sub-feature" per `docs/architecture/migration/phase-20-27-game-systems.md:373`. `count_equals 6` enforces the "mandatory in each" constraint without allowing silent gaps
 - **Rationale**: Satisfies C1. Exact philosophy string ensures inheritance, not loose pattern matching. Scoped to feature-{819..825}.md to prevent matching existing features
 
 **AC#8: Debt resolution task in all implementation sub-features (C2)**
-- **Test**: `Grep("Remove.*TODO.*FIXME.*HACK", feature-{819..825}.md)` -- count files_with_matches == 7
-- **Expected**: All 7 implementation sub-features contain a debt resolution task row
-- **Derivation**: AC#1 fixes the sub-feature count at exactly 7 (F819-F825). C2 mandates debt resolution tasks per `docs/architecture/migration/phase-20-27-game-systems.md:374`. Pattern `Remove.*TODO.*FIXME.*HACK` targets the task stub text format, avoiding false positives from raw debt markers in code
+- **Test**: `Grep("Remove.*TODO.*FIXME.*HACK", feature-{819..825}.md)` -- count files_with_matches == 6
+- **Expected**: All 6 active implementation sub-features contain a debt resolution task row (F820 is 欠番; not expected)
+- **Derivation**: AC#1 fixes the sub-feature count at exactly 6 (F819, F821-F825). C2 mandates debt resolution tasks per `docs/architecture/migration/phase-20-27-game-systems.md:374`. Pattern `Remove.*TODO.*FIXME.*HACK` targets the task stub text format, avoiding false positives from raw debt markers in code
 - **Rationale**: Satisfies C2. Scoped to feature-{819..825}.md to prevent matching existing features
 
 **AC#9: All 35 deferred obligations triaged with documented destinations (C10)**
@@ -418,10 +418,10 @@ Example:
 - **Rationale**: Satisfies C10 (obligation triage completeness). Representative sampling trades exhaustive count for false-negative avoidance. Full 35-obligation completeness is enforced by Task 5's Execution Order contract
 
 **AC#10: Specific assignments verified (C8, C9, C13, obligations #20/#21/#22/#28/#33)**
-- **Test**: (1) `Grep("IKnickersSystem", "pm/features/feature-819.md")` -- C9. (2) `Grep("Roslynator", "pm/features/feature-820.md")` -- C8. (3) `Grep("ClothingSystem.*stub", "pm/features/feature-819.md")` -- C13. (4) `Grep("CFlagIndex", "pm/features/feature-819.md")` -- obligation #20. (5) `Grep("EquipIndex", "pm/features/feature-819.md")` -- obligation #21. (6) `Grep("NullKnickersSystem", "pm/features/feature-819.md")` -- obligation #28. (7) `Grep("IComableUtilities", "pm/features/feature-825.md")` -- obligation #22 (interface consolidation). (8) `Grep("NullComHandler", "pm/features/feature-825.md")` -- obligation #33 (domain routing)
-- **Expected**: All eight patterns match: IKnickersSystem/ClothingSystem.*stub/CFlagIndex/EquipIndex/NullKnickersSystem in F819 AND Roslynator in F820 AND IComableUtilities/NullComHandler in F825
-- **Derivation**: C8 Roslynator in F820, C9 IKnickersSystem in F819, C13 ClothingSystem stubs in F819. Obligations #20/#21 (typed structs) in F819. #28 (NullKnickersSystem) in F819. #22 (IComableUtilities/ICounterUtilities consolidation) in F825. #33 (NullComHandler) in F825. Each Grep scoped to specific allocated file
-- **Rationale**: Groups eight specific-assignment constraints into one AC. Verifies domain routing across F819 (clothing), F820 (tooling), F825 (DI/consolidation)
+- **Test**: (1) `Grep("IKnickersSystem", "pm/features/feature-819.md")` -- C9. (2) `Grep("Roslynator", "pm/features/feature-819.md")` -- C8 (moved from F820 which is 欠番). (3) `Grep("ClothingSystem.*stub", "pm/features/feature-819.md")` -- C13. (4) `Grep("CFlagIndex", "pm/features/feature-819.md")` -- obligation #20. (5) `Grep("EquipIndex", "pm/features/feature-819.md")` -- obligation #21. (6) `Grep("NullKnickersSystem", "pm/features/feature-819.md")` -- obligation #28. (7) `Grep("IComableUtilities", "pm/features/feature-825.md")` -- obligation #22 (interface consolidation). (8) `Grep("NullComHandler", "pm/features/feature-825.md")` -- obligation #33 (domain routing)
+- **Expected**: All eight patterns match: IKnickersSystem/ClothingSystem.*stub/CFlagIndex/EquipIndex/NullKnickersSystem/Roslynator in F819 AND IComableUtilities/NullComHandler in F825
+- **Derivation**: C8 Roslynator in F819 (F820 merged into F819, 欠番), C9 IKnickersSystem in F819, C13 ClothingSystem stubs in F819. Obligations #20/#21 (typed structs) in F819. #28 (NullKnickersSystem) in F819. #22 (IComableUtilities/ICounterUtilities consolidation) in F825. #33 (NullComHandler) in F825. Each Grep scoped to specific allocated file
+- **Rationale**: Groups eight specific-assignment constraints into one AC. Verifies domain routing across F819 (clothing + tooling merged), F825 (DI/consolidation)
 - **Note**: All eight individual checks must pass (AND conjunction)
 
 **AC#11: Next Feature number incremented past all allocated IDs (C12)**
@@ -436,17 +436,15 @@ Example:
 - **Derivation**: Per SSOT (full-csharp-architecture.md:249-251), F825's subsystem-scoped Step 2b E2E covers DI integration / cross-subsystem wiring (its own subsystem deliverable). AC#20 verifies all 7 sub-features have CP-2 E2E; AC#12 verifies that F825's CP-2 E2E is specifically for DI integration (not just a generic checkpoint). AC#6 verifies Step 2c in F826
 - **Rationale**: Ensures F825's CP-2 E2E entry is substantively correct (DI integration scope), not merely present. Complements AC#6 (Step 2c in F826) and AC#20 (CP-2 E2E in all 7 sub-features)
 
-**AC#13: Additional CALL-derived Predecessor dependency: F820 has F819 as Predecessor (C5)**
-- **Test**: `Grep("Predecessor.*F819", "pm/features/feature-820.md")` -- verify F820 (Clothing Extended) has F819 (Clothing Core) as Predecessor
-- **Expected**: Pattern "Predecessor.*F819" matches in feature-820.md
-- **Derivation**: Technical Design CALL analysis shows CLOTHES_SYSTEM.ERB and CLOTHES_Cosplay.ERB call functions defined in CLOTHES.ERB, requiring F819 to be a Predecessor of F820. Complements AC#5 (F822→F821 Weather→Pregnancy) to provide broader verification of the CALL-derived dependency graph
-- **Rationale**: Satisfies C5 more comprehensively. AC#5 verified the cross-subsystem (Weather→Pregnancy) dependency; AC#13 verifies the intra-subsystem (Clothing Core→Extended) dependency. Together they cover two distinct CALL-analysis-derived edges
+**AC#13: Additional CALL-derived Predecessor dependency: F820 has F819 as Predecessor (C5) — [N/A] F820 merged into F819 (欠番)**
+- **Note**: F820 was merged into F819; this AC is N/A. The Clothing Extended scope (CLOTHES_SYSTEM.ERB, CLOTHES_Cosplay.ERB) is now part of F819 directly. The intra-subsystem dependency is resolved by the merge.
+- **Status**: [N/A]
 
 **AC#14: F825 (DI Integration) has all Phase 22 sub-feature Predecessors (C5)**
-- **Test**: `Grep("Predecessor.*F81[9]|Predecessor.*F82[0-4]", "pm/features/feature-825.md", output_mode="count")` -- count matching Predecessor rows (not files)
-- **Expected**: Exactly 6 matches (line count), confirming F825 lists all sub-feature predecessors. Each Predecessor must appear on a separate table row in the Dependencies section (one row per Predecessor), consistent with feature-template.md format
-- **Derivation**: Technical Design specifies F825 depends on all F819-F824 (DI Integration requires all subsystem interfaces to be defined). `count_equals 6` enforces the complete fan-in constraint. AC#5 (cross-subsystem), AC#13 (intra-subsystem), and AC#14 (integration fan-in) together cover three distinct dependency graph patterns. Uses `output_mode="count"` to count matching lines within a single file (default `files_with_matches` would return 0 or 1)
-- **Rationale**: Satisfies C5 for the integration layer. F825 is the convergence point of all Phase 22 sub-features; `count_equals 6` ensures no Predecessor is omitted
+- **Test**: `Grep("Predecessor.*F81[9]|Predecessor.*F82[1-4]", "pm/features/feature-825.md", output_mode="count")` -- count matching Predecessor rows (not files)
+- **Expected**: Exactly 5 matches (line count), confirming F825 lists all active sub-feature predecessors (F819, F821-F824). F820 is 欠番 and excluded. Each Predecessor must appear on a separate table row in the Dependencies section (one row per Predecessor), consistent with feature-template.md format
+- **Derivation**: F820 merged into F819 (欠番). F825 depends on all active sub-features: F819, F821-F824 (5 total). `count_equals 5` enforces the complete fan-in constraint. AC#5 (cross-subsystem) and AC#14 (integration fan-in) cover distinct dependency graph patterns. Uses `output_mode="count"` to count matching lines within a single file (default `files_with_matches` would return 0 or 1)
+- **Rationale**: Satisfies C5 for the integration layer. F825 is the convergence point of all Phase 22 sub-features; `count_equals 5` ensures no active Predecessor is omitted
 
 **AC#15: Counter Redux carry-forward obligations appended to F813 Mandatory Handoffs with representative obligation numbers**
 - **Test**: (1) `Grep("Counter Redux", "pm/features/feature-813.md")` -- verify section label exists. (2) `Grep("obligation.*#2[^0-9]|obligation.*#19[^0-9]|obligation.*#35[^0-9]", "pm/features/feature-813.md")` -- verify representative obligations present. (3) `Grep(pm/features/feature-813.md, pattern="obligation.*#10[^0-9]")` -- verify mid-batch obligation present. (4) `Grep(pm/features/feature-813.md, pattern="GetNWithVisitor")` -- verify separately-tracked obligation transfer
@@ -455,10 +453,10 @@ Example:
 - **Rationale**: Ensures carry-forward obligations are actually transferred with content, not just triaged in feature-814.md. GetNWithVisitor check covers the one obligation outside the 35-item list that routes to F813
 
 **AC#16: F826 (Post-Phase Review) has all Phase 22 implementation sub-features as Predecessors**
-- **Test**: `Grep("Predecessor.*F81[9]|Predecessor.*F82[0-5]", "pm/features/feature-826.md", output_mode="count")` -- count matching Predecessor rows (not files)
-- **Expected**: Exactly 7 matches (line count: F819-F825), confirming Post-Phase Review waits for all implementation sub-features
-- **Derivation**: Technical Design dependency table (line 492) specifies F826 Predecessors include F814 + all F819-F825. Without this AC, F826 could be created with only F814 as Predecessor, allowing Post-Phase Review to run before implementation completes — violating the sequential Phase 22 constraint. Uses `output_mode="count"` to count matching lines within a single file (default `files_with_matches` would return 0 or 1)
-- **Rationale**: Ensures the Post-Phase Review transition feature correctly depends on all implementation sub-features. Complements AC#14 (F825 fan-in) with F826 fan-in
+- **Test**: `Grep("Predecessor.*F81[9]|Predecessor.*F82[1-5]", "pm/features/feature-826.md", output_mode="count")` -- count matching Predecessor rows (not files)
+- **Expected**: Exactly 6 matches (line count: F819, F821-F825), confirming Post-Phase Review waits for all active implementation sub-features; F820 is 欠番 and excluded
+- **Derivation**: F820 is 欠番 (merged into F819). F826 Predecessors include F814 + all active sub-features (F819, F821-F825 = 6 lines). Without this AC, F826 could be created with only F814 as Predecessor, allowing Post-Phase Review to run before implementation completes — violating the sequential Phase 22 constraint. Uses `output_mode="count"` to count matching lines within a single file (default `files_with_matches` would return 0 or 1)
+- **Rationale**: Ensures the Post-Phase Review transition feature correctly depends on all active implementation sub-features. Complements AC#14 (F825 fan-in) with F826 fan-in
 
 **AC#17: F827 (Phase 23 Planning) has F826 as Predecessor and contains Phase 23 reference**
 - **Test**: (1) `Grep("Predecessor.*F826", "pm/features/feature-827.md")` -- verify F826 as Predecessor. (2) `Grep("Phase 23", "pm/features/feature-827.md")` -- verify Phase 23 content reference
@@ -467,21 +465,21 @@ Example:
 - **Rationale**: Ensures Pipeline Continuity philosophy: "each phase completion triggers next phase planning" requires both correct sequencing (Predecessor) and substantive content (Phase 23 reference)
 
 **AC#18: Equivalence test task in all implementation sub-features (C3)**
-- **Test**: `Grep("equivalence.*test", feature-{819..825}.md)` -- count files_with_matches == 7
-- **Expected**: All 7 implementation sub-features contain an equivalence test task row
-- **Derivation**: AC#1 fixes the sub-feature count at exactly 7 (F819-F825). C3 mandates equivalence test tasks per `docs/architecture/migration/phase-20-27-game-systems.md:375`
+- **Test**: `Grep("equivalence.*test", feature-{819..825}.md)` -- count files_with_matches == 6
+- **Expected**: All 6 active implementation sub-features contain an equivalence test task row (F820 is 欠番; not expected)
+- **Derivation**: AC#1 fixes the sub-feature count at exactly 6 (F819, F821-F825). C3 mandates equivalence test tasks per `docs/architecture/migration/phase-20-27-game-systems.md:375`
 - **Rationale**: Satisfies C3. Scoped to feature-{819..825}.md
 
 **AC#19: Zero-debt AC in all implementation sub-features (C4)**
-- **Test**: `Grep("zero.*debt", feature-{819..825}.md)` -- count files_with_matches == 7
-- **Expected**: All 7 implementation sub-features contain a zero-debt AC
-- **Derivation**: AC#1 fixes the sub-feature count at exactly 7 (F819-F825). C4 mandates zero-debt AC per `docs/architecture/migration/phase-20-27-game-systems.md:376`
+- **Test**: `Grep("zero.*debt", feature-{819..825}.md)` -- count files_with_matches == 6
+- **Expected**: All 6 active implementation sub-features contain a zero-debt AC (F820 is 欠番; not expected)
+- **Derivation**: AC#1 fixes the sub-feature count at exactly 6 (F819, F821-F825). C4 mandates zero-debt AC per `docs/architecture/migration/phase-20-27-game-systems.md:376`
 - **Rationale**: Satisfies C4. Scoped to feature-{819..825}.md
 
 **AC#20: CP-2 E2E AC in all implementation sub-features (C14)**
-- **Test**: `Grep("CP-2 E2E checkpoint:", feature-{819..825}.md)` -- count files_with_matches == 7
-- **Expected**: All 7 implementation sub-features contain a subsystem-scoped CP-2 E2E AC. F825's CP-2 E2E covers DI integration / cross-subsystem wiring as its own subsystem-scoped Step 2b
-- **Derivation**: AC#1 fixes the sub-feature count at exactly 7 (F819-F825). C14 mandates CP-2 E2E AC per `docs/architecture/migration/phase-20-27-game-systems.md:377`. Per SSOT (full-csharp-architecture.md:249-251), each sub-feature owns its own Step 2b E2E
+- **Test**: `Grep("CP-2 E2E checkpoint:", feature-{819..825}.md)` -- count files_with_matches == 6
+- **Expected**: All 6 active implementation sub-features contain a subsystem-scoped CP-2 E2E AC (F820 is 欠番; not expected). F825's CP-2 E2E covers DI integration / cross-subsystem wiring as its own subsystem-scoped Step 2b
+- **Derivation**: AC#1 fixes the sub-feature count at exactly 6 (F819, F821-F825). C14 mandates CP-2 E2E AC per `docs/architecture/migration/phase-20-27-game-systems.md:377`. Per SSOT (full-csharp-architecture.md:249-251), each sub-feature owns its own Step 2b E2E
 - **Rationale**: Satisfies C14. Scoped to feature-{819..825}.md
 
 **AC#21: Task 1 CALL analysis output file exists**
@@ -514,7 +512,7 @@ Example:
 
 | Goal Item | Description | Covering AC(s) |
 |:---------:|-------------|:---------------:|
-| 1 | Create 7 implementation sub-features (F819-F825) | AC#1, AC#2, AC#4, AC#7, AC#8, AC#10, AC#11, AC#12, AC#18, AC#19, AC#20, AC#23 |
+| 1 | Create 6 implementation sub-features (F819, F821-F825; F820 欠番) | AC#1, AC#2, AC#4, AC#7, AC#8, AC#10, AC#11, AC#12, AC#18, AC#19, AC#20, AC#23 |
 | 2 | Create 2 transition features (Post-Phase Review Phase 22 + Phase 23 Planning) | AC#3, AC#6, AC#16, AC#17 |
 | 3 | Correct inter-feature Predecessor dependencies from CALL/TRYCALL/CALLFORM analysis | AC#5, AC#13, AC#14, AC#21, AC#24 |
 | 4 | Triage all 35 deferred obligations | AC#6, AC#9, AC#10, AC#15, AC#22 |
@@ -529,16 +527,16 @@ Example:
 
 The implementation follows the F783 planning pattern adapted for Phase 22's 8-subsystem scope: **CALL Graph Analysis → Volume-Informed Grouping → Obligation Triage → DRAFT File Creation → Index/Registry Updates**.
 
-Phase 22 has 14 ERB files across 8 natural subsystems totaling ~9,264 lines. The mandatory Sub-Feature Dependency Analysis procedure (`docs/architecture/migration/full-csharp-architecture.md:95-108`) requires empirical CALL/TRYCALL/CALLFORM analysis before DRAFT creation to derive inter-feature Predecessor dependencies. The known cross-subsystem dependency (PREGNACY_S.ERB:426 calls `子供気温耐性取得` defined in 天候.ERB:822) requires the Weather sub-feature to be a Predecessor of the Pregnancy sub-feature.
+Phase 22 has 14 ERB files across 8 natural subsystems totaling ~9,264 lines. The mandatory Sub-Feature Dependency Analysis procedure (`docs/architecture/migration/full-csharp-architecture.md:95-108`) requires empirical CALL/TRYCALL/CALLFORM analysis before DRAFT creation to derive inter-feature Predecessor dependencies. The known cross-subsystem dependency (PREGNACY_S.ERB:426 calls `子供気温耐性取得` defined in 天候.ERB:822) requires the Weather sub-feature to be a Predecessor of the Pregnancy sub-feature. Task 1 CALL analysis also revealed a mutual dependency between F819 (Clothing Core) and F820 (Clothing Extended), triggering the STOP gate; user resolved by merging F820 into F819 (F820 = 欠番).
 
-**Feature ID Allocation (F819-F827, 9 total)**
+**Feature ID Allocation (F819-F827, 8 active; F820 欠番)**
 
 Starting from Next Feature number 819 (current value in index-features.md):
 
 | Feature | Subsystem | Source Files | Approx Lines | Type |
 |---------|-----------|--------------|:------------:|------|
-| F819 | Clothing Core | CLOTHES.ERB, CLOTHE_EFFECT.ERB | ~2,284 | erb |
-| F820 | Clothing Extended | CLOTHES_SYSTEM.ERB, CLOTHES_Cosplay.ERB | ~1,381 | erb |
+| F819 | Clothing Core + Extended | CLOTHES.ERB, CLOTHE_EFFECT.ERB, CLOTHES_SYSTEM.ERB, CLOTHES_Cosplay.ERB | ~3,665 | erb |
+| F820 | (欠番 — merged into F819) | - | - | - |
 | F821 | Weather System | 天候.ERB | ~839 | erb |
 | F822 | Pregnancy System | PREGNACY_S.ERB, PREGNACY_S_CHILD_MOVEMENT.ERB, PREGNACY_S_EVENT.ERB, PREGNACY_S_EVENT0.ERB | ~2,534 | erb |
 | F823 | Room & Stain | ROOM_SMELL.ERB, STAIN.ERB | ~1,440 | erb |
@@ -549,7 +547,7 @@ Starting from Next Feature number 819 (current value in index-features.md):
 
 **Next Feature number after allocation: 828**
 
-Note: Clothing is split into two features (F819 Core + F820 Extended) because 3,665 lines with IKnickersSystem full implementation + ClothingSystem.cs stub completion + Roslynator investigation would exceed the 5-12 AC / 3-7 Task granularity limits if combined. F820 (Clothing Extended) absorbs the Roslynator investigation task, and F825 (Relationships & DI Integration) owns CP-2 Step 2b, keeping these infrastructure concerns separate from content migration.
+Note: Clothing was originally split into two features (F819 Core + F820 Extended), but F820 was merged into F819 (F820 欠番) per merge decision. F819 now covers all 4 clothing ERB files (CLOTHES.ERB, CLOTHE_EFFECT.ERB, CLOTHES_SYSTEM.ERB, CLOTHES_Cosplay.ERB, ~3,665 lines) including IKnickersSystem full implementation, ClothingSystem.cs stub completion, and Roslynator investigation task. F825 (Relationships & DI Integration) owns CP-2 Step 2b, keeping infrastructure concerns separate from content migration.
 
 Note: F825's DI Integration scope (Null*Service obligations, IComHandler, consolidation) is supporting infrastructure for Phase 22 completion, not a 9th subsystem per Philosophy scope. The Relationships subsystem (続柄.ERB) is the sole Phase-22-SSOT subsystem in F825; DI Integration enables cross-subsystem wiring required for Phase 22 closure.
 
@@ -559,14 +557,14 @@ The mandatory 4-step CALL analysis (Step 1: Grep CALL/TRYCALL/CALLFORM; Step 2: 
 
 | Sub-Feature | Predecessor(s) | Dependency Basis |
 |-------------|----------------|------------------|
-| F819 (Clothing Core) | F814 | No Phase 22 internal calls; ClothingSystem.cs stubs pre-exist |
-| F820 (Clothing Extended) | F814, **F819** | CLOTHES_SYSTEM.ERB and CLOTHES_Cosplay.ERB call functions defined in CLOTHES.ERB |
+| F819 (Clothing Core + Extended) | F814 | No Phase 22 internal calls; all 4 clothing files merged; CLOTHES_SYSTEM.ERB and CLOTHES_Cosplay.ERB intra-feature dependency resolved by merge |
+| F820 (欠番) | - | Merged into F819 |
 | F821 (Weather System) | F814 | 天候.ERB is a callee only within Phase 22 scope; no Phase 22 internal deps |
 | F822 (Pregnancy System) | F814, **F821** | PREGNACY_S.ERB:426 calls `子供気温耐性取得` defined in 天候.ERB:822 (CRITICAL cross-subsystem dep) |
 | F823 (Room & Stain) | F814 | ROOM_SMELL.ERB and STAIN.ERB are independent; NTR smell functions are internal SET, no external CALL |
 | F824 (Sleep & Menstrual) | F814 | 睡眠深度.ERB and 生理機能追加パッチ.ERB are independent; no Phase 22 internal CALL deps |
-| F825 (Relationships & DI) | F814, **F819**, **F820**, **F821**, **F822**, **F823**, **F824** | DI Integration requires all subsystem interfaces to be defined; 続柄.ERB relationships are used by clothing/pregnancy contexts |
-| F826 (Post-Phase Review 22) | F814, **F819**, **F820**, **F821**, **F822**, **F823**, **F824**, **F825** | Post-Phase Review runs after all implementation sub-features complete |
+| F825 (Relationships & DI) | F814, **F819**, **F821**, **F822**, **F823**, **F824** | DI Integration requires all subsystem interfaces to be defined; 続柄.ERB relationships are used by clothing/pregnancy contexts; F820 欠番 (merged into F819) |
+| F826 (Post-Phase Review 22) | F814, **F819**, **F821**, **F822**, **F823**, **F824**, **F825** | Post-Phase Review runs after all active implementation sub-features complete; F820 欠番 |
 | F827 (Phase 23 Planning) | **F826** | Planning only triggers after Post-Phase Review passes |
 
 Note: PREGNACY_S.ERB also references functions from 体設定.ERB and 多生児パッチ.ERB (external to Phase 22). These are not Phase 22 Predecessor relationships; they require interface stubs or cross-phase dependency documentation in F822.
@@ -645,7 +643,7 @@ Triage into 3 buckets: Phase 22 scope, Counter Redux (carry-forward), cross-cutt
   - Inter-feature Predecessor rows derived from CALL analysis (Step 3 of mandatory procedure)
   - Obligation assignments from triage table above
 - F819 additionally owns: IKnickersSystem full implementation (C9), ClothingSystem.cs stub completion (C13), NullKnickersSystem (obligation #28), CFlagIndex typed struct (obligation #20), EquipIndex typed struct (obligation #21)
-- F820 additionally owns: Roslynator investigation (C8)
+- F819 additionally owns (from F820 merge): Roslynator investigation (C8), CLOTHES_SYSTEM.ERB, CLOTHES_Cosplay.ERB
 - F825 additionally owns: CP-2 E2E for DI integration (its subsystem-scoped Step 2b), all Null*Service obligations (#24-27, #29-30, #33), IComHandler DI registration (#7), consolidation (#22)
 - F826 (Post-Phase Review Phase 22): type `infra`; owns CP-2 Step 2c E2E checkpoint (C7), obligation #1 re-triage, obligation #32 (ERB boundary verification)
 - F827 (Phase 23 Planning): type `research`
@@ -663,26 +661,26 @@ Triage into 3 buckets: Phase 22 scope, Counter Redux (carry-forward), cross-cutt
 
 | AC# | How to Satisfy |
 |:---:|----------------|
-| 1 | Phase 3 creates F819-F825 (7 implementation DRAFTs). Glob checks for each of the 7 specific files (feature-819.md through feature-825.md). count_equals 7 satisfied |
-| 2 | Phase 5 creates `### Phase 22: State Systems` section in index-features.md listing F819-F827. Grep("### Phase 22: State Systems", index-features.md) returns match |
+| 1 | Phase 3 creates F819, F821-F825 (6 active implementation DRAFTs; F820 欠番). Glob checks for each of the 6 specific files. count_equals 6 satisfied |
+| 2 | Phase 5 creates `### Phase 22: State Systems` section in index-features.md listing F819, F821-F827. Grep("### Phase 22: State Systems", index-features.md) returns match |
 | 3 | Phase 3 creates F826 (type: infra) and F827 (type: research). Glob existence check for both files AND Grep("Type: infra", feature-826.md) AND Grep("Type: research", feature-827.md) all pass |
 | 4 | Phase 3 assigns all 14 ERB filenames to DRAFTs per Feature Allocation table. Grep for each of the 14 filenames across sub-feature DRAFTs confirms presence in at least one file |
 | 5 | Phase 3 assigns F821 as Predecessor of F822 (Weather -> Pregnancy CALL dependency). Grep("Predecessor.*F821", feature-822.md) returns match. Note: Task 1 feeds CALL data into Task 3; AC#5 verifies the pre-known F822→F821 edge created by Task 3, not Task 1's dynamic call graph output (procedurally enforced via Task 3 STOP gate; see Review Notes [resolved-applied] iter7) |
 | 6 | F826 (Post-Phase Review Phase 22) includes CP-2 Step 2c E2E checkpoint task. Grep("CP-2 Step 2c", feature-826.md) returns match |
-| 7 | Phase 3 creates DRAFTs with "Phase 22: State Systems" philosophy per C1. Grep scoped to feature-{819..825}.md returns count_equals 7 files_with_matches |
-| 8 | Phase 3 creates DRAFTs with debt resolution task (Remove.*TODO.*FIXME.*HACK). Grep scoped to feature-{819..825}.md returns count_equals 7 files_with_matches |
+| 7 | Phase 3 creates DRAFTs with "Phase 22: State Systems" philosophy per C1. Grep scoped to feature-{819..825}.md returns count_equals 6 files_with_matches (F820 欠番) |
+| 8 | Phase 3 creates DRAFTs with debt resolution task (Remove.*TODO.*FIXME.*HACK). Grep scoped to feature-{819..825}.md returns count_equals 6 files_with_matches (F820 欠番) |
 | 9 | Phase 4 adds "## Obligation Triage" section to feature-814.md with all 35 obligation destinations documented. Section header matches AND representative obligations (#1, #7, #8, #23, #24, #35) documented with destinations, covering all 4 triage buckets |
-| 10 | F819 assigns IKnickersSystem (C9), ClothingSystem stubs (C13), CFlagIndex (#20), EquipIndex (#21), NullKnickersSystem (#28); F820 assigns Roslynator (C8); F825 assigns IComableUtilities consolidation (#22), NullComHandler (#33). Eight scoped Grep checks all match. matches confirmed |
+| 10 | F819 assigns IKnickersSystem (C9), ClothingSystem stubs (C13), CFlagIndex (#20), EquipIndex (#21), NullKnickersSystem (#28), Roslynator (C8, from F820 merge); F825 assigns IComableUtilities consolidation (#22), NullComHandler (#33). Eight scoped Grep checks all match. matches confirmed |
 | 11 | Phase 5 updates "Next Feature number" to 828 (819 + 9 allocated features = 828). Grep("Next Feature number.*828", index-features.md) returns match |
 | 12 | F825 (Relationships & DI Integration) includes CP-2 E2E checkpoint for DI integration / cross-subsystem wiring (its subsystem-scoped Step 2b). Grep("CP-2.*E2E.*DI|DI.*integration.*E2E", feature-825.md) returns match |
-| 13 | F820 (Clothing Extended) has F819 (Clothing Core) as Predecessor per CALL analysis. Grep("Predecessor.*F819", feature-820.md) returns match |
-| 14 | F825 (DI Integration) has all 6 Phase 22 sub-feature Predecessors per Technical Design. Grep for Predecessor F819-F824 in feature-825.md returns count_equals 6 |
+| 13 | [N/A] F820 merged into F819 (欠番). Intra-subsystem dependency resolved by merge. AC status: [N/A] |
+| 14 | F825 (DI Integration) has all 5 active Phase 22 sub-feature Predecessors per Technical Design (F819, F821-F824). Grep for Predecessor F819/F821-F824 in feature-825.md returns count_equals 5 |
 | 15 | Phase 4 appends Counter Redux carry-forward obligations to F813 Mandatory Handoffs with representative obligation numbers + GetNWithVisitor transfer. Grep("Counter Redux", feature-813.md) AND representative obligations (#2, #19, #35) match AND GetNWithVisitor match |
-| 16 | Phase 3 creates F826 with all Phase 22 implementation sub-feature Predecessors (F819-F825). Grep for Predecessor F819-F825 in feature-826.md returns count_equals 7 |
+| 16 | Phase 3 creates F826 with all active Phase 22 implementation sub-feature Predecessors (F819, F821-F825). Grep for Predecessor F819/F821-F825 in feature-826.md returns count_equals 6 (F820 欠番) |
 | 17 | Phase 3 creates F827 with F826 as Predecessor and Phase 23 content reference. Grep("Predecessor.*F826", feature-827.md) AND Grep("Phase 23", feature-827.md) both match |
-| 18 | Phase 3 creates DRAFTs with equivalence test task (equivalence.*test). Grep scoped to feature-{819..825}.md returns count_equals 7 files_with_matches |
-| 19 | Phase 3 creates DRAFTs with zero-debt AC (zero.*debt). Grep scoped to feature-{819..825}.md returns count_equals 7 files_with_matches |
-| 20 | Phase 3 creates DRAFTs with CP-2 E2E AC (CP-2 E2E checkpoint:). Grep scoped to feature-{819..825}.md returns count_equals 7 (each sub-feature owns its own subsystem-scoped Step 2b E2E per SSOT) files_with_matches |
+| 18 | Phase 3 creates DRAFTs with equivalence test task (equivalence.*test). Grep scoped to feature-{819..825}.md returns count_equals 6 files_with_matches (F820 欠番) |
+| 19 | Phase 3 creates DRAFTs with zero-debt AC (zero.*debt). Grep scoped to feature-{819..825}.md returns count_equals 6 files_with_matches (F820 欠番) |
+| 20 | Phase 3 creates DRAFTs with CP-2 E2E AC (CP-2 E2E checkpoint:). Grep scoped to feature-{819..825}.md returns count_equals 6 (each active sub-feature owns its own subsystem-scoped Step 2b E2E per SSOT; F820 欠番) files_with_matches |
 | 21 | Task 1 creates `_out/tmp/phase22-callgraph.txt`. Glob existence check confirms file present after CALL analysis completes |
 | 22 | Task 3 creates F825 with all 6 Null*Service names (NullCounterUtilities, NullWcSexHaraService, NullNtrUtilityService, NullTrainingCheckService, NullEjaculationProcessor, NullKojoMessageService). Six Grep checks on feature-825.md all match (AND conjunction) |
 | 23 | Task 2 creates `_out/tmp/phase22-metrics.txt`. Glob existence check confirms file present after metrics analysis completes |
@@ -692,8 +690,8 @@ Triage into 3 buckets: Phase 22 scope, Counter Redux (carry-forward), cross-cutt
 
 | Decision | Options Considered | Selected | Rationale |
 |----------|-------------------|----------|-----------|
-| Clothing split into 2 vs 1 feature | 1 feature (3,665 lines, all clothing ERBs) vs 2 features (Core: CLOTHES.ERB + CLOTHE_EFFECT.ERB; Extended: CLOTHES_SYSTEM.ERB + CLOTHES_Cosplay.ERB) | **2 features (F819+F820)** | 3,665 lines + IKnickersSystem full impl + ClothingSystem.cs 628-line stub completion + Roslynator investigation would exceed 5-12 AC / 3-7 Task granularity. CLOTHES.ERB (1,999 lines) + CLOTHE_EFFECT.ERB (285 lines) form a natural Core unit; CLOTHES_SYSTEM.ERB (964) + CLOTHES_Cosplay.ERB (417) form Extended mechanics. CALL analysis will confirm F820→F819 dependency (clothing mechanics call clothing state) |
-| Roslynator investigation placement | F819 (Clothing Core), F820 (Clothing Extended), F825 (Relationships & DI), standalone feature | **F820 (Clothing Extended)** | Roslynator investigation is a dev tooling task orthogonal to game content; placing it in the Extended feature keeps Core focused on IKnickersSystem and ClothingSystem.cs completion. F820 is otherwise the smallest Clothing feature and can absorb the tooling investigation |
+| Clothing split into 2 vs 1 feature | 1 feature (3,665 lines, all clothing ERBs) vs 2 features (Core: CLOTHES.ERB + CLOTHE_EFFECT.ERB; Extended: CLOTHES_SYSTEM.ERB + CLOTHES_Cosplay.ERB) | **1 feature (F819, F820 欠番)** | Task 1 CALL analysis revealed mutual dependency between F819 and F820 (F819↔F820). Per STOP gate in Task 3: user decided to merge into single F819; F820 is 欠番. F819 now covers all 4 clothing ERB files (~3,665 lines total) |
+| Roslynator investigation placement | F819 (Clothing Core), F820 (Clothing Extended), F825 (Relationships & DI), standalone feature | **F819 (post-merge)** | Originally planned for F820 (Clothing Extended); after F820 merged into F819 (欠番), Roslynator investigation moves to F819 |
 | CP-2 Step 2b vs Step 2c placement | 2b in each sub-feature; 2c in Post-Phase Review | **2b in each sub-feature (F819-F825), 2c in F826** | Architecture requirement per SSOT (full-csharp-architecture.md:249-251): Step 2b is subsystem-scoped E2E at each sub-feature completion. Each of F819-F825 adds its own subsystem E2E (Clothing→State change, Weather→weather state, etc.). F825's Step 2b covers DI integration / cross-subsystem wiring. F826 (Post-Phase Review) owns Step 2c per `docs/architecture/migration/phase-20-27-game-systems.md:299,354-367` |
 | Null*Service obligations routing | Scatter to each owning sub-feature vs consolidate in DI integration feature | **Consolidate in F825 (Relationships & DI Integration)** | 8 Null*Service implementations (#24-30, #33) share identical implementation pattern (empty implementations of deferred interfaces). Consolidating in F825 eliminates cross-feature coordination; DI integration is the natural point where all service registrations must be resolved |
 | Weather System grouping | Combined with Room & Stain vs standalone feature | **Standalone (F821)** | 天候.ERB (839 lines) is a Predecessor of Pregnancy (F822). Creating it as a standalone feature clarifies the dependency chain and avoids making Room & Stain depend on Weather unnecessarily |
@@ -728,8 +726,8 @@ Phase 22: State Systems -- [subsystem description]
 
 ### Tasks (stub)
 | Task# | AC# | Description | Tag | Status |
-| 1 | - | Remove TODO/FIXME/HACK comments from migrated code | | [ ] |
-| 2 | - | Write equivalence tests against ERB baseline | | [ ] |
+| 1 | - | Remove TODO/FIXME/HACK comments from migrated code | | [x] |
+| 2 | - | Write equivalence tests against ERB baseline | | [x] |
 
 ### AC (stub)
 | AC# | Description | ... |
@@ -750,18 +748,65 @@ Phase 22: State Systems -- [subsystem description]
 
 ---
 
+## Obligation Triage
+
+All 35 deferred obligations from F813, triaged into 4 buckets.
+
+**Phase 22 scope (13 items)**: Assigned to implementation sub-features.
+- obligation #7: IComHandler DI registration strategy → F825 (Relationships & DI Integration)
+- obligation #20: CFlagIndex typed struct → F819 (Clothing)
+- obligation #21: EquipIndex typed struct → F819 (Clothing)
+- obligation #22: IComableUtilities/ICounterUtilities consolidation → F825 (Relationships & DI Integration)
+- obligation #24: NullCounterUtilities concrete implementation → F825 (Relationships & DI Integration)
+- obligation #25: NullWcSexHaraService concrete implementation → F825 (Relationships & DI Integration)
+- obligation #26: NullNtrUtilityService concrete implementation → F825 (Relationships & DI Integration)
+- obligation #27: NullTrainingCheckService concrete implementation → F825 (Relationships & DI Integration)
+- obligation #28: NullKnickersSystem concrete implementation → F819 (Clothing)
+- obligation #29: NullEjaculationProcessor concrete implementation → F825 (Relationships & DI Integration)
+- obligation #30: NullKojoMessageService concrete implementation → F825 (Relationships & DI Integration)
+- obligation #32: ERB file boundary != domain boundary /fc verification step → F826 (Post-Phase Review Phase 22)
+- obligation #33: NullComHandler concrete implementation → F825 (Relationships & DI Integration)
+
+**Counter Redux carry-forward (20 items)**: Appended to F813 Mandatory Handoffs.
+- obligation #2: IShrinkageSystem runtime implementation → F813 (Counter Redux carry-forward)
+- obligation #3: IEngineVariables GetTime/SetTime behavioral override → F813 (Counter Redux carry-forward)
+- obligation #4: WcCounterMessageSex constructor complexity reduction → F813 (Counter Redux carry-forward)
+- obligation #5: CFlag/Cflag naming normalization → F813 (Counter Redux carry-forward)
+- obligation #6: WC_VA_FITTING caller documentation → F813 (Counter Redux carry-forward)
+- obligation #8: WcCounterMessage constructor bloat (12 params) → F813 (Counter Redux carry-forward)
+- obligation #9: WcCounterMessageTease behavioral test coverage → F813 (Counter Redux carry-forward)
+- obligation #10: NOITEM photography bug (ERB original bug) → F813 (Counter Redux carry-forward)
+- obligation #11: KOJO 3-param overload verification → F813 (Counter Redux carry-forward)
+- obligation #12: WcCounterMessageSex duplicate constant names → F813 (Counter Redux carry-forward)
+- obligation #13: Dispatch() dual offender convention unification → F813 (Counter Redux carry-forward)
+- obligation #14: IWcCounterMessageTease interface extraction → F813 (Counter Redux carry-forward)
+- obligation #15: Character ID constant consolidation → F813 (Counter Redux carry-forward)
+- obligation #16: F807 AC#34 local function enforcement gap → F813 (Counter Redux carry-forward)
+- obligation #17: ICharacterStringVariables VariableStore implementation → F813 (Counter Redux carry-forward)
+- obligation #18: EXP_UP logic duplication → F813 (Counter Redux carry-forward)
+- obligation #19: ICounterSourceHandler ISP violation → F813 (Counter Redux carry-forward)
+- obligation #31: RotorOut IWcCounterMessageItem migration consideration → F813 (Counter Redux carry-forward)
+- obligation #34: IEngineVariables GetTime/SetTime NuGet version bump → F813 (Counter Redux carry-forward)
+- obligation #35: WcCounterMessageNtr class-level split → F813 (Counter Redux carry-forward)
+
+**User decision pending (1 item)**:
+- obligation #23: NtrReversalSource/NtrAgreeSource REGRESSION fix if found → F813 carry-forward (user decision required before further routing)
+
+**N+4 re-deferral (1 item)**:
+- obligation #1: N+4 --unit deprecation NOT_FEASIBLE re-deferral → F826 (Post-Phase Review Phase 22) for re-triage
+
 <!-- fc-phase-5-completed -->
 ## Tasks
 
 | Task# | AC# | Description | Tag | Status |
 |:-----:|:---:|-------------|:---:|:------:|
-| 1 | 21, 24 | Perform CALL/TRYCALL/CALLFORM/JUMP analysis across all 14 Phase 22 ERB files; confirm PREGNACY_S.ERB→天候.ERB dependency; identify all additional inter-sub-feature call directions; document in `_out/tmp/phase22-callgraph.txt` | | [ ] |
-| 2 | 4, 23 | Verify empirical line counts (`wc -l`) for all 14 Phase 22 ERB files; validate grouping decisions against granularity rules (5-12 ACs, 3-7 Tasks); document in `_out/tmp/phase22-metrics.txt`. Note: granularity applies to final sub-feature specs after /fc, not to initial DRAFTs (which have stub ACs/Tasks); Task 2 validates that ERB groupings ALLOW proper granularity, feeding into Task 3's DRAFT creation (AC#4 verification) | [I] | [ ] |
-| 3 | 1, 4, 5, 7, 8, 10, 12, 13, 14, 18, 19, 20, 22 | Create 7 implementation sub-feature DRAFT files (F819-F825): each with Type: erb, "Phase 22: State Systems" philosophy, assigned ERB files, CALL-derived Predecessor rows, debt resolution task stub, equivalence test task stub, zero-debt AC stub, subsystem-scoped CP-2 E2E AC stub per SSOT; F819 additionally owns IKnickersSystem full impl + ClothingSystem.cs stub completion + NullKnickersSystem + CFlagIndex (#20) + EquipIndex (#21); F820 owns Roslynator investigation; F825 owns CP-2 E2E for DI integration (its subsystem-scoped Step 2b) + all Null*Service obligations (#7, #22, #24-30, #33). **STOP gate**: If Task 1 CALL analysis reveals inter-sub-feature dependencies not covered by AC#5/13/14, or if CFlagIndex usage extends beyond CLOTHES*.ERB scope (obligation #20 routing to F819 invalidated), STOP and report to user before creating DRAFTs — user must decide whether to add new ACs or accept procedural-only enforcement | | [ ] |
-| 4 | 3, 6, 16, 17 | Create 2 transition feature DRAFT files: F826 (Type: infra, Post-Phase Review Phase 22) with CP-2 Step 2c E2E checkpoint task, obligation #1 re-triage + #32 ERB boundary verification, and all F819-F825 Predecessors; F827 (Type: research, Phase 23 Planning) with F826 as Predecessor and Phase 23 content. Note: index-features.md registration consolidated in Task 6 (single-owner for shared file) | | [ ] |
-| 5 | 9, 15 | Add "## Obligation Triage" section to feature-814.md documenting all 35 deferred obligation destinations (13 Phase 22 scope, 20 Counter Redux carry-forward, 1 user decision #23, 1 N+4 re-deferral #1) — each row must use "obligation #N: [description]" phrasing (colon-terminated) to satisfy AC#9 Grep patterns (colon prevents self-referential false-positive against AC table rows); append Counter Redux carry-forward items (#2-6, #8-19, #31, #34-35) to F813 Mandatory Handoffs under section label "Counter Redux carry-forward" (exact label required for AC#15 verification) — each entry must include "obligation #N" phrasing in the Issue column to satisfy AC#15 Grep patterns; also append obligation #23 (NtrReversalSource REGRESSION, user decision required) and GetNWithVisitor (INtrUtilityService full implementation, Counter Redux) to F813 Mandatory Handoffs separately | | [ ] |
-| 6 | 2, 11 | Add `### Phase 22: State Systems` section to index-features.md listing all 9 features (F819-F827, including transition features F826-F827) with bold-formatted non-[DONE] Predecessors per convention; update "Next Feature number" from 819 to 828. Sole owner of index-features.md modifications | | [ ] |
-| 7 | 1-24 | Verify all output files exist and are correctly formatted (AC pre-push check); commit and push to remote. Note: Task 7 is a verification pass — primary AC satisfaction is by Tasks 1-6 (creation tasks); Task 7 confirms all ACs as pre-push gate | | [ ] |
+| 1 | 21, 24 | Perform CALL/TRYCALL/CALLFORM/JUMP analysis across all 14 Phase 22 ERB files; confirm PREGNACY_S.ERB→天候.ERB dependency; identify all additional inter-sub-feature call directions; document in `_out/tmp/phase22-callgraph.txt` | | [x] |
+| 2 | 4, 23 | Verify empirical line counts (`wc -l`) for all 14 Phase 22 ERB files; validate grouping decisions against granularity rules (5-12 ACs, 3-7 Tasks); document in `_out/tmp/phase22-metrics.txt`. Note: granularity applies to final sub-feature specs after /fc, not to initial DRAFTs (which have stub ACs/Tasks); Task 2 validates that ERB groupings ALLOW proper granularity, feeding into Task 3's DRAFT creation (AC#4 verification) | [I] | [x] |
+| 3 | 1, 4, 5, 7, 8, 10, 12, 14, 18, 19, 20, 22 | Create 6 implementation sub-feature DRAFT files (F819, F821-F825; F820 欠番 per merge decision): each with Type: erb, "Phase 22: State Systems" philosophy, assigned ERB files, CALL-derived Predecessor rows, debt resolution task stub, equivalence test task stub, zero-debt AC stub, subsystem-scoped CP-2 E2E AC stub per SSOT; F819 additionally owns IKnickersSystem full impl + ClothingSystem.cs stub completion + NullKnickersSystem + CFlagIndex (#20) + EquipIndex (#21) + Roslynator investigation (from F820 merge) + CLOTHES_SYSTEM.ERB + CLOTHES_Cosplay.ERB; F825 owns CP-2 E2E for DI integration (its subsystem-scoped Step 2b) + all Null*Service obligations (#7, #22, #24-30, #33). **STOP gate**: If Task 1 CALL analysis reveals inter-sub-feature dependencies not covered by AC#5/14, or if CFlagIndex usage extends beyond CLOTHES*.ERB scope (obligation #20 routing to F819 invalidated), STOP and report to user before creating DRAFTs — user must decide whether to add new ACs or accept procedural-only enforcement | | [x] |
+| 4 | 3, 6, 16, 17 | Create 2 transition feature DRAFT files: F826 (Type: infra, Post-Phase Review Phase 22) with CP-2 Step 2c E2E checkpoint task, obligation #1 re-triage + #32 ERB boundary verification, and all F819-F825 Predecessors; F827 (Type: research, Phase 23 Planning) with F826 as Predecessor and Phase 23 content. Note: index-features.md registration consolidated in Task 6 (single-owner for shared file) | | [x] |
+| 5 | 9, 15 | Add "## Obligation Triage" section to feature-814.md documenting all 35 deferred obligation destinations (13 Phase 22 scope, 20 Counter Redux carry-forward, 1 user decision #23, 1 N+4 re-deferral #1) — each row must use "obligation #N: [description]" phrasing (colon-terminated) to satisfy AC#9 Grep patterns (colon prevents self-referential false-positive against AC table rows); append Counter Redux carry-forward items (#2-6, #8-19, #31, #34-35) to F813 Mandatory Handoffs under section label "Counter Redux carry-forward" (exact label required for AC#15 verification) — each entry must include "obligation #N" phrasing in the Issue column to satisfy AC#15 Grep patterns; also append obligation #23 (NtrReversalSource REGRESSION, user decision required) and GetNWithVisitor (INtrUtilityService full implementation, Counter Redux) to F813 Mandatory Handoffs separately | | [x] |
+| 6 | 2, 11 | Add `### Phase 22: State Systems` section to index-features.md listing all 8 active features (F819, F821-F827; F820 欠番 excluded, including transition features F826-F827) with bold-formatted non-[DONE] Predecessors per convention; update "Next Feature number" from 819 to 828. Sole owner of index-features.md modifications | | [x] |
+| 7 | 1-24 | Verify all output files exist and are correctly formatted (AC pre-push check); commit and push to remote. Note: Task 7 is a verification pass — primary AC satisfaction is by Tasks 1-6 (creation tasks); Task 7 confirms all ACs as pre-push gate | | [x] |
 
 <!-- AC Coverage Rule: Every Task must be verified by at least one AC. Multiple ACs per Task allowed. -->
 
@@ -799,7 +844,7 @@ Phase 22: State Systems -- [subsystem description]
 
 1. **Task 1 (CALL Analysis)**: Must complete before Task 3 -- DRAFT files require correct Predecessor rows derived from CALL analysis. [I] tag: exact additional dependencies unknown until Grep results examined.
 2. **Task 2 (Metrics)**: Must complete before Task 3 -- validate grouping decisions with actual line counts. [I] tag: actual counts may differ from Technical Design estimates (~9,264 total).
-3. **Task 3 (Implementation DRAFTs F819-F825)**: Depends on Tasks 1+2. Creates 7 files with CALL-derived Predecessor deps and all required content stubs. Do NOT use the DRAFT content structure from Technical Design directly -- Tasks 1+2 may revise Predecessor deps.
+3. **Task 3 (Implementation DRAFTs F819, F821-F825)**: Depends on Tasks 1+2. Creates 6 files with CALL-derived Predecessor deps and all required content stubs (F820 欠番 per merge decision — CALL analysis revealed mutual F819↔F820 dependency). Do NOT use the DRAFT content structure from Technical Design directly -- Tasks 1+2 may revise Predecessor deps.
 4. **Task 4 (Transition DRAFTs F826-F827)**: Can run in parallel with Task 3 (no dependencies between implementation and transition DRAFTs). F826 Predecessor list must include all F819-F825 (known from Technical Design). Note: index-features.md registration is NOT Task 4's responsibility — consolidated in Task 6 to avoid shared-file conflicts.
 5. **Task 5 (Obligation Triage section)**: Can run in parallel with Tasks 3-4. Append to feature-814.md after Technical Design section. Append Counter Redux obligations to F813 per Technical Design.
 6. **Task 6 (Index Update)**: Depends on Tasks 3-4 completing -- all F819-F827 IDs and statuses must be known. Use bold formatting for non-[DONE] Predecessors per `docs/architecture/migration/full-csharp-architecture.md:106`.
@@ -810,25 +855,25 @@ Phase 22: State Systems -- [subsystem description]
 This is a `research` type feature. No C# build is required. Verification is file-existence and content-grep based per AC definitions.
 
 **Pre-push verification checklist**:
-- [ ] Glob for each of feature-{819..825}.md exists; count_equals 7 (AC#1)
-- [ ] `Grep("### Phase 22: State Systems", "pm/index-features.md")` matches AND `Grep("| F819 ||| F820 ||| F821 ||| F822 ||| F823 ||| F824 ||| F825 ||| F826 ||| F827 ", "pm/index-features.md")` gte 9 table row matches (AC#2)
+- [ ] Glob for each of feature-819.md, feature-821.md through feature-825.md exists; count_equals 6 (AC#1; F820 欠番)
+- [ ] `Grep("### Phase 22: State Systems", "pm/index-features.md")` matches AND `Grep("| F819 ||| F821 ||| F822 ||| F823 ||| F824 ||| F825 ||| F826 ||| F827 ", "pm/index-features.md")` gte 8 table row matches (AC#2; F820 欠番)
 - [ ] Glob for feature-826.md and feature-827.md exist; `Grep("Type: infra", "pm/features/feature-826.md")` AND `Grep("Type: research", "pm/features/feature-827.md")` match (AC#3)
 - [ ] All 14 ERB filenames appear in at least one sub-feature DRAFT (AC#4)
 - [ ] `Grep("Predecessor.*F821", "pm/features/feature-822.md")` matches (AC#5)
 - [ ] `Grep("CP-2 Step 2c", "pm/features/feature-826.md")` matches AND `Grep("obligation.*#1[^0-9]", "pm/features/feature-826.md")` matches AND `Grep("obligation.*#32[^0-9]", "pm/features/feature-826.md")` matches (AC#6)
-- [ ] `Grep("Phase 22: State Systems")` across feature-{819..825}.md returns count_equals 7 files_with_matches (AC#7)
-- [ ] Debt resolution `Grep("Remove.*TODO.*FIXME.*HACK")` scoped to feature-{819..825}.md, count_equals 7 (AC#8)
-- [ ] Equivalence test `Grep("equivalence.*test")` scoped to feature-{819..825}.md, count_equals 7 (AC#18)
-- [ ] Zero-debt AC `Grep("zero.*debt")` scoped to feature-{819..825}.md, count_equals 7 (AC#19)
-- [ ] CP-2 E2E `Grep("CP-2 E2E checkpoint:")` scoped to feature-{819..825}.md, count_equals 7 (AC#20)
+- [ ] `Grep("Phase 22: State Systems")` across feature-{819..825}.md returns count_equals 6 files_with_matches (AC#7; F820 欠番)
+- [ ] Debt resolution `Grep("Remove.*TODO.*FIXME.*HACK")` scoped to feature-{819..825}.md, count_equals 6 (AC#8; F820 欠番)
+- [ ] Equivalence test `Grep("equivalence.*test")` scoped to feature-{819..825}.md, count_equals 6 (AC#18; F820 欠番)
+- [ ] Zero-debt AC `Grep("zero.*debt")` scoped to feature-{819..825}.md, count_equals 6 (AC#19; F820 欠番)
+- [ ] CP-2 E2E `Grep("CP-2 E2E checkpoint:")` scoped to feature-{819..825}.md, count_equals 6 (AC#20; F820 欠番)
 - [ ] `Grep("## Obligation Triage", "pm/features/feature-814.md")` matches AND `Grep("obligation #1:|obligation #23:|obligation #35:", "pm/features/feature-814.md")` matches AND `Grep(pm/features/feature-814.md, pattern="obligation #24:")` matches AND `Grep(pm/features/feature-814.md, pattern="obligation #8:")` matches AND `Grep(pm/features/feature-814.md, pattern="obligation #7:")` matches (AC#9)
-- [ ] `Grep("IKnickersSystem", feature-819.md)` AND `Grep("Roslynator", feature-820.md)` AND `Grep("ClothingSystem.*stub", feature-819.md)` AND `Grep("CFlagIndex", feature-819.md)` AND `Grep("EquipIndex", feature-819.md)` AND `Grep("NullKnickersSystem", feature-819.md)` AND `Grep("IComableUtilities", feature-825.md)` AND `Grep("NullComHandler", feature-825.md)` all match (AC#10)
+- [ ] `Grep("IKnickersSystem", feature-819.md)` AND `Grep("Roslynator", feature-819.md)` AND `Grep("ClothingSystem.*stub", feature-819.md)` AND `Grep("CFlagIndex", feature-819.md)` AND `Grep("EquipIndex", feature-819.md)` AND `Grep("NullKnickersSystem", feature-819.md)` AND `Grep("IComableUtilities", feature-825.md)` AND `Grep("NullComHandler", feature-825.md)` all match (AC#10; Roslynator now in F819 per F820 merge)
 - [ ] `Grep("Next Feature number.*828", "pm/index-features.md")` matches (AC#11)
 - [ ] `Grep("CP-2.*E2E.*DI|DI.*integration.*E2E", "pm/features/feature-825.md")` matches (AC#12)
-- [ ] `Grep("Predecessor.*F819", "pm/features/feature-820.md")` matches (AC#13)
-- [ ] `Grep("Predecessor.*F81[9]|Predecessor.*F82[0-4]", "pm/features/feature-825.md")` count_equals 6 (AC#14)
+- [ ] [N/A] AC#13 — F820 merged into F819 (欠番); no verification required
+- [ ] `Grep("Predecessor.*F81[9]|Predecessor.*F82[1-4]", "pm/features/feature-825.md")` count_equals 5 (AC#14; F820 欠番)
 - [ ] `Grep("Counter Redux", "pm/features/feature-813.md")` matches AND `Grep("obligation.*#2[^0-9]|obligation.*#19[^0-9]|obligation.*#35[^0-9]", "pm/features/feature-813.md")` matches AND `Grep(pm/features/feature-813.md, pattern="obligation.*#10[^0-9]")` matches AND `Grep(pm/features/feature-813.md, pattern="GetNWithVisitor")` matches (AC#15)
-- [ ] `Grep("Predecessor.*F81[9]|Predecessor.*F82[0-5]", "pm/features/feature-826.md")` count_equals 7 (AC#16)
+- [ ] `Grep("Predecessor.*F81[9]|Predecessor.*F82[1-5]", "pm/features/feature-826.md")` count_equals 6 (AC#16; F820 欠番)
 - [ ] `Grep("Predecessor.*F826", "pm/features/feature-827.md")` matches AND `Grep("Phase 23", "pm/features/feature-827.md")` matches (AC#17)
 - [ ] Glob(`_out/tmp/phase22-callgraph.txt`) file exists (AC#21)
 - [ ] `Grep("PREGNACY_S|子供気温耐性取得", "_out/tmp/phase22-callgraph.txt")` matches (AC#24)
@@ -837,7 +882,7 @@ This is a `research` type feature. No C# build is required. Verification is file
 
 ### Success Criteria
 
-All 24 ACs pass pre-push verification. 9 new DRAFT files created (F819-F827). feature-814.md has Obligation Triage section. index-features.md has Phase 22 section with Next Feature number = 828. `_out/tmp/phase22-callgraph.txt` exists. `_out/tmp/phase22-metrics.txt` exists. feature-825.md contains all 6 Null*Service names.
+All 24 ACs pass pre-push verification (AC#13 = [N/A]). 8 new DRAFT files created (F819, F821-F827; F820 欠番). feature-814.md has Obligation Triage section. index-features.md has Phase 22 section with Next Feature number = 828. `_out/tmp/phase22-callgraph.txt` exists. `_out/tmp/phase22-metrics.txt` exists. feature-825.md contains all 6 Null*Service names.
 
 ### Error Handling
 
@@ -856,12 +901,12 @@ All 24 ACs pass pre-push verification. 9 new DRAFT files created (F819-F827). fe
 
 | Issue | Reason | Destination | Destination ID | Creation Task | Transferred | Result |
 |-------|--------|-------------|----------------|---------------|:-----------:|--------|
-| Counter Redux carry-forward obligations (#2-6, #8-19, #31, #34-35): 20 items of Phase 21 Counter System debt with no Phase 22 scope | No natural home in Phase 22 State Systems; must persist in F813 pending Counter Redux feature decision | Feature | F813 | Task 5 | [ ] | |
-| Obligation #23 (NtrReversalSource/NtrAgreeSource REGRESSION): user decision required before routing | Potential regression not yet confirmed; routing to implementation feature risks scope disruption | Feature | F813 | Task 5 | [ ] | |
-| GetNWithVisitor (INtrUtilityService full implementation): Counter Redux carry-forward | NTR_VISITOR.ERB not in Phase 22 scope; resolved-applied in Review Notes as Counter Redux routing | Feature | F813 | Task 5 | [ ] | |
-| Obligation #1 (N+4 --unit deprecation NOT_FEASIBLE re-deferral): review trigger not yet met | Re-deferral condition depends on test framework status at Phase 22 Review | Feature | F826 | Task 4 | [ ] | |
-| Obligation #32 (ERB file boundary != domain boundary verification step): review procedure enhancement | Most applicable at Post-Phase Review when all Phase 22 ERB files have been migrated | Feature | F826 | Task 4 | [ ] | |
-| Phase 23 Planning execution | Phase 23 Planning cannot start until Post-Phase Review Phase 22 passes | Feature | F827 | Task 4 | [ ] | |
+| Counter Redux carry-forward obligations (#2-6, #8-19, #31, #34-35): 20 items of Phase 21 Counter System debt with no Phase 22 scope | No natural home in Phase 22 State Systems; must persist in F813 pending Counter Redux feature decision | Feature | F813 | Task 5 | [x] | 追記済み |
+| Obligation #23 (NtrReversalSource/NtrAgreeSource REGRESSION): user decision required before routing | Potential regression not yet confirmed; routing to implementation feature risks scope disruption | Feature | F813 | Task 5 | [x] | 追記済み |
+| GetNWithVisitor (INtrUtilityService full implementation): Counter Redux carry-forward | NTR_VISITOR.ERB not in Phase 22 scope; resolved-applied in Review Notes as Counter Redux routing | Feature | F813 | Task 5 | [x] | 追記済み |
+| Obligation #1 (N+4 --unit deprecation NOT_FEASIBLE re-deferral): review trigger not yet met | Re-deferral condition depends on test framework status at Phase 22 Review | Feature | F826 | Task 4 | [x] | 確認済み |
+| Obligation #32 (ERB file boundary != domain boundary verification step): review procedure enhancement | Most applicable at Post-Phase Review when all Phase 22 ERB files have been migrated | Feature | F826 | Task 4 | [x] | 確認済み |
+| Phase 23 Planning execution | Phase 23 Planning cannot start until Post-Phase Review Phase 22 passes | Feature | F827 | Task 4 | [x] | 作成済み |
 
 <!-- Transferred + Result columns (F811/F805 Lesson):
 - Transferred: [ ] = Not yet written / [x] = Content confirmed in destination (grep verified)
@@ -891,6 +936,18 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 
 | Timestamp | Event | Agent | Action | Result |
 |-----------|:-----:|-------|--------|--------|
+| 2026-03-04T13:30:00Z | Task 1 | researcher | CALL/TRYCALL/CALLFORM/JUMP analysis across 14 ERB files | phase22-callgraph.txt created; PREGNACY_S→天候 confirmed; F819↔F820 mutual dep found |
+| 2026-03-04T13:35:00Z | STOP-GATE | orchestrator | Task 3 STOP gate: F819→F820 mutual dependency not covered by AC#5/13/14 | User decided: merge F819+F820 into single F819 (Clothing), F820=欠番 |
+| 2026-03-04T13:40:00Z | Task 2 | researcher | wc -l metrics for 14 ERB files | phase22-metrics.txt created; total 9,264 lines; F819 merged=3,665 (MARGINAL) |
+| 2026-03-04T13:50:00Z | Task 3 | implementer | Create 6 implementation DRAFT files (F819, F821-F825) | SUCCESS; F820 欠番 |
+| 2026-03-04T13:50:00Z | Task 4 | implementer | Create 2 transition DRAFT files (F826, F827) | SUCCESS |
+| 2026-03-04T13:50:00Z | Task 5 | implementer | Obligation Triage section + F813 Counter Redux append | SUCCESS |
+| 2026-03-04T13:55:00Z | Task 6 | implementer | index-features.md Phase 22 section + Next Feature 828 | SUCCESS |
+| 2026-03-04T14:00:00Z | Task 7 | ac-tester | AC verification (all 24 ACs) | 22 PASS, 1 SKIP (AC#13), 1 FAIL (AC#2 gte 9→8 merge adjustment) |
+| 2026-03-04T14:10:00Z | DEVIATION | feature-reviewer | Step 8.1 Quality Review | NEEDS_REVISION: spec not updated for F820 merge (AC counts, Dependencies, Goal, Technical Design) |
+| 2026-03-04T14:20:00Z | Fix | implementer | Update spec for F820 merge (ACs, Goal, Technical Design, Dependencies) | SUCCESS |
+| 2026-03-04T14:30:00Z | Finalizer | finalizer | F814 [WIP] → [DONE]; 8 dependents updated | READY_TO_COMMIT |
+| 2026-03-04T14:30:00Z | CodeRabbit | Skip (research) | - | - |
 
 ---
 
@@ -1051,8 +1108,8 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 - [Related: F815](feature-815.md) - Golden Test Design
 - [Related: F816](feature-816.md) - StubVariableStore
 - [Related: F818](feature-818.md) - ac-static-verifier
-- [Successor: F819](feature-819.md) - Clothing Core
-- [Successor: F820](feature-820.md) - Clothing Extended
+- [Successor: F819](feature-819.md) - Clothing Core + Extended (F820 merged)
+- F820 - 欠番 (merged into F819)
 - [Successor: F821](feature-821.md) - Weather System
 - [Successor: F822](feature-822.md) - Pregnancy System
 - [Successor: F823](feature-823.md) - Room & Stain

@@ -65,7 +65,20 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F814 | [REVIEWED] | Phase 22 Planning | F783, F813 | [feature-814.md](feature-814.md) |
+| F814 | [WIP] | Phase 22 Planning | F783, F813 | [feature-814.md](feature-814.md) |
+
+### Phase 22: State Systems
+
+| ID | Status | Name | Depends On | Links |
+|:---|:------:|:-----|:-----------|:------|
+| F819 | [DRAFT] | Clothing System | **F814** | [feature-819.md](feature-819.md) |
+| F821 | [DRAFT] | Weather System | **F814** | [feature-821.md](feature-821.md) |
+| F822 | [DRAFT] | Pregnancy System | **F814**, **F821** | [feature-822.md](feature-822.md) |
+| F823 | [DRAFT] | Room & Stain | **F814** | [feature-823.md](feature-823.md) |
+| F824 | [DRAFT] | Sleep & Menstrual | **F814** | [feature-824.md](feature-824.md) |
+| F825 | [DRAFT] | Relationships & DI Integration | **F814**, **F819**, **F821**, **F822**, **F823**, **F824** | [feature-825.md](feature-825.md) |
+| F826 | [DRAFT] | Post-Phase Review Phase 22 | **F814**, **F819**, **F821**, **F822**, **F823**, **F824**, **F825** | [feature-826.md](feature-826.md) |
+| F827 | [DRAFT] | Phase 23 Planning | **F826** | [feature-827.md](feature-827.md) |
 
 ### Other
 
@@ -180,4 +193,4 @@ See [kojo-mapper](../../tools/kojo-mapper/) for detailed coverage analysis.
 
 ---
 
-**Next Feature number**: 819
+**Next Feature number**: 828

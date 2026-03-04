@@ -688,6 +688,45 @@ public interface IWcCounterMessageNtrRevelation
 | IEngineVariables GetTime/SetTime NuGet version bump | F806 deferred; default interface methods are source-only. NuGet package version must be bumped when Era.Core is re-published to expose GetTime/SetTime. | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
 | WcCounterMessageNtr class-level split | F813 splits at interface level (IWcCounterMessageNtrAction + IWcCounterMessageNtrRevelation) per Key Decision row 4; single class retains 9-dep constructor. Class-level split into separate implementations (Action: 3-5 deps, Revelation: full NTR cluster) completes separation of concerns. Interface split = Phase 1 (F813), class split = Phase 2 (F814). | Feature | F814 | Task 7 (track) | [x] | Tracked in F814 Deferred Obligations |
 
+### Counter Redux carry-forward
+
+The following Counter System obligations are carried forward from F814 Phase 22 triage. These are Phase 21 Counter System debt with no natural home in Phase 22 State Systems scope. They remain pending a dedicated Counter Redux feature decision.
+
+| Issue | Origin | Destination |
+|-------|--------|-------------|
+| obligation #2: IShrinkageSystem runtime implementation | F803 | Counter Redux (pending) |
+| obligation #3: IEngineVariables GetTime/SetTime behavioral override | F806 | Counter Redux (pending) |
+| obligation #4: WcCounterMessageSex constructor complexity reduction (16 deps) | F806 | Counter Redux (pending) |
+| obligation #5: CFlag/Cflag naming normalization | F807 | Counter Redux (pending) |
+| obligation #6: WC_VA_FITTING caller documentation | F806 | Counter Redux (pending) |
+| obligation #8: WcCounterMessage constructor bloat (12 params) | F807 | Counter Redux (pending) |
+| obligation #9: WcCounterMessageTease behavioral test coverage | F807 | Counter Redux (pending) |
+| obligation #10: NOITEM photography bug (ERB original bug) | F806 | Counter Redux (pending) |
+| obligation #11: KOJO 3-param overload verification | F806 | Counter Redux (pending) |
+| obligation #12: WcCounterMessageSex duplicate constant names | F806 | Counter Redux (pending) |
+| obligation #13: Dispatch() dual offender convention unification | F806 | Counter Redux (pending) |
+| obligation #14: IWcCounterMessageTease interface extraction | F807 | Counter Redux (pending) |
+| obligation #15: Character ID constant consolidation | F807 | Counter Redux (pending) |
+| obligation #16: F807 AC#34 local function enforcement gap | F807 | Counter Redux (pending) |
+| obligation #17: ICharacterStringVariables VariableStore implementation | F803 | Counter Redux (pending) |
+| obligation #18: EXP_UP logic duplication | F803 | Counter Redux (pending) |
+| obligation #19: ICounterSourceHandler ISP violation | F803 | Counter Redux (pending) |
+| obligation #31: RotorOut IWcCounterMessageItem migration consideration | F813 Task 13 | Counter Redux (pending) |
+| obligation #34: IEngineVariables GetTime/SetTime NuGet version bump | F806 | Counter Redux (pending) |
+| obligation #35: WcCounterMessageNtr class-level split | F813 | Counter Redux (pending) |
+
+### User Decision Pending
+
+| Issue | Origin | Destination |
+|-------|--------|-------------|
+| obligation #23: NtrReversalSource/NtrAgreeSource REGRESSION fix if found | F813 Task 14 | Pending user investigation decision |
+
+### GetNWithVisitor carry-forward
+
+| Issue | Origin | Destination |
+|-------|--------|-------------|
+| GetNWithVisitor (INtrUtilityService full implementation): NTR_VISITOR.ERB not in Phase 22 scope | F811/phase-20-27-game-systems.md:286 | Counter Redux (pending) |
+
 ---
 
 ## Execution Log

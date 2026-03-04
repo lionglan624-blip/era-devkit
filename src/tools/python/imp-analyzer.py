@@ -95,6 +95,7 @@ class SessionStats:
     agent_dispatches: list = dataclasses.field(default_factory=list)
     bash_failures: int = 0
     exploration_sequences: int = 0
+    bash_commands: list = dataclasses.field(default_factory=list)
 
     @property
     def total_tool_calls(self) -> int:
@@ -309,6 +310,7 @@ class SessionAnalyzer:
         self.agent_dispatches: list = []
         self.bash_failures: int = 0
         self.exploration_sequences: int = 0
+        self.bash_commands: list = []
 
         # Internal tracking
         self._tool_id_map: dict = {}         # tool_use_id -> tool_name
@@ -366,6 +368,7 @@ class SessionAnalyzer:
             agent_dispatches=list(self.agent_dispatches),
             bash_failures=self.bash_failures,
             exploration_sequences=self.exploration_sequences,
+            bash_commands=list(self.bash_commands),
         )
 
     def _process_assistant(self, obj: dict) -> None:
@@ -427,6 +430,11 @@ class SessionAnalyzer:
                     "tool_id": tool_id,
                 }
                 self.agent_dispatches.append(dispatch)
+
+            elif tool_name == "Bash":
+                cmd = inp.get("command", "")
+                if cmd:
+                    self.bash_commands.append(cmd)
 
     def _process_user(self, obj: dict) -> None:
         """Process a user message block (tool results)."""
@@ -501,6 +509,7 @@ def merge_stats(stats_list: list) -> SessionStats:
         merged.agent_dispatches.extend(s.agent_dispatches)
         merged.bash_failures += s.bash_failures
         merged.exploration_sequences += s.exploration_sequences
+        merged.bash_commands.extend(s.bash_commands)
     return merged
 
 
@@ -685,6 +694,93 @@ def detect_tedium(
     # Sort: high first, then by count descending
     severity_order = {"high": 0, "medium": 1}
     issues.sort(key=lambda x: (severity_order.get(x.severity, 2), -x.count))
+
+    return issues
+
+
+# =============================================================================
+# Tool Usage Audit
+# =============================================================================
+
+
+# CLI tool patterns: tool_name -> (bash_pattern, description)
+CLI_TOOLS = {
+    "feature-status.py deps": "feature-status.py deps",
+    "feature-status.py set": "feature-status.py set",
+    "feature-status.py sync": "feature-status.py sync",
+    "ac_ops.py ac-check": "ac_ops.py ac-check",
+    "ac_ops.py ac-renumber": "ac_ops.py ac-renumber",
+    "ac_ops.py ac-insert": "ac_ops.py ac-insert",
+    "session-search.py": "session-search.py",
+}
+
+
+@dataclasses.dataclass
+class ToolUsageIssue:
+    tool: str
+    session: str
+    manual_calls: int
+    suggestion: str
+
+
+def detect_tool_usage(all_stats_list: list) -> list:
+    """
+    Detect CLI tools that were NOT used when manual alternatives were observed.
+    Returns list of ToolUsageIssue.
+    """
+    issues = []
+
+    for stats in all_stats_list:
+        session_label = f"{stats.session_info.session_type}:{stats.session_info.path.stem[:8]}"
+        all_bash = " ".join(stats.bash_commands)
+
+        # Status manual grep (feature-status.py deps/query not used)
+        status_greps = sum(
+            1 for p in stats.grep_patterns
+            if "Status:" in p and "feature-" in p
+        )
+        if status_greps >= 3 and "feature-status.py" not in all_bash:
+            issues.append(ToolUsageIssue(
+                tool="feature-status.py deps/query",
+                session=session_label,
+                manual_calls=status_greps,
+                suggestion="Status確認にfeature-status.py deps/queryを使用",
+            ))
+
+        # AC manual edit (ac_ops.py not used)
+        ac_edits = sum(
+            1 for p in stats.file_writes
+            if "feature-" in p and stats.file_writes[p] > 2
+        )
+        ac_greps = sum(
+            1 for p in stats.grep_patterns
+            if "AC#" in p or "ac_" in p.lower()
+        )
+        if (ac_edits >= 2 or ac_greps >= 3) and "ac_ops.py" not in all_bash:
+            manual_count = ac_edits + ac_greps
+            issues.append(ToolUsageIssue(
+                tool="ac_ops.py",
+                session=session_label,
+                manual_calls=manual_count,
+                suggestion="AC操作にac_ops.pyを使用 (ac-check, ac-renumber, ac-insert)",
+            ))
+
+        # JSONL manual parsing (session-search.py not used)
+        jsonl_greps = sum(
+            1 for p in stats.grep_patterns
+            if ".jsonl" in p
+        )
+        jsonl_bash = sum(
+            1 for cmd in stats.bash_commands
+            if "jsonl" in cmd.lower() and "session-search" not in cmd
+        )
+        if (jsonl_greps >= 2 or jsonl_bash >= 1) and "session-search.py" not in all_bash:
+            issues.append(ToolUsageIssue(
+                tool="session-search.py",
+                session=session_label,
+                manual_calls=jsonl_greps + jsonl_bash,
+                suggestion="JSONL調査にsession-search.pyを使用",
+            ))
 
     return issues
 
@@ -875,6 +971,46 @@ def generate_markdown_report(
             lines.append(f"| {issue.issue_type} | {sev_display} | {issue.details[:60]} | {issue.count} |")
         lines.append("")
 
+    # --- Tool Usage Audit ---
+    lines.append("## 5. Tool Usage Audit (CLIツール活用監査)")
+    lines.append("")
+
+    # Compute tool usage summary
+    all_flat_for_audit = []
+    for stype in ("fc", "fl", "run"):
+        all_flat_for_audit.extend(all_stats.get(stype, []))
+
+    tool_usage_issues = detect_tool_usage(all_flat_for_audit)
+
+    # Build used-tools set from all bash commands
+    all_bash_cmds = []
+    for stats in all_flat_for_audit:
+        all_bash_cmds.extend(stats.bash_commands)
+    all_bash_str = " ".join(all_bash_cmds)
+
+    lines.append("| Tool | Used | Manual Alternative Detected | Sessions | Suggestion |")
+    lines.append("|------|:----:|:---------------------------:|:--------:|------------|")
+
+    # Group issues by tool
+    issue_by_tool: dict = {}
+    for issue in tool_usage_issues:
+        if issue.tool not in issue_by_tool:
+            issue_by_tool[issue.tool] = []
+        issue_by_tool[issue.tool].append(issue)
+
+    for tool_name, bash_pattern in CLI_TOOLS.items():
+        used = bash_pattern in all_bash_str
+        tool_issues = issue_by_tool.get(tool_name, [])
+        if tool_issues:
+            sessions_str = ", ".join(i.session for i in tool_issues)
+            total_manual = sum(i.manual_calls for i in tool_issues)
+            suggestion = tool_issues[0].suggestion
+            lines.append(f"| {tool_name} | {'Yes' if used else 'No'} | {total_manual} calls | {sessions_str} | {suggestion} |")
+        else:
+            lines.append(f"| {tool_name} | {'Yes' if used else '-'} | - | - | - |")
+
+    lines.append("")
+
     # --- Verbose per-session breakdown ---
     if verbose:
         lines.append("## Appendix: Per-Session Breakdown")
@@ -954,6 +1090,17 @@ def generate_json_output(
                 "count": t.count,
             }
             for t in tedium
+        ],
+        "tool_usage_audit": [
+            {
+                "tool": t.tool,
+                "session": t.session,
+                "manual_calls": t.manual_calls,
+                "suggestion": t.suggestion,
+            }
+            for t in detect_tool_usage(
+                [s for stype in all_stats.values() for s in stype]
+            )
         ],
     }
 

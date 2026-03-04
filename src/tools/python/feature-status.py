@@ -9,7 +9,7 @@ initializer, finalizer, FL workflow, and FC commands.
 Usage:
     python tools/feature-status.py set <ID> <STATUS> [--fl-reviewed] [--dry-run]
     python tools/feature-status.py query <ID> [<ID>...]
-    python tools/feature-status.py deps <ID>
+    python tools/feature-status.py deps <ID> [--sync] [--dry-run]
     python tools/feature-status.py ac-check <ID>
     python tools/feature-status.py ac-renumber <ID> [--dry-run] [--force]
     python tools/feature-status.py ac-insert <ID> <AFTER> [--dry-run] [--force]
@@ -524,18 +524,45 @@ def cmd_deps(args) -> int:
         print(f"F{fid}: no dependencies")
         return 0
 
+    sync_mode = getattr(args, "sync", False)
+    dry_run = getattr(args, "dry_run", False)
+    drift_candidates = []
+    synced = []
+
+    if sync_mode:
+        index_lines = read_index()
+
     unsatisfied = 0
     for d in deps:
         actual = read_feature_status(d["id"])
         stale = ""
         if actual and actual != d["status"]:
-            stale = f" (stale: file=[{d['status']}] actual=[{actual}])"
+            if sync_mode:
+                old_status = d["status"]
+                update_dep_status_in_file(fid, d["id"], actual, dry_run)
+                update_index_status(index_lines, d["id"], actual)
+                synced.append(f"F{d['id']} [{old_status}] -> [{actual}]")
+                if actual == "DONE" and old_status != "DONE":
+                    drift_candidates.append((d["id"], d["type"]))
+            else:
+                stale = f" (stale: file=[{d['status']}] actual=[{actual}])"
         if d["type"] in ("Predecessor", "Blocker") and actual != "DONE":
             unsatisfied += 1
         marker = "+" if actual == "DONE" else "-"
         print(f"  {marker} {d['type']:12s} F{d['id']}: [{actual or '?'}]{stale}")
 
     total = sum(1 for d in deps if d["type"] in ("Predecessor", "Blocker"))
+
+    if sync_mode:
+        if synced:
+            for s in synced:
+                print(f"Synced: {s}")
+            write_index(index_lines, dry_run)
+        for did, dtype in drift_candidates:
+            print(f"DRIFT: F{did} ({dtype})")
+        if dry_run:
+            print("[DRY RUN] No files modified")
+
     print(f"Blocking: {total - unsatisfied}/{total} satisfied")
     return 0
 
@@ -553,6 +580,8 @@ def build_parser() -> argparse.ArgumentParser:
             "  %(prog)s set 797 PROPOSED --dry-run      # Preview without writing\n"
             "  %(prog)s query 794 780 782        # Quick status lookup\n"
             "  %(prog)s deps 782                 # Show dependencies with stale detection\n"
+            "  %(prog)s deps 782 --sync            # Sync stale deps + output drift candidates\n"
+            "  %(prog)s deps 782 --sync --dry-run   # Preview sync without writing\n"
             "  %(prog)s sync                     # Repair all stale dependency statuses\n"
             "  %(prog)s sync --dry-run           # Preview stale fixes\n"
             "  %(prog)s ac-check 800              # Check AC consistency\n"
@@ -580,6 +609,8 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_deps = sub.add_parser("deps", help="Show dependencies with live status")
     p_deps.add_argument("id", help="Feature ID")
+    p_deps.add_argument("--sync", action="store_true", help="Fix stale deps + output drift candidates")
+    p_deps.add_argument("--dry-run", action="store_true", help="Preview sync without writing")
 
     p_sync = sub.add_parser("sync", help="Repair stale dependency statuses")
     p_sync.add_argument(

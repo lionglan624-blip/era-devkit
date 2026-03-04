@@ -74,32 +74,19 @@ TaskUpdate(subject: "Phase 1: Reference Check", status: "completed")
 
 ```
 IF target_type == "feature":
-    drift_candidates = []  # Collect for Step 1.4.5
+    drift_candidates = []
 
-    1. Read feature-{ID}.md Dependencies table
-    2. **Sync dependency statuses**:
-       FOR each row in Dependencies table:
-         a. Read feature-{row.Feature}.md Status field → actual_status
-         b. IF row.Status ≠ actual_status:
-            old_status = row.Status
-            - Edit feature-{ID}.md Dependencies table: row.Status → actual_status
-            - Read index-features.md
-            - IF index has F{row.Feature} with stale status:
-              Edit index-features.md: F{row.Feature} Status → actual_status
-            # Track drift candidates: features that completed since design was written
-            - IF actual_status == "[DONE]" AND old_status in ["[PROPOSED]", "[WIP]", "[BLOCKED]"]:
-                drift_candidates.append({feature: row.Feature, relationship: row.Type})
+    # Single command replaces manual Read/Edit loop
+    result = Bash("python src/tools/python/feature-status.py deps {ID} --sync")
 
-    3. Also check Related Features table (if separate from Dependencies):
-       FOR each row in Related Features table:
-         a. Read feature-{row.Feature}.md Status field → actual_status
-         b. IF row.Status ≠ actual_status:
-            old_status = row.Status
-            - Edit feature-{ID}.md Related Features table: row.Status → actual_status
-            - IF actual_status == "[DONE]" AND old_status in ["[PROPOSED]", "[WIP]", "[BLOCKED]"]:
-                drift_candidates.append({feature: row.Feature, relationship: row.Relationship})
+    # Parse drift candidates from output
+    FOR each line matching "DRIFT: F(\d+) \((\w+)\)":
+        drift_candidates.append({feature: match.group(1), relationship: match.group(2)})
 
-    4. Proceed to Step 1.4.5 (Codebase Drift Detection)
+    # Note: get_feature_dependencies handles all dep types (Predecessor, Blocker,
+    # Successor, Related) so separate Related Features table processing is unnecessary.
+
+    Proceed to Step 1.4.5 (Codebase Drift Detection)
 ```
 
 ## Step 1.4.5: Codebase Drift Detection

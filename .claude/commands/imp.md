@@ -84,6 +84,14 @@ From tedium indicators:
 - Propose concrete automations (scripts, hooks, caching)
 - Estimate impact (how many tool calls would be saved)
 
+#### 5. CLIツール活用監査 (Tool Usage Audit)
+
+From tool usage patterns:
+- CLIツール（feature-status.py, ac_ops.py, session-search.py）が使われたか検出
+- 手動代替パターン（Status grep, AC手動Edit）との比較
+- 未使用ツールがあればワークフロースキルへの使用ルール追加を提案
+- ツールが使われなかった理由の分析（認知度不足 vs 使いにくさ）
+
 ### Step 4: Action Items
 
 End with a prioritized list of **3-5 concrete next actions**, each with:

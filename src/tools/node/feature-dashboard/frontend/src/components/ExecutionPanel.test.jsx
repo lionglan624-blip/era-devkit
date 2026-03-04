@@ -37,19 +37,21 @@ function createPanelProps(executions = new Map(), overrides = {}) {
 
 describe('ExecutionPanel', () => {
     describe('Rendering - Visibility', () => {
-        it('returns null when no visible executions (empty map)', () => {
+        it('renders empty state when no visible executions (empty map)', () => {
             const props = createPanelProps(new Map());
-            const { container } = render(<ExecutionPanel {...props} />);
-            expect(container.firstChild).toBeNull();
+            render(<ExecutionPanel {...props} />);
+            expect(screen.getByText('No executions')).toBeInTheDocument();
+            expect(screen.getByText('Waiting for execution...')).toBeInTheDocument();
         });
 
-        it('returns null when all executions have no logs and are not running', () => {
+        it('renders empty state when all executions have no logs and are not running', () => {
             const executions = new Map([
                 ['exec-1', createExecution({ status: 'completed', logs: [] })],
             ]);
             const props = createPanelProps(executions);
-            const { container } = render(<ExecutionPanel {...props} />);
-            expect(container.firstChild).toBeNull();
+            render(<ExecutionPanel {...props} />);
+            expect(screen.getByText('No executions')).toBeInTheDocument();
+            expect(screen.getByText('Waiting for execution...')).toBeInTheDocument();
         });
 
         it('renders when execution has logs', () => {

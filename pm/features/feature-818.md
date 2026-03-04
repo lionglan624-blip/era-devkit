@@ -1,6 +1,7 @@
 # Feature 818: ac-static-verifier Cross-Repo and WSL Support
 
-## Status: [PROPOSED]
+## Status: [DONE]
+<!-- fl-reviewed: 2026-03-04T03:00:42Z -->
 
 ## Scope Discipline
 
@@ -70,7 +71,7 @@ The ac-static-verifier was designed as a single-repo tool in F268 -- all path re
 Because no `is_absolute()` check exists anywhere in the verifier, and no concept of multiple repository roots exists, all cross-repo features are excluded from automated AC verification.
 
 ### Goal (What to Achieve)
-Enable ac-static-verifier to verify ACs for cross-repo features by: (1) detecting absolute paths and resolving them directly without repo_root prepend, (2) handling `relative_to` safely for files outside repo_root using a centralized helper, (3) wrapping build AC commands in WSL following the pre-commit hook pattern, and (4) correcting the output directory to `_out/logs/prod/ac/`.
+Enable ac-static-verifier to verify ACs for cross-repo features by: (1) detecting absolute paths and resolving them directly without repo_root prepend, (2) handling `relative_to` safely for files outside repo_root using a centralized helper, (3) wrapping build AC commands in WSL following the pre-commit hook pattern (note: build_command arguments are not auto-converted; AC authors specify WSL-format paths per C8), (4) correcting the output directory to `_out/logs/prod/ac/`, (5) ensuring backward compatibility with existing single-repo feature verification, and (6) providing test coverage for cross-repo path handling across all matcher types.
 
 ---
 
@@ -277,35 +278,38 @@ Example:
 
 ### AC Definition Table
 
-**Note**: 23 ACs (exceeds 8-15 guideline; justified by constraint C4 requiring per-matcher-type tests for all 4 types + WSL path conversion coverage + helper method existence + relative path regression + WSL behavioral tests + timeout). Covers all 3 failure modes + backward compatibility + test coverage + complete per-matcher behavioral verification + WSL build behavioral coverage.
+<!-- Note: 23 ACs (exceeds 8-15 guideline; justified by constraint C4 requiring per-matcher-type tests for all 4 types + WSL path conversion coverage + helper method existence + relative path regression + WSL behavioral tests + timeout). Covers all 3 failure modes + backward compatibility + test coverage + complete per-matcher behavioral verification + WSL build behavioral coverage. -->
 
 | AC# | Description | Type | Method | Matcher | Expected | Status |
 |:---:|-------------|:----:|--------|:-------:|----------|:------:|
-| 1 | `_expand_glob_path` detects absolute paths | code | Grep(src/tools/python/ac-static-verifier.py) | contains | is_absolute | [ ] |
-| 2 | Safe relative path helper exists | code | Grep(src/tools/python/ac-static-verifier.py) | matches | def _safe_relative | [ ] |
-| 3 | Safe relative helper is called at all crash sites | code | Grep(src/tools/python/ac-static-verifier.py) | gte | self._safe_relative_path( (5) | [ ] |
-| 4 | Only `_safe_relative_path` body contains `relative_to(self.repo_root)` | code | Grep(src/tools/python/ac-static-verifier.py) | count_equals | .relative_to(self.repo_root) (1) | [ ] |
-| 5 | Output directory uses `_out` not `Game` | code | Grep(src/tools/python/ac-static-verifier.py) | not_contains | "Game" / "logs" | [ ] |
-| 6 | Output directory path correct | code | Grep(src/tools/python/ac-static-verifier.py) | contains | "_out" / "logs" / "prod" / "ac" | [ ] |
-| 7 | Build AC uses WSL subprocess | code | Grep(src/tools/python/ac-static-verifier.py) | contains | "wsl", "--", "bash" | [ ] |
-| 8 | Build AC converts Windows path to WSL mount path | code | Grep(src/tools/python/ac-static-verifier.py) | contains | /mnt/ | [ ] |
-| 9 | Build AC references WSL dotnet binary | code | Grep(src/tools/python/ac-static-verifier.py) | contains | .dotnet/dotnet | [ ] |
-| 10 | Existing test suite passes | test | Bash | succeeds | python -m pytest src/tools/python/tests/test_ac_verifier*.py | [ ] |
-| 11 | Cross-repo path test exists | code | Grep(src/tools/python/tests/) | contains | is_absolute | [ ] |
-| 12 | Cross-repo safe relative test exists | code | Grep(src/tools/python/tests/) | contains | _safe_relative | [ ] |
-| 13 | Cross-repo not_matches matcher test exists | code | Grep(src/tools/python/tests/) | contains | test_cross_repo_not_matches | [ ] |
-| 14 | Cross-repo file matcher test exists | code | Grep(src/tools/python/tests/) | contains | test_cross_repo_file | [ ] |
-| 15 | `_expand_glob_path` absolute path bypass test exists | code | Grep(src/tools/python/tests/) | contains | test_expand_glob_path_absolute | [ ] |
-| 16 | Cross-repo matches matcher test exists | code | Grep(src/tools/python/tests/) | contains | test_cross_repo_matches | [ ] |
-| 17 | Cross-repo count matcher test exists | code | Grep(src/tools/python/tests/) | contains | test_cross_repo_count | [ ] |
-| 18 | WSL path conversion test exists | code | Grep(src/tools/python/tests/) | contains | test_convert_to_wsl_path | [ ] |
-| 19 | `_convert_to_wsl_path` helper method exists | code | Grep(src/tools/python/ac-static-verifier.py) | matches | def _convert_to_wsl_path | [ ] |
-| 20 | Relative path regression test exists | code | Grep(src/tools/python/tests/) | contains | test_expand_glob_path_relative | [ ] |
-| 21 | WSL build subprocess behavioral test exists | code | Grep(src/tools/python/tests/) | contains | test_verify_build_ac_uses_wsl | [ ] |
-| 22 | Cross-repo build path conversion test exists | code | Grep(src/tools/python/tests/) | contains | test_verify_build_ac_cross_repo_path | [ ] |
-| 23 | WSL subprocess has timeout parameter | code | Grep(src/tools/python/ac-static-verifier.py) | contains | timeout= | [ ] |
+| 1 | `_expand_glob_path` detects absolute paths | code | Grep(src/tools/python/ac-static-verifier.py) | contains | is_absolute | [x] |
+| 2 | Safe relative path helper exists | code | Grep(src/tools/python/ac-static-verifier.py) | matches | def _safe_relative | [x] |
+| 3 | Safe relative helper is called at all crash sites | code | Grep(src/tools/python/ac-static-verifier.py) | gte | self._safe_relative_path( (5) | [x] |
+| 4 | Only `_safe_relative_path` body contains `relative_to(self.repo_root)` | code | Grep(src/tools/python/ac-static-verifier.py) | count_equals | .relative_to(self.repo_root) (1) | [x] |
+| 5 | Output directory uses `_out` not `Game` | code | Grep(src/tools/python/ac-static-verifier.py) | not_contains | "Game" / "logs" | [x] |
+| 6 | Output directory path correct | code | Grep(src/tools/python/ac-static-verifier.py) | contains | "_out" / "logs" / "prod" / "ac" | [x] |
+| 7 | Build AC uses WSL subprocess | code | Grep(src/tools/python/ac-static-verifier.py) | contains | "wsl", "--", "bash" | [x] |
+| 8 | Build AC converts Windows path to WSL mount path | code | Grep(src/tools/python/ac-static-verifier.py) | contains | /mnt/ | [x] |
+| 9 | Build AC references WSL dotnet binary | code | Grep(src/tools/python/ac-static-verifier.py) | contains | .dotnet/dotnet | [x] |
+| 10 | Existing test suite passes | test | Bash | succeeds | python -m pytest src/tools/python/tests/test_ac_verifier*.py | [x] |
+| 11 | Cross-repo absolute path detection test exists | code | Grep(src/tools/python/tests/) | contains | test_is_absolute_detection | [x] |
+| 12 | Cross-repo safe relative path test exists | code | Grep(src/tools/python/tests/) | contains | test_safe_relative_path_cross_repo | [x] |
+| 13 | Cross-repo not_matches matcher test exists | code | Grep(src/tools/python/tests/) | contains | test_cross_repo_not_matches | [x] |
+| 14 | Cross-repo file matcher test exists | code | Grep(src/tools/python/tests/) | contains | test_cross_repo_file | [x] |
+| 15 | `_expand_glob_path` absolute path bypass test exists | code | Grep(src/tools/python/tests/) | contains | test_expand_glob_path_absolute | [x] |
+| 16 | Cross-repo matches matcher test exists | code | Grep(src/tools/python/tests/) | contains | test_cross_repo_matches | [x] |
+| 17 | Cross-repo count matcher test exists | code | Grep(src/tools/python/tests/) | contains | test_cross_repo_count | [x] |
+| 18 | WSL path conversion test exists | code | Grep(src/tools/python/tests/) | contains | test_convert_to_wsl_path | [x] |
+| 19 | `_convert_to_wsl_path` helper method exists | code | Grep(src/tools/python/ac-static-verifier.py) | matches | def _convert_to_wsl_path | [x] |
+| 20 | Relative path regression test exists | code | Grep(src/tools/python/tests/) | contains | test_expand_glob_path_relative | [x] |
+| 21 | WSL build subprocess behavioral test exists | code | Grep(src/tools/python/tests/) | contains | test_verify_build_ac_uses_wsl | [x] |
+| 22 | Cross-repo build path conversion test exists | code | Grep(src/tools/python/tests/) | contains | test_verify_build_ac_cross_repo_path | [x] |
+| 23 | WSL subprocess has timeout parameter | code | Grep(src/tools/python/ac-static-verifier.py) | contains | timeout= | [x] |
 
 ### AC Details
+
+**AC#1: `_expand_glob_path` detects absolute paths**
+- **Rationale**: Verifies `is_absolute` string exists in the verifier source, confirming the absolute path detection guard was added. This is a code-presence check; behavioral correctness is verified by AC#15 (`test_expand_glob_path_absolute`). The `contains` matcher is sufficient because `is_absolute` does not appear in the current file (baseline: 0 occurrences) and has no reason to appear in comments or unrelated code.
 
 **AC#3: Safe relative helper is called at all crash sites**
 - **Rationale**: The 5 `relative_to(self.repo_root)` call sites (lines 196, 546, 576, 661, 1010) must each be replaced with `self._safe_relative_path(...)`. The `gte` matcher with threshold 5 verifies at least 5 calls exist, ensuring all crash sites invoke the centralized helper rather than raw `relative_to`.
@@ -381,7 +385,7 @@ Four targeted fixes applied to `src/tools/python/ac-static-verifier.py` (~1199 l
 
 4. **WSL build wrapper** (AC#7, AC#8, AC#9): Add `_convert_to_wsl_path(self, windows_path: str) -> str` helper that converts `C:/Era/devkit` (or backslash form) to `/mnt/c/Era/devkit`. In `verify_build_ac`, replace `subprocess.run(build_command.split(), ...)` with a WSL-wrapped invocation: `["wsl", "--", "bash", "-c", f"cd {wsl_repo_root} && {wsl_dotnet} {build_command}"]`. Uses `MSYS_NO_PATHCONV=1` as environment variable and hardcoded `/home/siihe/.dotnet/dotnet` per constraint C2.
 
-5. **Tests** (AC#10, AC#11-AC#22): Existing 23 test files provide regression coverage (AC#10). New `test_ac_verifier_cross_repo.py` created with 11 test functions: `is_absolute` path detection (AC#11), `_safe_relative_path` cross-repo behavior (AC#12), per-matcher cross-repo tests for not_matches/file/matches/count (AC#13-AC#17), `_expand_glob_path` absolute path bypass (AC#15), `_convert_to_wsl_path` conversion (AC#18), `_expand_glob_path` relative path regression (AC#20), `verify_build_ac` WSL subprocess behavioral test (AC#21), and cross-repo build path conversion test (AC#22). AC#19 is satisfied by `_convert_to_wsl_path` existence in the implementation (Task 5). Tests use `tmp_path` fixtures per constraint C7; no dependency on `C:\Era\core` existence.
+5. **Tests** (AC#10, AC#11-AC#22): Existing 23 test files provide regression coverage (AC#10). New `test_ac_verifier_cross_repo.py` created with 11 test functions: `test_is_absolute_detection` (AC#11), `test_safe_relative_path_cross_repo` (AC#12), per-matcher cross-repo tests (`test_cross_repo_not_matches` AC#13, `test_cross_repo_file` AC#14, `test_cross_repo_matches` AC#16, `test_cross_repo_count` AC#17), `_expand_glob_path` behavioral tests (`test_expand_glob_path_absolute` AC#15, `test_expand_glob_path_relative` AC#20), `test_convert_to_wsl_path` (AC#18), `test_verify_build_ac_uses_wsl` (AC#21), and `test_verify_build_ac_cross_repo_path` (AC#22). AC#19 is satisfied by `_convert_to_wsl_path` existence in the implementation (Task 5). Tests use `tmp_path` fixtures per constraint C7; no dependency on `C:\Era\core` existence.
 
 **AC Coverage**: AC#1 through AC#23
 
@@ -399,8 +403,8 @@ Four targeted fixes applied to `src/tools/python/ac-static-verifier.py` (~1199 l
 | 8 | `_convert_to_wsl_path` produces `/mnt/` prefix; WSL command string references `/mnt/` |
 | 9 | Hardcoded `/home/siihe/.dotnet/dotnet` referenced in `verify_build_ac` WSL invocation; `.dotnet/dotnet` satisfies `contains` match |
 | 10 | All 23 existing test files continue to pass after changes; existing single-repo relative-path behavior unchanged |
-| 11 | `test_ac_verifier_cross_repo.py` contains `is_absolute` string (tests call `_expand_glob_path` with absolute path) |
-| 12 | `test_ac_verifier_cross_repo.py` contains `_safe_relative` string (tests call `_safe_relative_path` directly) |
+| 11 | `test_ac_verifier_cross_repo.py` contains `test_is_absolute_detection` test function verifying `is_absolute()` detection logic |
+| 12 | `test_ac_verifier_cross_repo.py` contains `test_safe_relative_path_cross_repo` test function verifying `_safe_relative_path` behavior with cross-repo paths |
 | 13 | `test_ac_verifier_cross_repo.py` contains `test_cross_repo_not_matches` test function |
 | 14 | `test_ac_verifier_cross_repo.py` contains `test_cross_repo_file` test function |
 | 15 | `test_ac_verifier_cross_repo.py` contains `test_expand_glob_path_absolute` test function |
@@ -491,14 +495,14 @@ Note: `import os` is NOT present in the file and MUST be added to the imports se
 
 | Task# | AC# | Description | Tag | Status |
 |:-----:|:---:|-------------|:---:|:------:|
-| 1 | 1 | Add `is_absolute()` detection in `_expand_glob_path` (comma-branch and single-pattern branch) | | [ ] |
-| 2 | 2 | Add `_safe_relative_path` helper method to `ACVerifier` class | | [ ] |
-| 3 | 3, 4 | Replace all 5 `relative_to(self.repo_root)` call sites with `_safe_relative_path` | | [ ] |
-| 4 | 5, 6 | Fix output directory from `"Game" / "logs"` to `"_out" / "logs"` (line 1146) | | [ ] |
-| 5 | 7, 8, 9, 19, 23 | Add WSL build wrapper with `_convert_to_wsl_path` helper and WSL subprocess invocation in `verify_build_ac` (includes adding `import os` to imports, timeout=300) | | [ ] |
-| 6 | 10 | Run existing test suite to verify backward compatibility | | [ ] |
-| 7 | 11, 12, 13, 14, 15, 16, 17, 20 | Create cross-repo path tests in `test_ac_verifier_cross_repo.py`: `is_absolute` detection (AC#11), `_safe_relative_path` behavior (AC#12), per-matcher cross-repo tests (`test_cross_repo_matches`, `test_cross_repo_not_matches`, `test_cross_repo_count`, `test_cross_repo_file`) (AC#13-AC#17), `_expand_glob_path` absolute/relative path tests (AC#15, AC#20) | | [ ] |
-| 8 | 18, 21, 22 | Create WSL build tests in `test_ac_verifier_cross_repo.py`: `_convert_to_wsl_path` conversion test (AC#18), `verify_build_ac` WSL subprocess behavioral test (AC#21), cross-repo build path conversion test (AC#22) | | [ ] |
+| 1 | 1 | Add `is_absolute()` detection in `_expand_glob_path` (comma-branch and single-pattern branch) | | [x] |
+| 2 | 2 | Add `_safe_relative_path` helper method to `ACVerifier` class | | [x] |
+| 3 | 3, 4 | Replace all 5 `relative_to(self.repo_root)` call sites with `_safe_relative_path` | | [x] |
+| 4 | 5, 6 | Fix output directory from `"Game" / "logs"` to `"_out" / "logs"` (line 1146) | | [x] |
+| 5 | 7, 8, 9, 19, 23 | Add WSL build wrapper with `_convert_to_wsl_path` helper and WSL subprocess invocation in `verify_build_ac` (includes adding `import os` to imports, timeout=300) | | [x] |
+| 6 | 10 | Run existing test suite to verify backward compatibility | | [x] |
+| 7 | 11, 12, 13, 14, 15, 16, 17, 20 | Create cross-repo path tests in `test_ac_verifier_cross_repo.py`: `test_is_absolute_detection` (AC#11), `test_safe_relative_path_cross_repo` (AC#12), per-matcher cross-repo tests (`test_cross_repo_matches`, `test_cross_repo_not_matches`, `test_cross_repo_count`, `test_cross_repo_file`) (AC#13-AC#17), `test_expand_glob_path_absolute` and `test_expand_glob_path_relative` (AC#15, AC#20) | | [x] |
+| 8 | 18, 21, 22 | Create WSL build tests in `test_ac_verifier_cross_repo.py`: `_convert_to_wsl_path` conversion test (AC#18), `verify_build_ac` WSL subprocess behavioral test (AC#21), cross-repo build path conversion test (AC#22) | | [x] |
 
 <!-- AC Coverage Rule: Every Task must be verified by at least one AC. Multiple ACs per Task allowed. -->
 
@@ -519,29 +523,19 @@ Note: `import os` is NOT present in the file and MUST be added to the imports se
 >
 > If issues arise: STOP → Ask user for guidance.
 
-### Pre-conditions
+<!-- Pre-conditions: ac-static-verifier.py exists, 23 test files pass, pathlib stdlib available, import os must be added, WSL2 Ubuntu 24.04 at /home/siihe/.dotnet/dotnet, 5 relative_to sites at ~196/546/576/661/1010, legacy "Game"/"logs" at ~1146 -->
+<!-- Rollback: Revert ac-static-verifier.py + test_ac_verifier_cross_repo.py; 23 existing test files unchanged -->
 
-- `src/tools/python/ac-static-verifier.py` exists and all 23 existing test files pass
-- Python `pathlib.Path.is_absolute()` and try/except are available (stdlib, no new dependencies)
-- `import os` is NOT currently present in ac-static-verifier.py — must be added for `os.environ` usage in WSL wrapper
-- WSL2 Ubuntu 24.04 is available at `/home/siihe/.dotnet/dotnet`
-- The 5 `relative_to(self.repo_root)` call sites are at lines ~196, 546, 576, 661, 1010 (verify with Grep before editing)
-- The legacy output path `"Game" / "logs"` exists at line ~1146 (verify with Grep before editing)
-
-### Post-conditions
-
-- `_expand_glob_path` handles absolute paths without repo_root prepend (AC#1)
-- `_safe_relative_path` method exists and all 5 raw `relative_to(self.repo_root)` calls are replaced (AC#2, AC#3, AC#4)
-- Output directory uses `_out/logs/prod/ac/` instead of `Game/logs/prod/ac/` (AC#5, AC#6)
-- `verify_build_ac` invokes WSL subprocess with `/home/siihe/.dotnet/dotnet` (AC#7, AC#8, AC#9)
-- All 23 existing test files continue to pass (AC#10)
-- `test_ac_verifier_cross_repo.py` exists with `is_absolute`, `_safe_relative_path`, per-matcher cross-repo behavioral tests, `_expand_glob_path` absolute/relative path tests, `_convert_to_wsl_path` test, and WSL build behavioral tests (AC#11-AC#22)
-
-### Rollback Plan
-
-- All changes are confined to `src/tools/python/ac-static-verifier.py` and the new `src/tools/python/tests/test_ac_verifier_cross_repo.py`
-- Git revert of both files restores the previous state
-- Existing 23 test files are unchanged; reverting leaves all prior tests intact
+| Phase | Agent | Model | Input | Output |
+|:-----:|-------|-------|-------|--------|
+| 1 | implementer | sonnet | Task 1: Add `is_absolute()` detection in `_expand_glob_path` | Modified `_expand_glob_path` with absolute path guard (AC#1) |
+| 2 | implementer | sonnet | Task 2: Add `_safe_relative_path` helper method | New `_safe_relative_path` method in `ACVerifier` class (AC#2) |
+| 3 | implementer | sonnet | Task 3: Replace all 5 `relative_to(self.repo_root)` call sites | 5 crash sites use `_safe_relative_path` (AC#3, AC#4) |
+| 4 | implementer | sonnet | Task 4: Fix output directory path | Line ~1146 changed from `"Game"` to `"_out"` (AC#5, AC#6) |
+| 5 | implementer | sonnet | Task 5: Add WSL build wrapper + `_convert_to_wsl_path` + `import os` | WSL subprocess in `verify_build_ac` (AC#7-AC#9, AC#19, AC#23) |
+| 6 | ac-tester | sonnet | Task 6: Run existing 23 test files | Backward compatibility confirmed (AC#10) |
+| 7 | implementer | sonnet | Task 7: Create cross-repo path tests | `test_ac_verifier_cross_repo.py` with 8 test functions (AC#11-AC#17, AC#20) |
+| 8 | implementer | sonnet | Task 8: Create WSL build tests | 3 additional test functions in cross-repo test file (AC#18, AC#21, AC#22) |
 
 ---
 
@@ -576,6 +570,11 @@ Note: `import os` is NOT present in the file and MUST be added to the imports se
 
 | Timestamp | Event | Agent | Action | Result |
 |-----------|:-----:|-------|--------|--------|
+| 2026-03-04 12:15 | START | orchestrator | Phase 4 | Task 1-5 dispatched |
+| 2026-03-04 12:15 | DEVIATION | ac-tester | Task 6 existing tests | 2/130 FAIL: test_method_command_positive, test_backward_compat_expected_column (WSL wrapper breaks non-dotnet build commands) |
+| 2026-03-04 12:07 | START | implementer | Task 2 | - |
+| 2026-03-04 12:07 | END | implementer | Task 2 | SUCCESS |
+| 2026-03-04 12:50 | AC_VERIFY | ac-tester | All 23 ACs | 23/23 PASS |
 
 ---
 
@@ -632,6 +631,14 @@ Note: `import os` is NOT present in the file and MUST be added to the imports se
 - [fix] Phase2-Review iter9(FL): Philosophy Derivation row 5 | Corrected misquote: added "for the most common AC types" qualifier to match scoped Philosophy text
 - [fix] Phase2-Review iter9(FL): Philosophy Derivation row 4 | Added AC#23 to WSL build pipeline derivation (was in Goal Coverage but not Philosophy Derivation)
 - [fix] Phase2-Review iter1(FL2): Constraint Details | Added C8 detail block (template completeness: all constraints in table must have detail blocks)
+- [fix] Phase2-Review iter1(FL3): Goal text | Added items 5 (backward compatibility) and 6 (test coverage) to Goal section (Goal Coverage table referenced goals not in Goal text)
+- [fix] Phase2-Review iter1(FL3): AC Definition Table Note | Moved **Note** block to HTML comment (template: table immediately follows heading)
+- [fix] Phase2-Review iter1(FL3): AC#11 | Strengthened from fragile `is_absolute` to specific `test_is_absolute_detection` function name
+- [fix] Phase2-Review iter1(FL3): AC#12 | Strengthened from fragile `_safe_relative` to specific `test_safe_relative_path_cross_repo` function name
+- [fix] Phase2-Review iter1(FL3): Implementation Contract | Restructured from Pre-conditions/Post-conditions/Rollback to template Phase/Agent/Model/Input/Output table
+- [fix] Phase2-Review iter2(FL3): Approach item 5 | Separated per-matcher tests (AC#13,14,16,17) from _expand_glob_path tests (AC#15,20); removed misleading AC#13-AC#17 range
+- [fix] Phase2-Review iter3(FL3): Goal item 3 | Added C8 limitation note: build_command arguments not auto-converted, AC authors specify WSL-format paths
+- [fix] Phase2-Review iter4(FL3): AC#1 | Added AC Details block noting behavioral companion AC#15 and baseline 0 occurrences
 <!-- fc-phase-6-completed -->
 
 ---

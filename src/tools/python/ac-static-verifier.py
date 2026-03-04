@@ -21,12 +21,15 @@ Exit codes:
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
 from enum import Enum, auto
 from pathlib import Path
 from typing import List, Dict, Any, Optional
+
+WSL_DOTNET_PATH = "/home/siihe/.dotnet/dotnet"
 
 # Binary file extensions to skip during directory enumeration
 BINARY_EXTENSIONS = {
@@ -98,6 +101,21 @@ class ACVerifier:
 
         return PatternType.UNKNOWN
 
+    def _convert_to_wsl_path(self, windows_path: str) -> str:
+        """Convert Windows path (C:/Era/devkit or C:\\Era\\devkit) to WSL mount path (/mnt/c/Era/devkit)."""
+        path = windows_path.replace('\\', '/')
+        if len(path) >= 2 and path[1] == ':':
+            drive = path[0].lower()
+            return f'/mnt/{drive}{path[2:]}'
+        return path
+
+    def _safe_relative_path(self, path: Path) -> str:
+        """Convert path to display string, using relative path if within repo_root."""
+        try:
+            return str(path.relative_to(self.repo_root))
+        except ValueError:
+            return str(path)
+
     def _expand_glob_path(self, file_path: str) -> tuple[bool, Optional[str], List[Path]]:
         """Expand glob pattern in file path and return matched files.
 
@@ -113,7 +131,11 @@ class ACVerifier:
         # Check if path contains comma (comma-separated patterns)
         if ',' in file_path:
             # First check if the literal path with comma exists
-            target_file = self.repo_root / file_path
+            file_path_obj = Path(file_path)
+            if file_path_obj.is_absolute():
+                target_file = file_path_obj  # Skip repo_root prepend for absolute paths
+            else:
+                target_file = self.repo_root / file_path
             if target_file.exists():
                 return True, None, [target_file]
 
@@ -130,7 +152,11 @@ class ACVerifier:
             return True, None, all_matches
 
         # Original logic for single pattern
-        target_file = self.repo_root / file_path
+        file_path_obj = Path(file_path)
+        if file_path_obj.is_absolute():
+            target_file = file_path_obj  # Skip repo_root prepend for absolute paths
+        else:
+            target_file = self.repo_root / file_path
 
         # Check if path contains glob patterns
         has_glob_pattern = any(c in file_path for c in ['*', '?', '['])
@@ -193,7 +219,7 @@ class ACVerifier:
                     content = f.read()
                     if pattern in content:
                         pattern_found = True
-                        matched_files.append(str(file_path.relative_to(self.repo_root)))
+                        matched_files.append(self._safe_relative_path(file_path))
             except UnicodeDecodeError:
                 # Binary file not caught by extension filter (unusual extension)
                 if self.verbose:
@@ -543,7 +569,7 @@ class ACVerifier:
                             content = f.read()
                             if re.search(pattern, content, re.MULTILINE) is not None:
                                 pattern_found = True
-                                matched_files.append(str(tf.relative_to(self.repo_root)))
+                                matched_files.append(self._safe_relative_path(tf))
                     except UnicodeDecodeError:
                         # Binary file not caught by extension filter
                         if self.verbose:
@@ -573,7 +599,7 @@ class ACVerifier:
                             content = f.read()
                             if re.search(pattern, content, re.MULTILINE) is not None:
                                 pattern_found = True
-                                matched_files.append(str(tf.relative_to(self.repo_root)))
+                                matched_files.append(self._safe_relative_path(tf))
                     except UnicodeDecodeError:
                         # Binary file not caught by extension filter
                         if self.verbose:
@@ -658,7 +684,7 @@ class ACVerifier:
                             file_count = content.count(search_pattern)
                         if file_count > 0:
                             actual_count += file_count
-                            matched_files.append(str(tf.relative_to(self.repo_root)))
+                            matched_files.append(self._safe_relative_path(tf))
                 except UnicodeDecodeError:
                     if self.verbose:
                         print(f"WARNING: Skipping binary file: {tf}", file=sys.stderr)
@@ -884,15 +910,37 @@ class ACVerifier:
 
         # Execute build command
         try:
-            # Run dotnet build from repository root
-            result = subprocess.run(
-                build_command.split(),
-                capture_output=True,
-                text=True,
-                encoding='utf-8',
-                errors='replace',
-                cwd=str(self.repo_root)
-            )
+            if build_command.startswith("dotnet ") or build_command.strip() == "dotnet":
+                # Run dotnet commands via WSL from repository root
+                wsl_repo_root = self._convert_to_wsl_path(str(self.repo_root))
+                wsl_dotnet = WSL_DOTNET_PATH
+                # Strip leading 'dotnet' from build_command to avoid duplication with wsl_dotnet
+                # e.g., "dotnet build devkit.sln" → "build devkit.sln"
+                if build_command.startswith("dotnet "):
+                    build_args = build_command[len("dotnet "):]
+                else:
+                    build_args = "build"  # default subcommand
+                env = {**os.environ, "MSYS_NO_PATHCONV": "1"}  # Harmless when called from Python; needed if invoked from Git Bash
+                result = subprocess.run(
+                    ["wsl", "--", "bash", "-c", f"cd {wsl_repo_root} && {wsl_dotnet} {build_args}"],
+                    capture_output=True,
+                    text=True,
+                    encoding='utf-8',
+                    errors='replace',
+                    timeout=300,
+                    env=env
+                )
+            else:
+                # Non-dotnet commands: run directly without WSL wrapper
+                result = subprocess.run(
+                    build_command.split(),
+                    capture_output=True,
+                    text=True,
+                    encoding='utf-8',
+                    errors='replace',
+                    timeout=300,
+                    cwd=str(self.repo_root)
+                )
             exit_code = result.returncode
             stdout = result.stdout
             stderr = result.stderr
@@ -1007,7 +1055,7 @@ class ACVerifier:
 
         if success:
             file_exists = True
-            matched_files = [str(p.relative_to(self.repo_root)) for p in matched_path_objs]
+            matched_files = [self._safe_relative_path(p) for p in matched_path_objs]
         else:
             file_exists = False
             matched_files = []
@@ -1143,7 +1191,7 @@ class ACVerifier:
         }
 
         # Write JSON log
-        output_dir = self.repo_root / "Game" / "logs" / "prod" / "ac" / self.ac_type / f"feature-{self.feature_id}"
+        output_dir = self.repo_root / "_out" / "logs" / "prod" / "ac" / self.ac_type / f"feature-{self.feature_id}"
         output_dir.mkdir(parents=True, exist_ok=True)
 
         output_file = output_dir / f"{self.ac_type}-result.json"

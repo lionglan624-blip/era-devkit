@@ -6,16 +6,28 @@ Refactor implementation while maintaining GREEN. Improve code quality without ch
 
 ---
 
+## Mandatory Execution Log Entry
+
+**CRITICAL: ALL types that reach Phase 5 MUST record an Execution Log entry, even for SKIP.**
+
+```markdown
+| {timestamp} | Phase 5 | orchestrator | Refactoring review | {SKIP (type routing)|SKIP (no refactoring needed)|PROCEED} |
+```
+
+This rule exists because Phase 5 was silently skipped for erb/engine types without any log record (observed in F806, F807). The mandatory entry provides observability for Phase 5 deletion evaluation.
+
+---
+
 ## Type Routing
 
 | Type | Action |
 |------|--------|
-| infra | **Skip** → Read(.claude/skills/run-workflow/PHASE-7.md) |
-| research | **Skip** → Read(.claude/skills/run-workflow/PHASE-7.md) |
+| infra | **Skip** → Log "SKIP (type routing)" → Read(.claude/skills/run-workflow/PHASE-7.md) |
+| research | **Skip** → Log "SKIP (type routing)" → Read(.claude/skills/run-workflow/PHASE-7.md) |
 | erb | Refactor ERB code → GREEN confirmation |
 | engine | Refactor C# code → GREEN confirmation |
 
-> **Note**: kojo type does not reach Phase 5 (skips from Phase 4 → Phase 6 directly)
+> **Note**: kojo type does not reach Phase 5 (skips from Phase 4 → Phase 6 directly). Log "SKIP (type routing)" before proceeding to Phase 6.
 
 ---
 

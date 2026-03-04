@@ -66,7 +66,7 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
 | F814 | [DRAFT] | Phase 22 Planning | F783, F813 | [feature-814.md](feature-814.md) |
-| F818 | [DRAFT] | ac-static-verifier cross-repo and WSL support | - | [feature-818.md](feature-818.md) |
+| F818 | [PROPOSED] | ac-static-verifier cross-repo and WSL support | - | [feature-818.md](feature-818.md) |
 
 ### Other
 

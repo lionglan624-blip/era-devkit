@@ -118,8 +118,8 @@ let pendingRestart = false;
 let debounceTimer = null;
 
 function triggerAutoDR() {
-  const { runningCount, queuedCount, chainWaiterCount } = claudeService.getQueueStatus();
-  if (runningCount === 0 && queuedCount === 0 && chainWaiterCount === 0) {
+  const { runningCount, queuedCount, chainWaiterCount, waitingForInputCount } = claudeService.getQueueStatus();
+  if (runningCount === 0 && queuedCount === 0 && chainWaiterCount === 0 && waitingForInputCount === 0) {
     pendingRestart = false;
     serverLog.info('[Auto-DR] No running executions, restarting backend...');
     logStreamer.broadcastAll({
@@ -148,7 +148,7 @@ function triggerAutoDR() {
         timestamp: new Date().toISOString(),
       });
     }
-    serverLog.info(`[Auto-DR] Deferred: ${runningCount} running, ${queuedCount} queued, ${chainWaiterCount} chain-waiting`);
+    serverLog.info(`[Auto-DR] Deferred: ${runningCount} running, ${queuedCount} queued, ${chainWaiterCount} chain-waiting, ${waitingForInputCount} input-waiting`);
   }
 }
 
@@ -175,8 +175,8 @@ autoDRWatcher.on('change', (filePath) => {
 // When an execution completes, check if restart was deferred
 claudeService.onExecutionComplete = () => {
   if (!pendingRestart) return;
-  const { runningCount, queuedCount, chainWaiterCount } = claudeService.getQueueStatus();
-  if (runningCount === 0 && queuedCount === 0 && chainWaiterCount === 0) {
+  const { runningCount, queuedCount, chainWaiterCount, waitingForInputCount } = claudeService.getQueueStatus();
+  if (runningCount === 0 && queuedCount === 0 && chainWaiterCount === 0 && waitingForInputCount === 0) {
     serverLog.info('[Auto-DR] All executions complete, executing deferred restart');
     triggerAutoDR();
   }

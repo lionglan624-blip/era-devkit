@@ -1518,8 +1518,9 @@ export class ClaudeService {
             this.chainExecutor.registerWaiter(execution);
         }
 
-        if (!chainContinues || isLastChainStep) {
+        if ((!chainContinues || isLastChainStep) && !execution.waitingForInput && !execution.inputRequired) {
             // Chain complete (last step), chain stopped, or non-chain execution - send email
+            // Skip if waiting for user input — input-wait email already sent
             const chainHistory = execution.chain?.history || [];
             const isContextRetryExhausted =
                 execution.chain?.contextRetryCount >= MAX_RETRIES && isContextExhausted;
@@ -1983,6 +1984,7 @@ export class ClaudeService {
     getQueueStatus() {
         const running = [];
         const queued = [];
+        let waitingForInputCount = 0;
         for (const exec of this.executions.values()) {
             if (exec.status === 'running') {
                 running.push({
@@ -1992,6 +1994,9 @@ export class ClaudeService {
                     phase: exec.currentPhase,
                     phaseName: exec.currentPhaseName,
                 });
+            }
+            if (exec.waitingForInput || exec.inputRequired) {
+                waitingForInputCount++;
             }
         }
         for (const qId of this.queue) {
@@ -2005,6 +2010,7 @@ export class ClaudeService {
             runningCount: running.length,
             queuedCount: queued.length,
             chainWaiterCount: this.chainExecutor.chainWaiters.size,
+            waitingForInputCount,
             running,
             queued,
             rateLimitWaiting: this._rateLimitRetryInfo

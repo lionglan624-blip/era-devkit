@@ -19,6 +19,7 @@ Usage:
     python session-search.py --list --after 2026-03-01 --limit 10
     python session-search.py --session be309 "issue" --type text
     python session-search.py --session be309 --type tool_use
+    python session-search.py --session be309 --autopsy
 
 Exit codes:
     0 = Success (matches found, or no matches without --strict)
@@ -91,18 +92,23 @@ def parse_iso(ts: str) -> Optional[datetime]:
         return None
 
 
+def _to_local(dt: datetime) -> datetime:
+    """Convert aware datetime to local time for display."""
+    return dt.astimezone() if dt.tzinfo else dt
+
+
 def format_dt(dt: Optional[datetime]) -> str:
-    """Format datetime for display as 'YYYY-MM-DD HH:MM'."""
+    """Format datetime for display as 'YYYY-MM-DD HH:MM' in local time."""
     if dt is None:
         return "unknown"
-    return dt.strftime("%Y-%m-%d %H:%M")
+    return _to_local(dt).strftime("%Y-%m-%d %H:%M")
 
 
 def format_time(dt: Optional[datetime]) -> str:
-    """Format datetime as HH:MM:SS for timeline."""
+    """Format datetime as HH:MM:SS in local time for timeline."""
     if dt is None:
         return "??:??:??"
-    return dt.strftime("%H:%M:%S")
+    return _to_local(dt).strftime("%H:%M:%S")
 
 
 # -- match extraction ---------------------------------------------------------
@@ -968,7 +974,7 @@ def print_session_list(summaries: list[dict], verbose: bool) -> None:
         # Date range: compact "YYYY-MM-DD HH:MM~HH:MM"
         if earliest_dt and latest_dt:
             date_str = format_dt(earliest_dt)
-            end_time = latest_dt.strftime("%H:%M")
+            end_time = _to_local(latest_dt).strftime("%H:%M")
             date_range = f"{date_str}~{end_time}"
         else:
             date_range = "unknown"
@@ -1205,6 +1211,520 @@ def print_counts(
     print(f"Total: {total} matches in {len(sessions)} sessions")
 
 
+# -- autopsy -----------------------------------------------------------------
+
+def scan_autopsy(jsonl_path: Path) -> Optional[dict]:
+    """Single-pass scan collecting termination diagnostics for a session."""
+    session_id = jsonl_path.stem
+    timestamps: list[datetime] = []
+    last_assistant_line: Optional[int] = None
+    last_assistant_stop_reason: Optional[str] = None
+    pending_tools: dict[str, dict] = {}  # tool_use_id -> {name, line, summary}
+    api_errors: list[dict] = []  # {line, text}
+    token_trajectory: list[dict] = []  # {line, input, output}
+    last_usage: Optional[dict] = None
+    assistant_count = 0
+    user_count = 0
+    last_record_type: Optional[str] = None
+    last_record_line = 0
+    first_user_text: Optional[str] = None
+    total_lines = 0
+
+    try:
+        with open(jsonl_path, encoding="utf-8", errors="replace") as f:
+            for lineno, raw in enumerate(f, start=1):
+                total_lines = lineno
+                try:
+                    obj = json.loads(raw)
+                except json.JSONDecodeError:
+                    continue
+
+                ts = parse_iso(obj.get("timestamp", ""))
+                if ts:
+                    timestamps.append(ts)
+
+                record_type = obj.get("type", "")
+                if record_type in ("assistant", "user"):
+                    last_record_type = record_type
+                    last_record_line = lineno
+
+                message = obj.get("message", {})
+                content = message.get("content", []) if isinstance(message, dict) else []
+
+                if record_type == "assistant":
+                    assistant_count += 1
+                    last_assistant_line = lineno
+                    stop_reason = message.get("stop_reason", "") if isinstance(message, dict) else ""
+                    if stop_reason:
+                        last_assistant_stop_reason = stop_reason
+
+                    # Token usage
+                    usage = message.get("usage", {}) if isinstance(message, dict) else {}
+                    if usage:
+                        last_usage = usage
+                        # Sample every 10th assistant message
+                        if assistant_count % 10 == 0:
+                            inp = usage.get("input_tokens", 0) + usage.get("cache_read_input_tokens", 0)
+                            out = usage.get("output_tokens", 0)
+                            token_trajectory.append({"line": lineno, "input": inp, "output": out})
+
+                    # Track tool_use blocks
+                    if isinstance(content, list):
+                        for block in content:
+                            if isinstance(block, dict) and block.get("type") == "tool_use":
+                                use_id = block.get("id", "")
+                                if use_id:
+                                    pending_tools[use_id] = {
+                                        "name": block.get("name", "?"),
+                                        "line": lineno,
+                                        "summary": _extract_tool_use_summary(block, ""),
+                                    }
+
+                elif record_type == "user":
+                    user_count += 1
+
+                    # First user text
+                    if first_user_text is None:
+                        _found_text = None
+                        if isinstance(content, str) and content.strip():
+                            _found_text = content.strip()
+                        elif isinstance(content, list):
+                            for block in content:
+                                if isinstance(block, dict) and block.get("type") == "text":
+                                    text = block.get("text", "").strip()
+                                    if text:
+                                        _found_text = text
+                                        break
+                        if _found_text:
+                            cmd_match = re.search(
+                                r"<command-name>(/\S+)</command-name>\s*<command-args>(.*?)</command-args>",
+                                _found_text,
+                            )
+                            if cmd_match:
+                                first_user_text = f"{cmd_match.group(1)} {cmd_match.group(2)}".strip()
+                            elif not _found_text.startswith("<"):
+                                first_user_text = _truncate(_found_text, 100)
+
+                    # Remove resolved tool results
+                    if isinstance(content, list):
+                        for block in content:
+                            if isinstance(block, dict) and block.get("type") == "tool_result":
+                                use_id = block.get("tool_use_id", "")
+                                pending_tools.pop(use_id, None)
+
+                    # Detect API errors in tool_result content
+                    if isinstance(content, list):
+                        for block in content:
+                            if isinstance(block, dict) and block.get("type") == "tool_result":
+                                if block.get("is_error"):
+                                    err_text = _content_to_text(block.get("content", "")).lower()
+                                    if any(kw in err_text for kw in ("overloaded", "rate_limit", "429")):
+                                        api_errors.append({"line": lineno, "text": err_text[:200]})
+
+                # Also check for error-type records (API errors outside tool_result)
+                if record_type == "error" or (isinstance(message, dict) and message.get("error")):
+                    err_raw = json.dumps(obj, ensure_ascii=False).lower()
+                    if any(kw in err_raw for kw in ("overloaded", "rate_limit", "429")):
+                        api_errors.append({"line": lineno, "text": _truncate(err_raw, 200)})
+
+    except OSError as exc:
+        print(f"ERROR: Cannot read {jsonl_path.name}: {exc}", file=sys.stderr)
+        return None
+
+    earliest = min(timestamps) if timestamps else None
+    latest = max(timestamps) if timestamps else None
+
+    return {
+        "session_id": session_id,
+        "total_lines": total_lines,
+        "earliest": earliest,
+        "latest": latest,
+        "last_assistant_line": last_assistant_line,
+        "last_assistant_stop_reason": last_assistant_stop_reason,
+        "pending_tools": pending_tools,
+        "api_errors": api_errors,
+        "token_trajectory": token_trajectory,
+        "last_usage": last_usage,
+        "assistant_count": assistant_count,
+        "user_count": user_count,
+        "last_record_type": last_record_type,
+        "last_record_line": last_record_line,
+        "first_user_text": first_user_text or "(no user text)",
+    }
+
+
+def scan_subagent_autopsy(
+    ccs_dirs: list[Path], session_id: str
+) -> list[dict]:
+    """Scan subagent JSONLs for completion/interruption state."""
+    # Collect and deduplicate subagent files (keep largest)
+    seen: dict[str, tuple[Path, int]] = {}
+    for d in ccs_dirs:
+        for p in d.glob(f"{session_id}*/subagents/*.jsonl"):
+            parent_id = p.parent.parent.name
+            dedup_key = f"{parent_id}/{p.stem}"
+            size = p.stat().st_size
+            if dedup_key not in seen or size > seen[dedup_key][1]:
+                seen[dedup_key] = (p, size)
+
+    results: list[dict] = []
+    for _key, (p, _size) in seen.items():
+        info = _scan_one_subagent(p)
+        if info:
+            results.append(info)
+
+    results.sort(key=lambda x: x.get("earliest") or datetime.min.replace(tzinfo=timezone.utc))
+    return results
+
+
+def _scan_one_subagent(jsonl_path: Path) -> Optional[dict]:
+    """Scan a single subagent JSONL for autopsy data."""
+    timestamps: list[datetime] = []
+    total_lines = 0
+    last_stop_reason: Optional[str] = None
+    pending_tools: dict[str, dict] = {}
+    spawn_summary: Optional[str] = None
+
+    try:
+        with open(jsonl_path, encoding="utf-8", errors="replace") as f:
+            for lineno, raw in enumerate(f, start=1):
+                total_lines = lineno
+                try:
+                    obj = json.loads(raw)
+                except json.JSONDecodeError:
+                    continue
+
+                ts = parse_iso(obj.get("timestamp", ""))
+                if ts:
+                    timestamps.append(ts)
+
+                record_type = obj.get("type", "")
+                message = obj.get("message", {})
+                content = message.get("content", []) if isinstance(message, dict) else []
+
+                # Get spawn description from first user message
+                if spawn_summary is None and record_type == "user":
+                    if isinstance(content, str) and content.strip():
+                        spawn_summary = _truncate(content.strip(), 100)
+                    elif isinstance(content, list):
+                        for block in content:
+                            if isinstance(block, dict) and block.get("type") == "text":
+                                text = block.get("text", "").strip()
+                                if text:
+                                    spawn_summary = _truncate(text, 100)
+                                    break
+
+                if record_type == "assistant":
+                    stop_reason = message.get("stop_reason", "") if isinstance(message, dict) else ""
+                    if stop_reason:
+                        last_stop_reason = stop_reason
+
+                    if isinstance(content, list):
+                        for block in content:
+                            if isinstance(block, dict) and block.get("type") == "tool_use":
+                                use_id = block.get("id", "")
+                                if use_id:
+                                    pending_tools[use_id] = {
+                                        "name": block.get("name", "?"),
+                                        "line": lineno,
+                                        "summary": _extract_tool_use_summary(block, ""),
+                                    }
+
+                elif record_type == "user" and isinstance(content, list):
+                    for block in content:
+                        if isinstance(block, dict) and block.get("type") == "tool_result":
+                            pending_tools.pop(block.get("tool_use_id", ""), None)
+
+    except OSError:
+        return None
+
+    if total_lines == 0:
+        return None
+
+    earliest = min(timestamps) if timestamps else None
+    latest = max(timestamps) if timestamps else None
+    completed = last_stop_reason == "end_turn" and not pending_tools
+
+    return {
+        "subagent_id": jsonl_path.stem,
+        "total_lines": total_lines,
+        "earliest": earliest,
+        "latest": latest,
+        "last_stop_reason": last_stop_reason,
+        "completed": completed,
+        "pending_tools": pending_tools,
+        "spawn_summary": spawn_summary or "(unknown)",
+    }
+
+
+def correlate_pm2_events(
+    session_end_dt: datetime, window_minutes: int = 2
+) -> list[dict]:
+    """Find PM2 events within a time window of the session end."""
+    try:
+        import importlib.util
+        pm2_diag_path = Path(__file__).parent / "pm2_diag.py"
+        if not pm2_diag_path.exists():
+            return []
+        spec = importlib.util.spec_from_file_location("pm2_diag", pm2_diag_path)
+        pm2_mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(pm2_mod)
+
+        log_path = pm2_mod.get_default_log_path()
+        if not log_path.exists():
+            return []
+
+        events = pm2_mod.parse_pm2_log(log_path)
+        if not events:
+            return []
+
+        # Convert session_end_dt (UTC) to local time for comparison with PM2 timestamps
+        from datetime import timedelta
+        local_offset = datetime.now().astimezone().utcoffset() or timedelta(0)
+        session_end_local = session_end_dt.replace(tzinfo=None) + local_offset
+
+        window = timedelta(minutes=window_minutes)
+        start = session_end_local - window
+        end = session_end_local + window
+
+        # Noise patterns to skip (PM2 internal issues, not app events)
+        noise_patterns = {"spawn wmic", "pidusage"}
+
+        matched = []
+        for ev in events:
+            ev_ts = ev.get("timestamp")
+            if ev_ts is None:
+                continue
+            if start <= ev_ts <= end:
+                msg = ev.get("action") or ev.get("message", "")
+                # Skip noisy PM2 internal errors
+                if any(noise in msg for noise in noise_patterns):
+                    continue
+                decoded = ""
+                if ev.get("exit_code") is not None:
+                    decoded = pm2_mod.decode_exit_code(ev["exit_code"])
+                matched.append({
+                    "timestamp": ev_ts,
+                    "app": ev.get("app", "?"),
+                    "message": msg,
+                    "exit_code": ev.get("exit_code"),
+                    "decoded": decoded,
+                })
+        return matched
+    except Exception:
+        return []
+
+
+def find_concurrent_sessions(
+    ccs_dirs: list[Path],
+    earliest: datetime,
+    latest: datetime,
+    exclude_id: str,
+) -> list[dict]:
+    """Find sessions that overlapped in time with the target session."""
+    all_files = _collect_jsonl_files(ccs_dirs, None, False)
+    concurrent: list[dict] = []
+
+    for jsonl_path in all_files:
+        sid = jsonl_path.stem
+        if sid == exclude_id:
+            continue
+        summary = scan_summary(jsonl_path)
+        if summary is None:
+            continue
+        s_earliest = summary.get("earliest")
+        s_latest = summary.get("latest")
+        if s_earliest is None or s_latest is None:
+            continue
+        # Check time overlap: A.start <= B.end AND A.end >= B.start
+        if s_earliest <= latest and s_latest >= earliest:
+            concurrent.append({
+                "session_id": sid,
+                "earliest": s_earliest,
+                "latest": s_latest,
+                "first_user_text": summary.get("first_user_text", "(unknown)"),
+            })
+
+    concurrent.sort(key=lambda x: x["earliest"])
+    return concurrent
+
+
+def classify_termination(
+    autopsy_data: dict, subagent_data: list[dict]
+) -> tuple[str, str]:
+    """Classify why a session ended. Returns (verdict_code, explanation)."""
+    api_errors = autopsy_data.get("api_errors", [])
+    pending = autopsy_data.get("pending_tools", {})
+    stop_reason = autopsy_data.get("last_assistant_stop_reason")
+    last_usage = autopsy_data.get("last_usage") or {}
+    last_type = autopsy_data.get("last_record_type")
+
+    # 1. API_OVERLOADED
+    for err in api_errors:
+        if "overloaded" in err.get("text", ""):
+            return ("API_OVERLOADED", "API returned overloaded error")
+
+    # 2. RATE_LIMITED
+    for err in api_errors:
+        text = err.get("text", "")
+        if "429" in text or "rate_limit" in text:
+            return ("RATE_LIMITED", "API returned rate limit error")
+
+    # 3. CONTEXT_LIMIT
+    input_tokens = last_usage.get("input_tokens", 0) + last_usage.get("cache_read_input_tokens", 0)
+    if input_tokens > 180000:
+        return ("CONTEXT_LIMIT", f"Input tokens ({input_tokens:,}) exceeded 180K limit")
+
+    # 4. NORMAL
+    if stop_reason == "end_turn" and not pending:
+        return ("NORMAL", "Session completed normally (end_turn, no pending tools)")
+
+    # 5. INTERRUPTED_SUBAGENT
+    pending_agents = [v for v in pending.values() if v["name"] in ("Agent", "Task")]
+    if pending_agents:
+        names = ", ".join(v["summary"] for v in pending_agents)
+        return ("INTERRUPTED_SUBAGENT", f"Session interrupted with pending: {_truncate(names, 120)}")
+
+    # 6. INTERRUPTED_TOOL
+    if pending:
+        names = ", ".join(v["name"] for v in pending.values())
+        return ("INTERRUPTED_TOOL", f"Session interrupted with pending tools: {names}")
+
+    # 7. USER_INTERRUPTED
+    if stop_reason == "stop_sequence":
+        return ("USER_INTERRUPTED", "User sent stop signal (stop_sequence)")
+
+    # 8. NO_RESPONSE
+    if last_type == "user":
+        return ("NO_RESPONSE", "Last record is user message (no API response received)")
+
+    # 9. UNKNOWN
+    return ("UNKNOWN", f"stop_reason={stop_reason}, pending={len(pending)}, last_type={last_type}")
+
+
+def print_autopsy(
+    autopsy_data: dict,
+    subagent_data: list[dict],
+    pm2_events: list[dict],
+    concurrent: list[dict],
+    verdict_code: str,
+    verdict_text: str,
+) -> None:
+    """Print structured autopsy report."""
+    sid = autopsy_data["session_id"]
+
+    def _fmt_tokens(n: int) -> str:
+        if n >= 1000:
+            return f"{n / 1000:.0f}K"
+        return str(n)
+
+    # Header
+    print(f"=== Session Autopsy: {sid} ===")
+    print(f"VERDICT: {verdict_code} -- {verdict_text}")
+    print()
+
+    # Session Overview
+    earliest = autopsy_data["earliest"]
+    latest = autopsy_data["latest"]
+    duration_str = "?"
+    if earliest and latest:
+        delta = latest - earliest
+        minutes = int(delta.total_seconds() / 60)
+        duration_str = f"{minutes}min"
+
+    e_str = format_time(earliest) if earliest else "?"
+    l_str = format_time(latest) if latest else "?"
+    print("--- Session Overview ---")
+    print(f"  Period: {e_str}~{l_str} ({duration_str})  "
+          f"Lines: {autopsy_data['total_lines']}  "
+          f"Messages: {autopsy_data['assistant_count']} asst, {autopsy_data['user_count']} user")
+    if autopsy_data.get("first_user_text"):
+        print(f"  First: {autopsy_data['first_user_text']}")
+    print()
+
+    # Termination State
+    print("--- Termination State ---")
+    last_line = autopsy_data.get("last_assistant_line") or "?"
+    stop = autopsy_data.get("last_assistant_stop_reason") or "?"
+    print(f"  Last assistant (L{last_line}): stop_reason={stop}")
+
+    pending = autopsy_data.get("pending_tools", {})
+    if pending:
+        print(f"  Pending tools ({len(pending)}):")
+        for uid, info in pending.items():
+            print(f"    L{info['line']} {info['summary']}  [NO RESULT]")
+    else:
+        print("  Pending tools: (none)")
+    print()
+
+    # Subagent State
+    if subagent_data:
+        in_flight = [s for s in subagent_data if not s["completed"]]
+        print(f"--- Subagent State ---")
+        print(f"  {len(subagent_data)} total, {len(in_flight)} in-flight:")
+        for sa in subagent_data:
+            status = "DONE" if sa["completed"] else "IN-FLIGHT"
+            sa_earliest = format_time(sa["earliest"]) if sa["earliest"] else "?"
+            sa_latest = format_time(sa["latest"]) if sa["latest"] else "?"
+            pending_info = ""
+            if sa["pending_tools"]:
+                pnames = ", ".join(v["name"] for v in sa["pending_tools"].values())
+                pending_info = f"  pending: {pnames}"
+            print(f"    {sa['subagent_id'][:16]} ({status}) "
+                  f"{sa_earliest}~{sa_latest} {sa['total_lines']}L  "
+                  f"last: {sa.get('last_stop_reason', '?')}{pending_info}")
+    else:
+        print("--- Subagent State ---")
+        print("  (no subagents)")
+    print()
+
+    # Token Usage
+    print("--- Token Usage ---")
+    usage = autopsy_data.get("last_usage")
+    if usage:
+        inp = usage.get("input_tokens", 0) + usage.get("cache_read_input_tokens", 0)
+        out = usage.get("output_tokens", 0)
+        print(f"  Final: input={_fmt_tokens(inp)}, output={_fmt_tokens(out)}")
+    else:
+        print("  Final: (no usage data)")
+
+    trajectory = autopsy_data.get("token_trajectory", [])
+    if trajectory:
+        samples = [_fmt_tokens(t["input"]) for t in trajectory]
+        print(f"  Trajectory: {' -> '.join(samples)}")
+    print()
+
+    # API Errors
+    api_errors = autopsy_data.get("api_errors", [])
+    if api_errors:
+        print(f"--- API Errors ({len(api_errors)}) ---")
+        for err in api_errors[:5]:
+            print(f"  L{err['line']}: {_truncate(err['text'], 120)}")
+        if len(api_errors) > 5:
+            print(f"  ... ({len(api_errors) - 5} more)")
+        print()
+
+    # Temporal Context
+    print("--- Temporal Context ---")
+    if pm2_events:
+        print(f"  PM2 events ({len(pm2_events)}):")
+        for ev in pm2_events[:5]:
+            ts_str = ev["timestamp"].strftime("%H:%M:%S") if ev["timestamp"] else "?"
+            decoded = f" ({ev['decoded']})" if ev.get("decoded") else ""
+            print(f"    {ts_str} [{ev['app']}] {_truncate(ev['message'], 80)}{decoded}")
+    else:
+        print("  PM2: (none within window)")
+
+    if concurrent:
+        print(f"  Concurrent sessions ({len(concurrent)}):")
+        for cs in concurrent[:5]:
+            cs_e = format_time(cs["earliest"]) if cs["earliest"] else "?"
+            cs_l = format_time(cs["latest"]) if cs["latest"] else "?"
+            print(f"    {cs['session_id'][:16]} ({cs_e}~{cs_l}) {_truncate(cs['first_user_text'], 50)}")
+    else:
+        print("  Concurrent: (none)")
+
+
 # -- main --------------------------------------------------------------------
 
 def build_parser() -> argparse.ArgumentParser:
@@ -1364,6 +1884,13 @@ Examples:
         default=0,
         metavar="N",
         help="Show N records before and after each match (like grep -C)",
+    )
+    parser.add_argument(
+        "--autopsy",
+        action="store_true",
+        help="Diagnose why a session ended (requires --session). "
+             "Shows verdict, termination state, subagent status, token usage, "
+             "and correlated PM2/debug log events.",
     )
     return parser
 
@@ -1566,6 +2093,33 @@ def main() -> int:
         summaries = summaries[:limit]
 
         print_session_list(summaries, args.verbose)
+        return 0
+
+    # --autopsy mode (early branch)
+    if args.autopsy:
+        if not args.session:
+            parser.error("--autopsy requires --session")
+        jsonl_files = _resolve_session_files(ccs_dirs, args.session, parser)
+        if len(jsonl_files) > 1:
+            print(f'ERROR: Multiple sessions match "{args.session}". Be more specific.', file=sys.stderr)
+            for p in jsonl_files:
+                print(f"  {p.stem}", file=sys.stderr)
+            return 1
+        autopsy_data = scan_autopsy(jsonl_files[0])
+        if autopsy_data is None:
+            return 1
+        subagent_data = scan_subagent_autopsy(ccs_dirs, autopsy_data["session_id"])
+        verdict_code, verdict_text = classify_termination(autopsy_data, subagent_data)
+        pm2_events: list[dict] = []
+        if autopsy_data["latest"]:
+            pm2_events = correlate_pm2_events(autopsy_data["latest"])
+        concurrent: list[dict] = []
+        if autopsy_data["earliest"] and autopsy_data["latest"]:
+            concurrent = find_concurrent_sessions(
+                ccs_dirs, autopsy_data["earliest"], autopsy_data["latest"],
+                autopsy_data["session_id"],
+            )
+        print_autopsy(autopsy_data, subagent_data, pm2_events, concurrent, verdict_code, verdict_text)
         return 0
 
     # Validate: pattern is required unless --session or --timeline is specified

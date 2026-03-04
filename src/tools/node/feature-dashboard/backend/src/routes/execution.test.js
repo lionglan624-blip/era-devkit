@@ -57,6 +57,8 @@ function createMockClaudeService() {
         listExecutions: vi.fn(() => []),
         runShellCommand: vi.fn(() => ({ command: 'cs', status: 'launched' })),
         executeSlashCommand: vi.fn(() => 'slash-uuid'),
+        getHistory: vi.fn(() => []),
+        clearHistory: vi.fn(),
     };
 }
 
@@ -220,6 +222,93 @@ describe('Execution Routes', () => {
             });
             expect(res.status).toBe(200);
             expect(mock.openTerminal).toHaveBeenCalledWith('100', 'fl');
+        });
+    });
+
+    describe('GET /history', () => {
+        it('returns empty array when no history', async () => {
+            const mock = createMockClaudeService();
+            const app = createApp(mock);
+            const res = await request(app, 'GET', '/api/execution/history');
+            expect(res.status).toBe(200);
+            expect(res.body).toEqual([]);
+            expect(mock.getHistory).toHaveBeenCalled();
+        });
+
+        it('returns history entries from service', async () => {
+            const mock = createMockClaudeService();
+            const entries = [
+                {
+                    executionId: 'exec-1',
+                    featureId: '100',
+                    command: 'fl',
+                    status: 'completed',
+                    exitCode: 0,
+                    sessionId: 'session-1',
+                    startedAt: '2026-03-04T10:00:00.000Z',
+                    completedAt: '2026-03-04T10:05:00.000Z',
+                    contextPercent: 42,
+                },
+                {
+                    executionId: 'exec-2',
+                    featureId: '200',
+                    command: 'run',
+                    status: 'failed',
+                    exitCode: 1,
+                    sessionId: null,
+                    startedAt: '2026-03-04T09:00:00.000Z',
+                    completedAt: '2026-03-04T09:30:00.000Z',
+                    contextPercent: 85,
+                },
+            ];
+            mock.getHistory.mockReturnValue(entries);
+            const app = createApp(mock);
+            const res = await request(app, 'GET', '/api/execution/history');
+            expect(res.status).toBe(200);
+            expect(res.body).toHaveLength(2);
+            expect(res.body[0].executionId).toBe('exec-1');
+            expect(res.body[1].command).toBe('run');
+        });
+
+        it('is not intercepted by UUID param validator', async () => {
+            // "history" is not a UUID, ensure it routes to GET /history not GET /:id
+            const mock = createMockClaudeService();
+            const app = createApp(mock);
+            const res = await request(app, 'GET', '/api/execution/history');
+            expect(res.status).toBe(200);
+            expect(mock.getExecution).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('DELETE /history', () => {
+        it('clears history', async () => {
+            const mock = createMockClaudeService();
+            const app = createApp(mock);
+            const res = await request(app, 'DELETE', '/api/execution/history');
+            expect(res.status).toBe(200);
+            expect(res.body.cleared).toBe(true);
+            expect(mock.clearHistory).toHaveBeenCalled();
+        });
+
+        it('behavior: clear then get returns empty', async () => {
+            const mock = createMockClaudeService();
+            // Simulate: getHistory returns data before clear, empty after
+            mock.getHistory
+                .mockReturnValueOnce([{ executionId: 'e1', status: 'completed' }])
+                .mockReturnValueOnce([]);
+            const app = createApp(mock);
+
+            // Step 1: History has entries
+            const before = await request(app, 'GET', '/api/execution/history');
+            expect(before.body).toHaveLength(1);
+
+            // Step 2: Clear
+            const del = await request(app, 'DELETE', '/api/execution/history');
+            expect(del.status).toBe(200);
+
+            // Step 3: History is empty
+            const after = await request(app, 'GET', '/api/execution/history');
+            expect(after.body).toHaveLength(0);
         });
     });
 

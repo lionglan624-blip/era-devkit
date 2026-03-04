@@ -497,6 +497,17 @@ export function useExecution() {
         return activeIds;
     }, []);
 
+    const fetchHistory = useCallback(async () => {
+        try {
+            const res = await fetch(`${API_BASE}/execution/history`);
+            if (!res.ok) return [];
+            return await res.json();
+        } catch (err) {
+            console.warn('Failed to fetch execution history:', err);
+            return [];
+        }
+    }, []);
+
     return {
         state, // { executions, executionStates, featurePhases, inputRequests }
         dispatch, // For WS_STATE, WS_HANDOFF, etc. from wsHandlers
@@ -505,5 +516,6 @@ export function useExecution() {
         addLog,
         updateStatus,
         fetchExecutions,
+        fetchHistory,
     };
 }

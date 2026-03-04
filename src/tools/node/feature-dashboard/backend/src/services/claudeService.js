@@ -1,6 +1,14 @@
 import { spawn, spawnSync, execSync } from 'child_process';
 import { mkdir } from 'fs/promises';
-import { writeFileSync, mkdirSync, readFileSync, existsSync, statSync, unlinkSync } from 'fs';
+import {
+    writeFileSync,
+    mkdirSync,
+    readFileSync,
+    existsSync,
+    statSync,
+    unlinkSync,
+    appendFileSync,
+} from 'fs';
 import { fileURLToPath } from 'url';
 import crypto from 'crypto';
 import path from 'path';
@@ -105,6 +113,9 @@ export class ClaudeService {
         // Persistent session ID map (survives execution TTL eviction)
         this._sessionMapPath = path.join(this.tmpDir, 'sessions.json');
         this._sessionMap = this._loadSessionMap();
+
+        // Persistent execution history (survives DR/reload)
+        this._historyPath = path.join(this.tmpDir, 'execution-history.jsonl');
 
         // Initialize ChainExecutor with dependencies
         this.chainExecutor = new ChainExecutor({
@@ -354,6 +365,8 @@ export class ClaudeService {
         const idsToDelete = [];
         for (const [id, exec] of this.executions) {
             if (exec.completedAt) {
+                // Don't clean up executions still waiting for user input (y/n or AskUserQuestion)
+                if (exec.waitingForInput || exec.inputRequired) continue;
                 const completedTime = new Date(exec.completedAt).getTime();
                 if (now - completedTime > EXECUTION_TTL_MS) {
                     idsToDelete.push(id);
@@ -369,6 +382,7 @@ export class ClaudeService {
         for (const [id, exec] of this.executions) {
             if (
                 exec.status === 'running' &&
+                !exec.inputRequired &&
                 exec.lastOutputTime &&
                 now - exec.lastOutputTime > STUCK_RUNNING_TIMEOUT_MS
             ) {
@@ -774,6 +788,15 @@ export class ClaudeService {
             text: text,
             timestamp: new Date().toISOString(),
         });
+        // Email notification: user input required (browser-first — replaces old handoff email)
+        const featureInfo = execution.featureId && this.featureService
+            ? this.featureService.getFeature(execution.featureId) : null;
+        this.emailService?.sendHandoffNotification(
+            execution,
+            `Input required: ${description}`,
+            execution.chain?.enabled ? execution.chain.history : undefined,
+            featureInfo,
+        ).catch(() => {});
     }
 
     /** Handoff execution to terminal when user input is required */
@@ -861,6 +884,8 @@ export class ClaudeService {
             execution.stallCheckInterval = null;
         }
 
+        this._saveHistoryEntry(execution);
+
         setTimeout(() => {
             this.resumeInTerminal(execution.id);
         }, HANDOFF_DELAY_MS);
@@ -868,6 +893,68 @@ export class ClaudeService {
         this._broadcastState(execution);
         this._dequeueNext();
         this.onExecutionComplete?.(execution);
+    }
+
+    /** Append a history entry to the persistent JSONL file */
+    _saveHistoryEntry(execution) {
+        try {
+            const entry = {
+                executionId: execution.id,
+                featureId: execution.featureId,
+                command: execution.command,
+                status: execution.status,
+                exitCode: execution.exitCode ?? null,
+                sessionId: execution.sessionId ?? null,
+                startedAt: execution.startedAt ?? null,
+                completedAt: execution.completedAt ?? null,
+                contextPercent: execution.contextPercent ?? null,
+            };
+            appendFileSync(this._historyPath, JSON.stringify(entry) + '\n', 'utf8');
+        } catch (err) {
+            claudeLog.warn(`[ClaudeService] Failed to save history entry: ${err.message}`);
+        }
+    }
+
+    /** Read execution history from JSONL file, filtered by age */
+    getHistory(limitDays = 7) {
+        try {
+            if (!existsSync(this._historyPath)) return [];
+            const raw = readFileSync(this._historyPath, 'utf8').trim();
+            if (!raw) return [];
+            const cutoff = Date.now() - limitDays * 86400000;
+            const entries = [];
+            for (const line of raw.split('\n')) {
+                if (!line.trim()) continue;
+                try {
+                    const entry = JSON.parse(line);
+                    const ts = entry.completedAt || entry.startedAt;
+                    if (ts && new Date(ts).getTime() >= cutoff) {
+                        entries.push(entry);
+                    }
+                } catch {
+                    // Skip malformed lines
+                }
+            }
+            // Newest first
+            entries.sort((a, b) => {
+                const ta = new Date(b.completedAt || b.startedAt || 0).getTime();
+                const tb = new Date(a.completedAt || a.startedAt || 0).getTime();
+                return ta - tb;
+            });
+            return entries;
+        } catch (err) {
+            claudeLog.warn(`[ClaudeService] Failed to read history: ${err.message}`);
+            return [];
+        }
+    }
+
+    /** Clear execution history (test support / manual reset) */
+    clearHistory() {
+        try {
+            writeFileSync(this._historyPath, '', 'utf8');
+        } catch (err) {
+            claudeLog.warn(`[ClaudeService] Failed to clear history: ${err.message}`);
+        }
     }
 
     /** Detect if FL workflow requested a re-run (Forward-Only Mode completion) */
@@ -960,6 +1047,17 @@ export class ClaudeService {
             toolUseId: execution.inputRequired?.toolUseId,
             timestamp: new Date().toISOString(),
         });
+        // Email notification: AskUserQuestion requires user input (browser-first — replaces old handoff email)
+        const featureInfo = execution.featureId && this.featureService
+            ? this.featureService.getFeature(execution.featureId) : null;
+        const questionSummary = (execution.inputRequired?.questions || [])
+            .map(q => q.question).join('; ');
+        this.emailService?.sendHandoffNotification(
+            execution,
+            `AskUserQuestion: ${questionSummary || 'User input required'}`,
+            execution.chain?.enabled ? execution.chain.history : undefined,
+            featureInfo,
+        ).catch(() => {});
     }
 
     /** Handle execution completion */
@@ -1274,6 +1372,8 @@ export class ClaudeService {
 
             this._broadcastState(execution);
 
+            this._saveHistoryEntry(execution);
+
             // Send email with retry info
             const chainHistory = execution.chain?.history || [];
             const finalHistory = [
@@ -1334,6 +1434,8 @@ export class ClaudeService {
         });
 
         this._broadcastState(execution);
+
+        this._saveHistoryEntry(execution);
 
         // Chain: Register waiter for next step if chain-eligible (success + no handoff + not FL retry exhausted)
         // /run is the last chain step — no next command exists, so send email directly
@@ -2245,6 +2347,7 @@ export class ClaudeService {
         execution.waitingInputPattern = null;
         execution.inputRequired = null;
         execution.inputContext = null;
+        execution._killedForAskUser = false;
 
         // Kill the current process if still running
         if (execution.process && execution.status === 'running') {

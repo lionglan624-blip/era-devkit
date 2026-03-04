@@ -174,6 +174,28 @@ export function createExecutionRouter(claudeService) {
         res.json({ cleared: cleared.length, ids: cleared });
     });
 
+    // GET /api/execution/history - Persistent execution history (survives DR/reload)
+    router.get('/history', (req, res) => {
+        try {
+            const entries = claudeService.getHistory();
+            res.json(entries);
+        } catch (err) {
+            serverLog.error('Error fetching execution history:', err);
+            res.status(500).json({ error: err.message });
+        }
+    });
+
+    // DELETE /api/execution/history - Clear execution history (test support)
+    router.delete('/history', (req, res) => {
+        try {
+            claudeService.clearHistory();
+            res.json({ cleared: true });
+        } catch (err) {
+            serverLog.error('Error clearing execution history:', err);
+            res.status(500).json({ error: err.message });
+        }
+    });
+
     // GET /api/execution - List all executions
     router.get('/', (req, res) => {
         res.json(claudeService.listExecutions());

@@ -61,11 +61,14 @@ export default function App() {
         addLog,
         updateStatus,
         fetchExecutions,
+        fetchHistory,
     } = useExecution();
 
     const [selectedFeatureId, setSelectedFeatureId] = useState(null);
     const [activeExecutionId, setActiveExecutionId] = useState(null);
     const [showExecutionPanel, setShowExecutionPanel] = useState(false);
+    const [historyEntries, setHistoryEntries] = useState([]);
+    const [historyLoading, setHistoryLoading] = useState(false);
     const headerRef = useRef(null);
     const [headerHeight, setHeaderHeight] = useState(0);
     const [notifications, setNotifications] = useState([]);
@@ -96,9 +99,13 @@ export default function App() {
     // Measure header height for execution panel positioning
     useEffect(() => {
         if (!headerRef.current) return;
-        const ro = new ResizeObserver(() => {
-            setHeaderHeight(headerRef.current.offsetHeight);
-        });
+        const measure = () => {
+            if (headerRef.current) {
+                setHeaderHeight(headerRef.current.offsetHeight);
+            }
+        };
+        measure();
+        const ro = new ResizeObserver(() => requestAnimationFrame(measure));
         ro.observe(headerRef.current);
         return () => ro.disconnect();
     }, []);
@@ -730,6 +737,16 @@ export default function App() {
         [featureSessionIds, handleResumeTerminal, addNotification],
     );
 
+    const handleOpenHistory = useCallback(async () => {
+        setHistoryLoading(true);
+        try {
+            const entries = await fetchHistory();
+            setHistoryEntries(entries);
+        } finally {
+            setHistoryLoading(false);
+        }
+    }, [fetchHistory]);
+
     const handleShellCommand = useCallback(
         async (command, profile) => {
             setShellStates((prev) => ({ ...prev, [command]: 'running' }));
@@ -1114,6 +1131,8 @@ export default function App() {
                     inputRequests={inputRequests}
                     projectRoot={healthStatus.projectRoot}
                     headerHeight={headerHeight}
+                    historyEntries={historyEntries}
+                    historyLoading={historyLoading}
                     onSelectExecution={setActiveExecutionId}
                     onKill={killExecution}
                     onClose={() => setShowExecutionPanel(false)}
@@ -1121,6 +1140,7 @@ export default function App() {
                     onCloseFinishedTabs={handleCloseFinishedTabs}
                     onResumeTerminal={handleResumeTerminal}
                     onAnswer={handleAnswer}
+                    onOpenHistory={handleOpenHistory}
                 />
             )}
 

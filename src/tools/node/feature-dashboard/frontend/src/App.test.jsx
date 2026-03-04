@@ -42,6 +42,7 @@ const defaultExecution = {
     addLog: vi.fn(),
     updateStatus: vi.fn(),
     fetchExecutions: vi.fn().mockResolvedValue([]),
+    fetchHistory: vi.fn().mockResolvedValue([]),
 };
 
 const defaultWs = {

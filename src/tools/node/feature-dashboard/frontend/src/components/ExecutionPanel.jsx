@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LogViewer from './LogViewer.jsx';
+import HistoryView from './HistoryView.jsx';
 
 export default function ExecutionPanel({
     executions,
@@ -8,6 +9,8 @@ export default function ExecutionPanel({
     inputRequests = new Map(),
     projectRoot = null,
     headerHeight = 0,
+    historyEntries = [],
+    historyLoading = false,
     onSelectExecution,
     onClose,
     onKill,
@@ -15,9 +18,11 @@ export default function ExecutionPanel({
     onCloseFinishedTabs,
     onResumeTerminal,
     onAnswer,
+    onOpenHistory,
 }) {
     const [copyFeedback, setCopyFeedback] = useState(null);
     const [answerPending, setAnswerPending] = useState(false);
+    const [showHistory, setShowHistory] = useState(false);
 
     // Reset answerPending when active execution changes or input state clears
     const activeState = executionStates.get(activeId);
@@ -52,7 +57,12 @@ export default function ExecutionPanel({
             return (b.logs?.length || 0) - (a.logs?.length || 0);
         });
 
-    const panelStyle = headerHeight ? { top: `${headerHeight}px` } : undefined;
+    const panelStyle = { top: `${headerHeight || 100}px` };
+
+    const handleOpenHistory = () => {
+        setShowHistory(true);
+        onOpenHistory?.();
+    };
 
     if (visibleExecs.length === 0) {
         return (
@@ -69,20 +79,36 @@ export default function ExecutionPanel({
                     <span style={{ color: 'var(--text-dim)', fontSize: '12px', padding: '8px 0' }}>
                         No executions
                     </span>
+                    <button
+                        className="btn-history"
+                        onClick={handleOpenHistory}
+                        title="View execution history"
+                    >
+                        History
+                    </button>
                 </div>
-                <div
-                    className="log-viewer"
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'var(--text-dim)',
-                        opacity: 0.4,
-                        fontSize: '14px',
-                    }}
-                >
-                    Waiting for execution...
-                </div>
+                {showHistory ? (
+                    <HistoryView
+                        entries={historyEntries}
+                        loading={historyLoading}
+                        projectRoot={projectRoot}
+                        onResumeTerminal={onResumeTerminal}
+                    />
+                ) : (
+                    <div
+                        className="log-viewer"
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'var(--text-dim)',
+                            opacity: 0.4,
+                            fontSize: '14px',
+                        }}
+                    >
+                        Waiting for execution...
+                    </div>
+                )}
             </div>
         );
     }
@@ -171,8 +197,11 @@ export default function ExecutionPanel({
                     return (
                         <div
                             key={eid}
-                            className={`exec-tab ${eid === execId ? 'active' : ''} exec-tab-${exec.status}`}
-                            onClick={() => onSelectExecution(eid)}
+                            className={`exec-tab ${eid === execId && !showHistory ? 'active' : ''} exec-tab-${exec.status}`}
+                            onClick={() => {
+                                setShowHistory(false);
+                                onSelectExecution(eid);
+                            }}
                         >
                             <span className="tab-label">
                                 <span>F{exec.featureId}</span>
@@ -193,6 +222,13 @@ export default function ExecutionPanel({
                         </div>
                     );
                 })}
+                <button
+                    className={`btn-history ${showHistory ? 'active' : ''}`}
+                    onClick={handleOpenHistory}
+                    title="View execution history"
+                >
+                    History
+                </button>
             </div>
 
             <div className="execution-header">
@@ -318,7 +354,16 @@ export default function ExecutionPanel({
                 </div>
             )}
 
-            <LogViewer logs={activeExec.logs || []} />
+            {showHistory ? (
+                <HistoryView
+                    entries={historyEntries}
+                    loading={historyLoading}
+                    projectRoot={projectRoot}
+                    onResumeTerminal={onResumeTerminal}
+                />
+            ) : (
+                <LogViewer logs={activeExec.logs || []} />
+            )}
         </div>
     );
 }

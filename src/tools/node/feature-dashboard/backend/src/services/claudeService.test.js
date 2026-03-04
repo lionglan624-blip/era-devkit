@@ -16,7 +16,7 @@ vi.mock('child_process', async (importOriginal) => {
         ...actual,
         spawn: vi.fn(() => ({
             pid: 12345,
-            stdin: { on: vi.fn() },
+            stdin: { on: vi.fn(), end: vi.fn() },
             stdout: { on: vi.fn() },
             stderr: { on: vi.fn() },
             on: vi.fn(),
@@ -3768,6 +3768,31 @@ describe('ClaudeService', () => {
             const result = service.resumeInBrowser('nonexistent');
 
             expect(result.error).toBe('No session ID available for resume');
+        });
+    });
+
+    describe('answerInBrowser', () => {
+        it('clears _killedForAskUser so resumed process can complete normally', () => {
+            const { service } = createService();
+            service._killProcess = vi.fn();
+            service._attachStdoutHandler = vi.fn();
+            service._attachStderrHandler = vi.fn();
+            service._broadcastState = vi.fn();
+            service._checkStall = vi.fn();
+
+            const exec = service._createExecution({ featureId: '100', command: 'fl' });
+            exec.status = 'running';
+            exec.sessionId = 'sess-1';
+            exec.inputRequired = { toolUseId: 'ask-1', questions: [] };
+            exec._killedForAskUser = true;
+            exec.process = null; // Already killed
+            service.executions.set(exec.id, exec);
+
+            service.answerInBrowser(exec.id, 'Option A');
+
+            expect(exec._killedForAskUser).toBe(false);
+            expect(exec.inputRequired).toBeNull();
+            expect(exec.waitingForInput).toBe(false);
         });
     });
 

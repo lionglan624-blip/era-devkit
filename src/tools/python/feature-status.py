@@ -55,7 +55,7 @@ def read_feature_status(fid: str) -> str | None:
     path = feature_path(fid)
     if not path.exists():
         return None
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, "r", encoding="utf-8", errors="replace") as f:
         for line in f:
             m = STATUS_RE.match(line.strip())
             if m:
@@ -108,7 +108,7 @@ def get_feature_dependencies(fid: str) -> list[dict]:
 
     deps = []
     in_deps = False
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, "r", encoding="utf-8", errors="replace") as f:
         for line in f:
             stripped = line.strip()
             if stripped == "## Dependencies":
@@ -193,7 +193,7 @@ def get_feature_title(fid: str) -> str:
     path = feature_path(fid)
     if not path.exists():
         return f"Feature {fid}"
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, "r", encoding="utf-8", errors="replace") as f:
         first_line = f.readline().strip()
     m = re.match(r"^# Feature \d+:\s*(.+)", first_line)
     return m.group(1) if m else f"Feature {fid}"

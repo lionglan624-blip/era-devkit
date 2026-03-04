@@ -136,9 +136,27 @@ Finalizer handles routing internally:
 
 | Result | Action |
 |--------|--------|
-| READY_TO_COMMIT | Proceed to commit |
-| BLOCKED | Proceed to commit (partial work) |
+| READY_TO_COMMIT | Proceed to Step 10.2.1 |
+| BLOCKED | Proceed to Step 10.2.1 (partial work) |
 | NOT_READY | **STOP** → Report what's missing |
+
+### Step 10.2.1: Post-Finalizer Index Verification (MANDATORY)
+
+**CRITICAL: Finalizer's feature-status.py can silently fail (e.g., UnicodeDecodeError on legacy files), returning READY_TO_COMMIT while index-features.md remains stale. This gate prevents committing with stale index.**
+
+```bash
+# Verify feature status in index matches feature file
+grep "F{ID}" pm/index-features.md
+grep "^## Status:" pm/features/feature-{ID}.md
+```
+
+| Check | Expected | Action if mismatch |
+|-------|----------|-------------------|
+| Feature NOT in Active table | Moved to Recently Completed | Re-run: `python src/tools/python/feature-status.py set {ID} DONE` |
+| Feature still in Active table | Should be removed | Re-run feature-status.py; if still fails, **STOP** |
+| Bold `**F{ID}**` in Depends On | Should be unbolded `F{ID}` | Re-run feature-status.py |
+
+**Proceed to Step 10.3 only when index-features.md matches feature-{ID}.md status.**
 
 > **Log Lifecycle Note**: The finalizer Step 5 automatically removes feature-scoped AC logs (`_out/logs/prod/ac/*/feature-{ID}/` directories and `_out/logs/prod/ac/engine/feature-{ID}*.trx` files) when a feature transitions to [DONE]. This prevents log accumulation from completed features. Logs remain available during the entire /run workflow (Phases 1-9) and are only cleaned after all verification passes. See finalizer/SKILL.md Step 5 for details. (log cleanup)
 

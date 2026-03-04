@@ -126,4 +126,15 @@ export class LogStreamer {
             })),
         };
     }
+
+    /** Get subscriber info for a specific execution */
+    getSubscribers(executionId) {
+        const subscribers = [];
+        for (const [ws, client] of this.clients) {
+            if (client.subscriptions.has(executionId)) {
+                subscribers.push({ clientId: client.id, readyState: ws.readyState });
+            }
+        }
+        return { count: subscribers.length, clients: subscribers };
+    }
 }

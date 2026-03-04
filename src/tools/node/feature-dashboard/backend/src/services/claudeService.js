@@ -1363,7 +1363,7 @@ export class ClaudeService {
                 level: 'warning',
             });
 
-            this.logStreamer?.broadcast(executionId, {
+            this.logStreamer?.broadcastAll({
                 type: 'status',
                 executionId,
                 status: execution.status,
@@ -1425,7 +1425,7 @@ export class ClaudeService {
         };
         this._pushLog(execution, entry);
 
-        this.logStreamer?.broadcast(executionId, {
+        this.logStreamer?.broadcastAll({
             type: 'status',
             executionId,
             status: execution.status,
@@ -1476,25 +1476,30 @@ export class ClaudeService {
                     ];
 
                     setTimeout(() => {
-                        this.executeCommand(execution.featureId, 'fl', {
-                            chain: true,
-                            chainParentId: execution.chainParentId || execution.id,
-                            chainHistory: updatedHistory,
-                            retryCount,
-                        });
-                    }, RETRY_DELAY_MS);
+                        try {
+                            const newExecId = this.executeCommand(execution.featureId, 'fl', {
+                                chain: true,
+                                chainParentId: execution.chainParentId || execution.id,
+                                chainHistory: updatedHistory,
+                                retryCount,
+                            });
 
-                    // Send chain-retry WS event
-                    this.logStreamer?.broadcastAll({
-                        type: 'chain-retry',
-                        featureId: execution.featureId,
-                        command: 'fl',
-                        retryType: 'incomplete',
-                        retryCount,
-                        maxRetries: MAX_FL_RETRIES,
-                        reason: `FL completed without status change (still ${currentStatus})`,
-                        timestamp: new Date().toISOString(),
-                    });
+                            this.logStreamer?.broadcastAll({
+                                type: 'chain-retry',
+                                featureId: execution.featureId,
+                                command: 'fl',
+                                retryType: 'incomplete',
+                                retryCount,
+                                maxRetries: MAX_FL_RETRIES,
+                                oldExecutionId: execution.id,
+                                newExecutionId: newExecId,
+                                reason: `FL completed without status change (still ${currentStatus})`,
+                                timestamp: new Date().toISOString(),
+                            });
+                        } catch (err) {
+                            claudeLog.error(`[Chain] Failed to start incomplete retry for F${execution.featureId}:`, err);
+                        }
+                    }, RETRY_DELAY_MS);
 
                     // Skip waiter registration and email — retry will handle it
                     this._dequeueNext();
@@ -2034,7 +2039,7 @@ export class ClaudeService {
                 exec.status = 'cancelled';
                 exec.completedAt = new Date().toISOString();
                 cleared.push(id);
-                this.logStreamer?.broadcast(id, {
+                this.logStreamer?.broadcastAll({
                     type: 'status',
                     executionId: id,
                     status: 'cancelled',
@@ -2101,6 +2106,36 @@ export class ClaudeService {
         return exec.logs.slice(offset);
     }
 
+    getDiagnostics(executionId) {
+        const exec = this.executions.get(executionId);
+        if (!exec) return null;
+        return {
+            execution: this.getExecution(executionId),
+            subscribers: this.logStreamer?.getSubscribers(executionId) || { count: 0, clients: [] },
+            chain: {
+                parentId: exec.chainParentId || null,
+                retryCount: exec.chain?.retryCount || 0,
+                contextRetryCount: exec.chain?.contextRetryCount || 0,
+                history: exec.chain?.history || [],
+            },
+            queuePosition: this.queue?.indexOf(executionId) ?? -1,
+        };
+    }
+
+    /**
+     * Remove a completed execution from memory.
+     * Only removes if execution has completedAt set (finished).
+     * Running executions are protected — use killExecution() instead.
+     */
+    removeExecution(id) {
+        const exec = this.executions.get(id);
+        if (!exec) return false;
+        if (!exec.completedAt) return false; // Protect running/incomplete executions
+        this.streamParser.clearRingBuffer(id);
+        this.executions.delete(id);
+        return true;
+    }
+
     killExecution(executionId) {
         const exec = this.executions.get(executionId);
         if (!exec) return false;
@@ -2131,7 +2166,7 @@ export class ClaudeService {
             this.queue = this.queue.filter((id) => id !== executionId);
             exec.status = 'cancelled';
             exec.completedAt = new Date().toISOString();
-            this.logStreamer?.broadcast(executionId, {
+            this.logStreamer?.broadcastAll({
                 type: 'status',
                 executionId,
                 status: 'cancelled',
@@ -2159,7 +2194,7 @@ export class ClaudeService {
                 exec.stallCheckInterval = null;
             }
             this.runningCount = Math.max(0, this.runningCount - 1);
-            this.logStreamer?.broadcast(executionId, {
+            this.logStreamer?.broadcastAll({
                 type: 'status',
                 executionId,
                 status: 'cancelled',

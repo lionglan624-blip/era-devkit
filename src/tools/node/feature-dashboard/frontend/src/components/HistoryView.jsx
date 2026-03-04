@@ -30,6 +30,7 @@ export default function HistoryView({
     entries = [],
     loading = false,
     projectRoot = null,
+    onResumeBrowser,
     onResumeTerminal,
 }) {
     const [copyFeedback, setCopyFeedback] = useState(null);
@@ -81,21 +82,17 @@ export default function HistoryView({
                     <span className={`history-icon history-icon-${entry.status}`}>
                         {STATUS_ICONS[entry.status] || '\u2014'}
                     </span>
-                    <span className="history-feature">F{entry.featureId}</span>
+                    <span className="history-feature">{entry.featureId ? `F${entry.featureId}` : '\u2014'}</span>
                     <span className="history-command">/{entry.command || 'fl'}</span>
                     <span className="history-time">{formatTimestamp(entry.completedAt || entry.startedAt)}</span>
-                    {formatDuration(entry.startedAt, entry.completedAt) && (
-                        <span className="history-duration">
-                            {formatDuration(entry.startedAt, entry.completedAt)}
-                        </span>
-                    )}
-                    {entry.contextPercent != null && (
-                        <span
-                            className={`history-ctx ${entry.contextPercent > 80 ? 'high' : entry.contextPercent > 50 ? 'medium' : ''}`}
-                        >
-                            {entry.contextPercent}%
-                        </span>
-                    )}
+                    <span className="history-duration">
+                        {formatDuration(entry.startedAt, entry.completedAt) || ''}
+                    </span>
+                    <span
+                        className={`history-ctx ${entry.contextPercent > 80 ? 'high' : entry.contextPercent > 50 ? 'medium' : ''}`}
+                    >
+                        {entry.contextPercent != null ? `${entry.contextPercent}%` : ''}
+                    </span>
                     <span className="history-actions">
                         {entry.sessionId && (
                             <button
@@ -106,12 +103,20 @@ export default function HistoryView({
                                 {copyFeedback === entry.sessionId ? 'Copied!' : 'Copy ID'}
                             </button>
                         )}
-                        {entry.sessionId && onResumeTerminal && (
+                        {entry.sessionId && onResumeBrowser && (
                             <button
                                 className="btn-resume"
+                                onClick={() => onResumeBrowser(entry.executionId)}
+                            >
+                                Continue
+                            </button>
+                        )}
+                        {entry.sessionId && onResumeTerminal && (
+                            <button
+                                className="btn-terminal"
                                 onClick={() => onResumeTerminal(entry.executionId)}
                             >
-                                Resume
+                                Terminal
                             </button>
                         )}
                     </span>

@@ -558,4 +558,43 @@ describe('LogStreamer', () => {
             expect(stats.clients[0].subscriptions).toBeUndefined();
         });
     });
+
+    describe('getSubscribers', () => {
+        it('returns empty when no clients subscribe to execution', () => {
+            const result = streamer.getSubscribers('exec-unknown');
+            expect(result.count).toBe(0);
+            expect(result.clients).toHaveLength(0);
+        });
+
+        it('returns single subscriber', () => {
+            const ws = createMockWs();
+            streamer.clients.set(ws, { id: 1, subscriptions: new Set(['exec-1']) });
+
+            const result = streamer.getSubscribers('exec-1');
+            expect(result.count).toBe(1);
+            expect(result.clients[0].clientId).toBe(1);
+            expect(result.clients[0].readyState).toBe(WS_OPEN);
+        });
+
+        it('returns multiple subscribers', () => {
+            const ws1 = createMockWs();
+            const ws2 = createMockWs();
+            streamer.clients.set(ws1, { id: 1, subscriptions: new Set(['exec-1']) });
+            streamer.clients.set(ws2, { id: 2, subscriptions: new Set(['exec-1', 'exec-2']) });
+
+            const result = streamer.getSubscribers('exec-1');
+            expect(result.count).toBe(2);
+        });
+
+        it('excludes clients subscribed to different execution', () => {
+            const ws1 = createMockWs();
+            const ws2 = createMockWs();
+            streamer.clients.set(ws1, { id: 1, subscriptions: new Set(['exec-1']) });
+            streamer.clients.set(ws2, { id: 2, subscriptions: new Set(['exec-2']) });
+
+            const result = streamer.getSubscribers('exec-1');
+            expect(result.count).toBe(1);
+            expect(result.clients[0].clientId).toBe(1);
+        });
+    });
 });

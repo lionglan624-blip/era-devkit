@@ -1762,6 +1762,40 @@ describe('ClaudeService', () => {
         });
     });
 
+    describe('removeExecution', () => {
+        it('removes completed execution and clears ring buffer', () => {
+            const { service } = createService();
+            const exec = service._createExecution({ featureId: '100', command: 'run' });
+            exec.completedAt = new Date().toISOString();
+            service.executions.set(exec.id, exec);
+            service.streamParser.clearRingBuffer = vi.fn();
+
+            const result = service.removeExecution(exec.id);
+
+            expect(result).toBe(true);
+            expect(service.executions.has(exec.id)).toBe(false);
+            expect(service.streamParser.clearRingBuffer).toHaveBeenCalledWith(exec.id);
+        });
+
+        it('refuses to remove running execution (no completedAt)', () => {
+            const { service } = createService();
+            const exec = service._createExecution({ featureId: '100', command: 'run' });
+            exec.status = 'running';
+            // No completedAt set
+            service.executions.set(exec.id, exec);
+
+            const result = service.removeExecution(exec.id);
+
+            expect(result).toBe(false);
+            expect(service.executions.has(exec.id)).toBe(true);
+        });
+
+        it('returns false for non-existent execution', () => {
+            const { service } = createService();
+            expect(service.removeExecution('nonexistent')).toBe(false);
+        });
+    });
+
     describe('executeSlashCommand', () => {
         it('accepts valid slash commands', () => {
             const { service } = createService();
@@ -2034,7 +2068,8 @@ describe('ClaudeService', () => {
             expect(service.queue).toHaveLength(0);
             expect(exec1.status).toBe('cancelled');
             expect(exec2.status).toBe('cancelled');
-            expect(logStreamer.broadcast).toHaveBeenCalledTimes(2);
+            // 2 status broadcasts (one per cancelled exec) + 1 queue-updated = 3
+            expect(logStreamer.broadcastAll).toHaveBeenCalledTimes(3);
         });
     });
 
@@ -3732,9 +3767,8 @@ describe('ClaudeService', () => {
             expect(exec.completedAt).toBeTruthy();
             expect(service.queue).toHaveLength(0);
             expect(service._killProcess).not.toHaveBeenCalled();
-            expect(logStreamer.broadcast).toHaveBeenCalledWith(
-                exec.id,
-                expect.objectContaining({ type: 'status', status: 'cancelled' }),
+            expect(logStreamer.broadcastAll).toHaveBeenCalledWith(
+                expect.objectContaining({ type: 'status', executionId: exec.id, status: 'cancelled' }),
             );
         });
 
@@ -4399,8 +4433,7 @@ describe('ClaudeService', () => {
 
             service._handleCompletion(execution, 0);
 
-            expect(logStreamer.broadcast).toHaveBeenCalledWith(
-                execution.id,
+            expect(logStreamer.broadcastAll).toHaveBeenCalledWith(
                 expect.objectContaining({
                     type: 'status',
                     executionId: execution.id,
@@ -4423,8 +4456,7 @@ describe('ClaudeService', () => {
 
             service._handleCompletion(execution, 1);
 
-            expect(logStreamer.broadcast).toHaveBeenCalledWith(
-                execution.id,
+            expect(logStreamer.broadcastAll).toHaveBeenCalledWith(
                 expect.objectContaining({
                     type: 'status',
                     status: 'failed',

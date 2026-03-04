@@ -220,6 +220,13 @@ export function createExecutionRouter(claudeService) {
         res.json({ logs, offset, total: offset + logs.length });
     });
 
+    // GET /api/execution/:id/diag - Execution diagnostics
+    router.get('/:id/diag', (req, res) => {
+        const diag = claudeService.getDiagnostics(req.params.id);
+        if (!diag) return res.status(404).json({ error: 'Execution not found' });
+        res.json(diag);
+    });
+
     // POST /api/execution/:id/resume/browser - Resume in browser with log capture
     router.post('/:id/resume/browser', (req, res) => {
         const { prompt } = req.body;
@@ -269,13 +276,19 @@ export function createExecutionRouter(claudeService) {
         }
     });
 
-    // DELETE /api/execution/:id - Kill execution
+    // DELETE /api/execution/:id - Kill running or remove finished execution
     router.delete('/:id', (req, res) => {
-        const killed = claudeService.killExecution(req.params.id);
-        if (!killed) {
-            return res.status(404).json({ error: 'Execution not found or not running' });
+        const id = req.params.id;
+        // Try remove first (finished executions)
+        if (claudeService.removeExecution(id)) {
+            return res.json({ status: 'removed' });
         }
-        res.json({ success: true });
+        // Fall back to kill (running executions)
+        const killed = claudeService.killExecution(id);
+        if (!killed) {
+            return res.status(404).json({ error: 'Execution not found' });
+        }
+        res.json({ status: 'killed' });
     });
 
     return router;

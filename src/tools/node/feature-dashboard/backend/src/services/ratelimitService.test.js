@@ -4,8 +4,11 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 // For _runCapture we mock ptySpawn
 import { RateLimitService } from './ratelimitService.js';
 
-// Mock child_process for _killPty tests
-vi.mock('child_process', () => ({ execSync: vi.fn() }));
+// Mock child_process for _killPty and fork tests
+vi.mock('child_process', () => ({
+    execSync: vi.fn(),
+    fork: vi.fn(),
+}));
 
 vi.mock('fs', () => {
     const fns = {
@@ -603,44 +606,6 @@ describe('RateLimitService', () => {
                 refreshAt: Date.now() - 2000,
             });
             expect(service.getCached()).toEqual({ profile1: data1 });
-        });
-    });
-
-    describe('VtScreenBuffer', () => {
-        let VtScreenBuffer;
-
-        beforeEach(async () => {
-            const mod = await import('./ratelimitService.js');
-            VtScreenBuffer = mod.VtScreenBuffer;
-        });
-
-        it('renders plain text at cursor position', () => {
-            const screen = new VtScreenBuffer(20, 5);
-            screen.feed('Hello');
-            expect(screen.getText()).toContain('Hello');
-        });
-
-        it('handles cursor positioning (CSI H)', () => {
-            const screen = new VtScreenBuffer(40, 5);
-            screen.feed('\x1b[1;10HWorld');
-            const text = screen.getText();
-            // "World" should start at column 10 (0-indexed: col 9)
-            expect(text).toMatch(/\s{9}World/);
-        });
-
-        it('handles cursor forward (CSI C) as spacing', () => {
-            const screen = new VtScreenBuffer(40, 5);
-            screen.feed('Hello\x1b[3CWorld');
-            const text = screen.getText();
-            expect(text).toContain('Hello   World');
-        });
-
-        it('normal mode erases text on CSI J', () => {
-            const screen = new VtScreenBuffer(40, 5);
-            screen.feed('Some text');
-            screen.feed('\x1b[2J'); // clear screen
-            const text = screen.getText();
-            expect(text).toBe('');
         });
     });
 
@@ -1424,137 +1389,91 @@ describe('RateLimitService', () => {
         });
     });
 
-    describe('VtScreenBuffer - additional escape handling', () => {
-        let VtScreenBuffer;
+    describe('_runCaptureForked', () => {
+        let mockChild;
+        let forkMock;
 
         beforeEach(async () => {
-            const mod = await import('./ratelimitService.js');
-            VtScreenBuffer = mod.VtScreenBuffer;
+            const cp = await import('child_process');
+            forkMock = cp.fork;
+
+            const handlers = {};
+            mockChild = {
+                on: vi.fn((event, cb) => {
+                    handlers[event] = handlers[event] || [];
+                    handlers[event].push(cb);
+                }),
+                send: vi.fn(),
+                kill: vi.fn(),
+                _handlers: handlers,
+                _emit(event, ...args) {
+                    (handlers[event] || []).forEach((cb) => cb(...args));
+                },
+            };
+            forkMock.mockReturnValue(mockChild);
+
+            service = new RateLimitService('/fake/root', {
+                getProfiles: () => ['test-profile'],
+                // No ptySpawn → triggers fork path
+            });
         });
 
-        it('handles cursor up (CSI A)', () => {
-            const screen = new VtScreenBuffer(40, 10);
-            screen.feed('Line1\nLine2');
-            // cursor should now be on row 1; move up 1
-            screen.feed('\x1b[1A');
-            // Cursor is now at row 0
-            expect(screen.cy).toBe(0);
+        it('resolves with text on successful IPC result', async () => {
+            const promise = service._runCaptureForked({ FORCE_COLOR: '0' });
+            // Worker sends result
+            mockChild._emit('message', { type: 'result', text: 'usage output text' });
+            const result = await promise;
+            expect(result).toBe('usage output text');
         });
 
-        it('handles cursor down (CSI B)', () => {
-            const screen = new VtScreenBuffer(40, 10);
-            screen.cy = 2;
-            screen.feed('\x1b[2B');
-            expect(screen.cy).toBe(4);
+        it('resolves with empty string on worker error message', async () => {
+            const promise = service._runCaptureForked({ FORCE_COLOR: '0' });
+            mockChild._emit('message', { type: 'error', message: 'node-pty crash' });
+            const result = await promise;
+            expect(result).toBe('');
         });
 
-        it('handles cursor back (CSI D)', () => {
-            const screen = new VtScreenBuffer(40, 10);
-            screen.cx = 5;
-            screen.feed('\x1b[3D');
-            expect(screen.cx).toBe(2);
+        it('resolves with empty string on worker crash (exit)', async () => {
+            const promise = service._runCaptureForked({ FORCE_COLOR: '0' });
+            mockChild._emit('exit', 1, 'SIGSEGV');
+            const result = await promise;
+            expect(result).toBe('');
         });
 
-        it('handles cursor to column (CSI G)', () => {
-            const screen = new VtScreenBuffer(40, 10);
-            screen.feed('\x1b[10G');
-            expect(screen.cx).toBe(9); // 1-based → 0-indexed
+        it('resolves with empty string on worker spawn error', async () => {
+            const promise = service._runCaptureForked({ FORCE_COLOR: '0' });
+            mockChild._emit('error', new Error('spawn ENOENT'));
+            const result = await promise;
+            expect(result).toBe('');
         });
 
-        it('handles erase to end of line (CSI K with no param)', () => {
-            const screen = new VtScreenBuffer(20, 5);
-            screen.feed('Hello World');
-            screen.feed('\x1b[5G'); // move to col 5 (0-indexed: 4)
-            screen.feed('\x1b[K'); // erase to end
-            const text = screen.getText();
-            // Should have 'Hell' (cols 0-3) and rest erased
-            expect(text).toMatch(/^Hell\s*$/);
+        it('sends start message to worker with correct params', async () => {
+            const promise = service._runCaptureForked({ FORCE_COLOR: '0' });
+            mockChild._emit('message', { type: 'result', text: '' });
+            await promise;
+
+            expect(mockChild.send).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    type: 'start',
+                    cols: 120,
+                    rows: 30,
+                    env: { FORCE_COLOR: '0' },
+                }),
+            );
         });
 
-        it('handles erase from start of line (CSI 1K)', () => {
-            const screen = new VtScreenBuffer(20, 5);
-            screen.feed('Hello World');
-            screen.cx = 5;
-            screen.feed('\x1b[1K'); // erase from beginning to cursor
-            const row = screen.buffer[0];
-            expect(row[0]).toBe(' ');
-            expect(row[1]).toBe(' ');
-            expect(row[2]).toBe(' ');
-            expect(row[3]).toBe(' ');
-            expect(row[4]).toBe(' ');
-        });
-
-        it('handles erase entire line (CSI 2K)', () => {
-            const screen = new VtScreenBuffer(20, 5);
-            screen.feed('Hello World');
-            screen.feed('\x1b[2K');
-            expect(screen.buffer[0].every((c) => c === ' ')).toBe(true);
-        });
-
-        it('handles erase from cursor to end of screen (CSI 0J)', () => {
-            const screen = new VtScreenBuffer(10, 3);
-            // Use \r\n to properly position cursor at col 0 after each line
-            screen.feed('ABC\r\nDEF\r\nGHI');
-            // After: row0='ABC...', row1='DEF...', row2='GHI...', cy=2, cx=3
-            // Move cursor to row1, col1 then erase to end
-            screen.cy = 1;
-            screen.cx = 1;
-            screen.feed('\x1b[J'); // erase from cursor to end
-            // Row 1 from col 1 onwards should be erased
-            expect(screen.buffer[1][0]).toBe('D'); // col 0 of row 1 preserved
-            expect(screen.buffer[1][1]).toBe(' '); // col 1+ erased
-            // Row 2 should be fully erased
-            expect(screen.buffer[2].every((c) => c === ' ')).toBe(true);
-        });
-
-        it('handles BEL (ignored) and BS (backspace)', () => {
-            const screen = new VtScreenBuffer(20, 5);
-            screen.feed('Hi\x07'); // BEL ignored
-            expect(screen.cx).toBe(2);
-            screen.feed('\x08'); // BS: move back
-            expect(screen.cx).toBe(1);
-        });
-
-        it('handles tab character advancing to next tab stop', () => {
-            const screen = new VtScreenBuffer(40, 5);
-            screen.feed('Hi\t!');
-            // Tab from position 2 → next multiple of 8 = 8
-            // Then writes '!' at position 8
-            const text = screen.getText();
-            expect(text).toContain('Hi');
-            expect(text).toContain('!');
-            expect(screen.cx).toBe(9); // after writing '!' at pos 8
-        });
-
-        it('handles OSC escape (title sequences)', () => {
-            const screen = new VtScreenBuffer(20, 5);
-            // OSC sequence ending in BEL: \x1b]0;title\x07
-            screen.feed('\x1b]0;some title\x07Hello');
-            const text = screen.getText();
-            expect(text).toContain('Hello');
-        });
-
-        it('handles single-char escape sequences (\x1b7 style)', () => {
-            const screen = new VtScreenBuffer(20, 5);
-            screen.feed('Hi\x1b7'); // \x1b7 = save cursor (should be ignored/skipped)
-            expect(screen.getText()).toContain('Hi');
-        });
-
-        it('clamps cursor position at boundaries', () => {
-            const screen = new VtScreenBuffer(10, 5);
-            screen.feed('\x1b[99A'); // try to move up 99 rows
-            expect(screen.cy).toBe(0);
-            screen.cy = 4;
-            screen.feed('\x1b[99B'); // try to move down 99 rows
-            expect(screen.cy).toBe(4); // clamped at rows-1
-        });
-
-        it('getText filters out empty lines', () => {
-            const screen = new VtScreenBuffer(20, 5);
-            screen.feed('Hello');
-            // rows 1-4 are empty
-            const text = screen.getText();
-            expect(text).toBe('Hello');
+        it('resolves with empty string on parent-side timeout', async () => {
+            vi.useFakeTimers();
+            try {
+                const promise = service._runCaptureForked({ FORCE_COLOR: '0' });
+                // Advance past parent timeout (RATE_LIMIT_CAPTURE_TIMEOUT_MS + 5000)
+                vi.advanceTimersByTime(25001);
+                const result = await promise;
+                expect(result).toBe('');
+                expect(mockChild.kill).toHaveBeenCalled();
+            } finally {
+                vi.useRealTimers();
+            }
         });
     });
 });

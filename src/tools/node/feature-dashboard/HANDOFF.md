@@ -234,7 +234,8 @@ backend/
 │   │   ├── streamParser.js      # stream-json parsing, state detection (extracted from claudeService)
 │   │   ├── chainExecutor.js     # Chain execution (fc→fl→run)
 │   │   ├── ccsUtils.js          # CCS profile reading (config.yaml, auth list)
-│   │   ├── ratelimitService.js  # Rate limit capture (node-pty + VtScreenBuffer)
+│   │   ├── ratelimitService.js  # Rate limit capture (fork worker for production, in-process DI for tests)
+│   │   ├── vtScreenBuffer.js   # VT terminal emulator (screen buffer from escape sequences)
 │   │   ├── featureService.js    # feature-{ID}.md reading, pendingDeps
 │   │   ├── fileWatcher.js       # chokidar watch, status change detection
 │   │   ├── statusMailService.js # IMAP IDLE status mail (auto-reply to empty emails)
@@ -244,13 +245,16 @@ backend/
 │   │   ├── usageService.js      # CCS usage tracking (not exposed via API)
 │   │   ├── inputPatterns.js     # Input wait patterns
 │   │   ├── phaseUtils.js        # Phase detection utilities
-│   │   └── validation.js        # Input validation
+│   │   ├── validation.js        # Input validation
+│   │   └── workers/
+│   │       └── ptyCapture.js   # Forked worker: node-pty ConPTY capture (crash-isolated from main process)
 │   ├── parsers/
 │   │   ├── featureParser.js     # Feature markdown parsing
 │   │   └── indexParser.js       # index-features.md parsing
 │   ├── websocket/
 │   │   └── logStreamer.js       # WebSocket broadcast (sub/all)
 │   └── utils/
+│       ├── exitCodes.js         # Windows NTSTATUS exit code decoder
 │       ├── logger.js            # Logging (daily rotation, JST)
 │       └── timeUtils.js         # Shared time utilities (nowJST)
 

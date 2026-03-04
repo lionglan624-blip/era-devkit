@@ -22,9 +22,7 @@ module.exports = {
       script: 'backend/server.js',
       cwd: __dirname,
       watch: false,
-      autorestart: true,
-      max_restarts: 10,
-      exp_backoff_restart_delay: 200,
+      autorestart: false, // Disabled: rely on Auto-DR (execution-aware) for restarts
       kill_timeout: 3000,
       env: {
         PROJECT_ROOT: path.resolve(__dirname, '..', '..', '..', '..'),

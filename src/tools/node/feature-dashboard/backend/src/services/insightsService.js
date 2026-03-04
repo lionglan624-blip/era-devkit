@@ -12,6 +12,9 @@ const REPORT_READY_PATTERN = /report is ready/i;
  * Service for running /insights in Claude Code via PTY and emailing the report.
  * Spawns a headless PTY, sends /insights, detects completion via dual signals
  * (report.html mtime change + PTY output pattern), then emails the HTML report.
+ *
+ * TODO: Isolate PTY capture into a forked worker (same pattern as ratelimitService)
+ * to prevent node-pty ACCESS_VIOLATION crashes from killing the main process.
  */
 export class InsightsService {
     /**

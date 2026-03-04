@@ -3,6 +3,8 @@ import { useReducer, useCallback, useRef, useEffect } from 'react';
 const API_BASE = '/api';
 const MAX_LOG_ENTRIES = 5000; // Match backend limit to prevent unbounded browser memory growth
 let logIdCounter = 0; // Module-scope: survives HMR, monotonically increments across renders
+// Module-scope: track last flushed entry per execution for cross-frame dedup
+const lastFlushedEntry = new Map(); // executionId -> { line, timestamp }
 
 /**
  * @typedef {Object} LogEntry
@@ -272,6 +274,14 @@ function reducer(state, action) {
             return { ...state, executions: next, featurePhases: nextFP };
         }
 
+        case 'RECONCILE_EXECUTION': {
+            const { exec } = action;
+            const next = new Map(state.executions);
+            next.set(exec.id, normalizeExec(exec));
+            // Do NOT reset featurePhases — the new execution owns it
+            return { ...state, executions: next };
+        }
+
         case 'UPDATE_EXECUTION': {
             const { executionId, updates } = action;
             const exec = state.executions.get(executionId);
@@ -359,6 +369,17 @@ export function useExecution() {
     }, []);
 
     const addLog = useCallback((executionId, logEntry) => {
+        // Dedup: check against buffer (same frame) and lastFlushed (cross frame)
+        const buf = logBufferRef.current.get(executionId);
+        const lastInBuf = buf?.[buf.length - 1];
+        const lastFlushed = lastFlushedEntry.get(executionId);
+        const isDup = (ref) =>
+            ref && ref.line === logEntry.line && ref.timestamp === logEntry.timestamp;
+
+        if (isDup(lastInBuf) || isDup(lastFlushed)) {
+            return; // Duplicate from multiple WS connections
+        }
+
         if (!logBufferRef.current.has(executionId)) {
             logBufferRef.current.set(executionId, []);
         }
@@ -369,6 +390,13 @@ export function useExecution() {
                 const buffer = logBufferRef.current;
                 logBufferRef.current = new Map();
                 rafIdRef.current = null;
+                // Track last flushed entry per execution for cross-frame dedup
+                for (const [eid, entries] of buffer) {
+                    if (entries.length > 0) {
+                        const last = entries[entries.length - 1];
+                        lastFlushedEntry.set(eid, { line: last.line, timestamp: last.timestamp });
+                    }
+                }
                 dispatch({ type: 'BATCH_LOGS', buffer });
             });
         }

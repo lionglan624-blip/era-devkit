@@ -187,6 +187,16 @@ export default function App() {
         [dispatch, addNotification],
     );
 
+    const reconcileOldExecution = useCallback((oldExecutionId) => {
+        if (!oldExecutionId) return;
+        fetch(`/api/execution/${oldExecutionId}`)
+            .then((r) => (r.ok ? r.json() : null))
+            .then((exec) => {
+                if (exec) dispatch({ type: 'RECONCILE_EXECUTION', exec });
+            })
+            .catch(() => {});  // Silent: old exec may be TTL-cleaned (404 expected)
+    }, [dispatch]);
+
     // Health check function (extracted for reuse, before wsHandlers which references it)
     const checkHealth = useCallback(async (refreshRateLimit = false) => {
         try {
@@ -257,7 +267,8 @@ export default function App() {
             },
             status: (msg) => {
                 updateStatus(msg.executionId, msg.status, msg.exitCode);
-                if (msg.status === 'completed' || msg.status === 'failed') {
+                if ((msg.status === 'completed' || msg.status === 'failed') &&
+                    executionsRef.current.has(msg.executionId)) {
                     setTimeout(refetch, 1000);
                     // Re-check git status after commit completes
                     const completedExec = executionsRef.current.get(msg.executionId);
@@ -342,6 +353,7 @@ export default function App() {
                     persistent: true,
                 });
                 subscribeAndFetchExecution(msg.newExecutionId, 'Chain');
+                reconcileOldExecution(msg.oldExecutionId);
             },
             'chain-retry': (msg) => {
                 const cmd = (msg.command || 'fl').toUpperCase();
@@ -356,6 +368,7 @@ export default function App() {
                     persistent: true,
                 });
                 subscribeAndFetchExecution(msg.newExecutionId, 'Retry');
+                reconcileOldExecution(msg.oldExecutionId);
             },
             'fl-retry-exhausted': (msg) => {
                 addNotification({
@@ -372,6 +385,35 @@ export default function App() {
                     type: 'warning',
                     title: `F${msg.featureId} Account Limit`,
                     message: `${cmd} stopped — usage limit hit. Retry will not help.`,
+                    featureId: msg.featureId,
+                    persistent: true,
+                });
+            },
+            'rate-limit-retry': (msg) => {
+                addNotification({
+                    type: 'info',
+                    title: `F${msg.featureId} Rate Limit Retry`,
+                    message: msg.resumed ? 'Resuming after rate limit' : 'Retrying with profile switch',
+                    featureId: msg.featureId,
+                    persistent: true,
+                });
+                subscribeAndFetchExecution(msg.newExecutionId, 'Rate Limit');
+                reconcileOldExecution(msg.oldExecutionId);
+            },
+            'rate-limit-waiting': (msg) => {
+                addNotification({
+                    type: 'info',
+                    title: `F${msg.featureId} Rate Limit`,
+                    message: `Waiting until ${new Date(msg.retryAt).toLocaleTimeString()} (${Math.round(msg.delayMs / 60000)}min)`,
+                    featureId: msg.featureId,
+                    persistent: true,
+                });
+            },
+            'rate-limit-exhausted': (msg) => {
+                addNotification({
+                    type: 'warning',
+                    title: `F${msg.featureId} Rate Limit Exhausted`,
+                    message: `Still at ${msg.percent}% usage. Manual re-run needed.`,
                     featureId: msg.featureId,
                     persistent: true,
                 });
@@ -421,6 +463,7 @@ export default function App() {
             addNotification,
             dispatch,
             subscribeAndFetchExecution,
+            reconcileOldExecution,
             checkHealth,
         ],
     );
@@ -551,6 +594,12 @@ export default function App() {
                     contextPercent.set(exec.featureId, state.contextPercent);
                 if (exec.startedAt != null) startedAt.set(exec.featureId, exec.startedAt);
                 if (state?.waitingForInput) inputWaiting.add(exec.featureId);
+                // Also store executionId for running executions so input-waiting click can navigate
+                sessionIds.set(exec.featureId, {
+                    executionId: execId,
+                    sessionId: exec.sessionId,
+                    startedAt: exec.startedAt,
+                });
             }
 
             if (isStopped && exec.sessionId) {
@@ -691,6 +740,30 @@ export default function App() {
         [dispatch, addNotification],
     );
 
+    const handleResumeBrowser = useCallback(
+        async (executionId) => {
+            try {
+                const res = await fetch(`/api/execution/${executionId}/resume/browser`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: 'continue' }),
+                });
+                if (!res.ok) {
+                    const err = await res.json().catch(() => ({ error: 'Resume failed' }));
+                    addNotification({
+                        type: 'warning',
+                        title: 'Resume Failed',
+                        message: err.error,
+                    });
+                }
+                // execution-started WS event will auto-add the new execution tab
+            } catch (err) {
+                addNotification({ type: 'warning', title: 'Resume Error', message: err.message });
+            }
+        },
+        [addNotification],
+    );
+
     const handleResumeTerminal = useCallback(
         async (executionId) => {
             try {
@@ -735,6 +808,35 @@ export default function App() {
             }
         },
         [featureSessionIds, handleResumeTerminal, addNotification],
+    );
+
+    const handleResumeBrowserByFeature = useCallback(
+        (featureId) => {
+            const info = featureSessionIds.get(featureId);
+            if (info?.executionId) {
+                handleResumeBrowser(info.executionId);
+            } else {
+                addNotification({
+                    type: 'warning',
+                    title: 'Resume',
+                    message: `No session found for F${featureId}`,
+                });
+            }
+        },
+        [featureSessionIds, handleResumeBrowser, addNotification],
+    );
+
+    // Navigate to ExecutionPanel when input-waiting tile clicked
+    const handleInputWaitingClick = useCallback(
+        (featureId) => {
+            const info = featureSessionIds.get(featureId);
+            if (info?.executionId) {
+                setActiveExecutionId(info.executionId);
+                setShowExecutionPanel(true);
+                subscribe(info.executionId);
+            }
+        },
+        [featureSessionIds, subscribe],
     );
 
     const handleOpenHistory = useCallback(async () => {
@@ -811,10 +913,12 @@ export default function App() {
 
     const handleCloseTab = useCallback(
         (executionId) => {
-            // Kill running session before closing tab
             const exec = executionsRef.current.get(executionId);
             if (exec && exec.status === 'running') {
-                killExecution(executionId);
+                killExecution(executionId); // Internal DELETE → killExecution path
+            } else {
+                // Remove finished execution from backend memory
+                fetch(`/api/execution/${executionId}`, { method: 'DELETE' }).catch(() => {});
             }
             unsubscribe(executionId);
             dispatch({ type: 'CLOSE_TAB', executionId });
@@ -830,7 +934,6 @@ export default function App() {
     );
 
     const handleCloseFinishedTabs = useCallback(() => {
-        // Unsubscribe from all finished executions before dispatching
         let hasRemaining = false;
         for (const [execId, exec] of executionsRef.current) {
             if (
@@ -839,6 +942,8 @@ export default function App() {
                 exec.status === 'handed-off'
             ) {
                 unsubscribe(execId);
+                // Remove finished execution from backend memory
+                fetch(`/api/execution/${execId}`, { method: 'DELETE' }).catch(() => {});
             } else {
                 hasRemaining = true;
             }
@@ -1057,20 +1162,17 @@ export default function App() {
                                         .filter(Boolean)
                                         .join('\n');
                                     const handleProfileClick = () => {
-                                        if (isActive || hasActiveExecutions) return;
+                                        if (isActive) return;
                                         handleShellCommand('cs', profile);
                                     };
                                     return (
                                         <div
                                             key={profile}
-                                            className={`rate-limit-entry ${rateClass} ${isActive ? 'rate-active' : ''} ${!isActive && !hasActiveExecutions ? 'rate-clickable' : ''}`}
+                                            className={`rate-limit-entry ${rateClass} ${isActive ? 'rate-active' : ''} ${!isActive ? 'rate-clickable' : ''}`}
                                             title={tooltip}
                                             onClick={handleProfileClick}
                                             style={{
-                                                cursor:
-                                                    isActive || hasActiveExecutions
-                                                        ? 'default'
-                                                        : 'pointer',
+                                                cursor: isActive ? 'default' : 'pointer',
                                             }}
                                         >
                                             <span className="rate-profile-name">{profile}</span>
@@ -1109,7 +1211,9 @@ export default function App() {
                     featureInputWaiting={featureInputWaiting}
                     onRunCommand={handleRunCommand}
                     onOpenTerminal={handleOpenTerminal}
+                    onResumeBrowser={handleResumeBrowserByFeature}
                     onResumeTerminal={handleResumeByFeature}
+                    onInputWaitingClick={handleInputWaitingClick}
                     onSelect={setSelectedFeatureId}
                 />
             </main>
@@ -1138,6 +1242,7 @@ export default function App() {
                     onClose={() => setShowExecutionPanel(false)}
                     onCloseTab={handleCloseTab}
                     onCloseFinishedTabs={handleCloseFinishedTabs}
+                    onResumeBrowser={handleResumeBrowser}
                     onResumeTerminal={handleResumeTerminal}
                     onAnswer={handleAnswer}
                     onOpenHistory={handleOpenHistory}

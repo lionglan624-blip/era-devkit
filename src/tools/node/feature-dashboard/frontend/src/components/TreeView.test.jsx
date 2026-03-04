@@ -31,6 +31,7 @@ function createTreeProps(features = [], overrides = {}) {
         onRunCommand: vi.fn(),
         onOpenTerminal: vi.fn(),
         onResumeTerminal: vi.fn(),
+        onInputWaitingClick: vi.fn(),
         onSelect: vi.fn(),
         ...overrides,
     };
@@ -327,6 +328,28 @@ describe('TreeView', () => {
             await user.click(resumeBtn);
 
             expect(onResumeTerminal).toHaveBeenCalledWith('100');
+        });
+
+        it('calls onInputWaitingClick when input-waiting tile clicked', async () => {
+            const user = userEvent.setup();
+            const features = [createFeature({ id: '100', status: '[PROPOSED]' })];
+            const featureInputWaiting = new Set(['100']);
+            const runningFeatures = new Set(['100']);
+            const onInputWaitingClick = vi.fn();
+            const onRunCommand = vi.fn();
+            const props = createTreeProps(features, {
+                featureInputWaiting,
+                runningFeatures,
+                onInputWaitingClick,
+                onRunCommand,
+            });
+            render(<TreeView {...props} />);
+
+            const tile = screen.getByText('Test Feature').closest('.tree-item');
+            await user.click(tile);
+
+            expect(onInputWaitingClick).toHaveBeenCalledWith('100');
+            expect(onRunCommand).not.toHaveBeenCalled();
         });
 
         it('button clicks do not trigger tile click (stopPropagation)', async () => {

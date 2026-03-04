@@ -3,6 +3,7 @@ import cors from 'cors';
 import http from 'http';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 import { execSync, spawn } from 'child_process';
 import chokidar from 'chokidar';
 
@@ -20,6 +21,7 @@ import { getCcsProfiles } from './src/services/ccsUtils.js';
 import { createFeaturesRouter } from './src/routes/features.js';
 import { createExecutionRouter } from './src/routes/execution.js';
 import { serverLog, LOG_DIR } from './src/utils/logger.js';
+import { decodeExitCode } from './src/utils/exitCodes.js';
 import { RATE_LIMIT_POLL_INTERVAL_MS, AUTO_DR_DEBOUNCE_MS } from './src/config.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -38,6 +40,21 @@ serverLog.info(`Log directory: ${LOG_DIR}`);
 serverLog.info(`Node version: ${process.version}`);
 serverLog.info(`PID: ${process.pid}`);
 
+try {
+  const pm2Log = path.join(process.env.USERPROFILE || process.env.HOME || '', '.pm2', 'pm2.log');
+  const tail = fs.readFileSync(pm2Log, 'utf8').split('\n').slice(-200);
+  const exitLine = tail.reverse().find(l =>
+    l.includes('dashboard-backend') && l.includes('exited with code')
+  );
+  if (exitLine) {
+    const codeMatch = exitLine.match(/exited with code \[(\d+)\]/);
+    const sigMatch = exitLine.match(/via signal \[(\w+)\]/);
+    const tsMatch = exitLine.match(/^([\d\-T:.]+):/);
+    const code = codeMatch ? parseInt(codeMatch[1]) : null;
+    const decoded = code !== null ? decodeExitCode(code) : 'unknown';
+    serverLog.info(`Previous exit: code=${code} (${decoded}), signal=${sigMatch?.[1] || 'none'}, at=${tsMatch?.[1] || '?'}`);
+  }
+} catch { /* PM2 log not available */ }
 
 // Services
 const logStreamer = new LogStreamer();

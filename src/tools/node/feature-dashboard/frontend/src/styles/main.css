@@ -1018,9 +1018,16 @@ body {
 }
 
 /* State-based highlighting */
+@keyframes input-waiting-pulse {
+    0%, 100% { background: rgba(236, 72, 153, 0.1); }
+    50% { background: rgba(236, 72, 153, 0.25); }
+}
+
 .tree-item.state-input-waiting {
-    border-left: 3px solid #a855f7;
-    background: rgba(168, 85, 247, 0.1);
+    border-left: 3px solid #ec4899;
+    background: rgba(236, 72, 153, 0.1);
+    animation: input-waiting-pulse 1.5s ease-in-out infinite;
+    cursor: pointer;
 }
 
 .tree-item.state-failed {
@@ -1238,6 +1245,23 @@ body {
 .btn-tree-resume:hover {
     background: rgba(245, 158, 11, 0.4);
     color: #fbbf24;
+}
+
+.btn-tree-terminal {
+    background: rgba(148, 163, 184, 0.2);
+    border: 1px solid #94a3b8;
+    border-radius: 4px;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.btn-tree-terminal:hover {
+    background: rgba(148, 163, 184, 0.4);
+    color: #cbd5e1;
 }
 
 .tree-children {
@@ -1755,6 +1779,23 @@ body {
     background: rgba(245, 158, 11, 0.4);
 }
 
+.btn-terminal {
+    padding: 4px 12px;
+    background: rgba(148, 163, 184, 0.2);
+    border: 1px solid #94a3b8;
+    border-radius: 4px;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.btn-terminal:hover {
+    background: rgba(148, 163, 184, 0.4);
+    color: #cbd5e1;
+}
+
 .btn-close-finished {
     padding: 4px 12px;
     background: var(--bg-elevated);
@@ -1781,7 +1822,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    max-height: 200px;
+    max-height: 60vh;
     overflow-y: auto;
 }
 
@@ -1986,11 +2027,13 @@ body {
     white-space: nowrap;
     padding: 2px 8px;
     border-radius: 3px;
-    transition: background 0.15s;
+    border: 1px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
 }
 
 .rate-limit-entry.rate-clickable:hover {
     background: rgba(255, 255, 255, 0.08);
+    border-color: var(--border);
 }
 
 .rate-limit-entry.rate-active {
@@ -2121,26 +2164,31 @@ body {
 .history-feature {
     font-family: var(--mono);
     font-weight: 600;
-    min-width: 48px;
+    width: 52px;
+    flex-shrink: 0;
 }
 
 .history-command {
     color: var(--text-muted);
-    min-width: 32px;
+    width: 72px;
+    flex-shrink: 0;
 }
 
 .history-time {
     color: var(--text-muted);
     font-family: var(--mono);
     font-size: 12px;
-    min-width: 72px;
+    width: 80px;
+    flex-shrink: 0;
 }
 
 .history-duration {
     color: var(--text-muted);
     font-family: var(--mono);
     font-size: 12px;
-    min-width: 36px;
+    width: 40px;
+    flex-shrink: 0;
+    text-align: right;
 }
 
 .history-ctx {
@@ -2150,7 +2198,8 @@ body {
     border-radius: 3px;
     background: rgba(34, 197, 94, 0.2);
     color: #4ade80;
-    min-width: 32px;
+    width: 40px;
+    flex-shrink: 0;
     text-align: center;
 }
 

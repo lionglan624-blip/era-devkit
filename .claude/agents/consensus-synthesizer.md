@@ -159,6 +159,31 @@ Copy these exact headers and column structures. Do NOT add extra columns, reorde
 - Section separator `---` between AC Design Constraints and Dependencies
 - NO extra sub-sections (no Conclusion, no Pattern Analysis)
 
+### Step 4.5: Predecessor Obligation Extraction (infra post-phase review features)
+
+**Trigger**: Feature type is `infra` AND (Goal contains "deferred obligation" OR "predecessor" OR "post-phase review").
+
+When triggered:
+
+1. Read each predecessor feature listed in the Dependencies table
+2. Extract unresolved items from their:
+   - `## Deferred Obligations` section
+   - `## Mandatory Handoffs` rows where Transferred column is `[ ]` or absent
+   - `## Review Notes` entries tagged `[resolved-skipped]`
+3. Compile into a candidate `### Predecessor Obligations (for Mandatory Handoffs)` subsection within Background:
+
+```markdown
+### Predecessor Obligations (for Mandatory Handoffs)
+
+| Source Feature | Obligation | Category | Status |
+|:--------------:|------------|----------|:------:|
+| F{N} | {description from source} | deferred/handoff/skipped | pending |
+```
+
+4. This subsection is a **candidate list** — wbs-generator will refine it into the final Mandatory Handoffs table during Phase 5. ac-designer may also use it to derive obligation-tracking ACs.
+
+**Rationale**: F813 analysis showed 46 "other" category FL fixes were largely Mandatory Handoffs entries discovered incrementally during FL. Extracting obligations during Phase 1 (where predecessor features are already read) eliminates this FC/FL gap.
+
 ### Step 5: Root Cause Level Test (MANDATORY)
 
 Run 4 binary checks before writing:

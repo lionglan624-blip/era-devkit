@@ -61,6 +61,9 @@ Scan and auto-fix the following patterns. **Only fix 100% deterministic patterns
 | C21 | Invalid matcher type | AC Matcher column contains value not in valid matcher list (see below) | Auto-fix `count_gte`→`gte`, `count_gt`→`gt`, `count_lt`→`lt`, `count_lte`→`lte`; Log warning for other unknown matchers |
 | C22 | Orphaned AC (no Task assignment) | AC# in AC Definition Table not referenced by any Task's AC# column | Log warning (Task assignment requires context) |
 | C23 | Missing Constraint Detail block | C{N} in AC Design Constraints table has no `**C{N}:` header in Constraint Details section | Log warning (Detail content requires context) |
+| C24 | Ambiguous Task/AC language | Task/AC description matches `\b(TBD\|skip if\|keep or (remove\|deprecate\|accept))\b` | Log warning (needs disambiguation) |
+| C25 | AC count exceeds soft limit | AC Definition Table has >30 rows | Log warning (consider feature split; add deviation comment if justified) |
+| C26 | AC count exceeds hard limit | AC Definition Table has >50 rows | Log error (MUST split feature) |
 
 **C21 Valid Matcher List** (SSOT: `.claude/skills/testing/SKILL.md` §Matchers):
 `equals`, `contains`, `not_contains`, `matches`, `not_matches`, `succeeds`, `fails`, `gt`, `gte`, `lt`, `lte`, `count_equals`, `exists`, `not_exists`
@@ -127,6 +130,6 @@ Feature passes all mechanical quality checks.
 - **Only fix Category A (mechanical, 100% deterministic) patterns**
 - Never modify semantic content (Philosophy, Background, descriptions)
 - Never add or remove ACs (only fix formatting/patterns of existing ones)
-- If AC renumbering needed, update ALL references (Tasks table, AC Details, Implementation Contract, Goal Coverage Verification)
+- If AC renumbering needed, update ALL references (Tasks table, AC Details, Implementation Contract, Goal Coverage Verification, Technical Design Work Areas, Philosophy Derivation)
 - When uncertain, log instead of fixing
 - Write `<!-- fc-phase-6-completed -->` marker even if 0 fixes applied

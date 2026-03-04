@@ -116,6 +116,7 @@ _out/                 # Generated output (gitignored)
 | `/audit` | Audit documentation consistency |
 | `/sync-deps` | Sync dependency statuses in feature files |
 | `/test-audit` | Audit test coverage and mutation scores |
+| `/imp [ID]` | Improvement analysis for feature lifecycle sessions |
 
 ## Feature Implementation Workflow
 

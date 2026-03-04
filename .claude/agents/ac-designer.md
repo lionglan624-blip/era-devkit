@@ -54,7 +54,7 @@ Design Acceptance Criteria table and details from Philosophy/Goal sections. This
 
 6. Read Goal and Dependencies sections
 
-### Step 6.5: Deliverable Enumeration (MANDATORY for engine/erb types)
+### Step 6.5: Deliverable Enumeration (MANDATORY for engine/erb types; also MANDATORY for infra types whose Goal or Files Involved references source code files (.cs, .py, .js, .csproj))
 
 **Before designing ACs**, enumerate all concrete deliverables from Background/Goal/Files Involved:
 
@@ -108,7 +108,7 @@ Design Acceptance Criteria table and details from Philosophy/Goal sections. This
 
 **Rationale**: F782 analysis: 17 matcher fixes during FL. Unverified matchers cause vacuous tests (not_matches that never matched) and false greens (matches that already exist).
 
-### Step 10.6: DI Injection AC Coverage (MANDATORY for engine/erb, OPTIONAL for others)
+### Step 10.6: DI Injection AC Coverage (MANDATORY for engine/erb; also MANDATORY for infra types whose Goal or Files Involved references source code files (.cs, .py, .js, .csproj); OPTIONAL for others)
 
 **10.6.0: Constructor Enumeration (engine/erb types)**
 

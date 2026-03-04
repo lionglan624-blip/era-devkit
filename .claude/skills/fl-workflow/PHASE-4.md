@@ -91,6 +91,35 @@ ELIF alignment.status == "FIXED":
 # ALIGNED = no action needed
 ```
 
+## Step 4.3.7: AC Count Threshold Check
+
+**Purpose**: Detect AC count growth beyond documented limits during FL iterations.
+
+```
+ac_count = count_rows(AC_Definition_Table)
+
+IF ac_count > 50:
+    persist_pending({
+        severity: "critical",
+        location: "AC Definition Table",
+        issue: "AC count ({ac_count}) exceeds hard limit (50). Feature MUST be split.",
+        fix: "Split feature into smaller sub-features"
+    }, iteration, "Phase4-ACCount")
+
+ELIF ac_count > 30:
+    # Check if deviation comment already exists
+    IF NOT Grep("Deviation.*AC.*exceed", target_path):
+        persist_pending({
+            severity: "major",
+            location: "AC Definition Table",
+            issue: "AC count ({ac_count}) exceeds soft limit (30). Add deviation comment with justification or split feature.",
+            fix: "Add <!-- Deviation: {ac_count} ACs exceed ... --> comment above AC Definition Table"
+        }, iteration, "Phase4-ACCount")
+    # If deviation comment exists, the count is acknowledged — no action needed
+```
+
+**Rationale**: F813 grew from ~13 ACs (FC) to 37 ACs (FL end) without warning. quality-fixer C25/C26 catch this at FC time; this step catches growth during FL iterations.
+
 ## Step 4.4: Complete Phase 4
 
 ```

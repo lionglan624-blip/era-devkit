@@ -146,9 +146,36 @@ Finalizer handles routing internally:
 
 ## Step 10.3: Commit
 
-Execute commit with logical grouping.
+### Commit Scope Rule
 
-**Commit format**:
+**Feature関連の変更のみコミットする。** Feature実装中に副次的に発生した無関係な変更（formatter auto-fix等）は別タイミングでコミットすること。
+
+### Commit Ordering Rule (CodeRabbit連携)
+
+複数コミットが必要な場合、**Feature本体のコミットを最後にする**。
+
+```
+1st: 補助的コミット（dependency setup, DRAFT creation等）
+2nd: Feature本体コミット  ← HEAD（CodeRabbitレビュー対象）
+```
+
+**理由**: Step 10.4 CodeRabbitは `--base-commit HEAD~N` でFeatureコミットをレビューする。Feature本体が最後であれば `HEAD~1` で常に正しい対象になる。
+
+### base-commit の決定
+
+```pseudocode
+N = number of feature-related commits in this Phase 10
+base_commit = HEAD~N
+```
+
+| パターン | N | base-commit |
+|----------|:-:|-------------|
+| Feature本体のみ（1コミット） | 1 | HEAD~1 |
+| 補助 + Feature本体（2コミット） | 2 | HEAD~2 |
+| 補助2つ + Feature本体（3コミット） | 3 | HEAD~3 |
+
+### Commit Format
+
 ```bash
 git commit -m "$(cat <<'EOF'
 feat(F{ID}): {summary}
@@ -176,10 +203,12 @@ EOF
 
 ### Procedure
 
-1. コミット完了後、CodeRabbit CLIを実行：
+1. base-commit を Step 10.3 の決定ルールに従い算出する。
+
+2. CodeRabbit CLIを実行：
    ```bash
    MSYS_NO_PATHCONV=1 wsl -- bash -c "cd /mnt/c/Era/devkit && \
-     /home/siihe/.local/bin/coderabbit review --plain --type committed --base-commit HEAD~1 2>&1"
+     /home/siihe/.local/bin/coderabbit review --plain --type committed --base-commit HEAD~{N} 2>&1"
    ```
 
    > **⚠️ `2>&1` 必須**: CodeRabbit CLIはstdout出力だが、Bash tool経由で出力が空になるケースが確認されている。
@@ -188,7 +217,7 @@ EOF
    > **⚠️ ブランチ名スラッシュ禁止**: CodeRabbit CLIはブランチ名の `/` を除去して `git rev-parse` に渡すため、`refactor/xxx` のようなブランチで失敗する。
    > パラレポでCodeRabbit実行時はブランチ名にスラッシュがないことを確認すること。
 
-2. 結果の判定：
+3. 結果の判定：
 
    | 結果 | Action |
    |------|--------|
@@ -198,7 +227,7 @@ EOF
    | 指摘あり（Minor/Nitpick） | Execution Logに記録 → Completion へ |
    | CLI error (exit ≠ 0, 指摘なし) | DEVIATION記録 → Skip → Completion へ |
 
-3. Major指摘の修正ループ（最大2回）：
+4. Major指摘の修正ループ（最大2回）：
    ```
    CodeRabbit Major指摘 → debugger dispatch → 修正 → git commit --amend → coderabbit review → 判定
    ```

@@ -393,13 +393,27 @@ export class StreamParser {
             this.updateTokenUsage(execution, event.message.usage, null);
         }
 
-        // Extract final token usage from result event (always top-level)
+        // Extract contextWindow from result event (always top-level)
+        // Note: result.usage contains SESSION-CUMULATIVE totals (all turns summed),
+        // NOT per-turn values. Using them would inflate contextPercent to 100%.
+        // Only extract contextWindow from modelUsage; per-turn values from assistant events are correct.
         if (t === 'result' && event.modelUsage) {
-            // modelUsage contains per-model stats including contextWindow
             const modelKey = Object.keys(event.modelUsage)[0];
             if (modelKey) {
                 const modelStats = event.modelUsage[modelKey];
-                this.updateTokenUsage(execution, event.usage, modelStats.contextWindow);
+                if (modelStats.contextWindow && execution.tokenUsage) {
+                    execution.tokenUsage.contextWindow = modelStats.contextWindow;
+                    // Recalculate contextPercent with correct window (per-turn values unchanged)
+                    const total =
+                        execution.tokenUsage.input +
+                        execution.tokenUsage.cacheCreation +
+                        execution.tokenUsage.cacheRead;
+                    execution.contextPercent = Math.min(
+                        100,
+                        Math.floor((total / modelStats.contextWindow) * 100),
+                    );
+                    this.broadcastState(execution);
+                }
             }
         }
 

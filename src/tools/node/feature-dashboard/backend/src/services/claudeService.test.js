@@ -1591,7 +1591,7 @@ describe('ClaudeService', () => {
             expect(execution.resultExitCode).toBe(0);
         });
 
-        it('extracts final token usage from result modelUsage', () => {
+        it('extracts contextWindow from result modelUsage without overwriting per-turn usage', () => {
             const { service } = createService();
             service._broadcastState = vi.fn();
 
@@ -1601,21 +1601,40 @@ describe('ClaudeService', () => {
             execution.lastOutputTime = Date.now();
             service.executions.set(execution.id, execution);
 
+            // Simulate assistant event with per-turn usage first
+            service._handleStreamEvent(execution, {
+                type: 'assistant',
+                message: {
+                    usage: {
+                        input_tokens: 1,
+                        output_tokens: 232,
+                        cache_creation_input_tokens: 1393,
+                        cache_read_input_tokens: 48707,
+                    },
+                },
+            });
+            expect(execution.contextPercent).toBe(25); // (1+1393+48707)/200000
+
+            // Result event has cumulative usage (much larger) — should NOT overwrite
             service._handleStreamEvent(execution, {
                 type: 'result',
                 subtype: 'success',
                 is_error: false,
                 usage: {
-                    input_tokens: 80000,
+                    input_tokens: 50000,
                     output_tokens: 5000,
-                    cache_creation_input_tokens: 0,
-                    cache_read_input_tokens: 0,
+                    cache_creation_input_tokens: 30000,
+                    cache_read_input_tokens: 400000,
                 },
                 modelUsage: { 'claude-opus-4-5-20251101': { contextWindow: 200000 } },
             });
 
-            expect(execution.tokenUsage).toBeTruthy();
+            // contextWindow should be updated from modelUsage
             expect(execution.tokenUsage.contextWindow).toBe(200000);
+            // But per-turn token values should be preserved (NOT the cumulative result.usage)
+            expect(execution.tokenUsage.cacheRead).toBe(48707);
+            // contextPercent should stay at 25%, not jump to 100%
+            expect(execution.contextPercent).toBe(25);
         });
     });
 

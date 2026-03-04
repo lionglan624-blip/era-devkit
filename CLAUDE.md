@@ -12,7 +12,9 @@ Guidance for Claude Code when working with this repository.
 
 Part of a 5-repo split: devkit contains CLI tools, PM files, docs, AC definitions, and test infrastructure. The game runtime data, C# library, engine, and dashboard each live in separate repos.
 
-## Quick Start
+## Quick Start & Test Commands
+
+All `dotnet` commands via WSL. `--results-directory _out/test-results` prevents TestResults/ accumulation.
 
 ```bash
 # Build all devkit tools
@@ -23,6 +25,12 @@ MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/devkit && GAME_PATH=/mnt/c/Era/
 
 # Run headless game (cross-repo)
 MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/game && /home/siihe/.dotnet/dotnet run --project /mnt/c/Era/engine/uEmuera.Headless.csproj -- .'
+
+# Specific tool / filtered / coverage (WSL内 dotnet コマンド)
+dotnet test src/tools/dotnet/KojoComparer.Tests/ --blame-hang-timeout 10s --results-directory _out/test-results
+dotnet test src/tools/dotnet/ErbParser.Tests/ --blame-hang-timeout 10s --results-directory _out/test-results --filter "FullyQualifiedName~ErbParserTests"
+dotnet test src/tools/dotnet/KojoComparer.Tests/ --blame-hang-timeout 10s --results-directory _out/test-results --filter "Category=Unit"
+GAME_PATH=/mnt/c/Era/game dotnet test devkit.sln --blame-hang-timeout 10s --results-directory _out/test-results --collect:"XPlat Code Coverage"
 ```
 
 ## Git Hooks Setup
@@ -80,7 +88,6 @@ pm/
 _out/                 # Generated output (gitignored)
   logs/               # ALL logs (CI, debug)
   test-results/       # All test output
-  stryker/            # Mutation testing output
   tmp/                # Temporary files
 .claude/              # Claude Code (agents, commands, skills, reference)
 .githooks/            # Git hooks
@@ -102,21 +109,6 @@ _out/                 # Generated output (gitignored)
 | READING to understand? | OK |
 | WRITING/EDITING code? | **DISPATCH subagent** |
 | Running TESTS? | **DISPATCH tester** |
-
-## Slash Commands
-
-| Command | Description |
-|---------|-------------|
-| `/run [ID]` | Execute feature with Progressive Disclosure workflow |
-| `/commit` | Commit changes with logical grouping |
-| `/complete-feature` | Verify and complete a feature |
-| `/fc` | Feature Completion - generate AC/Tasks for [DRAFT] feature |
-| `/kojo-init` | Initialize up to 5 kojo feature.md files for batch workflow |
-| `/fl` | Feature review-fix loop until zero issues |
-| `/audit` | Audit documentation consistency |
-| `/sync-deps` | Sync dependency statuses in feature files |
-| `/test-audit` | Audit test coverage and mutation scores |
-| `/imp [ID]` | Improvement analysis for feature lifecycle sessions |
 
 ## Feature Implementation Workflow
 
@@ -183,10 +175,14 @@ Other skills (context:fork): `initializer`, `finalizer`, `reference-checker`, `e
 ## Feature Types
 
 ```markdown
-Type: kojo    # -> uses kojo-writer (opus)
-Type: erb     # -> uses implementer (sonnet)
-Type: engine  # -> uses implementer (sonnet)
+Type: kojo      # -> uses kojo-writer (opus)
+Type: erb       # -> uses implementer (sonnet) — C# migration of ERB scripts (output is C#, not ERB)
+Type: engine    # -> uses implementer (sonnet) — C# engine/tool modification
+Type: infra     # -> uses implementer (sonnet) — workflow, CI, docs, tooling
+Type: research  # -> no implementer — investigation/analysis only
 ```
+
+> **Note**: `erb` と `engine` は両方 C# コードを書く。差はテストランナーのみ: `erb` = ヘッドレスゲーム実行 (`uEmuera.Headless`), `engine` = xUnit 直接実行 (`dotnet test`)。
 
 ## AC Definition Format
 
@@ -214,6 +210,8 @@ Type: engine  # -> uses implementer (sonnet)
 | `NOTICE.md` | License |
 | `src/tools/node/feature-dashboard/HANDOFF.md` | Feature Dashboard spec (devkit内、PM2実行パス). **「HANDOFF.md読んで」と言われたら無条件で全文Read（セクション確認不要）** |
 | `src/tools/python/session-search.py` | Session JSONL search — see "Session JSONL Investigation" section for task→flag table |
+| `src/tools/python/pm2_diag.py` | PM2 log diagnostic — see "PM2 Log Investigation" section for task→flag table |
+| `src/tools/python/dashboard_diag.py` | Dashboard execution diagnostic — see "Dashboard Investigation" section for task→flag table |
 | `src/tools/python/feature-status.py` | Status/dependency sync (`--help`) |
 | `src/tools/python/ac_ops.py` | AC operations (`python src/tools/python/ac_ops.py --help`) |
 
@@ -286,7 +284,7 @@ Zero-token alternative to Serena MCP. Persistent HTTP daemon wrapping Serena's P
 | Rename | `lsp.py rename` | `python src/tools/python/lsp.py rename Old New --path File.cs` |
 | Non-C# files | Read / Grep | ERB, CSV, YAML, comments |
 
-- **PM2**: `pm2 start ecosystem.config.js` / `pm2 stop lsp-daemon` / `dr` (restart all)
+- **PM2**: `pm2 start ecosystem.config.js` (root) / `pm2 stop lsp-daemon` / `dr` (restart all)
 - **Commands**: `status`, `symbols`, `find`, `refs`, `rename`, `replace`, `insert-before`, `insert-after`, `restart`
 - **Details**: `docs/tools/lsp-daemon.md` (error handling, PM2 management)
 
@@ -306,6 +304,35 @@ Run from project root: `cd /c/Era/devkit && python src/tools/python/session-sear
 | Text-only search | `--type text` | `python src/tools/python/session-search.py --session 37ef "issue" --type text` |
 | Session overview | `--summary` | `python src/tools/python/session-search.py --session 37ef --summary` |
 | Context around match | `-C N` | `python src/tools/python/session-search.py "error" --session 37ef -C 3` |
+| Session autopsy | `--autopsy` | `python src/tools/python/session-search.py --session 37ef --autopsy` |
+
+## PM2 Log Investigation
+
+**PM2 log investigation: use pm2_diag.py first.** Finds crash/restart events faster than manual grep.
+
+Run from project root: `cd /c/Era/devkit && python src/tools/python/pm2_diag.py`
+
+| Task | Flags | Example |
+|------|-------|---------|
+| Recent restarts | (default) | `python src/tools/python/pm2_diag.py` |
+| Filter by date | `--after DATE` | `python src/tools/python/pm2_diag.py --after 2026-03-04` |
+| Crashes only | `--type crash` | `python src/tools/python/pm2_diag.py --type crash` |
+| Specific app | `--app NAME` | `python src/tools/python/pm2_diag.py --app dashboard-backend` |
+| Pattern search | `"pattern"` | `python src/tools/python/pm2_diag.py "ACCESS_VIOLATION"` |
+| Execution trace | `--exec-trace ID` | `python src/tools/python/pm2_diag.py --exec-trace fec15530` |
+
+## Dashboard Investigation
+
+**Dashboard execution investigation: use dashboard_diag.py first.** Combines API + app log + history for one-command diagnosis.
+
+Run from project root: `cd /c/Era/devkit && python src/tools/python/dashboard_diag.py`
+
+| Task | Flags | Example |
+|------|-------|---------|
+| Diagnose execution | `--exec ID` | `python src/tools/python/dashboard_diag.py --exec fec15530-...` |
+| Find stale execs | `--check-stale` | `python src/tools/python/dashboard_diag.py --check-stale` |
+| List executions | `--list` | `python src/tools/python/dashboard_diag.py --list --after 2026-03-04` |
+| Chain trace | `--chain ID` | `python src/tools/python/dashboard_diag.py --chain fec15530-...` |
 
 ## Shell Environment
 
@@ -377,30 +404,6 @@ The dialogue system loads character speech (COM) from YAML files through a cache
 - **IComLoader** interface abstracts loading; uses ILogger DI (not Console.WriteLine) for thread-safe logging in tests
 - **Era.Core** is consumed as a NuGet package (`Era.Core 1.0.0`) -- source lives in the `core` repo
 
-## Test Commands
-
-```bash
-# Build all tools
-dotnet build devkit.sln
-
-# Run all tool tests (requires GAME_PATH for integration tests)
-GAME_PATH=/mnt/c/Era/game dotnet test devkit.sln --blame-hang-timeout 10s --results-directory _out/test-results
-
-# Run a specific tool's tests
-dotnet test src/tools/dotnet/KojoComparer.Tests/ --blame-hang-timeout 10s --results-directory _out/test-results
-
-# Run tests by class or method name
-dotnet test src/tools/dotnet/ErbParser.Tests/ --blame-hang-timeout 10s --results-directory _out/test-results --filter "FullyQualifiedName~ErbParserTests"
-
-# Run tests by category trait (Unit, Integration, Schema)
-dotnet test src/tools/dotnet/KojoComparer.Tests/ --blame-hang-timeout 10s --results-directory _out/test-results --filter "Category=Unit"
-
-# Code coverage
-GAME_PATH=/mnt/c/Era/game dotnet test devkit.sln --blame-hang-timeout 10s --results-directory _out/test-results --collect:"XPlat Code Coverage"
-```
-
-Note: All `dotnet` commands must be run via WSL (see WSL section above). `--results-directory _out/test-results` prevents TestResults/ from accumulating in source dirs.
-
 ## Code Conventions
 
 ### C# (.NET 10 / C# 14)
@@ -432,6 +435,8 @@ Note: All `dotnet` commands must be run via WSL (see WSL section above). `--resu
 | `YamlSchemaGen` | Generate JSON Schema for dialogue YAML |
 | `YamlValidator` | Validate YAML against schema (CI-ready exit codes) |
 | `SaveAnalyzer` | Game save file analysis |
+| `EntriesFormatMigrator` | Kojo YAML entries format migration |
+| `YamlTalentMigrator` | TALENT conditions batch migration |
 
 ## Related Repositories
 
@@ -440,4 +445,4 @@ Note: All `dotnet` commands must be run via WSL (see WSL section above). `--resu
 | game | `C:\Era\game` | Game runtime data (ERB, YAML, CSV) |
 | core | `C:\Era\core` | Era.Core C# runtime library |
 | engine | `C:\Era\engine` | uEmuera game engine (Unity) |
-| dashboard | `C:\Era\dashboard` | Feature dashboard (Node.js) |
+| dashboard | `C:\Era\dashboard` | Feature dashboard (Node.js). devkit内 `src/tools/node/feature-dashboard/` が開発・PM2実行パス |

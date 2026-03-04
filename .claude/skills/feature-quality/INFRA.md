@@ -411,6 +411,9 @@ When actual code shows `failed = total - passed - manual` correctly **excludes**
 - [ ] Grep patterns avoid unintended dot wildcards (Issue 37)
 - [ ] exit_code Type only used with Expected values 0-255 (Issue 38)
 - [ ] Replacement file existence verified when removal ACs are present (Issue 39)
+- [ ] Key Decisions table uses template columns: Decision, Options Considered, Selected, Rationale (V1j, F818 lesson)
+- [ ] Non-template subsections removed (e.g., Success Criteria — redundant with AC table) (V1k, F818 lesson)
+- [ ] count_gte/count_equals used when verifying N occurrences, not contains (F818 lesson)
 
 ---
 

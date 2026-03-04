@@ -62,6 +62,7 @@ Design Acceptance Criteria table and details from Philosophy/Goal sections. This
    - Files listed in `### Files Involved`
    - Interfaces referenced in Goal
    - Stubs referenced in Problem/Goal (grep for `NotImplementedException`)
+   - **Constraint-enumerated variants**: For each HIGH-impact constraint in AC Design Constraints that enumerates N specific variants/sites/types (e.g., "5 call sites", "4 matcher types"), enumerate each variant as a deliverable requiring its own AC or explicit grouping justification. (F818 lesson: constraint C4 listed 5 crash sites and 4 matcher types, but only 2 abstract test ACs were generated, requiring 7 per-variant AC additions during FL.)
 
 6.5.2. Classify each deliverable and enumerate required ACs using this checklist:
 
@@ -258,10 +259,12 @@ Threshold matchers (gte/gt/lt/lte/count_equals) のACは必ずAC Detailsに導�
 |------|-------------|--------------|
 | `contains` with single generic word is forbidden | `contains "NTR"` (matches comments) | `matches "Regex\(.*NTR"` (matches code pattern) |
 | `contains` must use a specific, unique string | `contains "test"` | `contains "PathAnalyzer.Extract"` |
+| `contains` must use full identifier for function/class verification | `contains "is_absolute"` (matches unrelated code) | `contains "test_is_absolute_detection"` (unique function name) |
 | Prefer `matches` with regex for code verification | `contains "function"` | `matches "public.*Extract\\("` |
+| Prefer `count_gte`/`count_equals` when verifying N occurrences | `contains "self._safe_relative_path("` (only confirms ≥1) | `gte` with `self._safe_relative_path( (5)` (confirms all 5 call sites) |
 | `not_contains` must target exact debt markers | `not_contains "TODO"` | `not_contains "TODO\|FIXME\|HACK"` (OK, exact markers) |
 
-**Guideline**: If a `contains` value could appear in a comment or unrelated code, strengthen the matcher.
+**Guideline**: If a `contains` value could appear in a comment or unrelated code, strengthen the matcher. When AC verifies N occurrences exist (e.g., 5 call sites replaced, 4 matcher types tested), use `count_gte N` or `count_equals N`, not `contains`. (F818 lesson: 3+ contains→count_gte fixes during FL.)
 
 ## Constraints
 

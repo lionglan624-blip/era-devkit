@@ -91,6 +91,9 @@ Verify and auto-fix template compliance. Reference: `.claude/skills/feature-qual
 | V1g | Missing `---` before Review Notes | No `---` separator before `## Review Notes` | Insert `---` |
 | V1h | Upstream Issues missing table format | `### Upstream Issues` exists without `| Issue |` table header | Insert empty table header |
 | V1i | Execution Log missing table format | `## Execution Log` exists without `| Timestamp |` table header | Insert empty table header |
+| V1j | Key Decisions column mismatch | `### Key Decisions` table exists with columns other than `Decision, Options Considered, Selected, Rationale` | Restructure columns to match `feature-template.md` |
+| V1k | Non-template subsection present | `### Success Criteria` exists (not in feature-template.md Section Ownership) | Delete section (redundant with AC table) |
+| V1l | Implementation Contract format warning | `## Implementation Contract` exists but lacks `| Phase |` or `| Agent |` column headers | Log warning (format may vary; check feature-template.md) |
 
 ### Step 4: Check Type-Specific Patterns
 

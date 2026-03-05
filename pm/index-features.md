@@ -70,8 +70,9 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F826 | [DRAFT] | Post-Phase Review Phase 22 | F814, F819, F821, F822, F823, F824, F825 | [feature-826.md](feature-826.md) |
-| F827 | [DRAFT] | Phase 23 Planning | **F826** | [feature-827.md](feature-827.md) |
+| F827 | [DRAFT] | Phase 23 Planning | F826 | [feature-827.md](feature-827.md) |
+| F828 | [DONE] | Date Initialization Migration (@日付初期設定) | **F821** | [feature-828.md](feature-828.md) |
+| F829 | [DRAFT] | Phase 22 Deferred Obligations Consolidation | F826 | [feature-829.md](feature-829.md) |
 
 ### Other
 
@@ -90,12 +91,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 826 | ✅ | Post-Phase Review Phase 22 | [feature-826.md](feature-826.md) |
 | 825 | ✅ | Relationships & DI Integration | [feature-825.md](feature-825.md) |
 | 822 | ✅ | Pregnancy System | [feature-822.md](feature-822.md) |
 | 828 | ✅ | 日付初期設定 Migration | [feature-828.md](feature-828.md) |
 | 819 | ✅ | Clothing System | [feature-819.md](feature-819.md) |
 | 824 | ✅ | Sleep & Menstrual | [feature-824.md](feature-824.md) |
-| 821 | ✅ | Weather System | [feature-821.md](feature-821.md) |
 
 ---
 
@@ -186,4 +187,4 @@ See [kojo-mapper](../../tools/kojo-mapper/) for detailed coverage analysis.
 
 ---
 
-**Next Feature number**: 829
+**Next Feature number**: 830

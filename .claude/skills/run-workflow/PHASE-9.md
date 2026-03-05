@@ -145,25 +145,54 @@ FOR each row:
 
 **Decision Logic** (orchestrator decides and executes):
 
-```
-1. Should it be done now? (urgency)
-   ├─ Yes → go to 2 (resolve within this Feature)
-   └─ No  → go to 2 (defer to appropriate Feature)
+**Scope**: These gates apply at the moment a Destination ID is WRITTEN. The gates prevent misrouting at creation time.
 
-2. Does it belong to an existing Feature?
-   ├─ Yes → B (add to existing Feature)
-   └─ No
-      ├─ Actionable now? → A (create new Feature DRAFT)
-      └─ Conditional trigger (将来条件付き)?
-         → B to Post-Phase Review feature
+**Principle**: A (new Feature DRAFT) is the DEFAULT. B is the EXCEPTION requiring ALL gates to pass. See `deferred-task-protocol.md` Option B Guards for gate details.
+
+```
+1. DEFAULT is A (create new Feature DRAFT).
+   B is the EXCEPTION that requires passing ALL gates below.
+
+2. Is there a candidate destination Feature?
+   ├─ No  → A
+   └─ Yes → run Semantic Routing Gates (Step 3)
+
+3. Semantic Routing Gates (ALL must pass for B):
+
+   Gate 3a — Status Gate:
+     ├─ [DRAFT] → pass
+     ├─ [PROPOSED] → pass (append [pending] note to destination Review Notes
+     │    for /fc re-run to incorporate obligation)
+     ├─ [REVIEWED]/[WIP]/[DONE]/[BLOCKED] → FAIL → A
+
+   Gate 3b — Type/Scope Compatibility Gate:
+     obligation.domain must match destination.type/scope
+     (See deferred-task-protocol.md Gate 2 compatibility table)
+     ├─ Match → pass
+     ├─ Mismatch OR unlisted domain → FAIL → A
+
+   Gate 3c — Execution Guarantee Gate (mechanized):
+     ├─ destination is [DRAFT] with no Goal section → auto-pass
+     ├─ destination has Goal/Philosophy/Background →
+     │  Extract keywords: [type_tag from Gate 3b, first technical term from obligation]
+     │  grep keywords against destination Goal + Philosophy + Background
+     │  ├─ ANY keyword match → pass
+     │  ├─ ZERO matches → FAIL → A
+
+   Gate 3d — Sole Candidate Gate:
+     ├─ 1 candidate passes Gates 3a-3c → pass → B
+     ├─ 2+ candidates → FAIL → A (ambiguous ownership)
+
+   ALL gates pass → B
+   ANY gate fails → A
 ```
 
-**Note**: Action C (write to architecture.md Phase tasks) is reserved for Phases with NO features created yet. Post-Phase Review features are the correct destination for conditional/cross-cutting concerns.
+Conditional trigger (将来条件付き) → A (create new Feature DRAFT with trigger condition in Background). Do NOT route to Post-Phase Review as catch-all.
 
 **Actions**:
 - A: Create DRAFT now → Use Deviation Context template (see below), register in index-features.md
-- B: Add to existing Feature's Tasks
-- C: Add to architecture.md Phase Tasks (features未作成のPhaseのみ有効)
+- B: Add to existing Feature — must pass all 4 Semantic Routing Gates
+- C: Add to architecture.md Phase Tasks (features未作成のPhaseのみ有効、Option C Guards適用)
 
 **Action A — Deviation Context DRAFT Template**:
 ```markdown
@@ -233,14 +262,19 @@ FOR each row:
 **No user confirmation needed. Execute immediately after decision.**
 
 **Handoff Destination Status Gate (MANDATORY)**:
+<!-- Redundant with Gate 3a in Decision Logic. Retained as defense-in-depth.
+     Remove after 10+ features confirm Gate 3a is consistently applied. -->
 ```
 FOR each destination Feature (Action A or B):
   status = Read feature-{dest_id}.md Status
-  IF status != [DRAFT]:
-    REJECT: "F{dest_id} is {status}, not [DRAFT]. Handoff destinations must be [DRAFT] to ensure the handoff is incorporated into the feature's design phase."
+  IF status not in {[DRAFT], [PROPOSED]}:
+    REJECT: "F{dest_id} is {status}. Handoff destinations must be [DRAFT] or [PROPOSED]."
     → Create new [DRAFT] feature instead (Action A)
+  IF status == [PROPOSED]:
+    Append to destination Review Notes:
+    "- [pending] Handoff from F{source}: {summary} — /fc re-run required"
 ```
-Rationale: Features in [PROPOSED]/[WIP]/[DONE] have already passed their design phase and cannot reliably incorporate new requirements. F806→F807 lesson: F807 was [WIP] when handoffs were created, resulting in handoffs being acknowledged but not executed.
+Rationale: Features in [REVIEWED]/[WIP]/[DONE]/[BLOCKED] cannot reliably incorporate new requirements. [PROPOSED] allowed because /fc re-run can incorporate. F806→F807 lesson: F807 was [WIP] when handoffs were created, resulting in handoffs being acknowledged but not executed.
 
 Verify all destinations are valid before proceeding to 9.4.1.
 
@@ -259,9 +293,10 @@ FOR each Mandatory Handoff row:
       → NOT found: STOP (9.4 Decision Logic が DRAFT を作成していないのは異常)
 
     B (既存Feature):
-      grep "{keyword}" pm/features/feature-{dest_id}.md
-      → found: Transferred [x], Result = 確認済み
-      → NOT found: Write obligation to destination file
+      ALWAYS write obligation to destination file's Deviation Context
+      or Background section with explicit linkage.
+      確認済み is PROHIBITED for Action B (F806 lesson: grep-match without
+      Task creation = obligation lost). Even if keyword exists, write again.
         → Transferred [x], Result = 追記済み
 
     C (Phase):
@@ -273,9 +308,9 @@ FOR each Mandatory Handoff row:
 
 **Result values**:
 - `作成済み`: Action A — DRAFT file created
-- `追記済み`: Action B — Written to existing Feature
+- `追記済み`: Action B — Written to existing Feature (ALWAYS write; 確認済み prohibited for B)
 - `記載済み`: Action C — Written to architecture.md Phase
-- `確認済み`: Content already exists in destination (grep verified)
+- `確認済み`: Action C only — Content already exists in Phase doc (grep verified)
 
 **Exit criteria**: ALL rows have `Transferred = [x]` AND `Result` filled
 
@@ -464,27 +499,25 @@ Verify threshold-matcher AC Details match implementation:
 
 **CRITICAL: A/B/C/D decisions are made and executed by orchestrator. Do not ask user to choose.**
 
-**Decision Logic**:
+**Decision Logic** (same Semantic Routing Gates as Step 9.4 — see `deferred-task-protocol.md` Option B Guards for full gate details):
 ```
 0. Already fixed in this session?
    ├─ Yes → D (このFeature内で修正済み、Destination = "-")
    └─ No  → go to 1
 
-1. Should it be done now? (urgency)
-   ├─ Yes → go to 2 (resolve within this Feature)
-   └─ No  → go to 2 (defer to appropriate Feature)
+1. DEFAULT is A (create new Feature DRAFT).
+   B is the EXCEPTION that requires passing ALL Semantic Routing Gates.
 
-2. Does it belong to an existing Feature?
-   ├─ Yes → B (add to existing Feature)
-   └─ No
-      ├─ Actionable now? → A (create new Feature DRAFT)
-      └─ Conditional trigger (将来条件付き)?
-         → B to Post-Phase Review feature (cross-cutting concerns that
-            don't map to any specific sub-feature are triaged during
-            post-phase review, which decides DRAFT creation or next-phase routing)
+2. Is there a candidate destination Feature?
+   ├─ No  → A
+   └─ Yes → run Gates 3a-3d (Status, Type/Scope, Execution, Sole Candidate)
+            ALL pass → B
+            ANY fail → A
+
+Conditional trigger (将来条件付き) → A (new DRAFT with trigger in Background).
 ```
 
-**Note**: Action C (write to architecture.md Phase tasks) is reserved for Phases with NO features created yet. If the Phase has existing features, always use A or B. Post-Phase Review features (e.g., F826 for Phase 22) are the correct destination for conditional/cross-cutting concerns discovered during implementation.
+**Note**: Action C (write to architecture.md Phase tasks) is reserved for Phases with NO features created yet (Option C Guards apply).
 
 ### 9.8.1: DEVIATION Root Cause Analysis
 

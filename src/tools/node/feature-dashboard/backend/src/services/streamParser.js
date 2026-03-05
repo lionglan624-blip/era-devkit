@@ -373,6 +373,16 @@ export class StreamParser {
                     execution.pendingHandoffTimeout = null;
                 }
                 execution.pendingHandoff = null;
+                // Also clear waitingForInput: if process exits (code 0) right after result,
+                // false-positive input-wait should not persist into completion handler.
+                // This prevents chain waiter re-registration on resumed completions.
+                if (execution.waitingForInput) {
+                    claudeLog.info(
+                        `[ClaudeService] Clearing false-positive waitingForInput on result event (pattern: ${execution.waitingInputPattern})`,
+                    );
+                    execution.waitingForInput = false;
+                    execution.waitingInputPattern = null;
+                }
             }
             // Do NOT call handleCompletion here — let process 'close' event drive it
             // This prevents a race where stdout result fires before stderr rate-limit detection

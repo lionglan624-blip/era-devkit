@@ -1519,7 +1519,7 @@ export class ClaudeService {
             }
         }
 
-        if (chainContinues && !isLastChainStep) {
+        if (chainContinues && !isLastChainStep && !execution._resumedAnswer) {
             this.chainExecutor.registerWaiter(execution);
         }
 
@@ -2419,6 +2419,9 @@ export class ClaudeService {
         execution.resultExitCode = null;
         execution.lastAssistantText = null;
         execution.lastOutputTime = Date.now();
+        // Mark as resumed-answer: completion of this resumed process must NOT
+        // re-register chain waiters (the original completion already did).
+        execution._resumedAnswer = true;
         execution.debugLogPath = path.join(this.tmpDir, `debug-${execution.id}-resume.log`);
 
         const claudePath = process.env.CLAUDE_PATH || 'claude';

@@ -28,6 +28,10 @@ Phase 22 implementation sub-features (F819, F821-F825) must be reviewed holistic
 
 **Deferred from F819**: SANTA cosplay text output (CLOTHE_EFFECT.ERB @SANTA function PRINT calls) is a UI-layer concern and cannot be migrated to Era.Core (no UI primitives). Must be handled by the engine layer.
 
+**Deferred from F822**: Two stub implementations from Pregnancy System Migration:
+1. **IVariableStore 2D SAVEDATA accessor**: `GetBirthCountByParent`/`SetBirthCountByParent` extension methods are stubs (return 0/no-op). Full runtime implementation requires generic 2D SAVEDATA variable accessor on IVariableStore.
+2. **NullMultipleBirthService runtime implementation**: 8-method stub interface for 多生児パッチ.ERB. All methods return safe defaults (GetBirthCount→1, others no-op). Runtime multi-birth logic not migrated.
+
 **Deferred from F824**: Two cross-cutting concerns discovered during Sleep & Menstrual migration that don't belong to any specific Phase 22 sub-feature:
 1. **CVARSET bulk reset**: `CVARSET CFLAG, 317` pattern used in both 睡眠深度.ERB and MOVEMENT.ERB:81. F824 inlined in `SleepDepth.ResetUfufu()` (1 C# call site). When MOVEMENT.ERB migrates, extract `IVariableStore.BulkResetCharacterFlags()` as shared method.
 2. **IS_DOUTEI shared utility**: Defined in COMMON.ERB, called from 14 ERB files (22 call sites). F824 inlined in `MenstrualCycle.FormatSimpleStatus` (1 C# call site). When second C# call site appears, extract to `ICharacterUtilities.IsDoutei`.
@@ -45,7 +49,7 @@ Execute CP-2 Step 2c E2E checkpoint for Phase 22 completion. Re-triage obligatio
 | Predecessor | F814 | [DONE] | Phase 22 Planning |
 | Predecessor | F819 | [DONE] | Clothing System |
 | Predecessor | F821 | [DONE] | Weather System |
-| Predecessor | F822 | [DRAFT] | Pregnancy System |
+| Predecessor | F822 | [DONE] | Pregnancy System |
 | Predecessor | F823 | [DONE] | Room & Stain |
 | Predecessor | F824 | [DONE] | Sleep & Menstrual |
 | Predecessor | F825 | [DRAFT] | Relationships & DI Integration |

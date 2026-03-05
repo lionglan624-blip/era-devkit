@@ -498,3 +498,18 @@ bool CheckNtrFavorably(CharacterId character, int threshold);
 // => always returns false (no accessories applied when NTR unavailable)
 ```
 **Injected into `ClothingSystem`** for CLOTHES_ACCESSORY ring/choker/collar logic. Full implementation deferred to F825.
+
+### IMultipleBirthService (F822)
+```csharp
+// src/Era.Core/Interfaces/IMultipleBirthService.cs - Multiple birth operations from 多生児パッチ.ERB
+// Runtime implementation deferred to future feature. NullMultipleBirthService provides safe defaults.
+int GetBirthCount(int motherId);                                                          // @生まれる人数
+void SetMultiBirthFlags(int childId, int multiBirthFlag, int siblingId);                  // @多生児フラグ処理
+void DisplayBirthAnnouncement(int childId, int motherId);                                 // @多生児出産口上(0)
+void DisplaySubsequentBirthAnnouncement(int childId, int siblingId, int motherId);        // @多生児出産口上(1+)
+void ProcessFosterChild(int childId, int motherId);                                       // @里子
+void DisplayNonMasterParentAnnouncement(int childId, int motherId, int fatherId);         // @両親がMASTER以外の出産口上
+void InitUterusVolumeMultiple(int motherId);                                              // @子宮内体積設定
+void SetChildCompatibility(int childId, int motherId, int fatherId);                     // @子供相性設定
+```
+**Null implementation**: `NullMultipleBirthService` — all births treated as single birth (returns 1 / no-op for all methods). Safe default until runtime implementation.

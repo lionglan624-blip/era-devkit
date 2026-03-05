@@ -47,7 +47,7 @@ Migrate 続柄.ERB to C#, complete all deferred Null implementations from Phase 
 | Predecessor | F814 | [DONE] | Phase 22 Planning |
 | Predecessor | F819 | [DONE] | Clothing System -- DI integration requires all subsystem interfaces |
 | Predecessor | F821 | [DONE] | Weather System -- DI integration requires all subsystem interfaces |
-| Predecessor | F822 | [DRAFT] | Pregnancy System -- DI integration requires all subsystem interfaces |
+| Predecessor | F822 | [DONE] | Pregnancy System -- DI integration requires all subsystem interfaces |
 | Predecessor | F823 | [DONE] | Room & Stain System -- DI integration requires all subsystem interfaces |
 | Predecessor | F824 | [DONE] | Sleep & Menstrual System -- DI integration requires all subsystem interfaces |
 

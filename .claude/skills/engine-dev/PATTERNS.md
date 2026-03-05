@@ -283,7 +283,7 @@ F404 segregated the original IVariableStore into ISP-compliant interfaces. F412 
 | IGeneticsService | 3 | Genetics-related body settings operations (extracted from IBodySettings in F800) - F800. Implemented by GeneticsService |
 | ICharacterStringVariables | 2 | Character-scoped string variables (CSTR) - F802. GetCharacterString/SetCharacterString using CstrIndex |
 | ITextFormatting | 3 | Text formatting stubs for clothing/body descriptions - F802. GetPantsDescription, GetPantsName, GetOppaiDescription |
-| IVariableStoreExtensions | - | Extension methods: GetCFlag, SetCFlag, GetTalent (F782); GetTalentValue, GetBaseValue, GetMaxBaseValue, GetAbilityValue, GetExpValue, GetMarkValue, GetJuelValue (F800). `src/Era.Core/Interfaces/IVariableStoreExtensions.cs` |
+| IVariableStoreExtensions | - | Extension methods: GetCFlag, SetCFlag, GetTalent (F782); GetTalentValue, GetBaseValue, GetMaxBaseValue, GetAbilityValue, GetExpValue, GetMarkValue, GetJuelValue (F800); GetBirthCountByParent(int motherId, int fatherId), SetBirthCountByParent(int motherId, int fatherId, int value) (F822). `src/Era.Core/Interfaces/IVariableStoreExtensions.cs` |
 
 **IBodySettings** (`src/Era.Core/Interfaces/IBodySettings.cs`) — F779:
 - `void Tidy(int characterId)`: Dedup + mutual exclusion validation + slot compaction for body options (4 slots), hair/eye/V/P option pairs (2 slots each). Does NOT sync derived values (behavioral difference from IVisitorSettings).

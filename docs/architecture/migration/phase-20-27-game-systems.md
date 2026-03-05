@@ -285,6 +285,9 @@ dotnet test Era.Core.Tests --filter "Category=Source"
 - IKnickersSystem full implementation (CLOTHES_Change_Knickers) - clothing system scope
 - GetNWithVisitor (INtrUtilityService) - NTR_VISITOR.ERB visitor location count
 
+**Deferred Obligations (from Phase 22 Consolidation F829)**:
+- 12 obligations routed to Phase 25, standalone features (F830-F833), or NOT_FEASIBLE — see [feature-829.md](../../../pm/features/feature-829.md) for full routing table
+
 **Tasks**:
 1. 服装システム移行（CLOTHES*.ERB）
 2. 妊娠システム移行（PREGNACY_S*.ERB）
@@ -793,6 +796,14 @@ dotnet test Era.Core.Tests --filter "Category=NtrDomain"
 > 3. **Location Extensions** (16ファイル, ~2,509行 + AFFAIR_DISCLOSURE ~103行) - 訪問先拡張
 
 **Phase Status**: TODO
+
+**Deferred Obligations (from F829)**:
+- OB-02: SANTA cosplay text output (CLOTHE_EFFECT.ERB @SANTA PRINT calls) — requires engine-layer UI primitives
+- OB-03: CLOTHES_ACCESSORY/INtrQuery wiring — trigger: when NTR system migrates
+- OB-04: IVariableStore 2D SAVEDATA stubs (GetBirthCountByParent/SetBirthCountByParent)
+- OB-05: NullMultipleBirthService runtime implementation (8-method stub)
+- OB-08: I3DArrayVariables GetDa/SetDa DA gap (ROOM_SMELL_WHOSE_SAMEN)
+- OB-10: CP-2 Step 2c behavioral flow test (Shop→Counter→State)
 
 **Goal**: AI・訪問者・NTRサブシステムの移行（拡張版）
 

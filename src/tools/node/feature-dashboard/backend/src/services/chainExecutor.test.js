@@ -15,8 +15,8 @@ describe('Chain Execution Pure Functions', () => {
             expect(getNextChainCommand('[REVIEWED]')).toBe('run');
         });
 
-        it('returns null for [DONE] status (chain complete)', () => {
-            expect(getNextChainCommand('[DONE]')).toBeNull();
+        it('returns imp for [DONE] status', () => {
+            expect(getNextChainCommand('[DONE]')).toBe('imp');
         });
 
         it('returns null for [DRAFT] status', () => {
@@ -57,8 +57,12 @@ describe('Chain Execution Pure Functions', () => {
             expect(isExpectedStatusAfterCommand('fl', '[PROPOSED]')).toBe(false);
         });
 
-        it('returns false for run command (no expected status)', () => {
-            expect(isExpectedStatusAfterCommand('run', '[DONE]')).toBe(false);
+        it('returns true for run → [DONE]', () => {
+            expect(isExpectedStatusAfterCommand('run', '[DONE]')).toBe(true);
+        });
+
+        it('returns false for imp (no expected status)', () => {
+            expect(isExpectedStatusAfterCommand('imp', '[DONE]')).toBe(false);
         });
 
         it('returns false for unknown command', () => {
@@ -233,10 +237,43 @@ describe('ChainExecutor', () => {
             expect(chainExecutor.hasWaiter('100')).toBe(false); // Waiter still deleted
         });
 
-        it('does not trigger if no next command (chain complete)', () => {
+        it('triggers imp on [DONE] status', () => {
             chainExecutor.handleStatusChanged('100', '[REVIEWED]', '[DONE]');
 
+            expect(mockDeps.executeCommand).toHaveBeenCalledWith('100', 'imp', expect.any(Object));
+        });
+
+        it('does not trigger if no next command (e.g., [BLOCKED])', () => {
+            chainExecutor.handleStatusChanged('100', '[REVIEWED]', '[BLOCKED]');
+
             expect(mockDeps.executeCommand).not.toHaveBeenCalled();
+        });
+
+        it('handles run → [DONE] → imp chain', () => {
+            const execution = {
+                id: 'exec-789',
+                featureId: '300',
+                command: 'run',
+                chainParentId: 'parent-123',
+                chain: { history: [{ command: 'fc', result: 'ok' }, { command: 'fl', result: 'ok' }] },
+            };
+            mockDeps.getExecution.mockReturnValue(execution);
+            chainExecutor.chainWaiters.set('300', {
+                executionId: 'exec-789',
+                registeredAt: Date.now(),
+            });
+
+            chainExecutor.handleStatusChanged('300', '[WIP]', '[DONE]');
+
+            expect(mockDeps.executeCommand).toHaveBeenCalledWith('300', 'imp', {
+                chain: true,
+                chainParentId: 'parent-123',
+                chainHistory: [
+                    { command: 'fc', result: 'ok' },
+                    { command: 'fl', result: 'ok' },
+                    { command: 'run', result: 'ok' },
+                ],
+            });
         });
 
         it('handles fl → [REVIEWED] → run chain', () => {

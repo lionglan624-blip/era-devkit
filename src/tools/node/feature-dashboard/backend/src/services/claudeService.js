@@ -1438,14 +1438,14 @@ export class ClaudeService {
         this._saveHistoryEntry(execution);
 
         // Chain: Register waiter for next step if chain-eligible (success + no handoff + not FL retry exhausted)
-        // /run is the last chain step — no next command exists, so send email directly
+        // /imp is the last chain step — no next command exists, so send email directly
         const chainContinues =
             execution.chain?.enabled &&
             exitCode === 0 &&
             execution.resultSubtype === 'success' &&
             !execution.promptTooLong &&
             !isFlRetryExhausted;
-        const isLastChainStep = execution.command === 'run';
+        const isLastChainStep = execution.command === 'imp';
 
         // Detect FL incomplete termination: exit 0 + success subtype, but status didn't advance.
         // This happens when context/max_turns is exhausted mid-work (CLI reports success but FL didn't finish).
@@ -2682,6 +2682,10 @@ export class ClaudeService {
             contextPercent: e.contextPercent, // Context window usage
             tokenUsage: e.tokenUsage,
             taskDepth: e.taskDepth || 0,
+            waitingForInput: e.waitingForInput || false,
+            waitingInputPattern: e.waitingInputPattern || null,
+            inputRequired: e.inputRequired ? { questions: e.inputRequired.questions, context: e.inputContext } : null,
+            isStalled: e.isStalled || false,
         }));
     }
 

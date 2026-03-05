@@ -83,19 +83,15 @@ function reducer(state, action) {
             nextExec.set(executionId, { ...exec, status, exitCode });
             changes.executions = nextExec;
 
-            // Clear input-related state on terminal status
+            // Clear AskUserQuestion input requests on terminal status.
+            // Note: waitingForInput (y/n) is intentionally preserved so FE shows
+            // Yes/No buttons on completed executions (browser-first design).
             const isTerminal = status === 'completed' || status === 'failed';
             if (isTerminal) {
                 if (state.inputRequests.has(executionId)) {
                     const nextIR = new Map(state.inputRequests);
                     nextIR.delete(executionId);
                     changes.inputRequests = nextIR;
-                }
-                const es = state.executionStates.get(executionId);
-                if (es?.waitingForInput) {
-                    const nextES = new Map(state.executionStates);
-                    nextES.set(executionId, { ...es, waitingForInput: false });
-                    changes.executionStates = nextES;
                 }
             }
 
@@ -260,8 +256,12 @@ function reducer(state, action) {
         }
 
         case 'INIT_EXECUTION_STATES': {
-            const { executionStates: initES, featurePhases: initFP } = action;
-            return { ...state, executionStates: initES, featurePhases: initFP };
+            const { executionStates: initES, featurePhases: initFP, inputRequests: initIR } = action;
+            const changes = { executionStates: initES, featurePhases: initFP };
+            if (initIR && initIR.size > 0) {
+                changes.inputRequests = initIR;
+            }
+            return { ...state, ...changes };
         }
 
         case 'ADD_EXECUTION': {
@@ -408,7 +408,8 @@ export function useExecution() {
 
     // API calls
     const startCommand = useCallback(async (featureId, command, { chain = false } = {}) => {
-        const endpoint = command === 'run' ? 'run' : command === 'fc' ? 'fc' : 'fl';
+        const endpointMap = { run: 'run', fc: 'fc', imp: 'imp' };
+        const endpoint = endpointMap[command] || 'fl';
         const res = await fetch(`${API_BASE}/execution/${endpoint}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -482,6 +483,7 @@ export function useExecution() {
             // Initialize executionStates and featurePhases from API data
             const initES = new Map();
             const initFP = new Map();
+            const initIR = new Map();
             for (const exec of list) {
                 if (exec.status === 'running' || exec.phase != null) {
                     initES.set(exec.id, {
@@ -489,15 +491,22 @@ export function useExecution() {
                         phase: exec.phase ?? null,
                         phaseName: exec.phaseName ?? null,
                         sessionId: exec.sessionId ?? null,
-                        inputRequired: false,
-                        waitingForInput: false,
-                        waitingInputPattern: null,
+                        inputRequired: !!exec.inputRequired,
+                        waitingForInput: exec.waitingForInput || false,
+                        waitingInputPattern: exec.waitingInputPattern || null,
                         pendingTool: null,
                         contextPercent: exec.contextPercent ?? null,
                         tokenUsage: exec.tokenUsage ?? null,
-                        isStalled: false,
-                        taskDepth: 0,
+                        isStalled: exec.isStalled || false,
+                        taskDepth: exec.taskDepth || 0,
                         lastActivityTime: null,
+                    });
+                }
+                // Restore AskUserQuestion input requests
+                if (exec.inputRequired) {
+                    initIR.set(exec.id, {
+                        context: exec.inputRequired.context,
+                        questions: exec.inputRequired.questions,
                     });
                 }
                 // Build featurePhases for running executions
@@ -512,11 +521,12 @@ export function useExecution() {
                     });
                 }
             }
-            if (initES.size > 0 || initFP.size > 0) {
+            if (initES.size > 0 || initFP.size > 0 || initIR.size > 0) {
                 dispatch({
                     type: 'INIT_EXECUTION_STATES',
                     executionStates: initES,
                     featurePhases: initFP,
+                    inputRequests: initIR,
                 });
             }
         } catch (err) {

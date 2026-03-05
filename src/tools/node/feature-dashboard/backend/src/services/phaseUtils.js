@@ -46,11 +46,11 @@ export function detectIteration(content) {
 
 /**
  * Total phases per command (hardcoded, phases rarely change)
- * @param {string} command - Command name (run, fc, fl)
+ * @param {string} command - Command name (run, fc, fl, imp)
  * @returns {number | null}
  */
 export function getTotalPhases(command) {
-    const totals = { run: 10, fc: 7, fl: 8 };
+    const totals = { run: 10, fc: 7, fl: 8, imp: 6 };
     return totals[command] || null;
 }
 

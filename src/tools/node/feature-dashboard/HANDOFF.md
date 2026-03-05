@@ -81,7 +81,7 @@ Full config: `backend/src/config.js`
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
-| `/api/execution/{fc,fl,run}` | POST | Execute command |
+| `/api/execution/{fc,fl,run,imp}` | POST | Execute command |
 | `/api/execution/terminal` | POST | Open terminal |
 | `/api/execution/shell` | POST | Run cs, dr, upd |
 | `/api/execution/slash` | POST | Run /commit, /sync-deps |
@@ -155,7 +155,7 @@ Frontend (React+Vite :5173)  →  Backend (Express :3001)  →  claude.exe (spaw
 ### Chain Execution Flow
 
 ```
-[DRAFT] → fc → [PROPOSED] → fl → [REVIEWED] → run → [DONE]
+[DRAFT] → fc → [PROPOSED] → fl → [REVIEWED] → run → [DONE] → imp → [DONE]
 ```
 
 **Stop conditions**: Error, Handoff, [BLOCKED], User kill
@@ -321,7 +321,7 @@ All user input is whitelist-validated before passing to spawn:
 | Function | Validation |
 |----------|------------|
 | `validateFeatureId()` | Numeric only (`/^\d+$/`) |
-| `validateCommand()` | `fc`, `fl`, `run` only |
+| `validateCommand()` | `fc`, `fl`, `run`, `imp` only |
 | `runShellCommand()` | `cs`, `dr`, `upd` only |
 | `executeSlashCommand()` | `commit`, `sync-deps` only |
 | `answerInBrowser()` | `sanitizeInput(answer, 1000)` — control chars stripped, 1000 char limit |

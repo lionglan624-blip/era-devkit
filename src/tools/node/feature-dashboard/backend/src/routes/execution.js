@@ -75,6 +75,23 @@ export function createExecutionRouter(claudeService) {
         }
     });
 
+    // POST /api/execution/imp - Start /imp execution
+    router.post('/imp', (req, res) => {
+        const { featureId, chain } = req.body;
+        if (!featureId) {
+            return res.status(400).json({ error: 'featureId is required' });
+        }
+
+        try {
+            const executionId = claudeService.executeCommand(featureId, 'imp', { chain: !!chain });
+            const exec = claudeService.getExecution(executionId);
+            res.json(exec);
+        } catch (err) {
+            serverLog.error(`Error starting imp for ${featureId}:`, err);
+            res.status(500).json({ error: err.message });
+        }
+    });
+
     // POST /api/execution/terminal - Open interactive terminal tab
     router.post('/terminal', (req, res) => {
         const { featureId, command } = req.body;

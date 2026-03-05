@@ -30,6 +30,7 @@ function createPanelProps(executions = new Map(), overrides = {}) {
         onClose: vi.fn(),
         onCloseTab: vi.fn(),
         onCloseFinishedTabs: vi.fn(),
+        onResumeBrowser: vi.fn(),
         onResumeTerminal: vi.fn(),
         ...overrides,
     };
@@ -333,7 +334,7 @@ describe('ExecutionPanel', () => {
             expect(screen.queryByText('Stop')).not.toBeInTheDocument();
         });
 
-        it('shows Resume button when stopped with sessionId', () => {
+        it('shows Continue and Terminal buttons when stopped with sessionId', () => {
             const executions = new Map([
                 [
                     'exec-1',
@@ -347,10 +348,11 @@ describe('ExecutionPanel', () => {
             const props = createPanelProps(executions);
             render(<ExecutionPanel {...props} />);
 
-            expect(screen.getByText('Resume')).toBeInTheDocument();
+            expect(screen.getByText('Continue')).toBeInTheDocument();
+            expect(screen.getByText('Terminal')).toBeInTheDocument();
         });
 
-        it('does not show Resume button when running', () => {
+        it('does not show Continue/Terminal buttons when running', () => {
             const executions = new Map([
                 [
                     'exec-1',
@@ -364,10 +366,11 @@ describe('ExecutionPanel', () => {
             const props = createPanelProps(executions);
             render(<ExecutionPanel {...props} />);
 
-            expect(screen.queryByText('Resume')).not.toBeInTheDocument();
+            expect(screen.queryByText('Continue')).not.toBeInTheDocument();
+            expect(screen.queryByText('Terminal')).not.toBeInTheDocument();
         });
 
-        it('does not show Resume button when no sessionId', () => {
+        it('does not show Continue/Terminal buttons when no sessionId', () => {
             const executions = new Map([
                 [
                     'exec-1',
@@ -381,7 +384,8 @@ describe('ExecutionPanel', () => {
             const props = createPanelProps(executions);
             render(<ExecutionPanel {...props} />);
 
-            expect(screen.queryByText('Resume')).not.toBeInTheDocument();
+            expect(screen.queryByText('Continue')).not.toBeInTheDocument();
+            expect(screen.queryByText('Terminal')).not.toBeInTheDocument();
         });
 
         it('shows Clear button when finished tabs exist', () => {
@@ -478,7 +482,28 @@ describe('ExecutionPanel', () => {
             expect(onCloseFinishedTabs).toHaveBeenCalled();
         });
 
-        it('calls onResumeTerminal when Resume button clicked', async () => {
+        it('calls onResumeBrowser when Continue button clicked', async () => {
+            const user = userEvent.setup();
+            const executions = new Map([
+                [
+                    'exec-1',
+                    createExecution({
+                        status: 'completed',
+                        sessionId: 'session-1',
+                        logs: [{ line: 'test' }],
+                    }),
+                ],
+            ]);
+            const onResumeBrowser = vi.fn();
+            const props = createPanelProps(executions, { onResumeBrowser });
+            render(<ExecutionPanel {...props} />);
+
+            await user.click(screen.getByText('Continue'));
+
+            expect(onResumeBrowser).toHaveBeenCalledWith('exec-1');
+        });
+
+        it('calls onResumeTerminal when Terminal button clicked', async () => {
             const user = userEvent.setup();
             const executions = new Map([
                 [
@@ -494,7 +519,7 @@ describe('ExecutionPanel', () => {
             const props = createPanelProps(executions, { onResumeTerminal });
             render(<ExecutionPanel {...props} />);
 
-            await user.click(screen.getByText('Resume'));
+            await user.click(screen.getByText('Terminal'));
 
             expect(onResumeTerminal).toHaveBeenCalledWith('exec-1');
         });

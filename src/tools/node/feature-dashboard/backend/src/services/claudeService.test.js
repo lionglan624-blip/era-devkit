@@ -59,12 +59,14 @@ describe('validateCommand', () => {
         expect(validateCommand('fc')).toBe('fc');
         expect(validateCommand('fl')).toBe('fl');
         expect(validateCommand('run')).toBe('run');
+        expect(validateCommand('imp')).toBe('imp');
     });
 
     it('normalizes to lowercase', () => {
         expect(validateCommand('FC')).toBe('fc');
         expect(validateCommand('FL')).toBe('fl');
         expect(validateCommand('RUN')).toBe('run');
+        expect(validateCommand('IMP')).toBe('imp');
     });
 
     it('rejects invalid commands', () => {
@@ -548,7 +550,7 @@ describe('ClaudeService', () => {
         });
 
         it('returns null for terminal statuses', () => {
-            expect(getNextChainCommand('[DONE]')).toBeNull();
+            expect(getNextChainCommand('[DONE]')).toBe('imp');
             expect(getNextChainCommand('[WIP]')).toBeNull();
             expect(getNextChainCommand('[BLOCKED]')).toBeNull();
         });
@@ -563,7 +565,7 @@ describe('ClaudeService', () => {
         it('returns false for mismatched command→status pairs', () => {
             expect(isExpectedStatusAfterCommand('fc', '[REVIEWED]')).toBe(false);
             expect(isExpectedStatusAfterCommand('fl', '[PROPOSED]')).toBe(false);
-            expect(isExpectedStatusAfterCommand('run', '[DONE]')).toBe(false);
+            expect(isExpectedStatusAfterCommand('run', '[DONE]')).toBe(true);
         });
     });
 
@@ -1319,6 +1321,45 @@ describe('ClaudeService', () => {
             if (execution.pendingHandoffTimeout) clearTimeout(execution.pendingHandoffTimeout);
         });
 
+        it('skips assistant text with y/n pattern NOT in last line (false positive filter)', () => {
+            const { service } = createService();
+            service._broadcastState = vi.fn();
+            service._handoffToTerminal = vi.fn();
+
+            const execution = service._createExecution({ featureId: '100', command: 'run' });
+            execution.status = 'running';
+            execution.sessionId = 'sess-1';
+
+            // Long assistant text with (y/n) buried in middle — false positive
+            const longText = 'Only in a comment, not an actual TBD value. (y/n) reference in docs.\n\n=== Feature 823 Done ===\nTasks: 11/11\nAll ACs passed.';
+            service.streamParser.checkInputWaitPatterns(execution, longText, 'assistant');
+
+            expect(execution.waitingForInput).toBe(false);
+            expect(execution.pendingHandoff).toBeFalsy();
+        });
+
+        it('detects assistant text with y/n pattern in last line', () => {
+            const { service } = createService();
+            service._broadcastState = vi.fn();
+            service._handoffToTerminal = vi.fn();
+
+            const execution = service._createExecution({ featureId: '100', command: 'run' });
+            execution.status = 'running';
+            execution.sessionId = 'sess-1';
+
+            // y/n at end of assistant text — real prompt
+            service.streamParser.checkInputWaitPatterns(
+                execution,
+                'I found 3 issues.\nShould I proceed with the fix? (y/n)',
+                'assistant',
+            );
+
+            expect(execution.waitingForInput).toBe(true);
+
+            // Cleanup
+            if (execution.pendingHandoffTimeout) clearTimeout(execution.pendingHandoffTimeout);
+        });
+
         it('defers y/n handoff — result event cancels auto-handoff (browser-first)', () => {
             const { service } = createService();
             service._broadcastState = vi.fn();
@@ -1991,15 +2032,17 @@ describe('ClaudeService', () => {
             expect(service._startExecution).not.toHaveBeenCalled();
         });
 
-        it('logs completion when no next command (e.g., [DONE])', () => {
+        it('triggers imp on [DONE] status change', () => {
             const { service } = createService();
             service._startExecution = vi.fn();
+            service.executeCommand = vi.fn().mockReturnValue('new-exec-id');
 
             const exec = service._createExecution({
                 featureId: '100',
                 command: 'run',
                 chain: true,
             });
+            exec.chain = { enabled: true, history: [] };
             service.executions.set(exec.id, exec);
             service.chainExecutor.chainWaiters.set('100', {
                 executionId: exec.id,
@@ -2008,8 +2051,8 @@ describe('ClaudeService', () => {
 
             service.handleFeatureStatusChanged('100', '[REVIEWED]', '[DONE]');
 
-            // No next command for [DONE], so no startExecution call
-            expect(service._startExecution).not.toHaveBeenCalled();
+            // [DONE] now triggers imp
+            expect(service.executeCommand).toHaveBeenCalledWith('100', 'imp', expect.any(Object));
             expect(service.chainExecutor.chainWaiters.has('100')).toBe(false);
         });
     });
@@ -2486,7 +2529,7 @@ describe('ClaudeService', () => {
             expect(service.chainExecutor.registerWaiter).toHaveBeenCalledWith(execution);
         });
 
-        it('sends email instead of registering waiter on chain /run completion (last step)', () => {
+        it('registers waiter on chain /run completion (not last step)', () => {
             const { service } = createService();
             service._broadcastState = vi.fn();
             service._dequeueNext = vi.fn();
@@ -2511,6 +2554,37 @@ describe('ClaudeService', () => {
             service._handleCompletion(execution, 0);
 
             expect(execution.status).toBe('completed');
+            // run is no longer the last step — it registers a waiter for imp
+            expect(service.chainExecutor.registerWaiter).toHaveBeenCalledWith(execution);
+            expect(service.emailService.sendCompletionNotification).not.toHaveBeenCalled();
+        });
+
+        it('sends email on chain /imp completion (last step)', () => {
+            const { service } = createService();
+            service._broadcastState = vi.fn();
+            service._dequeueNext = vi.fn();
+            service.chainExecutor.registerWaiter = vi.fn();
+            service.emailService = { sendCompletionNotification: vi.fn().mockResolvedValue() };
+
+            const execution = service._createExecution({
+                featureId: '100',
+                command: 'imp',
+                chain: true,
+                chainHistory: [
+                    { command: 'fc', result: 'ok' },
+                    { command: 'fl', result: 'ok' },
+                    { command: 'run', result: 'ok' },
+                ],
+            });
+            execution.status = 'running';
+            execution.startedAt = new Date().toISOString();
+            execution.lastOutputTime = Date.now();
+            execution.resultSubtype = 'success';
+            service.executions.set(execution.id, execution);
+
+            service._handleCompletion(execution, 0);
+
+            expect(execution.status).toBe('completed');
             expect(service.chainExecutor.registerWaiter).not.toHaveBeenCalled();
             expect(service.emailService.sendCompletionNotification).toHaveBeenCalledWith(
                 execution,
@@ -2520,6 +2594,7 @@ describe('ClaudeService', () => {
                     { command: 'fc', result: 'ok' },
                     { command: 'fl', result: 'ok' },
                     { command: 'run', result: 'ok' },
+                    { command: 'imp', result: 'ok' },
                 ],
                 null,
             );

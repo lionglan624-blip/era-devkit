@@ -602,6 +602,13 @@ export default function App() {
                 });
             }
 
+            // Check waitingForInput for completed executions too (browser-first y/n design):
+            // CLI exits after emitting y/n text, but user still needs to answer via resume.
+            if (isStopped) {
+                const state = executionStates.get(execId);
+                if (state?.waitingForInput) inputWaiting.add(exec.featureId);
+            }
+
             if (isStopped && exec.sessionId) {
                 const existing = sessionIds.get(exec.featureId);
                 if (

@@ -451,8 +451,16 @@ export class StreamParser {
         // false-matches input patterns (e.g. "proceed?" in FAQ). Skip.
         if (source === 'user') return;
 
+        // For assistant events: only check the last line of text.
+        // Claude's long responses often contain "(y/n)" references in documentation,
+        // feature reviews, or mid-text discussion — these are false positives.
+        // Real y/n prompts appear at the end of the response.
+        const textToCheck = source === 'assistant'
+            ? (text.split('\n').filter(l => l.trim()).pop() || '')
+            : text;
+
         for (const { pattern, description } of INPUT_WAIT_PATTERNS) {
-            if (pattern.test(text)) {
+            if (pattern.test(textToCheck)) {
                 if (!execution.waitingForInput) {
                     execution.waitingForInput = true;
                     execution.waitingInputPattern = description;

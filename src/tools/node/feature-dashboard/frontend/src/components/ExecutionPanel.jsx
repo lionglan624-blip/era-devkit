@@ -16,6 +16,7 @@ export default function ExecutionPanel({
     onKill,
     onCloseTab,
     onCloseFinishedTabs,
+    onResumeBrowser,
     onResumeTerminal,
     onAnswer,
     onOpenHistory,
@@ -92,6 +93,7 @@ export default function ExecutionPanel({
                         entries={historyEntries}
                         loading={historyLoading}
                         projectRoot={projectRoot}
+                        onResumeBrowser={onResumeBrowser}
                         onResumeTerminal={onResumeTerminal}
                     />
                 ) : (
@@ -257,9 +259,14 @@ export default function ExecutionPanel({
                         </button>
                     )}
                     {activeExec.status !== 'running' && activeExec.sessionId && (
-                        <button className="btn-resume" onClick={() => onResumeTerminal?.(execId)}>
-                            Resume
-                        </button>
+                        <>
+                            <button className="btn-resume" onClick={() => onResumeBrowser?.(execId)}>
+                                Continue
+                            </button>
+                            <button className="btn-terminal" onClick={() => onResumeTerminal?.(execId)}>
+                                Terminal
+                            </button>
+                        </>
                     )}
                     {activeExec.status === 'running' && (
                         <button className="btn-kill" onClick={() => onKill(execId)}>
@@ -359,6 +366,7 @@ export default function ExecutionPanel({
                     entries={historyEntries}
                     loading={historyLoading}
                     projectRoot={projectRoot}
+                    onResumeBrowser={onResumeBrowser}
                     onResumeTerminal={onResumeTerminal}
                 />
             ) : (

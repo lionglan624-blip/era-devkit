@@ -441,6 +441,13 @@ void Register(string name, Func<int> handler);  // Register entry point handler
 - **Methods**: `AcquireHeartbreak(int, int, int)`
 - **Source**: 睡眠深度.ERB @素質傷心取得 (F824)
 
+### IRelationshipService (F825)
+- **File**: `src/Era.Core/Interfaces/IRelationshipService.cs`
+- **Impl**: `RelationshipService` (`State/RelationshipService.cs`)
+- **DI**: Singleton
+- **Methods**: `OutputAllRelationships(CharacterId, CharacterId)`, `CheckRelationship(CharacterId, CharacterId)`, `CheckAncestors(CharacterId, CharacterId, int)`, `CheckDescendants(CharacterId, CharacterId, int)`, `CheckCollateral(CharacterId, CharacterId, int)`, `IsChild(CharacterId)`
+- **Source**: 続柄.ERB (F825)
+
 ### IClothingPresets (F819)
 ```csharp
 // src/Era.Core/Interfaces/IClothingPresets.cs - ISP sub-interface for clothing preset methods

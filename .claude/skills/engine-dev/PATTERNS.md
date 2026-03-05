@@ -239,6 +239,9 @@ CharacterFlagIndex rotatorVInsertion = CharacterFlagIndex.RotatorVInsertion; // 
 CharacterFlagIndex rotatorAInsertion = CharacterFlagIndex.RotatorAInsertion; // ローターA挿入(16)
 CharacterFlagIndex mansionRank = CharacterFlagIndex.MansionRank;             // 館ランク(310)
 
+// F825 CharacterFlagIndex well-known values (relationships)
+CharacterFlagIndex multiBirthSiblingFlag = CharacterFlagIndex.MultiBirthSiblingFlag; // 多生児兄弟フラグ(1106)
+
 // F812 ExpIndex well-known values (additions)
 ExpIndex cExp = ExpIndex.CExp;                                     // Ｃ経験(0)
 ExpIndex vExp = ExpIndex.VExp;                                     // Ｖ経験(1)

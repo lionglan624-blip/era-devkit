@@ -36,6 +36,11 @@ Phase 22 implementation sub-features (F819, F821-F825) must be reviewed holistic
 1. **CVARSET bulk reset**: `CVARSET CFLAG, 317` pattern used in both 睡眠深度.ERB and MOVEMENT.ERB:81. F824 inlined in `SleepDepth.ResetUfufu()` (1 C# call site). When MOVEMENT.ERB migrates, extract `IVariableStore.BulkResetCharacterFlags()` as shared method.
 2. **IS_DOUTEI shared utility**: Defined in COMMON.ERB, called from 14 ERB files (22 call sites). F824 inlined in `MenstrualCycle.FormatSimpleStatus` (1 C# call site). When second C# call site appears, extract to `ICharacterUtilities.IsDoutei`.
 
+**Deferred from F825**: Three cross-subsystem concerns:
+1. **ROOM_SMELL_WHOSE_SAMEN** (ROOM_SMELL.ERB:1108-1140): I3DArrayVariables lacks GetDa/SetDa — DA interface gap is cross-cutting.
+2. **F819: CLOTHES_ACCESSORY requires INtrQuery**: NullNtrQuery returns false — deferred from F819.
+3. **F821: IEngineVariables indexed methods** (GetDay/SetDay/GetTime/SetTime): Default interface no-op stubs pending engine repo implementation.
+
 ### Goal (What to Achieve)
 
 Execute CP-2 Step 2c E2E checkpoint for Phase 22 completion. Re-triage obligation #1 (N+4 --unit deprecation). Implement obligation #32 (ERB file boundary != domain boundary /fc verification step).
@@ -52,7 +57,7 @@ Execute CP-2 Step 2c E2E checkpoint for Phase 22 completion. Re-triage obligatio
 | Predecessor | F822 | [DONE] | Pregnancy System |
 | Predecessor | F823 | [DONE] | Room & Stain |
 | Predecessor | F824 | [DONE] | Sleep & Menstrual |
-| Predecessor | F825 | [DRAFT] | Relationships & DI Integration |
+| Predecessor | F825 | [DONE] | Relationships & DI Integration |
 
 ---
 

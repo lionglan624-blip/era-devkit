@@ -72,10 +72,11 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 |:---|:------:|:-----|:-----------|:------|
 | F827 | [DRAFT] | Phase 23 Planning | F826 | [feature-827.md](feature-827.md) |
 | F828 | [DONE] | Date Initialization Migration (@日付初期設定) | **F821** | [feature-828.md](feature-828.md) |
-| F830 | [DRAFT] | Trigger-Gated Shared Utility Extractions | F829 | [feature-830.md](feature-830.md) |
-| F831 | [DRAFT] | Roslynator Analyzers Investigation | F829 | [feature-831.md](feature-831.md) |
-| F832 | [DRAFT] | ac-static-verifier Numeric Expected Parsing Fix | F829 | [feature-832.md](feature-832.md) |
-| F833 | [DRAFT] | IEngineVariables Indexed Methods Stubs | F829 | [feature-833.md](feature-833.md) |
+| F830 | [PROPOSED] | Trigger-Gated Shared Utility Extractions | F829 | [feature-830.md](feature-830.md) |
+| F836 | [DRAFT] | Enable CA1502 and CA1506 via .editorconfig | F831 | [feature-836.md](feature-836.md) |
+| F837 | [DRAFT] | Enable EnforceCodeStyleInBuild for IDE-prefix Rule Enforcement | F831 | [feature-837.md](feature-837.md) |
+| F832 | [REVIEWED] | ac-static-verifier Numeric Expected Parsing Fix | F829 | [feature-832.md](feature-832.md) |
+| F833 | [PROPOSED] | IEngineVariables Indexed Methods Stubs | F829 | [feature-833.md](feature-833.md) |
 
 ### Other
 
@@ -94,12 +95,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 831 | ✅ | Roslynator Analyzers Investigation | [feature-831.md](feature-831.md) |
 | 829 | ✅ | Phase 22 Deferred Obligations Consolidation | [feature-829.md](feature-829.md) |
 | 826 | ✅ | Post-Phase Review Phase 22 | [feature-826.md](feature-826.md) |
 | 825 | ✅ | Relationships & DI Integration | [feature-825.md](feature-825.md) |
 | 822 | ✅ | Pregnancy System | [feature-822.md](feature-822.md) |
 | 828 | ✅ | 日付初期設定 Migration | [feature-828.md](feature-828.md) |
-| 819 | ✅ | Clothing System | [feature-819.md](feature-819.md) |
 
 ---
 
@@ -190,4 +191,4 @@ See [kojo-mapper](../../tools/kojo-mapper/) for detailed coverage analysis.
 
 ---
 
-**Next Feature number**: 834
+**Next Feature number**: 838

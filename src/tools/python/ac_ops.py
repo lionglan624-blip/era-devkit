@@ -2269,6 +2269,100 @@ def ac_add(
 
 
 # =============================================================================
+# AC Pattern Lint (regex/glob executability pre-check)
+# =============================================================================
+
+
+def ac_lint_patterns(fid: str) -> int:
+    """
+    Validate AC pattern executability: regex syntax for matches/not_matches,
+    glob syntax for exists/not_exists, regex metachar warnings for contains.
+
+    Returns 0 if no errors (warnings OK), 1 if errors found.
+    """
+    import fnmatch as _fnmatch  # noqa: F811 — only for syntax hint
+
+    path = feature_path(fid)
+    if not path.exists():
+        print(f"ERROR: {path} not found", file=sys.stderr)
+        return 1
+
+    lines = path.read_text(encoding="utf-8").splitlines()
+    ac_rows = parse_ac_table(lines)
+
+    if not ac_rows:
+        print(f"No AC rows found in feature-{fid}.md")
+        return 0
+
+    errors = []
+    warnings = []
+
+    for row in ac_rows:
+        matcher = row.matcher.strip()
+        expected = row.expected.strip()
+        ac_label = f"AC#{row.number}"
+
+        if not expected:
+            continue
+
+        if matcher in ("matches", "not_matches"):
+            # Validate regex
+            try:
+                re.compile(expected)
+            except re.error as e:
+                errors.append(f"{ac_label}: Invalid regex in {matcher}: `{expected}` — {e}")
+
+        elif matcher in ("exists", "not_exists"):
+            # Check glob syntax: balanced brackets, non-empty
+            if not expected.strip():
+                errors.append(f"{ac_label}: Empty glob pattern in {matcher}")
+            else:
+                # Check bracket balance
+                bracket_depth = 0
+                for ch in expected:
+                    if ch == '[':
+                        bracket_depth += 1
+                    elif ch == ']':
+                        bracket_depth -= 1
+                    if bracket_depth < 0:
+                        break
+                if bracket_depth != 0:
+                    errors.append(f"{ac_label}: Unbalanced brackets in {matcher} glob: `{expected}`")
+
+        elif matcher == "contains":
+            # Warn if regex metacharacters are used (likely should be matches instead)
+            regex_indicators = [r'\d', r'\w', r'\s', r'\|', r'[a-z]', r'[A-Z]', r'[0-9]',
+                                r'\b', r'\(', r'\)', r'\{', r'\}']
+            for indicator in regex_indicators:
+                if indicator in expected:
+                    warnings.append(
+                        f"{ac_label}: `contains` has regex metachar `{indicator}` — "
+                        f"consider using `matches` instead"
+                    )
+                    break  # One warning per AC is enough
+
+    # Report
+    if errors:
+        print(f"ERRORS ({len(errors)}):")
+        for e in errors:
+            print(f"  ✗ {e}")
+    if warnings:
+        print(f"WARNINGS ({len(warnings)}):")
+        for w in warnings:
+            print(f"  ⚠ {w}")
+
+    if not errors and not warnings:
+        print(f"OK: All {len(ac_rows)} AC patterns are valid")
+
+    if not errors:
+        print(f"\nResult: PASS ({len(warnings)} warnings)")
+        return 0
+    else:
+        print(f"\nResult: FAIL ({len(errors)} errors, {len(warnings)} warnings)")
+        return 1
+
+
+# =============================================================================
 # CLI entry point (when run directly for testing)
 # =============================================================================
 
@@ -2499,6 +2593,21 @@ def main() -> int:
     p_add.add_argument("--force", action="store_true",
                        help="Allow add even with sub-numbered ACs")
 
+    p_lint = subparsers.add_parser(
+        "ac-lint-patterns",
+        help="Validate AC pattern executability (regex/glob syntax check)",
+        description=(
+            "Pre-check AC patterns for executability:\n"
+            "- matches/not_matches: validates regex syntax (re.compile)\n"
+            "- exists/not_exists: validates glob syntax (bracket balance, non-empty)\n"
+            "- contains: warns if regex metacharacters detected (should use matches?)\n"
+            "\n"
+            "Exit 0 = OK (warnings allowed), Exit 1 = errors found."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    p_lint.add_argument("fid", metavar="FID", help="Feature ID (e.g. 813)")
+
     args = parser.parse_args()
 
     if args.command == "ac-check":
@@ -2556,6 +2665,8 @@ def main() -> int:
             dry_run=args.dry_run,
             force=args.force,
         )
+    elif args.command == "ac-lint-patterns":
+        return ac_lint_patterns(args.fid)
     return 0
 
 

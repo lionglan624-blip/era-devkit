@@ -96,10 +96,20 @@ class SessionStats:
     bash_failures: int = 0
     exploration_sequences: int = 0
     bash_commands: list = dataclasses.field(default_factory=list)
+    phase_transitions: list = dataclasses.field(default_factory=list)
 
     @property
     def total_tool_calls(self) -> int:
         return sum(self.tool_counts.values())
+
+
+@dataclasses.dataclass
+class PhaseTransition:
+    """A detected phase transition from TaskUpdate patterns."""
+    phase: str             # e.g., "Phase 2", "Phase 7"
+    timestamp: Optional[datetime] = None
+    iteration: Optional[int] = None  # FL iteration if applicable
+    duration_minutes: float = 0.0    # Duration from previous transition
 
 
 @dataclasses.dataclass
@@ -312,11 +322,14 @@ class SessionAnalyzer:
         self.exploration_sequences: int = 0
         self.bash_commands: list = []
 
+        self.phase_transitions: list = []
+
         # Internal tracking
         self._tool_id_map: dict = {}         # tool_use_id -> tool_name
         self._tool_use_id_is_error: dict = {}  # tool_use_id -> True if agent error
         self._consecutive_explore: int = 0   # running count of Grep/Glob calls
         self._last_non_explore_was_write = False
+        self._last_transition_ts: Optional[datetime] = None
 
     def analyze(self, jsonl_path: Path) -> SessionStats:
         """Stream through JSONL and collect stats. Returns SessionStats."""
@@ -369,6 +382,7 @@ class SessionAnalyzer:
             bash_failures=self.bash_failures,
             exploration_sequences=self.exploration_sequences,
             bash_commands=list(self.bash_commands),
+            phase_transitions=list(self.phase_transitions),
         )
 
     def _process_assistant(self, obj: dict) -> None:
@@ -435,6 +449,48 @@ class SessionAnalyzer:
                 cmd = inp.get("command", "")
                 if cmd:
                     self.bash_commands.append(cmd)
+
+            elif tool_name == "TaskUpdate":
+                subject = inp.get("subject", "")
+                self._detect_phase_transition(subject, obj)
+
+    # Patterns for phase transitions
+    _FL_PHASE_RE = re.compile(r"Iteration (\d+)/\d+: Phase (\d+)")
+    _RUN_PHASE_RE = re.compile(r"Phase (\d+)")
+
+    def _detect_phase_transition(self, subject: str, obj: dict) -> None:
+        """Detect phase transitions from TaskUpdate subject patterns."""
+        ts = _parse_iso(obj.get("timestamp", ""))
+
+        # FL pattern: "Iteration N/10: Phase X"
+        m = self._FL_PHASE_RE.search(subject)
+        if m:
+            iteration = int(m.group(1))
+            phase = f"Phase {m.group(2)}"
+            duration = 0.0
+            if self._last_transition_ts and ts:
+                duration = (ts - self._last_transition_ts).total_seconds() / 60.0
+            self.phase_transitions.append(PhaseTransition(
+                phase=phase, timestamp=ts, iteration=iteration,
+                duration_minutes=round(duration, 1),
+            ))
+            if ts:
+                self._last_transition_ts = ts
+            return
+
+        # /run pattern: "Phase N: ..." (without "Iteration")
+        m = self._RUN_PHASE_RE.search(subject)
+        if m and "Iteration" not in subject:
+            phase = f"Phase {m.group(1)}"
+            duration = 0.0
+            if self._last_transition_ts and ts:
+                duration = (ts - self._last_transition_ts).total_seconds() / 60.0
+            self.phase_transitions.append(PhaseTransition(
+                phase=phase, timestamp=ts, iteration=None,
+                duration_minutes=round(duration, 1),
+            ))
+            if ts:
+                self._last_transition_ts = ts
 
     def _process_user(self, obj: dict) -> None:
         """Process a user message block (tool results)."""
@@ -957,8 +1013,50 @@ def generate_markdown_report(
         lines.append("_No FL fix data available for workflow analysis._")
         lines.append("")
 
+    # --- Phase Timing Analysis ---
+    lines.append("## 4. Phase Timing Analysis (Phase間タイミング)")
+
+    # Collect all phase transitions across sessions
+    all_transitions = []
+    for stype in ("fc", "fl", "run"):
+        for stats in all_stats.get(stype, []):
+            if stats.phase_transitions:
+                session_label = f"{stats.session_info.session_type}:{stats.session_info.path.stem[:8]}"
+                for pt in stats.phase_transitions:
+                    all_transitions.append((session_label, pt))
+
+    if not all_transitions:
+        lines.append("_No phase transitions detected in session data._")
+        lines.append("")
+    else:
+        lines.append("| Session | Phase | Iteration | Duration (min) |")
+        lines.append("|---------|-------|:---------:|:--------------:|")
+        for session_label, pt in all_transitions:
+            iter_str = str(pt.iteration) if pt.iteration is not None else "-"
+            dur_str = f"{pt.duration_minutes:.1f}" if pt.duration_minutes > 0 else "-"
+            lines.append(f"| {session_label} | {pt.phase} | {iter_str} | {dur_str} |")
+        lines.append("")
+
+        # Phase duration summary (average per phase)
+        phase_durations: dict = collections.defaultdict(list)
+        for _, pt in all_transitions:
+            if pt.duration_minutes > 0:
+                phase_durations[pt.phase].append(pt.duration_minutes)
+
+        if phase_durations:
+            lines.append("**Average duration per phase:**")
+            lines.append("")
+            lines.append("| Phase | Avg (min) | Max (min) | Count |")
+            lines.append("|-------|:---------:|:---------:|:-----:|")
+            for phase in sorted(phase_durations.keys(), key=lambda x: int(x.split()[-1]) if x.split()[-1].isdigit() else 99):
+                durations = phase_durations[phase]
+                avg = sum(durations) / len(durations)
+                mx = max(durations)
+                lines.append(f"| {phase} | {avg:.1f} | {mx:.1f} | {len(durations)} |")
+            lines.append("")
+
     # --- Tedium Reduction ---
-    lines.append("## 4. Tedium Reduction (手間削減)")
+    lines.append("## 5. Tedium Reduction (手間削減)")
 
     if not tedium:
         lines.append("_No significant tedium patterns detected._")
@@ -972,7 +1070,7 @@ def generate_markdown_report(
         lines.append("")
 
     # --- Tool Usage Audit ---
-    lines.append("## 5. Tool Usage Audit (CLIツール活用監査)")
+    lines.append("## 6. Tool Usage Audit (CLIツール活用監査)")
     lines.append("")
 
     # Compute tool usage summary
@@ -1060,6 +1158,14 @@ def generate_json_output(
             "bash_failures": stats.bash_failures,
             "exploration_sequences": stats.exploration_sequences,
             "agent_dispatches": len(stats.agent_dispatches),
+            "phase_transitions": [
+                {
+                    "phase": pt.phase,
+                    "iteration": pt.iteration,
+                    "duration_minutes": pt.duration_minutes,
+                }
+                for pt in stats.phase_transitions
+            ],
         }
 
     result = {

@@ -30,6 +30,8 @@ Phase 22: State Systems -- Relationships subsystem migration and DI integration 
 
 **Deferred from F824**: DI registration of ISleepDepth/SleepDepth, IMenstrualCycle/MenstrualCycle, IHeartbreakService/HeartbreakService is done in F824 (own services only). F825 owns the full Phase 22 DI integration batch including relationship services and cross-subsystem wiring.
 
+**Deferred from F819**: (1) CLOTHES_ACCESSORY full implementation requires NTR_CHK_FAVORABLY via INtrQuery — current NullNtrQuery returns false as safe default. (2) Remaining 服装_* CFLAG backup slot indices not confirmed in CFLAG.yaml — Save/Load only covers 5 of ~19 backup pairs; remaining slots must be resolved from full CFLAG.yaml scan.
+
 **Deferred from F821**: IEngineVariables indexed methods (GetDay(int)/SetDay(int,int)/GetTime(int)/SetTime(int,int)) were added as default interface methods with no-op stubs. Engine repo implementation must override these with real DAY/TIME array access after Era.Core NuGet bump.
 
 ### Goal (What to Achieve)
@@ -43,7 +45,7 @@ Migrate 続柄.ERB to C#, complete all deferred Null implementations from Phase 
 | Type | Feature | Status | Description |
 |------|---------|--------|-------------|
 | Predecessor | F814 | [DONE] | Phase 22 Planning |
-| Predecessor | F819 | [DRAFT] | Clothing System -- DI integration requires all subsystem interfaces |
+| Predecessor | F819 | [DONE] | Clothing System -- DI integration requires all subsystem interfaces |
 | Predecessor | F821 | [DONE] | Weather System -- DI integration requires all subsystem interfaces |
 | Predecessor | F822 | [DRAFT] | Pregnancy System -- DI integration requires all subsystem interfaces |
 | Predecessor | F823 | [DONE] | Room & Stain System -- DI integration requires all subsystem interfaces |

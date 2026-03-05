@@ -433,3 +433,61 @@ void Register(string name, Func<int> handler);  // Register entry point handler
 - **DI**: Singleton
 - **Methods**: `AcquireHeartbreak(int, int, int)`
 - **Source**: 睡眠深度.ERB @素質傷心取得 (F824)
+
+### IClothingPresets (F819)
+```csharp
+// src/Era.Core/Interfaces/IClothingPresets.cs - ISP sub-interface for clothing preset methods
+void PresetNude(CharacterId characterId, int changeUnderwear);
+void PresetNightwear(CharacterId characterId, int changeUnderwear);
+void PresetNightwearS(CharacterId characterId);
+void PresetMale(CharacterId characterId, int changeUnderwear);
+void PresetFemale(CharacterId characterId, int changeUnderwear);
+void PresetJentle(CharacterId characterId, int changeUnderwear);
+void PresetMaid(CharacterId characterId, int changeUnderwear);
+void PresetCustom(CharacterId characterId, int changeUnderwear);
+void PresetCosplay(CharacterId characterId, int changeUnderwear);
+void Preset1(CharacterId characterId, int changeUnderwear);  // 美鈴 + Preset2-Preset13
+```
+**ISP split from IClothingSystem**. Implemented by `ClothingSystem`.
+
+### IClothingState (F819)
+```csharp
+// src/Era.Core/Interfaces/IClothingState.cs - ISP sub-interface for clothing state methods
+bool IsDressed(CharacterId characterId);
+void Save(CharacterId characterId);
+void Load(CharacterId characterId, int changeUnderwear);
+void Reset(CharacterId characterId, int changeUnderwear);
+void SettingTrain(CharacterId characterId);
+void ClothesAccessory(CharacterId characterId);
+```
+**ISP split from IClothingSystem**. Implemented by `ClothingSystem`.
+
+### IClothingEffects (F819)
+```csharp
+// src/Era.Core/Interfaces/IClothingEffects.cs - ISP sub-interface for underwear/bra selection
+void ChangeBra(CharacterId characterId, int changeUnderwear);
+int TodaysUnderwear(CharacterId characterId);
+int TodaysUnderwearAdult(CharacterId characterId);
+```
+**ISP split from IClothingSystem**. Stays on `ClothingSystem` (CLOTHES.ERB domain). Distinct from IClothingTrainingEffects.
+
+### IClothingTrainingEffects (F819)
+```csharp
+// src/Era.Core/Interfaces/IClothingTrainingEffects.cs - Cross-domain CLOTHE_EFFECT.ERB mutations
+void ApplyClothingTrainingEffect(CharacterId characterId);
+// Additional CLOTHE_EFFECT.ERB methods (EQUIP-state -> TALENT/EXP mutations)
+```
+**Separate from IClothingEffects**. Implemented by `ClothingEffect` class for TALENT/EXP/SOURCE cross-domain mutations from CLOTHE_EFFECT.ERB.
+
+### INtrQuery (F819)
+```csharp
+// src/Era.Core/Interfaces/INtrQuery.cs - Narrow interface for NTR-aware accessory logic
+bool CheckNtrFavorably(CharacterId character, int threshold);
+// Returns true if character's NTR favorability meets the threshold level.
+// Maps to NTR_CHK_FAVORABLY(着用者, threshold) in ERB.
+
+// Null implementation (safe default until NTR system migration F825):
+// internal sealed class NullNtrQuery : INtrQuery
+// => always returns false (no accessories applied when NTR unavailable)
+```
+**Injected into `ClothingSystem`** for CLOTHES_ACCESSORY ring/choker/collar logic. Full implementation deferred to F825.

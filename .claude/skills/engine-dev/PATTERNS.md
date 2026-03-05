@@ -178,6 +178,10 @@ int vibrator = EquipmentIndex.Vibrator;       // バイブ(13) - F406
 int vSex = EquipmentIndex.VSex;               // Ｖセックス(50) - F406
 int aSex = EquipmentIndex.ASex;               // Ａセックス(51) - F406
 
+// F819 ClothingEquipIndex static class (EQUIP equipment indices)
+// Note: ClothingEquipIndex is a static class with const int (1-27), not a struct
+// ClothingEquipIndex — EQUIP array (1D), static class with const ints (1-27) - F819
+
 // F403 ExpIndex well-known values (Orgasm experience, Virginity management)
 ExpIndex orgasmExp = ExpIndex.OrgasmExperience;                  // 絶頂経験(10)
 ExpIndex orgasmExpC = ExpIndex.OrgasmExperienceC;                // Ｃ絶頂経験(5)

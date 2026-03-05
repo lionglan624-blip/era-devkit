@@ -26,6 +26,8 @@ Phase 22: State Systems -- Relationships subsystem migration and DI integration 
 
 続柄.ERB (379 lines) implements the relationships subsystem. As the final Phase 22 sub-feature, F825 is also responsible for DI integration and cross-subsystem wiring: registering IComHandler, completing NullCounterUtilities, NullWcSexHaraService, NullNtrUtilityService, NullTrainingCheckService, NullEjaculationProcessor, NullKojoMessageService, and NullComHandler. IComableUtilities/ICounterUtilities consolidation (TimeProgress/IsAirMaster/GetTargetNum) is also assigned here. All prior Phase 22 subsystems (F819, F821, F822, F823, F824) must be complete before DI wiring can be finalized.
 
+**Deferred from F823**: ROOM_SMELL_WHOSE_SAMEN function (ROOM_SMELL.ERB:1108-1140) was not migrated because I3DArrayVariables lacks GetDa/SetDa for DA variable access. This DA interface gap is a cross-cutting concern that must be resolved before WHOSE_SAMEN can be implemented. See F823 Mandatory Handoffs and AC#13.
+
 ### Goal (What to Achieve)
 
 Migrate 続柄.ERB to C#, complete all deferred Null implementations from Phase 21, perform IComHandler DI registration, consolidate IComableUtilities/ICounterUtilities, and wire all Phase 22 subsystem interfaces into the DI container. CP-2 E2E checkpoint covers DI integration and cross-subsystem wiring.
@@ -40,7 +42,7 @@ Migrate 続柄.ERB to C#, complete all deferred Null implementations from Phase 
 | Predecessor | F819 | [DRAFT] | Clothing System -- DI integration requires all subsystem interfaces |
 | Predecessor | F821 | [DRAFT] | Weather System -- DI integration requires all subsystem interfaces |
 | Predecessor | F822 | [DRAFT] | Pregnancy System -- DI integration requires all subsystem interfaces |
-| Predecessor | F823 | [DRAFT] | Room & Stain System -- DI integration requires all subsystem interfaces |
+| Predecessor | F823 | [DONE] | Room & Stain System -- DI integration requires all subsystem interfaces |
 | Predecessor | F824 | [DRAFT] | Sleep & Menstrual System -- DI integration requires all subsystem interfaces |
 
 ---

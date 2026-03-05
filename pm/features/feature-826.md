@@ -40,7 +40,7 @@ Execute CP-2 Step 2c E2E checkpoint for Phase 22 completion. Re-triage obligatio
 | Predecessor | F819 | [DRAFT] | Clothing System |
 | Predecessor | F821 | [DRAFT] | Weather System |
 | Predecessor | F822 | [DRAFT] | Pregnancy System |
-| Predecessor | F823 | [DRAFT] | Room & Stain |
+| Predecessor | F823 | [DONE] | Room & Stain |
 | Predecessor | F824 | [DRAFT] | Sleep & Menstrual |
 | Predecessor | F825 | [DRAFT] | Relationships & DI Integration |
 

@@ -68,6 +68,7 @@ Scan and auto-fix the following patterns. **Only fix 100% deterministic patterns
 | C28 | AC test filter overlap | Two or more `test` type ACs have identical or substring-matching Method values (e.g., both use `~Heartbreak`) | Log warning (needs specialization to per-AC test method names) |
 | C29 | Implementation Contract stale AC/test counts | Implementation Contract section contains `\b\d+\s+(ACs?|tests?|active)\b` that doesn't match actual AC Definition Table row count or Task test count | Log warning (count may reference subset — needs context) |
 | C30 | Task AC# references non-existent AC | Task table AC# column contains AC number not present in AC Definition Table | Log warning (AC may have been deleted/renumbered) |
+| C31 | Mandatory Handoffs column count mismatch | Handoffs table header row has fewer than 7 pipe-delimited columns (template requires: Issue, Reason, Destination, Destination ID, Creation Task, Transferred, Result) | Add missing columns with empty cells to match 7-column template |
 
 **C21 Valid Matcher List** (SSOT: `.claude/skills/testing/SKILL.md` §Matchers):
 `equals`, `contains`, `not_contains`, `matches`, `not_matches`, `succeeds`, `fails`, `gt`, `gte`, `lt`, `lte`, `count_equals`, `exists`, `not_exists`

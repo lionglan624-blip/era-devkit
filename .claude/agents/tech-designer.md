@@ -30,11 +30,24 @@ Design technical approach to satisfy Acceptance Criteria. This agent runs during
 5. Analyze implementation options and trade-offs
 6. Select implementation approach with rationale
 7. Define data structures / interfaces if needed
+7.5. **Method Ownership Table** (MANDATORY when Technical Design defines 2+ new interfaces):
+   a. For each method in the combined interface surface area, assign ownership to exactly one interface
+   b. Create an explicit table: `| Method | Owner Interface | Domain Rationale |`
+   c. Verify: (1) no method appears in two interfaces, (2) each method's domain matches its owning interface's responsibility
+   d. For methods with cross-interface dependencies (e.g., method X in IFoo calls method Y on IBar), flag in `### Upstream Issues` with dependency direction
+   e. F819 lesson: 11 scope-reduction fixes during FL caused by ChangeKnickers moving between 3 interfaces (IClothingEffects→IClothingState→removed) and TodaysUnderwear moving between Tasks, because no ownership table existed to pre-validate ISP split boundaries
 8. **Interface Dependency Verification** (MANDATORY for erb/engine types):
    a. For each existing interface referenced in Technical Design (e.g., IVariableStore, IConsoleOutput, IGameState), Grep the actual interface file to verify required methods exist
    b. For each method call in code stubs (e.g., `_console.DrawLine()`, `_variables.GetSaveStr()`), verify the method signature exists in the interface
    c. If method is missing from interface: add to `### Upstream Issues` section (see Output Format)
    d. If interface does not exist: add to `### Upstream Issues` section
+8c. **Cross-Section Count Propagation** (MANDATORY when Technical Design defines interfaces with counted methods):
+   a. After designing all interfaces, collect each interface's actual method count from the Technical Design
+   b. Cross-check against AC Definition Table Expected values (e.g., AC says `gte 7` but interface has 8 methods → update to `gte 8`)
+   c. Cross-check against Success Criteria numeric references (e.g., "7+ methods" → "8+ methods")
+   d. Cross-check against AC Design Constraints Constraint Details (e.g., C2 says "7-8 functions" → "8 functions")
+   e. If any mismatch found: update the stale value AND log in `### Upstream Issues` as resolved
+   f. F822 lesson: 6 stale-reference FL fixes (iter1-7) caused by InitUterusVolumeMultiple increasing method count 7→8 without propagating to AC#2 Expected, Success Criteria, or Constraint Details
 8b. **Obligation Routing Validation** (MANDATORY when Technical Design contains Obligation Triage Plan):
    a. For each obligation assigned to a specific sub-feature (Phase scope), verify the destination sub-feature's subsystem matches the obligation's domain
    b. Cross-check: obligation description keywords vs destination sub-feature's ERB file list and subsystem name

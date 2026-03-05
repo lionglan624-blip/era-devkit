@@ -21,7 +21,7 @@ Design Acceptance Criteria table and details from Philosophy/Goal sections. This
 0. Check if `## Acceptance Criteria` exists WITHOUT `<!-- fc-phase-3-completed -->` marker
    - If exists without marker: Move to `## Reference (from previous session)` at end of file as `### Acceptance Criteria (reference)`
 1. Read `pm/reference/feature-template.md` for `## Acceptance Criteria` section structure
-2. Read `Skill(feature-quality)` and type-specific guide (KOJO/ENGINE/RESEARCH/INFRA) for AC Definition, Philosophy, and Anti-Patterns
+2. Read `Skill(feature-quality)` and type-specific guide (KOJO/ERB/ENGINE/RESEARCH/INFRA) for AC Definition, Philosophy, and Anti-Patterns
 3. Read feature file Philosophy section
 4. Extract absolute claims ("absolutely", "must", "all", "completely", "every") from Philosophy text
 5. Derive what tasks SHOULD exist to achieve Philosophy (philosophy derivation pattern)
@@ -151,6 +151,14 @@ After:  `| N | X injects all 5 interfaces | code | Grep(X.cs, pattern="IA\|IB\|I
    - For test thresholds: enumerate the distinct behavioral paths and verify the minimum matches Expected
 
 10.6.5.2. If Expected value differs from ERB source, correct it immediately.
+
+10.6.5.2.5. **Arithmetic Verification** (MANDATORY for count-based thresholds):
+   - For each gte/count_equals AC whose Expected derives from a component sum (e.g., "9 presets + 13 character + 6 state + 3 effects = 31"):
+     - Enumerate each component and its count
+     - Compute the sum explicitly
+     - Verify Expected == computed sum (not an approximation or round number)
+   - If derivation text and Expected disagree, correct Expected to match the arithmetic
+   - **Rationale**: F819 lesson: AC#20 threshold changed 15+ times across FL (gte 20→24→30→31→32) because derivation text said "9+13+6+3" but Expected was set to approximate values. Arithmetic verification at FC prevents cascading FL corrections.
 
 10.6.5.3. For threshold-matcher ACs (gte/count_equals) derived from ERB enumeration, list each enumerated item in AC Details Derivation.
 

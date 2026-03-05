@@ -142,6 +142,33 @@ Options: "Yes — apply all accepted/revised proposals", "No — report only"
 - **Yes**: Apply all `accept` and `revise` proposals by editing the target files (skill/agent/script). Mark applied changes in the report as `[applied]`.
 - **No**: Output the report without modifications. User can apply manually later.
 
+### Step 7: Record Improvement Log
+
+**MANDATORY after Step 6.** Record modification results in `pm/features/feature-{ID}.md`.
+
+#### Location
+
+Insert `## Improvement Log` section between `## Review Notes` and `## Links`. If the section already exists (from a previous /imp run), append a new subsection.
+
+#### Format
+
+```markdown
+## Improvement Log
+
+### /imp {ID} ({date})
+- [applied] {description} → `{target file path}`
+- [applied] {description} → `{target file path}`
+- [rejected] {description} — {reason}
+- [revised] {description} → `{target file path}` ({what was revised})
+```
+
+#### Rules
+
+- **Only record modifications**: applied/revised/rejected verdicts from Step 5-6. No analysis narrative.
+- **One line per proposal**: verdict tag + what + where (for applied/revised) or why not (for rejected).
+- **Multiple runs**: Each `/imp` execution gets its own `### /imp {ID} ({date})` subsection.
+- **"No — report only"**: Still record the section, but mark all items as `[proposed]` instead of `[applied]`.
+
 ## Output Format
 
 ```markdown

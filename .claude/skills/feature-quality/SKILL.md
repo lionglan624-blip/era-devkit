@@ -76,6 +76,7 @@ Load the appropriate guide based on feature Type:
 | Type | Guide | When to Use |
 |------|-------|-------------|
 | kojo | [KOJO.md](KOJO.md) | Dialogue implementation (future YAML migration planned) |
+| erb | [ERB.md](ERB.md) | ERB-to-C# migration (output is C#) |
 | engine | [ENGINE.md](ENGINE.md) | C# engine, Era.Core |
 | research | [RESEARCH.md](RESEARCH.md) | Feature to create Features |
 | infra | [INFRA.md](INFRA.md) | Workflow/Review |

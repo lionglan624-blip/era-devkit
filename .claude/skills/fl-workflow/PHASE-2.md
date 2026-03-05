@@ -114,6 +114,18 @@ IF trivial_fixes > 0:
 
 ```
 IF target_type == "feature":
+    # Pre-compute dependency status (eliminates subagent Status grep — F819 lesson: 28+ redundant greps)
+    deps_result = Bash("python src/tools/python/feature-status.py deps {target_id}")
+
+    # Pre-compute predecessor context (eliminates repeated full-file reads — F822 lesson: 119 reads of feature-808.md)
+    # For each DONE predecessor, extract: Key Decisions (Decision+Selected only), relevant Mandatory Handoffs
+    # Cap: 200 tokens per predecessor. Include as PREDECESSOR CONTEXT in reviewer prompt.
+    predecessor_context = ""
+    FOR dep in deps_result.predecessors WHERE dep.status == "DONE":
+        kd = extract_key_decisions(dep.feature_file)  # Decision + Selected columns only
+        mh = extract_relevant_handoffs(dep.feature_file, target_id)
+        predecessor_context += f"\n### {dep.id}: {kd}\nHandoffs: {mh}\n"  # 200 token cap per dep
+
     # Perspective 1: Structural/Format Review (FIRST ITERATION ONLY)
     IF iteration == 1:
         structural_result = Task(
@@ -140,7 +152,12 @@ OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside
 PERSPECTIVE: SEMANTIC
 FOCUS: Philosophy-to-AC derivation, AC coverage completeness, Task-to-AC alignment, SSOT consistency, design coherence.
 IGNORE: Format, spelling, template structure.
-TOOL HINT: Use \`python src/tools/python/feature-status.py deps {target_id}\` for dependency status checks instead of manual Grep on individual feature files.
+
+DEPENDENCY STATUS (pre-computed — do NOT grep individual feature files for status):
+{deps_result}
+
+PREDECESSOR CONTEXT (pre-computed — do NOT Read predecessor feature files for Key Decisions or Handoffs):
+{predecessor_context}
 
 OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON (analysis, reasoning, "Let me", explanations) is a protocol violation.`
     )

@@ -310,6 +310,26 @@ Issues specific to `Type: erb` features (ERB game scripts).
 
 ---
 
+### Issue 18: AC Verifies Pre-Existing Infrastructure, Not Feature Work
+
+**Symptom**: AC greps for an interface or registration that already exists before the feature starts (e.g., `IInputHandler` from a previous feature). The AC always passes regardless of whether the current feature uses it correctly.
+
+**Example (Bad)**:
+```markdown
+| 6 | IInputHandler interface exists | code | Grep(Era.Core/Input/) | matches | `interface IInputHandler` | [ ] |
+<!-- IInputHandler already exists — AC passes without any F822 work -->
+```
+
+**Example (Good)**:
+```markdown
+| 6 | IInputHandler injected into BirthProcess | code | Grep(Era.Core/State/BirthProcess.cs) | matches | `IInputHandler` | [ ] |
+<!-- Verifies the current feature's actual usage of the pre-existing interface -->
+```
+
+**Fix**: When a feature depends on a pre-existing interface/registration, verify *injection into the new code* rather than *existence of the pre-existing artifact*. The AC should fail if the feature doesn't use the dependency, not just if the dependency doesn't exist.
+
+---
+
 ## Checklist
 
 - [ ] RETURN rules followed per erb-syntax skill
@@ -333,3 +353,4 @@ Issues specific to `Type: erb` features (ERB game scripts).
 - [ ] SSOT claims in Philosophy have negative enforcement ACs (`lte 1` on interface implementations)
 - [ ] Handler group matchers use character class ranges (`[0-5]`) not single representative IDs
 - [ ] Impl/test AC pairs cover the same operation scope (OR-alternation members match)
+- [ ] ACs verify feature's own work, not pre-existing infrastructure (inject into new code, not existence of old interface)

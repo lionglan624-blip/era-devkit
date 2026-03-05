@@ -489,6 +489,13 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 
 ---
 
+## Improvement Log
+<!-- Populated by /imp {ID}. Records modification results only (no analysis narrative). -->
+<!-- Format: ### /imp {ID} ({date}) -->
+<!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
+
+---
+
 ## Links
 [Related](feature-XXX.md)
 ```

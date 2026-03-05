@@ -75,8 +75,8 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 | F830 | [PROPOSED] | Trigger-Gated Shared Utility Extractions | F829 | [feature-830.md](feature-830.md) |
 | F836 | [DRAFT] | Enable CA1502 and CA1506 via .editorconfig | F831 | [feature-836.md](feature-836.md) |
 | F837 | [DRAFT] | Enable EnforceCodeStyleInBuild for IDE-prefix Rule Enforcement | F831 | [feature-837.md](feature-837.md) |
-| F832 | [REVIEWED] | ac-static-verifier Numeric Expected Parsing Fix | F829 | [feature-832.md](feature-832.md) |
-| F833 | [PROPOSED] | IEngineVariables Indexed Methods Stubs | F829 | [feature-833.md](feature-833.md) |
+| F834 | [DRAFT] | ac-static-verifier Format C Guard DRY Consolidation and unescape() Investigation | F832 | [feature-834.md](feature-834.md) |
+| F833 | [WIP] | IEngineVariables Indexed Methods Stubs | F829 | [feature-833.md](feature-833.md) |
 
 ### Other
 
@@ -95,12 +95,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 832 | ✅ | ac-static-verifier Numeric Expected Parsing Fix | [feature-832.md](feature-832.md) |
 | 831 | ✅ | Roslynator Analyzers Investigation | [feature-831.md](feature-831.md) |
 | 829 | ✅ | Phase 22 Deferred Obligations Consolidation | [feature-829.md](feature-829.md) |
 | 826 | ✅ | Post-Phase Review Phase 22 | [feature-826.md](feature-826.md) |
 | 825 | ✅ | Relationships & DI Integration | [feature-825.md](feature-825.md) |
 | 822 | ✅ | Pregnancy System | [feature-822.md](feature-822.md) |
-| 828 | ✅ | 日付初期設定 Migration | [feature-828.md](feature-828.md) |
 
 ---
 

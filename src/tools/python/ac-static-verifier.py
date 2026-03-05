@@ -310,6 +310,16 @@ class ACVerifier:
         ]
         return any(re.search(p, pattern) for p in regex_patterns)
 
+    def _is_key_value_start(self, params_str: str, pos: int) -> bool:
+        """Check if position starts a key=value pair (not a positional argument)."""
+        peek = pos
+        while peek < len(params_str) and (params_str[peek].isalnum() or params_str[peek] == '_'):
+            peek += 1
+        # skip whitespace after candidate key
+        while peek < len(params_str) and params_str[peek].isspace():
+            peek += 1
+        return peek < len(params_str) and params_str[peek] == '='
+
     def _parse_complex_method(self, method: str) -> Optional[Dict[str, str]]:
         """Parse Grep(key1=value1, key2="value2", ...) generic format.
 
@@ -335,6 +345,7 @@ class ACVerifier:
 
         params_str = match.group(1)
         result = {}
+        positional_index = 0
 
         # Manual parsing to handle unquoted values with spaces/special chars
         i = 0
@@ -344,6 +355,19 @@ class ACVerifier:
                 i += 1
             if i >= len(params_str):
                 break
+
+            # Check if current position starts a positional argument (not key=value)
+            if not self._is_key_value_start(params_str, i):
+                # Positional argument: read until comma
+                pos_start = i
+                while i < len(params_str) and params_str[i] != ',':
+                    i += 1
+                result[f'_positional_{positional_index}'] = params_str[pos_start:i].strip()
+                positional_index += 1
+                # Skip comma
+                if i < len(params_str) and params_str[i] == ',':
+                    i += 1
+                continue
 
             # Read key (alphanumeric + underscore)
             key_start = i
@@ -441,6 +465,9 @@ class ACVerifier:
         # Try complex method parse first
         parsed = self._parse_complex_method(ac.method)
         if parsed:
+            # Map positional first argument to 'path' if named 'path' not present
+            if '_positional_0' in parsed and 'path' not in parsed:
+                parsed['path'] = parsed['_positional_0']
             # Complex method format: use parsed parameters
             file_path = parsed.get('path')
             if not file_path:

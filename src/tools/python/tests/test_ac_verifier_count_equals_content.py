@@ -449,6 +449,140 @@ def test_count_equals_format_c_regex_pattern():
             test_file.unlink()
 
 
+def test_positional_path_code():
+    """Test verify_code_ac with positional path format Grep(path, pattern=...) + gte + bare numeric Expected."""
+    verifier = ACVerifier("999", "code", repo_root)
+
+    tmp_dir = repo_root / ".tmp"
+    tmp_dir.mkdir(exist_ok=True)
+    test_file = tmp_dir / "test_positional_code.txt"
+
+    try:
+        # Content with 5 occurrences of "def "
+        test_file.write_text(
+            "def one():\n    pass\ndef two():\n    pass\ndef three():\n    pass\n"
+            "def four():\n    pass\ndef five():\n    pass\n",
+            encoding='utf-8'
+        )
+
+        rel_path = test_file.relative_to(repo_root)
+
+        # Positional path format: Grep(path, pattern="...") with bare numeric Expected
+        ac = ACDefinition(
+            ac_number=1,
+            description="Test positional path code gte",
+            ac_type="code",
+            method=f'Grep({rel_path}, pattern="def ")',
+            matcher="gte",
+            expected="3"
+        )
+        ac.pattern_type = verifier.classify_pattern(ac)
+
+        result = verifier.verify_code_ac(ac)
+
+        assert result["result"] == "PASS", f"Expected PASS for positional path code gte, got {result['result']}: {result.get('details', {}).get('error', '')}"
+        assert result["details"]["actual_count"] == 5
+        assert result["details"]["expected_count"] == 3
+        print("[PASS] positional path code: Grep(path, pattern=...) + gte + bare numeric Expected works")
+    finally:
+        if test_file.exists():
+            test_file.unlink()
+
+
+def test_positional_path_file():
+    """Test verify_file_ac with positional path format Grep(path, pattern=...) + gte + bare numeric Expected."""
+    verifier = ACVerifier("999", "file", repo_root)
+
+    tmp_dir = repo_root / ".tmp"
+    tmp_dir.mkdir(exist_ok=True)
+    test_file = tmp_dir / "test_positional_file.txt"
+
+    try:
+        # Content with 4 occurrences of "item"
+        test_file.write_text(
+            "item one\nitem two\nitem three\nitem four\n",
+            encoding='utf-8'
+        )
+
+        rel_path = test_file.relative_to(repo_root)
+
+        # Positional path format with file type
+        ac = ACDefinition(
+            ac_number=1,
+            description="Test positional path file gte",
+            ac_type="file",
+            method=f'Grep({rel_path}, pattern="item")',
+            matcher="gte",
+            expected="3"
+        )
+        ac.pattern_type = verifier.classify_pattern(ac)
+
+        result = verifier.verify_file_ac(ac)
+
+        assert result["result"] == "PASS", f"Expected PASS for positional path file gte, got {result['result']}: {result.get('details', {}).get('error', '')}"
+        assert result["details"]["actual_count"] == 4
+        assert result["details"]["expected_count"] == 3
+        print("[PASS] positional path file: Grep(path, pattern=...) + gte + bare numeric Expected works")
+    finally:
+        if test_file.exists():
+            test_file.unlink()
+
+
+def test_positional_path_all_matchers():
+    """Test all 5 count matchers (gte, gt, lte, lt, count_equals) with positional path format."""
+    verifier = ACVerifier("999", "code", repo_root)
+
+    tmp_dir = repo_root / ".tmp"
+    tmp_dir.mkdir(exist_ok=True)
+    test_file = tmp_dir / "test_positional_all.txt"
+
+    try:
+        # Content with exactly 5 occurrences of "match"
+        test_file.write_text(
+            "match match match match match\n",
+            encoding='utf-8'
+        )
+
+        rel_path = test_file.relative_to(repo_root)
+
+        # Test each matcher with positional path format
+        test_cases = [
+            ("gte", "5", "PASS", "5 >= 5"),
+            ("gte", "6", "FAIL", "5 >= 6"),
+            ("gt", "4", "PASS", "5 > 4"),
+            ("gt", "5", "FAIL", "5 > 5"),
+            ("lte", "5", "PASS", "5 <= 5"),
+            ("lte", "4", "FAIL", "5 <= 4"),
+            ("lt", "6", "PASS", "5 < 6"),
+            ("lt", "5", "FAIL", "5 < 5"),
+            ("count_equals", "5", "PASS", "5 == 5"),
+            ("count_equals", "4", "FAIL", "5 == 4"),
+        ]
+
+        for matcher, expected, expected_result, desc in test_cases:
+            ac = ACDefinition(
+                ac_number=1,
+                description=f"Test positional {matcher}",
+                ac_type="code",
+                method=f'Grep({rel_path}, pattern="match")',
+                matcher=matcher,
+                expected=expected
+            )
+            ac.pattern_type = verifier.classify_pattern(ac)
+
+            result = verifier.verify_code_ac(ac)
+
+            assert result["result"] == expected_result, (
+                f"positional path {matcher} ({desc}): expected {expected_result}, got {result['result']}: "
+                f"{result.get('details', {}).get('error', '')}"
+            )
+
+        print("[PASS] All 5 count matchers work correctly with positional path format")
+    finally:
+        if test_file.exists():
+            test_file.unlink()
+
+
 if __name__ == "__main__":
     print("Running count_equals content-type matcher tests...")
     try:
@@ -460,6 +594,9 @@ if __name__ == "__main__":
         test_count_equals_file_grep_path()
         test_count_equals_format_c_bare_number_complex_method()
         test_count_equals_format_c_regex_pattern()
+        test_positional_path_code()
+        test_positional_path_file()
+        test_positional_path_all_matchers()
         print("\nAll count_equals content-type matcher tests passed!")
         sys.exit(0)
     except AssertionError as e:

@@ -938,6 +938,7 @@ IItemVariables, ICounterUtilities
 | 2026-03-02 | DEVIATION | ac-tester | AC#83 verification | FAIL: 0 null-conditional ?.BottomClothOff/?.BottomClothOut found; implementation uses direct invocation on non-nullable DI interface |
 | 2026-03-02 | DEVIATION | feature-reviewer | Phase 8.1 post-review | NEEDS_REVISION: C2 constraint text still references null-conditional after AC#83 fix |
 | 2026-03-02 | CodeRabbit | Skip (erb) | - |
+| 2026-03-05 | CodeRabbit (遡及) | 11 findings (core repo) | TEquip upper/lower混同, TalentLewdness index誤り, Photography条件短絡, NTR lowerBlocked外衣漏れ, VaFitting上限未強制, 負値クランプ欠如x2, forcedCount負値, NTR empty-string出力, ITEM empty-string出力, 無限ループ |
 
 ---
 

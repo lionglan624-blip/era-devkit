@@ -925,6 +925,7 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 | 2026-03-05T04:30:00Z | PHASE_START | orchestrator | Phase 9: Report | 28/28 AC PASS, 2 DEVIATION (both D=修正済み), handoffs verified |
 | 2026-03-05T04:35:00Z | PHASE_END | orchestrator | Phase 10: Finalize | core:3e64df3 (3179 tests), devkit:630dbfa (806 tests) |
 | 2026-03-05T04:35:00Z | CodeRabbit | Skip (cross-repo engine) | C# code in core repo, devkit has PM/doc only |
+| 2026-03-05 | CodeRabbit (遡及) | 5 findings (core repo) | ClimateData day validation欠如x2, CalendarService両親無効ガード, CalendarServiceTests重複テスト, DailyTemperatureTests弱アサーション |
 <!-- run-phase-9-completed -->
 <!-- run-phase-10-completed -->
 

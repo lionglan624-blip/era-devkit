@@ -737,6 +737,13 @@ After all test tasks, run: `MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/dev
 | 2026-03-05T17:10:00Z | FIX | debugger | Fix 3 review issues | All fixed: secondary decay loop added, IEngineVariables injected, checked() casts added. 34/34 PASS |
 | 2026-03-05T17:11:00Z | Phase 8 | orchestrator | Step 8.2 skipped (new interfaces are Era.Core internal, not engine extensibility). Step 8.3 SSOT check: no updates needed | READY |
 <!-- run-phase-8-completed -->
+| 2026-03-05T20:32:00Z | FINALIZE | finalizer | [WIP] → [DONE], index updated, F825/F826 deps unblocked | READY_TO_COMMIT |
+| 2026-03-05T20:32:18Z | COMMIT | orchestrator | ab2757b feat(F823): Room & Stain System Migration — finalize [DONE] | CI PASSED (807/807 tests) |
+| 2026-03-05T20:32:18Z | CodeRabbit | Skip (erb, PM-only commit in devkit) | - |
+| 2026-03-05 | CodeRabbit (遡及) | 2 findings (core repo) | smellKindバウンドチェック欠如, 負roomIndex未検証 |
+| 2026-03-05 | COMMIT (遡及) | core: c02a69d | F823 core未コミットを修正 (cherry-pick onto project-reorganization-v2) |
+<!-- run-phase-9-completed -->
+<!-- run-phase-10-completed -->
 
 ---
 

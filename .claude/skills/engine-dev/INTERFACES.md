@@ -413,6 +413,13 @@ void Register(string name, Func<int> handler);  // Register entry point handler
 - **Methods**: `SetDailyTemperature()`, `SetCurrentTemperature()`, `UpdateWeatherState()`, `ApplyWeatherEffects()`
 - **Source**: 天候.ERB @日間気温設定, @現在気温設定, @天候状態, @天候によるステータス増減処理 (F821)
 
+### IDateInitializer
+- **File**: `src/Era.Core/Interfaces/IDateInitializer.cs`
+- **Impl**: `DateInitializer` (`Calendar/DateInitializer.cs`)
+- **DI**: Singleton
+- **Methods**: `InitializeDate()`
+- **Source**: 天候.ERB @日付初期設定 (F828)
+
 ### ISleepDepth
 - **File**: `src/Era.Core/Interfaces/ISleepDepth.cs`
 - **Impl**: `SleepDepth` (`State/SleepDepth.cs`)

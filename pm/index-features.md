@@ -70,11 +70,10 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F822 | [DRAFT] | Pregnancy System | F814, F821 | [feature-822.md](feature-822.md) |
+| F822 | [WIP] | Pregnancy System | F814, F821 | [feature-822.md](feature-822.md) |
 | F825 | [DRAFT] | Relationships & DI Integration | F814, F819, F821, **F822**, F823, F824 | [feature-825.md](feature-825.md) |
 | F826 | [DRAFT] | Post-Phase Review Phase 22 | F814, F819, F821, **F822**, F823, F824, **F825** | [feature-826.md](feature-826.md) |
 | F827 | [DRAFT] | Phase 23 Planning | **F826** | [feature-827.md](feature-827.md) |
-| F828 | [DRAFT] | 日付初期設定 Migration | F821 | [feature-828.md](feature-828.md) |
 
 ### Other
 
@@ -93,12 +92,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 828 | ✅ | 日付初期設定 Migration | [feature-828.md](feature-828.md) |
 | 819 | ✅ | Clothing System | [feature-819.md](feature-819.md) |
 | 824 | ✅ | Sleep & Menstrual | [feature-824.md](feature-824.md) |
 | 821 | ✅ | Weather System | [feature-821.md](feature-821.md) |
 | 823 | ✅ | Room & Stain | [feature-823.md](feature-823.md) |
 | 814 | ✅ | Phase 22 Planning | [feature-814.md](feature-814.md) |
-| 818 | ✅ | ac-static-verifier cross-repo and WSL support | [feature-818.md](feature-818.md) |
 
 ---
 

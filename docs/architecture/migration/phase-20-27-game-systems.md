@@ -249,7 +249,7 @@ dotnet test Era.Core.Tests --filter "Category=Source"
 
 ### Phase 22: State Systems (was Phase 21)
 
-**Phase Status**: TODO
+**Phase Status**: DONE
 
 **Goal**: 状態管理システムの移行（服装・妊娠・汚れ・部屋・環境）
 
@@ -347,11 +347,11 @@ dotnet test Era.Core.Tests --filter "Category=StateSystem"
 ```
 
 **Success Criteria**:
-- [ ] 服装システム移行完了
-- [ ] 妊娠システム移行完了
-- [ ] 環境システム移行完了
-- [ ] 全テスト PASS
-- [ ] **CP-2 Step 2c PASS**: Phase 20-22 全統合 + Step 2a-2b 退行なし
+- [x] 服装システム移行完了
+- [x] 妊娠システム移行完了
+- [x] 環境システム移行完了
+- [x] 全テスト PASS
+- [x] **CP-2 Step 2c PASS**: Phase 20-22 全統合 + Step 2a-2b 退行なし
 
 **E2E Checkpoint CP-2 Step 2c** (Post-Phase Review 必須検証項目):
 

@@ -30,6 +30,8 @@ Four pregnancy ERB files totalling 2,534 lines require migration: PREGNACY_S.ERB
 
 Migrate all four pregnancy ERB files to C# implementing IPregnancySettings and related interfaces. Create interface stubs for external dependencies (多生児パッチ.ERB, 体設定.ERB, 妊娠処理変更パッチ.ERB). Achieve zero-debt implementation with equivalence tests against ERB baseline.
 
+**Deferred from F824**: 妊娠処理変更パッチ.ERB:278 resets CFLAG:生理周期=0 on conception. F824 provides `IMenstrualCycle.ResetCycle(int characterId)` as the integration contract. Pregnancy code must call `ResetCycle()` instead of directly writing CFLAG:生理周期.
+
 ---
 
 ## Dependencies
@@ -37,7 +39,7 @@ Migrate all four pregnancy ERB files to C# implementing IPregnancySettings and r
 | Type | Feature | Status | Description |
 |------|---------|--------|-------------|
 | Predecessor | F814 | [DONE] | Phase 22 Planning |
-| Predecessor | F821 | [DRAFT] | Weather System -- PREGNACY_S.ERB:426 calls 子供気温耐性取得 defined in 天候.ERB:822 |
+| Predecessor | F821 | [DONE] | Weather System -- PREGNACY_S.ERB:426 calls 子供気温耐性取得 defined in 天候.ERB:822 |
 
 ---
 

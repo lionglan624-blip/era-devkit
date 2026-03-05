@@ -213,6 +213,23 @@ CupIndex cupLubrication = CupIndex.Lubrication;                    // 潤滑(9)
 CupIndex shame = CupIndex.Shame;                                   // 羞恥(13)
 CupIndex depression = CupIndex.Depression;                         // 鬱積(32)
 
+// F821 FlagIndex well-known values (weather system)
+FlagIndex maxTemperature = FlagIndex.MaxTemperature;                       // 最高気温(81)
+FlagIndex minTemperature = FlagIndex.MinTemperature;                       // 最低気温(82)
+FlagIndex precipitationProbability = FlagIndex.PrecipitationProbability;   // 降水確率(83)
+FlagIndex abnormalWeather = FlagIndex.AbnormalWeather;                     // 異常気象(89)
+FlagIndex currentTemperature = FlagIndex.CurrentTemperature;               // 現在気温(6422)
+FlagIndex abnormalWeatherDelay = FlagIndex.AbnormalWeatherDelay;           // 異常気象発生ディレイ(6424)
+FlagIndex weatherTime = FlagIndex.WeatherTime;                             // 天候TIME(6425)
+FlagIndex weatherChangeInterval = FlagIndex.WeatherChangeInterval;         // 天候変更(6426)
+
+// F821 BaseIndex well-known values (weather effects)
+BaseIndex stamina = BaseIndex.Stamina;                                     // 体力(0)
+BaseIndex vitality = BaseIndex.Vitality;                                   // 気力(1)
+
+// F821 CharacterFlagIndex well-known values (weather effects)
+CharacterFlagIndex currentLocation = CharacterFlagIndex.CurrentLocation;   // 現在位置(300)
+
 // F812 CharacterFlagIndex well-known values (additions)
 CharacterFlagIndex rotatorVInsertion = CharacterFlagIndex.RotatorVInsertion; // ローター挿入(15)
 CharacterFlagIndex rotatorAInsertion = CharacterFlagIndex.RotatorAInsertion; // ローターA挿入(16)
@@ -994,6 +1011,12 @@ void SetPrevCom(int value);            // PREVCOM setter
 // F806: TIME access (default interface methods, backward-compatible)
 int GetTime() => 0;                    // TIME:0 getter (default: 0)
 void SetTime(int value) { }           // TIME:0 setter (default: no-op)
+
+// F821: DAY/TIME indexed array access (calendar and weather value access)
+int GetDay(int index);                 // DAY:index — 暦法月=DAY:1, 暦法日=DAY:2
+void SetDay(int index, int value);     // DAY:index setter
+int GetTime(int index);               // TIME:index — 天候値=TIME:1
+void SetTime(int index, int value);   // TIME:index setter
 ```
 
 ### IUpVariables (F811)

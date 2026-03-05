@@ -148,20 +148,17 @@ FOR each row:
 ```
 1. Should it be done now? (urgency)
    ├─ Yes → go to 2 (resolve within this Feature)
-   └─ No  → go to 3
+   └─ No  → go to 2 (defer to appropriate Feature)
 
 2. Does it belong to an existing Feature?
    ├─ Yes → B (add to existing Feature)
-   └─ No  → A (create new Feature DRAFT)
-
-3. Which Phase is suitable? (scope specification)
-   └─ Is that Phase DONE? (check **Phase Status** in designs/phases/*.md)
-      ├─ DONE → REJECT: completed phases cannot receive handoffs. Select a different Phase.
-      └─ Not DONE → continue
-         └─ Are there features for that Phase?
-            ├─ Yes → go to 2 (existing Feature in that Phase or new [DRAFT])
-            └─ No  → C (write to Phase tasks in architecture.md)
+   └─ No
+      ├─ Actionable now? → A (create new Feature DRAFT)
+      └─ Conditional trigger (将来条件付き)?
+         → B to Post-Phase Review feature
 ```
+
+**Note**: Action C (write to architecture.md Phase tasks) is reserved for Phases with NO features created yet. Post-Phase Review features are the correct destination for conditional/cross-cutting concerns.
 
 **Actions**:
 - A: Create DRAFT now → Use Deviation Context template (see below), register in index-features.md
@@ -293,11 +290,32 @@ FOR each Mandatory Handoff row:
 
 **Do NOT ask for Finalize. Resolve first.**
 
-### Retry Guard
-problem_resolution_attempts = count [problem-fix] entries in feature.md Review Notes
-IF problem_resolution_attempts >= 3:
-    STOP → Report to user: "3 problem resolution attempts exhausted without convergence. Manual intervention required."
+### Retry Guard (Type-Based Limits)
+
+**Issue Type Classification**: Parse `{issue_type}:` prefix from `[problem-fix]` entries.
+
+| Issue Type | Max Retries | Rationale |
+|------------|:-----------:|-----------|
+| build | 5 | コンパイラフィードバックで収束しやすい |
+| ac-test | 3 | 設計問題はユーザー入力が必要 |
+| doc-ssot | 2 | ドキュメント不整合の繰り返しは根本原因不明 |
+| default | 3 | 汎用フォールバック（未分類issue） |
+
+```
+# Count [problem-fix] entries per issue_type from feature.md Review Notes
+type_counts = {}
+FOR each [problem-fix] entry:
+    issue_type = entry.split(":")[0]  # e.g., "build", "ac-test", "doc-ssot"
+    type_counts[issue_type] = type_counts.get(issue_type, 0) + 1
+
+# Check current issue against type-specific limit
+current_type = current_issue.issue_type  # from Step 9.5 classification
+max_retries = {"build": 5, "ac-test": 3, "doc-ssot": 2}.get(current_type, 3)
+
+IF type_counts.get(current_type, 0) >= max_retries:
+    STOP → Report to user: "{current_type} problem resolution attempts ({max_retries}) exhausted without convergence. Manual intervention required."
     Record remaining issues as DEVIATIONs → proceed to Step 9.8
+```
 
 ### Issue Deduplication
 resolved_issues = parse [problem-fix] entries from feature.md Review Notes
@@ -454,20 +472,19 @@ Verify threshold-matcher AC Details match implementation:
 
 1. Should it be done now? (urgency)
    ├─ Yes → go to 2 (resolve within this Feature)
-   └─ No  → go to 3
+   └─ No  → go to 2 (defer to appropriate Feature)
 
 2. Does it belong to an existing Feature?
    ├─ Yes → B (add to existing Feature)
-   └─ No  → A (create new Feature DRAFT)
-
-3. Which Phase is suitable? (scope specification)
-   └─ Is that Phase DONE? (check **Phase Status** in designs/phases/*.md)
-      ├─ DONE → REJECT: completed phases cannot receive handoffs. Select a different Phase.
-      └─ Not DONE → continue
-         └─ Are there features for that Phase?
-            ├─ Yes → go to 2 (existing Feature in that Phase or new [DRAFT])
-            └─ No  → C (write to Phase tasks in architecture.md)
+   └─ No
+      ├─ Actionable now? → A (create new Feature DRAFT)
+      └─ Conditional trigger (将来条件付き)?
+         → B to Post-Phase Review feature (cross-cutting concerns that
+            don't map to any specific sub-feature are triaged during
+            post-phase review, which decides DRAFT creation or next-phase routing)
 ```
+
+**Note**: Action C (write to architecture.md Phase tasks) is reserved for Phases with NO features created yet. If the Phase has existing features, always use A or B. Post-Phase Review features (e.g., F826 for Phase 22) are the correct destination for conditional/cross-cutting concerns discovered during implementation.
 
 ### 9.8.1: DEVIATION Root Cause Analysis
 

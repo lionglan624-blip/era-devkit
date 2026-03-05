@@ -391,3 +391,45 @@ void Register(string name, Func<int> handler);  // Register entry point handler
 // Returns Result<int> to support both void (returns 0) and int-returning procedures (SHOW_SHOP, USERSHOP)
 // Distinct from IFunctionRegistry (IBuiltInFunction returns Result<object>, not compatible with void/int procedures)
 ```
+
+### ICalendarService
+- **File**: `src/Era.Core/Interfaces/ICalendarService.cs`
+- **Impl**: `CalendarService` (`State/CalendarService.cs`)
+- **DI**: Singleton
+- **Methods**: `AdvanceDate()`, `GetMonthName(int)`, `ChildTemperatureResistance(int)`
+- **Source**: 天候.ERB @日付変更, @日付_月, @子供気温耐性取得 (F821)
+
+### IClimateDataService
+- **File**: `src/Era.Core/Interfaces/IClimateDataService.cs`
+- **Impl**: `ClimateDataService` (`State/ClimateDataService.cs`)
+- **DI**: Singleton
+- **Methods**: `GetWeatherName(int)`, `GetMaxTemperatureBase(int, int)`, `GetMinTemperatureBase(int, int)`, `GetPrecipitationProbabilityBase(int, int)`, `GetThunderProbabilityBase(int, int)`
+- **Source**: 天候.ERB @天候, @年間基礎最高気温, @年間基礎最低気温, @年間基礎降水確率, @年間基礎雷発生確率 (F821)
+
+### IWeatherSimulation
+- **File**: `src/Era.Core/Interfaces/IWeatherSimulation.cs`
+- **Impl**: `WeatherSimulation` (`State/WeatherSimulation.cs`)
+- **DI**: Singleton
+- **Methods**: `SetDailyTemperature()`, `SetCurrentTemperature()`, `UpdateWeatherState()`, `ApplyWeatherEffects()`
+- **Source**: 天候.ERB @日間気温設定, @現在気温設定, @天候状態, @天候によるステータス増減処理 (F821)
+
+### ISleepDepth
+- **File**: `src/Era.Core/Interfaces/ISleepDepth.cs`
+- **Impl**: `SleepDepth` (`State/SleepDepth.cs`)
+- **DI**: Singleton
+- **Methods**: `CalculateNoise(int, int)`, `UpdateSleepDepth(int, int)`, `HandleWaking(int, int)`, `EvictCharacters(int, int)`
+- **Source**: 睡眠深度.ERB @行為騒音, @特殊起床, @うふふ中起床口上 (F824)
+
+### IMenstrualCycle
+- **File**: `src/Era.Core/Interfaces/IMenstrualCycle.cs`
+- **Impl**: `MenstrualCycle` (`State/MenstrualCycle.cs`)
+- **DI**: Singleton
+- **Methods**: `AdvanceCycle(int)`, `ApplyOvulationDrug(int)`, `FormatSimpleStatus(int)`, `ResetCycle(int)`
+- **Source**: 生理機能追加パッチ.ERB @生理周期, @排卵誘発剤追加処理, @簡易追加情報 (F824)
+
+### IHeartbreakService
+- **File**: `src/Era.Core/Interfaces/IHeartbreakService.cs`
+- **Impl**: `HeartbreakService` (`State/HeartbreakService.cs`)
+- **DI**: Singleton
+- **Methods**: `AcquireHeartbreak(int, int, int)`
+- **Source**: 睡眠深度.ERB @素質傷心取得 (F824)

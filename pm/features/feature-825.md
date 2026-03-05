@@ -28,6 +28,10 @@ Phase 22: State Systems -- Relationships subsystem migration and DI integration 
 
 **Deferred from F823**: ROOM_SMELL_WHOSE_SAMEN function (ROOM_SMELL.ERB:1108-1140) was not migrated because I3DArrayVariables lacks GetDa/SetDa for DA variable access. This DA interface gap is a cross-cutting concern that must be resolved before WHOSE_SAMEN can be implemented. See F823 Mandatory Handoffs and AC#13.
 
+**Deferred from F824**: DI registration of ISleepDepth/SleepDepth, IMenstrualCycle/MenstrualCycle, IHeartbreakService/HeartbreakService is done in F824 (own services only). F825 owns the full Phase 22 DI integration batch including relationship services and cross-subsystem wiring.
+
+**Deferred from F821**: IEngineVariables indexed methods (GetDay(int)/SetDay(int,int)/GetTime(int)/SetTime(int,int)) were added as default interface methods with no-op stubs. Engine repo implementation must override these with real DAY/TIME array access after Era.Core NuGet bump.
+
 ### Goal (What to Achieve)
 
 Migrate 続柄.ERB to C#, complete all deferred Null implementations from Phase 21, perform IComHandler DI registration, consolidate IComableUtilities/ICounterUtilities, and wire all Phase 22 subsystem interfaces into the DI container. CP-2 E2E checkpoint covers DI integration and cross-subsystem wiring.
@@ -40,10 +44,10 @@ Migrate 続柄.ERB to C#, complete all deferred Null implementations from Phase 
 |------|---------|--------|-------------|
 | Predecessor | F814 | [DONE] | Phase 22 Planning |
 | Predecessor | F819 | [DRAFT] | Clothing System -- DI integration requires all subsystem interfaces |
-| Predecessor | F821 | [DRAFT] | Weather System -- DI integration requires all subsystem interfaces |
+| Predecessor | F821 | [DONE] | Weather System -- DI integration requires all subsystem interfaces |
 | Predecessor | F822 | [DRAFT] | Pregnancy System -- DI integration requires all subsystem interfaces |
 | Predecessor | F823 | [DONE] | Room & Stain System -- DI integration requires all subsystem interfaces |
-| Predecessor | F824 | [DRAFT] | Sleep & Menstrual System -- DI integration requires all subsystem interfaces |
+| Predecessor | F824 | [DONE] | Sleep & Menstrual System -- DI integration requires all subsystem interfaces |
 
 ---
 

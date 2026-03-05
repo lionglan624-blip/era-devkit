@@ -1086,11 +1086,13 @@ def ac_check(fid: str, fix: bool = False, dry_run: bool = False,
         if gaps:
             issues.append(f"Numbering gaps detected: {gaps}")
 
-    # 5. "All N ACs" count mismatch (skip Review Notes and Success Criteria — historical records)
+    # 5. "All N ACs" count mismatch (skip Review Notes — historical records)
+    # Note: SUCCESS_CRITERIA is NOT skipped because Implementation Contract Success Criteria
+    # is a live section that must stay synchronized with AC count (F828 lesson: stale AC count)
     actual_count = len(defined_numbers)
     all_n_acs_re = re.compile(r'(?i)all\s+(\d+)\s+ACs?')
     _current_section = SectionType.OTHER
-    _skip_sections = {SectionType.REVIEW_NOTES, SectionType.SUCCESS_CRITERIA}
+    _skip_sections = {SectionType.REVIEW_NOTES}
     for idx, line in enumerate(lines):
         if idx in section_map:
             _current_section = section_map[idx]
@@ -1329,7 +1331,7 @@ def ac_check(fid: str, fix: bool = False, dry_run: bool = False,
                 # Fix 2: Stale counts (#6)
                 all_n_acs_re = re.compile(r'(?i)(all\s+)\d+(\s+ACs?)')
                 fix_section_map = classify_sections(fix_lines)
-                _skip_sections = {SectionType.REVIEW_NOTES, SectionType.SUCCESS_CRITERIA}
+                _skip_sections = {SectionType.REVIEW_NOTES}
                 _fix_current_section = SectionType.OTHER
                 for idx, line in enumerate(fix_lines):
                     if idx in fix_section_map:

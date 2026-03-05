@@ -30,7 +30,7 @@ Read `feature-{ID}.md` and check Status:
 | Status | Action |
 |--------|--------|
 | `[REVIEWED]` | Check fl-reviewed marker → If present: Proceed. If absent: **STOP**: "Manual [REVIEWED] detected. Please run `/fl {ID}` first" |
-| `[WIP]` | Proceed (resume) |
+| `[WIP]` | Scan phase markers → determine resume_from → Proceed (resume) |
 | `[BLOCKED]` | Check blocker → If resolved AND fl-reviewed marker present: Proceed. If resolved but no marker: **STOP**: "Run `/fl {ID}` first". If unresolved: **STOP**: "Blocker {reason} not resolved" |
 | `[PROPOSED]` | **STOP**: "Please run `/fl {ID}` first" |
 | `[DONE]` | **STOP**: "Already completed" |
@@ -41,6 +41,21 @@ fl_marker = Grep("<!-- fl-reviewed:", "pm/features/feature-{ID}.md")
 IF fl_marker is empty:
     # Manual status change detected - FL not actually run
     STOP: "Manual [REVIEWED] detected. Please run `/fl {ID}` first"
+```
+
+**[WIP] Resume Detection** (Phase Marker Scan):
+```
+IF status == [WIP]:
+    # Scan Execution Log for phase completion markers (see SKILL.md "Phase Completion Markers")
+    markers = Grep("<!-- run-phase-\\d+-completed -->", "pm/features/feature-{ID}.md")
+    IF markers found:
+        # Extract phase numbers, find highest completed
+        last_completed = max(int(m) for m in re.findall(r"run-phase-(\d+)-completed", markers))
+        resume_from = last_completed + 1
+        Log to user: "Resuming /run from Phase {resume_from} (Phase {last_completed} last completed)"
+        # Skip Phase 1 steps below if resume_from > 1
+    ELSE:
+        resume_from = 1  # No markers = start from Phase 1
 ```
 
 ---
@@ -132,8 +147,11 @@ grep -c DEVIATION pm/features/feature-{ID}.md
 
 ## Next
 
-Mark Phase 1 completed via TaskUpdate, then:
+Mark Phase 1 completed via TaskUpdate, then append phase marker to Execution Log:
 
 ```
+# Append phase completion marker (see SKILL.md "Phase Completion Markers")
+Edit(feature-{ID}.md, append to Execution Log: "<!-- run-phase-1-completed -->")
+
 Read(.claude/skills/run-workflow/PHASE-2.md)
 ```

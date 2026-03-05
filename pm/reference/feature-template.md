@@ -508,6 +508,8 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 - Any `[-]` → Feature **cannot** reach `[DONE]` until fixed
 - Any `[B]` → Feature **cannot** reach `[DONE]` without explicit user waive. `[B]` AC must be tracked in 残課題 with concrete destination
 
+**Prohibited statuses**: `[N/A]` and any other non-standard values are not permitted.
+
 ---
 
 ## Example

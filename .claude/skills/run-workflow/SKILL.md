@@ -24,6 +24,20 @@ Progressive Disclosure version of Feature implementation workflow.
 
 ## Global Rules (Always Applied)
 
+### Workflow Artifact Immutability (F814 Lesson)
+
+**CRITICAL: Orchestrator MUST NOT modify workflow artifacts during /run execution.**
+
+| Protected | Examples |
+|-----------|---------|
+| `.claude/skills/**/*.md` | SKILL.md, PHASE-*.md |
+| `.claude/commands/*.md` | fc.md, fl.md, run.md |
+| `.claude/agents/*.md` | Agent definitions |
+
+Modifying these files to bypass validation gates is **self-hacking** — the orchestrator rewriting its own rules to pass checks that would otherwise fail.
+
+**If a gate blocks progress**: STOP → Report to user. Do not alter the gate.
+
 ### DEVIATION Recording
 
 **CRITICAL: When Bash exit ≠ 0 or Agent ERR occurs, MUST record before next action**
@@ -103,6 +117,62 @@ Phase 3 TDD RED (expected test failure) is NOT a DEVIATION. The deviation-log.tx
 | engine | implementer | dotnet test + --unit |
 | infra | implementer | Static verification |
 | research | DRAFT creation + /fc | Static verification |
+
+### Context Pressure Gate (/run)
+
+**Purpose**: Prevent context exhaustion during long /run sessions by checking context usage at critical phase boundaries.
+
+**Check Points**: Before Phase 7 (Verification) and Phase 9 (Report & Approval) — the most context-intensive phases.
+
+**Mechanism**: Same as FL workflow — reads `_out/tmp/claude-ctx-f{ID}.txt` written by statusline.
+
+```
+CONTEXT_PRESSURE_THRESHOLD = 80
+
+check_run_context_pressure(feature_id):
+    pct_file = "_out/tmp/claude-ctx-f{feature_id}.txt"
+    IF file exists:
+        context_pct = int(Read(pct_file).strip())
+        RETURN context_pct
+    RETURN -1  # Unknown
+
+# At Phase 7 / Phase 9 entry:
+context_pct = check_run_context_pressure(feature_id)
+IF context_pct >= CONTEXT_PRESSURE_THRESHOLD:
+    # Record in Execution Log
+    Edit(feature-{ID}.md, append to Execution Log:
+        "| {timestamp} | CONTEXT_PRESSURE | orchestrator | {context_pct}% at Phase {N} entry | Graceful exit |")
+    # Phase markers (see below) enable resume
+    Report to user: "Context pressure {context_pct}% ≥ 80%. Execution Log + phase markers saved. Re-run `/run {ID}` to resume from Phase {N}."
+    EXIT
+```
+
+**Fallback**: If file not found (`context_pct == -1`), proceed normally.
+
+### Phase Completion Markers (Resume Support)
+
+**Purpose**: Enable `/run` resume after context compression or session crash by marking completed phases in the Execution Log.
+
+**Marker Format**: Appended to feature-{ID}.md Execution Log after each Phase completes:
+```html
+<!-- run-phase-{N}-completed -->
+```
+
+**Write Timing**: Each Phase's "Declare Next Phase" step appends the marker to the Execution Log immediately after the Phase completion TaskUpdate.
+
+**Resume Detection** (Phase 1, Step 1.0.5): When status is `[WIP]`, scan Execution Log for markers in reverse order to determine `resume_from`:
+```
+IF status == [WIP]:
+    markers = Grep("<!-- run-phase-\\d+-completed -->", feature_file)
+    IF markers found:
+        last_completed = max(extract_phase_numbers(markers))
+        resume_from = last_completed + 1
+        Log: "Resuming /run from Phase {resume_from} (Phase {last_completed} completed)"
+    ELSE:
+        resume_from = 1  # No markers = start from beginning
+```
+
+**Cleanup**: Markers are NOT deleted after /run completion. They serve as audit trail.
 
 ## Start
 

@@ -223,9 +223,28 @@ EOF
 
 1. base-commit を Step 10.3 の決定ルールに従い算出する。
 
-2. CodeRabbit CLIを実行：
+2. **対象リポを決定する**:
+
+   | Type | 対象リポ | 理由 |
+   |------|---------|------|
+   | engine / infra | devkit | コードが devkit 内 |
+   | erb | **core** (通常) | C# 移行コードは core リポに生成される |
+   | erb (engine側変更あり) | core + engine | 両リポにコード変更がある場合は両方 |
+
+   > **⚠️ erb type で devkit にコードがないことは Skip の理由にならない。** C# コードがある対象リポで必ず実行すること。
+
+3. CodeRabbit CLIを実行：
    ```bash
+   # devkit (engine/infra type)
    MSYS_NO_PATHCONV=1 wsl -- bash -c "cd /mnt/c/Era/devkit && \
+     /home/siihe/.local/bin/coderabbit review --plain --type committed --base-commit HEAD~{N} 2>&1"
+
+   # core (erb type — C# migration)
+   MSYS_NO_PATHCONV=1 wsl -- bash -c "cd /mnt/c/Era/core && \
+     /home/siihe/.local/bin/coderabbit review --plain --type committed --base-commit HEAD~{N} 2>&1"
+
+   # engine (必要な場合のみ)
+   MSYS_NO_PATHCONV=1 wsl -- bash -c "cd /mnt/c/Era/engine && \
      /home/siihe/.local/bin/coderabbit review --plain --type committed --base-commit HEAD~{N} 2>&1"
    ```
 
@@ -235,7 +254,7 @@ EOF
    > **⚠️ ブランチ名スラッシュ禁止**: CodeRabbit CLIはブランチ名の `/` を除去して `git rev-parse` に渡すため、`refactor/xxx` のようなブランチで失敗する。
    > パラレポでCodeRabbit実行時はブランチ名にスラッシュがないことを確認すること。
 
-3. 結果の判定：
+4. 結果の判定：
 
    | 結果 | Action |
    |------|--------|
@@ -245,7 +264,7 @@ EOF
    | 指摘あり（Minor/Nitpick） | Execution Logに記録 → Completion へ |
    | CLI error (exit ≠ 0, 指摘なし) | DEVIATION記録 → Skip → Completion へ |
 
-4. Major指摘の修正ループ（最大2回）：
+5. Major指摘の修正ループ（最大2回）：
    ```
    CodeRabbit Major指摘 → debugger dispatch → 修正 → git commit --amend → coderabbit review → 判定
    ```
@@ -261,7 +280,7 @@ EOF
 
 | 状況 | result | detail |
 |------|--------|--------|
-| Skip (erb/kojo/research) | `Skip ({type})` | `-` |
+| Skip (kojo/research) | `Skip ({type})` | `-` |
 | 実行・指摘0件 | `0 findings` | `-` |
 | 実行・Minor のみ | `{N} Minor (修正不要)` | 指摘概要 |
 | 実行・Major → 修正済み | `{N} Major → fixed` | debugger |

@@ -39,6 +39,7 @@ No AC may lack a corresponding Task (orphan AC forbidden).
 | AC without corresponding Task | Remove AC or add Task |
 | Orphan Task (no verification) | Add verifying AC |
 | Mismatched numbers | Renumber |
+| Task AC# references non-existent AC# | Remove stale reference or correct to valid AC# (F821 lesson: 12 scope-reduction fixes from Task AC# column referencing wrong ACs) |
 
 ## Decision Criteria
 

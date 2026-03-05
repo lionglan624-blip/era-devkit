@@ -372,6 +372,32 @@ No verification that bottlenecks map to specific recommendations.
 
 ---
 
+### Issue 17: Self-Referential AC Pattern Risk
+
+**Symptom**: AC greps the feature file itself (common for research deliverables like Obligation Triage sections) and the pattern matches Review Notes, AC table rows, or other non-target sections.
+
+**Example (Bad)**:
+```markdown
+| 9 | Obligations triaged | file | Grep(feature-814.md) | count_equals | 35 | [ ] |
+```
+Pattern `^\| [0-9]+` matches obligation rows AND AC table rows AND other numbered tables.
+
+**Example (Good)**:
+```markdown
+| 9 | Obligations triaged | file | Grep(feature-814.md, "obligation #1:|obligation #23:|obligation #35:") | matches | representative samples with colon-terminated format | [ ] |
+```
+Colon-terminated `obligation #N:` format prevents matching AC table entries and Review Notes.
+
+**Prevention Rules**:
+1. When AC greps the feature file itself, ensure the pattern cannot match Review Notes `[fix]` entries or AC Definition Table rows
+2. Use section-unique markers or colon-terminated formats to anchor patterns
+3. Prefer representative sampling over row-counting when the file contains multiple tables with similar row formats
+4. Add `[^0-9]` boundary anchors when matching specific numbers to prevent `#1` matching `#10-#19`
+
+**F814 lesson**: 5+ FL iterations were spent fixing AC#9 (obligation triage) patterns that false-positived against the file's own 104+ numbered table rows across multiple sections.
+
+---
+
 ## Checklist
 
 - [ ] Summary explicitly states "Feature to create Features"

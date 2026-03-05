@@ -42,6 +42,7 @@ Design Acceptance Criteria table and details from Philosophy/Goal sections. This
    | technical_impossibility | Do NOT create AC for impossible verification |
    | dependency_requirement | Add predecessor check to AC |
    | baseline_data | Use baseline value in Expected (e.g., `>= 47`) |
+   | enumeration_constraint | Enumerate each item and verify AC coverage per-item or with explicit grouping justification (F814 lesson: C10 listed 35 obligations but only 6 representative ACs were generated, requiring 14 ac-gap additions during FL) |
 
 5.5.3. If Baseline Measurement section exists, use measured values for AC Expected:
    - Warning count baseline → AC Expected: `lte` baseline or specific target
@@ -139,9 +140,40 @@ and alternation.
 Before: 5 rows of `| N | injects IFoo | code | Grep(X.cs, pattern="IFoo") | matches | `IFoo` | [ ] |`
 After:  `| N | X injects all 5 interfaces | code | Grep(X.cs, pattern="IA\|IB\|IC\|ID\|IE") | gte | 5 | [ ] |`
 
+### Step 10.6.5: ERB Source Value Verification (MANDATORY for erb/engine types with ERB-derived Expected values)
+
+**After designing ACs**, verify each AC whose Expected value derives from ERB source:
+
+10.6.5.1. For each AC where Expected contains enum mappings, function counts, or line-count thresholds derived from ERB files:
+   - Grep the referenced ERB source file to verify the value
+   - For enum mappings: verify each value against actual ERB source lines (e.g., weather enum 0=快晴 through 12=桃霧)
+   - For function counts: enumerate all functions by name and verify the count matches Expected
+   - For test thresholds: enumerate the distinct behavioral paths and verify the minimum matches Expected
+
+10.6.5.2. If Expected value differs from ERB source, correct it immediately.
+
+10.6.5.3. For threshold-matcher ACs (gte/count_equals) derived from ERB enumeration, list each enumerated item in AC Details Derivation.
+
+**Rationale**: F821 analysis: 11 content-correction fixes during FL for wrong enum values (e.g., weather enum 8=嵐 not 吹雪), wrong function counts ("14" vs "13"), and wrong test thresholds. Step 10.5 checks pattern validity but not value accuracy.
+
+### Step 10.7: Test Filter Uniqueness Verification (MANDATORY for test-type ACs)
+
+**After designing ACs**, verify each `test` type AC has a unique Method filter:
+
+10.7.1. Collect all ACs where Type = `test`
+10.7.2. For each pair of test-type ACs, check if Method filters overlap:
+   - Identical filters → **must specialize** (add per-AC test method name to filter)
+   - Substring match (e.g., `~Heartbreak` matches both `~AcquireHeartbreak_Reduces` and `~AcquireHeartbreak_OutputsExpected`) → **must specialize**
+10.7.3. For overlapping filters, specialize to unique per-AC test method names using `FullyQualifiedName~{ClassName}_{TestMethod}` format
+
+**Rationale**: F824 analysis: 12+ AC-002 fixes during FL for shared/ambiguous VSTest filters. F823 also required manual filter disambiguation. Shared filters make ACs non-independently-verifiable.
+
 ### Finalize
 
 11. Verify all derived tasks from Philosophy are covered by ACs
+    11.1. For each row in Philosophy Derivation table, verify AC Coverage column is non-empty. If empty, create the missing AC.
+    11.2. For each row in AC Design Constraints table where AC Implication is non-empty, verify at least one AC in AC Definition Table covers that implication. If not, create the missing AC. (F823 lesson: C13 constraint had documented AC Implication but no covering AC was generated, causing ac-gap fix in FL iter2.)
+    11.3. For each Philosophy Derivation row, verify the Absolute Claim column contains a verbatim quote from the `### Philosophy` section text (not from Goal, Background, or other sections). Remove rows where the claim is not traceable to Philosophy text. (F824 lesson: 4 INV-003 fixes for Philosophy Derivation rows sourced from Goal. F774, F781 had same pattern.)
 12. Edit feature-{ID}.md with complete AC section
 
 ## Output Format

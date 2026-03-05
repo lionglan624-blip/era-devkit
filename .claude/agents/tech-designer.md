@@ -35,6 +35,11 @@ Design technical approach to satisfy Acceptance Criteria. This agent runs during
    b. For each method call in code stubs (e.g., `_console.DrawLine()`, `_variables.GetSaveStr()`), verify the method signature exists in the interface
    c. If method is missing from interface: add to `### Upstream Issues` section (see Output Format)
    d. If interface does not exist: add to `### Upstream Issues` section
+8b. **Obligation Routing Validation** (MANDATORY when Technical Design contains Obligation Triage Plan):
+   a. For each obligation assigned to a specific sub-feature (Phase scope), verify the destination sub-feature's subsystem matches the obligation's domain
+   b. Cross-check: obligation description keywords vs destination sub-feature's ERB file list and subsystem name
+   c. If domain mismatch detected: flag in `### Upstream Issues` with suggested re-routing
+   d. F814 lesson: 9 scope-reduction fixes during FL were caused by obligations placed in wrong sub-features without domain verification (e.g., Counter obligations in State Systems sub-features)
 9. Edit feature-{ID}.md to add Technical Design section
 
 ## Output Format

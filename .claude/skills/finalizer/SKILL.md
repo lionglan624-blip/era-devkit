@@ -33,10 +33,10 @@ Feature completion specialist. Verifies objectives, updates status, unblocks dep
 Before proceeding:
 
 - Check Tasks and ACs status:
-  - All `[x]` (or `[N/A]`) → **Normal path** (Step 2 → [DONE])
+  - **Guard**: Any status other than `[x]`, `[ ]`, `[-]`, `[B]` → return `NOT_READY` immediately with error: "Invalid AC status detected: {value}. Valid: [ ], [x], [-], [B]. Revise the AC to verify the current state."
+  - All `[x]` → **Normal path** (Step 2 → [DONE])
   - Any `[B]` (and no `[-]` or `[ ]`) → **Blocked path** (Step 2B → [BLOCKED])
   - Any `[-]` or `[ ]` → return `NOT_READY` immediately
-  - `[N/A]` = AC that became inapplicable due to execution decisions (e.g., feature merge). Treated as complete.
 - Build passes, no new warnings
 - **Log verification**: `_out/logs/debug/failed/` should not have new entries
   - Check timestamps: old failures OK, new failures BLOCK

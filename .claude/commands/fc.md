@@ -90,14 +90,48 @@ Example:
 | `python src/tools/python/ac_ops.py ac-fix {ID} --ac N --expected VAL` | AC Expected/Description を個別修正 |
 | `python src/tools/python/ac_ops.py ac-insert {ID} --after N` | AC挿入（後続ACを+1シフト） |
 | `python src/tools/python/ac_ops.py ac-delete {ID} --ac N` | AC削除+自動renumber |
+| `python src/tools/python/ac_ops.py ac-lint-patterns {ID}` | ACパターン実行可能性チェック（regex/glob構文検証） |
 
 Details: `python src/tools/python/ac_ops.py --help`, `python src/tools/python/feature-status.py --help`
+
+## Global Rules
+
+### Workflow Artifact Immutability (F814 Lesson)
+
+**CRITICAL: Orchestrator MUST NOT modify workflow artifacts during /fc execution.**
+
+| Protected | Examples |
+|-----------|---------|
+| `.claude/skills/**/*.md` | SKILL.md, PHASE-*.md |
+| `.claude/commands/*.md` | fc.md, fl.md, run.md |
+| `.claude/agents/*.md` | Agent definitions |
+
+Modifying these files to bypass validation gates is **self-hacking** — the orchestrator rewriting its own rules to pass checks that would otherwise fail.
+
+**If a gate blocks progress**: STOP → Report to user. Do not alter the gate.
 
 ## Procedure
 
 1. Read feature-{ID}.md, verify [DRAFT] status
 1b. Call determine_resume_point(feature_file) → resume_from value
 2. If resume_from <= 1: **Phase 1 — Consensus Investigation (Round 1)**
+
+   **Type Branch**: Read feature Type field to determine investigation pattern.
+
+   **IF Type == kojo**:
+   a. Orchestrator: collect baseline context (eraTW COM reference, existing kojo files, TALENT data)
+   b. Construct investigation prompt from **Kojo Investigation Prompt Template** (see below)
+   c. Launch **1** deep-explorer Task (not 3 — kojo investigation scope is narrower):
+      ```
+      Task(subagent_type: "deep-explorer", prompt: kojo_investigation_prompt)  // ×1
+      ```
+   d. Task(consensus-synthesizer, model: **sonnet**, prompt: "Read .claude/agents/consensus-synthesizer.md. Mode: synthesis. Feature: {ID}. Path: pm/features/feature-{ID}.md.\n\n## Investigation Result 1\n{result1}")
+      - Single input → synthesis is simpler, sonnet sufficient
+      - Same outputs: Background + Root Cause + Dependencies + investigation sections
+      - Adds `<!-- fc-phase-1-completed -->` marker
+   e. If ERR/INSUFFICIENT → STOP, report to user
+
+   **ELSE (erb/engine/infra/research)**:
    a. Orchestrator: collect baseline context via Bash (git log, relevant file listings)
    b. Construct investigation prompt from **Investigation Prompt Template** (see below), embedding:
       - Feature file context section (Deviation Context or Review Context — whichever exists) and existing Background/Philosophy
@@ -115,6 +149,18 @@ Details: `python src/tools/python/ac_ops.py --help`, `python src/tools/python/fe
       - Does NOT add `<!-- fc-phase-2-completed -->` (Round 2 vote required)
    f. If ERR/INSUFFICIENT → STOP, report to user
 3. If resume_from <= 2: **Phase 2 — Consensus Review (Round 2)**
+
+   **IF Type == kojo**:
+   a. Read synthesized Background + Root Cause from feature-{ID}.md
+   b. Launch **1** reviewer Task (not 3 — kojo scope is narrower):
+      ```
+      Task(subagent_type: "deep-explorer", model: "sonnet", prompt: review_prompt)  // ×1
+      ```
+   c. Parse verdict:
+      - GO → Add `<!-- fc-phase-2-completed -->` marker, proceed to Phase 3
+      - NO-GO → Task(consensus-synthesizer, model: "sonnet", mode: "revision", feedback: nogo_feedback) → Add marker, proceed to Phase 3
+
+   **ELSE (erb/engine/infra/research)**:
    a. Read synthesized Background + Root Cause + all investigation sections from feature-{ID}.md
    b. Construct review prompt from **Review Prompt Template** (see below), embedding synthesized content
    c. Launch 3 reviewer Tasks in parallel with identical prompt:
@@ -136,6 +182,13 @@ Details: `python src/tools/python/ac_ops.py --help`, `python src/tools/python/fe
         - If retry achieves 2/3+ GO → micro-revision if needed → Add marker, proceed to Phase 3
         - If retry still ≤1/3 GO → STOP, present all feedback to user via AskUserQuestion
    f. If any reviewer flags NOT_FEASIBLE → additional STOP condition, report to user
+3b. **Context Pressure Check (Post-Round 2)**:
+    ```
+    pct_file = "_out/tmp/claude-ctx-f{ID}.txt"
+    IF file exists AND int(Read(pct_file).strip()) >= 80:
+        Report: "Context pressure ≥80% after Round 2. fc-phase markers saved. Re-run `/fc {ID}` to resume."
+        EXIT
+    ```
 4. If resume_from <= 3: Task(ac-designer) → Acceptance Criteria (table + details)
 5. If resume_from <= 4: Task(tech-designer) → Technical Design (to satisfy ACs)
 5b. **Upstream Issue Gate** (after tech-designer):
@@ -161,6 +214,21 @@ Details: `python src/tools/python/ac_ops.py --help`, `python src/tools/python/fe
     - **Lesson**: F808 blindly migrated TOILET_COUNTER_MESSAGE_NTR.ERB (a grab-bag of 4 unrelated + 2 NTR functions) into one 9-dependency class. ERB files are often organized by file size or historical accident, not domain cohesion.
 6. If resume_from <= 5: Task(wbs-generator) → Tasks + Implementation Contract
 7. If resume_from <= 6: Task(quality-fixer, model: "sonnet") → Quality Auto-Fix (feature-quality checklist)
+7a-pre. **Context Pressure Check (Post-Quality-Fix)**:
+    ```
+    pct_file = "_out/tmp/claude-ctx-f{ID}.txt"
+    IF file exists AND int(Read(pct_file).strip()) >= 80:
+        Report: "Context pressure ≥80% after quality-fixer. fc-phase markers saved. Re-run `/fc {ID}` to resume."
+        EXIT
+    ```
+7a. **AC Pattern Executability Pre-Check** (always execute after quality-fixer, before AC Structural Lint)
+    ```bash
+    python src/tools/python/ac_ops.py ac-lint-patterns {ID}
+    ```
+    - Exit 0 → Proceed to 7b (warnings are informational only)
+    - Exit 1 → **STOP**: Re-dispatch ac-designer or tech-designer to fix invalid patterns (1 retry)
+      - After fix: re-run `ac-lint-patterns {ID}`
+      - If still Exit 1: **STOP**, report raw output to user verbatim
 7b. **AC Structural Lint Gate** (always execute after quality-fixer)
     ```bash
     python src/tools/python/ac_ops.py ac-check {ID}
@@ -211,7 +279,10 @@ Details: `python src/tools/python/ac_ops.py --help`, `python src/tools/python/fe
 
 **Section Structure SSOT**: All agents MUST read `pm/reference/feature-template.md` and follow the section structure defined there. Agent `.md` files contain semantic rules only; structural definitions live in the template.
 
-**Cost Profile**: Phase 1-2 uses 5-6 opus + 3 sonnet calls on happy path (Round 2: 3x sonnet screen + 1x opus verify on 3/3 GO), up to 9 opus on retry. When Round 2 has NO-GO votes, opus verification is skipped (saving 1 opus call). Phase 5b (Upstream Issue Gate) adds 0-1 ac-designer re-dispatch when tech-designer flags upstream issues. Phase 6 (quality-fixer) uses sonnet for semantic depth (haiku insufficient for V2/V3 validation). Phase 7 (feature-validator) uses sonnet for semantic depth. Total wall clock: ~5 sequential steps (Round 1 parallel → synthesis → Round 2 parallel → ac/tech/wbs → quality-fixer → validator), +2 on retry. Investment here reduces FL iterations significantly.
+**Cost Profile**:
+- **Standard (erb/engine/infra/research)**: Phase 1-2 uses 5-6 opus + 3 sonnet calls on happy path (Round 2: 3x sonnet screen + 1x opus verify on 3/3 GO), up to 9 opus on retry. When Round 2 has NO-GO votes, opus verification is skipped (saving 1 opus call).
+- **Kojo**: Phase 1-2 uses **1 opus + 2 sonnet** calls (1x opus explorer + 1x sonnet synthesizer + 1x sonnet reviewer). No retry escalation needed — kojo scope is content-focused.
+- Phase 5b (Upstream Issue Gate) adds 0-1 ac-designer re-dispatch when tech-designer flags upstream issues. Phase 6 (quality-fixer) uses sonnet for semantic depth (haiku insufficient for V2/V3 validation). Phase 7 (feature-validator) uses sonnet for semantic depth. Total wall clock: ~5 sequential steps (Round 1 parallel → synthesis → Round 2 parallel → ac/tech/wbs → quality-fixer → validator), +2 on retry. Investment here reduces FL iterations significantly.
 
 ## Section Flow (TDD-compliant, Consensus)
 
@@ -336,6 +407,89 @@ Investigate the codebase thoroughly and produce a structured report.
 
 ## Key Observations
 {Anything unexpected or noteworthy that other investigators should know about}
+```
+
+### Kojo Investigation Prompt Template (Round 1 — kojo type only)
+
+Used by 1 deep-explorer. Orchestrator fills `{placeholders}`.
+
+```markdown
+You are investigating Feature F{ID} (kojo type) to understand the dialogue content requirements.
+
+## Feature Context
+
+{Deviation Context OR Review Context section from feature file — include whichever exists}
+
+{Existing Background/Philosophy if any}
+
+## Baseline Data (pre-collected by orchestrator)
+
+{eraTW COM reference cache, existing kojo YAML files, TALENT data}
+
+## Your Task
+
+Investigate the dialogue content requirements and produce a structured report.
+
+### Required Sections
+
+1. **Dialogue Pattern Analysis** (replaces Root Cause Hypotheses for kojo)
+   - eraTW COM参照検証 (original dialogue patterns)
+   - TALENT分岐要件 (which TALENT values affect dialogue)
+   - キャラクター音声パターン (speech style, tone, vocabulary)
+   - 既存kojoカバレッジ (what's already covered vs. gaps)
+2. **Evidence Log** (file:line references for each finding)
+3. **Affected Files** (YAML files requiring creation/changes)
+4. **Related Features** (search index-features.md — pm/index-features.md)
+5. **Feasibility Assessment** (FEASIBLE / NEEDS_REVISION / NOT_FEASIBLE)
+6. **Dependencies** (predecessor/related features)
+7. **AC Design Constraints** (constraints for kojo AC definitions)
+
+## Output Format (STRICT — max 300 lines)
+
+# Investigation Report: F{ID} (kojo)
+
+## Dialogue Pattern Analysis
+
+### eraTW COM Reference
+- **Source File**: {COM file path}
+- **Dialogue Count**: {N} patterns found
+- **Key Patterns**: {summary of dialogue structure}
+
+### TALENT Requirements
+| TALENT | Values | Branching Impact |
+|--------|--------|-----------------|
+
+### Character Speech Patterns
+- **Tone**: {formal/casual/etc.}
+- **Vocabulary**: {key terms}
+- **Style Notes**: {observations}
+
+### Existing Kojo Coverage
+| COM ID | Status | Coverage |
+|--------|:------:|----------|
+
+## Evidence Log
+| # | Type | Location | Finding |
+|:-:|------|----------|---------|
+
+## Affected Files
+| File | Change Type | Description |
+|------|-------------|-------------|
+
+## Related Features
+| Feature | Status | Relationship |
+|---------|--------|--------------|
+
+## Feasibility Assessment
+**Verdict**: FEASIBLE / NEEDS_REVISION / NOT_FEASIBLE
+
+## Dependencies
+| Type | Feature/Component | Status | Description |
+|------|-------------------|--------|-------------|
+
+## AC Design Constraints
+| ID | Constraint | Source | AC Implication |
+|:--:|------------|--------|----------------|
 ```
 
 ### Review Prompt Template (Round 2)

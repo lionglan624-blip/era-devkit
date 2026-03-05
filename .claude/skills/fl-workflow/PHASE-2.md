@@ -17,6 +17,14 @@
 
 ```
 iteration += 1
+
+# Persist state to disk (crash recovery — see SKILL.md "FL State File")
+Write("_out/tmp/fl-state-{ID}.json", JSON.stringify({
+    "iteration": iteration,
+    "current_phase": 2,
+    "timestamp": now_iso()
+}))
+
 IF iteration >= MAX_ITERATIONS:
     → Enter Forward-Only Mode (see SKILL.md)
 ```
@@ -132,6 +140,7 @@ OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside
 PERSPECTIVE: SEMANTIC
 FOCUS: Philosophy-to-AC derivation, AC coverage completeness, Task-to-AC alignment, SSOT consistency, design coherence.
 IGNORE: Format, spelling, template structure.
+TOOL HINT: Use \`python src/tools/python/feature-status.py deps {target_id}\` for dependency status checks instead of manual Grep on individual feature files.
 
 OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON (analysis, reasoning, "Let me", explanations) is a protocol violation.`
     )

@@ -664,6 +664,7 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 | 2026-03-05T15:28 | DEVIATION | Bash | ac-static-verifier.py --ac-type file exit 1 | Format parsing: numeric Expected unsupported for Grep-method file ACs |
 | 2026-03-06T12:00 | Phase 9 | orchestrator | AC re-verification: 11/11 PASS (manual), static verifier tool limitation | OK:11/11 |
 | 2026-03-06T12:10 | Phase 9 | orchestrator | Mandatory Handoffs 12 rows → F829, TBD resolved, routing improvement applied | OK |
+| 2026-03-06T12:30 | CodeRabbit | Skip (infra, .md only) | - |
 <!-- run-phase-1-completed -->
 <!-- run-phase-2-completed -->
 <!-- run-phase-4-completed -->
@@ -707,6 +708,13 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Populated by /imp {ID}. Records modification results only (no analysis narrative). -->
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
+
+### /imp 826 (2026-03-06)
+- [applied] V6: Cascading Consistency チェック追加（AC閾値・記述テキストのセクション間一貫性検証） → `.claude/skills/feature-quality/SKILL.md`
+- [applied] Deferred Task Protocol Destination検証（曖昧な宛先 "Phase N+" 等をFC時に検出） → `.claude/skills/feature-quality/INFRA.md`
+- [revised] feature-808.md 119回読み込み調査 — session-search.pyでセッション種別特定後に対象ワークフロー特定が必要（調査タスク）
+- [rejected] AC算術検証ルール追加 — ac-designer.md Step 10.6.5.2.5に既存。SSOT重複になる
+- [rejected] Hook事前検証追加 — Claude Code基盤問題。ワークフローで予防不可能
 
 ---
 

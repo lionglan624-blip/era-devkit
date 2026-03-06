@@ -509,6 +509,13 @@ If issues arise after deployment:
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 832 (2026-03-06)
+- [applied] wbs-generator Mandatory Handoffs テーブル 5列→7列 (Transferred, Result追加) → `.claude/agents/wbs-generator.md`
+- [applied] wbs-generator Output Structure に Improvement Log セクション追加 → `.claude/agents/wbs-generator.md`
+- [revised] quality-fixer V1n: Improvement Log セクション欠如検出を追加 (P2適用後はほぼ発火しない) → `.claude/agents/quality-fixer.md`
+- [rejected] C16 warning→blocking昇格 — FC段階でのDestination強制は品質低下リスク
+- [rejected] predecessor file重複読み取り削減 — F822 lessonで既対策済み、F832への影響証拠なし
+
 ---
 
 ## Links

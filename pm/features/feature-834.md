@@ -670,6 +670,14 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 834 (2026-03-06)
+- [applied] V1o: Baseline File line missing after Baseline Measurement table detection → `.claude/agents/quality-fixer.md`
+- [applied] Step 11.5: AC→Philosophy Derivation reverse traceability check → `.claude/agents/ac-designer.md`
+- [revised] N13: Duplicate AC Details header detection in ac-check (target changed from quality-fixer to ac_ops.py per Opus review — FL-time fix, not FC-time) → `src/tools/python/ac_ops.py`
+- [rejected] DRY shared-rule-list detection — judgment call, not automatable as rule
+- [rejected] Predecessor context caching — feature-specific (F808 dependency), not systemic
+- [rejected] Hook error pre-validation — low frequency (0.5/session), monitor only
+
 ---
 
 <!-- fc-phase-6-completed -->

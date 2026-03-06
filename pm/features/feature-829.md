@@ -795,6 +795,13 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} -> `{target}` or -- {reason} -->
 
+### /imp 829 (2026-03-06)
+- [revised] FC Phase 1にdeps結果注入（Step 2a + Investigation Prompt + Step 2e synthesizer prompt） → `.claude/commands/fc.md`
+- [applied] wbs-generatorのAC#出力オーナーシップルール追加 → `.claude/agents/wbs-generator.md`
+- [revised] quality-fixer V1m: Deviation Context必須サブセクションチェック追加（全type対応、Origin+Observable Symptom必須、他はwarning） → `.claude/agents/quality-fixer.md`
+- [rejected] predecessor_context強制強化（bold強調） -- LLMにbold強調の効果なし。改善は既にPHASE-2.md L120-127に実装済み。アーキテクチャ的解決が必要
+- [revised] Hook error調査 -- エビデンス収集が先。no-op pre-ac-write.ps1 hook削除が候補。セッションログで具体的エラーを確認後に対応
+
 ---
 
 <!-- fc-phase-6-completed -->

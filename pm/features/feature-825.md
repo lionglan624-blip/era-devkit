@@ -726,6 +726,13 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} -> `{target}` or -- {reason} -->
 
+### /imp 825 (2026-03-06)
+- [applied] FC Phase 6後にreference-checker dispatch追加（Phase1-RefCheck修正3件予防） → `.claude/commands/fc.md`
+- [applied] ERB quality checklist にERBソース関数数・戻り型の実ファイル照合ルール追加 → `.claude/skills/feature-quality/ERB.md`
+- [applied] FL Phase 2 Step 2.6.1 と Phase 4 Step 4.2.5 に ac-renumber 自動実行追加 → `.claude/skills/fl-workflow/PHASE-2.md`, `PHASE-4.md`
+- [revised] predecessor context 119回Read問題 — FC/FL/RUN別breakdownの調査を先行（ツール化は調査後）
+- [revised] Hook error 8件 — 正当ブロック vs バグの分類調査を先行（hook修正は調査後）
+
 ---
 
 <!-- fc-phase-6-completed -->

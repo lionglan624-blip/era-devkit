@@ -494,6 +494,12 @@ Report section names match AC#1-3 patterns exactly; Verdict line matches AC#4. S
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 831 (2026-03-06)
+- [revised] Goal Coverage逆検証ステップ追加 (Step 11.4): Goal Coverage表の各行がGoal本文にtrace可能か検証 → `.claude/agents/ac-designer.md` (Opus指摘: ac-designerが正しいターゲット、validation-onlyステップとして追加)
+- [rejected] Improvement Logセクション検出 (V1n) — on-demandセクションのためFC品質チェック対象外。275+全featureがfalse positiveになる
+- [accept] RESEARCH.md Issue 18 (follow-up tracking) — F831教訓として既に適用済み
+- [accept] RESEARCH.md Issue 17/18 (vacuous pattern prevention) — F831教訓として既に適用済み
+
 ---
 
 <!-- fc-phase-6-completed -->

@@ -504,7 +504,12 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 
 ## Improvement Log
 
-<!-- Optional: Track improvements discovered during implementation -->
+### /imp 837 (2026-03-06)
+- [applied] ac-designer Step 6.5.2にDRAFT Creation Checklist行追加（file exists + index registration） → `.claude/agents/ac-designer.md`
+- [applied] ac-designer Step 11.4.1にGoal reverse scope check追加（scope-broadening language検出） → `.claude/agents/ac-designer.md`
+- [rejected] Cross-session feature file cache — predecessor_context機構（F822 lesson）が導入済み。119回読み込みは導入前データ
+- [rejected] V1n timing fix — V1nは既存。F837 FC時にF832 lesson未反映の可能性が高く自然解消
+- [rejected] Status grep重複削減 — PHASE-2.md line 156に指示あり。サブエージェント遵守問題でありドキュメント追加では解決不可
 
 ---
 

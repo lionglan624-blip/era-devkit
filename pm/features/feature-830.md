@@ -1,6 +1,6 @@
 # Feature 830: Trigger-Gated Shared Utility Extractions (BulkResetCharacterFlags & IsDoutei)
 
-## Status: [WIP]
+## Status: [CANCELLED]
 <!-- fl-reviewed: 2026-03-06T00:54:50Z -->
 
 ## Scope Discipline
@@ -568,6 +568,7 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 |-----------|:-----:|-------|--------|--------|
 | 2026-03-06T01:10:00Z | START | orchestrator | Phase 1 Initialize | F830 [REVIEWED]->[WIP] |
 <!-- run-phase-1-completed -->
+| 2026-03-06T02:30:00Z | CANCELLED | orchestrator | Both triggers unmet (OB-06: Phase 30, OB-07: no 2nd call site). Obligations handed off to phase-28-34-integration.md Phase 30 section. F840 creation deferred to Phase 30 planning. | F830 [WIP]->[CANCELLED] |
 
 ---
 
@@ -620,6 +621,13 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Populated by /imp {ID}. Records modification results only (no analysis narrative). -->
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
+
+### /imp 830 (2026-03-06)
+- [applied] C37: Mandatory Handoff Destination ID collision check → `.claude/agents/quality-fixer.md`
+- [applied] Step 8e: ERB/C# Semantic Consistency Check → `.claude/agents/tech-designer.md`
+- [revised] Self-fulfilling grep pattern detection (AC#8のみ該当、AC#1は正しく設計済み) → `.claude/agents/ac-validator.md`
+- [revised] id-collision + semantic-consistency分類カテゴリ追加 (cross-reference-staleは既存stale-referenceでカバー済みのため削除) → `src/tools/python/imp-analyzer.py`
+- [rejected] predecessor_context をSTRUCTURAL reviewに拡張 — STRUCTURAL reviewはformat/template準拠のみでpredecessor context不要。最適化はSEMANTIC/Phase 3/Phase 7に既に実装済み
 
 ---
 

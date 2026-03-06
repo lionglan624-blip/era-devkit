@@ -693,6 +693,14 @@ dotnet run --project Era.Game -- --demo
 | **Tasks: 等価性検証** | legacy 実装との等価性テストを含む | AC にテスト存在確認 |
 | **AC: 負債ゼロ** | 技術負債ゼロを検証する AC を含む | AC 一覧確認 |
 
+**Deferred Obligations from F830 (CANCELLED)**:
+
+| ID | Obligation | Trigger | Action |
+|----|-----------|---------|--------|
+| OB-06 | BulkResetCharacterFlags extraction | MOVEMENT.ERB migration creates second `CVARSET CFLAG,317` call site | Extract `SleepDepth.ResetUfufu()` → `IVariableStoreExtensions.BulkResetCharacterFlags(this IVariableStore, int charCount)`. See `feature-830.md` Technical Design. |
+| OB-07 | IsDoutei extraction | Any Phase 30 migration creates second `MaleVirginity > 0` call site | Extract inline `isDoutei` from `MenstrualCycle.cs` → `ICommonFunctions.IsDoutei(int maleVirginity, int gender)`. See `feature-830.md` Technical Design. |
+| F840 | IS_DOUTEI semantic inversion investigation | Phase 30 planning | Create feature-840.md [DRAFT]: ERB `TALENT:童貞=0` means doutei vs C# `maleVirginity > 0`. See `feature-830.md` Mandatory Handoffs. |
+
 **Next**: Create Phase 31 planning feature when this phase completes
 
 > **Mandatory Transition Features**: See "Phase Progression Rules" - Review (infra) + Planning (research: Feature を立てる Feature)

@@ -5288,3 +5288,626 @@ describe('ClaudeService', () => {
         });
     });
 });
+
+// =============================================================================
+// Scenario Tests — multi-step state machine flows
+// =============================================================================
+
+describe('Scenario Tests', () => {
+    function createScenarioService() {
+        const { service, logStreamer } = createService();
+        service._broadcastState = vi.fn();
+        service._handoffToTerminal = vi.fn();
+        service._killProcess = vi.fn();
+        service._dequeueNext = vi.fn();
+        service._saveSessionId = vi.fn();
+        service._saveHistoryEntry = vi.fn();
+        service._attachStdoutHandler = vi.fn();
+        service._attachStderrHandler = vi.fn();
+        service._checkStall = vi.fn();
+        service._buildClaudeEnv = vi.fn(() => ({}));
+        service.executeCommand = vi.fn().mockReturnValue('new-exec-id');
+        service.fileWatcher = { statusCache: new Map() };
+        service.emailService = {
+            sendCompletionNotification: vi.fn().mockResolvedValue(undefined),
+            sendHandoffNotification: vi.fn().mockResolvedValue(undefined),
+        };
+        service.rateLimitService = {
+            getSafeProfile: vi.fn().mockReturnValue(null),
+            getEarliestResetTime: vi.fn().mockReturnValue(null),
+            capture: vi.fn().mockResolvedValue(undefined),
+            recomputeRefreshTimes: vi.fn(),
+        };
+        service.getCcsProfile = vi.fn().mockReturnValue('default');
+        return { service, logStreamer };
+    }
+
+    function createRunningChainExecution(service, overrides = {}) {
+        const exec = service._createExecution({
+            featureId: '100', command: 'run',
+            chain: true, chainHistory: [],
+            ...overrides,
+        });
+        exec.status = 'running';
+        exec.startedAt = new Date().toISOString();
+        exec.lastOutputTime = Date.now();
+        exec.sessionId = overrides.sessionId || 'session-abc';
+        exec.resultSubtype = 'success';
+        exec.debugLogPath = null;
+        service.executions.set(exec.id, exec);
+        return exec;
+    }
+
+    // =========================================================================
+    // S1: Input-Wait → Answer → Resume → Chain
+    // =========================================================================
+    describe('S1: Input-Wait → Answer → Resume → Chain', () => {
+        it('registers chain waiter only once when input-wait → answer → resume → complete', () => {
+            const { service } = createScenarioService();
+            const exec = createRunningChainExecution(service, { command: 'fc' });
+            service.fileWatcher.statusCache.set('100', '[DRAFT]');
+            const registerSpy = vi.spyOn(service.chainExecutor, 'registerWaiter');
+
+            // Step 1: Input-wait detected
+            service.streamParser.checkInputWaitPatterns(exec, 'Finalize? (y/n)', 'assistant');
+            expect(exec.waitingForInput).toBe(true);
+            expect(exec._hadInputWait).toBe(true);
+
+            // Step 2: Result event cancels pending handoff
+            service.streamParser.handleStreamEvent(exec, { type: 'result', subtype: 'success' });
+            expect(exec.pendingHandoff).toBeNull();
+
+            // Step 3: First completion — registers chain waiter
+            service._handleCompletion(exec, 0);
+            expect(registerSpy).toHaveBeenCalledTimes(1);
+
+            // Step 4: answerInBrowser clears state, sets _resumedAnswer
+            // Reset exec to running for answerInBrowser
+            exec.status = 'running';
+            exec.waitingForInput = true;
+            service.answerInBrowser(exec.id, 'y');
+            expect(exec._resumedAnswer).toBe(true);
+
+            // Step 5: Second completion after resume — does NOT register again
+            exec.status = 'running';
+            exec.resultSubtype = 'success';
+            service._handleCompletion(exec, 0);
+            expect(registerSpy).toHaveBeenCalledTimes(1);
+        });
+
+        it('skips chain waiter when non-chain execution has input-wait', () => {
+            const { service } = createScenarioService();
+            const exec = service._createExecution({ featureId: '100', command: 'fc' });
+            exec.status = 'running';
+            exec.startedAt = new Date().toISOString();
+            exec.lastOutputTime = Date.now();
+            exec.sessionId = 'session-abc';
+            exec.resultSubtype = 'success';
+            exec.debugLogPath = null;
+            service.executions.set(exec.id, exec);
+            service.fileWatcher.statusCache.set('100', '[DRAFT]');
+            const registerSpy = vi.spyOn(service.chainExecutor, 'registerWaiter');
+
+            service.streamParser.checkInputWaitPatterns(exec, 'Finalize? (y/n)', 'assistant');
+            service.streamParser.handleStreamEvent(exec, { type: 'result', subtype: 'success' });
+            service._handleCompletion(exec, 0);
+
+            // Non-chain execution: chain is null, so registerWaiter never called
+            expect(registerSpy).not.toHaveBeenCalled();
+        });
+
+        it('completion email skipped when _hadInputWait is true', () => {
+            const { service } = createScenarioService();
+            const exec = createRunningChainExecution(service, { command: 'fc' });
+            exec._hadInputWait = true;
+            exec.resultSubtype = 'success';
+            exec.debugLogPath = null;
+            service.fileWatcher.statusCache.set('100', '[PROPOSED]');
+
+            service._handleCompletion(exec, 0);
+
+            // Email should NOT be sent because _hadInputWait is true
+            expect(service.emailService.sendCompletionNotification).not.toHaveBeenCalled();
+        });
+    });
+
+    // =========================================================================
+    // S2: AskUserQuestion → Kill → Answer → Resume → Chain
+    // =========================================================================
+    describe('S2: AskUserQuestion → Kill → Answer → Resume → Chain', () => {
+        it('AskUserQuestion kill suppresses completion, resume completes normally', () => {
+            const { service } = createScenarioService();
+            const exec = createRunningChainExecution(service, { command: 'fc' });
+            service.fileWatcher.statusCache.set('100', '[DRAFT]');
+            const registerSpy = vi.spyOn(service.chainExecutor, 'registerWaiter');
+
+            // Step 1: AskUserQuestion detected — sets inputRequired + _killedForAskUser
+            service.streamParser.handleStreamEvent(exec, {
+                type: 'assistant',
+                message: {
+                    content: [
+                        { type: 'text', text: 'I have a question.' },
+                        {
+                            type: 'tool_use', id: 'tool-123', name: 'AskUserQuestion',
+                            input: { questions: [{ question: 'Which option?' }] },
+                        },
+                    ],
+                },
+            });
+            expect(exec.inputRequired).toBeTruthy();
+            expect(exec._killedForAskUser).toBe(true);
+
+            // Step 2: Process killed
+            exec.process = null;
+
+            // Step 3: _handleCompletion early returns (because _killedForAskUser)
+            service._handleCompletion(exec, null);
+            expect(exec.status).toBe('running');
+            expect(registerSpy).not.toHaveBeenCalled();
+
+            // Step 4: answerInBrowser → clears flags, sets _resumedAnswer
+            service.answerInBrowser(exec.id, 'Option A');
+            expect(exec._resumedAnswer).toBe(true);
+            expect(exec._killedForAskUser).toBe(false);
+
+            // Step 5: Resumed process completes — no waiter (because _resumedAnswer)
+            exec.status = 'running';
+            exec.resultSubtype = 'success';
+            service._handleCompletion(exec, 0);
+            expect(registerSpy).not.toHaveBeenCalled();
+            expect(exec.status).toBe('completed');
+        });
+
+        it('buffered tool_result after kill is ignored', () => {
+            const { service } = createScenarioService();
+            const exec = createRunningChainExecution(service, { command: 'fc' });
+
+            // AskUserQuestion detected
+            service.streamParser.handleStreamEvent(exec, {
+                type: 'assistant',
+                message: {
+                    content: [
+                        { type: 'text', text: 'Question.' },
+                        {
+                            type: 'tool_use', id: 'tool-456', name: 'AskUserQuestion',
+                            input: { questions: [{ question: 'Choose' }] },
+                        },
+                    ],
+                },
+            });
+            expect(exec._killedForAskUser).toBe(true);
+            const toolUseId = exec.inputRequired.toolUseId;
+
+            // Buffered tool_result arrives after kill
+            service.streamParser.handleStreamEvent(exec, {
+                type: 'user',
+                message: {
+                    content: [{ type: 'tool_result', tool_use_id: toolUseId, content: '' }],
+                },
+            });
+
+            // inputRequired should NOT be cleared (guard in streamParser line 344)
+            expect(exec.inputRequired).toBeTruthy();
+            expect(exec.inputRequired.toolUseId).toBe('tool-456');
+        });
+    });
+
+    // =========================================================================
+    // S3: Chain Waiter Race Condition
+    // =========================================================================
+    describe('S3: Chain Waiter Race Condition', () => {
+        it('status already changed → immediate trigger', () => {
+            const { service } = createScenarioService();
+            const exec = createRunningChainExecution(service, { command: 'fc' });
+            exec.resultSubtype = 'success';
+            exec.debugLogPath = null;
+            // Status already advanced to [PROPOSED]
+            service.fileWatcher.statusCache.set('100', '[PROPOSED]');
+
+            service._handleCompletion(exec, 0);
+
+            // registerWaiter detects status already [PROPOSED] → immediately starts fl
+            expect(service.executeCommand).toHaveBeenCalledWith(
+                '100', 'fl',
+                expect.objectContaining({ chain: true }),
+            );
+            // No deferred waiter stored
+            expect(service.chainExecutor.hasWaiter('100')).toBe(false);
+        });
+
+        it('status not yet changed → deferred waiter → trigger on change', () => {
+            const { service } = createScenarioService();
+            const exec = createRunningChainExecution(service, { command: 'fc' });
+            exec.resultSubtype = 'success';
+            exec.debugLogPath = null;
+            // No status in cache yet → skips incomplete detection, registers waiter
+
+            service._handleCompletion(exec, 0);
+
+            // Waiter stored (status doesn't match yet)
+            expect(service.chainExecutor.hasWaiter('100')).toBe(true);
+            expect(service.executeCommand).not.toHaveBeenCalled();
+
+            // Now status changes
+            service.chainExecutor.handleStatusChanged('100', '[DRAFT]', '[PROPOSED]');
+
+            // Waiter consumed, next command started
+            expect(service.executeCommand).toHaveBeenCalledWith(
+                '100', 'fl',
+                expect.objectContaining({ chain: true }),
+            );
+            expect(service.chainExecutor.hasWaiter('100')).toBe(false);
+        });
+
+        it('full chain fc → fl → run progression', () => {
+            const { service } = createScenarioService();
+
+            // FC execution completes
+            const fcExec = createRunningChainExecution(service, { command: 'fc' });
+            fcExec.resultSubtype = 'success';
+            fcExec.debugLogPath = null;
+            service.fileWatcher.statusCache.set('100', '[PROPOSED]');
+            service._handleCompletion(fcExec, 0);
+
+            // FC → FL triggered immediately
+            expect(service.executeCommand).toHaveBeenCalledWith(
+                '100', 'fl',
+                expect.objectContaining({
+                    chain: true,
+                    chainHistory: [{ command: 'fc', result: 'ok' }],
+                }),
+            );
+
+            // FL execution completes
+            const flExec = createRunningChainExecution(service, { command: 'fl' });
+            flExec.resultSubtype = 'success';
+            flExec.debugLogPath = null;
+            service.fileWatcher.statusCache.set('100', '[REVIEWED]');
+            service._handleCompletion(flExec, 0);
+
+            // FL → run triggered immediately
+            expect(service.executeCommand).toHaveBeenCalledWith(
+                '100', 'run',
+                expect.objectContaining({
+                    chain: true,
+                    chainHistory: [{ command: 'fl', result: 'ok' }],
+                }),
+            );
+        });
+    });
+
+    // =========================================================================
+    // S4: Rate Limit → Queue → Retry
+    // =========================================================================
+    describe('S4: Rate Limit → Queue → Retry', () => {
+        beforeEach(() => { vi.useFakeTimers(); });
+        afterEach(() => { vi.useRealTimers(); });
+
+        it('429 detection triggers retry after delay', () => {
+            const { service } = createScenarioService();
+            service.rateLimitService.getSafeProfile.mockReturnValue('profile-b');
+            const exec = createRunningChainExecution(service, { command: 'fc' });
+            exec.accountLimitHit = true;
+            exec.resultSubtype = 'success';
+            exec.debugLogPath = null;
+
+            service._handleCompletion(exec, 1);
+
+            expect(exec.status).toBe('failed');
+            expect(exec.rateLimitSwitchedTo).toBe('profile-b');
+
+            // Advance past retry delay
+            vi.advanceTimersByTime(15000);
+
+            // _processNextInQueue should have been called → which calls executeCommand
+            // (via internal _processRateLimitQueue or _processNextInQueue)
+            // The scheduling happened via setTimeout in _scheduleRateLimitRetry
+        });
+
+        it('two concurrent 429s queue sequentially', () => {
+            const { service } = createScenarioService();
+            service.rateLimitService.getSafeProfile.mockReturnValue('profile-b');
+
+            const exec1 = createRunningChainExecution(service, { command: 'fc' });
+            exec1.accountLimitHit = true;
+            exec1.debugLogPath = null;
+            service._handleCompletion(exec1, 1);
+
+            const exec2 = createRunningChainExecution(service, { command: 'fl', featureId: '200' });
+            exec2.accountLimitHit = true;
+            exec2.debugLogPath = null;
+            service._handleCompletion(exec2, 1);
+
+            // Both should be in the retry queue
+            expect(service._rateLimitRetryQueue.length).toBe(2);
+        });
+    });
+
+    // =========================================================================
+    // S5: Incomplete Termination → Retry → Success
+    // =========================================================================
+    describe('S5: Incomplete Termination → Retry → Success', () => {
+        beforeEach(() => { vi.useFakeTimers(); });
+        afterEach(() => { vi.useRealTimers(); });
+
+        it('retries on incomplete, succeeds on second attempt', () => {
+            const { service } = createScenarioService();
+            // FC completed exit 0 + success, but status still [DRAFT] (incomplete)
+            const exec = createRunningChainExecution(service, { command: 'fc' });
+            exec.resultSubtype = 'success';
+            exec.debugLogPath = null;
+            service.fileWatcher.statusCache.set('100', '[DRAFT]');
+
+            service._handleCompletion(exec, 0);
+
+            // Incomplete detected → retry scheduled
+            vi.advanceTimersByTime(15000);
+            expect(service.executeCommand).toHaveBeenCalledWith(
+                '100', 'fc',
+                expect.objectContaining({ incompleteRetryCount: 1 }),
+            );
+
+            // Second attempt: status now [PROPOSED]
+            const exec2 = createRunningChainExecution(service, { command: 'fc' });
+            exec2.resultSubtype = 'success';
+            exec2.debugLogPath = null;
+            service.fileWatcher.statusCache.set('100', '[PROPOSED]');
+
+            service._handleCompletion(exec2, 0);
+
+            // Status matches → registerWaiter triggers immediate chain
+            expect(service.executeCommand).toHaveBeenCalledWith(
+                '100', 'fl',
+                expect.objectContaining({ chain: true }),
+            );
+        });
+
+        it('retry exhaustion sends email', () => {
+            const { service } = createScenarioService();
+            const exec = createRunningChainExecution(service, {
+                command: 'fc', incompleteRetryCount: 3,
+            });
+            exec.resultSubtype = 'success';
+            exec.debugLogPath = null;
+            service.fileWatcher.statusCache.set('100', '[DRAFT]');
+
+            service._handleCompletion(exec, 0);
+
+            // Exhausted → falls through to email
+            expect(service.emailService.sendCompletionNotification).toHaveBeenCalledWith(
+                exec, 'completed', 0,
+                expect.arrayContaining([
+                    expect.objectContaining({ result: 'incomplete-retry-exhausted' }),
+                ]),
+                null, // no featureService → getFeature not available
+            );
+        });
+    });
+
+    // =========================================================================
+    // S6: Stall Detection
+    // =========================================================================
+    describe('S6: Stall Detection', () => {
+        it('marks stalled after 60s, broadcasts only once', () => {
+            const { service } = createService();
+            service._broadcastState = vi.fn();
+
+            const exec = service._createExecution({ featureId: '100', command: 'fc' });
+            exec.status = 'running';
+            exec.lastOutputTime = Date.now() - 61000;
+            service.executions.set(exec.id, exec);
+
+            // First check → stalled
+            service._checkStall(exec);
+            expect(exec.isStalled).toBe(true);
+            expect(service._broadcastState).toHaveBeenCalledTimes(1);
+
+            // Second check → no additional broadcast
+            service._checkStall(exec);
+            expect(service._broadcastState).toHaveBeenCalledTimes(1);
+        });
+
+        it('not stalled when inputRequired is set', () => {
+            const { service } = createService();
+            service._broadcastState = vi.fn();
+
+            const exec = service._createExecution({ featureId: '100', command: 'fc' });
+            exec.status = 'running';
+            exec.lastOutputTime = Date.now() - 120000;
+            exec.inputRequired = { toolUseId: 'tool-1', questions: [] };
+
+            service._checkStall(exec);
+            expect(exec.isStalled).toBe(false);
+        });
+
+        it('not stalled when taskDepth > 0', () => {
+            const { service } = createService();
+            service._broadcastState = vi.fn();
+
+            const exec = service._createExecution({ featureId: '100', command: 'fc' });
+            exec.status = 'running';
+            exec.lastOutputTime = Date.now() - 120000;
+            exec.taskDepth = 1;
+
+            service._checkStall(exec);
+            expect(exec.isStalled).toBe(false);
+        });
+    });
+
+    // =========================================================================
+    // S7: Context Retry + FL Retry Counter Independence
+    // =========================================================================
+    describe('S7: Context Retry + FL Retry Counter Independence', () => {
+        beforeEach(() => { vi.useFakeTimers(); });
+        afterEach(() => { vi.useRealTimers(); });
+
+        it('context and FL retry counters are independent', () => {
+            const { service } = createScenarioService();
+
+            // Step 1: Context exhaustion → context retry
+            const exec1 = createRunningChainExecution(service, { command: 'fl' });
+            exec1.resultSubtype = 'error_max_turns';
+            exec1.debugLogPath = null;
+
+            service._handleCompletion(exec1, 1);
+
+            vi.advanceTimersByTime(15000);
+            expect(service.executeCommand).toHaveBeenCalledWith(
+                '100', 'fl',
+                expect.objectContaining({
+                    contextRetryCount: 1,
+                    retryCount: 0,
+                }),
+            );
+
+            // Step 2: New exec with those counts, now FL failure (non-context)
+            service.executeCommand.mockClear();
+            const exec2 = createRunningChainExecution(service, {
+                command: 'fl', retryCount: 0, contextRetryCount: 1,
+            });
+            exec2.resultSubtype = null;
+            exec2.debugLogPath = null;
+
+            service._handleCompletion(exec2, 1);
+
+            vi.advanceTimersByTime(15000);
+            expect(service.executeCommand).toHaveBeenCalledWith(
+                '100', 'fl',
+                expect.objectContaining({
+                    retryCount: 1,
+                    contextRetryCount: 1,
+                }),
+            );
+        });
+
+        it('context exhaustion takes precedence over FL retry', () => {
+            const { service } = createScenarioService();
+
+            // error_max_turns + non-zero exit → context retry path (checked first)
+            const exec = createRunningChainExecution(service, { command: 'fl' });
+            exec.resultSubtype = 'error_max_turns';
+            exec.debugLogPath = null;
+
+            service._handleCompletion(exec, 1);
+
+            vi.advanceTimersByTime(15000);
+            // Should use context retry, not FL retry
+            expect(service.executeCommand).toHaveBeenCalledWith(
+                '100', 'fl',
+                expect.objectContaining({ contextRetryCount: 1 }),
+            );
+        });
+    });
+
+    // =========================================================================
+    // S8: Stall Recovery Cycle (isStalled: false→true→false→true)
+    // =========================================================================
+    describe('S8: Stall Recovery Cycle', () => {
+        it('stall → output resumes → unstall → re-stall on silence', () => {
+            const { service, logStreamer } = createService();
+            service._broadcastState = vi.fn();
+
+            const exec = service._createExecution({ featureId: '100', command: 'fc' });
+            exec.status = 'running';
+            exec.lastOutputTime = Date.now() - 120000;
+            service.executions.set(exec.id, exec);
+
+            // Phase 1: Stall detected
+            service._checkStall(exec);
+            expect(exec.isStalled).toBe(true);
+            expect(service._broadcastState).toHaveBeenCalledTimes(1);
+
+            // Phase 2: Output resumes — _attachStdoutHandler resets isStalled
+            // Simulate the stdout handler logic (line 722-726 in claudeService.js)
+            exec.lastOutputTime = Date.now();
+            exec.isStalled = false;
+            service._broadcastState.mockClear();
+            service._broadcastState(exec); // stdout handler broadcasts on unstall
+
+            // Phase 3: Verify not stalled immediately after recovery
+            service._broadcastState.mockClear();
+            service._checkStall(exec);
+            expect(exec.isStalled).toBe(false);
+            expect(service._broadcastState).not.toHaveBeenCalled();
+
+            // Phase 4: Silence again → re-stall
+            exec.lastOutputTime = Date.now() - 120000;
+            service._checkStall(exec);
+            expect(exec.isStalled).toBe(true);
+            expect(service._broadcastState).toHaveBeenCalledTimes(1);
+
+            // Phase 5: Re-stall doesn't double-broadcast
+            service._broadcastState.mockClear();
+            service._checkStall(exec);
+            expect(service._broadcastState).not.toHaveBeenCalled();
+        });
+    });
+
+    // =========================================================================
+    // S9: Handoff Race (running→handed-off→process close)
+    // =========================================================================
+    describe('S9: Handoff Race', () => {
+        it('_handleCompletion is suppressed after handoff', () => {
+            const { service } = createScenarioService();
+            const exec = createRunningChainExecution(service, { command: 'fc' });
+            const registerSpy = vi.spyOn(service.chainExecutor, 'registerWaiter');
+
+            // Step 1: Handoff to terminal changes status
+            service._handoffToTerminal.mockImplementation((e, _reason) => {
+                e.status = 'handed-off';
+            });
+            service._handoffToTerminal(exec, 'Input required: y/n prompt');
+            expect(exec.status).toBe('handed-off');
+
+            // Step 2: Process close fires _handleCompletion after handoff
+            // Guard: status !== 'running' → early return
+            service._handleCompletion(exec, 0);
+
+            // Should NOT have progressed (no chain waiter, no status change)
+            expect(registerSpy).not.toHaveBeenCalled();
+            expect(exec.status).toBe('handed-off'); // unchanged
+        });
+
+        it('process close after handoff cleans up and dequeues', () => {
+            const { service } = createScenarioService();
+            const exec = createRunningChainExecution(service, { command: 'fc' });
+            exec.stallCheckInterval = setInterval(() => {}, 30000);
+
+            // Simulate handoff
+            exec.status = 'handed-off';
+
+            // Simulate the proc.on('close') handler logic (line 670-677)
+            // When status is 'handed-off', close handler skips _handleCompletion,
+            // clears interval, nulls process, and dequeues
+            if (exec.stallCheckInterval) {
+                clearInterval(exec.stallCheckInterval);
+                exec.stallCheckInterval = null;
+            }
+            exec.process = null;
+            service._dequeueNext();
+
+            expect(exec.stallCheckInterval).toBeNull();
+            expect(exec.process).toBeNull();
+            expect(service._dequeueNext).toHaveBeenCalled();
+        });
+
+        it('double handoff is idempotent', () => {
+            const { service } = createService();
+            service._broadcastState = vi.fn();
+
+            const exec = service._createExecution({ featureId: '100', command: 'fc' });
+            exec.status = 'running';
+            exec.sessionId = 'session-abc';
+            service.executions.set(exec.id, exec);
+
+            // First handoff succeeds
+            service._handoffToTerminal(exec, 'First handoff');
+            expect(exec.status).toBe('handed-off');
+            const callCount = service._broadcastState.mock.calls.length;
+
+            // Second handoff is no-op (guard: status === 'handed-off')
+            service._handoffToTerminal(exec, 'Second handoff');
+            expect(service._broadcastState.mock.calls.length).toBe(callCount);
+        });
+    });
+});

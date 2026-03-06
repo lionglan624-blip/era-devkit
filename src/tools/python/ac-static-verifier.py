@@ -74,6 +74,28 @@ class ACDefinition:
         self.pattern_type = None  # Set by classify_pattern()
 
 
+class GrepParams:
+    """Return type for _extract_grep_params.
+
+    Supports both attribute access (params.use_dotall) and backward-compatible
+    3-element tuple unpacking (file_path, pattern, error_result = ...) for
+    existing callers.
+    """
+
+    def __init__(self, file_path: Optional[str], pattern: Optional[str],
+                 error_result: Optional[Dict[str, Any]], use_dotall: bool = False):
+        self.file_path = file_path
+        self.pattern = pattern
+        self.error_result = error_result
+        self.use_dotall = use_dotall
+
+    def __iter__(self):
+        """Yield first 3 fields for backward-compatible tuple unpacking."""
+        yield self.file_path
+        yield self.pattern
+        yield self.error_result
+
+
 class ACVerifier:
     """Main verifier class for AC static verification."""
 
@@ -291,6 +313,15 @@ class ACVerifier:
         (r'\\.', r'\.'),
         (r'\\?', r'\?'),
         (r'\\w', r'\w'),
+        (r'\\s', r'\s'),   # whitespace character class
+        (r'\\S', r'\S'),   # non-whitespace character class
+        (r'\\d', r'\d'),   # digit character class
+        (r'\\D', r'\D'),   # non-digit character class
+        (r'\\W', r'\W'),   # non-word character class (counterpart of \\w)
+        (r'\\b', r'\b'),   # word boundary assertion
+        (r'\\B', r'\B'),   # non-word boundary assertion
+        (r'\\A', r'\A'),   # start-of-string anchor
+        (r'\\Z', r'\Z'),   # end-of-string anchor
     ]
     _PIPE_RULE = (r'\|', '|')  # markdown pipe escapes — Expected column only
 
@@ -468,13 +499,20 @@ class ACVerifier:
                 break
 
             if params_str[i] in ('"', "'"):
-                # Quoted value
+                # Quoted value — escape-aware: skip \X pairs before checking for closing quote
                 quote_char = params_str[i]
                 i += 1
                 value_start = i
-                while i < len(params_str) and params_str[i] != quote_char:
+                while i < len(params_str):
+                    if params_str[i] == '\\' and i + 1 < len(params_str):
+                        i += 2  # skip escaped character pair
+                        continue
+                    if params_str[i] == quote_char:
+                        break
                     i += 1
                 value = params_str[value_start:i]
+                # Un-double escape sequences: \" -> " inside the extracted value
+                value = value.replace('\\"', '"').replace("\\'", "'")
                 if i < len(params_str):
                     i += 1  # skip closing quote
             else:
@@ -519,7 +557,7 @@ class ACVerifier:
 
         return result if result else None
 
-    def _extract_grep_params(self, ac: ACDefinition) -> tuple[Optional[str], Optional[str], Optional[Dict[str, Any]]]:
+    def _extract_grep_params(self, ac: ACDefinition) -> 'GrepParams':
         """Extract file path and pattern from AC Method field for Grep operations.
 
         Handles both complex method format (Grep(path="...", pattern="..."))
@@ -529,15 +567,19 @@ class ACVerifier:
             ac: AC definition with Method field containing Grep specification
 
         Returns:
-            Tuple of (file_path, pattern, error_result):
-            - Success: (file_path, pattern, None) - extracted parameters
-            - Failure: (None, None, error_result_dict) - error result dictionary
+            GrepParams with (file_path, pattern, error_result, use_dotall):
+            - Success: GrepParams(file_path, pattern, None, use_dotall)
+            - Failure: GrepParams(None, None, error_result_dict, False)
+
+            Supports backward-compatible 3-element tuple unpacking:
+                file_path, pattern, error_result = self._extract_grep_params(ac)
 
         Logic:
             1. Try complex method parse: Grep(path="...", pattern="...")
             2. If complex, use parsed path and pattern (pattern from method takes precedence)
-            3. If simple, extract path from Grep(path) or Grep path format
-            4. Pattern defaults to ac.expected if not in method
+            3. multiline=true in complex method sets use_dotall=True for re.DOTALL
+            4. If simple, extract path from Grep(path) or Grep path format
+            5. Pattern defaults to ac.expected if not in method
         """
         # Try complex method parse first
         parsed = self._parse_complex_method(ac.method)
@@ -548,7 +590,7 @@ class ACVerifier:
             # Complex method format: use parsed parameters
             file_path = parsed.get('path')
             if not file_path:
-                return None, None, {
+                return GrepParams(None, None, {
                     "ac_number": ac.ac_number,
                     "result": "FAIL",
                     "details": {
@@ -556,7 +598,7 @@ class ACVerifier:
                         "pattern": ac.expected,
                         "matched_files": []
                     }
-                }
+                })
             # Pattern from method takes precedence over Expected column
             pattern = parsed.get('pattern', ac.expected)
             # Strip backticks from pattern if present (complex method values may be backtick-wrapped)
@@ -570,6 +612,8 @@ class ACVerifier:
             glob_param = parsed.get('glob')
             if glob_param and file_path and not any(c in file_path for c in ['*', '?', '[']):
                 file_path = file_path.rstrip('/') + '/' + glob_param
+            # Propagate multiline=true as use_dotall for re.DOTALL support
+            use_dotall = parsed.get('multiline', '').lower() == 'true'
         else:
             # Extract file path from Method field: "Grep(path)" or "Grep path"
             match = re.search(r'Grep\s*\(\s*([^)]+)\s*\)', ac.method, re.IGNORECASE)
@@ -577,7 +621,7 @@ class ACVerifier:
                 # Fallback: try space-separated format "Grep path"
                 match = re.search(r'Grep\s+(.+)', ac.method, re.IGNORECASE)
             if not match:
-                return None, None, {
+                return GrepParams(None, None, {
                     "ac_number": ac.ac_number,
                     "result": "FAIL",
                     "details": {
@@ -585,14 +629,15 @@ class ACVerifier:
                         "pattern": ac.expected,
                         "matched_files": []
                     }
-                }
+                })
 
             file_path = match.group(1).strip()
             pattern = ac.expected
+            use_dotall = False
 
-        return file_path, pattern, None
+        return GrepParams(file_path, pattern, None, use_dotall)
 
-    def _verify_content(self, file_path: str, pattern: str, matcher: str, pattern_type: 'PatternType', ac_number: int, expected_count: Optional[int] = None) -> Dict[str, Any]:
+    def _verify_content(self, file_path: str, pattern: str, matcher: str, pattern_type: 'PatternType', ac_number: int, expected_count: Optional[int] = None, re_flags: int = re.MULTILINE) -> Dict[str, Any]:
         """Unified content verification for code and file types.
 
         Consolidates the duplicated logic from verify_code_ac and _verify_file_content.
@@ -671,7 +716,7 @@ class ACVerifier:
                     try:
                         with open(tf, 'r', encoding='utf-8') as f:
                             content = f.read()
-                            if re.search(pattern, content, re.MULTILINE) is not None:
+                            if re.search(pattern, content, re_flags) is not None:
                                 pattern_found = True
                                 matched_files.append(self._safe_relative_path(tf))
                     except UnicodeDecodeError:
@@ -701,7 +746,7 @@ class ACVerifier:
                     try:
                         with open(tf, 'r', encoding='utf-8') as f:
                             content = f.read()
-                            if re.search(pattern, content, re.MULTILINE) is not None:
+                            if re.search(pattern, content, re_flags) is not None:
                                 pattern_found = True
                                 matched_files.append(self._safe_relative_path(tf))
                     except UnicodeDecodeError:
@@ -728,6 +773,15 @@ class ACVerifier:
             #   Format C: expected_count provided by caller (bare numeric Expected, pattern from Method)
             #   Format A: `regex_pattern` = N  (backtick-wrapped, regex counting)
             #   Format B: Pattern (N)          (literal counting)
+
+            # Diagnostic warning: \| in pattern with count/gte matcher is likely a mistake.
+            # For alternation use bare | (e.g. "foo|bar"); \| means literal pipe (matches matcher only).
+            if r'\|' in pattern:
+                print(
+                    f"WARNING: AC#{ac_number} pattern contains \\| with {matcher} matcher;"
+                    " use bare | for alternation",
+                    file=sys.stderr
+                )
 
             if expected_count is not None:
                 # Format C: count already parsed by caller, pattern is the search string
@@ -771,7 +825,7 @@ class ACVerifier:
                         content = f.read()
                         if use_regex:
                             try:
-                                file_count = len(re.findall(search_pattern, content, re.MULTILINE))
+                                file_count = len(re.findall(search_pattern, content, re_flags))
                             except re.error as e:
                                 return {
                                     "ac_number": ac_number,
@@ -1001,14 +1055,17 @@ class ACVerifier:
             - matches: regex pattern matching
         """
         # Extract Grep parameters using shared method
-        file_path, pattern, error_result = self._extract_grep_params(ac)
-        if error_result is not None:
-            return error_result
+        params = self._extract_grep_params(ac)
+        if params.error_result is not None:
+            return params.error_result
 
-        expected_count = self._resolve_count_expected(ac, pattern)
+        expected_count = self._resolve_count_expected(ac, params.pattern)
+
+        # Compute re_flags: always use MULTILINE; add DOTALL if multiline=true in Method
+        re_flags = re.MULTILINE | (re.DOTALL if params.use_dotall else 0)
 
         # Delegate to unified content verification method
-        return self._verify_content(file_path, pattern, ac.matcher, ac.pattern_type, ac.ac_number, expected_count=expected_count)
+        return self._verify_content(params.file_path, params.pattern, ac.matcher, ac.pattern_type, ac.ac_number, expected_count=expected_count, re_flags=re_flags)
 
     def verify_build_ac(self, ac: ACDefinition) -> Dict[str, Any]:
         """Verify a build type AC using dotnet build.
@@ -1151,14 +1208,17 @@ class ACVerifier:
         # Check if Method contains "Grep" for content verification
         if "grep" in ac.method.lower():
             # Extract Grep parameters using shared method
-            file_path, pattern, error_result = self._extract_grep_params(ac)
-            if error_result is not None:
-                return error_result
+            params = self._extract_grep_params(ac)
+            if params.error_result is not None:
+                return params.error_result
 
-            expected_count = self._resolve_count_expected(ac, pattern)
+            expected_count = self._resolve_count_expected(ac, params.pattern)
+
+            # Compute re_flags: always use MULTILINE; add DOTALL if multiline=true in Method
+            re_flags = re.MULTILINE | (re.DOTALL if params.use_dotall else 0)
 
             # Delegate to unified content verification method
-            return self._verify_content(file_path, pattern, ac.matcher, ac.pattern_type, ac.ac_number, expected_count=expected_count)
+            return self._verify_content(params.file_path, params.pattern, ac.matcher, ac.pattern_type, ac.ac_number, expected_count=expected_count, re_flags=re_flags)
 
         # Check if Method contains Glob(pattern) syntax
         if "Glob(" in ac.method:

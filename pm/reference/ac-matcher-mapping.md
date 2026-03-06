@@ -79,6 +79,36 @@ Kojo AC検証は `kojo_test_gen.py` で実装。
 - `--verbose`: TALENT分岐詳細表示
 - `--output`: 単一関数テストJSON出力先
 
+## Pattern Conventions for Grep Method Column
+
+### Pipe Alternation (`|` vs `\|`)
+
+| Matcher | Pipe convention | Example |
+|---------|----------------|---------|
+| `matches` / `not_matches` | Use `\|` for literal pipe character | `pattern="foo\|bar"` matches the string `foo|bar` |
+| `count_equals` / `gt` / `gte` / `lt` / `lte` | Use bare `|` for regex alternation | `pattern="foo|bar"` matches either `foo` or `bar` |
+
+**Rule**: In `count`/`gte` matchers the pattern is always treated as a regex. Bare `|` is regex
+alternation (OR). `\|` in a count/gte pattern triggers a diagnostic WARNING on stderr: the
+verifier cannot safely determine which meaning was intended, so AC authors should use bare `|`.
+
+### `multiline=true` Parameter — `re.DOTALL` semantics
+
+When `multiline=true` is specified in a complex `Grep()` Method column, the verifier enables
+Python's `re.DOTALL` flag so that `.` matches newlines (cross-line patterns like `.+` span
+multiple lines).
+
+```
+Method: Grep(src/file.py, pattern="start.+end", multiline=true)
+```
+
+**Important**: `re.MULTILINE` (which makes `^`/`$` match at line boundaries) is **always** active
+regardless of `multiline=true`. The parameter only controls `re.DOTALL`.
+
+Note: `[\s\S]*` patterns span newlines in Python regex without `multiline=true` because `\s`
+and `\S` each match any character class independently — use `multiline=true` only when `.`
+must cross line boundaries.
+
 ## Related
 
 - [ac-validator.md](../../../.claude/agents/ac-validator.md) - Uses this mapping for validation

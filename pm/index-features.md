@@ -71,8 +71,8 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
 | F827 | [DRAFT] | Phase 23 Planning | F826 | [feature-827.md](feature-827.md) |
-| F828 | [DONE] | Date Initialization Migration (@日付初期設定) | **F821** | [feature-828.md](feature-828.md) |
-| F842 | [PROPOSED] | ac-static-verifier Pattern Parsing Enhancements | - | [feature-842.md](feature-842.md) |
+| F844 | [DRAFT] | _UNESCAPE_RULES catch-all regex refactoring | - | [feature-844.md](feature-844.md) |
+| F845 | [DRAFT] | Full AC pattern catalog scan across all features | - | [feature-845.md](feature-845.md) |
 
 ### Other
 
@@ -91,12 +91,13 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 842 | ✅ | ac-static-verifier Pattern Parsing Enhancements | [feature-842.md](feature-842.md) |
 | 843 | ✅ | Latent GlobalStatic Collection Test Isolation Issues | [feature-843.md](feature-843.md) |
+| 828 | ✅ | Date Initialization Migration (@日付初期設定) | [feature-828.md](feature-828.md) |
 | 841 | ✅ | Build CWD Cross-Repo Resolution in ac-static-verifier | [feature-841.md](feature-841.md) |
 | 840 | ✅ | Engine Test Isolation Failures (GlobalStatic Shared State) | [feature-840.md](feature-840.md) |
 | 835 | ✅ | IEngineVariables Abstract Method Stubs — Real VariableData Delegation | [feature-835.md](feature-835.md) |
 | 838 | ✅ | Test Infrastructure Fixes — Cross-Repo Verifier and Engine Test Isolation | [feature-838.md](feature-838.md) |
-| 839 | ✅ | Enable EnforceCodeStyleInBuild in core repo (Symmetric with F837) | [feature-839.md](feature-839.md) |
 
 ---
 
@@ -187,4 +188,4 @@ See [kojo-mapper](../../tools/kojo-mapper/) for detailed coverage analysis.
 
 ---
 
-**Next Feature number**: 844
+**Next Feature number**: 846

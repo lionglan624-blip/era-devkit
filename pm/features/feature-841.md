@@ -228,7 +228,7 @@ Example:
 | 11 | All build tests pass | exit_code | pytest src/tools/python/tests/test_ac_verifier_method_build.py -v | matches | `0` | [x] |
 | 12 | Tests use subprocess mock (no real builds) | code | Grep(src/tools/python/tests/test_ac_verifier_method_build.py, pattern="mock.*subprocess|patch.*subprocess|monkeypatch.*subprocess") | matches | `subprocess` | [x] |
 | 13 | Cross-repo test count sufficient | code | Grep(src/tools/python/tests/test_ac_verifier_method_build.py, pattern="def test_") | gte | 9 | [x] |
-| 14 | All 4 cross-repo prefixes tested | code | Grep(src/tools/python/tests/test_ac_verifier_method_build.py, pattern="engine/\|core/\|game/\|dashboard/") | gte | 4 | [x] |
+| 14 | All 4 cross-repo prefixes tested | code | Grep(src/tools/python/tests/test_ac_verifier_method_build.py, pattern="engine/|core/|game/|dashboard/") | gte | 4 | [x] |
 | 15 | Shared `_resolve_cross_repo_root` helper exists | code | Grep(src/tools/python/ac-static-verifier.py, pattern="def _resolve_cross_repo_root") | matches | `_resolve_cross_repo_root` | [x] |
 | 16 | `_expand_glob_path` delegates to shared helper | code | Grep(src/tools/python/ac-static-verifier.py, pattern="_expand_glob_path[\\s\\S]*_resolve_cross_repo_root", multiline=true) | matches | `_resolve_cross_repo_root` | [x] |
 
@@ -603,6 +603,13 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Populated by /imp {ID}. Records modification results only (no analysis narrative). -->
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
+
+### /imp 841 (2026-03-06)
+- [applied] tech-designer Step 8d: AC Pattern-Stub Consistency Check (code stub変数名とAC Grepパターンの整合性検証) → `.claude/agents/tech-designer.md`
+- [applied] consensus-synthesizer: Collection Members列挙ルール (constraint参照コレクションのメンバー明示的列挙) → `.claude/agents/consensus-synthesizer.md`
+- [revised] /run PHASE-4 predecessor design context injection — エビデンス不足のため保留。FL PHASE-3.mdにpredecessor context injection追加済み(別途適用)
+- [rejected] Hook error pre-validation — 環境固有、F841単体ではエビデンス不足
+- [rejected] Read-before-Edit prompt reminder — ツールレベルで既にガードされており効果薄
 
 ---
 

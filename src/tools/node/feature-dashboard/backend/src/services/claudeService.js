@@ -150,10 +150,15 @@ export class ClaudeService {
             CLEANUP_INTERVAL_MS,
         );
 
-        // Rate limit retry state
-        this._rateLimitPaused = false;
+        // Rate limit retry state (queue-based: supports multiple concurrent 429 recoveries)
+        this._rateLimitRetryQueue = []; // Array of { execution, queuedAt }
         this._rateLimitRetryTimer = null;
-        this._rateLimitRetryInfo = null; // { execution, retryAt }
+        this._rateLimitRetryAt = null; // ISO string for UI
+    }
+
+    /** @returns {boolean} True if rate limit retry queue is non-empty (blocks dequeue) */
+    get _rateLimitPaused() {
+        return this._rateLimitRetryQueue.length > 0;
     }
 
     /**
@@ -1564,23 +1569,37 @@ export class ClaudeService {
 
         this._dequeueNext();
 
+        // Continue draining rate limit retry queue after successful retry completion
+        if (execution._rateLimitQueueContinue && !execution.accountLimitHit) {
+            setTimeout(() => this._processNextInQueue(), RETRY_DELAY_MS);
+        }
+
         // Notify listeners (e.g., auto-DR) that an execution finished
         this.onExecutionComplete?.(execution);
     }
 
     /**
      * Schedule a rate limit retry for the failed execution.
-     * Strategy: (1) try immediate profile switch, (2) schedule timed retry.
+     * Queue-based: multiple executions can be queued for retry.
+     * First entry triggers Strategy 1 (profile switch) or Strategy 2 (timed retry).
+     * Subsequent entries queue behind and drain sequentially after recovery.
      * @param {Object} execution - The failed execution
      * @returns {{ message: string }|null} Retry info, or null if no retry possible
      */
     _scheduleRateLimitRetry(execution) {
-        if (this._rateLimitPaused) {
-            // Another retry is already scheduled (concurrent execution hit 429)
-            claudeLog.info(`[RateLimit] Retry already pending, skipping for ${execution.id}`);
-            return { message: 'Another retry already pending.' };
+        const isFirstEntry = this._rateLimitRetryQueue.length === 0;
+        this._rateLimitRetryQueue.push({ execution, queuedAt: Date.now() });
+        const queuePosition = this._rateLimitRetryQueue.length;
+
+        if (!isFirstEntry) {
+            // Queue behind existing retry — timer/strategy already active
+            claudeLog.info(
+                `[RateLimit] Queued F${execution.featureId} ${execution.command} for retry (position ${queuePosition})`,
+            );
+            return { message: `Queued for rate limit retry (position ${queuePosition}).` };
         }
 
+        // First entry: try Strategy 1 (profile switch) or Strategy 2 (timed)
         const currentProfile = this.getCcsProfile();
 
         // Strategy 1: Find a safe profile and switch immediately
@@ -1602,7 +1621,7 @@ export class ClaudeService {
                 );
 
                 setTimeout(() => {
-                    this._startRateLimitRetry(execution);
+                    this._processNextInQueue();
                 }, RETRY_DELAY_MS);
 
                 return {
@@ -1615,19 +1634,20 @@ export class ClaudeService {
         const resetTime = this.rateLimitService?.getEarliestResetTime();
         if (!resetTime) {
             claudeLog.warn(`[RateLimit] No safe profile and no reset time known. Cannot retry.`);
+            // Remove from queue since we can't retry
+            this._rateLimitRetryQueue.length = 0;
             return null;
         }
 
         const retryAt = resetTime + RATE_LIMIT_RETRY_BUFFER_MS;
         const delayMs = Math.max(retryAt - Date.now(), RETRY_DELAY_MS); // At least RETRY_DELAY_MS
 
-        this._rateLimitPaused = true;
-        this._rateLimitRetryInfo = { execution, retryAt };
         execution.rateLimitRetryAt = retryAt;
+        this._rateLimitRetryAt = new Date(retryAt).toISOString();
 
         this._rateLimitRetryTimer = setTimeout(() => {
             this._rateLimitRetryTimer = null;
-            this._executeRateLimitRetry(execution);
+            this._processRateLimitQueue();
         }, delayMs);
 
         const retryAtStr = new Date(retryAt).toLocaleString('ja-JP', {
@@ -1652,14 +1672,16 @@ export class ClaudeService {
     }
 
     /**
-     * Execute the scheduled rate limit retry.
-     * Re-captures rate limits, checks if safe, retries or gives up.
-     * @param {Object} execution - The original failed execution
+     * Process the rate limit retry queue after timer fires.
+     * Re-captures rate limits, checks if safe, then drains queue sequentially.
      */
-    async _executeRateLimitRetry(execution) {
+    async _processRateLimitQueue() {
+        const queueSize = this._rateLimitRetryQueue.length;
         claudeLog.info(
-            `[RateLimit] Executing scheduled retry for F${execution.featureId} ${execution.command}`,
+            `[RateLimit] Processing retry queue (${queueSize} entries)`,
         );
+
+        if (queueSize === 0) return;
 
         // Re-capture to get fresh data
         try {
@@ -1686,42 +1708,76 @@ export class ClaudeService {
             : 100; // Assume worst case if no data
 
         if (maxPercent >= RATE_LIMIT_SAFE_THRESHOLD) {
-            // Still limited, give up
-            claudeLog.warn(`[RateLimit] Still at ${maxPercent}% after scheduled retry. Giving up.`);
-            this._rateLimitPaused = false;
-            this._rateLimitRetryInfo = null;
+            // Still limited, give up on ALL entries
+            claudeLog.warn(`[RateLimit] Still at ${maxPercent}% after scheduled retry. Giving up on ${queueSize} entries.`);
 
-            this._pushLog(execution, {
-                line: `[Chain] Rate limit retry failed — still at ${maxPercent}%. Manual re-run needed.`,
-                timestamp: new Date().toISOString(),
-                level: 'error',
-            });
+            for (const entry of this._rateLimitRetryQueue) {
+                this._pushLog(entry.execution, {
+                    line: `[Chain] Rate limit retry failed — still at ${maxPercent}%. Manual re-run needed.`,
+                    timestamp: new Date().toISOString(),
+                    level: 'error',
+                });
+            }
 
+            // Broadcast exhausted for the first entry (representative)
+            const firstExec = this._rateLimitRetryQueue[0].execution;
             this.logStreamer?.broadcastAll({
                 type: 'rate-limit-exhausted',
-                featureId: execution.featureId,
-                command: execution.command,
+                featureId: firstExec.featureId,
+                command: firstExec.command,
                 percent: maxPercent,
+                queueSize,
                 timestamp: new Date().toISOString(),
             });
 
             const featureInfo =
-                execution.featureId && this.featureService
-                    ? this.featureService.getFeature(execution.featureId)
+                firstExec.featureId && this.featureService
+                    ? this.featureService.getFeature(firstExec.featureId)
                     : null;
             this.emailService
                 ?.sendRateLimitExhaustedNotification(
-                    execution,
-                    `Still at ${maxPercent}% after scheduled retry`,
+                    firstExec,
+                    `Still at ${maxPercent}% after scheduled retry (${queueSize} queued)`,
                     featureInfo,
                 )
                 .catch(() => {});
 
+            this._rateLimitRetryQueue.length = 0;
+            this._rateLimitRetryAt = null;
             this._dequeueNext();
             return;
         }
 
-        // Safe to retry
+        // Safe to retry — start draining queue
+        this._processNextInQueue();
+    }
+
+    /**
+     * Process the next entry in the rate limit retry queue.
+     * Skips killed/cancelled executions. Calls _dequeueNext when queue is empty.
+     */
+    _processNextInQueue() {
+        if (this._rateLimitRetryQueue.length === 0) {
+            this._rateLimitRetryAt = null;
+            this._dequeueNext();
+            return;
+        }
+
+        const { execution } = this._rateLimitRetryQueue.shift();
+
+        // Skip killed/cancelled executions
+        if (execution.killedByUser || execution.status === 'cancelled') {
+            claudeLog.info(
+                `[RateLimit] Skipping killed/cancelled execution ${execution.id} in retry queue`,
+            );
+            this._processNextInQueue();
+            return;
+        }
+
+        claudeLog.info(
+            `[RateLimit] Retrying F${execution.featureId} ${execution.command} (${this._rateLimitRetryQueue.length} remaining in queue)`,
+        );
+
         this._startRateLimitRetry(execution);
     }
 
@@ -1730,8 +1786,7 @@ export class ClaudeService {
      * @param {Object} execution - The original failed execution
      */
     _startRateLimitRetry(execution) {
-        this._rateLimitPaused = false;
-        this._rateLimitRetryInfo = null;
+        // Queue state is managed by _processNextInQueue — no clearing here
 
         const updatedHistory = [
             ...(execution.chain?.history || []),
@@ -1759,6 +1814,7 @@ export class ClaudeService {
             newExec.lastOutputTime = Date.now();
             newExec.sessionId = execution.sessionId;
             newExec._profileSwitchCount = execution._profileSwitchCount || 0;
+            newExec._rateLimitQueueContinue = this._rateLimitRetryQueue.length > 0;
             newExec.debugLogPath = path.join(this.tmpDir, `debug-${newExec.id}.log`);
             newExec.logs = [
                 {
@@ -1841,6 +1897,12 @@ export class ClaudeService {
                 contextRetryCount: execution.chain?.contextRetryCount || 0,
                 chainHistory: updatedHistory,
             });
+
+            // Set queue continuation flag on the new execution
+            const newExec2 = this.executions.get(newExecId);
+            if (newExec2) {
+                newExec2._rateLimitQueueContinue = this._rateLimitRetryQueue.length > 0;
+            }
 
             claudeLog.info(`[RateLimit] Retry started: ${newExecId} (replacing ${execution.id})`);
         }
@@ -2018,15 +2080,13 @@ export class ClaudeService {
             waitingForInputCount,
             running,
             queued,
-            rateLimitWaiting: this._rateLimitRetryInfo
-                ? {
-                      featureId: this._rateLimitRetryInfo.execution.featureId,
-                      command: this._rateLimitRetryInfo.execution.command,
-                      retryAt: this._rateLimitRetryInfo.retryAt
-                          ? new Date(this._rateLimitRetryInfo.retryAt).toISOString()
-                          : null,
-                  }
-                : null,
+            rateLimitQueue: this._rateLimitRetryQueue.map((entry) => ({
+                executionId: entry.execution.id,
+                featureId: entry.execution.featureId,
+                command: entry.execution.command,
+                queuedAt: new Date(entry.queuedAt).toISOString(),
+            })),
+            rateLimitRetryAt: this._rateLimitRetryAt,
         };
     }
 
@@ -2149,17 +2209,23 @@ export class ClaudeService {
             }
         }
 
-        // Clear rate limit retry if this execution was waiting for retry
-        if (this._rateLimitRetryInfo?.execution?.id === executionId) {
-            if (this._rateLimitRetryTimer) {
-                clearTimeout(this._rateLimitRetryTimer);
-                this._rateLimitRetryTimer = null;
-            }
-            this._rateLimitPaused = false;
-            this._rateLimitRetryInfo = null;
+        // Remove from rate limit retry queue if queued
+        const rlIdx = this._rateLimitRetryQueue.findIndex(
+            (entry) => entry.execution.id === executionId,
+        );
+        if (rlIdx !== -1) {
+            this._rateLimitRetryQueue.splice(rlIdx, 1);
             claudeLog.info(
-                `[RateLimit] Cleared rate limit retry for killed execution ${executionId}`,
+                `[RateLimit] Removed execution ${executionId} from retry queue (${this._rateLimitRetryQueue.length} remaining)`,
             );
+            // If queue is now empty, clear the timer
+            if (this._rateLimitRetryQueue.length === 0) {
+                if (this._rateLimitRetryTimer) {
+                    clearTimeout(this._rateLimitRetryTimer);
+                    this._rateLimitRetryTimer = null;
+                }
+                this._rateLimitRetryAt = null;
+            }
         }
 
         if (exec.status === 'queued') {
@@ -2227,8 +2293,8 @@ export class ClaudeService {
             clearTimeout(this._rateLimitRetryTimer);
             this._rateLimitRetryTimer = null;
         }
-        this._rateLimitPaused = false;
-        this._rateLimitRetryInfo = null;
+        this._rateLimitRetryQueue.length = 0;
+        this._rateLimitRetryAt = null;
 
         if (this._cleanupInterval) {
             clearInterval(this._cleanupInterval);

@@ -373,12 +373,13 @@ export class StreamParser {
                     execution.pendingHandoffTimeout = null;
                 }
                 execution.pendingHandoff = null;
-                // Also clear waitingForInput: if process exits (code 0) right after result,
-                // false-positive input-wait should not persist into completion handler.
-                // This prevents chain waiter re-registration on resumed completions.
-                if (execution.waitingForInput) {
+                // Only clear waitingForInput on resumed-answer sessions.
+                // On resumed completions, the input-wait from the original session
+                // persists and would cause spurious chain waiter re-registration.
+                // On initial executions, the y/n is genuine — keep it so FE shows buttons.
+                if (execution.waitingForInput && execution._resumedAnswer) {
                     claudeLog.info(
-                        `[ClaudeService] Clearing false-positive waitingForInput on result event (pattern: ${execution.waitingInputPattern})`,
+                        `[ClaudeService] Clearing waitingForInput on resumed-answer result (pattern: ${execution.waitingInputPattern})`,
                     );
                     execution.waitingForInput = false;
                     execution.waitingInputPattern = null;

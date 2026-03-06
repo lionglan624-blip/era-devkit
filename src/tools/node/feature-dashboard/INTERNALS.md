@@ -36,14 +36,18 @@ Tracks CCS **profile-level** usage (weekly/session/sonnet — API quota limits, 
 
 **Behavior**: Sets `accountLimitHit` → blocks context retry and FL retry
 
-**Recovery** (all executions, chain and non-chain):
-1. Try auto-switch to safe profile → immediate retry after 5s
-2. If no safe profile → timed retry at earliest `resetsAt` + 1min buffer. Sets `_rateLimitPaused` to block queue
+**Recovery** (queue-based: all executions, chain and non-chain):
+Multiple concurrent 429 failures are queued in `_rateLimitRetryQueue` and drained sequentially:
+1. First entry: try auto-switch to safe profile → immediate retry after 5s. If no safe profile → timed retry at earliest `resetsAt` + 1min buffer
+2. Subsequent entries: queued behind first entry (no duplicate timers/switches)
+3. After each retry completes (non-429), next queue entry starts after 5s delay
+4. If retry itself hits 429: re-queued, existing timer handles re-retry
+5. `_rateLimitPaused` is a getter (`queue.length > 0`) that blocks `_dequeueNext()`
 
 **Session resume**: When failed execution has `sessionId`, retry uses `claude -p "continue" --resume <sessionId>` (preserves context); falls back to fresh `executeCommand()` when no sessionId
 
 **Events**:
-- WS: `account-limit` → `rate-limit-waiting` → `rate-limit-retry` or `rate-limit-exhausted`. `rate-limit-retry` includes `resumed: true/false`
+- WS: `account-limit` → `rate-limit-waiting` → `rate-limit-retry` or `rate-limit-exhausted`. `rate-limit-retry` includes `resumed: true/false`. `rate-limit-exhausted` includes `queueSize`
 - Email: `account-limit` (with retry schedule) → `rate-limit-recovered` or `rate-limit-exhausted`
 
 **Retry guards**:
@@ -192,15 +196,17 @@ When an execution hits 429, `_scheduleRateLimitRetry()` attempts recovery:
 
 **Strategy 2 (timed — wait for reset)**:
 - `rateLimitService.getEarliestResetTime()` → schedule timer at `resetTime + RATE_LIMIT_RETRY_BUFFER_MS` (1min)
-- Sets `_rateLimitPaused = true` → blocks `_dequeueNext()` to prevent cascading 429
-- On timer: `_executeRateLimitRetry()` re-captures rate limits, checks safe (< `RATE_LIMIT_SAFE_THRESHOLD` 95%), retries or gives up
+- Queue blocks `_dequeueNext()` via `_rateLimitPaused` getter (`queue.length > 0`)
+- On timer: `_processRateLimitQueue()` re-captures rate limits, checks safe (< `RATE_LIMIT_SAFE_THRESHOLD` 95%), drains queue sequentially or gives up on all entries
+
+**Queue-based retry**: Multiple concurrent 429s are queued in `_rateLimitRetryQueue`. First entry triggers Strategy 1/2. Subsequent entries queue behind. After each retry completes, `_processNextInQueue()` starts next entry with 5s delay. Killed/cancelled entries are skipped.
 
 **Session resume**: `_startRateLimitRetry()` checks for `sessionId`:
 - With sessionId: `claude -p "continue" --resume <sessionId>` (preserves context — avoids re-reading files)
 - Without sessionId: falls back to fresh `executeCommand()`
 - Resume creates new execution with original command name (not `resume:` prefix) for chain compatibility
 
-**Cleanup**: `killExecution()` and `killAllRunning()` clear retry timer and pause flag. `getQueueStatus()` exposes `rateLimitWaiting`.
+**Cleanup**: `killExecution()` removes specific entry from `_rateLimitRetryQueue` (clears timer if queue empties). `killAllRunning()` clears entire queue. `getQueueStatus()` exposes `rateLimitQueue` array and `rateLimitRetryAt`.
 
 **Events**: WS `rate-limit-retry` includes `resumed: true/false`. Email: `account-limit` → `rate-limit-recovered` or `rate-limit-exhausted`.
 
@@ -218,10 +224,11 @@ The word "session" appears in two unrelated contexts:
 | **CCS session** rate limit | Profile's per-session API quota (hours) | Yes (all executions) | `accountLimitHit` flag (429 `rate_limit_error`) |
 | **CCS weekly** rate limit | Profile's weekly API quota | Yes (all executions) | Same `accountLimitHit` flag |
 
-**Rate limit retry** (all executions — chain gate removed):
-- `_scheduleRateLimitRetry()`: (1) profile switch (immediate), or (2) timed retry at `resetsAt` + 1min
-- Sets `_rateLimitPaused` to block queue dequeue
-- Re-captures before retry; gives up if still ≥95%
+**Rate limit retry** (all executions — queue-based):
+- `_scheduleRateLimitRetry()`: queues execution; first entry triggers (1) profile switch or (2) timed retry
+- `_rateLimitPaused` getter (`queue.length > 0`) blocks dequeue
+- `_processRateLimitQueue()` re-captures before retry; gives up on all entries if still ≥95%
+- Sequential drain: `_processNextInQueue()` pops entries with 5s delay between retries
 
 ---
 

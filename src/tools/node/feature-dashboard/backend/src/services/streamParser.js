@@ -373,17 +373,6 @@ export class StreamParser {
                     execution.pendingHandoffTimeout = null;
                 }
                 execution.pendingHandoff = null;
-                // Only clear waitingForInput on resumed-answer sessions.
-                // On resumed completions, the input-wait from the original session
-                // persists and would cause spurious chain waiter re-registration.
-                // On initial executions, the y/n is genuine — keep it so FE shows buttons.
-                if (execution.waitingForInput && execution._resumedAnswer) {
-                    claudeLog.info(
-                        `[ClaudeService] Clearing waitingForInput on resumed-answer result (pattern: ${execution.waitingInputPattern})`,
-                    );
-                    execution.waitingForInput = false;
-                    execution.waitingInputPattern = null;
-                }
             }
             // Do NOT call handleCompletion here — let process 'close' event drive it
             // This prevents a race where stdout result fires before stderr rate-limit detection

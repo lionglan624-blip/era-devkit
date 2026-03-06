@@ -44,7 +44,7 @@ const STATUS_TO_COMMAND = {
  * Expected status after each command completes
  * @type {Record<string, string>}
  */
-const EXPECTED_STATUS_AFTER_COMMAND = {
+export const EXPECTED_STATUS_AFTER_COMMAND = {
     fc: '[PROPOSED]', // fc → [PROPOSED]
     fl: '[REVIEWED]', // fl → [REVIEWED]
     run: '[DONE]', // run → [DONE]

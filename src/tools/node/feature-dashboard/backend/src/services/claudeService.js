@@ -40,6 +40,7 @@ import {
     RATE_LIMIT_RETRY_BUFFER_MS,
     RATE_LIMIT_SAFE_THRESHOLD,
     MAX_PROFILE_SWITCHES,
+    MAX_INCOMPLETE_RETRIES,
 } from '../config.js';
 
 // Import extracted modules
@@ -51,6 +52,7 @@ import {
     ChainExecutor,
     getNextChainCommand,
     isExpectedStatusAfterCommand,
+    EXPECTED_STATUS_AFTER_COMMAND,
 } from './chainExecutor.js';
 import { EmailService } from './emailService.js';
 import { StreamParser, extractStreamText, endsWithQuestion } from './streamParser.js';
@@ -318,6 +320,7 @@ export class ClaudeService {
         chainParentId = null,
         retryCount = 0,
         contextRetryCount = 0,
+        incompleteRetryCount = 0,
         chainHistory = [],
     } = {}) {
         return {
@@ -353,7 +356,7 @@ export class ClaudeService {
             isStalled: false,
             resultSubtype: null,
             chain: chain
-                ? { enabled: true, retryCount, contextRetryCount, history: chainHistory }
+                ? { enabled: true, retryCount, contextRetryCount, incompleteRetryCount, history: chainHistory }
                 : null,
             chainParentId,
             debugLogPath: null,
@@ -536,6 +539,7 @@ export class ClaudeService {
      * @param {boolean} [options.chain=false] - Enable chain execution (fc→fl→run)
      * @param {string|null} [options.chainParentId=null] - Parent execution ID for chain
      * @param {number} [options.retryCount=0] - Current retry count for FL auto-retry
+     * @param {number} [options.incompleteRetryCount=0] - Current retry count for incomplete termination
      * @param {Array<{command: string, result: string, reason?: string}>} [options.chainHistory=[]] - Chain execution history
      * @returns {string} Execution ID
      */
@@ -547,6 +551,7 @@ export class ClaudeService {
             chainParentId = null,
             retryCount = 0,
             contextRetryCount = 0,
+            incompleteRetryCount = 0,
             chainHistory = [],
         } = {},
     ) {
@@ -561,6 +566,7 @@ export class ClaudeService {
             chainParentId,
             retryCount,
             contextRetryCount,
+            incompleteRetryCount,
             chainHistory,
         });
         const executionId = execution.id;
@@ -1224,6 +1230,7 @@ export class ClaudeService {
                     chainParentId: execution.chainParentId || execution.id,
                     retryCount: execution.chain.retryCount, // preserve FL counter
                     contextRetryCount,
+                    incompleteRetryCount: execution.chain.incompleteRetryCount || 0, // preserve incomplete counter
                     chainHistory: updatedHistory,
                 });
 
@@ -1291,6 +1298,7 @@ export class ClaudeService {
                     chainParentId: execution.chainParentId || execution.id,
                     retryCount,
                     contextRetryCount: execution.chain.contextRetryCount, // preserve context counter
+                    incompleteRetryCount: execution.chain.incompleteRetryCount || 0, // preserve incomplete counter
                     chainHistory: updatedHistory,
                 });
 
@@ -1452,25 +1460,28 @@ export class ClaudeService {
             !isFlRetryExhausted;
         const isLastChainStep = execution.command === 'imp';
 
-        // Detect FL incomplete termination: exit 0 + success subtype, but status didn't advance.
-        // This happens when context/max_turns is exhausted mid-work (CLI reports success but FL didn't finish).
-        if (chainContinues && !isLastChainStep && execution.command === 'fl') {
+        // Detect incomplete termination: exit 0 + success subtype, but status didn't advance.
+        // This happens when context/max_turns is exhausted mid-work (CLI reports success but command didn't finish).
+        // Applies to any command with an expected status mapping (fc, fl, run).
+        let incompleteRetryExhausted = false;
+        const expectedStatus = EXPECTED_STATUS_AFTER_COMMAND[execution.command];
+        if (chainContinues && !isLastChainStep && expectedStatus) {
             const currentStatus = this.fileWatcher?.statusCache.get(execution.featureId);
-            const expectedStatus = '[REVIEWED]';
             if (
                 currentStatus &&
                 currentStatus !== expectedStatus &&
                 currentStatus !== '[BLOCKED]'
             ) {
-                // FL completed but didn't change status — incomplete termination
-                // Auto-retry FL as a new chain execution instead of registering a dead waiter
-                const retryCount = (execution.chain.retryCount || 0) + 1;
-                if (retryCount <= MAX_FL_RETRIES) {
+                // Command completed but didn't change status — incomplete termination
+                // Auto-retry as a new chain execution instead of registering a dead waiter
+                const cmdUpper = execution.command.toUpperCase();
+                const incompleteCount = (execution.chain.incompleteRetryCount || 0) + 1;
+                if (incompleteCount <= MAX_INCOMPLETE_RETRIES) {
                     claudeLog.info(
-                        `[Chain] FL incomplete termination detected for F${execution.featureId}: status still ${currentStatus} (expected ${expectedStatus}). Auto-retrying FL (${retryCount}/${MAX_FL_RETRIES})`,
+                        `[Chain] ${cmdUpper} incomplete termination detected for F${execution.featureId}: status still ${currentStatus} (expected ${expectedStatus}). Auto-retrying ${cmdUpper} (${incompleteCount}/${MAX_INCOMPLETE_RETRIES})`,
                     );
                     this._pushLog(execution, {
-                        line: `[Chain] FL completed without status change (${currentStatus}). Auto-retrying FL (${retryCount}/${MAX_FL_RETRIES})...`,
+                        line: `[Chain] ${cmdUpper} completed without status change (${currentStatus}). Auto-retrying ${cmdUpper} (${incompleteCount}/${MAX_INCOMPLETE_RETRIES})...`,
                         timestamp: new Date().toISOString(),
                         level: 'warning',
                     });
@@ -1482,23 +1493,25 @@ export class ClaudeService {
 
                     setTimeout(() => {
                         try {
-                            const newExecId = this.executeCommand(execution.featureId, 'fl', {
+                            const newExecId = this.executeCommand(execution.featureId, execution.command, {
                                 chain: true,
                                 chainParentId: execution.chainParentId || execution.id,
                                 chainHistory: updatedHistory,
-                                retryCount,
+                                retryCount: execution.chain.retryCount || 0,
+                                contextRetryCount: execution.chain.contextRetryCount || 0,
+                                incompleteRetryCount: incompleteCount,
                             });
 
                             this.logStreamer?.broadcastAll({
                                 type: 'chain-retry',
                                 featureId: execution.featureId,
-                                command: 'fl',
+                                command: execution.command,
                                 retryType: 'incomplete',
-                                retryCount,
-                                maxRetries: MAX_FL_RETRIES,
+                                retryCount: incompleteCount,
+                                maxRetries: MAX_INCOMPLETE_RETRIES,
                                 oldExecutionId: execution.id,
                                 newExecutionId: newExecId,
-                                reason: `FL completed without status change (still ${currentStatus})`,
+                                reason: `${cmdUpper} completed without status change (still ${currentStatus})`,
                                 timestamp: new Date().toISOString(),
                             });
                         } catch (err) {
@@ -1512,23 +1525,24 @@ export class ClaudeService {
                     return;
                 } else {
                     claudeLog.warn(
-                        `[Chain] FL incomplete termination: retries exhausted (${retryCount}/${MAX_FL_RETRIES}) for F${execution.featureId}`,
+                        `[Chain] ${cmdUpper} incomplete termination: retries exhausted (${incompleteCount}/${MAX_INCOMPLETE_RETRIES}) for F${execution.featureId}`,
                     );
                     this._pushLog(execution, {
-                        line: `[Chain] FL incomplete termination: retries exhausted — manual re-run needed`,
+                        line: `[Chain] ${cmdUpper} incomplete termination: retries exhausted — manual re-run needed`,
                         timestamp: new Date().toISOString(),
                         level: 'error',
                     });
+                    incompleteRetryExhausted = true;
                     // Fall through to email notification
                 }
             }
         }
 
-        if (chainContinues && !isLastChainStep && !execution._resumedAnswer) {
+        if (chainContinues && !isLastChainStep && !incompleteRetryExhausted) {
             this.chainExecutor.registerWaiter(execution);
         }
 
-        if ((!chainContinues || isLastChainStep) && !execution.waitingForInput && !execution.inputRequired) {
+        if ((!chainContinues || isLastChainStep || incompleteRetryExhausted) && !execution.waitingForInput && !execution.inputRequired) {
             // Chain complete (last step), chain stopped, or non-chain execution - send email
             // Skip if waiting for user input — input-wait email already sent
             const chainHistory = execution.chain?.history || [];
@@ -1540,9 +1554,11 @@ export class ClaudeService {
                   ? 'retry-exhausted'
                   : isContextRetryExhausted
                     ? 'context-retry-exhausted'
-                    : exitCode === 0
-                      ? 'ok'
-                      : 'fail';
+                    : incompleteRetryExhausted
+                      ? 'incomplete-retry-exhausted'
+                      : exitCode === 0
+                        ? 'ok'
+                        : 'fail';
             const finalHistory = [
                 ...chainHistory,
                 { command: execution.command, result: currentResult },
@@ -1805,6 +1821,7 @@ export class ClaudeService {
                 chainParentId: execution.chainParentId || execution.id,
                 retryCount: execution.chain?.retryCount || 0,
                 contextRetryCount: execution.chain?.contextRetryCount || 0,
+                incompleteRetryCount: execution.chain?.incompleteRetryCount || 0,
                 chainHistory: updatedHistory,
             });
 
@@ -1895,6 +1912,7 @@ export class ClaudeService {
                 chainParentId: execution.chainParentId || execution.id,
                 retryCount: execution.chain?.retryCount || 0,
                 contextRetryCount: execution.chain?.contextRetryCount || 0,
+                incompleteRetryCount: execution.chain?.incompleteRetryCount || 0,
                 chainHistory: updatedHistory,
             });
 
@@ -2147,6 +2165,7 @@ export class ClaudeService {
                       enabled: exec.chain.enabled,
                       retryCount: exec.chain.retryCount,
                       contextRetryCount: exec.chain.contextRetryCount,
+                      incompleteRetryCount: exec.chain.incompleteRetryCount,
                       history: exec.chain.history,
                   }
                 : null,
@@ -2485,9 +2504,15 @@ export class ClaudeService {
         execution.resultExitCode = null;
         execution.lastAssistantText = null;
         execution.lastOutputTime = Date.now();
-        // Mark as resumed-answer: completion of this resumed process must NOT
-        // re-register chain waiters (the original completion already did).
-        execution._resumedAnswer = true;
+        // Clear stale input state from the original session — the resumed process
+        // starts fresh and will set these again if new input prompts appear.
+        execution.waitingForInput = false;
+        execution.waitingInputPattern = null;
+        execution.inputRequired = null;
+        execution._killedForAskUser = false;
+        // Note: chain waiter registration is handled by the close handler of
+        // the resumed process. The original kill (_killedForAskUser) does NOT
+        // register a waiter — it early-returns to keep the execution alive.
         execution.debugLogPath = path.join(this.tmpDir, `debug-${execution.id}-resume.log`);
 
         const claudePath = process.env.CLAUDE_PATH || 'claude';

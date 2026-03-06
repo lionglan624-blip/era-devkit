@@ -33,6 +33,9 @@ export const MAX_RETRIES = 3;
 /** Maximum auto-retries for FL workflow re-run requests (text pattern detection, separate from context retries) */
 export const MAX_FL_RETRIES = 3;
 
+/** Maximum auto-retries for incomplete termination (exit 0 + success but status didn't advance) — applies to fc, fl, run */
+export const MAX_INCOMPLETE_RETRIES = 3;
+
 /** Delay before retry on context exhaustion or FL re-run (milliseconds) */
 export const RETRY_DELAY_MS = 5000;
 

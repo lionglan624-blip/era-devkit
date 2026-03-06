@@ -2253,6 +2253,7 @@ describe('ClaudeService', () => {
                 enabled: true,
                 retryCount: 2,
                 contextRetryCount: 0,
+                incompleteRetryCount: 0,
                 history: [],
             });
         });
@@ -2408,6 +2409,7 @@ describe('ClaudeService', () => {
                 chainParentId: execution.id,
                 retryCount: 0,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 chainHistory: [
                     { command: 'fl', result: 'retry', reason: 'Context limit (error_max_turns)' },
                 ],
@@ -2478,6 +2480,7 @@ describe('ClaudeService', () => {
                 chainParentId: parentId, // Should preserve parent, not use execution.id
                 retryCount: 1,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 chainHistory: [
                     { command: 'fl', result: 'retry', reason: 'Context limit (error_max_turns)' },
                 ],
@@ -2629,6 +2632,7 @@ describe('ClaudeService', () => {
                 chainParentId: execution.id,
                 retryCount: 0,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 chainHistory: [
                     { command: 'fl', result: 'retry', reason: 'Context limit (max_tokens)' },
                 ],
@@ -2663,6 +2667,7 @@ describe('ClaudeService', () => {
                 chainParentId: execution.id,
                 retryCount: 0,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 chainHistory: [
                     {
                         command: 'fl',
@@ -2700,7 +2705,7 @@ describe('ClaudeService', () => {
         });
     });
 
-    describe('_handleCompletion - FL incomplete termination', () => {
+    describe('_handleCompletion - incomplete termination', () => {
         beforeEach(() => {
             vi.useFakeTimers();
         });
@@ -2740,12 +2745,14 @@ describe('ClaudeService', () => {
             // Waiter must NOT be registered — retry is handling it
             expect(service.chainExecutor.registerWaiter).not.toHaveBeenCalled();
 
-            // executeCommand should be called with fl retry
+            // executeCommand should be called with fl retry using incompleteRetryCount
             expect(service.executeCommand).toHaveBeenCalledWith('100', 'fl', {
                 chain: true,
                 chainParentId: execution.id,
                 chainHistory: [{ command: 'fl', result: 'incomplete' }],
-                retryCount: 1,
+                retryCount: 0,
+                contextRetryCount: 0,
+                incompleteRetryCount: 1,
             });
 
             // chain-retry WS event must be broadcast
@@ -2822,6 +2829,190 @@ describe('ClaudeService', () => {
             expect(service.chainExecutor.registerWaiter).toHaveBeenCalledWith(execution);
             expect(service.executeCommand).not.toHaveBeenCalled();
         });
+
+        it('auto-retries run when exit 0 success but status still [WIP]', () => {
+            const { service, logStreamer } = createService();
+            service._broadcastState = vi.fn();
+            service._dequeueNext = vi.fn();
+            service.chainExecutor.registerWaiter = vi.fn();
+
+            service.fileWatcher = {
+                statusCache: new Map([['200', '[WIP]']]),
+            };
+
+            const execution = service._createExecution({
+                featureId: '200',
+                command: 'run',
+                chain: true,
+            });
+            execution.status = 'running';
+            execution.startedAt = new Date().toISOString();
+            execution.lastOutputTime = Date.now();
+            execution.resultSubtype = 'success';
+            service.executions.set(execution.id, execution);
+
+            service.executeCommand = vi.fn().mockReturnValue('retry-exec-id');
+
+            service._handleCompletion(execution, 0);
+            vi.advanceTimersByTime(5000);
+
+            expect(service.chainExecutor.registerWaiter).not.toHaveBeenCalled();
+            expect(service.executeCommand).toHaveBeenCalledWith('200', 'run', {
+                chain: true,
+                chainParentId: execution.id,
+                chainHistory: [{ command: 'run', result: 'incomplete' }],
+                retryCount: 0,
+                contextRetryCount: 0,
+                incompleteRetryCount: 1,
+            });
+
+            expect(logStreamer.broadcastAll).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    type: 'chain-retry',
+                    command: 'run',
+                    retryType: 'incomplete',
+                    retryCount: 1,
+                }),
+            );
+        });
+
+        it('auto-retries fc when exit 0 success but status still [DRAFT]', () => {
+            const { service } = createService();
+            service._broadcastState = vi.fn();
+            service._dequeueNext = vi.fn();
+            service.chainExecutor.registerWaiter = vi.fn();
+
+            service.fileWatcher = {
+                statusCache: new Map([['300', '[DRAFT]']]),
+            };
+
+            const execution = service._createExecution({
+                featureId: '300',
+                command: 'fc',
+                chain: true,
+            });
+            execution.status = 'running';
+            execution.startedAt = new Date().toISOString();
+            execution.lastOutputTime = Date.now();
+            execution.resultSubtype = 'success';
+            service.executions.set(execution.id, execution);
+
+            service.executeCommand = vi.fn().mockReturnValue('retry-exec-id');
+
+            service._handleCompletion(execution, 0);
+            vi.advanceTimersByTime(5000);
+
+            expect(service.chainExecutor.registerWaiter).not.toHaveBeenCalled();
+            expect(service.executeCommand).toHaveBeenCalledWith('300', 'fc', {
+                chain: true,
+                chainParentId: execution.id,
+                chainHistory: [{ command: 'fc', result: 'incomplete' }],
+                retryCount: 0,
+                contextRetryCount: 0,
+                incompleteRetryCount: 1,
+            });
+        });
+
+        it('skips incomplete retry for run when status is [BLOCKED]', () => {
+            const { service } = createService();
+            service._broadcastState = vi.fn();
+            service._dequeueNext = vi.fn();
+            service.chainExecutor.registerWaiter = vi.fn();
+
+            service.fileWatcher = {
+                statusCache: new Map([['400', '[BLOCKED]']]),
+            };
+
+            const execution = service._createExecution({
+                featureId: '400',
+                command: 'run',
+                chain: true,
+            });
+            execution.status = 'running';
+            execution.startedAt = new Date().toISOString();
+            execution.lastOutputTime = Date.now();
+            execution.resultSubtype = 'success';
+            service.executions.set(execution.id, execution);
+
+            service.executeCommand = vi.fn();
+
+            service._handleCompletion(execution, 0);
+
+            // [BLOCKED] is a legitimate status — register waiter, don't retry
+            expect(service.chainExecutor.registerWaiter).toHaveBeenCalledWith(execution);
+            expect(service.executeCommand).not.toHaveBeenCalled();
+        });
+
+        it('sends email on incomplete retry exhaustion for run', () => {
+            const { service } = createService();
+            service._broadcastState = vi.fn();
+            service._dequeueNext = vi.fn();
+            service.chainExecutor.registerWaiter = vi.fn();
+
+            service.fileWatcher = {
+                statusCache: new Map([['500', '[WIP]']]),
+            };
+
+            const execution = service._createExecution({
+                featureId: '500',
+                command: 'run',
+                chain: true,
+                incompleteRetryCount: 3, // already at max
+            });
+            execution.status = 'running';
+            execution.startedAt = new Date().toISOString();
+            execution.lastOutputTime = Date.now();
+            execution.resultSubtype = 'success';
+            service.executions.set(execution.id, execution);
+
+            service.executeCommand = vi.fn();
+
+            service._handleCompletion(execution, 0);
+
+            // Retry exhausted — waiter must NOT be registered (prevents dead waiter)
+            expect(service.chainExecutor.registerWaiter).not.toHaveBeenCalled();
+            // executeCommand not called (no more retries)
+            expect(service.executeCommand).not.toHaveBeenCalled();
+        });
+
+        it('incompleteRetryCount is independent from retryCount', () => {
+            const { service } = createService();
+            service._broadcastState = vi.fn();
+            service._dequeueNext = vi.fn();
+            service.chainExecutor.registerWaiter = vi.fn();
+
+            service.fileWatcher = {
+                statusCache: new Map([['600', '[PROPOSED]']]),
+            };
+
+            const execution = service._createExecution({
+                featureId: '600',
+                command: 'fl',
+                chain: true,
+                retryCount: 2, // FL text-pattern retries already used
+                incompleteRetryCount: 0,
+            });
+            execution.status = 'running';
+            execution.startedAt = new Date().toISOString();
+            execution.lastOutputTime = Date.now();
+            execution.resultSubtype = 'success';
+            service.executions.set(execution.id, execution);
+
+            service.executeCommand = vi.fn().mockReturnValue('retry-exec-id');
+
+            service._handleCompletion(execution, 0);
+            vi.advanceTimersByTime(5000);
+
+            // incompleteRetryCount incremented independently, retryCount preserved
+            expect(service.executeCommand).toHaveBeenCalledWith('600', 'fl', {
+                chain: true,
+                chainParentId: execution.id,
+                chainHistory: [{ command: 'fl', result: 'incomplete' }],
+                retryCount: 2, // preserved, not incremented
+                contextRetryCount: 0,
+                incompleteRetryCount: 1, // incremented independently
+            });
+        });
     });
 
     describe('_handleCompletion - context exhaustion retry', () => {
@@ -2862,6 +3053,7 @@ describe('ClaudeService', () => {
                 chainParentId: execution.id,
                 retryCount: 0,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 chainHistory: [
                     { command: 'fc', result: 'retry', reason: 'Context limit (error_max_turns)' },
                 ],
@@ -2907,6 +3099,7 @@ describe('ClaudeService', () => {
                 chainParentId: execution.id,
                 retryCount: 0,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 chainHistory: [
                     { command: 'run', result: 'retry', reason: 'Context limit (max_tokens)' },
                 ],
@@ -2951,6 +3144,7 @@ describe('ClaudeService', () => {
                 chainParentId: execution.id,
                 retryCount: 0,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 chainHistory: [
                     {
                         command: 'run',
@@ -2994,6 +3188,7 @@ describe('ClaudeService', () => {
                 chainParentId: execution.id,
                 retryCount: 0,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 chainHistory: [
                     {
                         command: 'run',
@@ -3037,6 +3232,7 @@ describe('ClaudeService', () => {
                 chainParentId: execution.id,
                 retryCount: 0,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 chainHistory: [
                     { command: 'run', result: 'retry', reason: 'Max turns reached (exit code 3)' },
                 ],
@@ -3084,6 +3280,7 @@ describe('ClaudeService', () => {
                 chainParentId: execution.id,
                 retryCount: 0,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 chainHistory: [
                     {
                         command: 'run',
@@ -3239,6 +3436,7 @@ describe('ClaudeService', () => {
                 chainParentId: execution.id,
                 retryCount: 0,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 chainHistory: [
                     { command: 'fl', result: 'retry', reason: 'Context limit (error_max_turns)' },
                 ],
@@ -4873,6 +5071,7 @@ describe('ClaudeService', () => {
                 enabled: true,
                 retryCount: 2,
                 contextRetryCount: 1,
+                incompleteRetryCount: 0,
                 history: [{ command: 'fc', result: 'ok' }],
             });
         });

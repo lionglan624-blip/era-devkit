@@ -548,6 +548,14 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 827 (2026-03-07)
+- [applied] C4: not_contains→not_matches変換追加（既存C4パターン拡張） → `.claude/agents/quality-fixer.md:45`
+- [revised] C27: warning→ERROR（ブロッキング）に昇格。ac-designer再dispatchを強制 → `.claude/agents/quality-fixer.md:67`
+- [revised] C17: AC#超過時の条件付きauto-fix追加（[STALE-AC#N]マーカー挿入） → `.claude/agents/quality-fixer.md:57`
+- [applied] C38: 研究型AC数ソフトリミット新設（Type: research, AC > 5 → warning） → `.claude/agents/quality-fixer.md`
+- [rejected] Goal→Constraint一貫性チェック — 単一事象。Goal←→Taskの問題であり、ac-designer Step 11.2が既にカバー
+- [rejected] IC Section Header指示 — 単一事象、systematic changeなし
+
 ---
 
 <!-- fc-phase-6-completed -->

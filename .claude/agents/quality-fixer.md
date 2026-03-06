@@ -41,7 +41,7 @@ Scan and auto-fix the following patterns. **Only fix 100% deterministic patterns
 | C1 | AC table missing Method column | 6-column AC table (no Method) | Add Method column (infer from Type/Expected) |
 | C2 | Non-sequential AC numbering | AC# gaps or non-numeric (2a, 7b) | Renumber sequentially + update Tasks AC# + AC Details |
 | C3 | TODO pattern incomplete | `not_contains "TODO"` without FIXME\|HACK | Change to `"TODO\|FIXME\|HACK"` |
-| C4 | contains matcher with regex | Expected has `.*` or `\|` with `contains` | Change matcher to `matches` |
+| C4 | contains/not_contains matcher with regex | Expected has `.*` or `\|` with `contains` or `not_contains` | Change `contains` → `matches`, `not_contains` → `not_matches` |
 | C5 | Over-escaped regex pipe | AC with matcher `matches`/`not_matches` has `\|` (backslash-pipe) in Expected, OR any AC pattern has `\\|` (double-backslash pipe) | For `matches`/`not_matches`: replace `\|` with `|` (Python re uses bare `|` for alternation). For Grep patterns: replace `\\|` with `\|`. F835 lesson: iter2+iter6 fixed `\|` in not_matches AC#4 |
 | C6 | Missing Links entries | Related Features not in Links section | Add missing Links entries |
 | C7 | AC Expected contains path | Expected has path mixed into matcher value | Move path to AC Details (create Details block if needed) |
@@ -54,7 +54,7 @@ Scan and auto-fix the following patterns. **Only fix 100% deterministic patterns
 | C14 | AC count in prose stale | Success Criteria or notes say "All N ACs" but N != actual AC row count | Update count to match |
 | C15 | Dependencies missing Related Features entries | Related Features table has entry not in Dependencies table | Add to Dependencies as Related |
 | C16 | Mandatory Handoffs empty Destination | Destination or Destination ID column is empty/TBD | Log warning (needs context) |
-| C17 | Stale AC# cross-reference | AC# referenced in prose/table doesn't exist in AC Definition Table | Log warning (needs context) |
+| C17 | Stale AC# cross-reference | AC# referenced in prose/table doesn't exist in AC Definition Table | Auto-fix when referenced AC# > max AC count (replace with `[STALE-AC#{N}]` marker); Log warning otherwise (ambiguous renumbering needs context) |
 | C18 | Non-template top-level section | `##` header not in feature-template.md Section Ownership table | Log warning (needs context) |
 | C19 | Philosophy Derivation orphan claim | Absolute Claim row has no AC Coverage entry | Log warning (needs context) |
 | C20 | Mandatory Handoffs missing destination features in Links | Mandatory Handoff Destination ID = F{ID} not in Links section | Add to Links section |
@@ -64,7 +64,7 @@ Scan and auto-fix the following patterns. **Only fix 100% deterministic patterns
 | C24 | Ambiguous Task/AC language | Task/AC description matches `\b(TBD\|skip if\|keep or (remove\|deprecate\|accept))\b` | Log warning (needs disambiguation) |
 | C25 | AC count exceeds soft limit | AC Definition Table has >30 rows | Log warning (consider feature split; add deviation comment if justified) |
 | C26 | AC count exceeds hard limit | AC Definition Table has >50 rows | Log error (MUST split feature) |
-| C27 | AC Design Constraint orphan implication | AC Design Constraints table row has non-empty AC Implication but no AC in AC Definition Table references C{N} or covers the implied verification | Log warning (AC creation requires context) |
+| C27 | AC Design Constraint orphan implication | AC Design Constraints table row has non-empty AC Implication but no AC in AC Definition Table references C{N} or covers the implied verification | Log **ERROR** (blocking — forces re-dispatch to ac-designer for missing Constraint AC coverage). F827 lesson: C4/C5 had AC Implications but no ACs; warning was silently ignored |
 | C28 | AC test filter overlap | Two or more `test` type ACs have identical or substring-matching Method values (e.g., both use `~Heartbreak`) | Log warning (needs specialization to per-AC test method names) |
 | C29 | Implementation Contract stale AC/test counts | Implementation Contract section contains `\b\d+\s+(ACs?|tests?|active)\b` that doesn't match actual AC Definition Table row count or Task test count | Log warning (count may reference subset — needs context) |
 | C30 | Task AC# references non-existent AC | Task table AC# column contains AC number not present in AC Definition Table | Log warning (AC may have been deleted/renumbered) |
@@ -75,6 +75,8 @@ Scan and auto-fix the following patterns. **Only fix 100% deterministic patterns
 | C35 | Threshold AC Details missing Derivation field | AC with matcher `gte`/`gt`/`lt`/`lte`/`count_equals` has `**AC#{N}:` Details block but no `- **Derivation**:` line | Log warning (Derivation content requires context). F835 lesson: 7 AC Details blocks lacked Derivation; F838 lesson: AC#5 gte lacked Derivation, both caught in FL iter1 |
 | C36 | matches matcher with literal Expected | Expected has no regex metacharacters (`[.*+?|\\^$(){}]`) with `matches` matcher | Change matcher to `contains`. F833 lesson: 3 FL Phase4-ACValidation fixes for `matches` used with plain literal strings |
 | C37 | Mandatory Handoff Destination ID collision | Mandatory Handoffs table Destination ID = F{ID} and (`feature-{ID}.md` file exists OR F{ID} appears in `index-features.md` Active Features table for a DIFFERENT feature) | Auto-fix: scan `index-features.md` for next available ID, update Destination ID + all cross-references (AC Details, Task descriptions, Links). Log the collision and resolution. (F830 lesson: 5 FL iterations consumed by ID collisions F834→F835→F836→F838→F839→F840 as sibling features claimed IDs concurrently) |
+
+| C38 | Research type AC count exceeds guideline | Feature Type = `research` AND AC Definition Table has >5 rows | Log warning (consider consolidation per RESEARCH.md 3-5 guideline). F827 lesson: 7 ACs produced, consolidated to 5 in FL iter1 |
 
 **C21 Valid Matcher List** (SSOT: `.claude/skills/testing/SKILL.md` §Matchers):
 `equals`, `contains`, `not_contains`, `matches`, `not_matches`, `succeeds`, `fails`, `gt`, `gte`, `lt`, `lte`, `count_equals`, `exists`, `not_exists`

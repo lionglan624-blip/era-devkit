@@ -72,9 +72,8 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 |:---|:------:|:-----|:-----------|:------|
 | F827 | [DRAFT] | Phase 23 Planning | F826 | [feature-827.md](feature-827.md) |
 | F828 | [DONE] | Date Initialization Migration (@日付初期設定) | **F821** | [feature-828.md](feature-828.md) |
-| F830 | [PROPOSED] | Trigger-Gated Shared Utility Extractions | F829 | [feature-830.md](feature-830.md) |
+| F830 | [WIP] | Trigger-Gated Shared Utility Extractions | F829 | [feature-830.md](feature-830.md) |
 | F836 | [WIP] | Enable CA1502 and CA1506 via .editorconfig | F831 | [feature-836.md](feature-836.md) |
-| F834 | [PROPOSED] | ac-static-verifier Format C Guard DRY Consolidation and unescape() Investigation | F832 | [feature-834.md](feature-834.md) |
 | F838 | [DRAFT] | Test Infrastructure Fixes — Cross-Repo Verifier and Engine Test Isolation | F833 | [feature-838.md](feature-838.md) |
 | F835 | [DRAFT] | IEngineVariables Abstract Method Stubs — Real VariableData Delegation | F833 | [feature-835.md](feature-835.md) |
 | F833 | [WIP] | IEngineVariables Indexed Methods Stubs | F829 | [feature-833.md](feature-833.md) |
@@ -97,12 +96,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 834 | ✅ | ac-static-verifier Format C Guard DRY Consolidation and unescape() Investigation | [feature-834.md](feature-834.md) |
 | 837 | ✅ | Enable EnforceCodeStyleInBuild for IDE-prefix Rule Enforcement | [feature-837.md](feature-837.md) |
 | 832 | ✅ | ac-static-verifier Numeric Expected Parsing Fix | [feature-832.md](feature-832.md) |
 | 831 | ✅ | Roslynator Analyzers Investigation | [feature-831.md](feature-831.md) |
 | 829 | ✅ | Phase 22 Deferred Obligations Consolidation | [feature-829.md](feature-829.md) |
 | 826 | ✅ | Post-Phase Review Phase 22 | [feature-826.md](feature-826.md) |
-| 825 | ✅ | Relationships & DI Integration | [feature-825.md](feature-825.md) |
 
 ---
 

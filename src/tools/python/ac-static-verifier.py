@@ -227,6 +227,20 @@ class ACVerifier:
                 continue
         return pattern_found, matched_files
 
+    # Shared unescape rules — single source for all unescape variants.
+    # New rules MUST be added here only. Both unescape() and unescape_for_regex_pattern() draw from this list.
+    _UNESCAPE_RULES = [
+        (r'\"', '"'),
+        (r'\\[', r'\['),
+        (r'\\]', r'\]'),
+        (r'\\(', r'\('),
+        (r'\\)', r'\)'),
+        (r'\\.', r'\.'),
+        (r'\\?', r'\?'),
+        (r'\\w', r'\w'),
+    ]
+    _PIPE_RULE = (r'\|', '|')  # markdown pipe escapes — Expected column only
+
     @staticmethod
     def unescape(s: str) -> str:
         r"""Unescape backslash escape sequences in a string.
@@ -248,17 +262,27 @@ class ACVerifier:
         Returns:
             String with backslash escapes processed
         """
-        return (
-            s.replace(r'\"', '"')
-            .replace(r'\\[', r'\[')
-            .replace(r'\\]', r'\]')
-            .replace(r'\|', '|')
-            .replace(r'\\(', r'\(')  # NEW F817: escaped open-paren (CommonMark punctuation escape)
-            .replace(r'\\)', r'\)')  # NEW F817: escaped close-paren
-            .replace(r'\\.', r'\.')  # NEW F817: escaped dot
-            .replace(r'\\?', r'\?')  # NEW F817: escaped question mark
-            .replace(r'\\w', r'\w')  # NEW F817: word-class (per C3 spec; not CommonMark but per F804 evidence)
-        )
+        for from_str, to_str in ACVerifier._UNESCAPE_RULES:
+            s = s.replace(from_str, to_str)
+        s = s.replace(*ACVerifier._PIPE_RULE)  # markdown pipe escapes
+        return s
+
+    @staticmethod
+    def unescape_for_regex_pattern(s: str) -> str:
+        r"""Unescape backslash escape sequences for Method-column regex patterns.
+
+        Applies all _UNESCAPE_RULES EXCEPT _PIPE_RULE, because in regex context
+        \| means literal pipe and must be preserved as-is.
+
+        Args:
+            s: Pattern string from Method column with potential markdown escape sequences
+
+        Returns:
+            String with markdown escapes processed, regex pipe escape preserved
+        """
+        for from_str, to_str in ACVerifier._UNESCAPE_RULES:
+            s = s.replace(from_str, to_str)
+        return s
 
     @staticmethod
     def unescape_for_literal_search(s: str) -> str:
@@ -488,7 +512,7 @@ class ACVerifier:
             # Unescape markdown escape sequences in complex method pattern
             # (mirrors Expected column unescape at line 792; unescape markdown escapes from parsed complex method pattern)
             if pattern:
-                pattern = self.unescape(pattern)
+                pattern = self.unescape_for_regex_pattern(pattern)
             # Consume glob parameter: filter path by glob suffix if present
             glob_param = parsed.get('glob')
             if glob_param and file_path and not any(c in file_path for c in ['*', '?', '[']):
@@ -885,6 +909,30 @@ class ACVerifier:
 
         return acs
 
+    def _resolve_count_expected(self, ac: 'ACDefinition', pattern: str) -> Optional[int]:
+        """Resolve Format C expected_count from AC definition and extracted pattern.
+
+        For count matchers (count_equals, gt, gte, lt, lte), when the Expected column
+        contains a bare integer AND the pattern was extracted from the Method column
+        (i.e., pattern != ac.expected), pass expected_count separately to _verify_content.
+
+        This guard (pattern != ac.expected) distinguishes Format C (pattern from Method
+        column) from Format A/B where ac.expected IS the pattern.
+
+        Args:
+            ac: AC definition with matcher and expected fields
+            pattern: The regex/literal pattern extracted by _extract_grep_params
+
+        Returns:
+            int if matcher is a count matcher AND ac.expected is a bare integer AND
+            pattern differs from ac.expected; None otherwise
+        """
+        expected_count = None
+        if ac.matcher.lower() in ("count_equals", "gt", "gte", "lt", "lte"):
+            if ac.expected.strip().isdigit() and pattern != ac.expected:
+                expected_count = int(ac.expected.strip())
+        return expected_count
+
     def verify_code_ac(self, ac: ACDefinition) -> Dict[str, Any]:
         """Verify a code type AC using grep.
 
@@ -904,14 +952,7 @@ class ACVerifier:
         if error_result is not None:
             return error_result
 
-        # For count matchers with bare numeric Expected and pattern from Method,
-        # pass expected_count separately (Format C)
-        expected_count = None
-        if ac.matcher.lower() in ("count_equals", "gt", "gte", "lt", "lte"):
-            # Check if ac.expected is a bare number AND pattern differs from ac.expected
-            # (pattern differs when extracted from complex method's pattern param)
-            if ac.expected.strip().isdigit() and pattern != ac.expected:
-                expected_count = int(ac.expected.strip())
+        expected_count = self._resolve_count_expected(ac, pattern)
 
         # Delegate to unified content verification method
         return self._verify_content(file_path, pattern, ac.matcher, ac.pattern_type, ac.ac_number, expected_count=expected_count)
@@ -1056,12 +1097,7 @@ class ACVerifier:
             if error_result is not None:
                 return error_result
 
-            # For count matchers with bare numeric Expected and pattern from Method,
-            # pass expected_count separately (Format C)
-            expected_count = None
-            if ac.matcher.lower() in ("count_equals", "gt", "gte", "lt", "lte"):
-                if ac.expected.strip().isdigit() and pattern != ac.expected:
-                    expected_count = int(ac.expected.strip())
+            expected_count = self._resolve_count_expected(ac, pattern)
 
             # Delegate to unified content verification method
             return self._verify_content(file_path, pattern, ac.matcher, ac.pattern_type, ac.ac_number, expected_count=expected_count)

@@ -584,6 +584,8 @@ MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/engine && /home/siihe/.dotnet/d
 | 2026-03-06 | DEVIATION | orchestrator | ac-static-verifier.py failed: cross-repo paths not supported (exit 1) | Tool limitation for features spanning engine/core repos; ac-tester results authoritative |
 | 2026-03-06 | VERIFY | orchestrator | Phase 9 AC re-verification: manual cross-repo grep + dotnet test/build | 13/13 PASS |
 <!-- run-phase-9-completed -->
+| 2026-03-06 | CodeRabbit | 1 Minor → fixed | Duplicate XML summary in EngineVariablesImplTests (engine repo) |
+<!-- run-phase-10-completed -->
 
 ---
 

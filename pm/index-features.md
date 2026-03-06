@@ -70,7 +70,14 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F827 | [DRAFT] | Phase 23 Planning | F826 | [feature-827.md](feature-827.md) |
+
+### Phase 23: NTR Kojo Reference Analysis
+
+| ID | Status | Name | Depends On | Links |
+|:---|:------:|:-----|:-----------|:------|
+| F847 | [DRAFT] | Phase 23 NTR Kojo Reference Analysis | F827 | [feature-847.md](feature-847.md) |
+| F848 | [DRAFT] | Post-Phase Review Phase 23 | **F847** | [feature-848.md](feature-848.md) |
+| F849 | [DRAFT] | Phase 24 Planning | **F848** | [feature-849.md](feature-849.md) |
 
 ### Other
 
@@ -89,12 +96,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 827 | ✅ | Phase 23 Planning | [feature-827.md](feature-827.md) |
 | 845 | ✅ | Full AC pattern catalog scan across all features | [feature-845.md](feature-845.md) |
 | 844 | ✅ | _UNESCAPE_RULES catch-all regex refactoring | [feature-844.md](feature-844.md) |
 | 846 | ❌ | feature-status.py Active→Recently Completed migration gap | [feature-846.md](feature-846.md) |
 | 842 | ✅ | ac-static-verifier Pattern Parsing Enhancements | [feature-842.md](feature-842.md) |
 | 843 | ✅ | Latent GlobalStatic Collection Test Isolation Issues | [feature-843.md](feature-843.md) |
-| 828 | ✅ | Date Initialization Migration (@日付初期設定) | [feature-828.md](feature-828.md) |
 
 ---
 
@@ -185,4 +192,4 @@ See [kojo-mapper](../../tools/kojo-mapper/) for detailed coverage analysis.
 
 ---
 
-**Next Feature number**: 847
+**Next Feature number**: 850

@@ -42,7 +42,8 @@ description: REQUIRED before writing any feature-{ID}.md file. Skipping causes F
 - [ ] File existence → Glob, content check → Grep
 - [ ] AC table includes Method column (Glob/Grep/dotnet test)
 - [ ] AC matchers use specific identifiers (not broad patterns)
-- [ ] Threshold-matcher ACs all have AC Details with Derivation
+- [ ] Threshold-matcher ACs all have AC Details with Derivation (for collection-type ACs: threshold = N items × M mentions_per_item, not N alone — F847 lesson)
+- [ ] ACs referencing named labels/phases from external docs (content-roadmap.md, architecture docs) have labels cross-verified against source doc exact text (F847 lesson: 8h/8m/8n labels miscopied)
 - [ ] Every getter AC has corresponding setter AC when interface defines both (V2)
 - [ ] Stub replacement ACs include positive call verification (V2)
 - [ ] Grep patterns use `|` not `\|` for ripgrep alternation (V3)
@@ -169,6 +170,7 @@ For each AC with Grep matcher, verify pattern quality:
 - [ ] Regex has no trailing `\\|` or unclosed groups (F805 lesson: AC#53 had stray `\\|`)
 - [ ] Matcher/Expected/Method columns are not swapped (F805 lesson: AC#56 had Matcher↔Expected swap)
 - [ ] Threshold-matcher ACs (gte/gt/lt/lte/count_equals) include derivation in AC Details
+- [ ] Patterns matching numbered identifiers (K1, AC#1, F100) include `[^0-9]` boundary or exact delimited match to prevent K1 matching K10/K11 (F814 Issue 17; F847 lesson: K1[^0-9])
 
 ### V4: Source Re-verification
 
@@ -191,6 +193,7 @@ Verify all cross-reference tables agree:
 - [ ] Every Goal in Goal Coverage maps to at least one AC
 - [ ] Every Philosophy Derivation absolute claim maps to at least one AC
 - [ ] AC Coverage in Technical Design lists all AC#s (none missing)
+- [ ] Every AC Design Constraint (C1-CN) is covered by at least one AC (directly or implicitly via Constraint Details) — not limited to erb type (F847 lesson: C10 had no AC until FL iter1; 8+ features with same gap)
 
 ### V6: Cascading Consistency (F826 Lesson)
 

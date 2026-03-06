@@ -557,6 +557,14 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 847 (2026-03-07)
+- [applied] Threshold導出公式 (N×M) をCommon Checklistに追加 → `.claude/skills/feature-quality/SKILL.md`
+- [revised] 外部docラベル照合ルール追加 → `.claude/skills/feature-quality/SKILL.md` (RESEARCH.md→Common Checklistへ移動)
+- [revised] 数値ID境界パターン (`[^0-9]`) をV3 Matcher Validationに追加 → `.claude/skills/feature-quality/SKILL.md` (RESEARCH.md Issue 17から昇格)
+- [rejected] Philosophy Derivation完全性チェック強化 — SKILL.md:192に既存。FC実行漏れであり規則の欠陥ではない
+- [rejected] Hook Error事前検証 — F826/F845で既reject。Claude Codeランタイム側問題
+- [applied] Constraint→ACカバレッジチェックをV5に追加（erb限定→全type） → `.claude/skills/feature-quality/SKILL.md`
+
 ---
 
 <!-- fc-phase-6-completed -->

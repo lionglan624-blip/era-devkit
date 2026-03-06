@@ -405,6 +405,11 @@ Before any edits, the implementer MUST verify all of the following (Task 1):
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 848 (2026-03-07)
+- [applied] SKILL.md Baseline Measurementチェックリストに「N/Aテーブル形式」ルール追加（F767+F848で再発パターン） → `.claude/skills/feature-quality/SKILL.md`
+- [revised] INFRA.md にDoc-onlyフィーチャーのBaseline指針追加（フルIssueセクション→1行チェックリスト項目に簡素化） → `.claude/skills/feature-quality/INFRA.md`
+- [rejected] imp-analyzer.py 共有セッション処理改善 — 提案自体が変更不要と結論、既存の警告出力で十分
+
 ---
 
 <!-- fc-phase-6-completed -->

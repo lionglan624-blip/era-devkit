@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <!-- Suppress noisy rules incompatible with ERA naming/patterns -->
     <!-- CA1707: Identifiers with underscores (ERA naming convention) -->
     <!-- CA1510/CA1512: Use ThrowIfNull/ThrowIfNullOrEmpty (mass migration) -->

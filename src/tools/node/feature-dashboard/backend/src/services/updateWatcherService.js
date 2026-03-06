@@ -125,7 +125,9 @@ export class UpdateWatcherService {
 
     _buildAnalysisPrompt(version, changelog) {
         return `Claude Code ${version} がリリースされました。以下の changelog を分析し、
-feature-dashboard（Claude Code の自動化ダッシュボード）への影響を報告してください。
+3つの観点から影響を報告してください。
+
+## A. Dashboard 影響 (feature-dashboard: Claude Code 自動化ダッシュボード)
 
 重点チェック項目:
 1. stream-json 出力フォーマットの変更 (streamParser.js でパース)
@@ -135,12 +137,37 @@ feature-dashboard（Claude Code の自動化ダッシュボード）への影響
 5. レート制限 / コンテキストウィンドウの変更
 6. 破壊的変更
 
+## B. devkit プロジェクト影響 (ワークフロー・設定・開発環境)
+
+重点チェック項目:
+1. モデル廃止・追加・ID変更 (agent-registry.md のモデルテーブル)
+2. Skill / Plugin システムの変更 (読み込み、frontmatter、検索)
+3. Subagent / Task / Agent ツールの挙動変更
+4. auto-memory / CLAUDE.md / .claude/ 設定の変更
+5. Windows / Git Bash / WSL 固有の修正・変更
+6. Bash ツール / ToolSearch / Read / Edit 等の組み込みツール変更
+7. git 操作・hook・commit 関連の変更
+8. compaction / context window 管理の変更
+9. CJK / 日本語テキスト処理の変更
+
+## C. 新機能の活用機会
+
+追加された新機能・新コマンド・新設定のうち、このプロジェクトで活用できるものを提案してください:
+- ワークフロー効率化（新コマンド、新設定オプション）
+- Dashboard 機能拡張に使える新API・新イベント
+- 開発体験改善（エディタ連携、デバッグ、パフォーマンス）
+- subagent/skill/plugin の新しい使い方
+
 Changelog:
 ${changelog}
 
 回答形式:
-- IMPACT: HIGH / MEDIUM / LOW / NONE
-- 関連する変更のリスト（各項目に影響の説明）
+- DASHBOARD_IMPACT: HIGH / MEDIUM / LOW / NONE
+- PROJECT_IMPACT: HIGH / MEDIUM / LOW / NONE
+- IMPACT: HIGH / MEDIUM / LOW / NONE (総合)
+- [Dashboard] 関連する変更のリスト（各項目に影響の説明）
+- [Project] 関連する変更のリスト（各項目に影響の説明）
+- [活用提案] 新機能の具体的な活用案（各項目に効果の説明）
 - 推奨アクション（あれば）`;
     }
 
@@ -167,24 +194,37 @@ ${changelog}
     _sendEmail(version, changelog, analysis) {
         if (!this.emailService) return;
 
-        const impact = this._extractImpact(analysis);
-        const subject = `Claude Code ${version} update (${impact} impact)`;
-        const html = this._buildEmailHtml(version, impact, changelog, analysis);
+        const impacts = this._extractDetailedImpact(analysis);
+        const subject = `Claude Code ${version} update (D:${impacts.dashboard} P:${impacts.project})`;
+        const html = this._buildEmailHtml(version, impacts.overall, changelog, analysis, impacts);
 
         this.emailService.sendHtml(subject, html).catch((err) => {
             this.logger.error(`Email notification failed: ${err.message}`);
         });
 
-        this.logger.info(`Release ${version} processed: ${impact} impact`);
+        this.logger.info(`Release ${version} processed: dashboard=${impacts.dashboard} project=${impacts.project}`);
     }
 
     _extractImpact(analysis) {
         if (!analysis) return 'UNKNOWN';
-        const match = analysis.match(/IMPACT:\s*(HIGH|MEDIUM|LOW|NONE)/i);
-        return match ? match[1].toUpperCase() : 'UNKNOWN';
+        // Prefer overall IMPACT (not prefixed by DASHBOARD_ or PROJECT_)
+        const overall = analysis.match(/(?<![A-Z_])IMPACT:\s*(HIGH|MEDIUM|LOW|NONE)/i);
+        return overall ? overall[1].toUpperCase() : 'UNKNOWN';
     }
 
-    _buildEmailHtml(version, impact, changelog, analysis) {
+    _extractDetailedImpact(analysis) {
+        if (!analysis) return { dashboard: 'UNKNOWN', project: 'UNKNOWN', overall: 'UNKNOWN' };
+        const dash = analysis.match(/DASHBOARD_IMPACT:\s*(HIGH|MEDIUM|LOW|NONE)/i);
+        const proj = analysis.match(/PROJECT_IMPACT:\s*(HIGH|MEDIUM|LOW|NONE)/i);
+        const overall = this._extractImpact(analysis);
+        return {
+            dashboard: dash ? dash[1].toUpperCase() : 'UNKNOWN',
+            project: proj ? proj[1].toUpperCase() : 'UNKNOWN',
+            overall,
+        };
+    }
+
+    _buildEmailHtml(version, impact, changelog, analysis, impacts) {
         const impactColors = {
             HIGH: '#dc3545',
             MEDIUM: '#fd7e14',
@@ -196,10 +236,20 @@ ${changelog}
 
         const escape = (s) => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+        const badge = (label, level) => {
+            const c = impactColors[level] || impactColors.UNKNOWN;
+            return `<span style="background:${c};color:white;padding:2px 8px;border-radius:4px;font-weight:bold;margin-right:6px">${label}: ${level}</span>`;
+        };
+
         const parts = [
             `<h2>Claude Code ${escape(version)}</h2>`,
-            `<p><span style="background:${color};color:white;padding:2px 8px;border-radius:4px;font-weight:bold">${impact}</span></p>`,
         ];
+
+        if (impacts && impacts.dashboard) {
+            parts.push(`<p>${badge('Dashboard', impacts.dashboard)}${badge('Project', impacts.project)}</p>`);
+        } else {
+            parts.push(`<p><span style="background:${color};color:white;padding:2px 8px;border-radius:4px;font-weight:bold">${impact}</span></p>`);
+        }
 
         if (analysis) {
             parts.push(`<h3>Analysis</h3><pre style="white-space:pre-wrap">${escape(analysis)}</pre>`);

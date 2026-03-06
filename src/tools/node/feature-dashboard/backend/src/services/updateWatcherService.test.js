@@ -13,7 +13,7 @@ function makeMockLogStreamer() {
     };
 }
 
-function makeMockClaudeService(exitCode = 0, lastAssistantText = 'IMPACT: LOW\n- No breaking changes') {
+function makeMockClaudeService(exitCode = 0, lastAssistantText = 'DASHBOARD_IMPACT: LOW\nPROJECT_IMPACT: LOW\nIMPACT: LOW\n- No breaking changes') {
     return {
         executeUpdateAnalysis: vi.fn((prompt, onComplete) => {
             const executionId = 'exec-123';
@@ -148,8 +148,8 @@ describe('UpdateWatcherService', () => {
             await new Promise((r) => setTimeout(r, 10));
 
             expect(emailService.sendHtml).toHaveBeenCalledWith(
-                expect.stringContaining('v1.2.3'),
-                expect.stringContaining('LOW'),
+                expect.stringContaining('D:LOW'),
+                expect.any(String),
             );
         });
 
@@ -194,7 +194,7 @@ describe('UpdateWatcherService', () => {
             await new Promise((r) => setTimeout(r, 10));
 
             expect(emailService.sendHtml).toHaveBeenCalledWith(
-                expect.stringContaining('UNKNOWN impact'),
+                expect.stringContaining('D:UNKNOWN'),
                 expect.stringContaining('Analysis unavailable'),
             );
         });
@@ -248,22 +248,52 @@ describe('UpdateWatcherService', () => {
         });
     });
 
-    describe('_buildEmailHtml', () => {
-        it('includes version, impact badge, analysis and changelog', () => {
+    describe('_extractDetailedImpact', () => {
+        it('extracts all three impact levels', () => {
             const service = new UpdateWatcherService({ emailService, logStreamer });
-            const html = service._buildEmailHtml('v1.2.3', 'HIGH', '* changes', 'IMPACT: HIGH\nDetails');
+            const result = service._extractDetailedImpact(
+                'DASHBOARD_IMPACT: HIGH\nPROJECT_IMPACT: MEDIUM\nIMPACT: HIGH\nDetails',
+            );
+
+            expect(result).toEqual({ dashboard: 'HIGH', project: 'MEDIUM', overall: 'HIGH' });
+        });
+
+        it('returns UNKNOWN for missing analysis', () => {
+            const service = new UpdateWatcherService({ emailService, logStreamer });
+            const result = service._extractDetailedImpact(null);
+
+            expect(result).toEqual({ dashboard: 'UNKNOWN', project: 'UNKNOWN', overall: 'UNKNOWN' });
+        });
+
+        it('handles partial impact lines', () => {
+            const service = new UpdateWatcherService({ emailService, logStreamer });
+            const result = service._extractDetailedImpact('DASHBOARD_IMPACT: LOW\nIMPACT: LOW');
+
+            expect(result.dashboard).toBe('LOW');
+            expect(result.project).toBe('UNKNOWN');
+            expect(result.overall).toBe('LOW');
+        });
+    });
+
+    describe('_buildEmailHtml', () => {
+        it('includes version, impact badges, analysis and changelog', () => {
+            const service = new UpdateWatcherService({ emailService, logStreamer });
+            const impacts = { dashboard: 'HIGH', project: 'LOW', overall: 'HIGH' };
+            const html = service._buildEmailHtml('v1.2.3', 'HIGH', '* changes', 'IMPACT: HIGH\nDetails', impacts);
 
             expect(html).toContain('v1.2.3');
+            expect(html).toContain('Dashboard: HIGH');
+            expect(html).toContain('Project: LOW');
             expect(html).toContain('#dc3545'); // HIGH color
-            expect(html).toContain('HIGH');
             expect(html).toContain('Details');
             expect(html).toContain('* changes');
         });
 
-        it('shows fallback when analysis is null', () => {
+        it('falls back to single badge when impacts not provided', () => {
             const service = new UpdateWatcherService({ emailService, logStreamer });
             const html = service._buildEmailHtml('v1.2.3', 'UNKNOWN', '* changes', null);
 
+            expect(html).toContain('UNKNOWN');
             expect(html).toContain('Analysis unavailable');
         });
 
@@ -284,7 +314,26 @@ describe('UpdateWatcherService', () => {
             expect(prompt).toContain('v1.2.3');
             expect(prompt).toContain('* Fixed bug');
             expect(prompt).toContain('stream-json');
-            expect(prompt).toContain('IMPACT');
+            expect(prompt).toContain('DASHBOARD_IMPACT');
+            expect(prompt).toContain('PROJECT_IMPACT');
+        });
+
+        it('includes project-level check items', () => {
+            const service = new UpdateWatcherService({ emailService, logStreamer });
+            const prompt = service._buildAnalysisPrompt('v1.2.3', '* Changes');
+
+            expect(prompt).toContain('agent-registry.md');
+            expect(prompt).toContain('Skill / Plugin');
+            expect(prompt).toContain('Windows / Git Bash / WSL');
+            expect(prompt).toContain('CJK');
+        });
+
+        it('includes new feature adoption section', () => {
+            const service = new UpdateWatcherService({ emailService, logStreamer });
+            const prompt = service._buildAnalysisPrompt('v1.2.3', '* Changes');
+
+            expect(prompt).toContain('活用機会');
+            expect(prompt).toContain('活用提案');
         });
     });
 });

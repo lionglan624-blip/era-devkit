@@ -75,7 +75,7 @@ dr button                                   # pm2 restart all
 | Stale waiter → Auto-DR | 5min + 10min | Chain waiters older than `CHAIN_WAITER_TIMEOUT_MS` (5min) are cleaned by `_cleanupOldExecutions()` (runs every 10min). On cleanup, `onExecutionComplete()` is called to trigger deferred Auto-DR re-check |
 | Tmp cleanup interval | 6h | Purge old dashboard debug/daily logs (debug-*.log: 3 days, daily logs: 7 days) |
 | Insights capture | ~2min | `/insights` via node-pty ConPTY. Completion: dual detection (report.html mtime change + PTY `"report is ready"` pattern). Emails HTML report via `emailService.sendHtml()`. Scheduler: cron-style `setTimeout` (Monday 07:00 JST). API: `POST /api/insights/capture`, `GET /api/insights/status` |
-| Update analysis | execution | Claude Code release detected via IMAP (GitHub notification) → `claudeService.executeUpdateAnalysis()` runs as `update-analysis` execution (tile, log, terminal resume). Completion: `_onComplete` callback → HTML email with impact badge + changelog. API: `GET /api/update/status` |
+| Update analysis | execution | Claude Code release detected via IMAP (GitHub notification) → `claudeService.executeUpdateAnalysis()` runs as `update-analysis` execution (tile, log, terminal resume). Analyzes 3 dimensions: Dashboard impact, Project impact (workflow/settings/env), and new feature adoption opportunities. Completion: `_onComplete` callback → HTML email with dual impact badges (D:/P:) + changelog. API: `GET /api/update/status` |
 
 Full config: `backend/src/config.js`
 

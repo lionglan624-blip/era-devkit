@@ -119,6 +119,45 @@ class ACVerifier:
             return f'/mnt/{drive}{path[2:]}'
         return path
 
+    def _resolve_cross_repo_root(self, text: str) -> tuple[Optional[Path], str]:
+        """Find first matching cross-repo prefix in text using _CROSS_REPO_PREFIX_MAP.
+
+        Returns (repo_root, stripped_text) where:
+        - repo_root: resolved repo root Path if a prefix matched, else None
+        - stripped_text: text with the matching prefix removed, or original text if no match
+        """
+        for prefix, (env_var, default) in _CROSS_REPO_PREFIX_MAP.items():
+            if text.startswith(prefix):
+                return Path(os.environ.get(env_var, default)), text[len(prefix):]
+        return None, text
+
+    def _resolve_build_cwd(self, build_command: str) -> tuple[Optional[Path], str]:
+        """Resolve cross-repo CWD for a build command.
+
+        Returns (cross_repo_root, build_args) where:
+        - cross_repo_root: resolved repo root Path if a cross-repo prefix was found, else None
+        - build_args: build_command with the matching prefix token stripped, or
+          the original command if no prefix matched or an explicit 'cd ' was found
+
+        Commands containing 'cd ' are returned unchanged (None, build_command).
+        """
+        if "cd " in build_command:
+            return None, build_command
+
+        if build_command.startswith("dotnet "):
+            args_portion = build_command[len("dotnet "):]
+        else:
+            args_portion = build_command
+
+        tokens = args_portion.split()
+        for token in tokens:
+            cross_repo_root, stripped_token = self._resolve_cross_repo_root(token)
+            if cross_repo_root is not None:
+                build_args = build_command.replace(token, stripped_token, 1)
+                return cross_repo_root, build_args
+
+        return None, build_command
+
     def _safe_relative_path(self, path: Path) -> str:
         """Convert path to display string, using relative path if within repo_root."""
         try:
@@ -162,11 +201,9 @@ class ACVerifier:
             return True, None, all_matches
 
         # Original logic for single pattern
-        for prefix, (env_var, default) in _CROSS_REPO_PREFIX_MAP.items():
-            if file_path.startswith(prefix):
-                cross_repo_root = Path(os.environ.get(env_var, default))
-                target_file = cross_repo_root / file_path[len(prefix):]
-                break
+        cross_repo_root, stripped_path = self._resolve_cross_repo_root(file_path)
+        if cross_repo_root is not None:
+            target_file = cross_repo_root / stripped_path
         else:
             file_path_obj = Path(file_path)
             if file_path_obj.is_absolute():
@@ -992,21 +1029,25 @@ class ACVerifier:
         else:
             build_command = expected_stripped  # Legacy: command in Expected column
 
+        # Resolve cross-repo CWD and strip prefix from build args
+        cross_repo_root, resolved_command = self._resolve_build_cwd(build_command)
+
         # Execute build command
         try:
-            if build_command.startswith("dotnet ") or build_command.strip() == "dotnet":
-                # Run dotnet commands via WSL from repository root
-                wsl_repo_root = self._convert_to_wsl_path(str(self.repo_root))
+            if resolved_command.startswith("dotnet ") or resolved_command.strip() == "dotnet":
+                # Run dotnet commands via WSL from repository root (or resolved cross-repo root)
                 wsl_dotnet = WSL_DOTNET_PATH
-                # Strip leading 'dotnet' from build_command to avoid duplication with wsl_dotnet
+                # Strip leading 'dotnet' from resolved_command to avoid duplication with wsl_dotnet
                 # e.g., "dotnet build devkit.sln" → "build devkit.sln"
-                if build_command.startswith("dotnet "):
-                    build_args = build_command[len("dotnet "):]
+                if resolved_command.startswith("dotnet "):
+                    build_args = resolved_command[len("dotnet "):]
                 else:
                     build_args = "build"  # default subcommand
+                cross_repo_root = cross_repo_root if cross_repo_root is not None else self.repo_root
+                wsl_cross_repo_root = self._convert_to_wsl_path(str(cross_repo_root))
                 env = {**os.environ, "MSYS_NO_PATHCONV": "1"}  # Harmless when called from Python; needed if invoked from Git Bash
                 result = subprocess.run(
-                    ["wsl", "--", "bash", "-c", f"cd {wsl_repo_root} && {wsl_dotnet} {build_args}"],
+                    ["wsl", "--", "bash", "-c", f"cd {wsl_cross_repo_root} && {wsl_dotnet} {build_args}"],
                     capture_output=True,
                     text=True,
                     encoding='utf-8',
@@ -1016,14 +1057,15 @@ class ACVerifier:
                 )
             else:
                 # Non-dotnet commands: run directly without WSL wrapper
+                cross_repo_root = cross_repo_root if cross_repo_root is not None else self.repo_root
                 result = subprocess.run(
-                    build_command.split(),
+                    resolved_command.split(),
                     capture_output=True,
                     text=True,
                     encoding='utf-8',
                     errors='replace',
                     timeout=300,
-                    cwd=str(self.repo_root)
+                    cwd=str(cross_repo_root)
                 )
             exit_code = result.returncode
             stdout = result.stdout

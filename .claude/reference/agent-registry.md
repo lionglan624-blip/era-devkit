@@ -11,7 +11,7 @@
 | Model | ID | Context |
 |-------|-----|:-------:|
 | Opus 4.6 | claude-opus-4-6 | 200K (1M beta) |
-| Sonnet 4.5 | claude-sonnet-4-5-20250929 | 200K (1M beta) |
+| Sonnet 4.6 | claude-sonnet-4-6 | 200K (1M beta) |
 | Haiku 4.5 | claude-haiku-4-5-20251001 | 200K |
 
 **1M context**: Use `[1m]` suffix (e.g., `/model opus[1m]`). Requires pay-as-you-go plan.

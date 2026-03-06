@@ -1,6 +1,6 @@
 ---
 name: task-comparator
-description: Compare derived tasks with current tasks. Model: haiku.
+description: Compare derived tasks with current tasks. Model: sonnet.
 context: fork
 agent: general-purpose
 allowed-tools: Read

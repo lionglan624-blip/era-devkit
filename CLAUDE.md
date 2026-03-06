@@ -75,7 +75,7 @@ docs/
   tools/              # Tool docs (lsp-daemon.md)
   strategy/           # Test strategy, naming, design
 pm/
-  features/           # feature-{ID}.md (275+ files)
+  features/           # feature-{ID}.md (800+ files)
   reference/          # Workflow references (feature-template, ac-matcher, designs)
   audit/              # Audit reports
   templates/          # Content creation templates (ERB kojo originals)
@@ -214,6 +214,7 @@ Type: research  # -> no implementer — investigation/analysis only
 | `src/tools/python/dashboard_diag.py` | Dashboard execution diagnostic — see "Dashboard Investigation" section for task→flag table |
 | `src/tools/python/feature-status.py` | Status/dependency sync (`--help`) |
 | `src/tools/python/ac_ops.py` | AC operations (`python src/tools/python/ac_ops.py --help`) |
+| `src/tools/python/imp-analyzer.py` | /imp session analysis (`python src/tools/python/imp-analyzer.py {ID}`) |
 
 ## Escalation Policy
 
@@ -286,7 +287,7 @@ Zero-token alternative to Serena MCP. Persistent HTTP daemon wrapping Serena's P
 > **Note**: `--path` and `symbols` path are relative to the Serena project root (`src/`), not the repo root. E.g. `tools/dotnet/...` not `src/tools/dotnet/...`.
 | Non-C# files | Read / Grep | ERB, CSV, YAML, comments |
 
-- **PM2**: `pm2 start ecosystem.config.js` (root) / `pm2 stop lsp-daemon` / `dr` (restart all)
+- **PM2**: `pm2 start ecosystem.config.js` (root, lsp-daemon only) / `pm2 stop lsp-daemon` / `dr` (restart all)
 - **Commands**: `status`, `symbols`, `find`, `refs`, `rename`, `replace`, `insert-before`, `insert-after`, `restart`
 - **Details**: `docs/tools/lsp-daemon.md` (error handling, PM2 management)
 

@@ -22,7 +22,7 @@ Decompose Phase 24 (NTR Bounded Context design) into sub-features based on Phase
 
 | Type | Feature | Status | Description |
 |------|---------|--------|-------------|
-| Predecessor | F848 | [DRAFT] | Post-Phase Review Phase 23 — must be [DONE] before F849 proceeds |
+| Predecessor | F848 | [DONE] | Post-Phase Review Phase 23 — must be [DONE] before F849 proceeds |
 
 ## Links
 

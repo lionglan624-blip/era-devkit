@@ -387,7 +387,7 @@ dotnet test Era.Core.Tests --filter "Category=StateSystem"
 
 ### Phase 23: NTR Kojo Reference Analysis (was Phase 22)
 
-**Phase Status**: TODO
+**Phase Status**: DONE
 
 **Goal**: 既存NTR口上の分岐パターンを分析し、Phase 24 (NTR Bounded Context設計) および content-roadmap Phase 8h/8m/8n の実装ベースラインを確立
 
@@ -556,9 +556,9 @@ ntr_kojo:
 | `pm/reference/ntr-ddd-input.md` | Phase 24 設計入力 |
 
 **Success Criteria**:
-- [ ] 全10キャラ NTR分岐統計完了
-- [ ] Phase 24 Value Object 候補リスト確定
-- [ ] content-roadmap 8h/8m/8n Gap 分析完了
+- [x] 全10キャラ NTR分岐統計完了
+- [x] Phase 24 Value Object 候補リスト確定
+- [x] content-roadmap 8h/8m/8n Gap 分析完了
 
 **Next**: Create Phase 24 planning feature when this phase completes
 

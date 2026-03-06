@@ -1,4 +1,4 @@
-# Feature 074: KU 汎用 COM統吁E
+# Feature 074: KU 汎用 COM統合
 
 ## Status: [DONE]
 
@@ -16,7 +16,7 @@ Reorganize KU (汎用) kojo files into COM category-based structure using `tools
 
 ### In Scope
 - Run `reorganize_kojo.py --char KU` (auto-fixes missing RETURN in reorganized files)
-- Run `reorganize_kojo.py --char KU --fix-preserved` (fixes missing RETURN in NTR口丁E SexHara, WC系)
+- Run `reorganize_kojo.py --char KU --fix-preserved` (fixes missing RETURN in NTR口上, SexHara, WC系)
 - Run `reorganize_kojo.py --char KU --verify` (headless test with error detection)
 - Verify with ErbLinter, kojo-mapper
 - Delete original files after verification
@@ -31,7 +31,7 @@ Reorganize KU (汎用) kojo files into COM category-based structure using `tools
 - [x] Build succeeds (0 errors)
 - [x] ErbLinter passes for KU files
 - [x] kojo-mapper function count maintained (325 functions)
-- [x] `reorganize_kojo.py --char KU --verify` passes (✁EPASS)
+- [x] `reorganize_kojo.py --char KU --verify` passes (✓ PASS)
 
 ## Subagent Execution
 
@@ -42,4 +42,4 @@ Use the kojo-refactor subagent to process KU
 ## Links
 
 - [feature-065.md](feature-065.md) - Tooling reference
-- [kojo-refactor.md](../../../archive/claude_legacy_20251230/agents/kojo-refactor.md) - Subagent
+- [kojo-refactor.md](../../.claude/agents/kojo-refactor.md) - Subagent

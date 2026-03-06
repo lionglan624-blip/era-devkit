@@ -4,7 +4,7 @@
 
 ## Background
 
-- **Original problem**: Feature 075 created consolidated reference/ documents but left legacy files in pm/ for backward compatibility
+- **Original problem**: Feature 075 created consolidated reference/ documents but left legacy files in Game/agents/ for backward compatibility
 - **Current state**: 9 legacy files (3,814 lines) still exist with 60+ cross-references
 - **Solution**: Complete consolidation by merging unique content and updating all references
 
@@ -83,15 +83,15 @@ For each legacy file:
 ### Phase 3: Reference Update
 Search and replace patterns:
 ```
-kojo-guidelines.md ↁEreference/kojo-reference.md
-kojo-index.md ↁEreference/kojo-reference.md
-kojo-characters.md ↁEreference/kojo-reference.md
-testing.md ↁEreference/testing-reference.md
-testing-scenarios.md ↁEreference/testing-reference.md
-kojo-test-reference.md ↁEreference/testing-reference.md
-uEmuera-specification.md ↁEreference/engine-reference.md
-uEmuera-interfaces.md ↁEreference/engine-reference.md
-erb-reference.md ↁEreference/erb-reference.md
+kojo-guidelines.md → reference/kojo-reference.md
+kojo-index.md → reference/kojo-reference.md
+kojo-characters.md → reference/kojo-reference.md
+testing.md → reference/testing-reference.md
+testing-scenarios.md → reference/testing-reference.md
+kojo-test-reference.md → reference/testing-reference.md
+uEmuera-specification.md → reference/engine-reference.md
+uEmuera-interfaces.md → reference/engine-reference.md
+erb-reference.md → reference/erb-reference.md
 ```
 
 ### Phase 4: Cleanup
@@ -104,10 +104,10 @@ erb-reference.md ↁEreference/erb-reference.md
 From audit results, references exist in:
 - `.claude/commands/*.md`
 - `tools/*/README.md`
-- `pm/features/feature-*.md`
-- `pm/WBS-*.md`
-- `pm/content-roadmap.md`
-- `pm/archive/*.md`
+- `Game/agents/feature-*.md`
+- `Game/agents/WBS-*.md`
+- `Game/agents/content-roadmap.md`
+- `Game/agents/archive/*.md`
 
 ## Effort Estimate
 
@@ -122,6 +122,6 @@ From audit results, references exist in:
 ## Links
 
 - [feature-075.md](feature-075.md) - Documentation Restructure (predecessor)
-- [reference/kojo-reference.md](../reference/kojo-reference.md) - Kojo consolidated
-- [reference/testing-reference.md](../reference/testing-reference.md) - Testing consolidated
-- [reference/engine-reference.md](../reference/engine-reference.md) - Engine consolidated
+- [reference/kojo-reference.md](reference/kojo-reference.md) - Kojo consolidated
+- [reference/testing-reference.md](reference/testing-reference.md) - Testing consolidated
+- [reference/engine-reference.md](reference/engine-reference.md) - Engine consolidated

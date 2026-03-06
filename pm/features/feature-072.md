@@ -1,4 +1,4 @@
-# Feature 072: K9 大妖精 COM統吁E
+# Feature 072: K9 大妖精 COM統合
 
 ## Status: [DONE]
 
@@ -16,7 +16,7 @@ Reorganize K9 (大妖精) kojo files into COM category-based structure using `to
 
 ### In Scope
 - Run `reorganize_kojo.py --char K9` (auto-fixes missing RETURN in reorganized files)
-- Run `reorganize_kojo.py --char K9 --fix-preserved` (fixes missing RETURN in NTR口丁E SexHara, WC系)
+- Run `reorganize_kojo.py --char K9 --fix-preserved` (fixes missing RETURN in NTR口上, SexHara, WC系)
 - Run `reorganize_kojo.py --char K9 --verify` (headless test with error detection)
 - Verify with ErbLinter, kojo-mapper
 - Delete original files after verification
@@ -42,4 +42,4 @@ Use the kojo-refactor subagent to process K9
 ## Links
 
 - [feature-065.md](feature-065.md) - Tooling reference
-- [kojo-refactor.md](../../../archive/claude_legacy_20251230/agents/kojo-refactor.md) - Subagent
+- [kojo-refactor.md](../../.claude/agents/kojo-refactor.md) - Subagent

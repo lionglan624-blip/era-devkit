@@ -14,11 +14,11 @@
 
 ### Philosophy (Mid-term Vision)
 
-era プロジェクトにおいて、�Eての技術情報は単一の真実�E惁E��溁E(SSOT: Single Source of Truth) に一允E��される。重褁E��報の排除により、サブエージェントが正しい惁E��のみを参照し、ドキュメント間の矛盾による誤動作を防ぐ、E*Skills are the Single Source of Truth for commands. Agents MUST reference Skills, not hardcode commands.**
+era プロジェクトにおいて、全ての技術情報は単一の真実の情報源 (SSOT: Single Source of Truth) に一元化される。重複情報の排除により、サブエージェントが正しい情報のみを参照し、ドキュメント間の矛盾による誤動作を防ぐ。**Skills are the Single Source of Truth for commands. Agents MUST reference Skills, not hardcode commands.**
 
 ### Problem (Current Issue)
 
-F200-220 の実裁E��程で、テストコマンド、型ルーチE��ング、ログ形式、ファイルパスなどの技術情報が褁E��のドキュメンチE(do.md, testing SKILL, 吁Eagent.md) に刁E��・重褁E��て記載されてぁE��。これにより以下�E問題が発甁E
+F200-220 の実装過程で、テストコマンド、型ルーティング、ログ形式、ファイルパスなどの技術情報が複数のドキュメント (do.md, testing SKILL, 各 agent.md) に分散・重複して記載されている。これにより以下の問題が発生:
 
 | ID | Topic | 競合するソース | 正しい SSOT |
 |:--:|-------|--------------|------------|
@@ -29,26 +29,26 @@ F200-220 の実裁E��程で、テストコマンド、型ルーチE��ン
 | S5 | eraTW path | eratw-reader.md (hardcoded) | CLAUDE.md or settings |
 | S7 | pre-commit 思想 | SKILL (全検証) vs pre-commit (regression のみ) | testing SKILL.md |
 | S8 | F202 思想未反映 | F202 で定義した Phase 7 ループが do.md に未反映 | do.md |
-| S9 | IMPLE_FEATURE_ID作�E | do.md L201-204 (bashコマンド直書ぁE | testing SKILL |
-| S10 | チE��ト�E力パス | do.md L235, L312 | testing SKILL |
+| S9 | IMPLE_FEATURE_ID作成 | do.md L201-204 (bashコマンド直書き) | testing SKILL |
+| S10 | テスト出力パス | do.md L235, L312 | testing SKILL |
 | S11 | engine AC詳細 | do.md L242-248 | testing SKILL |
-| S12 | kojo_test_gen.pyコマンチE| do.md L302-304 | testing SKILL |
-| S13 | Design Principles | CLAUDE.md (暗黙的) vs 未斁E��匁E| CLAUDE.md (Design Principles section) |
-| S14 | file Type Method | 既孁EFeature で不統一 (`-`, `exists`, 未記輁E | testing SKILL.md (明文匁E |
+| S12 | kojo_test_gen.pyコマンド | do.md L302-304 | testing SKILL |
+| S13 | Design Principles | CLAUDE.md (暗黙的) vs 未文書化 | CLAUDE.md (Design Principles section) |
+| S14 | file Type Method | 既存 Feature で不統一 (`-`, `exists`, 未記載) | testing SKILL.md (明文化) |
 
 (S6 is resolved by F221)
 
 ### Goal (What to Achieve)
 
-全ての SSOT 違反を解消し、情報の一允E��を達成すめE
+全ての SSOT 違反を解消し、情報の一元化を達成する:
 
-1. **S1, S4, S9-S12**: testing SKILL.md めESSOT とし、do.md/agents から重褁E��載を削除
-2. **S2**: do.md の Type routing めESSOT とし、implementer.md から重褁E��除
-3. **S3**: F218 の context-aware pre-commit 思想めESSOT とし、do.md/F212 の古ぁE��載削除
-4. **S5**: eraTW path めECLAUDE.md で設定可能にし、eratw-reader.md のハ�Eドコード削除
-5. **S7**: testing SKILL.md の pre-commit 思想を�E確匁E
-6. **S8**: F202 Phase 7 ループ思想めEdo.md に反映
-7. **S13**: Design Principles セクションめECLAUDE.md に追加
+1. **S1, S4, S9-S12**: testing SKILL.md を SSOT とし、do.md/agents から重複記載を削除
+2. **S2**: do.md の Type routing を SSOT とし、implementer.md から重複削除
+3. **S3**: F218 の context-aware pre-commit 思想を SSOT とし、do.md/F212 の古い記載削除
+4. **S5**: eraTW path を CLAUDE.md で設定可能にし、eratw-reader.md のハードコード削除
+5. **S7**: testing SKILL.md の pre-commit 思想を明確化
+6. **S8**: F202 Phase 7 ループ思想を do.md に反映
+7. **S13**: Design Principles セクションを CLAUDE.md に追加
 8. **S14**: file Type AC の Method 凡例を testing SKILL.md に追加
 
 ---
@@ -66,7 +66,7 @@ F200-220 の実裁E��程で、テストコマンド、型ルーチE��ン
 | 5 | Pre-commit philosophy | file | Grep | contains | "regression" | [x] |
 | 6 | F202 Phase 7 loop | file | Grep | contains | "F202" | [x] |
 | 7 | Design Principles section | file | Grep | contains | "## Design Principles" | [x] |
-| 8 | file Type Method凡侁E| file | Grep | contains | "exists.*Glob" | [x] |
+| 8 | file Type Method凡例 | file | Grep | contains | "exists.*Glob" | [x] |
 | 9 | do.md no hardcoded commands | file | Grep | not_contains | "dotnet run --project" | [x] |
 | 10 | ac-tester references SKILL | file | Grep | contains | "Skill(testing)" | [x] |
 | 11 | regression-tester references SKILL | file | Grep | contains | "Skill(testing)" | [x] |
@@ -75,47 +75,47 @@ F200-220 の実裁E��程で、テストコマンド、型ルーチE��ン
 ### AC Details
 
 **AC1**: `do.md` should reference `Skill(testing)` instead of hardcoding test commands
-**Test**: `Grep("Skill\(testing\)", "c:\Era\era紁E��館protoNTR\.claude\commands\do.md")`
+**Test**: `Grep("Skill\(testing\)", "c:\Era\era紅魔館protoNTR\.claude\commands\do.md")`
 **Expected**: At least 1 match
 
 **AC2**: `implementer.md` should not duplicate Type routing information (SSOT: do.md)
-**Test**: `Grep("Type:", "c:\Era\era紁E��館protoNTR\.claude\agents\implementer.md")`
+**Test**: `Grep("Type:", "c:\Era\era紅魔館protoNTR\.claude\agents\implementer.md")`
 **Expected**: 0 matches (only in do.md)
 
 **AC3**: Pre-commit scope documentation references F218 context-aware approach
-**Test**: `Grep("F218", "c:\Era\era紁E��館protoNTR\.claude\commands\do.md")`
+**Test**: `Grep("F218", "c:\Era\era紅魔館protoNTR\.claude\commands\do.md")`
 **Expected**: At least 1 match
 
 **AC4**: eraTW path is configurable via environment variable or CLAUDE.md
-**Test**: `Grep("ERATW_PATH", "c:\Era\era紁E��館protoNTR\.claude\agents\eratw-reader.md")`
+**Test**: `Grep("ERATW_PATH", "c:\Era\era紅魔館protoNTR\.claude\agents\eratw-reader.md")`
 **Expected**: At least 1 match
 
 **AC5**: Pre-commit philosophy clarified in testing SKILL.md
-**Test**: `Grep("regression", "c:\Era\era紁E��館protoNTR\.claude\skills\testing\SKILL.md")`
+**Test**: `Grep("regression", "c:\Era\era紅魔館protoNTR\.claude\skills\testing\SKILL.md")`
 **Expected**: Contains clarification of pre-commit scope (regression tests)
 
 **AC6**: F202 Phase 7 loop philosophy reflected in do.md
-**Test**: `Grep("F202", "c:\Era\era紁E��館protoNTR\.claude\commands\do.md")`
+**Test**: `Grep("F202", "c:\Era\era紅魔館protoNTR\.claude\commands\do.md")`
 **Expected**: At least 1 match
 
 **AC7**: Design Principles section exists in CLAUDE.md
-**Test**: `Grep("## Design Principles", "c:\Era\era紁E��館protoNTR\CLAUDE.md")`
+**Test**: `Grep("## Design Principles", "c:\Era\era紅魔館protoNTR\CLAUDE.md")`
 **Expected**: At least 1 match
 
 **AC8**: file Type Method legend added to testing SKILL.md
-**Test**: `Grep("exists.*Glob", "c:\Era\era紁E��館protoNTR\.claude\skills\testing\SKILL.md")`
+**Test**: `Grep("exists.*Glob", "c:\Era\era紅魔館protoNTR\.claude\skills\testing\SKILL.md")`
 **Expected**: At least 1 match explaining Method column usage (see Notes S14 for proposed content)
 
 **AC9**: do.md does not hardcode engine test commands (references SKILL instead)
-**Test**: `Grep("dotnet run --project", "c:\Era\era紁E��館protoNTR\.claude\commands\do.md")`
+**Test**: `Grep("dotnet run --project", "c:\Era\era紅魔館protoNTR\.claude\commands\do.md")`
 **Expected**: 0 matches (should reference Skill(testing))
 
 **AC10**: ac-tester.md references testing SKILL
-**Test**: `Grep("Skill\(testing\)", "c:\Era\era紁E��館protoNTR\.claude\agents\ac-tester.md")`
+**Test**: `Grep("Skill\(testing\)", "c:\Era\era紅魔館protoNTR\.claude\agents\ac-tester.md")`
 **Expected**: At least 1 match
 
 **AC11**: regression-tester.md references testing SKILL
-**Test**: `Grep("Skill\(testing\)", "c:\Era\era紁E��館protoNTR\.claude\agents\regression-tester.md")`
+**Test**: `Grep("Skill\(testing\)", "c:\Era\era紅魔館protoNTR\.claude\agents\regression-tester.md")`
 **Expected**: At least 1 match
 
 **AC12**: Build succeeds after documentation changes
@@ -147,7 +147,7 @@ F200-220 の実裁E��程で、テストコマンド、型ルーチE��ン
 <!-- Format: - **YYYY-MM-DD**: {reviewer feedback} -->
 
 - **2025-12-27**: FL review completed. AC#1,2,5,9,10,11 were pre-satisfied (SSOT consolidation already done in prior features). Remaining AC#3,4,6,7,8 are optional enhancements. User decision: mark satisfied ACs as [x], keep Feature for future work on remaining ACs.
-- **2025-12-27**: FL iter3 - AC#8 Expected "exists.*Glob" は実裁E���Eパターン。testing SKILL.md に Method legend を追加後に検証可能、E
+- **2025-12-27**: FL iter3 - AC#8 Expected "exists.*Glob" は実装後のパターン。testing SKILL.md に Method legend を追加後に検証可能。
 
 ---
 
@@ -157,10 +157,10 @@ F200-220 の実裁E��程で、テストコマンド、型ルーチE��ン
 |-----------|:-----:|-------|--------|--------|
 | 2025-12-27 | init | - | Feature created from F223 Task 3 | - |
 | 2025-12-27 | fl | feature-reviewer | Review + Validate | 6/12 AC pre-satisfied |
-| 2025-12-27 | decision | user | Mark satisfied ACs, keep for remaining | AC#1,2,5,9,10,11 ↁE[x] |
-| 2025-12-27 | fl | fl-loop | Task status sync | Task 1,2,5,8,9 ↁE[x] |
+| 2025-12-27 | decision | user | Mark satisfied ACs, keep for remaining | AC#1,2,5,9,10,11 → [x] |
+| 2025-12-27 | fl | fl-loop | Task status sync | Task 1,2,5,8,9 → [x] |
 | 2025-12-27 | fl | fl-loop | Auto-fix iter2 | Type:code→file, AC#8 regex fix, Task#9 reset |
-| 2025-12-27 | fl | user | Pending decisions | AC:Task 1:1→維持E AC#4→維持E Type→file維持E|
+| 2025-12-27 | fl | user | Pending decisions | AC:Task 1:1→維持, AC#4→維持, Type→file維持 |
 | 2025-12-27 | fl | fl-loop | Auto-fix iter4 | AC#8 Table/Details pattern sync |
 | 2025-12-27 | fl | user | Pattern decision | AC#8: exists.*Glob (simpler) |
 | 2025-12-27 | fl | fl-loop | Auto-fix iter5 | AC#8 pattern, Task#7 S14 ref |
@@ -200,16 +200,16 @@ Proposed content for CLAUDE.md Design Principles section:
 
 | Principle | Description | Implementation |
 |-----------|-------------|----------------|
-| **SSOT** | 惁E��は1箁E��のみ。SKILLが詳細のtruth | Skills > CLAUDE.md > commands > agents |
-| **TDD** | RED→GREEN、テスト�E衁E| do.md Phase 3、Hook保護 |
-| **STOP on Ambiguity** | 不�E確なら独自判断せずSTOP | CLAUDE.md Escalation Policy |
-| **Separation of Concerns** | Opus=判断、Subagent=実裁E| CLAUDE.md Subagent Strategy |
+| **SSOT** | 情報は1箇所のみ。SKILLが詳細のtruth | Skills > CLAUDE.md > commands > agents |
+| **TDD** | RED→GREEN、テスト先行 | do.md Phase 3、Hook保護 |
+| **STOP on Ambiguity** | 不明確なら独自判断せずSTOP | CLAUDE.md Escalation Policy |
+| **Separation of Concerns** | Opus=判断、Subagent=実装 | CLAUDE.md Subagent Strategy |
 | **Fail Fast** | 3回失敗でSTOP | do.md Error Handling |
-| **Immutable Tests** | AC/RegressionチE��ト編雁E��止 | Hook (pre-ac-write.ps1) |
-| **Minimal Context** | OK時�E簡潔、ERR時�Eみ詳細 | Agent output format |
+| **Immutable Tests** | AC/Regressionテスト編集禁止 | Hook (pre-ac-write.ps1) |
+| **Minimal Context** | OK時は簡潔、ERR時のみ詳細 | Agent output format |
 | **AC:Task 1:1** | 1 AC = 1 Test = 1 Task = 1 Dispatch | ac-task-aligner.md |
-| **Binary Judgment** | PASS/FAILのみ、曖昧な判定なぁE| testing SKILL |
-| **Progressive Disclosure** | 惁E��は段階的に読み込む�E�Enthropic推奨�E�E| skills: YAML frontmatter |
+| **Binary Judgment** | PASS/FAILのみ、曖昧な判定なし | testing SKILL |
+| **Progressive Disclosure** | 情報は段階的に読み込む（Anthropic推奨） | skills: YAML frontmatter |
 ```
 
 ### S14: file Type Method Legend
@@ -221,15 +221,15 @@ Proposed addition to testing SKILL.md AC Definition Format section:
 
 | AC Type | Matcher | Recommended Method | Example |
 |---------|---------|-------------------|---------|
-| file | exists/not_exists | Glob | `Glob("pm/features/feature-*.md")` |
+| file | exists/not_exists | Glob | `Glob("Game/agents/feature-*.md")` |
 | file | contains/matches | Grep | `Grep("## Status", "feature-226.md")` |
 | code | contains/matches | Grep | `Grep("Skill\(testing\)", "do.md")` |
 | code | not_contains | Grep | `Grep("hardcoded", "do.md")` (expect 0) |
 
 **Note**:
-- `exists`/`not_exists` Matcher ↁEMethod = `Glob` (file path pattern)
-- `contains`/`matches` Matcher ↁEMethod = `Grep` (content search)
-- testing SKILL の「Verification Method: Glob/Grep」�E Type 全体�E説明。個別 AC では Matcher に応じて使ぁE�Eける、E
+- `exists`/`not_exists` Matcher → Method = `Glob` (file path pattern)
+- `contains`/`matches` Matcher → Method = `Grep` (content search)
+- testing SKILL の「Verification Method: Glob/Grep」は Type 全体の説明。個別 AC では Matcher に応じて使い分ける。
 ```
 
 ### Implementation Guidance

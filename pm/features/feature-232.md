@@ -28,14 +28,14 @@ F229 verification revealed additional file placement issues not covered by its s
 
 | Issue | Problem | Impact |
 |:-----:|---------|--------|
-| P5 | Debug log location unclear: CLAUDE.md `.tmp/` is generic for ad-hoc output, but do.md and testing SKILL use `logs/debug/` (relative) for reviewable debug logs | Need explicit `_out/logs/debug/` in CLAUDE.md |
-| P6 | `pm/logs/` contains legacy logs with malformed filenames (`${timestamp}`) | Workspace pollution, obsolete data |
+| P5 | Debug log location unclear: CLAUDE.md `.tmp/` is generic for ad-hoc output, but do.md and testing SKILL use `logs/debug/` (relative) for reviewable debug logs | Need explicit `Game/logs/debug/` in CLAUDE.md |
+| P6 | `Game/agents/logs/` contains legacy logs with malformed filenames (`${timestamp}`) | Workspace pollution, obsolete data |
 | P7 | GUI exe placement undocumented: currently root, should be `uEmuera_build/` with shortcut | Unclear build artifact handling |
 
 ### Goal (What to Achieve)
 
 1. Unify debug log location documentation (CLAUDE.md and do.md agree)
-2. Remove legacy `pm/logs/` directory
+2. Remove legacy `Game/agents/logs/` directory
 3. Document GUI exe placement and shortcut convention in CLAUDE.md
 4. Automate shortcut (.lnk) creation for GUI exe
 
@@ -47,9 +47,9 @@ F229 verification revealed additional file placement issues not covered by its s
 
 | AC# | Description | Type | Method | Matcher | Expected | Status |
 |:---:|-------------|------|--------|---------|----------|:------:|
-| 1 | CLAUDE.md debug log location updated | code | Grep | contains | "_out/logs/debug" | [x] |
+| 1 | CLAUDE.md debug log location updated | code | Grep | contains | "Game/logs/debug" | [x] |
 | 2 | do.md uses logs/debug path | code | Grep | contains | "logs/debug" | [x] |
-| 3 | pm/logs/ cleaned | file | Glob | count_equals | 1 | [x] |
+| 3 | Game/agents/logs/ cleaned | file | Glob | count_equals | 1 | [x] |
 | 4 | CLAUDE.md documents GUI exe placement | code | Grep | contains | "uEmuera_build" | [x] |
 | 5 | CLAUDE.md documents shortcut convention | code | Grep | contains | ".lnk" | [x] |
 | 6 | Build succeeds | build | dotnet | succeeds | engine/uEmuera.Headless.csproj | [x] |
@@ -57,9 +57,9 @@ F229 verification revealed additional file placement issues not covered by its s
 
 ### AC Details
 
-**AC1 Test**: Verify CLAUDE.md references _out/logs/debug for debug output
+**AC1 Test**: Verify CLAUDE.md references Game/logs/debug for debug output
 ```
-Grep(pattern="_out/logs/debug", path="CLAUDE.md")
+Grep(pattern="Game/logs/debug", path="CLAUDE.md")
 ```
 
 **AC2 Test**: Verify do.md uses logs/debug path (relative path is correct since executed from Game/)
@@ -69,7 +69,7 @@ Grep(pattern="logs/debug", path=".claude/commands/do.md")
 
 **AC3 Test**: Verify legacy logs directory cleaned (only .gitkeep remains)
 ```
-Glob(pattern="pm/logs/*").count == 1 (the remaining file should be .gitkeep)
+Glob(pattern="Game/agents/logs/*").count == 1 (the remaining file should be .gitkeep)
 ```
 
 **AC4 Test**: Verify GUI exe placement documentation
@@ -89,7 +89,7 @@ dotnet build engine/uEmuera.Headless.csproj
 
 **AC7 Test**: Verify shortcut exists (in repository root)
 ```
-Glob(pattern="uEmuera.lnk") ↁEexpect match
+Glob(pattern="uEmuera.lnk") → expect match
 ```
 
 ---
@@ -98,9 +98,9 @@ Glob(pattern="uEmuera.lnk") ↁEexpect match
 
 | Task# | AC# | Description | Status |
 |:-----:|:---:|-------------|:------:|
-| 1 | 1 | Update CLAUDE.md: Clarify `.tmp/` is for throwaway files, add `_out/logs/debug/` for debug logs that may need review | [x] |
+| 1 | 1 | Update CLAUDE.md: Clarify `.tmp/` is for throwaway files, add `Game/logs/debug/` for debug logs that may need review | [x] |
 | 2 | 2 | Verify do.md uses logs/debug path (relative path is correct) | [x] |
-| 3 | 3 | Remove all files and subdirectories from `pm/logs/` except .gitkeep | [x] |
+| 3 | 3 | Remove all files and subdirectories from `Game/agents/logs/` except .gitkeep | [x] |
 | 4 | 4 | Add GUI exe placement section to CLAUDE.md (`uEmuera_build/` directory) | [x] |
 | 5 | 5 | Document shortcut convention in CLAUDE.md (root shortcut points to uEmuera_build/uEmuera.exe) | [x] |
 | 6 | 6 | Verify `dotnet build engine/uEmuera.Headless.csproj` succeeds | [x] |
@@ -121,21 +121,21 @@ Glob(pattern="uEmuera.lnk") ↁEexpect match
 ### Debug Log Location Decision
 
 **Current state**:
-- CLAUDE.md Temporary Files section: "Ad-hoc output ↁE`.tmp/`"
+- CLAUDE.md Temporary Files section: "Ad-hoc output → `.tmp/`"
 - do.md Phase 5/6 sections: References `logs/debug/` (relative path)
-- Actual structure: `_out/logs/debug/failed/` exists and is used
+- Actual structure: `Game/logs/debug/failed/` exists and is used
 
-**Decision**: Use `_out/logs/debug/` as the SSOT for debug logs.
-- `.tmp/` ↁEtemporary script output, throwaway files
-- `_out/logs/debug/` ↁEdebug logs that may need review
+**Decision**: Use `Game/logs/debug/` as the SSOT for debug logs.
+- `.tmp/` → temporary script output, throwaway files
+- `Game/logs/debug/` → debug logs that may need review
 
 ### Legacy Logs Cleanup
 
-**Target**: Remove all files and subdirectories from `pm/logs/` except `.gitkeep`
+**Target**: Remove all files and subdirectories from `Game/agents/logs/` except `.gitkeep`
 - Contains ~25 directories + 11 malformed files with `${timestamp}` pattern
 - All are gitignored but pollute local workspace
 
-**Note**: Production logs are in `_out/logs/prod/` - DO NOT touch.
+**Note**: Production logs are in `Game/logs/prod/` - DO NOT touch.
 
 ### GUI Placement Convention
 

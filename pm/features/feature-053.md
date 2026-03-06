@@ -4,51 +4,51 @@
 
 ## Overview
 
-全キャラ(K1-K10)の口上実裁E��忁E��なFeature番号を割り当て、実裁E��ード�EチE�Eを作�Eする、E
+全キャラ(K1-K10)の口上実装に必要なFeature番号を割り当て、実装ロードマップを作成する。
 
 ## Goals
 
-1. 全キャラの関数をシーンタイプ�ECOMF番号で整琁E
+1. 全キャラの関数をシーンタイプ・COMF番号で整理
 2. 3関数単位でFeatureグループを定義
-3. Feature 054+ の番号割当計画を作�E
+3. Feature 054+ の番号割当計画を作成
 
 ## Deliverables
 
-- [x] 全キャラCOMFマップ作�E
-- [x] Feature刁E��計画表 (Feature番号 ↁEキャラ ↁE対象関数グルーチE
+- [x] 全キャラCOMFマップ作成
+- [x] Feature分割計画表 (Feature番号 → キャラ → 対象関数グループ)
 - [x] index-features-history.md 更新
 
-## Current Data (Feature 052 AC刁E��)
+## Current Data (Feature 052 AC分析)
 
-| ID | キャラ | 総関数 | 基本口丁E| 好感度カバ�E | 作業種別 |
+| ID | キャラ | 総関数 | 基本口上 | 好感度カバー | 作業種別 |
 |:--:|--------|:------:|:--------:|:------------:|----------|
-| K5 | レミリア | 345 | 13 | 1/8 | 新規作�E |
-| K6 | フラン | 303 | 2 | 1/8 | 新規作�E |
-| K3 | パチュリー | 304 | 8 | 1/8 | 新規作�E |
-| K9 | 大妖精 | 534 | 297 | 0/8 | 品質改喁E|
-| K8 | チルチE| 558 | 299 | 1/8 | 品質改喁E|
-| K10 | 魔理沁E| 421 | 307 | 1/8 | 品質改喁E|
-| K2 | 小悪魁E| 589 | 291 | 1/8 | 品質改喁E|
-| K4 | 咲夁E| 703 | 316 | 2/8 | 品質改喁E|
-| K1 | 美鈴 | 289 | 28 | 0/8 | 品質改喁E|
-| **合訁E* | | **4,046** | | | |
+| K5 | レミリア | 345 | 13 | 1/8 | 新規作成 |
+| K6 | フラン | 303 | 2 | 1/8 | 新規作成 |
+| K3 | パチュリー | 304 | 8 | 1/8 | 新規作成 |
+| K9 | 大妖精 | 534 | 297 | 0/8 | 品質改善 |
+| K8 | チルノ | 558 | 299 | 1/8 | 品質改善 |
+| K10 | 魔理沙 | 421 | 307 | 1/8 | 品質改善 |
+| K2 | 小悪魔 | 589 | 291 | 1/8 | 品質改善 |
+| K4 | 咲夜 | 703 | 316 | 2/8 | 品質改善 |
+| K1 | 美鈴 | 289 | 28 | 0/8 | 品質改善 |
+| **合計** | | **4,046** | | | |
 
-## Feature粒度方釁E
+## Feature粒度方針
 
-- 1 Feature = 3関数 (COMF番号帯グルーチE
-- 吁E��数AC準拠 + ユニットテスチE
+- 1 Feature = 3関数 (COMF番号帯グループ)
+- 各関数AC準拠 + ユニットテスト
 - 推定総Feature数: ~100-150
 
 ## Scope
 
 ### In Scope
-- 全キャラのCOMF番号整琁E
-- Feature刁E��計画作�E
+- 全キャラのCOMF番号整理
+- Feature分割計画作成
 - ドキュメント更新
 
 ### Out of Scope
-- 実際の口上実裁E��Eeature 054+�E�E
-- ユニットテスト作�E
+- 実際の口上実装（Feature 054+）
+- ユニットテスト作成
 
 ## Effort Estimate
 
@@ -58,6 +58,6 @@
 
 ## Links
 
-- [feature-052.md](feature-052.md) - 粒度方針決宁E
+- [feature-052.md](feature-052.md) - 粒度方針決定
 - [index-features-history.md](index-features-history.md) - Wishlist
-- [src/tools/kojo-mapper/](../../src/tools/kojo-mapper/) - 吁E��ャラのkojo-map-*.md
+- [tools/kojo-mapper/](../../tools/kojo-mapper/) - 各キャラのkojo-map-*.md

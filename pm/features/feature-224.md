@@ -16,8 +16,8 @@ F223 audit revealed that multiple agents lack explicit STOP conditions for known
 
 | Issue | Agent | Missing STOP Condition | Risk |
 |:-----:|-------|------------------------|------|
-| A1 | kojo-writer | Existing stub function found | Duplicate functions ↁEOutput invalidation |
-| A2 | kojo-writer | Target file does not exist | Unknown write target ↁECrash |
+| A1 | kojo-writer | Existing stub function found | Duplicate functions → Output invalidation |
+| A2 | kojo-writer | Target file does not exist | Unknown write target → Crash |
 | A3 | kojo-writer | Different character code found | Editing wrong character's dialogue |
 | A4 | implementer | Code contradicts existing implementation | Inconsistent implementation |
 | A5 | implementer | Documentation vs reality mismatch | Implementing based on wrong assumptions |
@@ -130,7 +130,7 @@ None (blocks F227, F228)
 **Detection method**:
 ```
 Before writing, Grep pattern: @KOJO_MESSAGE_COM_K{N}_{X}(_1)?
-If match found ↁESTOP
+If match found → STOP
 ```
 
 **Output**:
@@ -150,7 +150,7 @@ Function @KOJO_MESSAGE_COM_K{N}_{X}_1 already exists in {file_path}:{line}
 **Detection method**:
 ```
 After consulting SKILL for file path:
-If Glob returns no results ↁESTOP
+If Glob returns no results → STOP
 ```
 
 **Output**:
@@ -171,7 +171,7 @@ Cannot proceed without valid write target.
 **Detection method**:
 ```
 After opening file, Grep for @KOJO_MESSAGE_COM_K{OTHER}
-If OTHER ≠ N ↁESTOP
+If OTHER ≠ N → STOP
 ```
 
 **Output**:
@@ -191,7 +191,7 @@ File {path} contains K{OTHER} code, but task is for K{N}
 **Detection method**:
 ```
 During Read phase:
-If existing implementation conflicts with task specification ↁESTOP
+If existing implementation conflicts with task specification → STOP
 ```
 
 **Output**:
@@ -213,7 +213,7 @@ Required: {summary}
 **Detection method**:
 ```
 During investigation:
-If documented behavior ≠ actual behavior ↁESTOP
+If documented behavior ≠ actual behavior → STOP
 ```
 
 **Output**:
@@ -232,7 +232,7 @@ Location: {file}:{line}
 
 #### A7: 3 Consecutive Failures (ac-tester)
 
-**Status**: ✁EAlready documented in ac-tester.md L89-90
+**Status**: ✅ Already documented in ac-tester.md L89-90
 
 **Verify**: Current text states "On 3rd failure: Report BLOCKED with reason and STOP (do not loop indefinitely)"
 
@@ -247,7 +247,7 @@ Location: {file}:{line}
 **Detection method**:
 ```
 After reading feature-{ID}.md Status field:
-If Status = [DONE] ↁESTOP
+If Status = [DONE] → STOP
 ```
 
 **Output**:
@@ -271,7 +271,7 @@ If task requires:
   - Major architectural changes
   - Coordinated changes across >5 files
   - Design decisions beyond clear specifications
-ↁESTOP & escalate to Opus
+→ STOP & escalate to Opus
 ```
 
 **Output**:

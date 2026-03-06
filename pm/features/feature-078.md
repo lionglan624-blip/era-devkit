@@ -18,20 +18,20 @@
 **Symptoms**:
 ```json
 {"cmd":"set","var":"CFLAG:4:2","value":600}
-ↁE{"status":"error","error":"Character not found: 4"}
+→ {"status":"error","error":"Character not found: 4"}
 
-{"cmd":"set","var":"CFLAG:咲夁E2","value":600}
-ↁE{"status":"ok"}  // However, not actually set
+{"cmd":"set","var":"CFLAG:咲夜:2","value":600}
+→ {"status":"ok"}  // However, not actually set
 
-{"cmd":"dump","vars":["CFLAG:咲夁E2"]}
-ↁE{"status":"ok","vars":{"CFLAG:咲夁E2":0}}  // Returns 0, not 600
+{"cmd":"dump","vars":["CFLAG:咲夜:2"]}
+→ {"status":"ok","vars":{"CFLAG:咲夜:2":0}}  // Returns 0, not 600
 ```
 
 **Root Cause**:
 - `VariableResolver.ResolveCharacterIndex()` searches CharacterList by name
-- CharacterList[0]=PLAYER, CharacterList[1]=咲夁E(added via --char 4)
-- However "4" searches CharacterList[4] as numeric index ↁEout of range
-- "咲夁E searches by name but doesn't match for unknown reason
+- CharacterList[0]=PLAYER, CharacterList[1]=咲夜 (added via --char 4)
+- However "4" searches CharacterList[4] as numeric index → out of range
+- "咲夜" searches by name but doesn't match for unknown reason
 
 **Relevant Code**: `uEmuera/Assets/Scripts/Emuera/Headless/VariableResolver.cs:121-162`
 
@@ -40,10 +40,10 @@
 **Symptoms**:
 ```json
 {"cmd":"set","var":"ABL:TARGET:9","value":4}
-ↁE{"status":"ok"}
+→ {"status":"ok"}
 
 {"cmd":"dump","vars":["ABL:TARGET:9"]}
-ↁE{"status":"ok","vars":{"ABL:TARGET:9":null}}
+→ {"status":"ok","vars":{"ABL:TARGET:9":null}}
 ```
 
 **Probable Cause**:
@@ -57,7 +57,7 @@
 **Symptoms**:
 ```json
 {"cmd":"set","var":"TARGET","value":4}
-ↁE{"status":"error","error":"Invalid variable format: TARGET"}
+→ {"status":"error","error":"Invalid variable format: TARGET"}
 ```
 
 **Cause**:
@@ -71,7 +71,7 @@
 **Symptoms**:
 ```json
 {"cmd":"call","func":"CHK_ADMIRATION_GET","args":[4]}
-ↁE{"status":"ok","output":"関数の終端でエラーが発生しました:\r\n予期しなぁE��クリプト終端でぁE}
+→ {"status":"ok","output":"関数の終端でエラーが発生しました:\r\n予期しないスクリプト終端です"}
 ```
 
 **Probable Cause**:
@@ -84,13 +84,13 @@
 
 **Symptoms**:
 ```bash
-dotnet run ... --unit KOJO_MESSAGE_思�E獲得_KU --char 4
-ↁE[KojoTest] Function not found: KOJO_MESSAGE_思�E獲得_KU
+dotnet run ... --unit KOJO_MESSAGE_思慕獲得_KU --char 4
+→ [KojoTest] Function not found: KOJO_MESSAGE_思慕獲得_KU
 ```
 
 **Cause**:
 - kojo-test only supports functions without arguments
-- `KOJO_MESSAGE_思�E獲得_KU(奴隷)` has arguments and doesn't match search
+- `KOJO_MESSAGE_思慕獲得_KU(奴隷)` has arguments and doesn't match search
 
 **Relevant Code**: `uEmuera/Assets/Scripts/Emuera/Headless/KojoTestRunner.cs`
 
@@ -105,7 +105,7 @@ public static int ResolveCharacterIndex(string name)
 {
     // Existing: NAME/CALLNAME search + integer index search
 
-    // Add: CsvNo ↁECharacterList index mapping
+    // Add: CsvNo → CharacterList index mapping
     var charList = varData.CharacterList;
     if (int.TryParse(name, out int csvNo))
     {
@@ -194,44 +194,44 @@ Add `--args` option to support testing functions with arguments.
 ### Feature 077 AC Verification (Concrete Test Cases)
 
 **Verification Rules**:
-- ✁E= Expected value confirmed in execution log (log attachment required)
-- ❁E= Failed (error details documented)
-- ✁Evia code review only is prohibited
+- ✅ = Expected value confirmed in execution log (log attachment required)
+- ❌ = Failed (error details documented)
+- ✅ via code review only is prohibited
 
 ---
 
-#### AC1: Automatic Admiration (思�E) Grant
+#### AC1: Automatic Admiration (思慕) Grant
 
 **Preconditions**: CFLAG:favor=600, ABL:intimacy=4, TALENT:admiration=0
 
 **Test**: Call `CHK_ADMIRATION_GET(TARGET)`
 
 **Expected Results**:
-- Output: `「、E��E�E[思�E]を得た」` (character gained admiration)
+- Output: `「〇〇は[思慕]を得た」` (character gained admiration)
 - Variables: `TALENT:TARGET:17 == 1`
 
 | Mode | Status | Evidence |
 |------|:------:|----------|
-| Interactive | [B] | Function calls with args not supported ↁEFuture Feature |
-| kojo-test | [x] | KOJO_MESSAGE_思�E獲得_KU: "あなた�Eどこか嬉しそうな表惁E��浮かべてぁE��" |
+| Interactive | [B] | Function calls with args not supported → Future Feature |
+| kojo-test | [x] | KOJO_MESSAGE_思慕獲得_KU: "あなたはどこか嬉しそうな表情を浮かべている" |
 
 ---
 
-#### AC2: Love (恋�E) Requires Admiration (思�E)
+#### AC2: Love (恋慕) Requires Admiration (思慕)
 
-**Test 1**: Without admiration, meet love conditions ↁEShould not gain love
+**Test 1**: Without admiration, meet love conditions → Should not gain love
 - Preconditions: TALENT:admiration=0, CFLAG:favor=2000, ABL:obedience=4, EXP:serviceExp=50
 - Call: `CHK_FALL_IN_LOVE(TARGET)`
 - Expected: `TALENT:TARGET:3 == 0` (no love)
 
-**Test 2**: With admiration, meet love conditions ↁEGain love
+**Test 2**: With admiration, meet love conditions → Gain love
 - Preconditions: TALENT:admiration=1, same conditions as above
 - Expected: `TALENT:TARGET:3 == 1`, `TALENT:TARGET:17 == 0` (admiration cleared)
 
 | Mode | Test1 | Test2 |
 |------|:-----:|:-----:|
 | Interactive | [B] | [B] |
-| kojo-test | [x] | KOJO_MESSAGE_恋�E獲得_KU: "あなた�Eあなたに特別な感情を抱ぁE��ぁE��ようだ" |
+| kojo-test | [x] | KOJO_MESSAGE_恋慕獲得_KU: "あなたはあなたに特別な感情を抱いているようだ" |
 
 **Note**: Interactive mode blocked - function calls with args not supported
 
@@ -257,12 +257,12 @@ Add `--args` option to support testing functions with arguments.
 
 #### AC4: Confession Only Available in Love State
 
-**Test 1**: Without love ↁECOM352 not executable
+**Test 1**: Without love → COM352 not executable
 - Preconditions: TALENT:love=0
 - Call: `COM_ABLE352`
 - Expected: `RESULT == 0`
 
-**Test 2**: Already lover ↁECOM352 not executable
+**Test 2**: Already lover → COM352 not executable
 - Preconditions: TALENT:lover=1
 - Expected: `RESULT == 0`
 
@@ -275,7 +275,7 @@ Add `--args` option to support testing functions with arguments.
 #### AC5: Confession Dialogue Display
 
 **Test 1**: Confession success
-- Output contains `「私でよけれ�E」` or `「悪魔と契紁E��` etc. (character-specific)
+- Output contains `「私でよければ」` or `「悪魔と契約」` etc. (character-specific)
 
 **Test 2**: Confession failure
 - Output contains `「ごめんなさい」` or `「急すぎます」` etc.
@@ -329,8 +329,8 @@ Expected result:
 ## Links
 
 - [feature-077.md](feature-077.md) - Relationship commands (verification resumes after this Feature is complete)
-- [testing-reference.md](../reference/testing-reference.md) - Testing strategy
-- [engine-reference.md](../reference/engine-reference.md) - Engine architecture
+- [testing-reference.md](reference/testing-reference.md) - Testing strategy
+- [engine-reference.md](reference/engine-reference.md) - Engine architecture
 
 ## Reference
 

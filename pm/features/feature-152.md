@@ -6,14 +6,14 @@
 
 ## Background
 
-回帰チE��トシナリオのレビューで以下�E問題を発要E
+回帰テストシナリオのレビューで以下の問題を発見:
 
-1. **シナリオ形式�E不整吁E*: 3種類以上�E異なるJSONスキーマが混在
-2. **弱ぁE��サーション**: 多くのチE��トが「エラーなし」�Eみで検証
-3. **不透�Eな入力ファイル**: コメントなしで意味不�E
-4. **重褁E�E未整琁E*: archive/に古ぁE��ナリオが残存、kojo/に重褁E��ァイル
+1. **シナリオ形式の不整合**: 3種類以上の異なるJSONスキーマが混在
+2. **弱いアサーション**: 多くのテストが「エラーなし」のみで検証
+3. **不透明な入力ファイル**: コメントなしで意味不明
+4. **重複・未整理**: archive/に古いシナリオが残存、kojo/に重複ファイル
 
-**Goal**: チE��ト基盤を標準化し、リグレチE��ョン検�E力を向上させる
+**Goal**: テスト基盤を標準化し、リグレッション検出力を向上させる
 
 ---
 
@@ -23,23 +23,23 @@
 
 | AC# | Description | Type | Matcher | Expected | Status |
 |:---:|-------------|------|---------|----------|:------:|
-| 1 | core/シナリオ統一 | file | exists | 全JSONが統一スキーチE| [x] |
-| 2 | train/シナリオ統一 | file | exists | 全JSONが統一スキーチE| [x] |
-| 3 | ntr/シナリオ統一 | file | exists | 全JSONが統一スキーチE| [x] |
+| 1 | core/シナリオ統一 | file | exists | 全JSONが統一スキーマ | [x] |
+| 2 | train/シナリオ統一 | file | exists | 全JSONが統一スキーマ | [x] |
+| 3 | ntr/シナリオ統一 | file | exists | 全JSONが統一スキーマ | [x] |
 | 4 | アサーション追加 | code | gte | 80% of scenarios have assertions | [x] |
-| 5 | 全チE��チEASS | exit_code | equals | 0 | [x] |
-| 6 | archive整琁E| file | not_exists | 不要ファイル削除 | [x] |
+| 5 | 全テストPASS | exit_code | equals | 0 | [x] |
+| 6 | archive整理 | file | not_exists | 不要ファイル削除 | [x] |
 
 ### AC Details
 
-**AC1-3 Test**: 吁E��ィレクトリのJSONファイルが統一スキーマに準拠
+**AC1-3 Test**: 各ディレクトリのJSONファイルが統一スキーマに準拠
 ```bash
 # 検証: 全シナリオにname, description, expectフィールドが存在
 ```
 
-**AC4 Test**: アサーション付きシナリオ玁E
+**AC4 Test**: アサーション付きシナリオ率
 ```bash
-grep -l "expect\|assert" test/**/*.json | wc -l
+grep -l "expect\|assert" Game/tests/**/*.json | wc -l
 ```
 
 **AC5 Test**:
@@ -53,14 +53,14 @@ cd Game/tests && ./run-all-tests.sh
 
 | Task# | AC# | Description | Status |
 |:-----:|:---:|-------------|:------:|
-| 1 | - | 統一スキーマ定義�E�Echema.json作�E�E�E| [x] |
-| 2 | 1 | core/シナリオをスキーマに移衁E| [x] |
-| 3 | 2 | train/シナリオをスキーマに移衁E| [x] |
-| 4 | 3 | ntr/シナリオをスキーマに移衁E| [x] |
-| 5 | 4 | 吁E��ナリオにassert追加 | [x] |
+| 1 | - | 統一スキーマ定義（schema.json作成） | [x] |
+| 2 | 1 | core/シナリオをスキーマに移行 | [x] |
+| 3 | 2 | train/シナリオをスキーマに移行 | [x] |
+| 4 | 3 | ntr/シナリオをスキーマに移行 | [x] |
+| 5 | 4 | 各シナリオにassert追加 | [x] |
 | 6 | 6 | archive/の不要ファイル削除 | [x] |
-| 7 | 6 | kojo/の重褁E��ァイル整琁E| [x] |
-| 8 | 5 | run-all-tests.sh実行確誁E| [x] |
+| 7 | 6 | kojo/の重複ファイル整理 | [x] |
+| 8 | 5 | run-all-tests.sh実行確認 | [x] |
 
 ---
 
@@ -108,4 +108,4 @@ cd Game/tests && ./run-all-tests.sh
 ## Links
 
 - [feature-148.md](feature-148.md) - Test Strategy Refactoring (関連)
-- [.claude/skills/testing/SKILL.md](../../../archive/claude_legacy_20251230/skills/testing/SKILL.md) - Testing Reference
+- [.claude/skills/testing/SKILL.md](../../.claude/skills/testing/SKILL.md) - Testing Reference

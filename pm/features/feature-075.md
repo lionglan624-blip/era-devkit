@@ -19,10 +19,10 @@ Restructure documentation following single responsibility principle:
 
 ### In Scope
 1. Archive old feature/WBS files (001-050)
-2. Consolidate kojo docs ↁEkojo-reference.md
-3. Consolidate testing docs ↁEtesting-reference.md
-4. Consolidate engine docs ↁEengine-reference.md
-5. Lighten agents.md (workflow ↁErules/)
+2. Consolidate kojo docs → kojo-reference.md
+3. Consolidate testing docs → testing-reference.md
+4. Consolidate engine docs → engine-reference.md
+5. Lighten agents.md (workflow → rules/)
 6. Reorganize rules/ for task-oriented structure
 7. Update CLAUDE.md
 
@@ -45,15 +45,15 @@ Restructure documentation following single responsibility principle:
 ## New Structure
 
 ```
-pm/
+Game/agents/
 ├── agents.md              # Lightweight: principles + links
 ├── index-features.md      # Active only
 ├── index-features-history.md
 ├── reference/
-━E  ├── erb-reference.md
-━E  ├── kojo-reference.md
-━E  ├── testing-reference.md
-━E  └── engine-reference.md
+│   ├── erb-reference.md
+│   ├── kojo-reference.md
+│   ├── testing-reference.md
+│   └── engine-reference.md
 ├── active/                # Current work (optional, may keep flat)
 └── archive/
     ├── feature-001~050.md

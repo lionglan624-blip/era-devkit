@@ -1,68 +1,68 @@
-# Feature 059: Headless口上テスチE- シナリオファイルと自動検証
+# Feature 059: Headless口上テスト - シナリオファイルと自動検証
 
 ## Status: [DONE]
 
 ### Known Limitations
 
-- `var_equals` は RESULT 変数のみ対応（他変数は後続Feature 060/061で拡張予定！E
+- `var_equals` は RESULT 変数のみ対応（他変数は後続Feature 060/061で拡張予定）
 
 ## Background
 
-Feature 058で口上関数の直接呼び出しが可能になったが、CLIオプションでの持E���E褁E��なチE��トには不向き、ESONシナリオファイルで状態�E入力�E期征E��を定義し、�E動検証できる仕絁E��が忁E��、E
+Feature 058で口上関数の直接呼び出しが可能になったが、CLIオプションでの指定は複雑なテストには不向き。JSONシナリオファイルで状態・入力・期待値を定義し、自動検証できる仕組みが必要。
 
 ### 想定ユースケース
 
-- **回帰チE��チE*: 口上追加時に既存口上が壊れてぁE��ぁE��とを�E動検証
-- **CI統吁E*: JSONシナリオをコミット時に自動実衁E
-- **ドキュメント化**: シナリオファイル自体がチE��ト仕様書になめE
+- **回帰テスト**: 口上追加時に既存口上が壊れていないことを自動検証
+- **CI統合**: JSONシナリオをコミット時に自動実行
+- **ドキュメント化**: シナリオファイル自体がテスト仕様書になる
 
 ## Goals
 
-1. JSONシナリオファイルでチE��トを定義できる
-2. 期征E���E�Expect�E�で出力を自動検証できる
-3. 出力形式を選択できる�E�Euman/quiet/json�E�E
+1. JSONシナリオファイルでテストを定義できる
+2. 期待値（expect）で出力を自動検証できる
+3. 出力形式を選択できる（human/quiet/json）
 
 ## Proposed Solution
 
-### シナリオファイル形弁E
+### シナリオファイル形式
 
 ```json
 {
-  "name": "K4 会話口上テスチE- 恋�E刁E��E,
+  "name": "K4 会話口上テスト - 恋慕分岐",
   "call": "KOJO_MESSAGE_COM_K4_300",
-  "character": "十�E夜咲夁E,
+  "character": "十六夜咲夜",
   "state": {
     "CFLAG:2": 5000,
     "TALENT:3": 1
   },
   "inputs": [1],
   "expect": {
-    "output_contains": "何につぁE��話そうぁE,
+    "output_contains": "何について話そうか",
     "no_errors": true
   }
 }
 ```
 
-### CLI使用侁E
+### CLI使用例
 
 ```bash
-# シナリオファイルを実衁E
+# シナリオファイルを実行
 uEmuera --unit test.json
 
-# 出力形式を持E��E
-uEmuera --unit test.json --output compact   # チE��ォルチE
-uEmuera --unit test.json --output quiet     # 失敗�Eみ
-uEmuera --unit test.json --output json      # JSON形弁E
+# 出力形式を指定
+uEmuera --unit test.json --output compact   # デフォルト
+uEmuera --unit test.json --output quiet     # 失敗のみ
+uEmuera --unit test.json --output json      # JSON形式
 
-# レポ�Eトファイルに出劁E
+# レポートファイルに出力
 uEmuera --unit test.json --report result.json
 ```
 
-### 出力侁E
+### 出力例
 
-**compactモード（デフォルト！E*:
+**compactモード（デフォルト）**:
 ```
-✁EK4 会話口上テスチE- 恋�E刁E��E(0.12s)
+✓ K4 会話口上テスト - 恋慕分岐 (0.12s)
 
 === SUMMARY ===
 1/1 passed (0.12s)
@@ -70,24 +70,24 @@ uEmuera --unit test.json --report result.json
 
 **失敗時**:
 ```
-✁EK4 会話口上テスチE- 恋�E刁E��E(0.11s)
-  [ERROR] Expected output to contain "何につぁE��話そうぁE but got:
+✗ K4 会話口上テスト - 恋慕分岐 (0.11s)
+  [ERROR] Expected output to contain "何について話そうか" but got:
   --- ACTUAL OUTPUT ---
-  エラー: TARGET未設宁E
+  エラー: TARGET未設定
   --- END ---
 
 === SUMMARY ===
 0/1 passed, 1 failed (0.11s)
 ```
 
-**jsonモーチE*:
+**jsonモード**:
 ```json
 {
   "status": "pass",
-  "name": "K4 会話口上テスチE- 恋�E刁E��E,
+  "name": "K4 会話口上テスト - 恋慕分岐",
   "function": "KOJO_MESSAGE_COM_K4_300",
   "duration_ms": 120,
-  "output": "何につぁE��話そうか……�E�\n[ 1]-他�Eも無ぁE��談\n...",
+  "output": "何について話そうか……？\n[ 1]-他愛も無い雑談\n...",
   "errors": [],
   "warnings": []
 }
@@ -97,24 +97,24 @@ uEmuera --unit test.json --report result.json
 
 ### In Scope
 
-| 機�E | 説昁E|
+| 機能 | 説明 |
 |------|------|
 | `--unit <file.json>` | シナリオファイル読み込み |
 | `expect.output_contains` | 出力に含まれることを検証 |
-| `expect.output_not_contains` | 出力に含まれなぁE��とを検証 |
-| `expect.output_matches` | 正規表現マッチE|
+| `expect.output_not_contains` | 出力に含まれないことを検証 |
+| `expect.output_matches` | 正規表現マッチ |
 | `expect.no_errors` | エラーなしを検証 |
 | `expect.no_warnings` | 警告なしを検証 |
 | `expect.var_equals` | 変数値を検証 |
-| `--output compact\|quiet\|json` | 出力形弁E|
-| `--report <file>` | レポ�Eトファイル出劁E|
+| `--output compact\|quiet\|json` | 出力形式 |
+| `--report <file>` | レポートファイル出力 |
 
 ### Out of Scope (後続Feature)
 
-- バッチテスト（褁E��シナリオ一括�E�EↁEFeature 060
-- 刁E��トレース ↁEFeature 060
-- 乱数制御 ↁEFeature 060
-- 褁E��キャラ設宁EↁEFeature 061
+- バッチテスト（複数シナリオ一括） → Feature 060
+- 分岐トレース → Feature 060
+- 乱数制御 → Feature 060
+- 複数キャラ設定 → Feature 061
 
 ## Scenario File Specification
 
@@ -122,21 +122,21 @@ uEmuera --unit test.json --report result.json
 
 ```json
 {
-  "name": "チE��ト名�E�忁E��！E,
-  "call": "関数名（忁E��！E,
-  "character": "キャラクター名（忁E��！E,
-  "master": "MASTERキャラ名（省略時PLAYER�E�E,
+  "name": "テスト名（必須）",
+  "call": "関数名（必須）",
+  "character": "キャラクター名（必須）",
+  "master": "MASTERキャラ名（省略時PLAYER）",
   "state": {
-    "変数吁E: 値
+    "変数名": 値
   },
-  "inputs": [入力値リスチE,
+  "inputs": [入力値リスト],
   "expect": {
     "検証条件": 値
   }
 }
 ```
 
-### state での変数持E��E
+### state での変数指定
 
 ```json
 {
@@ -144,33 +144,33 @@ uEmuera --unit test.json --report result.json
     "CFLAG:2": 5000,
     "CFLAG:TARGET:好感度": 5000,
     "TALENT:3": 1,
-    "TALENT:TARGET:恋�E": 1,
+    "TALENT:TARGET:恋慕": 1,
     "FLAG:200": 1,
     "TFLAG:193": 1
   }
 }
 ```
 
-- 数値インチE��クス: `CFLAG:2`
-- シンボル吁E `CFLAG:TARGET:好感度`
-- `TARGET` は `character` で持E��したキャラに展開されめE
+- 数値インデックス: `CFLAG:2`
+- シンボル名: `CFLAG:TARGET:好感度`
+- `TARGET` は `character` で指定したキャラに展開される
 
-### expect 仕槁E
+### expect 仕様
 
-| チェチE��種別 | 説昁E| 侁E|
+| チェック種別 | 説明 | 例 |
 |-------------|------|---|
-| `output_contains` | 出力に含まれる�E�文字�Eor配�E�E�E| `"output_contains": "何につぁE��"` |
-| `output_not_contains` | 出力に含まれなぁE| `"output_not_contains": "エラー"` |
-| `output_matches` | 正規表現マッチE| `"output_matches": "\\[ \\d+\\]-"` |
-| `output_equals` | 完�E一致 | `"output_equals": "固定テキスチE` |
-| `no_errors` | エラーなぁE| `"no_errors": true` |
-| `no_warnings` | 警告なぁE| `"no_warnings": true` |
-| `var_equals` | 変数値チェチE�� | `"var_equals": {"RESULT": 1}` |
+| `output_contains` | 出力に含まれる（文字列or配列） | `"output_contains": "何について"` |
+| `output_not_contains` | 出力に含まれない | `"output_not_contains": "エラー"` |
+| `output_matches` | 正規表現マッチ | `"output_matches": "\\[ \\d+\\]-"` |
+| `output_equals` | 完全一致 | `"output_equals": "固定テキスト"` |
+| `no_errors` | エラーなし | `"no_errors": true` |
+| `no_warnings` | 警告なし | `"no_warnings": true` |
+| `var_equals` | 変数値チェック | `"var_equals": {"RESULT": 1}` |
 
 ```json
 {
   "expect": {
-    "output_contains": ["何につぁE��", "雑諁E],
+    "output_contains": ["何について", "雑談"],
     "output_not_contains": ["エラー", "未定義"],
     "no_errors": true,
     "var_equals": {
@@ -182,14 +182,14 @@ uEmuera --unit test.json --report result.json
 
 ## Output Formats
 
-### compact�E�デフォルト！E
+### compact（デフォルト）
 
-成功時�E1行、失敗時は詳細表示:
+成功時は1行、失敗時は詳細表示:
 
 ```
-✁EチE��チE (0.12s)
-✁EチE��チE (0.15s)
-✁EチE��チE (0.11s)
+✓ テスト1 (0.12s)
+✓ テスト2 (0.15s)
+✗ テスト3 (0.11s)
   [ERROR] Expected output to contain "XXX"
   --- ACTUAL OUTPUT ---
   ...
@@ -201,10 +201,10 @@ uEmuera --unit test.json --report result.json
 
 ### quiet
 
-失敗テスト�E詳細のみ:
+失敗テストの詳細のみ:
 
 ```
-✁EチE��チE (0.11s)
+✗ テスト3 (0.11s)
   [ERROR] Expected output to contain "XXX"
   ...
 
@@ -223,10 +223,10 @@ uEmuera --unit test.json --report result.json
     "duration_ms": 380
   },
   "results": [
-    {"name": "チE��チE", "status": "pass", "duration_ms": 120},
-    {"name": "チE��チE", "status": "pass", "duration_ms": 150},
+    {"name": "テスト1", "status": "pass", "duration_ms": 120},
+    {"name": "テスト2", "status": "pass", "duration_ms": 150},
     {
-      "name": "チE��チE",
+      "name": "テスト3",
       "status": "fail",
       "duration_ms": 110,
       "error": "Expected output to contain \"XXX\"",
@@ -243,35 +243,35 @@ uEmuera --unit test.json --report result.json
 - [x] `expect.output_not_contains` で出力を検証できる
 - [x] `expect.output_matches` で正規表現検証できる
 - [x] `expect.no_errors` でエラーなしを検証できる
-- [ ] `expect.var_equals` で変数値を検証できる (RESULT変数のみ対応、改喁E��E��E
-- [x] `--output-mode compact` で成功1衁E失敗詳細が表示されめE
-- [x] `--output-mode quiet` で失敗�Eみ表示されめE
-- [x] `--output-mode json` でJSON形式�E力される
-- [x] `--report <file>` でレポ�Eトファイルが�E力される
+- [ ] `expect.var_equals` で変数値を検証できる (RESULT変数のみ対応、改善必要)
+- [x] `--output-mode compact` で成功1行/失敗詳細が表示される
+- [x] `--output-mode quiet` で失敗のみ表示される
+- [x] `--output-mode json` でJSON形式出力される
+- [x] `--report <file>` でレポートファイルが出力される
 - [x] 検証成功時exit 0、失敗時exit 1が返る
 
 ### Concrete Test Scenarios
 
-実裁E��証用のシナリオファイル�E�Etest/kojo/scenarios/` に配置�E�E
+実装検証用のシナリオファイル（`Game/tests/kojo/scenarios/` に配置）:
 
-| # | ファイル吁E| 検証対象 | 期征E��果 |
+| # | ファイル名 | 検証対象 | 期待結果 |
 |---|-----------|----------|----------|
-| S1 | `k4-basic.json` | 基本実衁E+ output_contains | PASS |
-| S2 | `k4-love.json` | state設宁E+ 恋�E刁E��E| PASS |
+| S1 | `k4-basic.json` | 基本実行 + output_contains | PASS |
+| S2 | `k4-love.json` | state設定 + 恋慕分岐 | PASS |
 | S3 | `k4-no-error.json` | output_not_contains + no_errors | PASS |
-| S4 | `k4-regex.json` | output_matches�E�選択肢パターン�E�E| PASS |
-| S5 | `k4-combined.json` | 褁E��expect�E�Eontains + not_contains + no_errors�E�E| PASS |
-| S6 | `k4-fail-expected.json` | 意図皁E��敗！Exit 1確認用�E�E| FAIL |
-| S7 | `k4-var-check.json` | var_equals�E�EESULT検証�E�E| PASS |
+| S4 | `k4-regex.json` | output_matches（選択肢パターン） | PASS |
+| S5 | `k4-combined.json` | 複合expect（contains + not_contains + no_errors） | PASS |
+| S6 | `k4-fail-expected.json` | 意図的失敗（exit 1確認用） | FAIL |
+| S7 | `k4-var-check.json` | var_equals（RESULT検証） | PASS |
 
 #### S1: k4-basic.json
 ```json
 {
-  "name": "K4基本実衁E,
+  "name": "K4基本実行",
   "call": "KOJO_MESSAGE_COM_K4_300",
-  "character": "十�E夜咲夁E,
+  "character": "十六夜咲夜",
   "expect": {
-    "output_contains": "何につぁE��話そうぁE
+    "output_contains": "何について話そうか"
   }
 }
 ```
@@ -279,15 +279,15 @@ uEmuera --unit test.json --report result.json
 #### S2: k4-love.json
 ```json
 {
-  "name": "K4恋�E刁E��E,
+  "name": "K4恋慕分岐",
   "call": "KOJO_MESSAGE_COM_K4_300",
-  "character": "十�E夜咲夁E,
+  "character": "十六夜咲夜",
   "state": {
     "CFLAG:TARGET:好感度": 5000,
-    "TALENT:TARGET:恋�E": 1
+    "TALENT:TARGET:恋慕": 1
   },
   "expect": {
-    "output_contains": "何につぁE��話そうぁE
+    "output_contains": "何について話そうか"
   }
 }
 ```
@@ -297,7 +297,7 @@ uEmuera --unit test.json --report result.json
 {
   "name": "K4エラーなし検証",
   "call": "KOJO_MESSAGE_COM_K4_300",
-  "character": "十�E夜咲夁E,
+  "character": "十六夜咲夜",
   "expect": {
     "output_not_contains": ["エラー", "未定義", "Error"],
     "no_errors": true
@@ -310,9 +310,9 @@ uEmuera --unit test.json --report result.json
 {
   "name": "K4選択肢パターン検証",
   "call": "KOJO_MESSAGE_COM_K4_300",
-  "character": "十�E夜咲夁E,
+  "character": "十六夜咲夜",
   "expect": {
-    "output_matches": "\\[\\s*\\d+\\].*雑諁E
+    "output_matches": "\\[\\s*\\d+\\].*雑談"
   }
 }
 ```
@@ -320,14 +320,14 @@ uEmuera --unit test.json --report result.json
 #### S5: k4-combined.json
 ```json
 {
-  "name": "K4褁E��検証",
+  "name": "K4複合検証",
   "call": "KOJO_MESSAGE_COM_K4_300",
-  "character": "十�E夜咲夁E,
+  "character": "十六夜咲夜",
   "state": {
     "CFLAG:TARGET:好感度": 3000
   },
   "expect": {
-    "output_contains": ["何につぁE��", "雑諁E],
+    "output_contains": ["何について", "雑談"],
     "output_not_contains": "エラー",
     "no_errors": true
   }
@@ -337,11 +337,11 @@ uEmuera --unit test.json --report result.json
 #### S6: k4-fail-expected.json
 ```json
 {
-  "name": "K4意図皁E��敗（存在しなぁE��字�E�E�E,
+  "name": "K4意図的失敗（存在しない文字列）",
   "call": "KOJO_MESSAGE_COM_K4_300",
-  "character": "十�E夜咲夁E,
+  "character": "十六夜咲夜",
   "expect": {
-    "output_contains": "こ�E斁E���Eは存在しなぁE�Eず_XYZ123"
+    "output_contains": "この文字列は存在しないはず_XYZ123"
   }
 }
 ```
@@ -351,7 +351,7 @@ uEmuera --unit test.json --report result.json
 {
   "name": "K4変数検証",
   "call": "KOJO_MESSAGE_COM_K4_300",
-  "character": "十�E夜咲夁E,
+  "character": "十六夜咲夜",
   "inputs": [1],
   "expect": {
     "no_errors": true,
@@ -364,7 +364,7 @@ uEmuera --unit test.json --report result.json
 
 ### AC Verification Matrix
 
-| AC頁E�� | 検証シナリオ |
+| AC項目 | 検証シナリオ |
 |--------|-------------|
 | シナリオファイル読み込み | S1〜S7全て |
 | output_contains | S1, S2, S5, S6 |
@@ -372,43 +372,43 @@ uEmuera --unit test.json --report result.json
 | output_matches | S4 |
 | no_errors | S3, S5, S7 |
 | var_equals | S7 |
-| exit 0�E��E功！E| S1〜S5, S7 |
-| exit 1�E�失敗！E| S6 |
-| --output compact | 手動確誁E|
-| --output quiet | 手動確誁E|
-| --output json | 手動確誁E|
-| --report | 手動確誁E|
+| exit 0（成功） | S1〜S5, S7 |
+| exit 1（失敗） | S6 |
+| --output compact | 手動確認 |
+| --output quiet | 手動確認 |
+| --output json | 手動確認 |
+| --report | 手動確認 |
 
 ## Test Plan
 
 ```bash
-# 基本シナリオチE��チE
-echo '{"name":"test","call":"KOJO_MESSAGE_COM_K4_300","character":"十�E夜咲夁E,"expect":{"output_contains":"何につぁE��"}}' > test.json
+# 基本シナリオテスト
+echo '{"name":"test","call":"KOJO_MESSAGE_COM_K4_300","character":"十六夜咲夜","expect":{"output_contains":"何について"}}' > test.json
 uEmuera --unit test.json
-# ↁE✁Etest (0.xxs)
+# → ✓ test (0.xxs)
 
-# expect失敗テスチE
-echo '{"name":"test","call":"KOJO_MESSAGE_COM_K4_300","character":"十�E夜咲夁E,"expect":{"output_contains":"存在しなぁE��字�E"}}' > test.json
+# expect失敗テスト
+echo '{"name":"test","call":"KOJO_MESSAGE_COM_K4_300","character":"十六夜咲夜","expect":{"output_contains":"存在しない文字列"}}' > test.json
 uEmuera --unit test.json
-# ↁE✁Etest (0.xxs) + エラー詳細
+# → ✗ test (0.xxs) + エラー詳細
 
-# JSON出力テスチE
+# JSON出力テスト
 uEmuera --unit test.json --output json
-# ↁE{"status":"pass",...}
+# → {"status":"pass",...}
 
-# レポ�EトファイルチE��チE
+# レポートファイルテスト
 uEmuera --unit test.json --report result.json
-# ↁEresult.jsonが生成される
+# → result.jsonが生成される
 ```
 
 ## Effort Estimate
 
 - **Size**: Medium
-- **Risk**: Low�E�Eeature 058の上に構築！E
-- **Dependencies**: Feature 058�E�口上関数の直接実行！E
+- **Risk**: Low（Feature 058の上に構築）
+- **Dependencies**: Feature 058（口上関数の直接実行）
 
 ## Links
 
-- [feature-058.md](feature-058.md) - 口上関数の直接実行（前提！E
-- [feature-060.md](feature-060.md) - バッチテストと刁E��トレース�E�後続！E
-- [reference/testing-reference.md](../reference/testing-reference.md) - チE��ト戦略
+- [feature-058.md](feature-058.md) - 口上関数の直接実行（前提）
+- [feature-060.md](feature-060.md) - バッチテストと分岐トレース（後続）
+- [reference/testing-reference.md](reference/testing-reference.md) - テスト戦略

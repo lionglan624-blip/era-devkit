@@ -1,4 +1,4 @@
-# Feature 142: kojo.md ↁEimple.md 統吁E+ How削除
+# Feature 142: kojo.md → imple.md 統合 + How削除
 
 ## Status: [DONE]
 
@@ -7,17 +7,17 @@
 ## Background
 
 ### Problem
-- imple.md (677衁E と kojo.md (610衁E ぁE0%重褁E
-- 変更時に2箁E��修正が忁E��、不整合リスク
-- Step列挙�E�Eow�E�がエージェント�E判断を制陁E
+- imple.md (677行) と kojo.md (610行) が80%重複
+- 変更時に2箇所修正が必要、不整合リスク
+- Step列挙（How）がエージェントの判断を制限
 
 ### Goal
-- kojo.md めEimple.md に統合！Eype: kojo刁E��！E
-- Step列挙を削除し、判断基準�Eみ残す
-- 1,287衁EↁE~200行に削渁E
+- kojo.md を imple.md に統合（Type: kojo分岐）
+- Step列挙を削除し、判断基準のみ残す
+- 1,287行 → ~200行に削減
 
 ### Context
-- [anthropic-recommended-transition.md](../designs/anthropic-recommended-transition.md) Phase B
+- [anthropic-recommended-transition.md](designs/anthropic-recommended-transition.md) Phase B
 - Anthropic推奨原則#4: 最小ルール + エージェント判断
 
 ---
@@ -29,10 +29,10 @@
 | AC# | Description | Type | Matcher | Expected | Status |
 |:---:|-------------|------|---------|----------|:------:|
 | 1 | kojo.md削除 | output | contains | `"deleted"` | [x] |
-| 2 | imple.md統合完亁E| file | contains | `"Type: kojo"` | [x] |
-| 3 | imple.md行数削渁E| output | lte | `250` | [x] |
-| 4 | Step列挙削除�E�既満足�E�| output | equals | `0` | [x] |
-| 5 | /imple kojo動作確誁E| file | contains | `"kojo-writer"` | [x] |
+| 2 | imple.md統合完了 | file | contains | `"Type: kojo"` | [x] |
+| 3 | imple.md行数削減 | output | lte | `250` | [x] |
+| 4 | Step列挙削除（既満足）| output | equals | `0` | [x] |
+| 5 | /imple kojo動作確認 | file | contains | `"kojo-writer"` | [x] |
 
 **Note**: AC 4 is already satisfied in current imple.md (no "Step X:" patterns exist). Included as verification-only AC.
 
@@ -47,7 +47,7 @@ test ! -f .claude/commands/kojo.md && echo "deleted"
 
 **Expected Output**: `deleted`
 
-#### AC2: imple.md統合完亁E
+#### AC2: imple.md統合完了
 
 **Test Command**:
 ```bash
@@ -56,7 +56,7 @@ cat .claude/commands/imple.md
 
 **Expected Output**: File contains `Type: kojo` (routing logic for kojo-type features)
 
-#### AC3: imple.md行数削渁E
+#### AC3: imple.md行数削減
 
 **Test Command**:
 ```bash
@@ -74,12 +74,12 @@ grep -c "Step [0-9]:" .claude/commands/imple.md
 
 **Expected Output**: `0` (exact match, no Step enumeration patterns found)
 
-#### AC5: /imple kojo動作確誁E
+#### AC5: /imple kojo動作確認
 
 **Test Command**:
 ```bash
 # Run /imple on a kojo-type feature and check if kojo-writer appears in Execution Log
-grep "kojo-writer" pm/features/feature-{kojo-feature-id}.md
+grep "kojo-writer" Game/agents/feature-{kojo-feature-id}.md
 ```
 
 **Expected Output**: Contains `kojo-writer` in the Execution Log (Agent column)
@@ -90,36 +90,36 @@ grep "kojo-writer" pm/features/feature-{kojo-feature-id}.md
 
 | Task# | AC# | Description | Status |
 |:-----:|:---:|-------------|:------:|
-| 1 | 2 | imple.md に Type: kojo ルーチE��ングロジチE��統吁E| [x] |
-| 2 | 3 | imple.md を最小ルール + 判断基準�Eみに書き換え（行数削減！E| [x] |
+| 1 | 2 | imple.md に Type: kojo ルーティングロジック統合 | [x] |
+| 2 | 3 | imple.md を最小ルール + 判断基準のみに書き換え（行数削減） | [x] |
 | 3 | 1 | kojo.md を削除 | [○] |
-| 4 | 4 | Step列挙削除を確認（既満足の検証�E�E| [x] |
-| 5 | 5 | 手動チE��チE /imple でkojo featureが動作確誁E| [x] |
+| 4 | 4 | Step列挙削除を確認（既満足の検証） | [x] |
+| 5 | 5 | 手動テスト: /imple でkojo featureが動作確認 | [x] |
 
-**Alignment**: 1 AC = 1 Task ✁E
+**Alignment**: 1 AC = 1 Task ✅
 
 ---
 
 ## Transformation Rules
 
-### 削除対象�E�Eow�E�E
+### 削除対象（How）
 
 ```markdown
 <!-- BEFORE: Step列挙 -->
-## Step 1: 初期匁E
+## Step 1: 初期化
 1. feature.mdを読む
-2. initializer agentを起勁E
+2. initializer agentを起動
 3. ...
 
 ## Step 2: AC検証
-1. ac-tester agentを起勁E
+1. ac-tester agentを起動
 2. ...
 ```
 
-### 残す対象�E�Ehat/Why�E�E
+### 残す対象（What/Why）
 
 ```markdown
-<!-- AFTER: 判断基準�Eみ -->
+<!-- AFTER: 判断基準のみ -->
 ## Workflow
 
 1. **Initialize**: Read feature.md, dispatch initializer
@@ -160,7 +160,7 @@ Execute feature implementation with subagents.
 [5-step summary, no detailed steps]
 
 ## Type Routing
-[Table: Type ↁEAgent]
+[Table: Type → Agent]
 
 ## Decision Criteria
 [When to escalate, retry limits, success conditions]
@@ -175,7 +175,7 @@ Execute feature implementation with subagents.
 
 ## Execution State
 
-**Initializer Status**: ✁EINITIALIZED
+**Initializer Status**: ✅ INITIALIZED
 - Feature ID: 142
 - Type: erb
 - Current Status: [WIP]
@@ -187,7 +187,7 @@ Execute feature implementation with subagents.
 
 | Timestamp | Event | Agent | Action | Result |
 |-----------|:-----:|-------|--------|--------|
-| 2025-12-20 | Initialize | initializer | Status ↁE[WIP], plan extraction | READY |
+| 2025-12-20 | Initialize | initializer | Status → [WIP], plan extraction | READY |
 | 2025-12-20 10:46 | START | implementer | Task 1+2 | - |
 | 2025-12-20 10:52 | END | implementer | Task 1+2 | SUCCESS (6min) |
 | 2025-12-20 10:50 | START | implementer | Task 3 | - |
@@ -209,6 +209,6 @@ Execute feature implementation with subagents.
 
 ## Links
 
-- [anthropic-recommended-transition.md](../designs/anthropic-recommended-transition.md)
-- [imple.md](../../../archive/claude_legacy_20251230/commands/imple.md)
-- [kojo.md](../../../archive/claude_legacy_20251230/commands/kojo.md)
+- [anthropic-recommended-transition.md](designs/anthropic-recommended-transition.md)
+- [imple.md](../../.claude/commands/imple.md)
+- [kojo.md](../../.claude/commands/kojo.md)

@@ -1,4 +1,4 @@
-# Feature 168: KU関数の既存カチE��リ統吁E
+# Feature 168: KU関数の既存カテゴリ統合
 
 ## Status: [DONE]
 
@@ -6,17 +6,17 @@
 
 ## Background
 
-**Problem**: Feature 167で発見された課顁E
-- 628件 (12.4%) のKU関数が未刁E��E
-- NTR_EVENT/NTR_SPECIAL間で10件の重褁E��ウンチE
+**Problem**: Feature 167で発見された課題:
+- 628件 (12.4%) のKU関数が未分類
+- NTR_EVENT/NTR_SPECIAL間で10件の重複カウント
 
 **Goal**:
-1. `_KU`パターンを各カチE��リに統合し、未刁E��を解涁E
-2. カチE��リ間重褁E��適刁E��処琁E
+1. `_KU`パターンを各カテゴリに統合し、未分類を解消
+2. カテゴリ間重複を適切に処理
 
 **Approach**:
-- 吁E��チE��リのパターンを拡張して`_KU`バリアントもマッチE
-- NTR_SPECIALをNTR_EVENTから除外するロジチE��追加
+- 各カテゴリのパターンを拡張して`_KU`バリアントもマッチ
+- NTR_SPECIALをNTR_EVENTから除外するロジック追加
 
 ---
 
@@ -26,17 +26,17 @@
 
 | AC# | Description | Type | Matcher | Expected | Status |
 |:---:|-------------|------|---------|----------|:------:|
-| 1 | 未刁E��関数ぁE件 | output | equals | "Uncategorized: 0" | [x] |
-| 2 | カチE��リ重褁E��0件 | output | equals | "Overlaps: 0" | [x] |
-| 3 | 全@関数 = 14カチE��リ合訁E| output | matches | `\d+ total functions = \d+ category matches` | [x] |
+| 1 | 未分類関数が0件 | output | equals | "Uncategorized: 0" | [x] |
+| 2 | カテゴリ重複が0件 | output | equals | "Overlaps: 0" | [x] |
+| 3 | 全@関数 = 14カテゴリ合計 | output | matches | `\d+ total functions = \d+ category matches` | [x] |
 
 ### AC Details
 
-**AC1**: 全@関数ぁE4カチE��リのぁE��れかに刁E��されること
+**AC1**: 全@関数が14カテゴリのいずれかに分類されること
 
-**AC2**: 吁E��数は1カチE��リのみにカウントされること�E�ETR_SPECIALはNTR_EVENTから除外！E
+**AC2**: 各関数は1カテゴリのみにカウントされること（NTR_SPECIALはNTR_EVENTから除外）
 
-**AC3**: `grep "^@" | wc -l` = Σ(14カチE��リ)
+**AC3**: `grep "^@" | wc -l` = Σ(14カテゴリ)
 
 ---
 
@@ -44,9 +44,9 @@
 
 | Task# | AC# | Description | Status |
 |:-----:|:---:|-------------|:------:|
-| 1 | 1 | 吁E��チE��リパターンにKUマッチ追加し未刁E��を0に | [x] |
-| 2 | 2 | NTR_SPECIAL除外ロジチE��実裁E��重褁E��0に | [x] |
-| 3 | 3 | 全@関数数 = 14カチE��リ合計�E等式検証を実裁E| [x] |
+| 1 | 1 | 各カテゴリパターンにKUマッチ追加し未分類を0に | [x] |
+| 2 | 2 | NTR_SPECIAL除外ロジック実装し重複を0に | [x] |
+| 3 | 3 | 全@関数数 = 14カテゴリ合計の等式検証を実装 | [x] |
 
 ---
 
@@ -54,13 +54,13 @@
 
 ### Task Execution Order
 
-1. **Task 1** (prerequisite): Add KU pattern matching to all 14 categories ↁEAC1 passes (Uncategorized: 0)
-2. **Task 2** (depends on Task 1): Implement NTR_SPECIAL exclusion logic ↁEAC2 passes (Overlaps: 0)
-3. **Task 3** (verify both): Run verification script validating total @ function count equals category sum ↁEAC3 passes
+1. **Task 1** (prerequisite): Add KU pattern matching to all 14 categories → AC1 passes (Uncategorized: 0)
+2. **Task 2** (depends on Task 1): Implement NTR_SPECIAL exclusion logic → AC2 passes (Overlaps: 0)
+3. **Task 3** (verify both): Run verification script validating total @ function count equals category sum → AC3 passes
 
 All three tasks must complete successfully and all three ACs must pass for feature completion.
 
-### パターン変更侁E
+### パターン変更例
 
 ```python
 # Before
@@ -70,7 +70,7 @@ All three tasks must complete successfully and all three ACs must pass for featu
 "COM": r"@KOJO_MESSAGE_COM_K(?:U|(\d+))_(\d+)"
 ```
 
-### 重褁E��外ロジチE��
+### 重複除外ロジック
 
 ```python
 # NTR_EVENT count should exclude NTR_SPECIAL matches
@@ -87,5 +87,5 @@ ntr_event_only = ntr_event_matches - ntr_special_matches
 
 ## Links
 
-- [feature-167.md](feature-167.md) - 親Feature�E�発見�E�E�E
-- [kojo_mapper.py](../../src/tools/kojo-mapper/kojo_mapper.py) - 修正対象
+- [feature-167.md](feature-167.md) - 親Feature（発見元）
+- [kojo_mapper.py](../../tools/kojo-mapper/kojo_mapper.py) - 修正対象

@@ -6,11 +6,11 @@
 
 ## Background
 
-- **Original problem**: Feature 087 実裁E��に褁E��の問題が発見された
-  1. **チE��ト失敗が「既存問題」として誤刁E��された** - 証拠なしに PRE-EXISTING と判宁E
-  2. **Regression Test と AC Verification の結果が矛盾** - 牁E�� FAIL で牁E�� PASS
-  3. **並列フローチE��トが実際には動作しなぁE* - ワーカープロセスがビルド失敁E
-  4. **AC定義が甘ぁE* - exit_code 0 だけで「�E功」と判宁E
+- **Original problem**: Feature 087 実装中に複数の問題が発見された
+  1. **テスト失敗が「既存問題」として誤分類された** - 証拠なしに PRE-EXISTING と判定
+  2. **Regression Test と AC Verification の結果が矛盾** - 片方 FAIL で片方 PASS
+  3. **並列フローテストが実際には動作しない** - ワーカープロセスがビルド失敗
+  4. **AC定義が甘い** - exit_code 0 だけで「成功」と判定
 
 - **Discovered in**: Feature 087 Phase 6 (Regression Test)
   - Flow Integration: 0/6 PASS (parallel mode)
@@ -24,46 +24,46 @@
   4. No consistency check between regression and AC verification
 
 - **Considered alternatives**:
-  - ❁EIgnore parallel mode (sequential only) - 遁E��ぎる、E00+チE��トで非現実的
-  - ❁EAlways rebuild in workers - 遁E��ぎる、並列�E意味がなぁE
-  - ✁EPre-built exe approach - 一度ビルドしてexe直接実衁E
-  - ✁EAC definition strengthening - 出力�E容も検証
+  - ❌ Ignore parallel mode (sequential only) - 遅すぎる、100+テストで非現実的
+  - ❌ Always rebuild in workers - 遅すぎる、並列の意味がない
+  - ✅ Pre-built exe approach - 一度ビルドしてexe直接実行
+  - ✅ AC definition strengthening - 出力内容も検証
 
 - **Key decisions**:
   1. 並列ワーカーは事前ビルド済みexeを使用
-  2. AC定義に出力検証を追加�E�Exit_code + output contains�E�E
-  3. ドキュメント整合性の徹庁E
+  2. AC定義に出力検証を追加（exit_code + output contains）
+  3. ドキュメント整合性の徹底
 
 - **Constraints**:
-  - 既存�E頁E��実行モード�E維持E
-  - 後方互換性忁E��E
+  - 既存の順次実行モードは維持
+  - 後方互換性必須
 
 ## Overview
 
-Feature 087 で追加した並列フローチE��ト機�Eの信頼性を確保し、テストインフラ全体を強化する、E
+Feature 087 で追加した並列フローテスト機能の信頼性を確保し、テストインフラ全体を強化する。
 
-1. **並列ワーカー修正**: `dotnet run` ↁE事前ビルドexe直接実衁E
-2. **AC定義強匁E*: exit_code だけでなく�E力�E容も検証
-3. **ドキュメント整合性**: パス、規則、前提条件の明訁E
+1. **並列ワーカー修正**: `dotnet run` → 事前ビルドexe直接実行
+2. **AC定義強化**: exit_code だけでなく出力内容も検証
+3. **ドキュメント整合性**: パス、規則、前提条件の明記
 
 ## Goals
 
-1. 並列フローチE��トが確実に動作すめE
+1. 並列フローテストが確実に動作する
 2. AC定義がテスト結果を正確に反映する
-3. ドキュメントと実裁E�E完�E一致
+3. ドキュメントと実装の完全一致
 
 ## Acceptance Criteria
 
 | AC# | Description | Type | Matcher | Expected | Status |
 |:---:|-------------|------|---------|----------|:------:|
-| 1 | 並列フローチE��ト�E件PASS | output | contains | "passed (100%)" | [x] |
-| 2 | ワーカーがビルドエラーを�EさなぁE| output | not_contains | "ビルドに失敗しました" | [x] |
+| 1 | 並列フローテスト全件PASS | output | contains | "passed (100%)" | [x] |
+| 2 | ワーカーがビルドエラーを出さない | output | not_contains | "ビルドに失敗しました" | [x] |
 | 3 | 事前ビルドexe使用 | code | contains | "exec" | [x] |
-| 4 | testing-reference.md に並列テスト前提条件記輁E| file | contains | "Pre-built executable required" | [x] |
+| 4 | testing-reference.md に並列テスト前提条件記載 | file | contains | "Pre-built executable required" | [x] |
 | 5 | feature-template.md に AC 出力検証ガイド追加 | file | contains | "Anti-pattern" | [x] |
-| 6 | 既存頁E��実行が動佁E| exit_code | succeeds | - | [x] |
-| 7 | ビルド�E劁E| build | succeeds | - | [x] |
-| 8 | 回帰チE��ト�E功（�E力検証含む�E�E| output | contains | "passed (100%)" | [x] |
+| 6 | 既存順次実行が動作 | exit_code | succeeds | - | [x] |
+| 7 | ビルド成功 | build | succeeds | - | [x] |
+| 8 | 回帰テスト成功（出力検証含む） | output | contains | "passed (100%)" | [x] |
 
 ## Tasks
 
@@ -71,29 +71,29 @@ Feature 087 で追加した並列フローチE��ト機�Eの信頼性を確
 
 | Task# | AC# | Description | Status |
 |:-----:|:---:|-------------|:------:|
-| 1 | - | ProcessLevelParallelRunner のワーカー起動ロジチE��調査 | [ ] |
-| 2 | - | ビルドエラーの根本原因特宁E| [ ] |
+| 1 | - | ProcessLevelParallelRunner のワーカー起動ロジック調査 | [ ] |
+| 2 | - | ビルドエラーの根本原因特定 | [ ] |
 
 ### Phase 2: Engine Fix
 
 | Task# | AC# | Description | Status |
 |:-----:|:---:|-------------|:------:|
 | 3 | 1,2,3 | ワーカー起動を事前ビルドexe方式に変更 | [x] |
-| 4 | 6 | 頁E��実行モード�E後方互換性確誁E| [x] |
+| 4 | 6 | 順次実行モードの後方互換性確認 | [x] |
 
 ### Phase 3: Documentation
 
 | Task# | AC# | Description | Status |
 |:-----:|:---:|-------------|:------:|
-| 5 | 4 | testing-reference.md に並列テスト前提条件を追訁E| [x] |
-| 6 | 5 | feature-template.md に AC 出力検証ガイドを追訁E| [x] |
+| 5 | 4 | testing-reference.md に並列テスト前提条件を追記 | [x] |
+| 6 | 5 | feature-template.md に AC 出力検証ガイドを追記 | [x] |
 
 ### Phase 4: Verification
 
 | Task# | AC# | Description | Status |
 |:-----:|:---:|-------------|:------:|
-| 7 | 7 | ビルド�E功確誁E| [x] |
-| 8 | 8 | 回帰チE��ト実行（�E力検証含む�E�E| [ ] |
+| 7 | 7 | ビルド成功確認 | [x] |
+| 8 | 8 | 回帰テスト実行（出力検証含む） | [ ] |
 
 ## Technical Design
 
@@ -101,21 +101,21 @@ Feature 087 で追加した並列フローチE��ト機�Eの信頼性を確
 
 **調査対象ファイル**:
 - `uEmuera/Assets/Scripts/Emuera/Headless/ProcessLevelParallelRunner.cs`
-- `RunFlowTestInProcess()` メソチE�� (lines 365-467)
+- `RunFlowTestInProcess()` メソッド (lines 365-467)
 
-**現状のワーカー起動コマンチE*:
+**現状のワーカー起動コマンド**:
 ```csharp
-// 推定（要確認！E
+// 推定（要確認）
 dotnet run --project ../uEmuera/uEmuera.Headless.csproj --no-build -- Game/ --inject <json> --input-file <txt>
 ```
 
-**問顁E*:
-- `--no-build` だがビルド�E果物が不完�E/古ぁE
-- 吁E��ーカーが個別にビルド試行�E競吁E
+**問題**:
+- `--no-build` だがビルド成果物が不完全/古い
+- 各ワーカーが個別にビルド試行→競合
 
 ### Task 3: Engine Fix
 
-**修正方釁E*: ワーカーは事前ビルド済みDLLめE`dotnet exec` で実衁E
+**修正方針**: ワーカーは事前ビルド済みDLLを `dotnet exec` で実行
 
 **Before**:
 ```csharp
@@ -128,10 +128,10 @@ var startInfo = new ProcessStartInfo
 
 **After**:
 ```csharp
-// 1. メインプロセスでビルド済みDLLパスを取征E
+// 1. メインプロセスでビルド済みDLLパスを取得
 string dllPath = Path.Combine(projectDir, "bin", "Debug", "net8.0", "uEmuera.Headless.dll");
 
-// 2. ワーカーは dotnet exec でDLL直接実衁E
+// 2. ワーカーは dotnet exec でDLL直接実行
 var startInfo = new ProcessStartInfo
 {
     FileName = "dotnet",
@@ -140,24 +140,24 @@ var startInfo = new ProcessStartInfo
 ```
 
 **利点**:
-- ビルド済み ↁE起動が高速！E秒�E0.5私Eワーカー�E�E
-- ビルド競合なぁE
+- ビルド済み → 起動が高速（3秒→0.5秒/ワーカー）
+- ビルド競合なし
 - 確実に同一バイナリを使用
 
 **前提条件**:
-- 呼び出し�Eが事前に `dotnet build` を実行済みであること
-- これをドキュメント化�E�Eask 5�E�E
+- 呼び出し側が事前に `dotnet build` を実行済みであること
+- これをドキュメント化（Task 5）
 
 ### Task 4: Backward Compatibility
 
-**確認頁E��**:
-1. 単一シナリオ: `--inject single.json < input.txt` が動佁E
-2. Glob without parallel: `--inject "*.json"` が頁E��実行で動佁E
-3. 既存�E `--unit` モードに影響なぁE
+**確認項目**:
+1. 単一シナリオ: `--inject single.json < input.txt` が動作
+2. Glob without parallel: `--inject "*.json"` が順次実行で動作
+3. 既存の `--unit` モードに影響なし
 
 ### Task 5: testing-reference.md Update
 
-**追記�E容**:
+**追記内容**:
 ```markdown
 ## Parallel Test Prerequisites
 
@@ -181,7 +181,7 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 
 ### Task 6: feature-template.md Update
 
-**追記�E容**:
+**追記内容**:
 ```markdown
 ## AC Definition Best Practices
 
@@ -189,9 +189,9 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 
 | AC Type | exit_code only | exit_code + output | Recommended |
 |---------|:--------------:|:------------------:|:-----------:|
-| Build success | ✁E| - | exit_code |
-| Test suite pass | ✁EWeak | ✁E| **output** |
-| Feature works | ✁EWeak | ✁E| **output** |
+| Build success | ✓ | - | exit_code |
+| Test suite pass | ✗ Weak | ✓ | **output** |
+| Feature works | ✗ Weak | ✓ | **output** |
 
 **Problem with exit_code only**:
 - Test harness may return 0 even with partial failures
@@ -201,16 +201,16 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 ```markdown
 | AC# | Description | Type | Matcher | Expected |
 |:---:|-------------|------|---------|----------|
-| N | チE��ト�E劁E| output | contains | "passed (100%)" |
+| N | テスト成功 | output | contains | "passed (100%)" |
 ```
 
 **Anti-pattern** (Feature 087 lesson):
 ```markdown
 | AC# | Description | Type | Matcher | Expected |
 |:---:|-------------|------|---------|----------|
-| N | チE��ト�E劁E| exit_code | succeeds | - |
+| N | テスト成功 | exit_code | succeeds | - |
 ```
-ↁEexit_code 0 でも実際は 0/6 FAIL だっぁE
+→ exit_code 0 でも実際は 0/6 FAIL だった
 ```
 
 ## Execution State
@@ -228,7 +228,7 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 
 ### AC2 Verification (ac-tester): 2025-12-17
 - **Agent**: ac-tester
-- **AC**: 2 - ワーカーがビルドエラーを�EさなぁE
+- **AC**: 2 - ワーカーがビルドエラーを出さない
 - **Type**: output
 - **Matcher**: not_contains
 - **Expected**: "ビルドに失敗しました"
@@ -265,10 +265,10 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
   - Flow Tests: 6/6 PASS (100%)
   - Duration: 5.49s total
 - **AC Verification**:
-  - AC#1: 並列フローチE��ト�E件PASS - PASS (Summary shows "6/6 passed (100%)")
-  - AC#2: ワーカーがビルドエラーを�EさなぁE- PASS (No build errors in worker output)
+  - AC#1: 並列フローテスト全件PASS - PASS (Summary shows "6/6 passed (100%)")
+  - AC#2: ワーカーがビルドエラーを出さない - PASS (No build errors in worker output)
   - AC#3: 事前ビルドexe使用 - PASS (Workers using dotnet exec)
-  - AC#8: 回帰チE��ト�E功（�E力検証含む�E�E- PASS (100% pass rate verified)
+  - AC#8: 回帰テスト成功（出力検証含む） - PASS (100% pass rate verified)
 - **Failure Classification**:
   - C# Unit Test error (Xunit missing) = PRE-EXISTING
   - Evidence: uEmuera.Tests.csproj dependency issue unrelated to Feature 088 changes
@@ -278,7 +278,7 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 ### AC8 Verification: 2025-12-17
 - **Agent**: ac-tester
 - **Status**: PASS
-- **AC**: 8 - 回帰チE��ト�E功（�E力検証含む�E�E
+- **AC**: 8 - 回帰テスト成功（出力検証含む）
 - **Type**: output
 - **Matcher**: contains
 - **Expected**: "passed (100%)"
@@ -315,7 +315,7 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 - **Agent**: implementer
 - **Status**: SUCCESS
 - **Changes**:
-  - Modified `pm/reference/feature-template.md`:
+  - Modified `Game/agents/reference/feature-template.md`:
     - Added new anti-pattern: "Bad: exit_code Only for Test Suites" with Feature 087 lesson
     - Added new section "AC Verification Best Practices" with:
       - Table comparing exit_code vs output verification by AC type
@@ -329,7 +329,7 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 - **Agent**: implementer
 - **Status**: SUCCESS
 - **Changes**:
-  - Modified `pm/reference/testing-reference.md`:
+  - Modified `Game/agents/reference/testing-reference.md`:
     - Added "Prerequisites (Pre-built executable required)" subsection to section 3.1 Parallel Execution
     - Documents pre-built DLL requirement: `dotnet build uEmuera/uEmuera.Headless.csproj` must complete before running parallel tests
     - Explains why: Parallel workers use `dotnet exec` with pre-built DLL to avoid concurrent build conflicts
@@ -355,11 +355,11 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 - **Agent**: unit-tester
 - **Status**: PASS
 - **Verification**:
-  1. ✁EProcessLevelParallelRunner.cs compiles successfully
-  2. ✁EGetHeadlessDllPath() method correctly calculates DLL path
-  3. ✁EWorker process arguments use `dotnet exec {dllPath}` format
-  4. ✁EPre-built DLL exists at expected path (889KB @ 2025-12-17 15:59)
-  5. ✁EParallel flow test with 2 workers: 6/6 PASS
+  1. ✅ ProcessLevelParallelRunner.cs compiles successfully
+  2. ✅ GetHeadlessDllPath() method correctly calculates DLL path
+  3. ✅ Worker process arguments use `dotnet exec {dllPath}` format
+  4. ✅ Pre-built DLL exists at expected path (889KB @ 2025-12-17 15:59)
+  5. ✅ Parallel flow test with 2 workers: 6/6 PASS
 - **Test Results**:
   - scenario-k4-kojo (1.6s) - PASS
   - scenario-dayend (1.6s) - PASS
@@ -373,19 +373,19 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 - **Agent**: unit-tester
 - **Status**: PASS
 - **Verification**:
-  1. ✁ESequential flow test: Single scenario execution works
+  1. ✅ Sequential flow test: Single scenario execution works
      - Command: `--inject tests/core/scenario-wakeup.json --input-file tests/core/input-wakeup.txt`
      - Exit code: 0 (success)
      - Output: Game initialized and flow completed normally
      - Scenario applied successfully, inputs buffered (4 lines)
-  2. ✁EKojo test mode: Works without parallel flag
+  2. ✅ Kojo test mode: Works without parallel flag
      - Command: `--unit` (without character/function args, defaults to menu)
      - Exit code: 0 (success)
      - Output: Game initialized and awaited input
      - No crash, no build errors
 - **Backward Compatibility**: CONFIRMED
-  - Sequential mode (`--inject single.json --input-file input.txt`) = ✁E
-  - Kojo test mode (`--unit`) = ✁E
+  - Sequential mode (`--inject single.json --input-file input.txt`) = ✅
+  - Kojo test mode (`--unit`) = ✅
   - Pre-built exe approach does NOT break existing functionality
   - Backward compatibility AC (AC#6) verified
 
@@ -395,17 +395,17 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 
 | Issue | Category | Status | Action |
 |-------|----------|--------|--------|
-| 並列ワーカービルド失敁E| Engine Bug | **THIS FEATURE** | Task 3 |
-| AC定義が甘ぁE| Process | **THIS FEATURE** | Task 6 |
-| tests/flow/ パス誤めE| Documentation | FIXED (087) | - |
-| ペアリング規則未記輁E| Documentation | FIXED (087) | - |
+| 並列ワーカービルド失敗 | Engine Bug | **THIS FEATURE** | Task 3 |
+| AC定義が甘い | Process | **THIS FEATURE** | Task 6 |
+| tests/flow/ パス誤り | Documentation | FIXED (087) | - |
+| ペアリング規則未記載 | Documentation | FIXED (087) | - |
 | Failure Classification 未定義 | Process | FIXED (087) | - |
 | Consistency Check 未定義 | Process | FIXED (087) | - |
 
 ## Links
 
-- [index-features.md](../index-features.md) - Feature tracking
-- [feature-087.md](feature-087.md) - 発見�E Feature
-- [testing-reference.md](../reference/testing-reference.md) - チE��トリファレンス
-- [feature-template.md](../reference/feature-template.md) - ACチE��プレーチE
+- [index-features.md](index-features.md) - Feature tracking
+- [feature-087.md](feature-087.md) - 発見元 Feature
+- [testing-reference.md](reference/testing-reference.md) - テストリファレンス
+- [feature-template.md](reference/feature-template.md) - ACテンプレート
 - [ProcessLevelParallelRunner.cs](../../uEmuera/Assets/Scripts/Emuera/Headless/ProcessLevelParallelRunner.cs) - 修正対象

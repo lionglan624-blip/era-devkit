@@ -7,25 +7,25 @@
 ## Background
 
 ### Philosophy (Mid-term Vision)
-口上�E COM の行為冁E��と意味皁E��整合すべき。キーワード�E有無ではなく、描写が行為を正しく表現してぁE��かを判定する、E
+口上は COM の行為内容と意味的に整合すべき。キーワードの有無ではなく、描写が行為を正しく表現しているかを判定する。
 
-侁E
-- COM60�E�正常位）�E口上が「キスしてぁE��」描写�Eみなら矛盾
-- COM69�E�対面座位アナル�E��E口上がアナル行為を描写してぁE��ば整合（婉曲表現可�E�E
+例:
+- COM60（正常位）の口上が「キスしている」描写のみなら矛盾
+- COM69（対面座位アナル）の口上がアナル行為を描写していれば整合（婉曲表現可）
 
 ### Problem (Current Issue)
-- F252 のキーワード�Eース監査は誤検知が多い�E�婉曲表現を矛盾と判定！E
-- 意味皁E��合性は人間また�E LLM による判断が忁E��E
-- 152 COMF ÁE10 キャラ = 最大 1,520 パターンを網羁E��に検証する仕絁E��がなぁE
+- F252 のキーワードベース監査は誤検知が多い（婉曲表現を矛盾と判定）
+- 意味的整合性は人間または LLM による判断が必要
+- 152 COMF × 10 キャラ = 最大 1,520 パターンを網羅的に検証する仕組みがない
 
 ### Goal (What to Achieve)
-1. 全 COM の全キャラ・全刁E��を意味皁E��監査
-2. 監査結果めEJSON ファイルで管琁E
-3. 矛盾箁E��の特定と報呁E
+1. 全 COM の全キャラ・全分岐を意味的に監査
+2. 監査結果を JSON ファイルで管理
+3. 矛盾箇所の特定と報告
 
 ### Session Context
 - **前提**: F252 (CANCELLED) からの引継ぎ
-- **設訁E*: バッチ並刁Edispatch + スチE�Eタスポ�Eリング�E�オーケストレーターのコンチE��スト最小化�E�E
+- **設計**: バッチ並列 dispatch + ステータスポーリング（オーケストレーターのコンテキスト最小化）
 
 ---
 
@@ -33,35 +33,35 @@
 
 | AC# | Description | Type | Method | Matcher | Expected | Status |
 |:---:|-------------|------|--------|---------|----------|:------:|
-| 1 | 監査 agent 定義作�E | file | Glob | exists | .claude/agents/com-auditor.md | [ ] |
-| 2 | 全 COMF の監査完亁E| file | Glob | gte | 152 | [ ] |
-| 3 | サマリーレポ�Eト生戁E| file | Glob | exists | _out/logs/audit/summary.json | [ ] |
+| 1 | 監査 agent 定義作成 | file | Glob | exists | .claude/agents/com-auditor.md | [ ] |
+| 2 | 全 COMF の監査完了 | file | Glob | gte | 152 | [ ] |
+| 3 | サマリーレポート生成 | file | Glob | exists | Game/logs/audit/summary.json | [ ] |
 
 ### AC Details
 
-**AC1**: `.claude/agents/com-auditor.md` を作�E
-- 1 COM の全キャラ・全刁E��を監査する agent 定義
-- 結果めE`_out/logs/audit/com-{NUM}.json` に出劁E
-- ※ com-auditor は本監査専用の一時的 agent�E�ELAUDE.md 登録対象外！E
-- Agent 構�E要素:
-  - 入劁E COM 番号
-  - COMF パ�Eス: `Game/ERB/COMF{NUM}.ERB` から SOURCE/EXP 抽出
-  - 口上検索: kojo-writing SKILL 参�E�E�パス解決ロジチE��はSKILLに従う�E�E
-  - 判宁E PASS/INCONSISTENT/NOT_IMPLEMENTED
-  - 出劁E JSON (Output JSON Schema 参�E)
+**AC1**: `.claude/agents/com-auditor.md` を作成
+- 1 COM の全キャラ・全分岐を監査する agent 定義
+- 結果を `Game/logs/audit/com-{NUM}.json` に出力
+- ※ com-auditor は本監査専用の一時的 agent（CLAUDE.md 登録対象外）
+- Agent 構成要素:
+  - 入力: COM 番号
+  - COMF パース: `Game/ERB/COMF{NUM}.ERB` から SOURCE/EXP 抽出
+  - 口上検索: kojo-writing SKILL 参照（パス解決ロジックはSKILLに従う）
+  - 判定: PASS/INCONSISTENT/NOT_IMPLEMENTED
+  - 出力: JSON (Output JSON Schema 参照)
 
-**AC2**: 全 152 COMF に対して監査を実行！Eame/ERB/COMF*.ERB ファイル数に基づく！E
-- 前提: `_out/logs/audit/` チE��レクトリを事前作�E
-- バッチサイズ: 不均一�E�Eatch Configuration 参�E�E�E
+**AC2**: 全 152 COMF に対して監査を実行（Game/ERB/COMF*.ERB ファイル数に基づく）
+- 前提: `Game/logs/audit/` ディレクトリを事前作成
+- バッチサイズ: 不均一（Batch Configuration 参照）
 - バッチ数: 14
-- 吁E��チE��は前バチE��完亁E��に開姁E
-- 出劁E `_out/logs/audit/com-{NUM}.json`
-- 検証方況E `Glob("_out/logs/audit/com-*.json")` のファイル数をカウントし >= 152 を確誁E
+- 各バッチは前バッチ完了後に開始
+- 出力: `Game/logs/audit/com-{NUM}.json`
+- 検証方法: `Glob("Game/logs/audit/com-*.json")` のファイル数をカウントし >= 152 を確認
 
-**AC3**: 全監査完亁E��にサマリー生�E
-- summary agent が�E JSON を集訁E
-- `_out/logs/audit/summary.json` に出劁E
-- ※ summary agent も本監査専用の一時的 agent�E�ELAUDE.md 登録対象外！E
+**AC3**: 全監査完了後にサマリー生成
+- summary agent が全 JSON を集計
+- `Game/logs/audit/summary.json` に出力
+- ※ summary agent も本監査専用の一時的 agent（CLAUDE.md 登録対象外）
 
 ---
 
@@ -69,9 +69,9 @@
 
 | Task# | AC# | Description | Status |
 |:-----:|:---:|-------------|:------:|
-| 1 | 1 | com-auditor.md agent 定義作�E | [ ] |
-| 2 | 2 | 全バッチ監査実行（結果: 全COMF対忁EJSON 生�E�E�E| [ ] |
-| 3 | 3 | summary.json 生�E | [ ] |
+| 1 | 1 | com-auditor.md agent 定義作成 | [ ] |
+| 2 | 2 | 全バッチ監査実行（結果: 全COMF対応 JSON 生成） | [ ] |
+| 3 | 3 | summary.json 生成 | [ ] |
 
 ---
 
@@ -80,20 +80,20 @@
 ### Architecture
 
 ```
-Orchestrator (Opus) - コンチE��スト最小化
-  ━E
-  ▼ (頁E�� 14 バッチE バッチ�E並刁E
+Orchestrator (Opus) - コンテキスト最小化
+  │
+  ▼ (順次 14 バッチ, バッチ内並列)
 Auditor Agent (Sonnet)
-  ━E・1 dispatch = 1 COM の全キャラ (10吁E ・全刁E��監査
-  ━E・結果めEJSON ファイルに出劁E
+  │ ・1 dispatch = 1 COM の全キャラ (10名) ・全分岐監査
+  │ ・結果を JSON ファイルに出力
   ▼
-出劁E _out/logs/audit/com-{NUM}.json
-  ━E
-  ▼ (全バッチ完亁E��E
+出力: Game/logs/audit/com-{NUM}.json
+  │
+  ▼ (全バッチ完了後)
 Summary Agent (Haiku)
-  ━E・全 JSON を集訁E
+  │ ・全 JSON を集計
   ▼
-_out/logs/audit/summary.json
+Game/logs/audit/summary.json
 ```
 
 ### Output JSON Schema
@@ -101,9 +101,9 @@ _out/logs/audit/summary.json
 ```json
 {
   "com": 60,
-  "comf_name": "正常佁E,
-  "comf_sources": ["快�E�", "惁E�E", "苦痁E],
-  "comf_exps": ["�E�性交経騁E],
+  "comf_name": "正常位",
+  "comf_sources": ["快Ｖ", "情愛", "苦痛"],
+  "comf_exps": ["Ｖ性交経験"],
   "results": [
     {
       "char": 1,
@@ -114,13 +114,13 @@ _out/logs/audit/summary.json
     },
     {
       "char": 2,
-      "char_name": "小悪魁E,
+      "char_name": "小悪魔",
       "functions_checked": 8,
       "status": "INCONSISTENT",
       "issues": [
         {
           "function": "@KOJO_MESSAGE_COM_K2_60_1",
-          "reason": "口上がキス描�Eのみで挿入行為を描写してぁE��ぁE
+          "reason": "口上がキス描写のみで挿入行為を描写していない"
         }
       ]
     }
@@ -136,8 +136,8 @@ _out/logs/audit/summary.json
 
 ### Batch Configuration
 
-※ 監査対象: Game/ERB/COMF*.ERB ファイル�E�E52 個、E025-12-27 時点�E�E
-※ Batch Configuration は参老E��。実行時は Glob で COMF ファイルを動皁E�E持E
+※ 監査対象: Game/ERB/COMF*.ERB ファイル（152 個、2025-12-27 時点）
+※ Batch Configuration は参考値。実行時は Glob で COMF ファイルを動的列挙
 
 | Batch | COM Range | Count |
 |:-----:|-----------|:-----:|
@@ -157,27 +157,27 @@ _out/logs/audit/summary.json
 | 14 | 600-series (Self) | 17 |
 | **Total** | | **152** |
 
-※ 未実裁E��上�E COM は NOT_IMPLEMENTED を返す見込み
+※ 未実装口上の COM は NOT_IMPLEMENTED を返す見込み
 
 ### Polling Parameters
 
-- バッチE��隁E 前バチE��の全 JSON 出力確認征E
-- ポ�Eリング間隔: 60 秒（調整可能な初期値�E�E
-- タイムアウチE 30 刁EバッチE��調整可能な初期値�E�E
-- スチE�Eタス確誁E `Glob("_out/logs/audit/com-*.json")` の count
-- ※ 実行時間�E COM 褁E��度により変動。�E回実行後にパラメータ調整を想宁E
+- バッチ間隔: 前バッチの全 JSON 出力確認後
+- ポーリング間隔: 60 秒（調整可能な初期値）
+- タイムアウト: 30 分/バッチ（調整可能な初期値）
+- ステータス確認: `Glob("Game/logs/audit/com-*.json")` の count
+- ※ 実行時間は COM 複雑度により変動。初回実行後にパラメータ調整を想定
 
 ### Judgment Criteria
 
-**PASS**: 口上が COM の行為冁E��を正しく描�EしてぁE��
-- 婉曲表現でも行為が伝われ�EOK
+**PASS**: 口上が COM の行為内容を正しく描写している
+- 婉曲表現でも行為が伝わればOK
 - SOURCE/EXP と矛盾しなければOK
 
-**INCONSISTENT**: 口上が COM の行為と矛盾してぁE��
-- 別の行為を描写してぁE��
-- 行為に関連する描�Eが�EくなぁE
+**INCONSISTENT**: 口上が COM の行為と矛盾している
+- 別の行為を描写している
+- 行為に関連する描写が全くない
 
-**NOT_IMPLEMENTED**: 該彁ECOM の口上関数が存在しなぁE
+**NOT_IMPLEMENTED**: 該当 COM の口上関数が存在しない
 
 ---
 
@@ -187,7 +187,7 @@ _out/logs/audit/summary.json
 |-----------|:-----:|-------|--------|--------|
 | 2025-12-28 05:30 | START | opus | F253 implementation | - |
 | 2025-12-28 05:32 | AC1 | opus | Created com-auditor.md | DONE |
-| 2025-12-28 05:35 | AC2 | com-auditorÁE52 | Batch audit execution (14 batches) | 152 JSONs |
+| 2025-12-28 05:35 | AC2 | com-auditor×152 | Batch audit execution (14 batches) | 152 JSONs |
 | 2025-12-28 06:10 | AC3 | haiku | Summary generation | summary.json |
 | 2025-12-28 06:15 | VERIFY | opus | All 3 ACs verified | PASS |
 | 2025-12-28 06:16 | END | opus | Feature complete | SUCCESS |
@@ -196,6 +196,6 @@ _out/logs/audit/summary.json
 
 ## Links
 
-- [index-features.md](../index-features.md)
+- [index-features.md](index-features.md)
 - [feature-252.md](feature-252.md) - CANCELLED (キーワード監査)
-- [kojo-writing SKILL](../../../archive/claude_legacy_20251230/skills/kojo-writing/SKILL.md)
+- [kojo-writing SKILL](../../.claude/skills/kojo-writing/SKILL.md)

@@ -1,4 +1,4 @@
-# Feature 263: Subagent SSOT 完�E移衁E- 全 Type で Minimal Dispatch
+# Feature 263: Subagent SSOT 完全移行 - 全 Type で Minimal Dispatch
 
 ## Status: [DONE]
 
@@ -8,31 +8,31 @@
 
 ### Philosophy (Mid-term Vision)
 
-> **Subagents は SSOT を参照して自律的に正しく実行する。dispatch 側の過剰持E��を排除する、E*
+> **Subagents は SSOT を参照して自律的に正しく実行する。dispatch 側の過剰指定を排除する。**
 
-F260 で kojo type につぁE�� Philosophy を達成。本 Feature で全 Type (erb/engine/infra) に拡張する、E
+F260 で kojo type について Philosophy を達成。本 Feature で全 Type (erb/engine/infra) に拡張する。
 
 ### Problem (Current Issue)
 
-1. **do.md に2つの dispatch 形式が共孁E*
+1. **do.md に2つの dispatch 形式が共存**
    - Dispatch Prompt Template (verbose)
    - Minimal Dispatch Format
-   - どちらを使ぁE��きか曖昧
+   - どちらを使うべきか曖昧
 
-2. **erb-syntax / engine-dev SKILL が不完�E**
+2. **erb-syntax / engine-dev SKILL が不完全**
    - kojo-writing: Procedure, Template, Quality, Constraints 完備
-   - erb-syntax: 構文リファレンスのみ (Procedure なぁE
-   - engine-dev: インターフェースリファレンスのみ (Procedure なぁE
+   - erb-syntax: 構文リファレンスのみ (Procedure なし)
+   - engine-dev: インターフェースリファレンスのみ (Procedure なし)
 
-3. **implementer agent ぁEverbose dispatch に依孁E*
+3. **implementer agent が verbose dispatch に依存**
    - kojo-writer は Minimal Dispatch で動作可能
-   - implementer はまだ verbose 形式を想宁E
+   - implementer はまだ verbose 形式を想定
 
 ### Goal (What to Achieve)
 
-1. **do.md 整琁E*: verbose Dispatch Prompt Template を削除
-2. **SKILL 拡允E*: erb-syntax / engine-dev に Procedure, Template, Quality 追加
-3. **Agent 整傁E*: implementer に明示皁E�� Skill 呼び出しパターン追加 (erb-syntax, engine-dev)
+1. **do.md 整理**: verbose Dispatch Prompt Template を削除
+2. **SKILL 拡充**: erb-syntax / engine-dev に Procedure, Template, Quality 追加
+3. **Agent 整備**: implementer に明示的な Skill 呼び出しパターン追加 (erb-syntax, engine-dev)
 
 ---
 
@@ -79,12 +79,12 @@ F260 で kojo type につぁE�� Philosophy を達成。本 Feature で全 Ty
 
 ## Design Notes
 
-### erb-syntax SKILL 追加冁E��
+### erb-syntax SKILL 追加内容
 
 ```markdown
 ## Procedure
 
-1. Read `pm/features/feature-{ID}.md` for task requirements
+1. Read `Game/agents/feature-{ID}.md` for task requirements
 2. Identify target ERB files using Glob
 3. Read existing code patterns in target file
 4. Implement changes following existing conventions
@@ -103,12 +103,12 @@ F260 で kojo type につぁE�� Philosophy を達成。本 Feature で全 Ty
 | Labels | `$label` for GOTO targets, avoid GOTO when possible |
 ```
 
-### engine-dev SKILL 追加冁E��
+### engine-dev SKILL 追加内容
 
 ```markdown
 ## Procedure
 
-1. Read `pm/features/feature-{ID}.md` for task requirements
+1. Read `Game/agents/feature-{ID}.md` for task requirements
 2. Identify target C# files using Glob in `engine/` directory
 3. Read existing interface patterns and dependencies
 4. Implement changes following existing conventions
@@ -127,9 +127,9 @@ F260 で kojo type につぁE�� Philosophy を達成。本 Feature で全 Ty
 | Documentation | XML comments for public APIs |
 ```
 
-### implementer.md 追加冁E��
+### implementer.md 追加内容
 
-Task 4 で implementer.md に以下�E Skill 呼び出しパターンを追加:
+Task 4 で implementer.md に以下の Skill 呼び出しパターンを追加:
 
 ```markdown
 ## Skill References
@@ -138,18 +138,18 @@ When implementing ERB features, invoke `Skill(erb-syntax)` for syntax rules.
 When implementing engine features, invoke `Skill(engine-dev)` for C# conventions.
 ```
 
-*Note: AC6-7 は上記�E `Skill(erb-syntax)` と `Skill(engine-dev)` 斁E���Eの存在めEGrep で検証する、E
+*Note: AC6-7 は上記の `Skill(erb-syntax)` と `Skill(engine-dev)` 文字列の存在を Grep で検証する。*
 
 ### do.md 変更
 
-- `## Dispatch Prompt Template` セクションとそ�EコードブロチE�� (紁E0衁E を削除
+- `## Dispatch Prompt Template` セクションとそのコードブロック (約20行) を削除
 - Minimal Dispatch Format セクションのみ残す
 
 ---
 
 ## Review Notes
 
-- F260 Post-Review で検�EされぁEminor issue の解決
+- F260 Post-Review で検出された minor issue の解決
 - F261/F262 とは独立して実行可能
 
 ---
@@ -164,6 +164,6 @@ When implementing engine features, invoke `Skill(engine-dev)` for C# conventions
 
 ## Links
 
-- [feature-260.md](feature-260.md) - Dispatch 最小化 + Subagent 整吁E(kojo)
-- [kojo-writing SKILL](../../../archive/claude_legacy_20251230/skills/kojo-writing/SKILL.md) - 参老E��裁E
-- [do.md](../../../archive/claude_legacy_20251230/commands/do.md) - 修正対象
+- [feature-260.md](feature-260.md) - Dispatch 最小化 + Subagent 整合 (kojo)
+- [kojo-writing SKILL](../../.claude/skills/kojo-writing/SKILL.md) - 参考実装
+- [do.md](../../.claude/commands/do.md) - 修正対象

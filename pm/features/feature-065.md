@@ -21,7 +21,7 @@ Extend COM category-based file organization from K4 to all other characters. Cre
 
 ## Problem
 
-- Other characters still have fragmented kojo files (KOJO_K{N}.ERB, NTR拡張, 対あなぁE
+- Other characters still have fragmented kojo files (KOJO_K{N}.ERB, NTR拡張, 対あなた)
 - No generalized script for COM category reorganization
 - Manual process for each character is inefficient
 
@@ -36,21 +36,21 @@ Extend COM category-based file organization from K4 to all other characters. Cre
 
 | Char | Files to Reorganize | Complexity |
 |------|---------------------|------------|
-| K1 美鈴 | KOJO_K1.ERB (710), 対あなぁE(964) | Low |
-| K2 小悪魁E| KOJO_K2.ERB, NTR拡張, 対あなぁE| Medium |
-| K3 パチュリー | NTR拡張, 対あなぁE| Low |
-| K5 レミリア | NTR拡張, 対あなぁE| Low |
-| K6 フラン | NTR拡張, 対あなぁE| Low |
-| K7 子悪魁E| 対あなぁEonly | Minimal |
-| K8 チルチE| KOJO_K8.ERB, NTR拡張, 対あなぁE| Medium |
-| K9 大妖精 | KOJO_K9.ERB, 対あなぁE| Low |
-| K10 魔理沁E| KOJO_K10.ERB, NTR拡張 | Medium |
-| KU 汎用 | NTR拡張, 対あなぁE| Low |
+| K1 美鈴 | KOJO_K1.ERB (710), 対あなた (964) | Low |
+| K2 小悪魔 | KOJO_K2.ERB, NTR拡張, 対あなた | Medium |
+| K3 パチュリー | NTR拡張, 対あなた | Low |
+| K5 レミリア | NTR拡張, 対あなた | Low |
+| K6 フラン | NTR拡張, 対あなた | Low |
+| K7 子悪魔 | 対あなた only | Minimal |
+| K8 チルノ | KOJO_K8.ERB, NTR拡張, 対あなた | Medium |
+| K9 大妖精 | KOJO_K9.ERB, 対あなた | Low |
+| K10 魔理沙 | KOJO_K10.ERB, NTR拡張 | Medium |
+| KU 汎用 | NTR拡張, 対あなた | Low |
 
 ## Feature 065 Scope (Opus)
 
 ### In Scope
-- Generalize `tools/reorganize_k4.py` ↁE`tools/reorganize_kojo.py`
+- Generalize `tools/reorganize_k4.py` → `tools/reorganize_kojo.py`
 - Execute K1 (Meiling) COM integration
 - Create `.claude/agents/kojo-refactor.md` subagent
 - Document workflow for subagent usage
@@ -89,22 +89,22 @@ def main():
 
 ```
 {N}_{name}/
-├── KOJO_K{N}_会話親寁EERB   # COM300-315, 350-352
+├── KOJO_K{N}_会話親密.ERB   # COM300-315, 350-352
 ├── KOJO_K{N}_愛撫.ERB       # COM0-9, 20-21, 40-48
 ├── KOJO_K{N}_挿入.ERB       # COM60-72
 ├── KOJO_K{N}_口挿入.ERB     # COM80-148, 180-203
 ├── KOJO_K{N}_日常.ERB       # COM410-415, 463
 ├── KOJO_K{N}_EVENT.ERB      # EVENT, COUNTER, etc.
 ├── NTR口上_*.ERB            # (unchanged)
-├── WC系口丁EERB             # (unchanged)
-└── SexHara休�E中口丁EERB    # (unchanged)
+├── WC系口上.ERB             # (unchanged)
+└── SexHara休憩中口上.ERB    # (unchanged)
 ```
 
 ### Verification Steps
 
 1. **Build**: `dotnet build uEmuera/uEmuera.Headless.csproj`
-2. **Lint**: `dotnet run --project tools/ErbLinter -- Game/ERB/口丁E{N}_{name}/*.ERB`
-3. **Mapper**: `node src/tools/kojo-mapper/src/index.js --char K{N}`
+2. **Lint**: `dotnet run --project tools/ErbLinter -- Game/ERB/口上/{N}_{name}/*.ERB`
+3. **Mapper**: `node tools/kojo-mapper/src/index.js --char K{N}`
 4. **Headless**: `dotnet run --project uEmuera/uEmuera.Headless.csproj -- Game --unit "KOJO_MESSAGE_COM_K{N}_300" --char "{N}"`
 
 ## Subagent Workflow (for 066+)
@@ -131,7 +131,7 @@ Subagent executes:
 
 ## IMPORTANT: COM File Placement Rules
 
-Feature 190 で以下�E配置ルールが確宁E
+Feature 190 で以下の配置ルールが確定:
 
 | COM Range | Category | File |
 |-----------|----------|------|
@@ -140,10 +140,10 @@ Feature 190 で以下�E配置ルールが確宁E
 
 **SSOT**: `.claude/skills/kojo-writing/SKILL.md`
 
-詳細は Feature 190, 221 を参照、E
+詳細は Feature 190, 221 を参照。
 
 ## Links
 
 - [feature-057.md](feature-057.md) - K4 COM Integration (reference)
-- [reference/testing-reference.md](../reference/testing-reference.md) - Test documentation (kojo-test)
-- [index-features.md](../index-features.md) - Feature tracking
+- [reference/testing-reference.md](reference/testing-reference.md) - Test documentation (kojo-test)
+- [index-features.md](index-features.md) - Feature tracking

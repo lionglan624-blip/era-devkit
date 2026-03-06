@@ -1,133 +1,133 @@
-# Feature 084: 刁E��トレース意味匁E
+# Feature 084: 分岐トレース意味化
 
 ## Status: [DONE]
 
 ## Background
 
-### 問顁E
+### 問題
 
-現在のHeadless刁E��トレース�E�E--trace-branches`�E��E**行番号のみ**を�E力する！E
+現在のHeadless分岐トレース（`--trace-branches`）は**行番号のみ**を出力する：
 
 ```
 [BRANCH] KOJO_K1_300.ERB:42 taken=true
 [BRANCH] KOJO_K1_300.ERB:45 taken=false
 ```
 
-これだけでは「どの刁E��（恋慕？思�E�E�）を通ったか」が刁E��らなぁE��E
+これだけでは「どの分岐（恋慕？思慕？）を通ったか」が分からない。
 
-### 目樁E
+### 目標
 
-静的解析！Eojo-mapper�E��E刁E��ブロチE��惁E��と動的実行時の行番号を紐づけ！E
+静的解析（kojo-mapper）の分岐ブロック情報と動的実行時の行番号を紐づけ：
 
 ```
-[BRANCH] KOJO_K1_300.ERB:42 "恋�E刁E��E taken=true
-[BRANCH] KOJO_K1_300.ERB:45 "思�E刁E��E taken=false
+[BRANCH] KOJO_K1_300.ERB:42 "恋慕分岐" taken=true
+[BRANCH] KOJO_K1_300.ERB:45 "思慕分岐" taken=false
 ```
 
-### 用送E
+### 用途
 
-- チE��ト結果の可読性向丁E
-- 「どのTALENT刁E��を通過したか」�E自動検証
-- kojo-mapperカバレチE��レポ�Eトとの連携
+- テスト結果の可読性向上
+- 「どのTALENT分岐を通過したか」の自動検証
+- kojo-mapperカバレッジレポートとの連携
 
 ---
 
 ## Acceptance Criteria
 
-### AC1: 刁E��ブロチE��マッピング生�E
+### AC1: 分岐ブロックマッピング生成
 
-kojo-mapperで吁E�E岐�E「意味ラベル」と行番号のマッピングを生成！E
+kojo-mapperで各分岐の「意味ラベル」と行番号のマッピングを生成：
 
 ```json
 {
   "KOJO_K1_300.ERB": {
-    "42": { "label": "恋�E刁E��E, "condition": "TALENT:奴隷:恋�E == 1" },
-    "45": { "label": "思�E刁E��E, "condition": "TALENT:奴隷:思�E == 1" },
-    "48": { "label": "関係なし�E岁E, "condition": "ELSE" }
+    "42": { "label": "恋慕分岐", "condition": "TALENT:奴隷:恋慕 == 1" },
+    "45": { "label": "思慕分岐", "condition": "TALENT:奴隷:思慕 == 1" },
+    "48": { "label": "関係なし分岐", "condition": "ELSE" }
   }
 }
 ```
 
 **検証**:
-- [x] kojo-mapperが�E岐�EチE��ングJSONを�E力できる
-- [x] 主要E刁E��（恋人/恋�E/思�E/なし）が正しくラベル付けされめE
+- [x] kojo-mapperが分岐マッピングJSONを出力できる
+- [x] 主要4分岐（恋人/恋慕/思慕/なし）が正しくラベル付けされる
 
 ### AC2: Headlessトレース出力拡張
 
-`--trace-branches`実行時、�EチE��ングファイルがあれ�E意味ラベルを付与！E
+`--trace-branches`実行時、マッピングファイルがあれば意味ラベルを付与：
 
 ```bash
 dotnet run ... --trace-branches --branch-map branch-map.json
 ```
 
-出力！E
+出力：
 ```
-[BRANCH] KOJO_K1_300.ERB:42 "恋�E刁E��E taken=true
+[BRANCH] KOJO_K1_300.ERB:42 "恋慕分岐" taken=true
 ```
 
 **検証**:
-- [x] `--branch-map`オプションがHeadlessRunnerのヘルプに表示されめE
+- [x] `--branch-map`オプションがHeadlessRunnerのヘルプに表示される
 - [x] HeadlessRunnerがCLI引数からBranchMapPathを読込む
 
-### AC3: 条件式ハチE��ュによる堁E��匁E
+### AC3: 条件式ハッシュによる堅牢化
 
-行番号は編雁E��ずれるため、条件式�Eハッシュでフォールバック�E�E
+行番号は編集でずれるため、条件式のハッシュでフォールバック：
 
 ```json
 {
   "KOJO_K1_300.ERB": {
-    "hash:abc123": { "label": "恋�E刁E��E, "line_hint": 42 }
+    "hash:abc123": { "label": "恋慕分岐", "line_hint": 42 }
   }
 }
 ```
 
 **検証**:
-- [x] 行番号マッチEↁEハッシュマッチEↁE不�E の優先頁E��で解決
-- [x] ERB編雁E��もハッシュで正しくマッピング
+- [x] 行番号マッチ → ハッシュマッチ → 不明 の優先順位で解決
+- [x] ERB編集後もハッシュで正しくマッピング
 
-### AC4: kojo-testレポ�Eト連携
+### AC4: kojo-testレポート連携
 
-kojo-testのサマリーに通過刁E��を表示�E�E
+kojo-testのサマリーに通過分岐を表示：
 
 ```
-KOJO_MESSAGE_思�E獲得_KU(1): PASS
-  Branches: 恋�E刁E��Etaken), 思�E刁E��Eskipped)
+KOJO_MESSAGE_思慕獲得_KU(1): PASS
+  Branches: 恋慕分岐(taken), 思慕分岐(skipped)
 ```
 
 **検証**:
-- [x] `--verbose`オプションで刁E��情報表示
+- [x] `--verbose`オプションで分岐情報表示
 
 ---
 
 ## Implementation Notes
 
-### アーキチE��チャ
+### アーキテクチャ
 
 ```
 kojo-mapper (Python)
-    ↁE生�E
+    ↓ 生成
 branch-map.json
-    ↁE読込
+    ↓ 読込
 HeadlessRunner.cs (C#)
-    ↁE出劁E
+    ↓ 出力
 意味ラベル付きトレース
 ```
 
-### 刁E��検�Eパターン
+### 分岐検出パターン
 
 ```erb
-; Pattern 1: TALENT直接参�E
-IF TALENT:奴隷:恋�E == 1
-  ↁEラベル: "恋�E刁E��E
+; Pattern 1: TALENT直接参照
+IF TALENT:奴隷:恋慕 == 1
+  → ラベル: "恋慕分岐"
 
-; Pattern 2: NTR_CHK_FAVORABLY呼び出ぁE
+; Pattern 2: NTR_CHK_FAVORABLY呼び出し
 SIF NTR_CHK_FAVORABLY(奴隷) == 2
-  ↁEラベル: "恋�E刁E��E (関数戻り値から推宁E
+  → ラベル: "恋慕分岐" (関数戻り値から推定)
 
 ; Pattern 3: SELECTCASE
 SELECTCASE TALENT:奴隷:恋人
-  CASE 1 ↁE"恋人刁E��E
-  CASEELSE ↁE"恋人以外�E岁E
+  CASE 1 → "恋人分岐"
+  CASEELSE → "恋人以外分岐"
 ```
 
 ---
@@ -140,8 +140,8 @@ SELECTCASE TALENT:奴隷:恋人
 
 ## Dependencies
 
-- Feature 055 (kojo-mapper拡張) - 完亁E��み
-- Feature 060 (刁E��トレース) - 完亁E��み
+- Feature 055 (kojo-mapper拡張) - 完了済み
+- Feature 060 (分岐トレース) - 完了済み
 
 ---
 
@@ -181,17 +181,17 @@ python kojo_mapper.py <character_dir> --branch-map --branch-map-output custom.js
 ```json
 {
   "KOJO_K1_EVENT.ERB": {
-    "381": { "label": "恋�E刁E��E, "condition": "TALENT:奴隷:恋�E", "hash": "80a1fd4c" }
+    "381": { "label": "恋慕分岐", "condition": "TALENT:奴隷:恋慕", "hash": "80a1fd4c" }
   }
 }
 ```
 
 **Supported Labels**:
-- 恋人刁E��E 恋�E刁E��E 思�E刁E��E 親愛�E岁E(TALENT-based)
-- 好感度N刁E��E(NTR_CHK_FAVORABLY-based)
-- 親寁E=N刁E��E 親寁EN刁E��E(ABL-based)
-- 関係なし�E岁E(ELSE blocks)
-- 条件刁E��E(generic fallback)
+- 恋人分岐, 恋慕分岐, 思慕分岐, 親愛分岐 (TALENT-based)
+- 好感度N分岐 (NTR_CHK_FAVORABLY-based)
+- 親密<=N分岐, 親密>N分岐 (ABL-based)
+- 関係なし分岐 (ELSE blocks)
+- 条件分岐 (generic fallback)
 
 **Test Result**: 550 branch blocks mapped from 美鈴 kojo files
 
@@ -234,7 +234,7 @@ Files Created:
   - Loads JSON mapping from file
   - Supports line number lookup with hash-based fallback
   - Singleton pattern for thread-safe access
-  - Prioritized lookup: exact line match ↁEhash fallback ↁEnull
+  - Prioritized lookup: exact line match → hash fallback → null
 - `TraceService.cs`: Thread-local service for trace settings
   - Manages TraceLevel (None/Basic/Deep)
   - Provides `TraceBranch()` for [BRANCH] output
@@ -256,7 +256,7 @@ Files Modified:
 
 **Branch Output Format**:
 ```
-[BRANCH] KOJO_K1_300.ERB:42 "恋�E刁E��E taken=true
+[BRANCH] KOJO_K1_300.ERB:42 "恋慕分岐" taken=true
 [BRANCH] KOJO_K1_300.ERB:45 taken=false
 ```
 
@@ -303,9 +303,9 @@ Files Modified:
 ```
 [+] KOJO_K1_300 (0.12s) - PASS
   Branches:
-    [+] 恋�E刁E��E(line 42)
-    [-] 思�E刁E��E(line 45)
-    [+] 好感度5刁E��E(line 120)
+    [+] 恋慕分岐 (line 42)
+    [-] 思慕分岐 (line 45)
+    [+] 好感度5分岐 (line 120)
 ```
 
 **JSON Output Format**:
@@ -315,8 +315,8 @@ Files Modified:
   "status": "pass",
   "duration_ms": 120,
   "branches": [
-    { "label": "恋�E刁E��E, "filename": "KOJO_K1_300.ERB", "lineNumber": 42, "taken": true },
-    { "label": "思�E刁E��E, "filename": "KOJO_K1_300.ERB", "lineNumber": 45, "taken": false }
+    { "label": "恋慕分岐", "filename": "KOJO_K1_300.ERB", "lineNumber": 42, "taken": true },
+    { "label": "思慕分岐", "filename": "KOJO_K1_300.ERB", "lineNumber": 45, "taken": false }
   ]
 }
 ```
@@ -336,6 +336,6 @@ Files Modified:
 
 ## Links
 
-- [feature-060.md](archive/feature-060.md) - Headless刁E��トレース
-- [kojo-mapper](../../src/tools/kojo-mapper/) - 口上カバレチE��刁E��チE�Eル
-- [testing-reference.md](../reference/testing-reference.md) - チE��ト戦略
+- [feature-060.md](archive/feature-060.md) - Headless分岐トレース
+- [kojo-mapper](../../tools/kojo-mapper/) - 口上カバレッジ分析ツール
+- [testing-reference.md](reference/testing-reference.md) - テスト戦略

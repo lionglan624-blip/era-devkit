@@ -40,18 +40,18 @@ Additionally, when `HasInputFile` is false:
 
 ### AC Details
 
-**Test AC1**: `dotnet run ... --flow test/ac/engine/feature-220/`
+**Test AC1**: `dotnet run ... --flow Game/tests/ac/engine/feature-220/`
 **Fixture**: `scenario-valid.json` + `input-valid.txt` (directory expansion finds this)
 **Expected**: Output contains "passed" (proves directory expansion worked)
 
-**Test AC2**: `dotnet run ... --flow test/ac/engine/feature-220/scenario-missing-input.json`
+**Test AC2**: `dotnet run ... --flow Game/tests/ac/engine/feature-220/scenario-missing-input.json`
 **Fixture**: `scenario-missing-input.json` (WITHOUT input-missing-input.txt)
 **Expected**: Output matches "SKIP: scenario-missing-input (missing input file)" (early exit prevents 60s timeout)
 
-**Test AC3**: `dotnet run ... --flow test/nonexistent/`
+**Test AC3**: `dotnet run ... --flow Game/tests/nonexistent/`
 **Expected**: Error output contains "Directory not found"
 
-**Test AC4**: `dotnet run ... --flow test/ac/engine/feature-220-empty/`
+**Test AC4**: `dotnet run ... --flow Game/tests/ac/engine/feature-220-empty/`
 **Expected**: Output contains "0/0"
 
 ---
@@ -60,7 +60,7 @@ Additionally, when `HasInputFile` is false:
 
 | Task# | AC# | Description | Status |
 |:-----:|:---:|-------------|:------:|
-| 0 | - | Create directories test/ac/engine/feature-220/ and feature-220-empty/ (note: engine/ doesn't exist yet), add scenario-valid.json + input-valid.txt and scenario-missing-input.json (no input) | [x] |
+| 0 | - | Create directories Game/tests/ac/engine/feature-220/ and feature-220-empty/ (note: engine/ doesn't exist yet), add scenario-valid.json + input-valid.txt and scenario-missing-input.json (no input) | [x] |
 | 1 | 1 | In HeadlessRunner.cs ExpandInjectPath(), change Directory.GetFiles pattern from `*.json` to `scenario-*.json` (prevents pairing errors with non-scenario JSON files) | [x] |
 | 2 | 2 | In HeadlessRunner.cs Main() flow test loop (lines 1285-1297), when !scenario.HasInputFile, output "SKIP: {scenario.Name} (missing input file)" to stdout and skip adding to scenarios list (continue) | [x] |
 | 3 | 3 | In ExpandInjectPath(), add Directory.Exists check and output "Directory not found: {path}" error for non-existent directories | [x] |
@@ -68,9 +68,9 @@ Additionally, when `HasInputFile` is false:
 | 5 | - | Update testing SKILL.md: (1) update `--flow tests/regression/` NG pattern note, (2) add Method column to AC Definition Format (align with feature-template.md F165) | [x] |
 
 **Test Fixtures** (setup before testing):
-- `test/ac/engine/feature-220/scenario-valid.json` + `input-valid.txt` (AC1)
-- `test/ac/engine/feature-220/scenario-missing-input.json` without input file (AC2)
-- `test/ac/engine/feature-220-empty/` empty directory (AC4)
+- `Game/tests/ac/engine/feature-220/scenario-valid.json` + `input-valid.txt` (AC1)
+- `Game/tests/ac/engine/feature-220/scenario-missing-input.json` without input file (AC2)
+- `Game/tests/ac/engine/feature-220-empty/` empty directory (AC4)
 
 ---
 

@@ -8,37 +8,37 @@
 
 ### Philosophy (Mid-term Vision)
 
-era プロジェクトにおいて、LLM エージェントが斁E��化されたワークフローから逸脱しなぁE���E己修正型�E CI/CD パイプラインを確立する、E*「フローに従う、従えなければ STOP、E* を�Eサブエージェントに徹底させ、STOP 条件の明示により独自判断による継続を防ぐ、E
+era プロジェクトにおいて、LLM エージェントが文書化されたワークフローから逸脱しない、自己修正型の CI/CD パイプラインを確立する。**「フローに従う、従えなければ STOP」** を全サブエージェントに徹底させ、STOP 条件の明示により独自判断による継続を防ぐ。
 
 ### Problem (Current Issue)
 
-F223 Category 4 で発見された Hook 保護の不備により、TDD 原則とワークフロー制御の防波堤に褁E��の穴が存在する、E
+F223 Category 4 で発見された Hook 保護の不備により、TDD 原則とワークフロー制御の防波堤に複数の穴が存在する。
 
 | ID | Hook | Gap | Risk |
 |:--:|------|-----|--------|
 | H1 | pre-bash-ac.ps1 | Existing `sed\s+-i` pattern matches but needs explicit AC verification | Documentation gap |
-| H2 | pre-bash-ac.ps1 | `rmdir`, recursive delete 未検�E | AC チE��レクトリ削除可能 |
+| H2 | pre-bash-ac.ps1 | `rmdir`, recursive delete 未検出 | AC ディレクトリ削除可能 |
 | H3 | post-code-write.ps1 | TDD protection uses exit 1 (inconsistent with exit 2 standard) | Exit code inconsistency |
-| H4 | post-code-write.ps1 | Log path ハ�EドコーチE| 他環墁E��動作不可 |
-| H5 | なぁE| .claude/commands/*.md 保護なぁE| ワークフロー破壊可能 |
-| H6 | なぁE| .claude/agents/*.md 保護なぁE| Agent 仕様破壊可能 |
+| H4 | post-code-write.ps1 | Log path ハードコード | 他環境で動作不可 |
+| H5 | なし | .claude/commands/*.md 保護なし | ワークフロー破壊可能 |
+| H6 | なし | .claude/agents/*.md 保護なし | Agent 仕様破壊可能 |
 | H7 | pre-ac-write.ps1 | Untracked file timing gap | 中間状態で書き込み可能 |
 
-**具体侁E*:
+**具体例**:
 - H1: `sed -i.bak` IS matched by existing `sed\s+-i` pattern. AC1-2 verify this coverage explicitly.
-- H2: `rmdir /s tests\ac\kojo\feature-188` ↁEAC チE��レクトリ全削除可能
+- H2: `rmdir /s tests\ac\kojo\feature-188` → AC ディレクトリ全削除可能
 - H3: TDD protection uses exit 1, but all other hooks use exit 2 (inconsistency affects debugging/monitoring)
-- H4: `C:\Era\era紁E��館protoNTR\.claude\hooks\post-hook.log` ↁE他環墁E��動作しなぁE
-- H5: `.claude/commands/do.md` を編雁E��ても検�EされなぁEↁEワークフロー破壊可能
-- H6: `.claude/agents/implementer.md` を編雁E��ても検�EされなぁEↁEAgent 仕様破壊可能
-- H7: kojo_test_gen.py で生�E→未 commit の AC ファイルに対して、git status ぁE`??` を返す前に Write が実行される可能性
+- H4: `C:\Era\era紅魔館protoNTR\.claude\hooks\post-hook.log` → 他環境で動作しない
+- H5: `.claude/commands/do.md` を編集しても検出されない → ワークフロー破壊可能
+- H6: `.claude/agents/implementer.md` を編集しても検出されない → Agent 仕様破壊可能
+- H7: kojo_test_gen.py で生成→未 commit の AC ファイルに対して、git status が `??` を返す前に Write が実行される可能性
 
 ### Goal (What to Achieve)
 
-1. pre-bash-ac.ps1: `sed -i.bak`, `rmdir` パターンを検�Eに追加 (H1, H2)
-2. post-code-write.ps1: TDD 保護の exit code めE1 ↁE2 に変更、ログパスを動皁E��征E(H3, H4)
-3. 新要EHook: .claude/ 配下�E保護 (H5, H6)
-4. pre-ac-write.ps1: timing gap 対策�E検討と実裁E(H7)
+1. pre-bash-ac.ps1: `sed -i.bak`, `rmdir` パターンを検出に追加 (H1, H2)
+2. post-code-write.ps1: TDD 保護の exit code を 1 → 2 に変更、ログパスを動的取得 (H3, H4)
+3. 新規 Hook: .claude/ 配下の保護 (H5, H6)
+4. pre-ac-write.ps1: timing gap 対策の検討と実装 (H7)
 
 ---
 
@@ -110,7 +110,7 @@ grep -c '\$env:CLAUDE_PROJECT_DIR' .claude/hooks/post-code-write.ps1
 **AC7: .claude/commands/ protection (Pos)**
 ```bash
 # Simulate Edit to .claude/commands/do.md
-echo '{"tool_input":{"file_path":"c:\\Era\\era紁E��館protoNTR\\.claude\\commands\\do.md"}}' | pwsh -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/pre-workflow-write.ps1
+echo '{"tool_input":{"file_path":"c:\\Era\\era紅魔館protoNTR\\.claude\\commands\\do.md"}}' | pwsh -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/pre-workflow-write.ps1
 echo $?
 ```
 **Expected**: Exit code 2
@@ -118,7 +118,7 @@ echo $?
 **AC8: .claude/agents/ protection (Pos)**
 ```bash
 # Simulate Edit to .claude/agents/implementer.md
-echo '{"tool_input":{"file_path":"c:\\Era\\era紁E��館protoNTR\\.claude\\agents\\implementer.md"}}' | pwsh -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/pre-workflow-write.ps1
+echo '{"tool_input":{"file_path":"c:\\Era\\era紅魔館protoNTR\\.claude\\agents\\implementer.md"}}' | pwsh -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/pre-workflow-write.ps1
 echo $?
 ```
 **Expected**: Exit code 2
@@ -126,7 +126,7 @@ echo $?
 **AC9: Safe .claude/skills/ edit allowed (Pos)**
 ```bash
 # Simulate Edit to .claude/skills/ (allowed)
-echo '{"tool_input":{"file_path":"c:\\Era\\era紁E��館protoNTR\\.claude\\skills\\testing\\SKILL.md"}}' | pwsh -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/pre-workflow-write.ps1
+echo '{"tool_input":{"file_path":"c:\\Era\\era紅魔館protoNTR\\.claude\\skills\\testing\\SKILL.md"}}' | pwsh -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/pre-workflow-write.ps1
 echo $?
 ```
 **Expected**: Exit code 0 (allowed)
@@ -138,15 +138,15 @@ echo $?
 # Hook should block based on file age (< 60 seconds) as fallback
 
 # Setup: Create test file (ensure clean state first)
-rm -f test/ac/timing-gap-test.json 2>/dev/null
-echo '{}' > test/ac/timing-gap-test.json
+rm -f Game/tests/ac/timing-gap-test.json 2>/dev/null
+echo '{}' > Game/tests/ac/timing-gap-test.json
 
 # Test: Immediately attempt edit (git status may not show ?? yet)
-echo '{"tool_input":{"file_path":"c:\\Era\\era紁E��館protoNTR\\Game\\tests\\ac\\timing-gap-test.json"}}' | pwsh -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/pre-ac-write.ps1
+echo '{"tool_input":{"file_path":"c:\\Era\\era紅魔館protoNTR\\Game\\tests\\ac\\timing-gap-test.json"}}' | pwsh -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/pre-ac-write.ps1
 EXIT_CODE=$?
 
 # Cleanup (always runs)
-rm -f test/ac/timing-gap-test.json
+rm -f Game/tests/ac/timing-gap-test.json
 
 # Return exit code
 exit $EXIT_CODE
@@ -192,7 +192,7 @@ exit $EXIT_CODE
 | 2025-12-27 | TEST | manual | AC1-9 verification | PASS:9/9 |
 | 2025-12-27 | TEST | manual | AC10 verification (inline logic) | PASS (logic verified) |
 | 2025-12-27 | REGR | regression-tester | Full suite (engine + flow) | PASS:121/121 |
-| 2025-12-27T12:43:00Z | FINAL | finalizer | Clean .tmp files, status ↁE[DONE] | READY_TO_COMMIT |
+| 2025-12-27T12:43:00Z | FINAL | finalizer | Clean .tmp files, status → [DONE] | READY_TO_COMMIT |
 
 ## Dependencies
 
@@ -204,7 +204,7 @@ None
 
 - [F223](feature-223.md) - /do Workflow Comprehensive Audit (parent feature)
 - [F219](feature-219.md) - TDD protection (previous hook implementation)
-- [hooks-reference.md](../reference/hooks-reference.md) - Hook implementation guide
+- [hooks-reference.md](reference/hooks-reference.md) - Hook implementation guide
 
 ---
 
@@ -218,7 +218,7 @@ None
 - Test against both forward-slash and backslash paths
 
 **H3-H4: post-code-write.ps1 Improvements**
-- Change exit 1 ↁEexit 2 for TDD protection (approx L38, use grep to locate)
+- Change exit 1 → exit 2 for TDD protection (approx L38, use grep to locate)
 - Replace hardcoded log path with `"$env:CLAUDE_PROJECT_DIR\.claude\hooks\post-hook.log"` (approx L11)
 
 **H5-H6: New Hook (pre-workflow-write.ps1)**
@@ -237,7 +237,7 @@ if ($path -match '\\.claude[/\\\\](commands|agents)[/\\\\]') {
 - Current logic: Check `git status --porcelain` for `??`
 - Problem: Race condition between file creation and git detection
 - Solution: Add file age check as fallback
-  - If file is untracked AND created within last 60 seconds ↁEblock
+  - If file is untracked AND created within last 60 seconds → block
   - Use `(Get-Item $path).CreationTime`
 - **Threshold**: 60 seconds is configurable via `$env:AC_FILE_AGE_THRESHOLD` (default: 60)
 - **Alternatives considered**: (1) Session marker file, (2) Accept timing gap as low-risk since git catches most cases
@@ -287,7 +287,7 @@ All AC tests should be executed manually (not via ac-tester) since they test the
 
 ### AC10 Test Note
 
-AC10 timing gap protection was verified via inline logic execution. The subprocess test harness has encoding issues with Japanese path characters (`紁E��館`) when piping JSON to PowerShell subprocesses - this is a test infrastructure limitation, not an implementation bug.
+AC10 timing gap protection was verified via inline logic execution. The subprocess test harness has encoding issues with Japanese path characters (`紅魔館`) when piping JSON to PowerShell subprocesses - this is a test infrastructure limitation, not an implementation bug.
 
 **Verification method**: The hook logic was tested inline (same process) and correctly:
 1. Detects untracked files via `git status --porcelain` (primary protection)

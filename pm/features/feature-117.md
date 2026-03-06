@@ -1,4 +1,4 @@
-# Feature 117: COM_0 愛撫 口丁E(Phase 8)
+# Feature 117: COM_0 愛撫 口上 (Phase 8)
 
 ## Status: [DONE]
 
@@ -13,9 +13,9 @@ COM_0 (愛撫) lacks Phase 8 quality dialogue for all characters.
 Create Phase 8 quality kojo dialogue for K1-K10 (4 TALENT branches, 4 patterns each).
 
 ### Context
-- Phase 8: 全COM網羁E+ 品質改修
+- Phase 8: 全COM網羅 + 品質改修
 - Quality reference: eraTW霊夢
-- Structure: 4刁E��EÁE4パターン per character
+- Structure: 4分岐 × 4パターン per character
 
 ---
 
@@ -23,16 +23,16 @@ Create Phase 8 quality kojo dialogue for K1-K10 (4 TALENT branches, 4 patterns e
 
 | AC# | Char | Type | Matcher | Expected | MockRand | Status |
 |:---:|------|------|---------|----------|:--------:|:------:|
-| 1 | K1美鈴 | output | contains | "そこ、気持ちぁE��" | [0] | [x] |
-| 2 | K2小悪魁E| output | contains | "悪魔だって……こうぁE��の、好きなんです�EめE | [0] | [x] |
-| 3 | K3パチュリー | output | contains | "今日は読書より私を選んでくれる�E" | [0] | [x] |
-| 4 | K4咲夁E| output | contains | "気持ちぁE��ですわ" | [0] | [x] |
-| 5 | K5レミリア | output | contains | "私�E身体を知り尽くしてぁE��のは" | [0] | [x] |
-| 6 | K6フラン | output | contains | "私、壊さなぁE��ぁE��れるめE | [0] | [x] |
-| 7 | K7子悪魁E| output | contains | "あたし、大好ぁE | [0] | [x] |
-| 8 | K8チルチE| output | contains | "あたぁE�Eこと好ぁE | [0] | [x] |
-| 9 | K9大妖精 | output | contains | "すごく安忁E��る�E" | [0] | [x] |
-| 10 | K10魔理沁E| output | contains | "お前、触る�E上手くなったぜ" | [0] | [x] |
+| 1 | K1美鈴 | output | contains | "そこ、気持ちいい" | [0] | [x] |
+| 2 | K2小悪魔 | output | contains | "悪魔だって……こういうの、好きなんですのよ" | [0] | [x] |
+| 3 | K3パチュリー | output | contains | "今日は読書より私を選んでくれるの" | [0] | [x] |
+| 4 | K4咲夜 | output | contains | "気持ちいいですわ" | [0] | [x] |
+| 5 | K5レミリア | output | contains | "私の身体を知り尽くしているのは" | [0] | [x] |
+| 6 | K6フラン | output | contains | "私、壊さないでいられるよ" | [0] | [x] |
+| 7 | K7子悪魔 | output | contains | "あたし、大好き" | [0] | [x] |
+| 8 | K8チルノ | output | contains | "あたいのこと好き" | [0] | [x] |
+| 9 | K9大妖精 | output | contains | "すごく安心するの" | [0] | [x] |
+| 10 | K10魔理沙 | output | contains | "お前、触るの上手くなったぜ" | [0] | [x] |
 | 11 | Build | build | succeeds | - | - | [x] |
 | 12 | Regression | output | contains | "passed (100%)" | - | [x] |
 
@@ -42,9 +42,9 @@ Create Phase 8 quality kojo dialogue for K1-K10 (4 TALENT branches, 4 patterns e
 
 | Task# | AC# | Description | Status |
 |:-----:|:---:|-------------|:------:|
-| 1 | 1-10 | K1-K10 COM_0 口上作�E (4刁E��ÁEパターン) | [x] |
-| 2 | 11 | ビルド確誁E| [x] |
-| 3 | 12 | 回帰チE��チE| [x] |
+| 1 | 1-10 | K1-K10 COM_0 口上作成 (4分岐×4パターン) | [x] |
+| 2 | 11 | ビルド確認 | [x] |
+| 3 | 12 | 回帰テスト | [x] |
 | 4 | 1-10 | AC検証 | [x] |
 
 ---
@@ -80,12 +80,12 @@ Create Phase 8 quality kojo dialogue for K1-K10 (4 TALENT branches, 4 patterns e
 
 ### Test Files Created
 
-- `test/feature-117-ac.json` - Comprehensive test suite for all 10 ACs
-- `pm/logs/feature-117/` - Detailed test logs for all 12 ACs
+- `Game/tests/feature-117-ac.json` - Comprehensive test suite for all 10 ACs
+- `Game/agents/logs/feature-117/` - Detailed test logs for all 12 ACs
 
 ---
 
 ## Links
 
-- [index-features.md](../index-features.md)
-- [kojo-reference.md](../reference/kojo-reference.md)
+- [index-features.md](index-features.md)
+- [kojo-reference.md](reference/kojo-reference.md)

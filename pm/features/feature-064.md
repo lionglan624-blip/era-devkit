@@ -1,4 +1,4 @@
-# Feature 064: Headless口上テスチE- Phase 2c Process-level Parallel
+# Feature 064: Headless口上テスト - Phase 2c Process-level Parallel
 
 ## Status: [DONE]
 
@@ -155,4 +155,4 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 
 - [feature-062.md](feature-062.md) - Phase 2a (Interactive Mode)
 - [feature-063.md](feature-063.md) - Phase 2b (Coverage Report)
-- [reference/testing-reference.md](../reference/testing-reference.md) - Test documentation
+- [reference/testing-reference.md](reference/testing-reference.md) - Test documentation

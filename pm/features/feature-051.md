@@ -4,48 +4,48 @@
 
 ## Overview
 
-kojo-mapperを拡張し、AC基準（関係性刁E���E斁E��・バリエーション�E��E準拠度を測定する機�Eを追加する、E
+kojo-mapperを拡張し、AC基準（関係性分岐・文量・バリエーション）の準拠度を測定する機能を追加する。
 
 ## Problem
 
-現在のkojo-mapperは関数数とキーワード�E現回数を測定するが、AC基準�E準拠度は測定できなぁE��E
-- 関係性4段階�E岐！EALENT or ABL:親寁E���E有無
-- 関数冁E�E斁E���E�目樁E-8行！E
+現在のkojo-mapperは関数数とキーワード出現回数を測定するが、AC基準の準拠度は測定できない：
+- 関係性4段階分岐（TALENT or ABL:親密）の有無
+- 関数内の文量（目標4-8行）
 - PRINTDATA/DATALISTによるバリエーション
 
-結果、「kojo-mapper 100%」と「AC準拠100%」に大きな乖離がある、E
+結果、「kojo-mapper 100%」と「AC準拠100%」に大きな乖離がある。
 
 ## Goals
 
-1. AC準拠度を定量皁E��測定可能にする
-2. キャラ/関数単位で改喁E��先度を可視化
+1. AC準拠度を定量的に測定可能にする
+2. キャラ/関数単位で改善優先度を可視化
 3. 継続的な品質モニタリングの基盤を作る
 
 ## Acceptance Criteria
 
-- [x] TALENT方式�E岐（恋人/恋�E/思�E/なし）�E検�E
-- [x] ABL:親寁E��式�E岐�E検�E
-- [x] 刁E��段階数�E�E段隁E3段隁Eなし）�EカウンチE
-- [x] 関数冁E��数カウント（コメンチE空行除外！E
-- [x] PRINTDATA/DATALIST使用の検�E
-- [x] ELSEブロチE��有無の検�E
-- [x] ダチE��ュボ�EドにAC準拠スコア表示
-- [x] **検証**: 特定ファイル�E�侁E KOJO_K1.ERB�E�でClaude手動チェチE��とmapper結果が一致
+- [x] TALENT方式分岐（恋人/恋慕/思慕/なし）の検出
+- [x] ABL:親密方式分岐の検出
+- [x] 分岐段階数（4段階/3段階/なし）のカウント
+- [x] 関数内行数カウント（コメント/空行除外）
+- [x] PRINTDATA/DATALIST使用の検出
+- [x] ELSEブロック有無の検出
+- [x] ダッシュボードにAC準拠スコア表示
+- [x] **検証**: 特定ファイル（例: KOJO_K1.ERB）でClaude手動チェックとmapper結果が一致
 - [x] Build succeeds
-- [x] 既存テスチEpass
+- [x] 既存テスト pass
 
 ## Scope
 
 ### In Scope
-- KojoFunction dataclassへのAC持E��追加
+- KojoFunction dataclassへのAC指標追加
 - analyze_function_content()の拡張
 - kojo-dashboard.htmlへのAC準拠セクション追加
-- キャラ別AC準拠玁E��マリー
+- キャラ別AC準拠率サマリー
 
 ### Out of Scope
-- ELSEブロチE��の「距離感」品質チェチE���E�主観皁E��Phase 2�E�E
-- 自動修正機�E
-- CI統吁E
+- ELSEブロックの「距離感」品質チェック（主観的、Phase 2）
+- 自動修正機能
+- CI統合
 
 ## Technical Design
 
@@ -69,38 +69,38 @@ class KojoFunction:
 ```python
 TALENT_PATTERNS = [
     r'IF\s+TALENT:[^:]+:恋人',
-    r'ELSEIF\s+TALENT:[^:]+:恋�E',
-    r'ELSEIF\s+TALENT:[^:]+:思�E',
+    r'ELSEIF\s+TALENT:[^:]+:恋慕',
+    r'ELSEIF\s+TALENT:[^:]+:思慕',
 ]
 
 ABL_PATTERNS = [
-    r'IF\s+ABL:[^:]+:親寁Es*[<>=]',
-    r'ELSEIF\s+ABL:[^:]+:親寁Es*[<>=]',
+    r'IF\s+ABL:[^:]+:親密\s*[<>=]',
+    r'ELSEIF\s+ABL:[^:]+:親密\s*[<>=]',
 ]
 ```
 
 ### Dashboard Output Example
 
 ```
-=== 咲夁EAC準拠スコア ===
+=== 咲夜 AC準拠スコア ===
 関数数: 316
-├── 4段階�E岁E   52 (16%)
-├── 3段階�E岁E   84 (27%)
-├── 刁E��なぁE   180 (57%)
-├── 平坁E��数:   3.2衁E(目樁E-8衁E
+├── 4段階分岐:   52 (16%)
+├── 3段階分岐:   84 (27%)
+├── 分岐なし:   180 (57%)
+├── 平均行数:   3.2行 (目標4-8行)
 ├── PRINTDATA:  45 (14%)
-└── AC準拠玁E  ~16%
+└── AC準拠率:  ~16%
 ```
 
 ## Effort Estimate
 
 - **Size**: Small-Medium
-- **Risk**: Low�E�既存パース基盤あり�E�E
-- **Testability**: ☁E�E☁E�E☁E��実データで検証可能�E�E
+- **Risk**: Low（既存パース基盤あり）
+- **Testability**: ★★★★☆（実データで検証可能）
 - **Sessions**: 2
 
 ## Links
 
-- [index-features.md](../index-features.md) - Feature tracking
-- [reference/kojo-reference.md](../reference/kojo-reference.md) - AC criteria definition
-- [kojo-mapper source](../../src/tools/kojo-mapper/) - Implementation target
+- [index-features.md](index-features.md) - Feature tracking
+- [reference/kojo-reference.md](reference/kojo-reference.md) - AC criteria definition
+- [kojo-mapper source](../../tools/kojo-mapper/) - Implementation target

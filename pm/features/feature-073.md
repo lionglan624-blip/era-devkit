@@ -1,22 +1,22 @@
-# Feature 073: K10 魔理沁ECOM統吁E
+# Feature 073: K10 魔理沙 COM統合
 
 ## Status: [DONE]
 
 ## Background
 
-- **Original problem**: K10 (魔理沁E still has fragmented kojo file structure
+- **Original problem**: K10 (魔理沙) still has fragmented kojo file structure
 - **Solution**: Apply COM category-based reorganization pattern from Feature 057/065
 - **Execution**: Via kojo-refactor subagent
 
 ## Overview
 
-Reorganize K10 (魔理沁E kojo files into COM category-based structure using `tools/reorganize_kojo.py`.
+Reorganize K10 (魔理沙) kojo files into COM category-based structure using `tools/reorganize_kojo.py`.
 
 ## Scope
 
 ### In Scope
 - Run `reorganize_kojo.py --char K10` (auto-fixes missing RETURN in reorganized files)
-- Run `reorganize_kojo.py --char K10 --fix-preserved` (fixes missing RETURN in NTR口丁E SexHara, WC系)
+- Run `reorganize_kojo.py --char K10 --fix-preserved` (fixes missing RETURN in NTR口上, SexHara, WC系)
 - Run `reorganize_kojo.py --char K10 --verify` (headless test with error detection)
 - Verify with ErbLinter, kojo-mapper
 - Delete original files after verification
@@ -31,7 +31,7 @@ Reorganize K10 (魔理沁E kojo files into COM category-based structure using `t
 - [x] Build succeeds (0 errors)
 - [x] ErbLinter passes for K10 files
 - [x] kojo-mapper function count maintained
-- [x] `reorganize_kojo.py --char K10 --verify` passes (✁EPASS)
+- [x] `reorganize_kojo.py --char K10 --verify` passes (✓ PASS)
 
 ## Subagent Execution
 

@@ -1,4 +1,4 @@
-# Feature 063: Headless口上テスチE- Phase 2b Coverage Report
+# Feature 063: Headless口上テスト - Phase 2b Coverage Report
 
 ## Status: [DONE]
 
@@ -81,8 +81,8 @@ if (CoverageCollector.IsEnabled)
   "branches_hit": 35,
   "coverage_percent": 83.3,
   "branches": [
-    {"file": "KOJO_K4_会話親寁EERB", "line": 123, "condition": "TALENT:3==1", "hit": true},
-    {"file": "KOJO_K4_会話親寁EERB", "line": 145, "condition": "CFLAG:2>=5000", "hit": false}
+    {"file": "KOJO_K4_会話親密.ERB", "line": 123, "condition": "TALENT:3==1", "hit": true},
+    {"file": "KOJO_K4_会話親密.ERB", "line": 145, "condition": "CFLAG:2>=5000", "hit": false}
   ]
 }
 ```
@@ -121,4 +121,4 @@ dotnet run --project ../uEmuera/uEmuera.Headless.csproj -- . \
 
 - [feature-062.md](feature-062.md) - Phase 2a (Interactive Mode)
 - [feature-064.md](feature-064.md) - Phase 2c (Process-level Parallel)
-- [reference/testing-reference.md](../reference/testing-reference.md) - Test documentation
+- [reference/testing-reference.md](reference/testing-reference.md) - Test documentation

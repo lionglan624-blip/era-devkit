@@ -14,26 +14,26 @@
 
 ### Philosophy (Mid-term Vision)
 
-全スラチE��ュコマンドが一貫した構造パターンを持つ: 明確な Phase 定義、�E示皁E�� subagent 契紁E��エラーハンドリング、Recovery Procedures。これにより予測可能な実行と保守性の向上を実現する。また、ドキュメント間の SSOT (Single Source of Truth) を確立し、情報の重褁E��同期漏れを防止する、E
+全スラッシュコマンドが一貫した構造パターンを持つ: 明確な Phase 定義、明示的な subagent 契約、エラーハンドリング、Recovery Procedures。これにより予測可能な実行と保守性の向上を実現する。また、ドキュメント間の SSOT (Single Source of Truth) を確立し、情報の重複と同期漏れを防止する。
 
 ### Problem (Current Issue)
 
-SSOT・連携に以下�E問題が存在 (F233 Issue Inventory より):
+SSOT・連携に以下の問題が存在 (F233 Issue Inventory より):
 
-| ID | 問顁E| 現状 | リスク |
+| ID | 問題 | 現状 | リスク |
 |:--:|------|------|--------|
-| DS2 | Design index 重褁E| designs/README.md ぁEcontent-roadmap.md と Version/Description 重褁E| 同期漏れ |
-| DS3 | roadmap ↁEDesign マッピング非構造 | 自由斁E��め込み、Version Roadmap チE�Eブルに Design 列なぁE| 参�Eミス |
-| DS4 | /next ぁEroadmap を見なぁE| 未着扁EVersion の自動検�E不可 | 手動管琁E��E��E|
+| DS2 | Design index 重複 | designs/README.md が content-roadmap.md と Version/Description 重複 | 同期漏れ |
+| DS3 | roadmap → Design マッピング非構造 | 自由文埋め込み、Version Roadmap テーブルに Design 列なし | 参照ミス |
+| DS4 | /next が roadmap を見ない | 未着手 Version の自動検出不可 | 手動管理必要 |
 
 ### Goal (What to Achieve)
 
-Roadmap と Design の SSOT を確竁E
-1. roadmap の "Design Documents" セクションを削除し、designs/README.md めEDesign 詳細の SSOT に
-2. roadmap Version チE�Eブルに Design 列を追加し、Version ↁEDesign の構造化�EチE��ングを実現
-3. /next ぁEroadmap を参照するよう更新
+Roadmap と Design の SSOT を確立:
+1. roadmap の "Design Documents" セクションを削除し、designs/README.md を Design 詳細の SSOT に
+2. roadmap Version テーブルに Design 列を追加し、Version → Design の構造化マッピングを実現
+3. /next が roadmap を参照するよう更新
 
-**Scope Exclusion**: content-roadmap.md と designs/README.md 間�E Version 番号不整合（侁E netorase-system ぁEroadmap では v6.x、designs/README.md では v2.0-v2.1�E��E解消�E本 Feature のスコープ外。既存�E Version 番号はそ�Eまま維持し、SSOT 構造の確立を優先。Version 整合性は別途対応、E
+**Scope Exclusion**: content-roadmap.md と designs/README.md 間の Version 番号不整合（例: netorase-system が roadmap では v6.x、designs/README.md では v2.0-v2.1）の解消は本 Feature のスコープ外。既存の Version 番号はそのまま維持し、SSOT 構造の確立を優先。Version 整合性は別途対応。
 
 ---
 
@@ -43,15 +43,15 @@ Roadmap と Design の SSOT を確竁E
 
 | AC# | Description | Type | Method | Matcher | Expected | Status |
 |:---:|-------------|------|--------|---------|----------|:------:|
-| 1 | roadmap Version チE�Eブルに Design 列あめE| code | Grep | contains | "\| Version \| Content \| System \| Design \| Description \| Status \|" | [x] |
+| 1 | roadmap Version テーブルに Design 列あり | code | Grep | contains | "\| Version \| Content \| System \| Design \| Description \| Status \|" | [x] |
 | 2 | roadmap Design Documents セクション削除 | code | Grep | not_contains | "## Design Documents" | [x] |
-| 3 | /next に roadmap 参�Eを追加 | code | Grep | matches | "Read.*content-roadmap.md" | [x] |
+| 3 | /next に roadmap 参照を追加 | code | Grep | matches | "Read.*content-roadmap.md" | [x] |
 
 ### AC Details
 
-- AC#1: content-roadmap.md の Version Roadmap チE�Eブルに Design 列を追加。�EチE��衁E "| Version | Content | System | Design | Description | Status |" (6列、System と Description の間に Design 列挿入)
-- AC#2: content-roadmap.md から "## Design Documents" セクションを削除。designs/README.md ぁEDesign の SSOT となめE
-- AC#3: next.md に `Read pm/content-roadmap.md` を追加し、未着扁EVersion の検�Eを可能に
+- AC#1: content-roadmap.md の Version Roadmap テーブルに Design 列を追加。ヘッダ行: "| Version | Content | System | Design | Description | Status |" (6列、System と Description の間に Design 列挿入)
+- AC#2: content-roadmap.md から "## Design Documents" セクションを削除。designs/README.md が Design の SSOT となる
+- AC#3: next.md に `Read Game/agents/content-roadmap.md` を追加し、未着手 Version の検出を可能に
 
 ---
 
@@ -96,6 +96,6 @@ Roadmap と Design の SSOT を確竁E
 ## Links
 
 - [F233](feature-233.md) - Parent audit feature
-- [content-roadmap.md](../content-roadmap.md)
-- [designs/README.md](../designs/README.md)
-- [/next command](../../../archive/claude_legacy_20251230/commands/next.md)
+- [content-roadmap.md](content-roadmap.md)
+- [designs/README.md](designs/README.md)
+- [/next command](../../.claude/commands/next.md)

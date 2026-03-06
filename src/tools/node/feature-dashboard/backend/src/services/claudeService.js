@@ -1560,7 +1560,7 @@ export class ClaudeService {
             }
         }
 
-        if (chainContinues && !isLastChainStep && !incompleteRetryExhausted) {
+        if (chainContinues && !isLastChainStep && !incompleteRetryExhausted && !execution._resumedAnswer) {
             this.chainExecutor.registerWaiter(execution);
         }
 
@@ -2541,6 +2541,9 @@ export class ClaudeService {
         execution.waitingInputPattern = null;
         execution.inputRequired = null;
         execution._killedForAskUser = false;
+        // Mark as resumed-answer: completion of this resumed process must NOT
+        // re-register chain waiters (the original completion already did).
+        execution._resumedAnswer = true;
         // Note: chain waiter registration is handled by the close handler of
         // the resumed process. The original kill (_killedForAskUser) does NOT
         // register a waiter — it early-returns to keep the execution alive.

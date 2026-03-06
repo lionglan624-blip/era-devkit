@@ -22,7 +22,7 @@ Verify architecture doc `docs/architecture/migration/phase-20-27-game-systems.md
 
 | Type | Feature | Status | Description |
 |------|---------|--------|-------------|
-| Predecessor | F847 | [DRAFT] | Phase 23 NTR Kojo Reference Analysis — must be [DONE] before F848 proceeds |
+| Predecessor | F847 | [DONE] | Phase 23 NTR Kojo Reference Analysis — must be [DONE] before F848 proceeds |
 
 ## Links
 

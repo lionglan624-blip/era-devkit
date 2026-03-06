@@ -1247,6 +1247,20 @@ def ac_check(fid: str, fix: bool = False, dry_run: bool = False,
             matcher_name = next(row.matcher for row in ac_rows if row.number == num)
             issues.append(f"AC#{num}: Uses '{matcher_name}' matcher but AC Details lacks derivation.")
 
+    # N13. Duplicate AC Details headers (F834 lesson: FL fix application can create duplicates)
+    details_header_re = re.compile(r'^\*\*AC#(\w+):')
+    details_header_counts: dict[str, list[int]] = {}
+    for idx, line in enumerate(lines):
+        m = details_header_re.match(line.strip())
+        if m:
+            ac_id = m.group(1)
+            details_header_counts.setdefault(ac_id, []).append(idx + 1)
+    for ac_id, line_nums in details_header_counts.items():
+        if len(line_nums) > 1:
+            issues.append(
+                f"AC#{ac_id}: Duplicate AC Details header at lines {line_nums}."
+            )
+
     # Filter skipped checks
     if skip:
         issues = [i for i in issues if not _issue_skipped(i, skip)]

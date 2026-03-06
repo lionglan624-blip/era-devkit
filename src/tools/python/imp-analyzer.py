@@ -97,6 +97,8 @@ class SessionStats:
     exploration_sequences: int = 0
     bash_commands: list = dataclasses.field(default_factory=list)
     phase_transitions: list = dataclasses.field(default_factory=list)
+    hook_errors: list = dataclasses.field(default_factory=list)
+    tool_denials: list = dataclasses.field(default_factory=list)
 
     @property
     def total_tool_calls(self) -> int:
@@ -323,6 +325,8 @@ class SessionAnalyzer:
         self.bash_commands: list = []
 
         self.phase_transitions: list = []
+        self.hook_errors: list = []
+        self.tool_denials: list = []
 
         # Internal tracking
         self._tool_id_map: dict = {}         # tool_use_id -> tool_name
@@ -383,6 +387,8 @@ class SessionAnalyzer:
             exploration_sequences=self.exploration_sequences,
             bash_commands=list(self.bash_commands),
             phase_transitions=list(self.phase_transitions),
+            hook_errors=list(self.hook_errors),
+            tool_denials=list(self.tool_denials),
         )
 
     def _process_assistant(self, obj: dict) -> None:
@@ -492,8 +498,24 @@ class SessionAnalyzer:
             if ts:
                 self._last_transition_ts = ts
 
+    # Patterns for hook errors and tool denials
+    _HOOK_ERROR_PATTERNS = [
+        re.compile(r"hook\s+(error|failed|blocked)", re.IGNORECASE),
+        re.compile(r"pre-commit.*fail", re.IGNORECASE),
+        re.compile(r"hook\s+exit(ed)?\s+with", re.IGNORECASE),
+        re.compile(r"<user-prompt-submit-hook>", re.IGNORECASE),
+        re.compile(r"commit-msg.*fail", re.IGNORECASE),
+        re.compile(r"husky.*fail", re.IGNORECASE),
+    ]
+    _TOOL_DENIAL_PATTERNS = [
+        re.compile(r"user\s+(denied|rejected|cancelled)", re.IGNORECASE),
+        re.compile(r"tool\s+(execution\s+)?(was\s+)?denied", re.IGNORECASE),
+        re.compile(r"not\s+permitted", re.IGNORECASE),
+        re.compile(r"permission\s+denied\s+by\s+user", re.IGNORECASE),
+    ]
+
     def _process_user(self, obj: dict) -> None:
-        """Process a user message block (tool results)."""
+        """Process a user message block (tool results and hook messages)."""
         message = obj.get("message", {})
         content = message.get("content", []) if isinstance(message, dict) else []
         if not isinstance(content, list):
@@ -502,25 +524,54 @@ class SessionAnalyzer:
         for block in content:
             if not isinstance(block, dict):
                 continue
-            if block.get("type") != "tool_result":
+
+            block_type = block.get("type", "")
+
+            # Check text blocks for hook errors (hook output appears as text, not tool_result)
+            if block_type == "text":
+                text = block.get("text", "")
+                if text and len(self.hook_errors) < 20:
+                    for pat in self._HOOK_ERROR_PATTERNS:
+                        if pat.search(text):
+                            self.hook_errors.append(text[:150])
+                            break
+
+            if block_type != "tool_result":
                 continue
 
             is_error = block.get("is_error", False)
             tool_use_id = block.get("tool_use_id", "")
             tool_name = self._tool_id_map.get(tool_use_id, "")
 
+            # Extract text from tool result content
+            raw_content = block.get("content", "")
+            if isinstance(raw_content, list):
+                text_parts = [
+                    b.get("text", "") for b in raw_content
+                    if isinstance(b, dict)
+                ]
+                error_text = " ".join(text_parts)
+            else:
+                error_text = str(raw_content)
+
+            # Check for hook errors in tool results (e.g., Bash running git commit)
+            if len(self.hook_errors) < 20:
+                for pat in self._HOOK_ERROR_PATTERNS:
+                    if pat.search(error_text):
+                        summary = f"[{tool_name}] {error_text[:150]}" if tool_name else error_text[:150]
+                        self.hook_errors.append(summary)
+                        break
+
             if is_error:
                 self.error_count += 1
-                # Extract error summary
-                raw_content = block.get("content", "")
-                if isinstance(raw_content, list):
-                    text_parts = [
-                        b.get("text", "") for b in raw_content
-                        if isinstance(b, dict)
-                    ]
-                    error_text = " ".join(text_parts)
-                else:
-                    error_text = str(raw_content)
+
+                # Check for tool denials
+                is_denial = any(
+                    pat.search(error_text) for pat in self._TOOL_DENIAL_PATTERNS
+                )
+                if is_denial and len(self.tool_denials) < 20:
+                    summary = f"[{tool_name}] {error_text[:120]}" if tool_name else error_text[:120]
+                    self.tool_denials.append(summary)
 
                 if len(self.errors) < 10:
                     summary = f"[{tool_name}] {error_text[:100]}" if tool_name else error_text[:100]
@@ -566,6 +617,8 @@ def merge_stats(stats_list: list) -> SessionStats:
         merged.bash_failures += s.bash_failures
         merged.exploration_sequences += s.exploration_sequences
         merged.bash_commands.extend(s.bash_commands)
+        merged.hook_errors.extend(s.hook_errors[:3])
+        merged.tool_denials.extend(s.tool_denials[:3])
     return merged
 
 
@@ -730,6 +783,24 @@ def detect_tedium(
                 severity="medium",
                 details=f"{session_label}: {stats.exploration_sequences} long Grep/Glob sequences",
                 count=stats.exploration_sequences,
+            ))
+
+        # Hook errors
+        if stats.hook_errors:
+            issues.append(TediumIssue(
+                issue_type="hook-errors",
+                severity="high",
+                details=f"{session_label}: {len(stats.hook_errors)} hook failures",
+                count=len(stats.hook_errors),
+            ))
+
+        # Tool denials
+        if stats.tool_denials:
+            issues.append(TediumIssue(
+                issue_type="tool-denials",
+                severity="medium",
+                details=f"{session_label}: {len(stats.tool_denials)} tool denials",
+                count=len(stats.tool_denials),
             ))
 
     # Cross-session: same file read > 10 times total
@@ -1055,8 +1126,86 @@ def generate_markdown_report(
                 lines.append(f"| {phase} | {avg:.1f} | {mx:.1f} | {len(durations)} |")
             lines.append("")
 
+    # --- Error & Hook Analysis ---
+    lines.append("## 5. Error & Hook Analysis (エラー・Hook分析)")
+
+    # Collect errors, hook errors, tool denials across all sessions
+    all_flat_for_errors = []
+    for stype in ("fc", "fl", "run"):
+        all_flat_for_errors.extend(all_stats.get(stype, []))
+
+    total_errors = sum(s.error_count for s in all_flat_for_errors)
+    total_hook_errors = sum(len(s.hook_errors) for s in all_flat_for_errors)
+    total_tool_denials = sum(len(s.tool_denials) for s in all_flat_for_errors)
+
+    if total_errors == 0 and total_hook_errors == 0 and total_tool_denials == 0:
+        lines.append("_No errors, hook failures, or tool denials detected._")
+        lines.append("")
+    else:
+        lines.append("| Category | Count | Observation |")
+        lines.append("|----------|:-----:|-------------|")
+        lines.append(f"| Tool errors (`is_error`) | {total_errors} | {'Frequent errors — check tool usage patterns' if total_errors > 5 else 'Normal'} |")
+        lines.append(f"| Hook errors | {total_hook_errors} | {'Hook failures causing retries — fix hooks or pre-validate' if total_hook_errors > 0 else 'None'} |")
+        lines.append(f"| Tool denials | {total_tool_denials} | {'User denied tools — review permission mode' if total_tool_denials > 0 else 'None'} |")
+        lines.append("")
+
+        # Per-session breakdown
+        has_per_session = False
+        for stats in all_flat_for_errors:
+            session_label = f"{stats.session_info.session_type}:{stats.session_info.path.stem[:8]}"
+            errs = stats.error_count
+            hooks = len(stats.hook_errors)
+            denials = len(stats.tool_denials)
+            if errs > 0 or hooks > 0 or denials > 0:
+                if not has_per_session:
+                    lines.append("**Per-session breakdown:**")
+                    lines.append("")
+                    lines.append("| Session | Tool Errors | Hook Errors | Denials |")
+                    lines.append("|---------|:-----------:|:-----------:|:-------:|")
+                    has_per_session = True
+                lines.append(f"| {session_label} | {errs} | {hooks} | {denials} |")
+
+        if has_per_session:
+            lines.append("")
+
+        # Sample hook errors
+        all_hook_samples = []
+        for stats in all_flat_for_errors:
+            for h in stats.hook_errors[:3]:
+                all_hook_samples.append(h)
+        if all_hook_samples:
+            lines.append(f"**Hook error samples ({min(len(all_hook_samples), 5)}):**")
+            lines.append("")
+            for sample in all_hook_samples[:5]:
+                lines.append(f"- `{sample[:120]}`")
+            lines.append("")
+
+        # Sample tool denials
+        all_denial_samples = []
+        for stats in all_flat_for_errors:
+            for d in stats.tool_denials[:3]:
+                all_denial_samples.append(d)
+        if all_denial_samples:
+            lines.append(f"**Tool denial samples ({min(len(all_denial_samples), 5)}):**")
+            lines.append("")
+            for sample in all_denial_samples[:5]:
+                lines.append(f"- `{sample[:120]}`")
+            lines.append("")
+
+        # Sample tool errors (general)
+        all_error_samples = []
+        for stats in all_flat_for_errors:
+            for e in stats.errors[:3]:
+                all_error_samples.append(e)
+        if all_error_samples:
+            lines.append(f"**Tool error samples ({min(len(all_error_samples), 5)}):**")
+            lines.append("")
+            for sample in all_error_samples[:5]:
+                lines.append(f"- `{sample[:120]}`")
+            lines.append("")
+
     # --- Tedium Reduction ---
-    lines.append("## 5. Tedium Reduction (手間削減)")
+    lines.append("## 6. Tedium Reduction (手間削減)")
 
     if not tedium:
         lines.append("_No significant tedium patterns detected._")
@@ -1070,7 +1219,7 @@ def generate_markdown_report(
         lines.append("")
 
     # --- Tool Usage Audit ---
-    lines.append("## 6. Tool Usage Audit (CLIツール活用監査)")
+    lines.append("## 7. Tool Usage Audit (CLIツール活用監査)")
     lines.append("")
 
     # Compute tool usage summary
@@ -1155,6 +1304,8 @@ def generate_json_output(
             "top_files_read": dict(sorted(stats.file_reads.items(), key=lambda x: -x[1])[:10]),
             "top_files_written": dict(sorted(stats.file_writes.items(), key=lambda x: -x[1])[:5]),
             "error_count": stats.error_count,
+            "hook_errors": stats.hook_errors[:5],
+            "tool_denials": stats.tool_denials[:5],
             "bash_failures": stats.bash_failures,
             "exploration_sequences": stats.exploration_sequences,
             "agent_dispatches": len(stats.agent_dispatches),

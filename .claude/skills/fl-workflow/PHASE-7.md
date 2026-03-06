@@ -28,10 +28,15 @@ TaskUpdate(subject: "Phase 7: Final Reference Check", status: "in_progress")
 
 ```
 IF target_type == "feature":
+    # Read predecessor context from file materialized by Phase 2 Step 2.3 (F844 lesson: inline variable was unreliable)
+    predecessor_context = Read("_out/tmp/predecessor-context-{target_id}.md")  # may be empty if no predecessors
     final_ref_check = Task(
       subagent_type: "general-purpose",
       model: "sonnet",
       prompt: `Read .claude/skills/reference-checker/SKILL.md and execute for Feature {target_id}
+
+PREDECESSOR CONTEXT (pre-computed — do NOT Read predecessor feature files for Key Decisions or Handoffs):
+{predecessor_context}
 
 OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON (analysis, reasoning, "Let me", explanations) is a protocol violation.`
     )

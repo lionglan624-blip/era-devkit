@@ -20,6 +20,14 @@
 
 **Rationale**: Handoff without actionable Task = documented but never executed = leak.
 
+### Trigger-Gated Obligation Hint
+
+**When an obligation has a trigger condition tied to a specific Phase** (e.g., "fires when MOVEMENT.ERB migrates" → Phase 30), **check Option C first**. If the trigger's Phase passes Option C Guards, prefer C over A. Creating a standalone Feature for a trigger-gated obligation whose trigger is Phase-bound wastes a full feature lifecycle (fc→fl→run→cancel) when the trigger cannot fire until that Phase begins.
+
+**Detection**: Obligation description contains "when {X} migrates", "when Phase {N}", or similar future-Phase trigger language.
+
+**Lesson**: F830 (CANCELLED) — created as standalone for OB-06/OB-07 (trigger: Phase 30 MOVEMENT.ERB). Option C to Phase 30 was valid but not considered. Full fc/fl/run cycle wasted.
+
 ---
 
 ## TBD Prohibition

@@ -117,14 +117,19 @@ IF target_type == "feature":
     # Pre-compute dependency status (eliminates subagent Status grep — F819 lesson: 28+ redundant greps)
     deps_result = Bash("python src/tools/python/feature-status.py deps {target_id}")
 
-    # Pre-compute predecessor context (eliminates repeated full-file reads — F822 lesson: 119 reads of feature-808.md)
-    # For each DONE predecessor, extract: Key Decisions (Decision+Selected only), relevant Mandatory Handoffs
-    # Cap: 200 tokens per predecessor. Include as PREDECESSOR CONTEXT in reviewer prompt.
+    # Pre-compute predecessor context and materialize to file (F844 lesson: pseudocode-only approach
+    # led to 119+ repeated reads of predecessor files because subagents ignored inline instructions).
+    # The orchestrator reads each DONE predecessor, extracts Key Decisions (Decision+Selected only)
+    # and relevant Mandatory Handoffs, then writes to a temp file for subagent consumption.
+    # Cap: 200 tokens per predecessor.
     predecessor_context = ""
     FOR dep in deps_result.predecessors WHERE dep.status == "DONE":
-        kd = extract_key_decisions(dep.feature_file)  # Decision + Selected columns only
-        mh = extract_relevant_handoffs(dep.feature_file, target_id)
+        kd = extract_key_decisions(dep.feature_file)  # Decision + Selected columns only (orchestrator reads and extracts)
+        mh = extract_relevant_handoffs(dep.feature_file, target_id)  # orchestrator reads and extracts
         predecessor_context += f"\n### {dep.id}: {kd}\nHandoffs: {mh}\n"  # 200 token cap per dep
+    Write("_out/tmp/predecessor-context-{target_id}.md", predecessor_context)
+    # Downstream phases (3, 7) and RUN Phase 8 use Read() on this file instead of inline context.
+    # File cleaned by existing _out/tmp/ 7-day rotation (CLAUDE.md File Placement).
 
     # Perspective 1: Structural/Format Review (FIRST ITERATION ONLY)
     IF iteration == 1:

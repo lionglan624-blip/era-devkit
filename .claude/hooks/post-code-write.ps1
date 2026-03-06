@@ -11,13 +11,14 @@ if (-not $inputJson) {
     exit 0
 }
 
-$data = $inputJson | ConvertFrom-Json -ErrorAction SilentlyContinue
-if (-not $data) {
-    Add-Content -Path $logFile -Value "JSON parse failed, exit 0"
+# Extract file_path via regex to avoid ConvertFrom-Json failures
+# on large tool_input.old_string containing escape sequences (pre-tdd-protection.ps1 pattern)
+if ($inputJson -match '"file_path"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"') {
+    $path = $Matches[1] -replace '\\/', '/' -replace '\\\\', '\'
+} else {
+    Add-Content -Path $logFile -Value "No file_path match, exit 0"
     exit 0
 }
-
-$path = $data.tool_input.file_path
 Add-Content -Path $logFile -Value "file_path: $path"
 if (-not $path) {
     Add-Content -Path $logFile -Value "No path, exit 0"
@@ -48,7 +49,8 @@ $hasError = $false
 # 1. Build the tool/test project
 $buildTarget = if ($testsProj) { $testsProj } else { $path | Split-Path -Parent }
 try {
-    $buildResult = dotnet build $buildTarget --verbosity quiet 2>&1
+    $wslBuildTarget = ($buildTarget -replace '\\', '/' -replace '^([A-Z]):', { "/mnt/$($_.Groups[1].Value.ToLower())" })
+    $buildResult = wsl -- bash -c "/home/siihe/.dotnet/dotnet build '$wslBuildTarget' --verbosity quiet" 2>&1
     if ($LASTEXITCODE -ne 0) {
         Write-Error "[Hook] Build FAILED"
         $buildResult | ForEach-Object { Write-Error "  $_" }
@@ -62,7 +64,8 @@ try {
 # 2. Run tests (skip if build failed or no test project)
 if (-not $hasError -and $testsProj) {
     try {
-        $testResult = dotnet test $testsProj --verbosity quiet 2>&1
+        $wslTestsProj = ($testsProj -replace '\\', '/' -replace '^([A-Z]):', { "/mnt/$($_.Groups[1].Value.ToLower())" })
+        $testResult = wsl -- bash -c "/home/siihe/.dotnet/dotnet test '$wslTestsProj' --verbosity quiet --blame-hang-timeout 10s" 2>&1
         if ($LASTEXITCODE -ne 0) {
             Write-Error "[Hook] Tests FAILED"
             $testResult | ForEach-Object { Write-Error "  $_" }

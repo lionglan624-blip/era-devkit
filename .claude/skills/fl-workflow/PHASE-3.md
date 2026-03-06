@@ -48,9 +48,14 @@ TaskUpdate(subject: "Phase 3: Maintainability Review", status: "in_progress")
 
 ```
 IF target_type == "feature":
+    # Read predecessor context from file materialized by Phase 2 Step 2.3 (F844 lesson: inline variable was unreliable)
+    predecessor_context = Read("_out/tmp/predecessor-context-{target_id}.md")  # may be empty if no predecessors
     maintainability = Task(
       subagent_type: "feature-reviewer",
       prompt: `Feature {target_id}. [mode: maintainability]
+
+PREDECESSOR CONTEXT (pre-computed — do NOT Read predecessor feature files for Key Decisions or Handoffs):
+{predecessor_context}
 
 OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON (analysis, reasoning, "Let me", explanations) is a protocol violation.`
     )

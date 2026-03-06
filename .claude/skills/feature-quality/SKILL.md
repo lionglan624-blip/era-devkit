@@ -200,8 +200,9 @@ Verify that threshold values and descriptive text are consistent across ALL sect
 - [ ] AC description text consistent between AC Definition Table Description column and AC Details header
 - [ ] Mandatory Handoff row counts consistent between table row count and any descriptive text referencing the count
 - [ ] When fixing a threshold or description in one location, grep for the old value across the entire feature file to find all occurrences
+- [ ] When a Task scope changes (e.g., expanding from N to M items), grep for the old count as a numeral across the entire feature file — check headings, prose, Implementation Contract phase descriptions, and Technical Design approach text for stale scope references (F840 lesson: Task 1 expanded 4→6 tests but heading/contract still said "4", causing 2 FL fixes)
 
-**Rationale**: F826 consumed 4/10 FL iterations on cascading fixes — changing a threshold in AC Definition Table without updating the same value in Technical Design and Implementation Contract. V5 catches structural cross-references (counts, mappings) but not value consistency.
+**Rationale**: F826 consumed 4/10 FL iterations on cascading fixes — changing a threshold in AC Definition Table without updating the same value in Technical Design and Implementation Contract. F840 added 2 more fixes for scope-count cascading (non-threshold). V5 catches structural cross-references (counts, mappings) but not value consistency.
 
 ---
 

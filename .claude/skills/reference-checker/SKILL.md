@@ -41,6 +41,7 @@ For each referenced Feature ID:
 1. Check Links section contains the reference
 2. Verify `pm/features/feature-{ID}.md` exists (Glob)
 3. If referenced in Background/Problem but missing from Links → Issue
+4. For each stale/invalid reference found, Grep the entire file for ALL occurrences of the same pattern (e.g., if F461 is stale, grep for all `F461` and `feature-461` mentions). Report each occurrence as a separate issue with its own location. F833 lesson: Phase 1 RefCheck fixed one F461 occurrence but missed another, requiring a Phase 7 FinalRefCheck fix
 
 ### 4. Validate Artifact References
 

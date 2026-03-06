@@ -177,6 +177,23 @@ After:  `| N | X injects all 5 interfaces | code | Grep(X.cs, pattern="IA\|IB\|I
 
 **Rationale**: F824 analysis: 12+ AC-002 fixes during FL for shared/ambiguous VSTest filters. F823 also required manual filter disambiguation. Shared filters make ACs non-independently-verifiable.
 
+### Step 10.8: Output Content Validation (MANDATORY for infra/engine features where any AC uses exit_code type with structured output (JSON/YAML/CSV))
+
+**After designing ACs**, verify that structured command output has content semantics ACs:
+
+10.8.1. For each command in AC Details that produces structured output (JSON file, YAML, CSV):
+   - Verify at least one AC validates output content is non-empty/non-trivial (e.g., `features_scanned > 200`, `pattern_types non-empty`)
+   - Verify at least one AC validates key output fields contain expected data types/ranges
+
+10.8.2. If no content semantics AC exists for a structured output command → **create one**:
+   | Output Type | Required Validation |
+   |-------------|-------------------|
+   | JSON catalog/report | Key fields non-empty, counts > 0, expected keys present |
+   | YAML config | Required sections present, values in valid range |
+   | CSV data | Row count > 0, column count matches schema |
+
+**Rationale**: F845 lesson: AC#15 (runtime JSON content validation: `features_scanned > 200`, `pattern_types` non-empty) and AC#16 (`parse_errors` structure validation) were both added during FL Phase2-Review iter1-2 because FC derived file-structure and backward-compat ACs but missed output content semantics. File existence ≠ meaningful content.
+
 ### Finalize
 
 11. Verify all derived tasks from Philosophy are covered by ACs
@@ -184,6 +201,7 @@ After:  `| N | X injects all 5 interfaces | code | Grep(X.cs, pattern="IA\|IB\|I
     11.2. For each row in AC Design Constraints table where AC Implication is non-empty, verify at least one AC in AC Definition Table covers that implication. If not, create the missing AC. (F823 lesson: C13 constraint had documented AC Implication but no covering AC was generated, causing ac-gap fix in FL iter2.)
     11.3. For each Philosophy Derivation row, verify the Absolute Claim column contains a verbatim quote from the `### Philosophy` section text (not from Goal, Background, or other sections). Remove rows where the claim is not traceable to Philosophy text. (F824 lesson: 4 INV-003 fixes for Philosophy Derivation rows sourced from Goal. F774, F781 had same pattern.)
     11.4. For each row in Goal Coverage Verification table, verify the Description column text can be traced to an explicit item in the `### Goal (What to Achieve)` section. If a Goal Coverage row describes something derived from Philosophy but not stated in Goal, either (a) expand Goal text to include the item (preferred — keeps Goal as the complete scope statement) or (b) remove the AC and its Goal Coverage row if it duplicates another AC's coverage. Log any Goal expansions as upstream modifications. (F831 lesson: Goal items 5-6 were Philosophy-derived concepts not in Goal text, requiring Goal expansion during FL iter3.)
+    11.4.0. AC# semantic alignment check: For each AC# listed in the "Covering AC(s)" column, look up the AC's Description in the AC Definition Table and verify it semantically relates to the Goal Item Description. If an AC covers a different concern (e.g., scope guard vs structural preservation), do not map it to that Goal Item — find or create the correct AC instead. (F844 lesson: AC#7 "unescape_for_literal_search method unchanged" was incorrectly mapped to Goal item "Preserve the 7 structural/punctuation rules", requiring FL Phase2 iter1 fix.)
     11.4.1. Reverse scope check: If Goal text contains scope-broadening language ("both X and Y", "all repos", "across N"), verify ACs cover the full claimed scope. If ACs only cover a subset, narrow Goal text to match AC coverage and note the uncovered portion in Mandatory Handoffs. (F837 lesson: Goal claimed "both devkit and core" but ACs only covered devkit — required Goal revision during FL iter2.)
     11.5. Reverse traceability check: For each AC in AC Definition Table, verify it is referenced by at least one Philosophy Derivation row's AC Coverage column. If an AC has no Philosophy Derivation coverage, check if the AC relates to a Philosophy claim and add the mapping row. (F834 lesson: AC#7, AC#9, AC#10 related to "regex unescaping" concern in Philosophy but had no Philosophy Derivation row, requiring FL iter1 fix.)
 12. Edit feature-{ID}.md with complete AC section

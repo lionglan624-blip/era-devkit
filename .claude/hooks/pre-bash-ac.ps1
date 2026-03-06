@@ -10,10 +10,17 @@
 $inputJson = [Console]::In.ReadToEnd()
 if (-not $inputJson) { exit 0 }
 
+# ConvertFrom-Json first, regex fallback for command extraction
+$command = $null
 $data = $inputJson | ConvertFrom-Json -ErrorAction SilentlyContinue
-if (-not $data) { exit 0 }
-
-$command = $data.tool_input.command
+if ($data) {
+    $command = $data.tool_input.command
+} else {
+    # Regex fallback when ConvertFrom-Json fails on large/escaped input
+    if ($inputJson -match '"command"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"') {
+        $command = $Matches[1] -replace '\\n', "`n" -replace '\\"', '"'
+    }
+}
 if (-not $command) { exit 0 }
 
 # ac/ への破壊的操作をブロック

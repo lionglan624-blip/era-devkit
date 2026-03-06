@@ -53,6 +53,31 @@ Design technical approach to satisfy Acceptance Criteria. This agent runs during
    b. Cross-check: obligation description keywords vs destination sub-feature's ERB file list and subsystem name
    c. If domain mismatch detected: flag in `### Upstream Issues` with suggested re-routing
    d. F814 lesson: 9 scope-reduction fixes during FL were caused by obligations placed in wrong sub-features without domain verification (e.g., Counter obligations in State Systems sub-features)
+8e. **Key Decision-Stub Consistency Check** (MANDATORY when Key Decisions constrain implementation patterns):
+   a. After all Key Decisions and code stubs are written, verify that each Key Decision's "Selected" column is reflected in the corresponding code stubs in Interfaces / Data Structures
+   b. If a Key Decision narrows a pattern (e.g., "X-only guard", "pattern B not A"), verify no code stub contradicts it
+   c. After verification, re-run Step 8c (Cross-Section Count Propagation) as a final pass to catch any AC Expected values invalidated by Key Decision changes
+   d. F835 lesson: Key Decision said "VEvaluator-only guard for GetRandom" but code stubs showed dual guard (VariableData + VEvaluator), causing 2 FL fixes (iter2-3) and AC#5 Expected cascade (24→23)
+8d. **AC Pattern-Stub Consistency Check** (MANDATORY for all types with code-type ACs):
+   a. For each `code` type AC in AC Definition Table where Matcher = `matches`:
+      - Extract the regex pattern from Method column
+      - Verify at least one code stub in Interfaces/Data Structures or Approach section contains text that would match the pattern
+   b. For each `code` type AC where pattern references a specific variable name (e.g., `cross_repo`, `build_args`):
+      - Verify the code stubs use that exact variable name
+   c. If mismatch detected: either (a) update the stub to use the AC's expected variable name, or (b) flag in `### Upstream Issues` for AC pattern revision
+   d. F841 lesson: 5/7 FL fixes were stub/AC pattern mismatches (effective_root vs cross_repo_root, stripped_command vs build_args, fragile multiline pattern)
+8e. **ERB/C# Semantic Consistency Check** (MANDATORY for engine/erb types):
+   a. Scan Key Decisions "Selected" and "Rationale" columns for phrases indicating C# inline preservation: `preserves inline semantics`, `preserve C# inline`, `defers bug fix`, `semantic inversion`
+   b. If any such phrase found: scan ALL of AC Definition Table (Expected column), AC Design Constraints (AC Implication column), Constraint Details, and Interfaces/Data Structures (doc comments) for contradictory ERB compliance claims: `mirrors ERB`, `mirrors COMMON.ERB`, `matches ERB`, `ERB spec compliance`, `match ERB spec exactly`
+   c. If contradiction detected: flag in `### Upstream Issues` with: the contradicting location, the Key Decision that establishes C# inline preservation, and suggested fix (change ERB claim to "preserves C# inline semantics" with WARNING about ERB discrepancy)
+   d. F830 lesson: 3+ FL iterations wasted on contradictions — AC#7 claimed "ERB spec compliance", doc comment said "Mirrors COMMON.ERB", C3 AC Implication said "Boolean logic must match ERB spec exactly", all contradicting Key Decision "preserves C# inline semantics"
+8f. **Python Pseudocode Completeness** (MANDATORY for infra type features modifying Python files):
+   a. For each new or modified function in Approach/Interfaces sections:
+      - Specify return type annotation (e.g., `-> List[ACDefinition]`, not `-> list[dict]` or unspecified)
+      - Specify error/None handling path (what happens on invalid input, empty result, parse failure)
+      - Extract magic strings/values to module-level constants (e.g., `STATIC_AC_TYPES`, `ERROR_CATEGORIES`)
+   b. For each data representation choice (dict vs dataclass/NamedTuple), document the choice explicitly in Key Decisions
+   c. F845 lesson: 26 Phase3-Maintainability fixes (63% of all FL fixes) were Python design refinements — standalone function extraction, module constants, return types, None guards, enum .name conversion. C# features get type enforcement from the compiler; Python pseudocode requires explicit specification.
 9. Edit feature-{ID}.md to add Technical Design section
 
 ## Output Format

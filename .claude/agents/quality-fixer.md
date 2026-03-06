@@ -42,7 +42,7 @@ Scan and auto-fix the following patterns. **Only fix 100% deterministic patterns
 | C2 | Non-sequential AC numbering | AC# gaps or non-numeric (2a, 7b) | Renumber sequentially + update Tasks AC# + AC Details |
 | C3 | TODO pattern incomplete | `not_contains "TODO"` without FIXME\|HACK | Change to `"TODO\|FIXME\|HACK"` |
 | C4 | contains matcher with regex | Expected has `.*` or `\|` with `contains` | Change matcher to `matches` |
-| C5 | Grep escaped pipe | Pattern has `\\|` (grep-style) | Replace with `\|` (ripgrep-style) |
+| C5 | Over-escaped regex pipe | AC with matcher `matches`/`not_matches` has `\|` (backslash-pipe) in Expected, OR any AC pattern has `\\|` (double-backslash pipe) | For `matches`/`not_matches`: replace `\|` with `|` (Python re uses bare `|` for alternation). For Grep patterns: replace `\\|` with `\|`. F835 lesson: iter2+iter6 fixed `\|` in not_matches AC#4 |
 | C6 | Missing Links entries | Related Features not in Links section | Add missing Links entries |
 | C7 | AC Expected contains path | Expected has path mixed into matcher value | Move path to AC Details (create Details block if needed) |
 | C8 | Grep Method missing path | Method = "Grep" without `(path)` | Log warning (needs context) |
@@ -69,6 +69,12 @@ Scan and auto-fix the following patterns. **Only fix 100% deterministic patterns
 | C29 | Implementation Contract stale AC/test counts | Implementation Contract section contains `\b\d+\s+(ACs?|tests?|active)\b` that doesn't match actual AC Definition Table row count or Task test count | Log warning (count may reference subset — needs context) |
 | C30 | Task AC# references non-existent AC | Task table AC# column contains AC number not present in AC Definition Table | Log warning (AC may have been deleted/renumbered) |
 | C31 | Mandatory Handoffs column count mismatch | Handoffs table header row has fewer than 7 pipe-delimited columns (template requires: Issue, Reason, Destination, Destination ID, Creation Task, Transferred, Result) | Add missing columns with empty cells to match 7-column template |
+| C32 | Orphaned Task (no AC assignment) | Task# in Tasks table has empty AC# column or AC# column value not found in any AC Definition Table AC# | Log warning (AC assignment requires context — F840 lesson: Task 4 had no ACs) |
+| C33 | Mandatory Handoff Creation Task with insufficient ACs | Mandatory Handoffs table has Creation Task column pointing to Task#N, and Task#N has fewer than 2 ACs (DRAFT Creation Checklist requires file_exists + index registration) | Log warning (AC creation requires context — see DRAFT Creation Checklist in feature-template.md) |
+| C34 | Risks Mitigation references non-existent Mandatory Handoff | Risks table Mitigation column contains "Handoff" or "Mandatory Handoff" but no corresponding row exists in Mandatory Handoffs table | Log warning (F843 lesson: Mitigation claimed "via Mandatory Handoff" but handoff table was empty — dangling reference misleads reviewers) |
+| C35 | Threshold AC Details missing Derivation field | AC with matcher `gte`/`gt`/`lt`/`lte`/`count_equals` has `**AC#{N}:` Details block but no `- **Derivation**:` line | Log warning (Derivation content requires context). F835 lesson: 7 AC Details blocks lacked Derivation; F838 lesson: AC#5 gte lacked Derivation, both caught in FL iter1 |
+| C36 | matches matcher with literal Expected | Expected has no regex metacharacters (`[.*+?|\\^$(){}]`) with `matches` matcher | Change matcher to `contains`. F833 lesson: 3 FL Phase4-ACValidation fixes for `matches` used with plain literal strings |
+| C37 | Mandatory Handoff Destination ID collision | Mandatory Handoffs table Destination ID = F{ID} and (`feature-{ID}.md` file exists OR F{ID} appears in `index-features.md` Active Features table for a DIFFERENT feature) | Auto-fix: scan `index-features.md` for next available ID, update Destination ID + all cross-references (AC Details, Task descriptions, Links). Log the collision and resolution. (F830 lesson: 5 FL iterations consumed by ID collisions F834→F835→F836→F838→F839→F840 as sibling features claimed IDs concurrently) |
 
 **C21 Valid Matcher List** (SSOT: `.claude/skills/testing/SKILL.md` §Matchers):
 `equals`, `contains`, `not_contains`, `matches`, `not_matches`, `succeeds`, `fails`, `gt`, `gte`, `lt`, `lte`, `count_equals`, `exists`, `not_exists`

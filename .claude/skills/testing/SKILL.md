@@ -444,6 +444,7 @@ python src/tools/kojo-mapper/kojo_mapper.py Game/ERB/口上 --quality
 | **WAIT blocks** | Use call unit test instead |
 | **ac-static-verifier: equals matcher** | Use `contains` with unique substring (F608 audit) |
 | **ac-static-verifier: count_equals/pipe escape resolved (F792)** | count_equals, gt, gte, lt, lte now work for code/file+Grep types; `\|` pipe escaping now supported in AC Expected values |
+| **.NET analyzer suggestion severity: CLI非表示 (F836)** | `suggestion` severity の diagnostics は `dotnet build` CLI stdout に表示されない（IDE専用）。検証には SARIF 出力を使用: `dotnet build Project.csproj /p:ErrorLog=output.sarif` → `grep CA1502 output.sarif` |
 
 ---
 

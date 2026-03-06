@@ -150,3 +150,5 @@ The Links section MUST include:
 - AC = WHAT, Task = HOW
 - Task granularity: Single dispatch unit (one subagent call)
 - Implementation Contract must be concrete (no ambiguity)
+- **Key Decisions Cross-Reference (F843 lesson)**: Implementation Contract step wording MUST be consistent with Key Decisions "Selected" column. After generating Implementation Contract, cross-check each step against Key Decisions — if a Key Decision specifies a chosen approach (e.g., "delete entirely"), the corresponding step must use the same language (not "delete method body"). Mismatches cause FL rework.
+- **Approach Scope Conditions (F843 lesson)**: When Approach text contains scope-defining conditions (`regardless of`, `even if`, `including`, `whether or not`), these MUST be transcribed into corresponding Implementation Contract step descriptions to prevent scope ambiguity. Example: if Approach says "regardless of whether an existing cleanup call is present", the Task step must include this qualifier.

@@ -70,7 +70,22 @@ For each row where Type = "Predecessor":
 3. If Status is not `[DONE]`:
    - **STOP**: "Predecessor {predecessor_id} is not [DONE] (current: {status})"
 
-If all Predecessors are `[DONE]`: Proceed to Step 1.0.7.
+If all Predecessors are `[DONE]`:
+
+```pseudocode
+# Pre-compute predecessor context and materialize to file (F844 lesson: pseudocode-only approach
+# led to 119+ repeated reads of predecessor files because subagents ignored inline instructions).
+# Cap: 200 tokens per predecessor. Phase 8 reads from this file.
+predecessor_context = ""
+FOR dep in predecessors WHERE dep.status == "DONE":
+    kd = extract_key_decisions(dep.feature_file)  # Decision + Selected columns only
+    mh = extract_relevant_handoffs(dep.feature_file, target_id)
+    predecessor_context += f"\n### {dep.id}: {kd}\nHandoffs: {mh}\n"  # 200 token cap per dep
+Write("_out/tmp/predecessor-context-{target_id}.md", predecessor_context)
+# Phase 8 uses Read() on this file. Cleaned by existing _out/tmp/ 7-day rotation.
+```
+
+Proceed to Step 1.0.7.
 
 ---
 

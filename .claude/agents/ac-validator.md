@@ -57,6 +57,11 @@ AC validation specialist. Ensures ACs are TDD-ready with strict matchers.
 | Vague Expected | Investigate ERB → concrete string |
 | `例: "..."` (Example: "...") | Remove "例", use actual |
 | Placeholder `{...}` | Fill with real value |
+| `matches`/`not_matches` with non-regex Expected | Expected must be regex pattern (no spaces, natural language, or descriptive phrases). F843 lesson: "dual-behavior documentation" is natural language, not a regex |
+| Grep pattern includes post-implementation artifact name | Method column grep pattern contains a symbol name (class, method, file) that only exists AFTER this feature's own Tasks execute (self-fulfilling verification). Verify pattern matches pre-existing baseline code. F830 lesson: AC#8 trigger grep included `IsDoutei` which only exists after extraction — changed to baseline pattern `MaleVirginity.*>.*0` |
+| Positive write AC for one delegation category but not another | When setters exist across N delegation categories (e.g., scalar, character-scoped), ALL N categories need positive write verification ACs. F835 lesson: AC#10 verified scalar setter writes but character setter AC#16 was missing until FL iter7 |
+| `matches` with literal string Expected (no regex metacharacters `.*`, `\|`, `+`, `\(`, `\[`) | Change matcher to `contains` — literal substring match is simpler and equivalent. F838 lesson: AC#1-4 used `matches` for `engine/` which has no regex semantics |
+| Grep Method with `gte`/`gt`/`lt`/`lte` matcher but no `pattern=` in Method | Add `pattern=` parameter to Method column for verifier parseability. F838 lesson: AC#5,6 had `Grep(path)` without `pattern=`, causing static verifier parse failure |
 
 ## Engine/ERB Checks
 

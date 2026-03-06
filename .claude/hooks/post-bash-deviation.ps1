@@ -7,17 +7,33 @@ $inputJson = [Console]::In.ReadToEnd()
 if (-not $inputJson) { exit 0 }
 
 $data = $inputJson | ConvertFrom-Json -ErrorAction SilentlyContinue
-if (-not $data) { exit 0 }
 
-# exit codeを取得（複数の形式に対応）
+# Extract exit_code and command — ConvertFrom-Json first, regex fallback
 $exitCode = $null
-if (-not $data.tool_result) { exit 0 }
-if ($data.tool_result.PSObject.Properties['exit_code']) {
-    $exitCode = $data.tool_result.exit_code
-} elseif ($data.tool_result.PSObject.Properties['exitCode']) {
-    $exitCode = $data.tool_result.exitCode
-} elseif ($data.tool_result.PSObject.Properties['code']) {
-    $exitCode = $data.tool_result.code
+$command = $null
+
+if ($data) {
+    # ConvertFrom-Json succeeded — use structured access
+    if ($data.tool_result) {
+        if ($data.tool_result.PSObject.Properties['exit_code']) {
+            $exitCode = $data.tool_result.exit_code
+        } elseif ($data.tool_result.PSObject.Properties['exitCode']) {
+            $exitCode = $data.tool_result.exitCode
+        } elseif ($data.tool_result.PSObject.Properties['code']) {
+            $exitCode = $data.tool_result.code
+        }
+    }
+    if ($data.tool_input) {
+        $command = $data.tool_input.command
+    }
+} else {
+    # ConvertFrom-Json failed — regex fallback for exit_code and command
+    if ($inputJson -match '"exit_code"\s*:\s*(\d+)') {
+        $exitCode = [int]$Matches[1]
+    }
+    if ($inputJson -match '"command"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"') {
+        $command = $Matches[1] -replace '\\n', ' ' -replace '\\"', '"'
+    }
 }
 
 if ($null -eq $exitCode) { exit 0 }
@@ -33,8 +49,8 @@ if ($exitCode -ne 0) {
 
     $logFile = Join-Path $tmpDir "deviation-log.txt"
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    $command = $data.tool_input.command
 
+    if (-not $command) { $command = "(unknown)" }
     # コマンドが長い場合は切り詰め
     if ($command.Length -gt 100) {
         $command = $command.Substring(0, 100) + "..."

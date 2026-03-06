@@ -14,9 +14,14 @@ Quality review by feature-reviewer + Doc consistency + SSOT update check.
 # feature-reviewer auto-determines mode from Feature Type and Status:
 # - research + [DONE] → post  - research + other → pre  - non-research → spec
 # Do NOT override mode — let auto-determination handle it.
+# Read predecessor context from file materialized by Phase 1 (F844 lesson: inline variable was unreliable)
+predecessor_context = Read("_out/tmp/predecessor-context-{ID}.md")  # may be empty if no predecessors
 Task(subagent_type: "feature-reviewer",
      prompt: "Feature {ID}.
-              Review implementation quality (post-implementation context).")
+              Review implementation quality (post-implementation context).
+
+PREDECESSOR CONTEXT (pre-computed — do NOT Read predecessor feature files for Key Decisions or Handoffs):
+{predecessor_context}")
 ```
 
 | Result | Action |

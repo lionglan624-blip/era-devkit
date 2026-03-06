@@ -277,11 +277,13 @@ Zero-token alternative to Serena MCP. Persistent HTTP daemon wrapping Serena's P
 
 | Task | Tool | Example |
 |------|------|---------|
-| File structure | `lsp.py symbols` | `python src/tools/python/lsp.py symbols src/tools/dotnet/ErbParser/Foo.cs --depth 1` |
-| Symbol search | `lsp.py find` | `python src/tools/python/lsp.py find ClassName --path src/tools/dotnet/` |
+| File structure | `lsp.py symbols` | `python src/tools/python/lsp.py symbols tools/dotnet/ErbParser/Foo.cs --depth 1` |
+| Symbol search | `lsp.py find` | `python src/tools/python/lsp.py find ClassName --path tools/dotnet/` |
 | Method body | `lsp.py find --body` | `python src/tools/python/lsp.py find Class/Method --path File.cs --body` |
 | Find references | `lsp.py refs` | `python src/tools/python/lsp.py refs Method --path File.cs` |
 | Rename | `lsp.py rename` | `python src/tools/python/lsp.py rename Old New --path File.cs` |
+
+> **Note**: `--path` and `symbols` path are relative to the Serena project root (`src/`), not the repo root. E.g. `tools/dotnet/...` not `src/tools/dotnet/...`.
 | Non-C# files | Read / Grep | ERB, CSV, YAML, comments |
 
 - **PM2**: `pm2 start ecosystem.config.js` (root) / `pm2 stop lsp-daemon` / `dr` (restart all)
@@ -296,15 +298,24 @@ Run from project root: `cd /c/Era/devkit && python src/tools/python/session-sear
 
 | Task | Flags | Example |
 |------|-------|---------|
-| List recent sessions | `--list` | `python src/tools/python/session-search.py --list --after 2026-03-03` |
-| Find tool usage | `--tool Name` | `python src/tools/python/session-search.py --tool AskUserQuestion --session 37ef` |
-| Extract raw JSON | `--line N --raw` | `python src/tools/python/session-search.py --session 37ef --line 158 --raw` |
-| Session timeline | `--timeline` | `python src/tools/python/session-search.py --session 37ef --timeline` |
-| Text search | `"pattern"` | `python src/tools/python/session-search.py "handoff" --after 2026-03-01` |
-| Text-only search | `--type text` | `python src/tools/python/session-search.py --session 37ef "issue" --type text` |
-| Session overview | `--summary` | `python src/tools/python/session-search.py --session 37ef --summary` |
-| Context around match | `-C N` | `python src/tools/python/session-search.py "error" --session 37ef -C 3` |
-| Session autopsy | `--autopsy` | `python src/tools/python/session-search.py --session 37ef --autopsy` |
+| List recent sessions | `--list` | `--list --after 2026-03-03` |
+| Session overview | `--summary` | `--session 37ef --summary` |
+| Session timeline | `--timeline` | `--session 37ef --timeline` |
+| Session autopsy | `--autopsy` | `--session 37ef --autopsy` |
+| Text search | `"pattern"` | `"handoff" --after 2026-03-01` |
+| Regex search | `-r "pattern"` | `-r "feature-8[01]\d" --count` |
+| OR search | `--or` | `"POST-LOOP" --or "batch_mode" --or "context_pct"` |
+| Find tool usage | `--tool Name` | `--tool AskUserQuestion --session 37ef` |
+| Filter by content type | `--type` | `--session 37ef "issue" --type text` |
+| Extract raw JSON | `--line N --raw` | `--session 37ef --line 158 --raw` |
+| Context around match | `-C N` | `"error" --session 37ef -C 3` |
+| Count matches only | `--count` | `"pattern" --count --after 2026-03-01` |
+| Subagent summaries | `--agents` | `--session 37ef --agents` |
+| Search incl. subagents | `--subagents` | `"pattern" --session 37ef --subagents` |
+| Subagent list | `--trace "*"` | `--session 37ef --trace "*"` |
+| Subagent trace | `--trace PREFIX` | `--session 37ef --trace a396 --tool Bash` |
+
+Modifiers (combinable): `--after DATE`, `--before DATE`, `-i` (ignore case), `--verbose`, `--limit N`, `--no-results`, `--strict` (exit 2 on no match)
 
 ## PM2 Log Investigation
 

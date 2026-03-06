@@ -84,7 +84,7 @@ Generate ALL Phase 1 sections as defined in the Section Ownership table of `pm/r
 - **Dependencies**: Union of all findings. **Promotion rule**: When a Sibling Feature Call Chain Analysis (section 11) shows a hard CALL/JUMP dependency between files, promote the dependency Type from `Related` to `Predecessor` (if this feature calls sibling) or `Successor` (if sibling calls this feature). Evidence (file:line of CALL) MUST be included in the Description column.
 - **Impact Analysis**: Union of all findings
 - **Technical Constraints**: Union, note any disagreements
-- **Risks**: Union, deduplicated
+- **Risks**: Union, deduplicated. **Mitigation列の曖昧表現チェック**: 「separate feature」「future」「later」等の先送り表現がある場合、具体的なF{ID}を記載するか、F{ID}が不明な場合は明示的な先送り理由（例: 「targets unknown until enablement」）を記載すること。曖昧なままにしない。
 - **Baseline Measurement**: From investigation that ran commands (if any; skip for kojo/research per template comment)
 - **AC Design Constraints**: Derived from constraints across all 3 investigations. Interface Dependency Scan findings (erb/engine types) are encoded as additional AC Design Constraints rows with source "Interface Dependency Scan"
 
@@ -146,6 +146,7 @@ Copy these exact headers and column structures. Do NOT add extra columns, reorde
 - **Source**: {how discovered}
 - **Verification**: {how to confirm}
 - **AC Impact**: {guidance for ac-designer}
+- **Collection Members** (MANDATORY when constraint references a collection/map/enum): List all members explicitly. F841 lesson: `_CROSS_REPO_PREFIX_MAP` referenced but 4 prefixes (engine/, core/, game/, dashboard/) not enumerated → ac-designer missed per-prefix test coverage, requiring FL ac-gap fix.
 
 ## Dependencies
 
@@ -194,6 +195,7 @@ Run 4 binary checks before writing:
 | Code reference | Contains specific file/component reference |
 | Actionable | Design can start without additional investigation |
 | Distinct from symptom | Different from context symptom/gap (Deviation Context: Observable Symptom; Review Context: Identified Gap) |
+| Numeric accuracy | Each numeric claim (N stubs, M overrides, K call sites) verified by grep/count against the Evidence file cited in the same sentence. F833 lesson: "9 DIM stubs" and "0 of 9 overridden" were both wrong — required 2 FL Phase2-Review fixes |
 
 All PASS → Execute Edit
 Any FAIL → Rewrite and re-test

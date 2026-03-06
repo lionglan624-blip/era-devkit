@@ -129,9 +129,14 @@ For each proposed change:
    - Would break existing workflow for other feature types
    - Duplicates functionality that already exists elsewhere
    - Has insufficient evidence (single-feature observation presented as systemic)
+6. For REJECT verdicts, verify the rejection evidence:
+   - If rejection claims "already implemented" → Read the target file and confirm actual implementation exists (not just pseudocode/documentation)
+   - If rejection claims "low frequency" or includes numeric data → Cross-check against available logs/metrics (e.g. .claude/hooks/post-hook.log)
+   - If rejection claims "single-feature observation" → Check if the same pattern appeared in previous /imp runs (grep Improvement Log sections)
+   - A reject verdict with unverified claims must be changed to "revise" with investigation action items
 
 Output: JSON array of review verdicts per proposal:
-[{"proposal": "...", "verdict": "accept|revise|reject", "reason": "...", "revision": "..." (if revise)}]
+[{"proposal": "...", "verdict": "accept|revise|reject", "reason": "...", "evidence_checked": "..." (for reject), "revision": "..." (if revise)}]
 """)
 ```
 

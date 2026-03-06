@@ -31,6 +31,7 @@ description: REQUIRED before writing any feature-{ID}.md file. Skipping causes F
 - [ ] AC Expected values derived from empirical data, not estimates (「~392」のような推定は禁止)
 - [ ] All output categories discovered and listed — each category explicitly marked In-Scope or Out-of-Scope
 - [ ] Baseline data saved to `_out/tmp/` for reproducibility
+- [ ] N/A baselines use template table format (`| Metric | Command | Baseline Value | Note |` with N/A values), not free-text prose
 
 **Anti-pattern**: コード読解だけで「こういう出力が出るはず」と推論し、実行せずにAC定義する → カテゴリ見落とし・件数誤差の原因
 

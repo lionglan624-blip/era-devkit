@@ -375,6 +375,7 @@ When actual code shows `failed = total - passed - manual` correctly **excludes**
 
 ## Checklist
 
+- [ ] Doc-only features: Baseline Measurement uses table format with N/A values (do not DELETE — DELETE is for kojo/research only)
 - [ ] Documentation consistency verified (SSOT)
 - [ ] Index-features.md update verified when status changes (Issue 15)
 - [ ] Slash commands not used as Bash commands (Issue 7)

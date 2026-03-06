@@ -1,6 +1,6 @@
 # Feature 836: Enable CA1502 and CA1506 via .editorconfig
 
-## Status: [WIP]
+## Status: [DONE]
 <!-- fl-reviewed: 2026-03-06T00:28:43Z -->
 
 ## Scope Discipline
@@ -61,7 +61,7 @@ Enable CA1502 and CA1506 at `suggestion` severity via `.editorconfig` overrides,
 | Feature | Status | Relationship |
 |---------|--------|--------------|
 | F831 | [DONE] | Parent -- Mandatory Handoff created F836 |
-| F837 | [DRAFT] | Sibling handoff from F831 (EnforceCodeStyleInBuild) |
+| F837 | [DONE] | Sibling handoff from F831 (EnforceCodeStyleInBuild) |
 | F813 | [DONE] | CA1510 NoWarn debt fix -- related analyzer management |
 
 ## Feasibility Assessment
@@ -182,7 +182,7 @@ Enable CA1502 and CA1506 at `suggestion` severity via `.editorconfig` overrides,
 | Type | Feature | Status | Description |
 |------|---------|--------|-------------|
 | Predecessor | F831 | [DONE] | Research investigation that identified CA1502/CA1506 gap and created Mandatory Handoff |
-| Related | F837 | [PROPOSED] | Sibling handoff from F831 (EnforceCodeStyleInBuild); independent implementation |
+| Related | F837 | [DONE] | Sibling handoff from F831 (EnforceCodeStyleInBuild); independent implementation |
 | Related | F813 | [DONE] | CA1510 NoWarn debt fix -- related analyzer management |
 
 <!-- fc-phase-2-completed -->
@@ -207,7 +207,7 @@ Enable CA1502 and CA1506 at `suggestion` severity via `.editorconfig` overrides,
 | 2 | CA1506 severity override exists in .editorconfig | code | Grep(.editorconfig) | matches | `dotnet_diagnostic\.CA1506\.severity = suggestion` | [x] |
 | 3 | Build succeeds after enablement | build | dotnet build devkit.sln | succeeds | exit code 0 | [x] |
 | 4 | dotnet_diagnostic entries count in .editorconfig | code | Grep(.editorconfig, pattern="dotnet_diagnostic") | gte | 2 | [x] |
-| 5 | CA1502 or CA1506 diagnostics appear in build output | build | dotnet build devkit.sln 2>&1 \| grep CA150 | gte | 1 | [-] |
+| 5 | CA1502 or CA1506 diagnostics appear in SARIF output | build | dotnet build ErbParser.csproj /p:ErrorLog=sarif && grep -c CA150 sarif | gte | 1 | [x] |
 
 ### AC Details
 
@@ -216,10 +216,10 @@ Enable CA1502 and CA1506 at `suggestion` severity via `.editorconfig` overrides,
 - **Expected**: `gte 2` (at least 2 lines: one for CA1502, one for CA1506)
 - **Rationale**: C4+C7 constraints -- both CA1502 and CA1506 must be enabled (C4), and this establishes the first dotnet_diagnostic entries in the repository (C7). Derivation: 2 rules = minimum 2 dotnet_diagnostic entries.
 
-**AC#5: CA1502 or CA1506 diagnostics appear in build output**
-- **Test**: `dotnet build devkit.sln 2>&1 | grep CA150`
-- **Expected**: `gte 1` (at least 1 line matching CA1502 or CA1506)
-- **Rationale**: Philosophy claims metrics "must be visible as analyzer diagnostics". AC#1-4 verify configuration exists; AC#5 verifies the enabled rules actually produce diagnostic output. Known high-complexity targets (e.g., `ErbParser.ParseString` CC >50) should trigger CA1502 at the default threshold of 25.
+**AC#5: CA1502 or CA1506 diagnostics appear in SARIF output**
+- **Test**: `dotnet build ErbParser.csproj /p:ErrorLog=sarif && grep -c CA150 sarif`
+- **Expected**: `gte 1` (at least 1 line matching CA1502 or CA1506 in SARIF)
+- **Rationale**: Philosophy claims metrics "must be visible as analyzer diagnostics". `suggestion` severity diagnostics are suppressed from CLI stdout by MSBuild logger but are captured in SARIF (ErrorLog). AC#1-4 verify configuration exists; AC#5 verifies the enabled rules actually produce diagnostic output. Known high-complexity targets (e.g., `ErbParser.ParseString` CC=68) trigger CA1502 at the default threshold of 25.
 
 ### Goal Coverage Verification
 
@@ -306,7 +306,7 @@ Not applicable. This feature modifies a configuration file only; no new interfac
 | Task# | AC# | Description | Tag | Status |
 |:-----:|:---:|-------------|:---:|:------:|
 | 1 | 1, 2, 4 | Add `# Analyzer severity overrides` comment and two `dotnet_diagnostic` severity lines to the `[*.cs]` section of `.editorconfig` | | [x] |
-| 2 | 3, 5 | Run `dotnet build devkit.sln` and verify exit code 0 (build remains green after .editorconfig change) and confirm CA1502/CA1506 diagnostics appear in output | | [-] |
+| 2 | 3, 5 | Run `dotnet build devkit.sln` and verify exit code 0 (build remains green after .editorconfig change) and confirm CA1502/CA1506 diagnostics appear in output | | [x] |
 
 ### Task Tags
 
@@ -401,6 +401,15 @@ If the build fails after the `.editorconfig` change:
 <!-- run-phase-4-completed -->
 | 2026-03-06T01:08:00Z | VERIFY | ac-static-verifier | code ACs (AC#1,2,4) | PASS 3/3 |
 | 2026-03-06T01:09:00Z | DEVIATION | ac-static-verifier | build ACs (AC#3,5) | exit 1: AC#3 dotnet not on Windows PATH (WSL required), AC#5 gte matcher unsupported for build type |
+| 2026-03-06T01:20:00Z | VERIFY | orchestrator | AC#5 method update: CLI stdout → SARIF /p:ErrorLog | suggestion diagnostics suppressed from CLI; SARIF confirms CA1502=4 violations |
+| 2026-03-06T01:21:00Z | VERIFY | orchestrator | All ACs (1-5) | PASS 5/5 |
+<!-- run-phase-7-completed -->
+| 2026-03-06T01:25:00Z | REVIEW | feature-reviewer | Post-review quality | NEEDS_REVISION: F837 status stale (fixed), status [WIP] expected (in-progress /run) |
+| 2026-03-06T01:26:00Z | REVIEW | orchestrator | Steps 8.2-8.3 | Skipped: no new extensibility points, no SSOT updates needed |
+<!-- run-phase-8-completed -->
+| 2026-03-06T01:30:00Z | DEVIATION | ac-static-verifier | build ACs re-verify (Step 9.2.1) | exit 1: PRE-EXISTING — dotnet not on Windows PATH (AC#3), gte matcher unsupported for build type (AC#5). Both manually verified PASS via WSL |
+| 2026-03-06T01:35:00Z | REPORT | orchestrator | Phase 9 report | 5/5 PASS, 3 DEVIATION (all D:修正済み), user approved |
+<!-- run-phase-9-completed -->
 
 ---
 

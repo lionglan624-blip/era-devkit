@@ -57,6 +57,7 @@ Test infrastructure must support cross-repo feature verification without manual 
 ## Review Notes
 
 <!-- FL persist_pending entries will be recorded here -->
+- [pending] F833 Phase 9: DEVIATION handoff — test isolation (9 failures) and ac-static-verifier cross-repo path resolution confirmed as F838 obligations
 
 ## Mandatory Handoffs
 

@@ -21,7 +21,7 @@ Implement real VariableData delegation for all remaining abstract IEngineVariabl
 
 | Type | Feature | Status | Description |
 |------|---------|--------|-------------|
-| Predecessor | F833 | [WIP] | Creates EngineVariablesImpl with stub bodies for abstract methods |
+| Predecessor | F833 | [DONE] | Creates EngineVariablesImpl with stub bodies for abstract methods |
 
 ---
 

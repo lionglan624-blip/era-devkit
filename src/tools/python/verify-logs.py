@@ -25,7 +25,7 @@ def get_active_features(repo_root: Path) -> set[str] | None:
     Returns set of feature IDs (numeric strings) that are NOT [DONE] or [CANCELLED].
     Returns None if index file is unreadable or zero features parsed (sentinel for WARN).
     """
-    index_path = repo_root / "dev" / "planning" / "index-features.md"
+    index_path = repo_root / "pm" / "index-features.md"
     if not index_path.exists():
         print(f"WARN: Index file not found: {index_path}", file=sys.stderr)
         return None

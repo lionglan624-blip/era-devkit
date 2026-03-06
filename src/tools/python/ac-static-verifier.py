@@ -39,6 +39,16 @@ BINARY_EXTENSIONS = {
     '.pack', '.idx',
 }
 
+# Cross-repo prefix mapping: prefix -> (env_var_name, default_path)
+# Resolves paths starting with these prefixes against their respective repo locations.
+# Environment variables override defaults; defaults match CLAUDE.md conventions.
+_CROSS_REPO_PREFIX_MAP: dict[str, tuple[str, str]] = {
+    "engine/": ("ENGINE_PATH", "C:/Era/engine"),
+    "core/":   ("CORE_PATH",   "C:/Era/core"),
+    "game/":   ("GAME_PATH",   "C:/Era/game"),
+    "dashboard/": ("DASHBOARD_PATH", "C:/Era/dashboard"),
+}
+
 
 class PatternType(Enum):
     """Pattern type classification for AC verification."""
@@ -152,11 +162,17 @@ class ACVerifier:
             return True, None, all_matches
 
         # Original logic for single pattern
-        file_path_obj = Path(file_path)
-        if file_path_obj.is_absolute():
-            target_file = file_path_obj  # Skip repo_root prepend for absolute paths
+        for prefix, (env_var, default) in _CROSS_REPO_PREFIX_MAP.items():
+            if file_path.startswith(prefix):
+                cross_repo_root = Path(os.environ.get(env_var, default))
+                target_file = cross_repo_root / file_path[len(prefix):]
+                break
         else:
-            target_file = self.repo_root / file_path
+            file_path_obj = Path(file_path)
+            if file_path_obj.is_absolute():
+                target_file = file_path_obj  # Skip repo_root prepend for absolute paths
+            else:
+                target_file = self.repo_root / file_path
 
         # Check if path contains glob patterns
         has_glob_pattern = any(c in file_path for c in ['*', '?', '['])

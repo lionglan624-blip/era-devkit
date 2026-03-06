@@ -72,8 +72,9 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 |:---|:------:|:-----|:-----------|:------|
 | F827 | [DRAFT] | Phase 23 Planning | F826 | [feature-827.md](feature-827.md) |
 | F828 | [DONE] | Date Initialization Migration (@日付初期設定) | **F821** | [feature-828.md](feature-828.md) |
-| F838 | [DRAFT] | Test Infrastructure Fixes — Cross-Repo Verifier and Engine Test Isolation | F833 | [feature-838.md](feature-838.md) |
-| F835 | [DRAFT] | IEngineVariables Abstract Method Stubs — Real VariableData Delegation | F833 | [feature-835.md](feature-835.md) |
+| F835 | [WIP] | IEngineVariables Abstract Method Stubs — Real VariableData Delegation | F833 | [feature-835.md](feature-835.md) |
+| F840 | [DRAFT] | Engine Test Isolation Failures (GlobalStatic Shared State) | F838 | [feature-840.md](feature-840.md) |
+| F841 | [DRAFT] | Build CWD Cross-Repo Resolution in ac-static-verifier | F838 | [feature-841.md](feature-841.md) |
 
 ### Other
 
@@ -92,12 +93,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 838 | ✅ | Test Infrastructure Fixes — Cross-Repo Verifier and Engine Test Isolation | [feature-838.md](feature-838.md) |
 | 839 | ✅ | Enable EnforceCodeStyleInBuild in core repo (Symmetric with F837) | [feature-839.md](feature-839.md) |
 | 833 | ✅ | IEngineVariables Indexed Methods Stubs | [feature-833.md](feature-833.md) |
 | 836 | ✅ | Enable CA1502 and CA1506 via .editorconfig | [feature-836.md](feature-836.md) |
 | 834 | ✅ | ac-static-verifier Format C Guard DRY Consolidation and unescape() Investigation | [feature-834.md](feature-834.md) |
 | 837 | ✅ | Enable EnforceCodeStyleInBuild for IDE-prefix Rule Enforcement | [feature-837.md](feature-837.md) |
-| 832 | ✅ | ac-static-verifier Numeric Expected Parsing Fix | [feature-832.md](feature-832.md) |
 
 ---
 
@@ -188,4 +189,4 @@ See [kojo-mapper](../../tools/kojo-mapper/) for detailed coverage analysis.
 
 ---
 
-**Next Feature number**: 840
+**Next Feature number**: 842

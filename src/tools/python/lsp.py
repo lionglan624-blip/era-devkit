@@ -62,13 +62,13 @@ def main():
 
     # symbols <path> [--depth N]
     p = sub.add_parser("symbols", help="List symbols in a file")
-    p.add_argument("path", help="Relative path to file")
+    p.add_argument("path", help="Path relative to Serena project root (src/)")
     p.add_argument("--depth", type=int, default=0, help="Child depth (default: 0)")
 
     # find <name> [--path PATH] [--depth N] [--body]
     p = sub.add_parser("find", help="Find symbol by name path pattern")
     p.add_argument("name", help="Name path pattern (e.g. ClassName/Method)")
-    p.add_argument("--path", default="", help="Restrict to file/directory")
+    p.add_argument("--path", default="", help="Restrict to file/directory (relative to Serena project root src/)")
     p.add_argument("--depth", type=int, default=0, help="Child depth")
     p.add_argument("--body", action="store_true", help="Include source code")
 

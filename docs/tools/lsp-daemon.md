@@ -5,7 +5,7 @@ Zero-token alternative to Serena MCP. HTTP daemon wrapping Serena's Python API (
 ## Architecture
 
 ```
-Bash("python tools/lsp.py find NtrEngine --path src/Era.Core/ --body")
+Bash("python tools/lsp.py find DiffEngine --path tools/dotnet/KojoComparer/ --body")
   → HTTP POST http://127.0.0.1:19999
     → lsp-daemon.py (SerenaAgent + Roslyn LSP resident)
       → tool.apply(**args) → json.loads → clean JSON
@@ -41,9 +41,9 @@ python tools/lsp.py <command> [args]
 | Command | Description | Example |
 |---------|-------------|---------|
 | `status` | Health check | `python tools/lsp.py status` |
-| `symbols` | File symbol overview | `python tools/lsp.py symbols src/Era.Core/NtrEngine.cs --depth 1` |
-| `find` | Search symbols by name | `python tools/lsp.py find NtrEngine --path src/Era.Core/ --body` |
-| `refs` | Find references | `python tools/lsp.py refs Calculate --path src/Era.Core/NtrEngine.cs` |
+| `symbols` | File symbol overview | `python tools/lsp.py symbols tools/dotnet/ErbParser/ErbParser.cs --depth 1` |
+| `find` | Search symbols by name | `python tools/lsp.py find DiffEngine --path tools/dotnet/KojoComparer/ --body` |
+| `refs` | Find references | `python tools/lsp.py refs Calculate --path tools/dotnet/KojoComparer/DiffEngine.cs` |
 | `rename` | Rename across codebase | `python tools/lsp.py rename OldName NewName --path File.cs` |
 | `replace` | Replace symbol body | `python tools/lsp.py replace Class/Method --path File.cs --body "code"` |
 | `insert-before` | Insert before symbol | `python tools/lsp.py insert-before Class --path File.cs --body "code"` |
@@ -52,7 +52,7 @@ python tools/lsp.py <command> [args]
 
 ### Common Options
 
-- `--path PATH` — Restrict search to file or directory. **Always specify** for faster results.
+- `--path PATH` — Restrict search to file or directory. **Always specify** for faster results. Path is **relative to Serena project root (`src/`)**, not the repo root (e.g. `tools/dotnet/ErbParser/` not `src/tools/dotnet/ErbParser/`).
 - `--depth N` — Child symbol depth (0=self only, 1=immediate children). Default: 0.
 - `--body` — Include source code in output (find only; flag, not value).
 
@@ -91,10 +91,10 @@ python tools/lsp.py refs Era.Core.Types/CharacterId --path File.cs
 **Fix**: Use a more specific name path:
 ```bash
 # BAD — matches struct AND constructor
-python tools/lsp.py refs CharacterId --path src/Era.Core/Types/CharacterId.cs
+python tools/lsp.py refs CharacterId --path tools/dotnet/KojoComparer/StateConverter.cs
 
 # GOOD — qualify with parent
-python tools/lsp.py refs Era.Core.Types/CharacterId --path src/Era.Core/Types/CharacterId.cs
+python tools/lsp.py refs KojoComparer/StateConverter --path tools/dotnet/KojoComparer/StateConverter.cs
 ```
 
 ### Result Too Long
@@ -103,11 +103,11 @@ python tools/lsp.py refs Era.Core.Types/CharacterId --path src/Era.Core/Types/Ch
 
 **Fix**: Narrow the search with `--path`:
 ```bash
-# BAD — CharacterId is used everywhere
-python tools/lsp.py refs Era.Core.Types/CharacterId --path src/Era.Core/Types/CharacterId.cs
+# BAD — symbol is used everywhere
+python tools/lsp.py refs OutputNormalizer --path tools/dotnet/KojoComparer/
 
 # GOOD — search specific method's references instead
-python tools/lsp.py refs NtrEngine/Calculate --path src/Era.Core/NtrEngine.cs
+python tools/lsp.py refs DiffEngine/Compare --path tools/dotnet/KojoComparer/DiffEngine.cs
 ```
 
 ### Daemon Not Running
@@ -141,7 +141,7 @@ python tools/lsp.py restart      # Restart language server (re-indexes ~3s)
 | `status` | ~220ms | Python startup overhead |
 | `symbols` | ~230ms | Cached after first call |
 | `find` (single file) | ~225ms | With body included |
-| `find` (project-wide) | ~630ms | src/Era.Core/ scope |
+| `find` (project-wide) | ~630ms | tools/dotnet/ scope |
 | `refs` | 0.7–1.4s | Depends on result count |
 | LSP startup | ~3s | Roslyn indexing (cached) |
 

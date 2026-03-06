@@ -532,6 +532,13 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 - [revised] ac-validator: Invalid PatternsテーブルにFmatches/not_matches Expectedはregexパターン必須ルール追加（独立ルール→既存テーブル行として統合） → `.claude/agents/ac-validator.md`
 - [rejected] tech-designer Risks除外正当化チェック — Risksテーブルはconsensus-synthesizer生成でありtech-designer管轄外。コンテキスト依存で機械的ルール化困難
 
+### /imp 843 (2026-03-06) — 第2回（ツール最適化・エラー分析）
+- [applied] run-workflow PHASE-1.md: predecessor_context事前計算ロジック追加（FL workflowと同等、F843 lesson: 119 reads of feature-808.md） → `.claude/skills/run-workflow/PHASE-1.md`
+- [applied] run-workflow PHASE-8.md: feature-reviewer promptにPREDECESSOR CONTEXT注入 → `.claude/skills/run-workflow/PHASE-8.md`
+- [accept] Hook error調査（8件/15session）— investigation only、ワークフロー変更不要
+- [accept] Edit without Read エラー（64件, avg 4.3/session）— 自己修正パターン、変更不要
+- [accept] Feature file token limit — Proposal Aで根本解決（subagentが大ファイル直接読取不要に）
+
 ---
 
 <!-- fc-phase-6-completed -->

@@ -893,6 +893,13 @@ If issues arise after deployment:
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 845 (2026-03-07)
+- [applied] ac-designer Step 10.8: Output Content Validation (infra/engine structured output ACs) → `.claude/agents/ac-designer.md`
+- [revised] tech-designer Step 8f: Python Pseudocode Completeness (infra type only, not all types) → `.claude/agents/tech-designer.md`
+- [rejected] FC dependency status pre-computation — FC Phase1で既に実装済み。F845の修正は並行開発による時差
+- [rejected] Hook error pre-validation — hookスクリプトは正常。pwsh PATH/timeout問題はClaude Codeランタイム側
+- [rejected] 繰返しRead削減 — 共有セッション成果物。predecessor-context機構で既に対策済み
+
 ---
 
 <!-- fc-phase-6-completed -->

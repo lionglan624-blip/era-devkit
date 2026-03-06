@@ -590,6 +590,13 @@ MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/engine && /home/siihe/.dotnet/d
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 835 (2026-03-06)
+- [applied] C35: Threshold AC Details missing Derivation field check → `.claude/agents/quality-fixer.md`
+- [revised] 8e: Key Decision-Stub Consistency Check (broadened from null-guard-only to all Key Decisions) → `.claude/agents/tech-designer.md`
+- [applied] V2 setter coverage symmetry across delegation categories → `.claude/agents/ac-validator.md`
+- [revised] C5: Over-escaped regex pipe (broadened scope to matches/not_matches Python regex) → `.claude/agents/quality-fixer.md`
+- [rejected] Predecessor context propagation — F835の119回読み込みはF808であり、F835のpredecessorはF833。既存最適化で対応済み
+
 ---
 
 <!-- fc-phase-6-completed -->

@@ -675,6 +675,17 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 844 (2026-03-06)
+- [applied] ac-designer step 11.4.0: Goal Coverage AC#説明文クロスチェック指示追加 → `.claude/agents/ac-designer.md`
+- [applied] imp-analyzer共有セッション検知: `shared_features`フィールド + `_detect_shared_features()` + `[shared]`マーカー表示 → `src/tools/python/imp-analyzer.py`
+- [revised] post-code-write.ps1 dotnet呼び出しWSLラップ (revised: 直接dotnet→WSL経由に変更、--blame-hang-timeout追加) → `.claude/hooks/post-code-write.ps1`
+- [rejected] quality-fixer C38 (Goal Coverage AC#クロスチェック) — ac-designerで対処済み（Proposal D）、quality-fixerの「100% deterministic」制約に違反
+
+### /imp 844 (2026-03-06) — run 2
+- [applied] P1: predecessor_context実体ファイル化 — Write()ステップ追加+下流Read()参照 → `fl-workflow/PHASE-2.md`, `fl-workflow/PHASE-3.md`, `fl-workflow/PHASE-7.md`, `run-workflow/PHASE-1.md`, `run-workflow/PHASE-8.md`
+- [rejected] P2: RUN Phase 7 AC Expected vs Technical Design pre-check — 単発のFC品質問題、ac-designer step 11.4.0で上流対策済み
+- [rejected] P3: Hook error regex fallback統一 — 各hookは意図的にpayload特性に合わせたパース戦略を使い分け、実質的gapなし
+
 ---
 
 <!-- fc-phase-6-completed -->

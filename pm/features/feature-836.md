@@ -434,6 +434,11 @@ If the build fails after the `.editorconfig` change:
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 836 (2026-03-06)
+- [rejected] FC後 Philosophy-AC Cross-Check の追加 — ac-designer.md Step 4+11.1 に同等チェック既存。単一feature観測で過剰
+- [applied] consensus-synthesizer Risks Mitigation 曖昧表現チェックルール追加 → `.claude/agents/consensus-synthesizer.md`
+- [applied] .NET analyzer suggestion severity CLI非表示の知見記録 → `.claude/skills/testing/SKILL.md`
+
 ---
 
 <!-- fc-phase-6-completed -->

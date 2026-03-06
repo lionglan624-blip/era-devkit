@@ -549,6 +549,13 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 840 (2026-03-06)
+- [applied] V6にスコープ変更カスケーディングチェック追加 (Task scope N→M数値更新漏れ検出) → `.claude/skills/feature-quality/SKILL.md`
+- [applied] C32: Orphan Task (ACなし) 警告パターン追加 → `.claude/agents/quality-fixer.md`
+- [revised] C33: Mandatory Handoff Creation Task AC不足警告追加 (auto-generation→warning-onlyに変更) → `.claude/agents/quality-fixer.md`
+- [revised] predecessor_context をPhase 3/7 subagentプロンプトに注入 (full instrumentationは保留、Phase 3/7のみ先行適用) → `.claude/skills/fl-workflow/PHASE-3.md`, `.claude/skills/fl-workflow/PHASE-7.md`
+- [rejected] Stale path detection for ENGINE.md — feature-qualityはspec (.md) レビュー。ソースコードのstale pathは/runテスト失敗で検出。レイヤー違い
+
 ---
 
 <!-- fc-phase-6-completed -->

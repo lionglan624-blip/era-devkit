@@ -616,6 +616,13 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 838 (2026-03-06)
+- [revised] P1: ac-validatorにリテラル文字列matches検出 + gte Grep pattern=必須ルール追加 → `.claude/agents/ac-validator.md`
+- [applied] P2: quality-fixer C35 threshold AC Derivation検出にF838 lessonを追記 → `.claude/agents/quality-fixer.md` (C35は既存、F838参照追加)
+- [rejected] P3: wbs-generator Handoff Task自動生成 — C32/C33で既にカバー済み。問題はwbs実行時にHandoff未作成
+- [revised] P4: predecessor読み取り抑制 — F838固有エビデンス不足のため適用見送り（要調査）
+- [applied] P5: ac-validatorにgte+Grep pattern=必須ルール追加 → `.claude/agents/ac-validator.md` (P1と統合適用)
+
 ---
 
 <!-- fc-phase-6-completed -->

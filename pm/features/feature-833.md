@@ -621,6 +621,13 @@ MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/engine && /home/siihe/.dotnet/d
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} -> `{target}` or -- {reason} -->
 
+### /imp 833 (2026-03-06)
+- [revised] P1: consensus-synthesizer Step 5に数値クレーム検証を5番目の行として追加（Step 5.5ではなく既存テーブルに統合） → `.claude/agents/consensus-synthesizer.md`
+- [applied] P2: quality-fixer C36: `matches` matcher + literal Expected検出→`contains`自動修正ルール追加 → `.claude/agents/quality-fixer.md`
+- [revised] P3: reference-checker Section 3 Step 4: stale参照発見時に全出現grep + 個別issue化（検出フェーズに配置、修正フェーズではなく） → `.claude/skills/reference-checker/SKILL.md`
+- [rejected] P4: Hook error pre-validation -- hooks は graceful exit 0 で処理済み、リトライ不発生
+- [applied] P5: predecessor_context pre-computation -- F840で実装済み、確認のみ
+
 ---
 
 <!-- fc-phase-6-completed -->

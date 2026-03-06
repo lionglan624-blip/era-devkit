@@ -669,6 +669,11 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- run-phase-8-completed -->
 | 2026-03-06 | DEVIATION | Bash | pytest (bare) | exit 127 — command not found; retried with python -m pytest |
 | 2026-03-06 | DEVIATION | Bash | ac-static-verifier --ac-type exit_code | exit 2 — invalid choice; exit_code not supported by static verifier |
+| 2026-03-06 | PHASE_COMPLETE | orchestrator | Phase 9 Report & Approval | 2 DEVIATIONs (D); 3 Mandatory Handoffs (A) |
+<!-- run-phase-9-completed -->
+| 2026-03-06 | CodeRabbit | 1 Minor (修正済み) | F828/F843 Active+Recently Completed重複 → 削除 |
+| 2026-03-06 | PHASE_COMPLETE | orchestrator | Phase 10 Finalize & Commit | 6bd23ae |
+<!-- run-phase-10-completed -->
 
 ---
 

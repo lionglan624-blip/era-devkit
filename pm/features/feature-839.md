@@ -469,6 +469,11 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 839 (2026-03-06)
+- [rejected] subagentプロンプトに大ファイルRead時の offset/limit 義務化 — 119回Readはmulti-agentパイプライン累計で各agent1回の正当Read。offset/limit強制は情報欠損を招く
+- [rejected] subagentテンプレートにlimit指示追加 — 提案Aと同根。異なるagentの正当Readであり個別制限は的外れ
+- [proposed] post-code-write.ps1, pre-bash-ac.ps1, post-bash-deviation.ps1 の ConvertFrom-Json を regex抽出に置換（pre-tdd-protection.ps1 既存パターン適用） → `.claude/hooks/` 内3ファイル
+
 ---
 
 <!-- fc-phase-6-completed -->

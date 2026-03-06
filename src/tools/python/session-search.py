@@ -3,23 +3,15 @@
 Claude Code Session JSONL Search Tool
 
 Searches session log files stored by Claude Code for patterns across
-tool calls, messages, and results.
+tool calls, messages, and results. Run with --help for full usage and examples.
 
-Usage:
-    python session-search.py "feature-797"
+Quick examples:
     python session-search.py "feature-797" --tool Write,Edit
-    python session-search.py "feature-797" --after 2026-02-18
-    python session-search.py "feature-797" --verbose
-    python session-search.py --session be309 --agents
+    python session-search.py --session be309 --summary
     python session-search.py --session be309 --timeline
-    python session-search.py "feature-806" --tool Agent --subagents
-    python session-search.py -r "feature-8[01]\\d" --count
-    python session-search.py --session be309 --tool Agent --no-results
-    python session-search.py --list
-    python session-search.py --list --after 2026-03-01 --limit 10
-    python session-search.py --session be309 "issue" --type text
-    python session-search.py --session be309 --type tool_use
     python session-search.py --session be309 --autopsy
+    python session-search.py --session be309 --trace a396 --tool Bash
+    python session-search.py --list --after 2026-03-01
 
 Exit codes:
     0 = Success (matches found, or no matches without --strict)
@@ -34,7 +26,8 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
+from dataclasses import dataclass, field
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional
 
@@ -207,6 +200,43 @@ def _extract_tool_use_summary(block: dict, pattern: str) -> str:
     return f"{name} - {_snippet_around(inp_str, pattern, 50)}"
 
 
+@dataclass
+class MatchEntry:
+    """A single search match with optional surrounding context."""
+    lineno: int
+    summary: str
+    ctx_before: list[tuple[int, str]] = field(default_factory=list)
+    ctx_after: list[tuple[int, str]] = field(default_factory=list)
+
+
+def _extract_first_user_text(content) -> Optional[str]:
+    """Extract first meaningful user text from message content.
+
+    Handles plain string content, list-of-blocks content,
+    and command-message XML tags. Returns None if no meaningful text found.
+    """
+    raw = None
+    if isinstance(content, str) and content.strip():
+        raw = content.strip()
+    elif isinstance(content, list):
+        for block in content:
+            if isinstance(block, dict) and block.get("type") == "text":
+                text = block.get("text", "").strip()
+                if text:
+                    raw = text
+                    break
+    if raw is None:
+        return None
+    cmd_match = re.search(
+        r"<command-name>(/\S+)</command-name>\s*<command-args>(.*?)</command-args>", raw,
+    )
+    if cmd_match:
+        return f"{cmd_match.group(1)} {cmd_match.group(2)}".strip()
+    if not raw.startswith("<"):
+        return _truncate(raw, 100)
+    return None
+
+
 def _content_to_text(content) -> str:
     """Flatten tool_result content (str or list of blocks) to plain text."""
     if isinstance(content, str):
@@ -275,12 +305,7 @@ def _extract_match_summary(
                 if tool_filter and tool_name not in tool_filter:
                     continue
                 inp_str = json.dumps(block.get("input", {}), ensure_ascii=False)
-                if scan_all and tool_filter:
-                    return _extract_tool_use_summary(block, pattern)
-                if scan_all and not tool_filter:
-                    # show all tool_use blocks (no filter)
-                    return _extract_tool_use_summary(block, pattern)
-                if _match(tool_name) or _match(inp_str):
+                if scan_all or _match(tool_name) or _match(inp_str):
                     return _extract_tool_use_summary(block, pattern)
             elif block.get("type") == "text" and want_text:
                 if tool_filter:
@@ -510,7 +535,7 @@ def scan_file(
     When context > 0, match tuples include (lineno, summary, ctx_before, ctx_after).
     """
     scan_all = not pattern
-    matches = []          # [(line_number, summary)]
+    matches: list[MatchEntry] = []
     timestamps = []       # datetime objects seen in this file
     total_lines = 0
     tool_id_map: dict[str, str] = {}  # tool_use_id -> tool_name
@@ -589,7 +614,7 @@ def scan_file(
                         idx = len(all_records) - 1
                         match_record_indices.append(idx)
                         all_records[idx] = (lineno, summary)
-                    matches.append((lineno, summary))
+                    matches.append(MatchEntry(lineno, summary))
 
     except OSError as exc:
         print(f"WARN: Cannot read {jsonl_path.name}: {exc}", file=sys.stderr)
@@ -610,14 +635,14 @@ def scan_file(
 
     # Build context-enriched matches
     if context > 0:
-        context_matches = []
+        context_matches: list[MatchEntry] = []
         for mi in match_record_indices:
             lineno, summary = all_records[mi]
             before_start = max(0, mi - context)
             after_end = min(len(all_records), mi + context + 1)
             ctx_before = [all_records[j] for j in range(before_start, mi)]
             ctx_after = [all_records[j] for j in range(mi + 1, after_end)]
-            context_matches.append((lineno, summary, ctx_before, ctx_after))
+            context_matches.append(MatchEntry(lineno, summary, ctx_before, ctx_after))
         final_matches = context_matches
     else:
         final_matches = matches
@@ -846,23 +871,7 @@ def scan_summary(jsonl_path: Path) -> Optional[dict]:
 
                 # First user text
                 if first_user_text is None and record_type == "user":
-                    _found_text = None
-                    if isinstance(content, str) and content.strip():
-                        _found_text = content.strip()
-                    elif isinstance(content, list):
-                        for block in content:
-                            if isinstance(block, dict) and block.get("type") == "text":
-                                text = block.get("text", "").strip()
-                                if text:
-                                    _found_text = text
-                                    break
-                    if _found_text:
-                        # Extract clean text from command-message XML tags
-                        cmd_match = re.search(r"<command-name>(/\S+)</command-name>\s*<command-args>(.*?)</command-args>", _found_text)
-                        if cmd_match:
-                            first_user_text = f"{cmd_match.group(1)} {cmd_match.group(2)}".strip()
-                        elif not _found_text.startswith("<"):
-                            first_user_text = _truncate(_found_text, 100)
+                    first_user_text = _extract_first_user_text(content)
 
                 # Tool counts
                 if record_type == "assistant" and isinstance(content, list):
@@ -1010,20 +1019,17 @@ def print_session_list(summaries: list[dict], verbose: bool) -> None:
 def _print_match_block(matches: list, indent: str, verbose: bool, max_default: int = 5) -> None:
     """Print match entries with optional context rendering."""
     display = matches if verbose else matches[:max_default]
-    for match_tuple in display:
-        if len(match_tuple) == 4:
-            lineno, summary, ctx_before, ctx_after = match_tuple
-            for cl, cs in ctx_before:
+    for entry in display:
+        if entry.ctx_before or entry.ctx_after:
+            for cl, cs in entry.ctx_before:
                 print(f"{indent}L{cl:<5} {cs}")
-            # Marker: replace last 4 chars of indent with ">>> "
             marker = indent[:-4] + ">>> " if len(indent) >= 4 else ">>> "
-            print(f"{marker}L{lineno:<5} {summary}")
-            for cl, cs in ctx_after:
+            print(f"{marker}L{entry.lineno:<5} {entry.summary}")
+            for cl, cs in entry.ctx_after:
                 print(f"{indent}L{cl:<5} {cs}")
             print(f"{indent}---")
         else:
-            lineno, summary = match_tuple[0], match_tuple[1]
-            print(f"{indent}L{lineno:<5} {summary}")
+            print(f"{indent}L{entry.lineno:<5} {entry.summary}")
     if not verbose and len(matches) > max_default:
         remaining = len(matches) - max_default
         print(f"{indent}... ({remaining} more, use --verbose to show all)")
@@ -1285,25 +1291,7 @@ def scan_autopsy(jsonl_path: Path) -> Optional[dict]:
 
                     # First user text
                     if first_user_text is None:
-                        _found_text = None
-                        if isinstance(content, str) and content.strip():
-                            _found_text = content.strip()
-                        elif isinstance(content, list):
-                            for block in content:
-                                if isinstance(block, dict) and block.get("type") == "text":
-                                    text = block.get("text", "").strip()
-                                    if text:
-                                        _found_text = text
-                                        break
-                        if _found_text:
-                            cmd_match = re.search(
-                                r"<command-name>(/\S+)</command-name>\s*<command-args>(.*?)</command-args>",
-                                _found_text,
-                            )
-                            if cmd_match:
-                                first_user_text = f"{cmd_match.group(1)} {cmd_match.group(2)}".strip()
-                            elif not _found_text.startswith("<"):
-                                first_user_text = _truncate(_found_text, 100)
+                        first_user_text = _extract_first_user_text(content)
 
                     # Remove resolved tool results
                     if isinstance(content, list):
@@ -1404,15 +1392,7 @@ def _scan_one_subagent(jsonl_path: Path) -> Optional[dict]:
 
                 # Get spawn description from first user message
                 if spawn_summary is None and record_type == "user":
-                    if isinstance(content, str) and content.strip():
-                        spawn_summary = _truncate(content.strip(), 100)
-                    elif isinstance(content, list):
-                        for block in content:
-                            if isinstance(block, dict) and block.get("type") == "text":
-                                text = block.get("text", "").strip()
-                                if text:
-                                    spawn_summary = _truncate(text, 100)
-                                    break
+                    spawn_summary = _extract_first_user_text(content)
 
                 if record_type == "assistant":
                     stop_reason = message.get("stop_reason", "") if isinstance(message, dict) else ""
@@ -1479,7 +1459,6 @@ def correlate_pm2_events(
             return []
 
         # Convert session_end_dt (UTC) to local time for comparison with PM2 timestamps
-        from datetime import timedelta
         local_offset = datetime.now().astimezone().utcoffset() or timedelta(0)
         session_end_local = session_end_dt.replace(tzinfo=None) + local_offset
 
@@ -1523,6 +1502,10 @@ def find_concurrent_sessions(
 ) -> list[dict]:
     """Find sessions that overlapped in time with the target session."""
     all_files = _collect_jsonl_files(ccs_dirs, None, False)
+    # Pre-filter by mtime: files last modified before the target session
+    # started can't overlap (1-hour margin for clock skew)
+    cutoff_ts = earliest.timestamp() - 3600
+    all_files = [p for p in all_files if p.stat().st_mtime >= cutoff_ts]
     concurrent: list[dict] = []
 
     for jsonl_path in all_files:
@@ -1725,6 +1708,252 @@ def print_autopsy(
         print("  Concurrent: (none)")
 
 
+# -- trace mode --------------------------------------------------------------
+
+def _list_trace_subagents(ccs_dirs: list[Path], session_id: str) -> None:
+    """List all subagents for a session with metadata for --trace * mode."""
+    results = scan_subagent_autopsy(ccs_dirs, session_id)
+    short_id = session_id[:8]
+    print(f"\n=== Subagents: {short_id} ===\n")
+
+    if not results:
+        print("(no subagents)")
+        return
+
+    print(f"  {'#':>3}  {'ID':8}  {'Time':19}  {'Lines':>5}  Description")
+    for idx, info in enumerate(results, start=1):
+        agent_id = info["subagent_id"]
+        # Strip "agent-" prefix, show first 8 chars
+        short = agent_id.replace("agent-", "")[:8]
+        t0 = format_time(info.get("earliest"))
+        t1 = format_time(info.get("latest"))
+        lines = info.get("total_lines", 0)
+        desc = _truncate(info.get("spawn_summary", ""), 60)
+        print(f"  {idx:3}  {short:8}  {t0}~{t1}  {lines:5}  {desc}")
+
+    print(f"\n{len(results)} subagents")
+    # Hint: show last subagent's short ID as example
+    last_short = results[-1]["subagent_id"].replace("agent-", "")[:8]
+    print(f"\nTrace: --session {short_id} --trace {last_short}")
+
+
+def _resolve_trace_file(
+    ccs_dirs: list[Path],
+    session_prefix: str,
+    trace_prefix: str,
+    parser: argparse.ArgumentParser,
+) -> Path:
+    """Resolve trace target to a single JSONL path.
+
+    trace_prefix == "." means the parent session itself.
+    Otherwise glob for subagent files matching the prefix.
+    """
+    # Resolve parent session first
+    jsonl_files = _resolve_session_files(ccs_dirs, session_prefix, parser)
+    if len(jsonl_files) > 1:
+        print(f'ERROR: Multiple sessions match "{session_prefix}". Be more specific.', file=sys.stderr)
+        for p in jsonl_files:
+            print(f"  {p.stem}", file=sys.stderr)
+        sys.exit(1)
+    parent_path = jsonl_files[0]
+
+    if trace_prefix == ".":
+        return parent_path
+
+    # Find subagent files
+    session_dir = parent_path.parent / parent_path.stem
+    subagent_dir = session_dir / "subagents"
+    if not subagent_dir.is_dir():
+        print(f"ERROR: No subagents directory found for session {parent_path.stem}", file=sys.stderr)
+        sys.exit(1)
+
+    matches = [p for p in subagent_dir.glob("agent-*.jsonl") if trace_prefix in p.stem]
+    if not matches:
+        available = sorted(p.stem for p in subagent_dir.glob("agent-*.jsonl"))
+        print(f'ERROR: No subagent matching "{trace_prefix}". Available:', file=sys.stderr)
+        for name in available:
+            print(f"  {name}", file=sys.stderr)
+        sys.exit(1)
+    if len(matches) > 1:
+        print(f'ERROR: Multiple subagents match "{trace_prefix}":', file=sys.stderr)
+        for p in sorted(matches, key=lambda x: x.stem):
+            print(f"  {p.stem}", file=sys.stderr)
+        sys.exit(1)
+
+    return matches[0]
+
+
+def scan_trace(
+    jsonl_path: Path,
+    tool_filter: Optional[set],
+    pattern: str,
+    ignore_case: bool,
+    compiled_re: Optional[re.Pattern],
+) -> Optional[list[dict]]:
+    """Scan JSONL and pair tool_use with tool_result into trace entries."""
+    pending: dict[str, dict] = {}  # tool_use_id -> partial entry
+    entries: list[dict] = []
+
+    try:
+        with open(jsonl_path, encoding="utf-8", errors="replace") as f:
+            for lineno, raw in enumerate(f, start=1):
+                try:
+                    obj = json.loads(raw)
+                except json.JSONDecodeError:
+                    continue
+
+                record_type = obj.get("type", "")
+                ts = obj.get("timestamp", "")
+                message = obj.get("message", {})
+                content = message.get("content", []) if isinstance(message, dict) else []
+                if not isinstance(content, list):
+                    continue
+
+                if record_type == "assistant":
+                    for block in content:
+                        if isinstance(block, dict) and block.get("type") == "tool_use":
+                            use_id = block.get("id", "")
+                            tool_name = block.get("name", "")
+                            if not use_id:
+                                continue
+                            if tool_filter and tool_name not in tool_filter:
+                                continue
+                            pending[use_id] = {
+                                "lineno_use": lineno,
+                                "tool_name": tool_name,
+                                "tool_id": use_id,
+                                "input": block.get("input", {}),
+                                "timestamp_use": ts,
+                            }
+
+                elif record_type == "user":
+                    for block in content:
+                        if isinstance(block, dict) and block.get("type") == "tool_result":
+                            use_id = block.get("tool_use_id", "")
+                            if use_id not in pending:
+                                continue
+                            entry = pending.pop(use_id)
+                            result_content = _content_to_text(block.get("content", ""))
+                            entry["lineno_result"] = lineno
+                            entry["output"] = result_content
+                            entry["is_error"] = block.get("is_error", False)
+                            entry["timestamp_result"] = ts
+
+                            # Pattern filter
+                            if pattern or compiled_re:
+                                haystack = json.dumps(entry["input"], ensure_ascii=False) + "\n" + result_content
+                                if compiled_re:
+                                    if not compiled_re.search(haystack):
+                                        continue
+                                elif ignore_case:
+                                    if pattern not in haystack.lower():
+                                        continue
+                                else:
+                                    if pattern not in haystack:
+                                        continue
+
+                            entries.append(entry)
+
+    except OSError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return None
+
+    return entries
+
+
+def print_trace(entries: list[dict], jsonl_path: Path, verbose: bool) -> None:
+    """Pretty-print trace entries."""
+    label = jsonl_path.stem
+    print(f"\n=== Tool Trace: {label} ===\n")
+
+    if not entries:
+        print("(no matching tool calls)")
+        return
+
+    tool_counts: dict[str, int] = collections.Counter()
+    max_output_lines = 0 if verbose else 5
+
+    for idx, entry in enumerate(entries, start=1):
+        name = entry["tool_name"]
+        tool_counts[name] += 1
+        ts_use = parse_iso(entry.get("timestamp_use", ""))
+        ts_str = format_time(ts_use)
+        lr = entry.get("lineno_result", "?")
+
+        print(f"--- [{idx}] {name} (L{entry['lineno_use']} -> L{lr}) {ts_str} ---")
+
+        inp = entry.get("input", {})
+        # Tool-specific input formatting
+        if name == "Bash":
+            cmd = inp.get("command", "")
+            desc = inp.get("description", "")
+            print(f"  $ {cmd}")
+            if desc:
+                print(f"  (desc: {desc})")
+        elif name in ("Read", "Write"):
+            print(f"  file_path: {inp.get('file_path', inp.get('path', '?'))}")
+        elif name == "Edit":
+            path = inp.get("file_path", "?")
+            old = _truncate(inp.get("old_string", ""), 60)
+            new = _truncate(inp.get("new_string", ""), 60)
+            print(f"  file_path: {path}")
+            print(f"  old: {old}")
+            print(f"  new: {new}")
+        elif name in ("Grep", "Glob"):
+            print(f"  pattern: {inp.get('pattern', '?')}")
+            if inp.get("path"):
+                print(f"  path: {inp['path']}")
+        elif name == "Agent":
+            stype = inp.get("subagent_type", "?")
+            desc = inp.get("description", "")
+            model = inp.get("model", "")
+            label_parts = [f"subagent_type: {stype}"]
+            if model:
+                label_parts.append(f"model: {model}")
+            print(f"  {', '.join(label_parts)}")
+            if desc:
+                print(f"  desc: {_truncate(desc, 120)}")
+        elif name == "Skill":
+            print(f"  skill: {inp.get('skill', '?')}")
+        else:
+            inp_str = json.dumps(inp, ensure_ascii=False)
+            print(f"  input: {_truncate(inp_str, 120)}")
+
+        # Output
+        output = entry.get("output", "")
+        is_error = entry.get("is_error", False)
+        lines = output.split("\n") if output else []
+        total = len(lines)
+
+        error_tag = " [ERROR]" if is_error else ""
+        if max_output_lines and total > max_output_lines:
+            print(f"  OUTPUT{error_tag} ({total} lines, showing {max_output_lines}):")
+            for line in lines[:max_output_lines]:
+                print(f"    {line}")
+            print(f"    ... ({total - max_output_lines} more lines)")
+        elif lines:
+            suffix = f" ({total} line{'s' if total != 1 else ''})"
+            print(f"  OUTPUT{error_tag}{suffix}:")
+            for line in lines:
+                print(f"    {line}")
+        else:
+            print(f"  OUTPUT{error_tag}: (empty)")
+
+        print()
+
+    # Summary footer
+    count_parts = ", ".join(f"{n} {name}" for name, n in tool_counts.most_common())
+    print(f"{len(entries)} tool calls total ({count_parts})")
+
+    # Duration
+    first_ts = parse_iso(entries[0].get("timestamp_use", ""))
+    last_entry = entries[-1]
+    last_ts = parse_iso(last_entry.get("timestamp_result", "") or last_entry.get("timestamp_use", ""))
+    if first_ts and last_ts:
+        delta = int((last_ts - first_ts).total_seconds())
+        print(f"Time: {format_time(first_ts)} ~ {format_time(last_ts)} ({delta}s)")
+
+
 # -- main --------------------------------------------------------------------
 
 def build_parser() -> argparse.ArgumentParser:
@@ -1733,23 +1962,34 @@ def build_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
+  # Basic search
   python session-search.py "feature-797"
   python session-search.py "feature-797" --tool Write,Edit
   python session-search.py "feature-797" --after 2026-02-18
-  python session-search.py --session be309 --agents
-  python session-search.py --session be309 --timeline
-  python session-search.py "feature-806" --timeline --after 2026-03-01
+  python session-search.py -r "feature-8[01]\\d" --count
   python session-search.py "POST-LOOP" --or "batch_mode" --or "context_pct"
-  python session-search.py --session be309 --line 99
-  python session-search.py --session be309 --line 97-104 --raw
-  python session-search.py --session be309 --summary
+  python session-search.py "nonexistent" --strict  # exit code 2 if no match
+
+  # Session inspection
   python session-search.py --list
   python session-search.py --list --after 2026-03-01 --limit 10
+  python session-search.py --session be309 --summary
+  python session-search.py --session be309 --timeline
+  python session-search.py --session be309 --line 99
+  python session-search.py --session be309 --line 97-104 --raw
   python session-search.py --session be309 "Context at" -C 2
   python session-search.py --session be309 "issue" --type text
   python session-search.py --session be309 --type tool_use
-  python session-search.py -r "feature-8[01]\\d" --count
-  python session-search.py "nonexistent" --strict  # exit code 2 if no match
+  python session-search.py --session be309 --autopsy
+
+  # Subagent investigation
+  python session-search.py --session be309 --agents              # list Agent calls + subagent summaries
+  python session-search.py "feature-806" --tool Agent --subagents # search inside subagent JSONLs too
+  python session-search.py "feature-806" --timeline --subagents   # timeline including subagents
+  python session-search.py --session be309 --trace "*"            # list all subagents with IDs
+  python session-search.py --session be309 --trace a396           # full tool trace of one subagent
+  python session-search.py --session be309 --trace a396 --tool Bash  # trace filtered to Bash only
+  python session-search.py --session be309 --trace . --tool Agent    # trace parent session's Agent calls
         """,
     )
     parser.add_argument(
@@ -1892,6 +2132,13 @@ Examples:
              "Shows verdict, termination state, subagent status, token usage, "
              "and correlated PM2/debug log events.",
     )
+    parser.add_argument(
+        "--trace",
+        metavar="PREFIX",
+        help='Trace tool calls in a subagent by ID prefix. '
+             'Special values: "." = parent session, "*" = list all subagents. '
+             "Requires --session.",
+    )
     return parser
 
 
@@ -2018,7 +2265,6 @@ def main() -> int:
             compiled_re = re.compile(combined, flags)
         except re.error as exc:
             parser.error(f"invalid combined pattern: {exc}")
-        pattern = " | ".join(all_patterns)
     elif use_regex and pattern:
         flags = re.IGNORECASE if ignore_case else 0
         try:
@@ -2028,6 +2274,12 @@ def main() -> int:
     elif ignore_case and pattern:
         # Normalize pattern for case-insensitive substring matching
         pattern = pattern.lower()
+
+    # Display label (preserves original case, includes --or patterns)
+    if or_patterns:
+        display_pattern = " | ".join([args.pattern] + or_patterns)
+    else:
+        display_pattern = args.pattern
 
     ccs_dirs = find_ccs_dirs(args.ccs_dir)
 
@@ -2070,6 +2322,12 @@ def main() -> int:
             print("No sessions found.", file=sys.stderr)
             return 1
 
+        # Pre-sort by mtime (newest first) to limit scan when no date filters
+        limit = args.limit if args.limit is not None else 20
+        if not args.after and not args.before:
+            all_files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+            all_files = all_files[:limit * 2]  # margin for None summaries
+
         summaries = []
         for jsonl_path in all_files:
             summary = scan_summary(jsonl_path)
@@ -2087,9 +2345,6 @@ def main() -> int:
             key=lambda s: s["latest"] or datetime.min.replace(tzinfo=timezone.utc),
             reverse=True,
         )
-
-        # Apply limit (default 20 for list mode)
-        limit = args.limit if args.limit is not None else 20
         summaries = summaries[:limit]
 
         print_session_list(summaries, args.verbose)
@@ -2120,6 +2375,26 @@ def main() -> int:
                 autopsy_data["session_id"],
             )
         print_autopsy(autopsy_data, subagent_data, pm2_events, concurrent, verdict_code, verdict_text)
+        return 0
+
+    # --trace mode (early branch)
+    if args.trace is not None:
+        if not args.session:
+            parser.error("--trace requires --session")
+        if args.trace == "*":
+            jsonl_files = _resolve_session_files(ccs_dirs, args.session, parser)
+            if len(jsonl_files) > 1:
+                print(f'ERROR: Multiple sessions match "{args.session}". Be more specific.', file=sys.stderr)
+                for p in jsonl_files:
+                    print(f"  {p.stem}", file=sys.stderr)
+                return 1
+            _list_trace_subagents(ccs_dirs, jsonl_files[0].stem)
+            return 0
+        trace_path = _resolve_trace_file(ccs_dirs, args.session, args.trace, parser)
+        trace_entries = scan_trace(trace_path, tool_filter, pattern, ignore_case, compiled_re)
+        if trace_entries is None:
+            return 1
+        print_trace(trace_entries, trace_path, args.verbose)
         return 0
 
     # Validate: pattern is required unless --session or --timeline is specified
@@ -2187,7 +2462,7 @@ def main() -> int:
                     matched_files.append((jsonl_path, result))
 
             if not matched_files:
-                print(f'No sessions matching "{pattern}" found.')
+                print(f'No sessions matching "{display_pattern}" found.')
                 return 2 if args.strict else 0
 
             # Sort by latest timestamp, limit
@@ -2247,7 +2522,7 @@ def main() -> int:
             sessions.append(result)
 
     if not sessions:
-        label = f'"{pattern}"' if pattern else "(all)"
+        label = f'"{display_pattern}"' if display_pattern else "(all)"
         print(f'No matches found for {label} in {total_files} files.')
         return 2 if args.strict else 0
 
@@ -2255,9 +2530,9 @@ def main() -> int:
     limited = sessions[:effective_limit]
 
     if args.count:
-        print_counts(args.pattern, limited)
+        print_counts(display_pattern, limited)
     else:
-        print_results(pattern, limited, args.verbose)
+        print_results(display_pattern, limited, args.verbose)
 
     if len(sessions) > effective_limit:
         print(

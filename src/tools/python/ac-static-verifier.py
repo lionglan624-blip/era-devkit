@@ -20,6 +20,7 @@ Exit codes:
 """
 
 import argparse
+import glob as glob_module
 import json
 import os
 import re
@@ -96,6 +97,262 @@ class GrepParams:
         yield self.error_result
 
 
+# Module-level constants
+STATIC_AC_TYPES = ['code', 'build', 'file']
+ERROR_CATEGORIES = ['parse_error', 'format_error']
+
+# Shared unescape rules — single source for all unescape variants.
+# Structural/punctuation rules only. Single-letter escapes handled by _SINGLE_LETTER_UNESCAPE_PATTERN.
+_UNESCAPE_RULES = [
+    (r'\"', '"'),
+    (r'\\[', r'\['),
+    (r'\\]', r'\]'),
+    (r'\\(', r'\('),
+    (r'\\)', r'\)'),
+    (r'\\.', r'\.'),
+    (r'\\?', r'\?'),
+]
+_SINGLE_LETTER_UNESCAPE_PATTERN = re.compile(r'\\\\([a-zA-Z])')
+_PIPE_RULE = (r'\|', '|')  # markdown pipe escapes — Expected column only
+
+
+def detect_legacy_format(header_line: str) -> bool:
+    """Return True if AC table header lacks 'Method' column (legacy 6-column format).
+
+    AC#8: referenced by name to match `detect_legacy|is_legacy` grep pattern.
+    """
+    return "Method" not in header_line
+
+
+def _apply_single_letter_unescape(s: str) -> str:
+    return _SINGLE_LETTER_UNESCAPE_PATTERN.sub(r'\\\1', s)
+
+
+def unescape(s: str) -> str:
+    r"""Unescape backslash escape sequences in a string.
+
+    Handles backslash escape sequences in Expected values:
+    - \" -> " (double quotes)
+    - \\[ -> \[ (markdown bracket escapes for regex patterns)
+    - \\] -> \] (markdown bracket escapes for regex patterns)
+    - \| -> | (markdown pipe escapes)
+    - \\( -> \( (CommonMark punctuation escape: open-paren)
+    - \\) -> \) (CommonMark punctuation escape: close-paren)
+    - \\. -> \. (CommonMark punctuation escape: dot)
+    - \\? -> \? (CommonMark punctuation escape: question mark)
+    - \\w -> \w (word-class per C3 spec; not CommonMark but per F804 evidence)
+
+    Args:
+        s: String with potential backslash escape sequences
+
+    Returns:
+        String with backslash escapes processed
+    """
+    for from_str, to_str in _UNESCAPE_RULES:
+        s = s.replace(from_str, to_str)
+    s = _apply_single_letter_unescape(s)
+    s = s.replace(*_PIPE_RULE)  # markdown pipe escapes
+    return s
+
+
+def unescape_for_regex_pattern(s: str) -> str:
+    r"""Unescape backslash escape sequences for Method-column regex patterns.
+
+    Applies all _UNESCAPE_RULES EXCEPT _PIPE_RULE, because in regex context
+    \| means literal pipe and must be preserved as-is.
+
+    Args:
+        s: Pattern string from Method column with potential markdown escape sequences
+
+    Returns:
+        String with markdown escapes processed, regex pipe escape preserved
+    """
+    for from_str, to_str in _UNESCAPE_RULES:
+        s = s.replace(from_str, to_str)
+    s = _apply_single_letter_unescape(s)
+    return s
+
+
+def unescape_for_literal_search(s: str) -> str:
+    r"""Unescape pattern for literal string search in contains matcher.
+
+    After markdown unescape (\\[ -> \[), further unescape for literal matching:
+    - \[ -> [ (escaped bracket becomes literal bracket)
+    - \] -> ] (escaped bracket becomes literal bracket)
+    - \| -> | (escaped pipe becomes literal pipe)
+
+    This allows patterns like \[DRAFT\] to match literal [DRAFT] in files.
+
+    Args:
+        s: String with backslash-escaped brackets and pipes
+
+    Returns:
+        String with bracket and pipe escapes removed for literal matching
+    """
+    return s.replace(r'\[', '[').replace(r'\]', ']').replace(r'\|', '|')
+
+
+def classify_pattern_type(method: str, matcher: str, expected: str) -> 'PatternType':
+    """Classify an AC's pattern type from its Method/Matcher/Expected fields."""
+    if re.search(r'Grep\s*\(.*=.*\)', method, re.IGNORECASE):
+        return PatternType.COMPLEX_METHOD
+    if matcher.lower() in ("matches", "not_matches"):
+        return PatternType.REGEX
+    if matcher.lower() in ("exists", "not_exists"):
+        return PatternType.GLOB
+    if matcher.lower() in ("contains", "not_contains"):
+        return PatternType.LITERAL
+    if matcher.lower() in ("count_equals", "gt", "gte", "lt", "lte"):
+        return PatternType.COUNT
+    return PatternType.UNKNOWN
+
+
+def parse_ac_table(feature_path: Path) -> tuple:
+    """Parse AC table from a feature markdown file without filtering by ac_type.
+
+    Extracts the pipe-splitting state machine from parse_feature_markdown() but:
+    - Does NOT filter by ac_type (returns ALL AC rows)
+    - Calls detect_legacy_format() on the header line — if legacy, records format_error
+    - Returns (ac_list, errors) where errors are dicts with keys:
+      feature (placeholder str), ac_number (int or None), error (from ERROR_CATEGORIES),
+      detail (str)
+
+    Args:
+        feature_path: Path to the feature markdown file
+
+    Returns:
+        Tuple of (ac_list: List[ACDefinition], errors: List[dict])
+    """
+    if not feature_path.exists():
+        return [], [{
+            "feature": "",
+            "ac_number": None,
+            "error": "parse_error",
+            "detail": f"Feature file not found: {feature_path}"
+        }]
+
+    acs = []
+    errors = []
+    in_ac_table = False
+    is_legacy = False
+
+    with open(feature_path, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+
+            # Detect AC table header
+            if line.startswith("| AC# |"):
+                in_ac_table = True
+                # Check for legacy format (missing Method column)
+                if detect_legacy_format(line):
+                    is_legacy = True
+                    errors.append({
+                        "feature": "",
+                        "ac_number": None,
+                        "error": "format_error",
+                        "detail": "AC table missing Method column (legacy 6-column format)"
+                    })
+                continue
+
+            # Skip separator line
+            if in_ac_table and line.startswith("|:---:|"):
+                continue
+
+            # Parse AC row
+            if in_ac_table and line.startswith("|"):
+                # End of table check (empty row or section break)
+                if not line.strip("|").strip():
+                    break
+
+                # Skip rows from legacy format tables
+                if is_legacy:
+                    continue
+
+                # Split on pipes, but respect quoted regions (don't split pipes inside quotes or backticks)
+                parts = []
+                current_part = ""
+                in_quotes = False
+                in_backticks = False
+                i = 0
+                while i < len(line):
+                    char = line[i]
+                    if char == '"' and not in_backticks:
+                        # Count consecutive backslashes before the quote
+                        num_backslashes = 0
+                        j = i - 1
+                        while j >= 0 and line[j] == '\\':
+                            num_backslashes += 1
+                            j -= 1
+                        # Even number of backslashes means quote is NOT escaped
+                        if num_backslashes % 2 == 0:
+                            in_quotes = not in_quotes
+                        current_part += char
+                    elif char == '`' and not in_quotes:
+                        # Backtick toggle (backticks are not escaped in markdown)
+                        in_backticks = not in_backticks
+                        current_part += char
+                    elif char == '|' and not in_quotes and not in_backticks:
+                        # Check if pipe is backslash-escaped
+                        num_backslashes = 0
+                        j = i - 1
+                        while j >= 0 and line[j] == '\\':
+                            num_backslashes += 1
+                            j -= 1
+                        if num_backslashes % 2 == 0:
+                            # Not escaped - split here
+                            parts.append(current_part.strip())
+                            current_part = ""
+                        else:
+                            # Escaped pipe - include as content (without the escaping backslash)
+                            # Remove the trailing backslash from current_part since it was an escape character
+                            current_part = current_part[:-1] + char
+                    else:
+                        current_part += char
+                    i += 1
+                # Add final part
+                if current_part or not parts:
+                    parts.append(current_part.strip())
+                if len(parts) < 8:  # Need at least 8 parts (empty + 6 columns + empty)
+                    continue
+
+                try:
+                    ac_num_str = parts[1]
+                    # Skip reserved ACs
+                    if not ac_num_str.isdigit():
+                        continue
+
+                    ac_number = int(ac_num_str)
+                    description = parts[2]
+                    ac_type = parts[3]
+                    method = parts[4]
+                    matcher = parts[5]
+                    # Strip outer double quotes and backticks first, then unescape backslash sequences
+                    expected_raw = parts[6]
+                    # Remove single pair of outer double quotes (maintain original order: quotes first)
+                    if expected_raw.startswith('"') and expected_raw.endswith('"') and len(expected_raw) >= 2:
+                        expected_raw = expected_raw[1:-1]
+                    # Remove outer backticks (legacy support)
+                    if expected_raw.startswith('`') and expected_raw.endswith('`'):
+                        expected_raw = expected_raw[1:-1]
+                    expected = unescape(expected_raw)
+
+                    ac_obj = ACDefinition(
+                        ac_number=ac_number,
+                        description=description,
+                        ac_type=ac_type,
+                        method=method,
+                        matcher=matcher,
+                        expected=expected
+                    )
+                    ac_obj.pattern_type = classify_pattern_type(method, matcher, expected)
+                    acs.append(ac_obj)
+                except (ValueError, IndexError):
+                    # Skip malformed rows
+                    continue
+
+    return acs, errors
+
+
 class ACVerifier:
     """Main verifier class for AC static verification."""
 
@@ -107,31 +364,8 @@ class ACVerifier:
         self.feature_file = repo_root / "pm" / "features" / f"feature-{feature_id}.md"
 
     def classify_pattern(self, ac: ACDefinition) -> PatternType:
-        """Classify pattern type based on AC definition."""
-        # Complex Method: has named parameters like Grep(path="...", pattern="...", type=cs)
-        if re.search(r'Grep\s*\(.*=.*\)', ac.method, re.IGNORECASE):
-            return PatternType.COMPLEX_METHOD
-
-        # Regex: matcher is "matches"
-        if ac.matcher.lower() == "matches":
-            return PatternType.REGEX
-
-        if ac.matcher.lower() == "not_matches":
-            return PatternType.REGEX
-
-        # Glob: file type with exists/not_exists matcher (glob path pattern)
-        if ac.matcher.lower() in ("exists", "not_exists"):
-            return PatternType.GLOB
-
-        # Literal: default (contains/not_contains with plain strings)
-        if ac.matcher.lower() in ("contains", "not_contains"):
-            return PatternType.LITERAL
-
-        # Count/Numeric matchers: count_equals, gt, gte, lt, lte
-        if ac.matcher.lower() in ("count_equals", "gt", "gte", "lt", "lte"):
-            return PatternType.COUNT
-
-        return PatternType.UNKNOWN
+        """Classify pattern type based on AC definition. Delegates to module-level classify_pattern_type()."""
+        return classify_pattern_type(ac.method, ac.matcher, ac.expected)
 
     def _convert_to_wsl_path(self, windows_path: str) -> str:
         """Convert Windows path (C:/Era/devkit or C:\\Era\\devkit) to WSL mount path (/mnt/c/Era/devkit)."""
@@ -238,7 +472,6 @@ class ACVerifier:
 
         if has_glob_pattern:
             # Use glob for pattern matching
-            import glob as glob_module
             matches = list(glob_module.glob(str(target_file), recursive=True))
             if not matches:
                 return False, f"No files match glob pattern: {file_path}", []
@@ -302,87 +535,29 @@ class ACVerifier:
                 continue
         return pattern_found, matched_files
 
-    # Shared unescape rules — single source for all unescape variants.
-    # Structural/punctuation rules only. Single-letter escapes handled by _SINGLE_LETTER_UNESCAPE_PATTERN.
-    _UNESCAPE_RULES = [
-        (r'\"', '"'),
-        (r'\\[', r'\['),
-        (r'\\]', r'\]'),
-        (r'\\(', r'\('),
-        (r'\\)', r'\)'),
-        (r'\\.', r'\.'),
-        (r'\\?', r'\?'),
-    ]
-    _SINGLE_LETTER_UNESCAPE_PATTERN = re.compile(r'\\\\([a-zA-Z])')
-    _PIPE_RULE = (r'\|', '|')  # markdown pipe escapes — Expected column only
+    # Class-level references to module-level constants (backward compatibility)
+    _UNESCAPE_RULES = _UNESCAPE_RULES
+    _SINGLE_LETTER_UNESCAPE_PATTERN = _SINGLE_LETTER_UNESCAPE_PATTERN
+    _PIPE_RULE = _PIPE_RULE
 
     @staticmethod
     def _apply_single_letter_unescape(s: str) -> str:
-        return ACVerifier._SINGLE_LETTER_UNESCAPE_PATTERN.sub(r'\\\1', s)
+        return _apply_single_letter_unescape(s)
 
     @staticmethod
     def unescape(s: str) -> str:
-        r"""Unescape backslash escape sequences in a string.
-
-        Handles backslash escape sequences in Expected values:
-        - \" -> " (double quotes)
-        - \\[ -> \[ (markdown bracket escapes for regex patterns)
-        - \\] -> \] (markdown bracket escapes for regex patterns)
-        - \| -> | (markdown pipe escapes)
-        - \\( -> \( (CommonMark punctuation escape: open-paren)
-        - \\) -> \) (CommonMark punctuation escape: close-paren)
-        - \\. -> \. (CommonMark punctuation escape: dot)
-        - \\? -> \? (CommonMark punctuation escape: question mark)
-        - \\w -> \w (word-class per C3 spec; not CommonMark but per F804 evidence)
-
-        Args:
-            s: String with potential backslash escape sequences
-
-        Returns:
-            String with backslash escapes processed
-        """
-        for from_str, to_str in ACVerifier._UNESCAPE_RULES:
-            s = s.replace(from_str, to_str)
-        s = ACVerifier._apply_single_letter_unescape(s)
-        s = s.replace(*ACVerifier._PIPE_RULE)  # markdown pipe escapes
-        return s
+        r"""Unescape backslash escape sequences in a string. Delegates to module-level unescape()."""
+        return unescape(s)
 
     @staticmethod
     def unescape_for_regex_pattern(s: str) -> str:
-        r"""Unescape backslash escape sequences for Method-column regex patterns.
-
-        Applies all _UNESCAPE_RULES EXCEPT _PIPE_RULE, because in regex context
-        \| means literal pipe and must be preserved as-is.
-
-        Args:
-            s: Pattern string from Method column with potential markdown escape sequences
-
-        Returns:
-            String with markdown escapes processed, regex pipe escape preserved
-        """
-        for from_str, to_str in ACVerifier._UNESCAPE_RULES:
-            s = s.replace(from_str, to_str)
-        s = ACVerifier._apply_single_letter_unescape(s)
-        return s
+        r"""Unescape backslash escape sequences for Method-column regex patterns. Delegates to module-level function."""
+        return unescape_for_regex_pattern(s)
 
     @staticmethod
     def unescape_for_literal_search(s: str) -> str:
-        r"""Unescape pattern for literal string search in contains matcher.
-
-        After markdown unescape (\\[ -> \[), further unescape for literal matching:
-        - \[ -> [ (escaped bracket becomes literal bracket)
-        - \] -> ] (escaped bracket becomes literal bracket)
-        - \| -> | (escaped pipe becomes literal pipe)
-
-        This allows patterns like \[DRAFT\] to match literal [DRAFT] in files.
-
-        Args:
-            s: String with backslash-escaped brackets and pipes
-
-        Returns:
-            String with bracket and pipe escapes removed for literal matching
-        """
-        return s.replace(r'\[', '[').replace(r'\]', ']').replace(r'\|', '|')
+        r"""Unescape pattern for literal string search in contains matcher. Delegates to module-level function."""
+        return unescape_for_literal_search(s)
 
     @staticmethod
     def _contains_regex_metacharacters(pattern: str) -> bool:
@@ -899,119 +1074,17 @@ class ACVerifier:
     def parse_feature_markdown(self) -> List[ACDefinition]:
         """Parse feature markdown to extract AC definitions.
 
+        Thin wrapper around module-level parse_ac_table(). Filters results
+        by self.ac_type.
+
         Returns:
             List of ACDefinition objects matching the requested ac_type
         """
         if not self.feature_file.exists():
             raise FileNotFoundError(f"Feature file not found: {self.feature_file}")
 
-        acs = []
-        in_ac_table = False
-
-        with open(self.feature_file, 'r', encoding='utf-8') as f:
-            for line in f:
-                line = line.strip()
-
-                # Detect AC table header
-                if line.startswith("| AC# |"):
-                    in_ac_table = True
-                    continue
-
-                # Skip separator line
-                if in_ac_table and line.startswith("|:---:|"):
-                    continue
-
-                # Parse AC row
-                if in_ac_table and line.startswith("|"):
-                    # End of table check (empty row or section break)
-                    if not line.strip("|").strip():
-                        break
-
-                    # Split on pipes, but respect quoted regions (don't split pipes inside quotes or backticks)
-                    parts = []
-                    current_part = ""
-                    in_quotes = False
-                    in_backticks = False
-                    i = 0
-                    while i < len(line):
-                        char = line[i]
-                        if char == '"' and not in_backticks:
-                            # Count consecutive backslashes before the quote
-                            num_backslashes = 0
-                            j = i - 1
-                            while j >= 0 and line[j] == '\\':
-                                num_backslashes += 1
-                                j -= 1
-                            # Even number of backslashes means quote is NOT escaped
-                            if num_backslashes % 2 == 0:
-                                in_quotes = not in_quotes
-                            current_part += char
-                        elif char == '`' and not in_quotes:
-                            # Backtick toggle (backticks are not escaped in markdown)
-                            in_backticks = not in_backticks
-                            current_part += char
-                        elif char == '|' and not in_quotes and not in_backticks:
-                            # Check if pipe is backslash-escaped
-                            num_backslashes = 0
-                            j = i - 1
-                            while j >= 0 and line[j] == '\\':
-                                num_backslashes += 1
-                                j -= 1
-                            if num_backslashes % 2 == 0:
-                                # Not escaped - split here
-                                parts.append(current_part.strip())
-                                current_part = ""
-                            else:
-                                # Escaped pipe - include as content (without the escaping backslash)
-                                # Remove the trailing backslash from current_part since it was an escape character
-                                current_part = current_part[:-1] + char
-                        else:
-                            current_part += char
-                        i += 1
-                    # Add final part
-                    if current_part or not parts:
-                        parts.append(current_part.strip())
-                    if len(parts) < 8:  # Need at least 8 parts (empty + 6 columns + empty)
-                        continue
-
-                    try:
-                        ac_num_str = parts[1]
-                        # Skip reserved ACs
-                        if not ac_num_str.isdigit():
-                            continue
-
-                        ac_number = int(ac_num_str)
-                        description = parts[2]
-                        ac_type = parts[3]
-                        method = parts[4]
-                        matcher = parts[5]
-                        # Strip outer double quotes and backticks first, then unescape backslash sequences
-                        expected_raw = parts[6]
-                        # Remove single pair of outer double quotes (maintain original order: quotes first)
-                        if expected_raw.startswith('"') and expected_raw.endswith('"') and len(expected_raw) >= 2:
-                            expected_raw = expected_raw[1:-1]
-                        # Remove outer backticks (legacy support)
-                        if expected_raw.startswith('`') and expected_raw.endswith('`'):
-                            expected_raw = expected_raw[1:-1]
-                        expected = self.unescape(expected_raw)
-
-                        # Filter by requested ac_type
-                        if ac_type == self.ac_type:
-                            ac_obj = ACDefinition(
-                                ac_number=ac_number,
-                                description=description,
-                                ac_type=ac_type,
-                                method=method,
-                                matcher=matcher,
-                                expected=expected
-                            )
-                            ac_obj.pattern_type = self.classify_pattern(ac_obj)
-                            acs.append(ac_obj)
-                    except (ValueError, IndexError):
-                        # Skip malformed rows
-                        continue
-
-        return acs
+        all_acs, _errors = parse_ac_table(self.feature_file)
+        return [ac for ac in all_acs if ac.ac_type == self.ac_type]
 
     def _resolve_count_expected(self, ac: 'ACDefinition', pattern: str) -> Optional[int]:
         """Resolve Format C expected_count from AC definition and extracted pattern.
@@ -1382,21 +1455,108 @@ class ACVerifier:
         return 0 if failed == 0 else 1
 
 
+class CatalogScanner:
+    """Batch scanner for all feature files. Implements --scan-all --parse-only mode."""
+
+    def __init__(self, repo_root: Path,
+                 output_path: Optional[Path] = None, verbose: bool = False):
+        self.repo_root = repo_root
+        self.output_path = output_path
+        self.verbose = verbose
+
+    def run(self) -> int:
+        """Scan all feature files and produce JSON catalog. Returns exit code (0 = success)."""
+        feature_files = sorted(glob_module.glob(str(self.repo_root / "pm" / "features" / "feature-*.md")))
+
+        features_scanned = 0
+        pattern_types: Dict[str, int] = {}
+        matcher_distribution: Dict[str, int] = {}
+        per_type: Dict[str, int] = {t: 0 for t in STATIC_AC_TYPES}
+        parse_errors: List[Dict[str, Any]] = []
+
+        for feature_path in feature_files:
+            result = self._scan_feature_file(Path(feature_path))
+            features_scanned += 1
+            feature_id = result.get("feature_id", "unknown")
+            parse_errors.extend(result.get("errors", []))
+            for ac in result.get("ac_list", []):
+                pt_raw = getattr(ac, "pattern_type", None)
+                if pt_raw is None:
+                    parse_errors.append({
+                        "feature": feature_id,
+                        "ac_number": getattr(ac, "ac_number", None),
+                        "error": "parse_error",
+                        "detail": "pattern_type is None (classify_pattern_type failure)"
+                    })
+                    continue
+                pt = pt_raw.name
+                pattern_types[pt] = pattern_types.get(pt, 0) + 1
+                m = getattr(ac, "matcher", "")
+                if m:
+                    matcher_distribution[m] = matcher_distribution.get(m, 0) + 1
+                t = getattr(ac, "ac_type", "")
+                if t in per_type:
+                    per_type[t] += 1
+
+        catalog = {
+            "features_scanned": features_scanned,
+            "pattern_types": pattern_types,
+            "matcher_distribution": matcher_distribution,
+            "per_type": per_type,
+            "parse_errors": parse_errors,
+        }
+
+        json_str = json.dumps(catalog, indent=2)
+        if self.output_path:
+            self.output_path.parent.mkdir(parents=True, exist_ok=True)
+            self.output_path.write_text(json_str, encoding="utf-8")
+            if self.verbose:
+                print(f"Catalog written to: {self.output_path}", file=sys.stderr)
+        else:
+            print(json_str)
+        return 0
+
+    def _scan_feature_file(self, feature_path: Path) -> dict:
+        """Parse a single feature file via parse_ac_table()."""
+        # Extract feature ID from filename: feature-087.md -> "087"
+        stem = feature_path.stem  # "feature-087"
+        feature_id = stem.replace("feature-", "") if stem.startswith("feature-") else stem
+
+        try:
+            ac_list, errors = parse_ac_table(feature_path)
+            # Inject feature ID into error entries
+            for err in errors:
+                err["feature"] = feature_id
+            return {"feature_id": feature_id, "ac_list": ac_list, "errors": errors}
+        except Exception as e:
+            return {
+                "feature_id": feature_id,
+                "ac_list": [],
+                "errors": [{
+                    "feature": feature_id,
+                    "ac_number": None,
+                    "error": "parse_error",
+                    "detail": str(e)
+                }]
+            }
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="AC Static Verifier - Verifies code/build/file type ACs"
     )
-    parser.add_argument(
-        "--feature",
-        required=True,
-        help="Feature ID (e.g., 268)"
-    )
-    parser.add_argument(
-        "--ac-type",
-        required=True,
-        choices=["code", "build", "file"],
-        help="AC type to verify"
-    )
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--scan-all", action="store_true",
+                       help="Scan all feature files and produce catalog")
+    group.add_argument("--feature", help="Feature ID (e.g., 268)")
+
+    # --ac-type is no longer required=True; manual guard enforces for single-feature
+    parser.add_argument("--ac-type", choices=["code", "build", "file"],
+                        help="AC type to verify")
+    parser.add_argument("--parse-only", action="store_true",
+                        help="Parse only; skip verification dispatch (use with --scan-all)")
+    parser.add_argument("--output",
+                        help="Output path for JSON catalog (--scan-all only; default: stdout)")
     parser.add_argument(
         "--repo-root",
         default=".",
@@ -1410,6 +1570,28 @@ def main():
 
     args = parser.parse_args()
 
+    if not args.scan_all and not args.feature:
+        parser.error("Either --scan-all or --feature is required")
+    if not args.scan_all and args.feature and not args.ac_type:
+        parser.error("--ac-type is required when --feature is used")
+    if args.parse_only and not args.scan_all:
+        parser.error("--parse-only requires --scan-all")
+    if args.scan_all and not args.parse_only:
+        parser.error("--scan-all requires --parse-only")
+    if args.output and not args.scan_all:
+        parser.error("--output requires --scan-all")
+
+    if args.scan_all:
+        repo_root = Path(args.repo_root).resolve()
+        output_path = Path(args.output) if args.output else None
+        scanner = CatalogScanner(
+            repo_root=repo_root,
+            output_path=output_path,
+            verbose=getattr(args, "verbose", False),
+        )
+        sys.exit(scanner.run())
+
+    # Existing single-feature path (unchanged)
     repo_root = Path(args.repo_root).resolve()
     verifier = ACVerifier(args.feature, args.ac_type, repo_root, verbose=args.verbose)
 

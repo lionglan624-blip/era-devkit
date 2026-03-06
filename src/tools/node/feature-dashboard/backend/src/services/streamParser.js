@@ -463,6 +463,7 @@ export class StreamParser {
             if (pattern.test(textToCheck)) {
                 if (!execution.waitingForInput) {
                     execution.waitingForInput = true;
+                    execution._hadInputWait = true;
                     execution.waitingInputPattern = description;
                     const textSnippet = text.length > 200 ? text.substring(0, 200) + '...' : text;
                     claudeLog.info(

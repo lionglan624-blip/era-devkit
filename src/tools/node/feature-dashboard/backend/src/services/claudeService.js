@@ -1465,7 +1465,7 @@ export class ClaudeService {
         // Applies to any command with an expected status mapping (fc, fl, run).
         let incompleteRetryExhausted = false;
         const expectedStatus = EXPECTED_STATUS_AFTER_COMMAND[execution.command];
-        if (chainContinues && !isLastChainStep && expectedStatus) {
+        if (chainContinues && !isLastChainStep && expectedStatus && !execution._hadInputWait) {
             const currentStatus = this.fileWatcher?.statusCache.get(execution.featureId);
             if (
                 currentStatus &&
@@ -1519,6 +1519,10 @@ export class ClaudeService {
                         }
                     }, RETRY_DELAY_MS);
 
+                    // Clear stale input-wait state so FE doesn't show input buttons for old execution
+                    execution.waitingForInput = false;
+                    execution.waitingInputPattern = null;
+
                     // Skip waiter registration and email — retry will handle it
                     this._dequeueNext();
                     this.onExecutionComplete?.(execution);
@@ -1542,9 +1546,9 @@ export class ClaudeService {
             this.chainExecutor.registerWaiter(execution);
         }
 
-        if ((!chainContinues || isLastChainStep || incompleteRetryExhausted) && !execution.waitingForInput && !execution.inputRequired) {
+        if ((!chainContinues || isLastChainStep || incompleteRetryExhausted) && !execution.waitingForInput && !execution.inputRequired && !execution._hadInputWait) {
             // Chain complete (last step), chain stopped, or non-chain execution - send email
-            // Skip if waiting for user input — input-wait email already sent
+            // Skip if waiting for user input or had input-wait — input-wait email already sent
             const chainHistory = execution.chain?.history || [];
             const isContextRetryExhausted =
                 execution.chain?.contextRetryCount >= MAX_RETRIES && isContextExhausted;

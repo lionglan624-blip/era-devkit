@@ -36,7 +36,7 @@ export function detectPhase(content) {
  * @returns {number | null}
  */
 export function detectIteration(content) {
-    const pattern = /Iteration\s*(\d+)\s*\/\s*\d+/i;
+    const pattern = /Iteration[:\s]*(\d+)\s*\/\s*\d+/i;
     const match = content.match(pattern);
     if (match) {
         return parseInt(match[1]);

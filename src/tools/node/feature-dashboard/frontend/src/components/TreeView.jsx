@@ -289,7 +289,7 @@ const TreeNode = memo(function TreeNode({ node, depth }) {
                                     currentPhase.command === 'fl' &&
                                     currentPhase.iteration !== null &&
                                     currentPhase.iteration !== undefined
-                                        ? `iter${currentPhase.iteration}`
+                                        ? `i${currentPhase.iteration}${currentPhase.phase != null ? ` P${currentPhase.phase}` : ''}`
                                         : currentPhase &&
                                             currentPhase.phase !== null &&
                                             currentPhase.phase !== undefined

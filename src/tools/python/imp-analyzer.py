@@ -56,6 +56,8 @@ FC_PREVENTION_MAP = {
     "language-policy": ("Phase 6 (quality-fixer)", "言語ポリシー自動チェック"),
     "structural-reorganization": ("Phase 4 (ac-designer)", "セクション配置検証"),
     "content-correction": ("Phase 4/5", "ソースとの数値照合"),
+    "id-collision": ("Phase 6 (quality-fixer)", "Destination ID衝突チェック (C37)"),
+    "semantic-consistency": ("Phase 4 (tech-designer)", "ERB/C#セマンティクス整合性チェック (Step 8e)"),
     "other": ("(該当なし)", "パターン分析要"),
 }
 
@@ -73,6 +75,7 @@ class SessionInfo:
     start_time: Optional[datetime] = None
     end_time: Optional[datetime] = None
     total_lines: int = 0
+    shared_features: list = dataclasses.field(default_factory=list)  # other feature IDs found in session
 
     @property
     def duration_minutes(self) -> float:
@@ -99,6 +102,7 @@ class SessionStats:
     phase_transitions: list = dataclasses.field(default_factory=list)
     hook_errors: list = dataclasses.field(default_factory=list)
     tool_denials: list = dataclasses.field(default_factory=list)
+    termination_verdict: str = ""  # e.g. NORMAL, CONTEXT_LIMIT, INTERRUPTED_TOOL
 
     @property
     def total_tool_calls(self) -> int:
@@ -231,6 +235,31 @@ def _detect_session_type(jsonl_path: Path, feature_id: str) -> Optional[str]:
     return None
 
 
+def _detect_shared_features(jsonl_path: Path, feature_id: str) -> list:
+    """
+    Detect other feature IDs referenced in a session.
+    Returns a list of feature IDs (strings) that are NOT the target feature.
+    Used to flag sessions shared between features (cross-feature contamination).
+    """
+    # Match feature-NNN patterns and FNNN patterns where NNN is 3+ digits
+    feature_pattern = re.compile(r'(?:feature-|F)(\d{3,})')
+    other_ids: set = set()
+
+    try:
+        with open(jsonl_path, encoding="utf-8", errors="replace") as f:
+            for i, line in enumerate(f):
+                if i >= 100:  # scan more lines than type detection
+                    break
+                for m in feature_pattern.finditer(line):
+                    fid = m.group(1)
+                    if fid != feature_id:
+                        other_ids.add(fid)
+    except OSError:
+        pass
+
+    return sorted(other_ids)
+
+
 def find_feature_sessions(
     feature_id: str,
     ccs_dirs: list,
@@ -275,12 +304,14 @@ def find_feature_sessions(
             except OSError:
                 continue
 
+            shared = _detect_shared_features(jsonl_path, feature_id)
             info = SessionInfo(
                 path=jsonl_path,
                 session_type=session_type,
                 start_time=start_time,
                 end_time=end_time,
                 total_lines=total_lines,
+                shared_features=shared,
             )
             results[session_type].append(info)
 
@@ -327,6 +358,13 @@ class SessionAnalyzer:
         self.phase_transitions: list = []
         self.hook_errors: list = []
         self.tool_denials: list = []
+
+        # Termination tracking (for verdict classification)
+        self._pending_tools: dict = {}  # tool_use_id -> tool_name
+        self._last_stop_reason: Optional[str] = None
+        self._last_usage: Optional[dict] = None
+        self._has_api_overload: bool = False
+        self._has_rate_limit: bool = False
 
         # Internal tracking
         self._tool_id_map: dict = {}         # tool_use_id -> tool_name
@@ -389,12 +427,43 @@ class SessionAnalyzer:
             phase_transitions=list(self.phase_transitions),
             hook_errors=list(self.hook_errors),
             tool_denials=list(self.tool_denials),
+            termination_verdict=self._classify_termination(),
         )
+
+    def _classify_termination(self) -> str:
+        """Classify why the session ended."""
+        if self._has_api_overload:
+            return "API_OVERLOADED"
+        if self._has_rate_limit:
+            return "RATE_LIMITED"
+        # Check context limit via last token usage
+        if self._last_usage:
+            inp = self._last_usage.get("input_tokens", 0) + self._last_usage.get("cache_read_input_tokens", 0)
+            if inp > 180000:
+                return "CONTEXT_LIMIT"
+        if self._last_stop_reason == "end_turn" and not self._pending_tools:
+            return "NORMAL"
+        pending_agents = [n for n in self._pending_tools.values() if n in ("Agent", "Task")]
+        if pending_agents:
+            return "INTERRUPTED_SUBAGENT"
+        if self._pending_tools:
+            return "INTERRUPTED_TOOL"
+        return "NORMAL"
 
     def _process_assistant(self, obj: dict) -> None:
         """Process an assistant message block."""
         message = obj.get("message", {})
         content = message.get("content", []) if isinstance(message, dict) else []
+
+        # Track stop_reason and token usage for termination verdict
+        if isinstance(message, dict):
+            stop_reason = message.get("stop_reason", "")
+            if stop_reason:
+                self._last_stop_reason = stop_reason
+            usage = message.get("usage", {})
+            if usage:
+                self._last_usage = usage
+
         if not isinstance(content, list):
             return
 
@@ -411,6 +480,7 @@ class SessionAnalyzer:
             # Track tool_use_id -> tool_name for result correlation
             if tool_id and tool_name:
                 self._tool_id_map[tool_id] = tool_name
+                self._pending_tools[tool_id] = tool_name
 
             self.tool_counts[tool_name] += 1
 
@@ -543,6 +613,9 @@ class SessionAnalyzer:
             tool_use_id = block.get("tool_use_id", "")
             tool_name = self._tool_id_map.get(tool_use_id, "")
 
+            # Resolve pending tool (for termination verdict)
+            self._pending_tools.pop(tool_use_id, None)
+
             # Extract text from tool result content
             raw_content = block.get("content", "")
             if isinstance(raw_content, list):
@@ -561,6 +634,14 @@ class SessionAnalyzer:
                         summary = f"[{tool_name}] {error_text[:150]}" if tool_name else error_text[:150]
                         self.hook_errors.append(summary)
                         break
+
+            # Detect API errors for termination verdict
+            if is_error:
+                err_lower = error_text.lower()
+                if "overloaded" in err_lower:
+                    self._has_api_overload = True
+                if "429" in err_lower or "rate_limit" in err_lower:
+                    self._has_rate_limit = True
 
             if is_error:
                 self.error_count += 1
@@ -651,6 +732,10 @@ def classify_fl_fix(description: str) -> str:
         return "language-policy"
     if re.search(r"moved|reorganiz", desc):
         return "structural-reorganization"
+    if re.search(r"id collision|already occupied|destination.*taken|→.*taken", desc):
+        return "id-collision"
+    if re.search(r"erb spec|inline semantics|mirrors.*erb|semantic.*inversion", desc):
+        return "semantic-consistency"
     if re.search(r"updated|revised|fixed", desc):
         return "content-correction"
     return "other"
@@ -960,6 +1045,44 @@ def generate_markdown_report(
         lines.append(f"| {stype.upper()} | {n} | {dur} | {calls} |")
 
     lines.append("")
+
+    # Per-session detail with termination verdicts
+    has_non_normal = False
+    detail_lines = []
+    for stype in ("fc", "fl", "run"):
+        for stats in all_stats.get(stype, []):
+            verdict = stats.termination_verdict or "?"
+            if verdict != "NORMAL":
+                has_non_normal = True
+            sid = stats.session_info.path.stem[:12]
+            dur = f"{stats.session_info.duration_minutes:.0f}"
+            detail_lines.append(
+                f"| {stype.upper()} | `{sid}` | {dur} | {stats.total_tool_calls} | {verdict} |"
+            )
+
+    if has_non_normal:
+        lines.append("**Per-session detail:**")
+        lines.append("")
+        lines.append("| Type | Session | Duration (min) | Tool Calls | Verdict |")
+        lines.append("|------|---------|:--------------:|:----------:|---------|")
+        lines.extend(detail_lines)
+        lines.append("")
+
+    # --- Shared Session Warning ---
+    shared_sessions = []
+    for stype in ("fc", "fl", "run"):
+        for session_info in session_map.get(stype, []):
+            if session_info.shared_features:
+                shared_sessions.append((stype, session_info))
+
+    if shared_sessions:
+        lines.append("**⚠ Shared Sessions Detected** — metrics may include cross-feature tool calls:")
+        lines.append("")
+        for stype, sinfo in shared_sessions:
+            other_ids = ", ".join(f"F{fid}" for fid in sinfo.shared_features[:5])
+            suffix = "..." if len(sinfo.shared_features) > 5 else ""
+            lines.append(f"- `{stype}:{sinfo.path.stem[:8]}` [shared] with {other_ids}{suffix}")
+        lines.append("")
 
     # --- FC Prevention Analysis ---
     lines.append("## 1. FC Prevention Analysis (FC予防分析)")
@@ -1309,6 +1432,7 @@ def generate_json_output(
             "bash_failures": stats.bash_failures,
             "exploration_sequences": stats.exploration_sequences,
             "agent_dispatches": len(stats.agent_dispatches),
+            "termination_verdict": stats.termination_verdict,
             "phase_transitions": [
                 {
                     "phase": pt.phase,

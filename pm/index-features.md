@@ -75,7 +75,7 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F848 | [DRAFT] | Post-Phase Review Phase 23 | F847 | [feature-848.md](feature-848.md) |
+| F848 | [WIP] | Post-Phase Review Phase 23 | F847 | [feature-848.md](feature-848.md) |
 | F849 | [DRAFT] | Phase 24 Planning | **F848** | [feature-849.md](feature-849.md) |
 
 ### Other

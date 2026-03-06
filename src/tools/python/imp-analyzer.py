@@ -129,6 +129,17 @@ class FLFix:
     category: str      # classified category
 
 
+@dataclasses.dataclass
+class ImpEntry:
+    """A single Improvement Log entry parsed from a feature file."""
+    feature_id: str
+    date: str
+    verdict: str        # "applied", "revised", "rejected", "proposed"
+    description: str
+    target: str         # file path (backtick-wrapped in source)
+    reason: str         # rejection/revision reason (after — separator)
+
+
 # =============================================================================
 # Session Discovery
 # =============================================================================
@@ -1489,6 +1500,343 @@ def generate_json_output(
 
 
 # =============================================================================
+# Cross-Feature Improvement Log Analysis
+# =============================================================================
+
+
+def parse_improvement_logs() -> list:
+    """Scan all feature files and parse Improvement Log sections."""
+    entries = []
+    # Pattern: - [verdict] description → `target` or — reason
+    # Try target (→ `path`) first at end of line, then fall back to reason (— text)
+    entry_target_re = re.compile(
+        r'^- \[(?P<verdict>applied|revised|rejected|proposed)\]\s+'
+        r'(?P<desc>.+?)\s+[→\->]+\s+`(?P<target>[^`]+)`.*$'
+    )
+    entry_reason_re = re.compile(
+        r'^- \[(?P<verdict>applied|revised|rejected|proposed)\]\s+'
+        r'(?P<desc>.+?)\s+[—\-]+\s+(?P<reason>.+)$'
+    )
+    entry_bare_re = re.compile(
+        r'^- \[(?P<verdict>applied|revised|rejected|proposed)\]\s+(?P<desc>.+)$'
+    )
+    header_re = re.compile(r'^### /imp (\d+) \(([^)]+)\)')
+
+    for md_path in sorted(FEATURES_DIR.glob("feature-*.md")):
+        fid_match = re.search(r'feature-(\d+)\.md$', md_path.name)
+        if not fid_match:
+            continue
+        fid = fid_match.group(1)
+
+        in_log = False
+        current_date = ""
+        try:
+            with open(md_path, encoding="utf-8", errors="replace") as f:
+                for line in f:
+                    stripped = line.rstrip()
+                    if stripped == "## Improvement Log":
+                        in_log = True
+                        continue
+                    if in_log and stripped.startswith("## ") and stripped != "## Improvement Log":
+                        break  # next section
+                    if not in_log:
+                        continue
+
+                    hm = header_re.match(stripped)
+                    if hm:
+                        current_date = hm.group(2)
+                        continue
+
+                    em = entry_target_re.match(stripped)
+                    if em:
+                        entries.append(ImpEntry(
+                            feature_id=fid, date=current_date,
+                            verdict=em.group("verdict"),
+                            description=em.group("desc").strip(),
+                            target=em.group("target"), reason="",
+                        ))
+                        continue
+                    em = entry_reason_re.match(stripped)
+                    if em:
+                        entries.append(ImpEntry(
+                            feature_id=fid, date=current_date,
+                            verdict=em.group("verdict"),
+                            description=em.group("desc").strip(),
+                            target="", reason=em.group("reason"),
+                        ))
+                        continue
+                    em = entry_bare_re.match(stripped)
+                    if em:
+                        entries.append(ImpEntry(
+                            feature_id=fid, date=current_date,
+                            verdict=em.group("verdict"),
+                            description=em.group("desc").strip(),
+                            target="", reason="",
+                        ))
+        except OSError:
+            continue
+
+    return entries
+
+
+def generate_cross_report(entries: list, self_mode: bool = False) -> str:
+    """Generate cross-feature Improvement Log analysis report."""
+    lines = []
+
+    if self_mode:
+        lines.append("# /imp Self-Improvement Analysis\n")
+    else:
+        lines.append("# Cross-Feature Improvement Analysis\n")
+
+    if not entries:
+        lines.append("No Improvement Log entries found.\n")
+        return "\n".join(lines)
+
+    # --- Feature summary ---
+    feature_ids = sorted(set(e.feature_id for e in entries))
+    lines.append(f"## 対象フィーチャー ({len(feature_ids)}件)\n")
+    lines.append(", ".join(f"F{fid}" for fid in feature_ids))
+    lines.append("")
+
+    # --- Verdict distribution ---
+    verdict_counts = collections.Counter(e.verdict for e in entries)
+    total = len(entries)
+    lines.append(f"## 1. 全体サマリー ({total}件)\n")
+    lines.append("| Verdict | Count | % |")
+    lines.append("|---------|------:|--:|")
+    for v in ("applied", "revised", "rejected", "proposed"):
+        c = verdict_counts.get(v, 0)
+        pct = round(100 * c / total) if total else 0
+        lines.append(f"| {v} | {c} | {pct}% |")
+    lines.append("")
+
+    # --- Target file frequency (applied + revised only) ---
+    target_counts = collections.Counter()
+    target_features = collections.defaultdict(set)
+    for e in entries:
+        if e.verdict in ("applied", "revised") and e.target and not e.target.startswith("("):
+            # Normalize target: take first path if multiple comma-separated; strip line numbers
+            targets = [re.sub(r':\d+$', '', t.strip().strip("`")) for t in e.target.split(",")]
+            for t in targets:
+                target_counts[t] += 1
+                target_features[t].add(e.feature_id)
+
+    lines.append("## 2. ターゲットファイル頻度 (applied/revised)\n")
+    lines.append("| Target File | Count | Features |")
+    lines.append("|------------|------:|----------|")
+    for target, count in target_counts.most_common(20):
+        feats = ", ".join(f"F{fid}" for fid in sorted(target_features[target]))
+        lines.append(f"| `{target}` | {count} | {feats} |")
+    lines.append("")
+
+    # --- Rejection pattern analysis ---
+    rejected = [e for e in entries if e.verdict == "rejected"]
+    if rejected:
+        lines.append(f"## 3. 却下パターン分析 ({len(rejected)}件)\n")
+
+        # Categorize rejection reasons
+        reason_categories = collections.Counter()
+        for e in rejected:
+            reason = (e.reason or e.target).lower()
+            if any(kw in reason for kw in [
+                "既に", "already", "実装済み", "カバー済み", "既存",
+                "導入済み", "対処済み", "対策済み", "対応済み", "処理済み",
+                "既対策", "already exists", "already handled",
+            ]):
+                reason_categories["Already implemented"] += 1
+            elif any(kw in reason for kw in [
+                "管轄外", "レイヤー違い", "基盤問題", "scope",
+                "ワークフローで予防不可", "ランタイム側",
+            ]):
+                reason_categories["Scope mismatch"] += 1
+            elif any(kw in reason for kw in [
+                "単一事象", "単一feature", "single", "固有",
+                "エビデンス不足", "insufficient",
+            ]):
+                reason_categories["Single-observation"] += 1
+            elif any(kw in reason for kw in [
+                "上流対策", "上流で", "upstream", "で対処済み",
+                "で既にカバー", "で対応済み",
+            ]):
+                reason_categories["Upstream-covered"] += 1
+            elif any(kw in reason for kw in [
+                "hook", "runtime", "ランタイム", "環境",
+            ]):
+                reason_categories["Runtime/environment issue"] += 1
+            elif any(kw in reason for kw in [
+                "judgment", "automatable", "的外れ", "同根",
+                "管轄外でなく", "コンテキスト依",
+            ]):
+                reason_categories["Design-intent mismatch"] += 1
+            elif any(kw in reason for kw in [
+                "品質低下", "効果薄", "情報欠損", "false positive",
+                "過剰", "制約に違反",
+            ]):
+                reason_categories["Counterproductive"] += 1
+            elif any(kw in reason for kw in [
+                "gapなし", "対象外", "チェック対象外",
+                "不発生", "自然解消",
+            ]):
+                reason_categories["No-gap"] += 1
+            else:
+                reason_categories["Other"] += 1
+
+        lines.append("| Rejection Category | Count |")
+        lines.append("|-------------------|------:|")
+        for cat, count in reason_categories.most_common():
+            lines.append(f"| {cat} | {count} |")
+        lines.append("")
+
+        lines.append("### 却下一覧\n")
+        lines.append("| Feature | Description | Reason |")
+        lines.append("|---------|------------|--------|")
+        for e in rejected:
+            desc_short = e.description[:60] + ("..." if len(e.description) > 60 else "")
+            reason_text = e.reason or e.target
+            reason_short = reason_text[:60] + ("..." if len(reason_text) > 60 else "")
+            lines.append(f"| F{e.feature_id} | {desc_short} | {reason_short} |")
+        lines.append("")
+
+    # --- Recurring patterns (same target modified in 3+ features) ---
+    recurring = {t: fids for t, fids in target_features.items() if len(fids) >= 2}
+    if recurring:
+        lines.append("## 4. 反復パターン (同一ターゲット 2+回修正)\n")
+        lines.append("| Target | Times Modified | Features |")
+        lines.append("|--------|---------------:|----------|")
+        for target in sorted(recurring, key=lambda t: -len(recurring[t])):
+            fids = recurring[target]
+            feats = ", ".join(f"F{fid}" for fid in sorted(fids))
+            lines.append(f"| `{target}` | {len(fids)} | {feats} |")
+        lines.append("")
+        lines.append("> 同一ファイルへの反復修正は、根本的な設計改善が必要なシグナル。\n")
+
+    # --- Timeline (chronological) ---
+    dated = [e for e in entries if e.date]
+    if dated:
+        lines.append("## 5. タイムライン\n")
+        by_date = collections.defaultdict(list)
+        for e in dated:
+            by_date[e.date].append(e)
+        for date in sorted(by_date.keys()):
+            day_entries = by_date[date]
+            a = sum(1 for e in day_entries if e.verdict == "applied")
+            rv = sum(1 for e in day_entries if e.verdict == "revised")
+            rj = sum(1 for e in day_entries if e.verdict == "rejected")
+            feats = sorted(set(e.feature_id for e in day_entries))
+            lines.append(f"- **{date}**: {len(day_entries)}件 (applied={a}, revised={rv}, rejected={rj}) — {', '.join(f'F{f}' for f in feats)}")
+        lines.append("")
+
+    # --- Recurrence signal detection (applied targets vs later FL fixes) ---
+    if True:  # enabled for both cross-review and self_mode
+        # Build map: target file -> list of (feature_id, category from description)
+        applied_by_target = collections.defaultdict(list)
+        for e in entries:
+            if e.verdict in ("applied", "revised") and e.target:
+                target = e.target.strip("`").strip()
+                applied_by_target[target].append((e.feature_id, e.description))
+
+        # For each target modified in multiple features, check if later features
+        # also had FL fixes whose category matches the applied improvement's target agent
+        if applied_by_target:
+            recurrence_signals = []
+            # Map target file basename to FL fix categories that agent handles
+            agent_fl_categories = {
+                "quality-fixer.md": {"ac-gap", "stale-reference", "format-violation"},
+                "ac-designer.md": {"ac-gap", "ac-design"},
+                "wbs-generator.md": {"design-task-mismatch", "task-gap"},
+                "ac-validator.md": {"ac-gap", "format-violation"},
+                "tech-designer.md": {"design-task-mismatch"},
+            }
+            for target, applied_list in applied_by_target.items():
+                target_basename = Path(target).name
+                relevant_cats = agent_fl_categories.get(target_basename, set())
+                if not relevant_cats:
+                    continue
+                earliest_fid = min(fid for fid, _ in applied_list)
+                for fid in feature_ids:
+                    if fid <= earliest_fid:
+                        continue
+                    fl_fixes = parse_fl_fixes(fid)
+                    for fix in fl_fixes:
+                        if fix.category in relevant_cats:
+                            recurrence_signals.append((target, earliest_fid, fid, fix))
+
+            if recurrence_signals:
+                # Deduplicate: group by (fix_fid, fix description) to avoid
+                # showing the same FL fix once per matching target agent
+                fix_to_targets = collections.defaultdict(set)
+                for target, applied_fid, fix_fid, fix in recurrence_signals:
+                    key = (fix_fid, fix.category, fix.description[:50])
+                    fix_to_targets[key].add(Path(target).stem)
+
+                if self_mode:
+                    lines.append("## 6a. 改善効果検証 (applied改善 vs 後続FL fix再発)\n")
+                else:
+                    lines.append("## 6. 再発シグナル (applied対象 vs 後続FL fix)\n")
+                lines.append("| FL Fix In | Category | Related Agents | FL Fix Description |")
+                lines.append("|:---------:|----------|---------------|-------------------|")
+                for (fix_fid, cat, desc_short), agents in sorted(fix_to_targets.items()):
+                    agent_list = ", ".join(sorted(agents))
+                    desc = desc_short + ("..." if len(desc_short) >= 50 else "")
+                    lines.append(f"| F{fix_fid} | {cat} | {agent_list} | {desc} |")
+                lines.append("")
+                if self_mode:
+                    # Compute effectiveness: how many applied targets had NO recurrence
+                    recurred_targets = set(t for t, _, _, _ in recurrence_signals)
+                    all_applied_targets = set(t for t, fids in target_features.items() if len(fids) >= 1)
+                    effective = all_applied_targets - recurred_targets
+                    eff_rate = round(100 * len(effective) / len(all_applied_targets)) if all_applied_targets else 0
+                    lines.append(f"> 改善効果率: {eff_rate}% ({len(effective)}/{len(all_applied_targets)}ターゲットで再発なし)。再発{len(fix_to_targets)}件は改善不足の可能性。\n")
+                else:
+                    lines.append(f"> {len(fix_to_targets)}件のFL fixがapplied改善後に再発。改善不足か別の根本原因の可能性。\n")
+
+    # --- Self-improvement specific sections ---
+    if self_mode:
+        lines.append("## 6b. /imp コマンド自己分析\n")
+
+        # Analyze entries that target imp-related files
+        imp_related = [e for e in entries if "imp" in (e.target or "").lower() or "imp" in e.description.lower()]
+        if imp_related:
+            lines.append("### imp関連エントリ\n")
+            for e in imp_related:
+                lines.append(f"- [{e.verdict}] F{e.feature_id}: {e.description}")
+            lines.append("")
+
+        # Effectiveness metrics
+        lines.append("### 改善効果メトリクス\n")
+        lines.append(f"- 総提案数: {total}")
+        applied_rate = round(100 * verdict_counts.get("applied", 0) / total) if total else 0
+        reject_rate = round(100 * verdict_counts.get("rejected", 0) / total) if total else 0
+        lines.append(f"- 適用率: {applied_rate}%")
+        lines.append(f"- 却下率: {reject_rate}%")
+        lines.append(f"- 反復修正ターゲット数: {len(recurring)}")
+        lines.append("")
+
+        # Date-wise trend analysis (Proposal D)
+        if dated:
+            by_date_sorted = sorted(by_date.keys())
+            lines.append("### 日付別 applied/rejected 率推移\n")
+            lines.append("| Date | Total | Applied | Rejected | Applied% | Rejected% |")
+            lines.append("|------|------:|--------:|---------:|---------:|----------:|")
+            for date in by_date_sorted:
+                day_entries = by_date[date]
+                d_total = len(day_entries)
+                d_applied = sum(1 for e in day_entries if e.verdict == "applied")
+                d_rejected = sum(1 for e in day_entries if e.verdict == "rejected")
+                d_app_pct = round(100 * d_applied / d_total) if d_total else 0
+                d_rej_pct = round(100 * d_rejected / d_total) if d_total else 0
+                lines.append(f"| {date} | {d_total} | {d_applied} | {d_rejected} | {d_app_pct}% | {d_rej_pct}% |")
+            lines.append("")
+
+        if reject_rate > 30:
+            lines.append("> **WARNING**: 却下率が30%超。提案精度の改善が必要。\n")
+        if len(recurring) > 3:
+            lines.append("> **WARNING**: 反復修正が多い。根本原因の特定が不十分な可能性。\n")
+
+    return "\n".join(lines)
+
+
+# =============================================================================
 # CLI
 # =============================================================================
 
@@ -1502,12 +1850,15 @@ Examples:
   python src/tools/python/imp-analyzer.py 813
   python src/tools/python/imp-analyzer.py 813 --verbose
   python src/tools/python/imp-analyzer.py 813 --json
-  python src/tools/python/imp-analyzer.py 813 --max-sessions 10
+  python src/tools/python/imp-analyzer.py --cross
+  python src/tools/python/imp-analyzer.py --cross --self
         """,
     )
     parser.add_argument(
         "feature_id",
-        help="Feature ID (numeric, e.g., 813)",
+        nargs="?",
+        default=None,
+        help="Feature ID (numeric, e.g., 813). Omit for --cross mode.",
     )
     parser.add_argument(
         "--json",
@@ -1531,12 +1882,42 @@ Examples:
         metavar="PATH",
         help="Override CCS directory path",
     )
+    parser.add_argument(
+        "--cross",
+        action="store_true",
+        help="Cross-feature Improvement Log analysis (no feature_id required)",
+    )
+    parser.add_argument(
+        "--self",
+        action="store_true",
+        dest="self_mode",
+        help="Self-improvement analysis for the /imp command itself (use with --cross)",
+    )
     return parser
 
 
 def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
+
+    # Cross-feature mode (--cross, --self, no args, or "imp" as feature_id)
+    is_imp_arg = args.feature_id is not None and args.feature_id.lower() == "imp"
+    if args.cross or args.self_mode or args.feature_id is None or is_imp_arg:
+        print("Scanning Improvement Logs across all features...", file=sys.stderr)
+        entries = parse_improvement_logs()
+        print(f"Found {len(entries)} entries across {len(set(e.feature_id for e in entries))} features.", file=sys.stderr)
+
+        self_mode = args.self_mode or is_imp_arg
+        if args.json:
+            output = json.dumps(
+                [dataclasses.asdict(e) for e in entries],
+                ensure_ascii=False,
+                indent=2,
+            )
+        else:
+            output = generate_cross_report(entries, self_mode=self_mode)
+        print(output)
+        return 0
 
     feature_id = args.feature_id.strip().lstrip("fF")  # Accept "813" or "F813"
     if not feature_id.isdigit():

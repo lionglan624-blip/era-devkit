@@ -15,7 +15,6 @@ Progressive Disclosure version of Feature implementation workflow.
 | 2 | Investigation | Read(.claude/skills/run-workflow/PHASE-2.md) |
 | 3 | Test Creation (TDD RED) | Read(.claude/skills/run-workflow/PHASE-3.md) |
 | 4 | Implementation (TDD GREEN) | Read(.claude/skills/run-workflow/PHASE-4.md) |
-| 5 | Refactoring (TDD REFACTOR) | Read(.claude/skills/run-workflow/PHASE-5.md) |
 | 6 | Test Generation (kojo) | Read(.claude/skills/run-workflow/PHASE-6.md) |
 | 7 | Verification | Read(.claude/skills/run-workflow/PHASE-7.md) |
 | 8 | Post-Review | Read(.claude/skills/run-workflow/PHASE-8.md) |
@@ -73,7 +72,7 @@ Phase 3 TDD RED (expected test failure) is NOT a DEVIATION. The deviation-log.tx
 - ❌ "Not a DEVIATION because it was expected"
 
 **Correct response**:
-- ✅ exit ≠ 0 occurs → Record immediately → Root cause analysis in Phase 9.8
+- ✅ exit ≠ 0 occurs → Record immediately → Root cause analysis in Phase 9.7
 
 ### Track What You Skip (F696 Lesson)
 
@@ -92,7 +91,7 @@ Phase 3 TDD RED (expected test failure) is NOT a DEVIATION. The deviation-log.tx
 - ❌ Mandatory Handoffs テーブルに Destination 空欄
 
 **Correct response**:
-- ✅ PRE-EXISTING 発見 → Record DEVIATION → Phase 9.8 で A/B/C 決定 → Destination 作成/指定
+- ✅ PRE-EXISTING 発見 → Record DEVIATION → Phase 9.7 で A/B/C 決定 → Destination 作成/指定
 
 ### Subagent Dispatch
 

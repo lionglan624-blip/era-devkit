@@ -73,6 +73,7 @@ Design Acceptance Criteria table and details from Philosophy/Goal sections. This
 | **Stub replacement** | (1) not_matches Exception, (2) matches injection, (3) matches actual call in consumer |
 | **Interface extension** | (1) new method ACs, (2) count_equals existing methods preserved |
 | **New file/type** | (1) file exists, (2) SSOT update if ssot-update-rules.md requires |
+| **DRAFT feature creation** | (1) feature-{ID}.md file exists, (2) index-features.md registration verified (F837 lesson: DRAFT Creation Checklist requires BOTH file existence AND index registration ACs) |
 | **Helper extraction/dedup** | (1) not_matches old private helper, (2) matches new shared call |
 | **Config/flag change** | (1) matches new value, (2) not_matches old value |
 | **Delegate → DI migration** | (1) not_matches old delegate params, (2) matches new injected field, (3) matches usage in method body |
@@ -182,6 +183,9 @@ After:  `| N | X injects all 5 interfaces | code | Grep(X.cs, pattern="IA\|IB\|I
     11.1. For each row in Philosophy Derivation table, verify AC Coverage column is non-empty. If empty, create the missing AC.
     11.2. For each row in AC Design Constraints table where AC Implication is non-empty, verify at least one AC in AC Definition Table covers that implication. If not, create the missing AC. (F823 lesson: C13 constraint had documented AC Implication but no covering AC was generated, causing ac-gap fix in FL iter2.)
     11.3. For each Philosophy Derivation row, verify the Absolute Claim column contains a verbatim quote from the `### Philosophy` section text (not from Goal, Background, or other sections). Remove rows where the claim is not traceable to Philosophy text. (F824 lesson: 4 INV-003 fixes for Philosophy Derivation rows sourced from Goal. F774, F781 had same pattern.)
+    11.4. For each row in Goal Coverage Verification table, verify the Description column text can be traced to an explicit item in the `### Goal (What to Achieve)` section. If a Goal Coverage row describes something derived from Philosophy but not stated in Goal, either (a) expand Goal text to include the item (preferred — keeps Goal as the complete scope statement) or (b) remove the AC and its Goal Coverage row if it duplicates another AC's coverage. Log any Goal expansions as upstream modifications. (F831 lesson: Goal items 5-6 were Philosophy-derived concepts not in Goal text, requiring Goal expansion during FL iter3.)
+    11.4.1. Reverse scope check: If Goal text contains scope-broadening language ("both X and Y", "all repos", "across N"), verify ACs cover the full claimed scope. If ACs only cover a subset, narrow Goal text to match AC coverage and note the uncovered portion in Mandatory Handoffs. (F837 lesson: Goal claimed "both devkit and core" but ACs only covered devkit — required Goal revision during FL iter2.)
+    11.5. Reverse traceability check: For each AC in AC Definition Table, verify it is referenced by at least one Philosophy Derivation row's AC Coverage column. If an AC has no Philosophy Derivation coverage, check if the AC relates to a Philosophy claim and add the mapping row. (F834 lesson: AC#7, AC#9, AC#10 related to "regex unescaping" concern in Philosophy but had no Philosophy Derivation row, requiring FL iter1 fix.)
 12. Edit feature-{ID}.md with complete AC section
 
 ## Output Format

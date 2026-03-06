@@ -68,7 +68,7 @@ TaskUpdate(subject: "Phase 7: Final Reference Check", status: "completed")
 | Condition | Next Phase |
 |-----------|:----------:|
 | applied_fixes > 0 | 2 |
-| applied_fixes == 0 | 8 |
+| applied_fixes == 0 | POST-LOOP |
 
 **Max Iteration Exception (Forward-Only Mode)**:
 
@@ -76,8 +76,8 @@ When iteration == MAX_ITERATIONS (10):
 
 | Condition | Next Phase |
 |-----------|:----------:|
-| applied_fixes > 0 | **8** (NOT 2), forward_fixes_total += applied_fixes |
-| applied_fixes == 0 | 8 |
+| applied_fixes > 0 | **POST-LOOP** (NOT 2), forward_fixes_total += applied_fixes |
+| applied_fixes == 0 | POST-LOOP |
 
 **Execute**:
 ```
@@ -89,7 +89,7 @@ When iteration == MAX_ITERATIONS (10):
 - Routing Table → Next: Phase {X}
 
 TaskUpdate(subject: "Iteration {I}/10: Phase {X}", status: "pending")
-Read(.claude/skills/fl-workflow/PHASE-{X}.md)
+Read(.claude/skills/fl-workflow/{PHASE-X or POST-LOOP}.md)
 ```
 
 **Execute routing mechanically. Do not judge.**

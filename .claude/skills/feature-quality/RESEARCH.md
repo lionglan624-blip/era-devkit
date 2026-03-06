@@ -398,6 +398,38 @@ Colon-terminated `obligation #N:` format prevents matching AC table entries and 
 
 ---
 
+### Issue 18: Investigation-Type Research Missing Follow-up Tracking
+
+**Symptom**: Research feature produces actionable recommendations (ADOPT/REJECT/CONDITIONAL verdict) but has no Task or AC to ensure recommendations are tracked via Mandatory Handoffs.
+
+**Example (Bad)**:
+```markdown
+## Tasks
+| 1 | 1 | Write Rule Ownership Attribution section | | [ ] |
+| 2 | 2 | Write RCS-Prefix assessment section | | [ ] |
+| 3 | 3 | Write EnforceCodeStyleInBuild gap analysis | | [ ] |
+| 4 | 4 | Write Verdict line | | [ ] |
+
+## Mandatory Handoffs
+(empty — no tracking for follow-up implementation)
+```
+
+**Example (Good)**:
+```markdown
+## Tasks
+| 4 | 4 | Write Verdict line | | [ ] |
+| 5 | 6 | Based on verdict, populate Mandatory Handoffs with follow-up features | | [ ] |
+
+## AC Definition Table
+| 6 | Follow-up tracking via Mandatory Handoffs | file | Grep | gte | 1 | [ ] |
+```
+
+**Fix**: Add a Task + AC for populating Mandatory Handoffs based on investigation verdict. Use a Grep pattern that specifically targets the Mandatory Handoffs table structure (avoid false positives from other tables).
+
+**F831 lesson**: AC#6 initially used a broad pattern `^\| .+ \| .+ \| (Feature|Phase)` that matched 7 pre-existing table rows. Fixed to `^\| .+ \| .+ \| Feature \|` targeting the 7-column Mandatory Handoffs structure only.
+
+---
+
 ## Checklist
 
 - [ ] Summary explicitly states "Feature to create Features"
@@ -419,3 +451,4 @@ Colon-terminated `obligation #N:` format prevents matching AC table entries and 
 - [ ] Performance/measurement research includes statistical rigor (run count, warm-up, validity metrics)
 - [ ] Phase Planning features: AC includes Next Feature number increment verification (Issue 15)
 - [ ] Phase Planning features: Transition feature ACs verify both file existence (Glob) and index registration (Grep) (Issue 16)
+- [ ] Investigation-type research with verdicts: Follow-up tracking Task + AC exists for Mandatory Handoffs (Issue 18)

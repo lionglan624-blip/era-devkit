@@ -99,6 +99,9 @@ Verify and auto-fix template compliance. Reference: `.claude/skills/feature-qual
 | V1j | Key Decisions column mismatch | `### Key Decisions` table exists with columns other than `Decision, Options Considered, Selected, Rationale` | Restructure columns to match `feature-template.md` |
 | V1k | Non-template subsection present | `### Success Criteria` exists (not in feature-template.md Section Ownership) | Delete section (redundant with AC table) |
 | V1l | Implementation Contract format warning | `## Implementation Contract` exists but lacks `| Phase |` or `| Agent |` column headers | Log warning (format may vary; check feature-template.md) |
+| V1m | Deviation Context missing required subsections (F829 lesson) | `## Deviation Context` exists but lacks `### Origin` or `### Observable Symptom` subsections | Insert missing subsections. Log warning (not auto-fix) for missing `### Execution Evidence`, `### Files Involved`, `### Attempted Solutions`, `### Parent Session Observations` — these may be legitimately omitted for non-error deviations |
+| V1n | Improvement Log section missing (F832 lesson) | No `## Improvement Log` header between `## Review Notes` and `## Links` | Insert section with template comments from feature-template.md |
+| V1o | Baseline File line missing after Baseline Measurement table (F834 lesson) | `## Baseline Measurement` section exists but no `**Baseline File**:` line follows the table | Insert `**Baseline File**: \`_out/tmp/baseline-{ID}.txt\`` after the Baseline Measurement table |
 
 ### Step 4: Check Type-Specific Patterns
 

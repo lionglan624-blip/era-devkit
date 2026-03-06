@@ -53,7 +53,6 @@ When `/fl {ID}` is invoked:
 | 5 | Feasibility | Read(.claude/skills/fl-workflow/PHASE-5.md) |
 | 6 | Planning Validation | Read(.claude/skills/fl-workflow/PHASE-6.md) |
 | 7 | Final Reference Check | Read(.claude/skills/fl-workflow/PHASE-7.md) |
-| 8 | Handoff Validation | Read(.claude/skills/fl-workflow/PHASE-8.md) |
 | Post | Post-Loop (Status → Index Sync → Report) | Read(.claude/skills/fl-workflow/POST-LOOP.md) |
 
 ## Pacing
@@ -105,9 +104,7 @@ Modifying these files to bypass validation gates is **self-hacking** — the orc
 | 6 | applied_fixes > 0 | 2 * |
 | 6 | applied_fixes == 0 | 7 |
 | 7 | applied_fixes > 0 | 2 * |
-| 7 | applied_fixes == 0 | 8 |
-| 8 | applied_fixes > 0 | 2 * |
-| 8 | applied_fixes == 0 | POST-LOOP |
+| 7 | applied_fixes == 0 | POST-LOOP |
 
 **\* Loop-back to Phase 2** (Review-Validate-Apply), not Phase 1 (Reference Check). Max Iteration Exception: When iteration == 10, "→ 2" routes become "→ Next Phase" (Forward-Only Mode). See Loop Control section.
 
@@ -377,49 +374,6 @@ Pending issues cannot be auto-fixed and are persisted via `persist_pending()`.
 
 **`iteration`**: Cross-phase loop counter. Incremented at Phase 2 entry (the loop-back target). MAX_ITERATIONS = 10.
 
-### Context Pressure Detection
-
-**Purpose**: Prevent context exhaustion when many `[pending]` items accumulate in POST-LOOP.
-
-**Mechanism**: Statusline script writes context usage % to `_out/tmp/` after each message. Two file types:
-- **Feature-ID file**: `_out/tmp/claude-ctx-f{feature_id}.txt` — written when `/fl` or `/run` detected from transcript
-- **Session-ID file**: `_out/tmp/claude-ctx-{session_id}.txt` — always written (reliable fallback)
-
-Both files contain a single number (e.g., `78`).
-
-**Detection**:
-```
-CONTEXT_PRESSURE_THRESHOLD = 80
-
-check_context_pressure(feature_id):
-    # Primary: feature-ID file (written by statusline + dashboard)
-    pct_file = "_out/tmp/claude-ctx-f{feature_id}.txt"
-    IF file exists:
-        context_pct = int(Read(pct_file).strip())
-        RETURN context_pct
-
-    # Fallback: session-ID file (always written by statusline)
-    session_id = Bash("basename $(ls -t _out/tmp/claude-ctx-*.txt 2>/dev/null | head -1) .txt 2>/dev/null | sed 's/claude-ctx-//'")
-    session_file = "_out/tmp/claude-ctx-{session_id}.txt"
-    IF session_file exists:
-        context_pct = int(Read(session_file).strip())
-        RETURN context_pct
-
-    RETURN -1  # Unknown (file not available)
-```
-
-**Behavior**: When `context_pct >= CONTEXT_PRESSURE_THRESHOLD` at POST-LOOP entry:
-- `[pending]` items remain in feature.md (already persisted during phases)
-- AskUserQuestion is skipped entirely
-- Steps 5 (Skill Update) and 6 (Philosophy Gate) are skipped
-- Status is NOT promoted (remains current status)
-- Report uses "Context Pressure" template
-- Next `/fl` invocation processes pending items with fresh context
-
-**Fallback**: If neither file exists (`context_pct == -1`), proceed normally (no batch mode). This gracefully handles sessions where statusline is not configured.
-
-See POST-LOOP Step 2 "Context Pressure Gate" for execution details.
-
 ### persist_pending Usage Guidance
 
 **persist_pending Definition**: See section "persist_pending Definition" below. Writes to **feature.md Review Notes section** with `[pending]` tag. Do NOT create separate files like `pending_user.txt`.
@@ -643,7 +597,7 @@ ELSE:
 ### Early Termination Prohibition
 
 FL loop MUST NOT terminate early except for these conditions:
-1. Phase 2-8 ALL have zero issues (Review-Validate-Apply + Maintainability + AC Validation + Feasibility + Planning Validation + Final Reference Check + Handoff Validation)
+1. Phase 2-7 ALL have zero issues (Review-Validate-Apply + Maintainability + AC Validation + Feasibility + Planning Validation + Final Reference Check)
 2. MAX_ITERATIONS reached
 3. User explicitly instructs "stop FL" or "cancel FL"
 

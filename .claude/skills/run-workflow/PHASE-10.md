@@ -25,7 +25,7 @@ grep -A 100 "Mandatory Handoffs" pm/features/feature-{ID}.md | grep -P "^\|[^|]+
 | Result | Action |
 |--------|--------|
 | All destinations filled + files exist | Proceed to 10.0.2 |
-| Any empty destination or missing file | **STOP** → Return to Phase 9.8 |
+| Any empty destination or missing file | **STOP** → Return to Phase 9.7 |
 
 ### 10.0.2: Transfer Verification (F811 Lesson, F805 Lesson)
 
@@ -43,9 +43,9 @@ FOR each Mandatory Handoff row:
 
 ---
 
-## Step 10.1: Verify DRAFT Features (from Phase 9.4/9.8)
+## Step 10.1: Verify DRAFT Features (from Phase 9.4/9.7)
 
-DRAFTs should already have been created in Phase 9.4 (Handoff Destination) or Phase 9.8 (Remaining Issues).
+DRAFTs should already have been created in Phase 9.4 (Handoff Destination) or Phase 9.7 (Remaining Issues).
 Phase 10.0 Handoff Completeness Gate verified their existence.
 
 **This step only handles missed items** (if Phase 10.0 gate passed but items remain):

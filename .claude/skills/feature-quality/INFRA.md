@@ -391,6 +391,7 @@ When actual code shows `failed = total - passed - manual` correctly **excludes**
 - [ ] Phase/Section numbering clearly distinguished (Issue 9)
 - [ ] Implementation Contract step numbering explicit (Issue 16)
 - [ ] **Post-Phase Review only**: Deferred tasks tracked in next Phase (Issue 8)
+- [ ] **Post-Phase Review only**: Mandatory Handoffs Destination column contains concrete Feature ID or existing Phase — no vague references like "Phase N+", "future feature", "TBD" (Deferred Task Protocol compliance, F826 Lesson)
 - [ ] Milestone thresholds match Implementation Contract calculations (Issue 17)
 - [ ] AC count Note updated after adding new ACs (Issue 18)
 - [ ] AC Type/Method consistency for slash commands (Issue 19)

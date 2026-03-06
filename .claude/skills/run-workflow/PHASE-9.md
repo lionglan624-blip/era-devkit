@@ -150,6 +150,11 @@ FOR each row:
 **Principle**: A (new Feature DRAFT) is the DEFAULT. B is the EXCEPTION requiring ALL gates to pass. See `deferred-task-protocol.md` Option B Guards for gate details.
 
 ```
+0. Is candidate a Post-Phase Review feature?
+   (Detection: title contains "Post-Phase Review" AND Type is infra)
+   ├─ Yes → A by default. Ask user for permission if clearly appropriate.
+   └─ No  → go to 1
+
 1. DEFAULT is A (create new Feature DRAFT).
    B is the EXCEPTION that requires passing ALL gates below.
 
@@ -261,21 +266,6 @@ Conditional trigger (将来条件付き) → A (create new Feature DRAFT with tr
 
 **No user confirmation needed. Execute immediately after decision.**
 
-**Handoff Destination Status Gate (MANDATORY)**:
-<!-- Redundant with Gate 3a in Decision Logic. Retained as defense-in-depth.
-     Remove after 10+ features confirm Gate 3a is consistently applied. -->
-```
-FOR each destination Feature (Action A or B):
-  status = Read feature-{dest_id}.md Status
-  IF status not in {[DRAFT], [PROPOSED]}:
-    REJECT: "F{dest_id} is {status}. Handoff destinations must be [DRAFT] or [PROPOSED]."
-    → Create new [DRAFT] feature instead (Action A)
-  IF status == [PROPOSED]:
-    Append to destination Review Notes:
-    "- [pending] Handoff from F{source}: {summary} — /fc re-run required"
-```
-Rationale: Features in [REVIEWED]/[WIP]/[DONE]/[BLOCKED] cannot reliably incorporate new requirements. [PROPOSED] allowed because /fc re-run can incorporate. F806→F807 lesson: F807 was [WIP] when handoffs were created, resulting in handoffs being acknowledged but not executed.
-
 Verify all destinations are valid before proceeding to 9.4.1.
 
 ### 9.4.1: Transfer Execution (F805 Lesson)
@@ -349,14 +339,14 @@ max_retries = {"build": 5, "ac-test": 3, "doc-ssot": 2}.get(current_type, 3)
 
 IF type_counts.get(current_type, 0) >= max_retries:
     STOP → Report to user: "{current_type} problem resolution attempts ({max_retries}) exhausted without convergence. Manual intervention required."
-    Record remaining issues as DEVIATIONs → proceed to Step 9.8
+    Record remaining issues as DEVIATIONs → proceed to Step 9.7
 ```
 
 ### Issue Deduplication
 resolved_issues = parse [problem-fix] entries from feature.md Review Notes
 IF current issue type+description already in resolved_issues:
     STOP → Report: "Same issue class recurring after fix attempt. Root cause not resolved."
-    Record as DEVIATION → proceed to Step 9.8
+    Record as DEVIATION → proceed to Step 9.7
 
 **Root Cause Resolution (MANDATORY)**:
 - Identify WHY the problem occurred, not just WHAT went wrong
@@ -467,33 +457,15 @@ When user chooses option A (wait for blocker):
 
 **Note**: Status changes are performed by finalizer. PHASE-9 does not change status.
 
-**Next** → Step 9.7
-
----
-
-## Step 9.7: AC Coverage Check
-
-Verify threshold-matcher AC Details match implementation:
-
-| Status | Action |
-|--------|--------|
-| All threshold AC Details (Derivation) requirements satisfied | → Continue |
-| Intentionally unimplemented requirements | → Record in Handoff Destinations section |
-
-**Unimplemented Record Format**:
-```markdown
-| Unimplemented | AC#{N} {requirement} - {reason} | → F{xxx} or Phase N |
-```
-
-**CRITICAL**: Completing without recording unimplemented items is prohibited.
-
 **Next**:
-- If DEVIATION > 0 OR Remaining Issues exist → Step 9.8
+- If DEVIATION > 0 OR Remaining Issues exist → Step 9.7
 - Else → "Finalize and commit? (y/n)"
 
 ---
 
-## Step 9.8: Remaining Issues Review (if issues OR DEVIATION > 0)
+---
+
+## Step 9.7: Remaining Issues Review (if issues OR DEVIATION > 0)
 
 **Trigger**: Remaining issues exist OR DEVIATION > 0
 
@@ -505,10 +477,15 @@ Verify threshold-matcher AC Details match implementation:
    ├─ Yes → D (このFeature内で修正済み、Destination = "-")
    └─ No  → go to 1
 
-1. DEFAULT is A (create new Feature DRAFT).
+1. Is candidate a Post-Phase Review feature?
+   (Detection: title contains "Post-Phase Review" AND Type is infra)
+   ├─ Yes → A by default. Ask user for permission if clearly appropriate.
+   └─ No  → go to 2
+
+2. DEFAULT is A (create new Feature DRAFT).
    B is the EXCEPTION that requires passing ALL Semantic Routing Gates.
 
-2. Is there a candidate destination Feature?
+3. Is there a candidate destination Feature?
    ├─ No  → A
    └─ Yes → run Gates 3a-3d (Status, Type/Scope, Execution, Sole Candidate)
             ALL pass → B
@@ -519,7 +496,7 @@ Conditional trigger (将来条件付き) → A (new DRAFT with trigger in Backgr
 
 **Note**: Action C (write to architecture.md Phase tasks) is reserved for Phases with NO features created yet (Option C Guards apply).
 
-### 9.8.1: DEVIATION Root Cause Analysis
+### 9.7.1: DEVIATION Root Cause Analysis
 
 **For each DEVIATION in Execution Log**:
 
@@ -576,7 +553,7 @@ Conditional trigger (将来条件付き) → A (new DRAFT with trigger in Backgr
 | CSV名前解決の不整合 | Phase 20設計文書に記載漏れ | C | Phase 20 | 記載済み |
 ```
 
-### 9.8.2: Other Remaining Issues
+### 9.7.2: Other Remaining Issues
 
 **Remaining Issue Sources**:
 1. feature-{ID}.md Out-of-Scope Note
@@ -602,11 +579,11 @@ grep -i "TBD" pm/features/feature-{ID}.md
 ```
 → If match exists, **STOP**: Resolve before proceeding.
 
-### 9.8.3: Handoff Materialization Gate (MANDATORY)
+### 9.7.3: Handoff Materialization Gate (MANDATORY)
 
 **CRITICAL: Deciding A/B/C is not enough. The destination must exist before Phase 10.**
 
-For each Action decided in 9.8.1 / 9.8.2, **AND** each Mandatory Handoff row from feature-{ID}.md (9.4.1 漏れ検証):
+For each Action decided in 9.7.1 / 9.7.2, **AND** each Mandatory Handoff row from feature-{ID}.md (9.4.1 漏れ検証):
 
 | Action | Exit Criteria | Verification |
 |:------:|---------------|--------------|

@@ -133,16 +133,21 @@ Modifying these files to bypass validation gates is **self-hacking** — the orc
 
    **ELSE (erb/engine/infra/research)**:
    a. Orchestrator: collect baseline context via Bash (git log, relevant file listings)
+      **AND** pre-compute dependency status to prevent stale status propagation (F829 lesson: synthesizer wrote F826 as [WIP] when actually [DONE]):
+      ```
+      deps_result = Bash("python src/tools/python/feature-status.py deps {ID}")
+      ```
    b. Construct investigation prompt from **Investigation Prompt Template** (see below), embedding:
       - Feature file context section (Deviation Context or Review Context — whichever exists) and existing Background/Philosophy
       - Pre-collected baseline data
+      - Pre-computed dependency status (deps_result) under `## Dependency Status (pre-computed)`
    c. Launch 3 deep-explorer Tasks in parallel with identical prompt:
       ```
       Task(subagent_type: "deep-explorer", prompt: investigation_prompt)  // ×3 in single message
       ```
       **CRITICAL: Do NOT use `run_in_background: true`. All 3 Tasks MUST be synchronous calls in a single message. Background tasks cause premature session exit in `-p` mode (the parent process terminates before background agents complete, losing all results).**
    d. Collect 3 investigation results (each returns structured report as text)
-   e. Task(consensus-synthesizer, model: opus, prompt: "Read .claude/agents/consensus-synthesizer.md. Mode: synthesis. Feature: {ID}. Path: pm/features/feature-{ID}.md.\n\n## Investigation Result 1\n{result1}\n\n## Investigation Result 2\n{result2}\n\n## Investigation Result 3\n{result3}")
+   e. Task(consensus-synthesizer, model: opus, prompt: "Read .claude/agents/consensus-synthesizer.md. Mode: synthesis. Feature: {ID}. Path: pm/features/feature-{ID}.md.\n\n## Dependency Status (pre-computed — do NOT grep individual feature files for status)\n{deps_result}\n\n## Investigation Result 1\n{result1}\n\n## Investigation Result 2\n{result2}\n\n## Investigation Result 3\n{result3}")
       - Writes `_out/tmp/consensus-synthesis-{ID}.md` (full consensus analysis with agreement matrix)
       - Edits feature-{ID}.md: Background + Root Cause + Feasibility + Dependencies + all investigation sections
       - Adds `<!-- fc-phase-1-completed -->` marker before `## Background`
@@ -161,34 +166,16 @@ Modifying these files to bypass validation gates is **self-hacking** — the orc
       - NO-GO → Task(consensus-synthesizer, model: "sonnet", mode: "revision", feedback: nogo_feedback) → Add marker, proceed to Phase 3
 
    **ELSE (erb/engine/infra/research)**:
-   a. Read synthesized Background + Root Cause + all investigation sections from feature-{ID}.md
-   b. Construct review prompt from **Review Prompt Template** (see below), embedding synthesized content
-   c. Launch 3 reviewer Tasks in parallel with identical prompt:
+   a. Read synthesized content from feature-{ID}.md
+   b. Construct review prompt from **Review Prompt Template** (see below)
+   c. Launch 1 opus reviewer:
       ```
-      Task(subagent_type: "deep-explorer", model: "sonnet", prompt: review_prompt)  // ×3 in single message
+      Task(subagent_type: "deep-explorer", prompt: review_prompt)  // opus
       ```
-      **Model**: sonnet, NOT opus. Round 2 is verification (read synthesis → check code → vote GO/NO-GO), not open-ended investigation. Evidence: Round 2 checks are 5 structured items (factual accuracy, root cause validity, coverage gaps, conclusion alignment, feasibility) — all verifiable by code-reading, not creative reasoning. Saves 3 opus calls per /fc.
-      **CRITICAL: Do NOT use `run_in_background: true`. All 3 Tasks MUST be synchronous calls in a single message.**
-   d. Parse each result for `GO` or `NO-GO` verdict (search for `### Verdict` section)
-   e. Tally votes and apply gate:
-      - **3/3 GO (sonnet)** → Escalate: 1x opus verification
-        ```
-        Task(subagent_type: "deep-explorer", prompt: review_prompt)  // opus (frontmatter default)
-        ```
-        - opus GO → Add `<!-- fc-phase-2-completed -->` marker, proceed to Phase 3
-        - opus NO-GO → Task(consensus-synthesizer, model: "sonnet", mode: "revision", feedback: opus_nogo) → Add marker, proceed to Phase 3
-      - **2/3 GO** → Task(consensus-synthesizer, model: "sonnet", mode: revision) with NO-GO reviewer's feedback → micro-revision → Add marker, proceed to Phase 3
-      - **1/3 or 0/3 GO** → Re-dispatch: Task(consensus-synthesizer, mode: revision) with ALL NO-GO feedback → re-run Round 2 (steps 3a-3d)
-        - If retry achieves 2/3+ GO → micro-revision if needed → Add marker, proceed to Phase 3
-        - If retry still ≤1/3 GO → STOP, present all feedback to user via AskUserQuestion
-   f. If any reviewer flags NOT_FEASIBLE → additional STOP condition, report to user
-3b. **Context Pressure Check (Post-Round 2)**:
-    ```
-    pct_file = "_out/tmp/claude-ctx-f{ID}.txt"
-    IF file exists AND int(Read(pct_file).strip()) >= 80:
-        Report: "Context pressure ≥80% after Round 2. fc-phase markers saved. Re-run `/fc {ID}` to resume."
-        EXIT
-    ```
+   d. Parse verdict:
+      - GO → Add `<!-- fc-phase-2-completed -->` marker, proceed to Phase 3
+      - NO-GO → Task(consensus-synthesizer, model: "sonnet", mode: "revision", feedback: nogo_feedback) → Add marker, proceed to Phase 3
+   e. If reviewer flags NOT_FEASIBLE → STOP
 4. If resume_from <= 3: Task(ac-designer) → Acceptance Criteria (table + details)
 5. If resume_from <= 4: Task(tech-designer) → Technical Design (to satisfy ACs)
 5b. **Upstream Issue Gate** (after tech-designer):
@@ -214,6 +201,13 @@ Modifying these files to bypass validation gates is **self-hacking** — the orc
     - **Lesson**: F808 blindly migrated TOILET_COUNTER_MESSAGE_NTR.ERB (a grab-bag of 4 unrelated + 2 NTR functions) into one 9-dependency class. ERB files are often organized by file size or historical accident, not domain cohesion.
 6. If resume_from <= 5: Task(wbs-generator) → Tasks + Implementation Contract
 7. If resume_from <= 6: Task(quality-fixer, model: "sonnet") → Quality Auto-Fix (feature-quality checklist)
+6b. **Reference Checker** (always execute after quality-fixer — prevents FL Phase1-RefCheck fixes)
+    ```
+    Task(subagent_type: "general-purpose", model: "sonnet", prompt: "Read .claude/skills/reference-checker/SKILL.md. Execute for Feature {ID}.")
+    ```
+    - For each issue with severity `major` or `critical`: apply fix (add missing Link, fix artifact path)
+    - Fixes are mechanical (add markdown link) — orchestrator-decidable, no user prompt needed
+    - **Evidence**: F825 had 3 FL Phase1-RefCheck fixes (F801/F809 missing from Links despite body references)
 7a-pre. **Context Pressure Check (Post-Quality-Fix)**:
     ```
     pct_file = "_out/tmp/claude-ctx-f{ID}.txt"
@@ -265,8 +259,7 @@ Modifying these files to bypass validation gates is **self-hacking** — the orc
 |-------|:-----:|:-----:|:------------------:|-----------------|--------|
 | deep-explorer (Round 1) | opus | ×3 parallel | No | Investigation report (structured text) | - |
 | consensus-synthesizer | opus | ×1 | Yes | Background, Root Cause, Feasibility, Dependencies, Impact, Constraints, Risks | `<!-- fc-phase-1-completed -->` |
-| deep-explorer (Round 2 screen) | sonnet | ×3 parallel | No | GO/NO-GO verdict + rationale | - |
-| deep-explorer (Round 2 verify) | opus | ×0~1 (only if 3/3 GO) | No | GO/NO-GO verification | - |
+| deep-explorer (Round 2) | opus | ×1 | No | GO/NO-GO verdict + rationale | - |
 | consensus-synthesizer (revision) | sonnet | ×0~1 | Yes | Micro-revision of flagged sections | - |
 | Orchestrator | - | - | Yes (marker only) | - | `<!-- fc-phase-2-completed -->` |
 | ac-designer | opus | ×1 | Yes | Acceptance Criteria (Philosophy Derivation, AC Table, AC Details) | `<!-- fc-phase-3-completed -->` |
@@ -280,18 +273,18 @@ Modifying these files to bypass validation gates is **self-hacking** — the orc
 **Section Structure SSOT**: All agents MUST read `pm/reference/feature-template.md` and follow the section structure defined there. Agent `.md` files contain semantic rules only; structural definitions live in the template.
 
 **Cost Profile**:
-- **Standard (erb/engine/infra/research)**: Phase 1-2 uses 5-6 opus + 3 sonnet calls on happy path (Round 2: 3x sonnet screen + 1x opus verify on 3/3 GO), up to 9 opus on retry. When Round 2 has NO-GO votes, opus verification is skipped (saving 1 opus call).
+- **Standard (erb/engine/infra/research)**: Phase 1-2 uses 4-5 opus + 0-1 sonnet calls on happy path (Round 2: 1x opus direct verification), up to 6 opus on retry.
 - **Kojo**: Phase 1-2 uses **1 opus + 2 sonnet** calls (1x opus explorer + 1x sonnet synthesizer + 1x sonnet reviewer). No retry escalation needed — kojo scope is content-focused.
-- Phase 5b (Upstream Issue Gate) adds 0-1 ac-designer re-dispatch when tech-designer flags upstream issues. Phase 6 (quality-fixer) uses sonnet for semantic depth (haiku insufficient for V2/V3 validation). Phase 7 (feature-validator) uses sonnet for semantic depth. Total wall clock: ~5 sequential steps (Round 1 parallel → synthesis → Round 2 parallel → ac/tech/wbs → quality-fixer → validator), +2 on retry. Investment here reduces FL iterations significantly.
+- Phase 5b (Upstream Issue Gate) adds 0-1 ac-designer re-dispatch when tech-designer flags upstream issues. Phase 6 (quality-fixer) uses sonnet for semantic depth (haiku insufficient for V2/V3 validation). Phase 7 (feature-validator) uses sonnet for semantic depth. Total wall clock: ~5 sequential steps (Round 1 parallel → synthesis → Round 2 → ac/tech/wbs → quality-fixer → validator), +2 on retry. Investment here reduces FL iterations significantly.
 
 ## Section Flow (TDD-compliant, Consensus)
 
 ```
-                    ┌─ explorer-1 ─┐              ┌─ explorer-1 ─┐                                    ┌──────────────┐
-Feature Context   → ├─ explorer-2 ─┤→ synthesizer →├─ explorer-2 ─┤→ gate → ac-designer → tech-designer →│Upstream Gate │→ wbs-generator → quality-fixer → validator
-(Deviation/Review)  └─ explorer-3 ─┘    合成+編集   └─ explorer-3 ─┘  投票     完成定義        設計       └──────────────┘   作業分解       品質自動修正      検証
+                    ┌─ explorer-1 ─┐                                                                 ┌──────────────┐
+Feature Context   → ├─ explorer-2 ─┤→ synthesizer → explorer(opus) → gate → ac-designer → tech-designer →│Upstream Gate │→ wbs-generator → quality-fixer → validator
+(Deviation/Review)  └─ explorer-3 ─┘    合成+編集      検証投票       判定     完成定義        設計       └──────────────┘   作業分解       品質自動修正      検証
                       Round 1                         Round 2                                    ↓ AC micro-revision
-                    (独立調査×3)     (合意形成)     (審議投票×3)    (2/3GO)  (何を達成)    (ACを満たす方法)  (上流修正)    (どう作業)     (パターン修正)
+                    (独立調査×3)     (合意形成)     (opus直接×1)   (GO/NOGO) (何を達成)    (ACを満たす方法)  (上流修正)    (どう作業)     (パターン修正)
 ```
 
 **TDD Principle**: AC (完成定義) を先に定義し、それを満たす Design を後で作成
@@ -317,6 +310,10 @@ Your investigation is INDEPENDENT — do not assume what others will find.
 ## Baseline Data (pre-collected by orchestrator)
 
 {git log output, relevant file listings, etc.}
+
+## Dependency Status (pre-computed — do NOT grep individual feature files for status)
+
+{deps_result from feature-status.py deps {ID}}
 
 ## Your Task
 
@@ -540,49 +537,6 @@ GO / NO-GO
 {If GO: brief confirmation of synthesis quality}
 ```
 
-## Vote Tallying Logic
-
-Orchestrator performs after collecting 3 Round 2 results:
-
-```
-votes = [parse_verdict(result) for result in [r1, r2, r3]]
-go_count = votes.count("GO")
-nogo_feedback = [result for result, vote in zip(results, votes) if vote == "NO-GO"]
-
-if go_count == 3:
-    # Unanimous — proceed
-    write_phase_2_marker(feature_file)
-
-elif go_count == 2:
-    # Majority — micro-revision with minority feedback
-    Task(consensus-synthesizer, model: "sonnet", mode: "revision", feedback: nogo_feedback[0])
-    write_phase_2_marker(feature_file)
-
-elif go_count <= 1:
-    # No consensus — re-dispatch with all feedback (1 retry)
-    Task(consensus-synthesizer, model: "sonnet", mode: "revision", feedback: nogo_feedback)  # ALL NO-GO feedback
-    # Re-run Round 2 (also sonnet — see Round 2 model note above)
-    retry_votes = run_round_2(feature_file)
-    retry_go = retry_votes.count("GO")
-
-    if retry_go >= 2:
-        # Recovery succeeded
-        if retry_go == 2:
-            Task(consensus-synthesizer, model: "sonnet", mode: "revision", feedback: retry_nogo[0])  # micro-fix
-        write_phase_2_marker(feature_file)
-    else:
-        # Still no consensus after retry — STOP
-        AskUserQuestion(
-            question: "再ディスパッチ後も合意に至りませんでした。どうしますか？",
-            header: "合議結果",
-            options: [
-                { label: "再調査", description: "Round 1からやり直し (Phase 1-2 リセット)" },
-                { label: "手動修正", description: "指摘を踏まえてユーザーが修正後、/fc を再実行" },
-                { label: "続行", description: "現状のまま Phase 3 へ進む (合議をスキップ)" }
-            ]
-        )
-```
-
 ## User Output Templates (日本語)
 
 ### Phase進捗報告
@@ -608,11 +562,9 @@ elif go_count <= 1:
 
 | Reviewer | Verdict | 主な所見 |
 |:--------:|:-------:|----------|
-| Explorer 1 | GO | {1行サマリー} |
-| Explorer 2 | GO | {1行サマリー} |
-| Explorer 3 | NO-GO | {1行サマリー} |
+| Explorer (opus) | GO | {1行サマリー} |
 
-**結果**: 2/3 GO → 少数意見を反映して微修正後、続行
+**結果**: GO → 続行 (NO-GO → 微修正後、続行)
 ```
 
 ### STOP報告 (NEEDS_REVISION / NOT_FEASIBLE / 合議不成立)
@@ -672,7 +624,7 @@ AskUserQuestion(
 | Round | 結果 |
 |:-----:|:----:|
 | Round 1 (調査) | 3名完了、合成済み |
-| Round 2 (審議) | {X}/3 GO |
+| Round 2 (審議) | GO (opus直接検証) |
 
 ### 検証結果
 

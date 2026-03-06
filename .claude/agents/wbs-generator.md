@@ -63,8 +63,8 @@ Copy these exact headers, column structures, and separators. Do NOT rename, reor
 
 ## Mandatory Handoffs
 
-| Issue | Reason | Destination | Destination ID | Creation Task |
-|-------|--------|-------------|----------------|---------------|
+| Issue | Reason | Destination | Destination ID | Creation Task | Transferred | Result |
+|-------|--------|-------------|----------------|---------------|:-----------:|--------|
 
 ---
 
@@ -81,6 +81,13 @@ Copy these exact headers, column structures, and separators. Do NOT rename, reor
 <!-- Format: - [pending|resolved-applied|resolved-invalid|resolved-skipped|fix|problem-fix] {phase} {iter}: [{category-code}] {description} -->
 <!-- Tag rules: [pending] = awaiting user decision (POST-LOOP). [resolved-applied] = fix applied. [resolved-invalid] = validation rejected. [resolved-skipped] = user explicitly chose skip in POST-LOOP ONLY (orchestrator MUST NOT use autonomously). [fix] = applied fix history (immutable, used by is_loop() for A→B→A detection). -->
 <!-- Category codes: See docs/reference/error-taxonomy.md (AC-XXX, CON-XXX, DEP-XXX, etc.) -->
+
+---
+
+## Improvement Log
+<!-- Populated by /imp {ID}. Records modification results only (no analysis narrative). -->
+<!-- Format: ### /imp {ID} ({date}) -->
+<!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
 ---
 
@@ -138,6 +145,7 @@ The Links section MUST include:
 - AC coverage is mandatory: every Task must have at least one verifying AC
 - Goal coverage is mandatory: every Goal item must have at least one implementing Task
 - N ACs : 1 Task is allowed (multiple ACs verifying one Task is fine)
+- **AC output-ownership rule (F829 lesson)**: ACs that verify an output artifact belong to the Task that *produces* that artifact, not downstream Tasks that consume it. Example: if Task 1 writes `## Obligation Routing` and AC#1 verifies its content, AC#1 belongs to Task 1 — not to Tasks 3/4/5 that reference the routing output
 - All code modifications must have a corresponding test Task
 - AC = WHAT, Task = HOW
 - Task granularity: Single dispatch unit (one subagent call)

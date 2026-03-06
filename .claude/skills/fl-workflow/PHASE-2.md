@@ -366,12 +366,14 @@ FOR issue in result.issues:
 ```
 IF applied_fixes > 0:
     Bash: python src/tools/python/ac_ops.py ac-check {target_id} --fix
+    Bash: python src/tools/python/ac_ops.py ac-renumber {target_id}
     # Structural side-effects (stale count, numbering gap, invalid matcher) cleaned immediately
+    # ac-renumber closes numbering gaps from AC insertion/deletion/reordering
     # These fixes are NOT counted in applied_fixes (not subject to LLM re-review)
     # Remaining issues are informational (Phase 4 re-detects them)
 ```
 
-**Rationale**: LLM fixes in Step 2.6 often introduce structural side-effects (e.g., deleting an AC creates a numbering gap, adding ACs makes "All N ACs" stale). Without cleanup, the re-review in the next iteration detects these as "new issues", inflating iteration count.
+**Rationale**: LLM fixes in Step 2.6 often introduce structural side-effects (e.g., deleting an AC creates a numbering gap, adding ACs makes "All N ACs" stale). Without cleanup, the re-review in the next iteration detects these as "new issues", inflating iteration count. ac-renumber is idempotent (no-op when no gaps exist).
 
 ---
 

@@ -140,7 +140,7 @@ IF not found:
             | Task#{N} AC#{M}: [I] NO_OUTPUT | BLOCKED | - | - | Phase 9 Completion Gate で決定 |
 
         # Note: [B] status triggers Phase 9 Completion Gate (Step 9.6)
-        # Phase 9.8 will execute A/B/C decision logic and update Destination
+        # Phase 9.7 will execute A/B/C decision logic and update Destination
         # Do NOT use "TBD" - use "-" for pending Phase 9 resolution
 
         # 4. Skip and continue
@@ -245,6 +245,6 @@ grep -c DEVIATION pm/features/feature-{ID}.md
 
 | Type | Next Phase |
 |------|------------|
-| erb/engine | Read(.claude/skills/run-workflow/PHASE-5.md) |
+| erb/engine | Read(.claude/skills/run-workflow/PHASE-7.md) (skip Phase 5-6) |
 | kojo | Read(.claude/skills/run-workflow/PHASE-6.md) (skip Phase 5) |
 | infra/research | Read(.claude/skills/run-workflow/PHASE-7.md) (skip Phase 5-6) |

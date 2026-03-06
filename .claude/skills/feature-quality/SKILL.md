@@ -19,6 +19,7 @@ description: REQUIRED before writing any feature-{ID}.md file. Skipping causes F
 
 ### Scope Discipline
 - [ ] Out-of-scope issues have tracking plan (new feature or Mandatory Handoffs)
+- [ ] Mandatory Handoffs destinations comply with `deferred-task-protocol.md` Option B Guards (apply at creation time, not just Phase 9)
 - [ ] Summary scope matches Tasks/ACs (no scope creep)
 - [ ] Type field matches actual implementation
 - [ ] File counts verified by Glob/ls before writing spec (not assumed)
@@ -190,6 +191,17 @@ Verify all cross-reference tables agree:
 - [ ] Every Goal in Goal Coverage maps to at least one AC
 - [ ] Every Philosophy Derivation absolute claim maps to at least one AC
 - [ ] AC Coverage in Technical Design lists all AC#s (none missing)
+
+### V6: Cascading Consistency (F826 Lesson)
+
+Verify that threshold values and descriptive text are consistent across ALL sections where they appear:
+
+- [ ] AC threshold values (gte/lte/count_equals Expected) consistent between AC Definition Table, AC Details Derivation, Technical Design, and Implementation Contract
+- [ ] AC description text consistent between AC Definition Table Description column and AC Details header
+- [ ] Mandatory Handoff row counts consistent between table row count and any descriptive text referencing the count
+- [ ] When fixing a threshold or description in one location, grep for the old value across the entire feature file to find all occurrences
+
+**Rationale**: F826 consumed 4/10 FL iterations on cascading fixes — changing a threshold in AC Definition Table without updating the same value in Technical Design and Implementation Contract. V5 catches structural cross-references (counts, mappings) but not value consistency.
 
 ---
 

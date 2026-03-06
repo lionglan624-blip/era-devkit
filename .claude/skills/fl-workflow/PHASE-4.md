@@ -39,12 +39,15 @@ IF target_type != "feature":
 
 ```bash
 python src/tools/python/ac_ops.py ac-check {target_id}
+python src/tools/python/ac_ops.py ac-renumber {target_id}
 ```
 
 | Result | Action |
 |--------|--------|
-| Exit 0 | Proceed to Step 4.3 |
-| Exit 1 | Report raw output verbatim. Each issue = 1 applied_fix after auto-fix attempt. If `ac_ops.py ac-fix` or manual Edit resolves it, persist_fix and applied_fixes++. If not resolvable, persist_pending. |
+| ac-check Exit 0 | Proceed to Step 4.3 |
+| ac-check Exit 1 | Report raw output verbatim. Each issue = 1 applied_fix after auto-fix attempt. If `ac_ops.py ac-fix` or manual Edit resolves it, persist_fix and applied_fixes++. If not resolvable, persist_pending. |
+
+ac-renumber always runs (idempotent — no-op when no gaps exist). Closes numbering gaps left by previous AC modifications.
 
 > **Available fix tools**: `ac-fix` (update Expected/Description), `ac-renumber` (close gaps), `ac-insert`, `ac-delete`. Run `python src/tools/python/ac_ops.py --help` for all subcommands.
 

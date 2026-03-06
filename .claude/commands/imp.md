@@ -84,7 +84,17 @@ From tedium indicators:
 - Propose concrete automations (scripts, hooks, caching)
 - Estimate impact (how many tool calls would be saved)
 
-#### 5. CLIツール活用監査 (Tool Usage Audit)
+#### 5. エラー・Hook分析 (Error & Hook Analysis)
+
+From the error/hook/denial data in section 5 of the script output:
+- Identify recurring hook errors (pre-commit failures, commit-msg hook issues)
+- Analyze tool errors by tool name — which tools fail most?
+- Review tool denials — are permission settings too restrictive or are wrong tools being called?
+- For hook errors: propose pre-validation steps or hook configuration fixes
+- For tool errors: propose workflow changes to avoid repeated failures
+- For tool denials: propose permission mode adjustments or alternative approaches
+
+#### 6. CLIツール活用監査 (Tool Usage Audit)
 
 From tool usage patterns:
 - CLIツール（feature-status.py, ac_ops.py, session-search.py）が使われたか検出
@@ -188,6 +198,9 @@ Insert `## Improvement Log` section between `## Review Notes` and `## Links`. If
 
 ### 4. 手間削減
 (tedium table + automation proposals)
+
+### 5. エラー・Hook分析
+(error/hook/denial tables + proposals)
 
 ### 次のアクション
 1. [高] ...

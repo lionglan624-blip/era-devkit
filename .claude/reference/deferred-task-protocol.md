@@ -87,6 +87,19 @@ path to act on them. This resulted in obligations being "confirmed" but never ex
 
 **Principle**: A (new Feature) is the default. B is the exception requiring proof.
 
+### Gate 0: Post-Phase Review Exclusion
+
+Post-Phase Review features are **not valid handoff destinations by default**. They verify and collect — they don't resolve. Routing to them adds unnecessary hops (F819/F822/F824/F825→F826→F829→F830 should have been F819→F830 directly).
+
+**Detection**: Feature title contains "Post-Phase Review" AND Type is infra.
+
+**Scope**: Gate 0 applies to Option B only. Option A (new feature) inherently avoids this problem since the new feature owns the obligation directly.
+
+| Condition | Result |
+|-----------|--------|
+| Destination is a Post-Phase Review feature | → **BLOCKED by default**. Use Option A (create destination feature directly) |
+| Clearly appropriate (rare) | → Ask user for explicit permission before routing |
+
 ### Gate 1: Status Gate
 | Status | Allowed? | Reason |
 |--------|:--------:|--------|
@@ -145,6 +158,7 @@ Extract 2 keywords from the obligation:
 ### Guard Summary
 | Check | Condition | Result |
 |-------|-----------|--------|
+| Post-Phase Review | destination is a Post-Phase Review feature | → FAIL: use Option A (ask user if clearly appropriate) |
 | Status | destination.status not in {[DRAFT], [PROPOSED]} | → FAIL: use Option A |
 | Type/Scope | obligation.domain ∉ destination.scope | → FAIL: use Option A |
 | Execution | obligation keywords not in destination Goal/Philosophy/Background | → FAIL: use Option A |
@@ -164,6 +178,7 @@ Extract 2 keywords from the obligation:
 | Phase doc without executor | F814→architecture.md Phase tasks | No agent reads Phase doc after features created | A: new feature |
 | "確認済み" without Task | F806→F813 (confirmed exists, no Task created) | Confirmation ≠ execution; Action B must always write (追記済み) | A: new [DRAFT] |
 | Conditional → Post-Phase Review | F826→F827 (conditional triggers to planning) | Planning feature won't implement triggers | A: trigger-specific feature |
+| Obligation → Post-Phase Review | F819/F822/F824/F825→F826 (multiple features routing obligations to post-phase review) | Post-Phase Review only verifies and collects; adds extra hops before resolution | A: destination feature directly |
 | Race condition routing | F812→F803 ("whoever runs first") | Non-deterministic execution; ambiguous ownership | A: explicit single-owner feature |
 | Multiple valid candidates | 2+ features could plausibly own the obligation | Ambiguous → obligation falls through cracks | A: new feature (Sole Candidate Gate) |
 

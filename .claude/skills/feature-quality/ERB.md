@@ -332,6 +332,8 @@ Issues specific to `Type: erb` features (ERB game scripts).
 
 ## Checklist
 
+- [ ] ERB source function count verified against actual file (Grep for `@` headers; do not assume counts from memory)
+- [ ] ERB function return types verified against actual source (RETURN vs RETURNF vs SETBIT+RETURNF)
 - [ ] RETURN rules followed per erb-syntax skill
 - [ ] Variable scope (LOCAL/ARG/global) documented
 - [ ] All output ACs reference test scenario number

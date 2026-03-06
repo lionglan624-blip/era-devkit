@@ -83,10 +83,15 @@ class TestUnescapeCharclassRules:
         # Explicitly confirm it is NOT the backspace character
         assert result != '\x08', "Result must not be the backspace character \\x08"
 
+    def test_unescape_rule_slash_G(self):
+        r"""\\G -> \G (novel letter not in original 10 — proves generic extensibility)."""
+        result = ACVerifier.unescape_for_regex_pattern(r'\\G')
+        assert result == r'\G', f"Expected r'\\G', got: {result!r}"
+
     def test_unescape_rules_count(self):
-        """_UNESCAPE_RULES must contain at least 17 entries (8 existing + 9 new)."""
+        """_UNESCAPE_RULES must contain at most 8 entries (7 structural + at most 1 quote)."""
         count = len(ACVerifier._UNESCAPE_RULES)
-        assert count >= 17, (
-            f"Expected at least 17 unescape rules, found {count}. "
-            f"Need 8 existing + 9 new (\\s, \\S, \\d, \\D, \\W, \\b, \\B, \\A, \\Z)."
+        assert count <= 8, (
+            f"Expected at most 8 unescape rules, found {count}. "
+            f"Uniform single-letter entries should be handled by _SINGLE_LETTER_UNESCAPE_PATTERN."
         )

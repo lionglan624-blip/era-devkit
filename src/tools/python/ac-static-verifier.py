@@ -303,7 +303,7 @@ class ACVerifier:
         return pattern_found, matched_files
 
     # Shared unescape rules — single source for all unescape variants.
-    # New rules MUST be added here only. Both unescape() and unescape_for_regex_pattern() draw from this list.
+    # Structural/punctuation rules only. Single-letter escapes handled by _SINGLE_LETTER_UNESCAPE_PATTERN.
     _UNESCAPE_RULES = [
         (r'\"', '"'),
         (r'\\[', r'\['),
@@ -312,18 +312,13 @@ class ACVerifier:
         (r'\\)', r'\)'),
         (r'\\.', r'\.'),
         (r'\\?', r'\?'),
-        (r'\\w', r'\w'),
-        (r'\\s', r'\s'),   # whitespace character class
-        (r'\\S', r'\S'),   # non-whitespace character class
-        (r'\\d', r'\d'),   # digit character class
-        (r'\\D', r'\D'),   # non-digit character class
-        (r'\\W', r'\W'),   # non-word character class (counterpart of \\w)
-        (r'\\b', r'\b'),   # word boundary assertion
-        (r'\\B', r'\B'),   # non-word boundary assertion
-        (r'\\A', r'\A'),   # start-of-string anchor
-        (r'\\Z', r'\Z'),   # end-of-string anchor
     ]
+    _SINGLE_LETTER_UNESCAPE_PATTERN = re.compile(r'\\\\([a-zA-Z])')
     _PIPE_RULE = (r'\|', '|')  # markdown pipe escapes — Expected column only
+
+    @staticmethod
+    def _apply_single_letter_unescape(s: str) -> str:
+        return ACVerifier._SINGLE_LETTER_UNESCAPE_PATTERN.sub(r'\\\1', s)
 
     @staticmethod
     def unescape(s: str) -> str:
@@ -348,6 +343,7 @@ class ACVerifier:
         """
         for from_str, to_str in ACVerifier._UNESCAPE_RULES:
             s = s.replace(from_str, to_str)
+        s = ACVerifier._apply_single_letter_unescape(s)
         s = s.replace(*ACVerifier._PIPE_RULE)  # markdown pipe escapes
         return s
 
@@ -366,6 +362,7 @@ class ACVerifier:
         """
         for from_str, to_str in ACVerifier._UNESCAPE_RULES:
             s = s.replace(from_str, to_str)
+        s = ACVerifier._apply_single_letter_unescape(s)
         return s
 
     @staticmethod

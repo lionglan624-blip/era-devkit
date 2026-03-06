@@ -13,6 +13,7 @@ import { FileWatcher } from './src/services/fileWatcher.js';
 import { LogStreamer } from './src/websocket/logStreamer.js';
 import { RateLimitService } from './src/services/ratelimitService.js';
 import { StatusMailService } from './src/services/statusMailService.js';
+import { UpdateWatcherService } from './src/services/updateWatcherService.js';
 import { InsightsService } from './src/services/insightsService.js';
 import { CleanupService } from './src/services/cleanupService.js';
 import { ClaudeStatusService } from './src/services/claudeStatusService.js';
@@ -123,6 +124,11 @@ const statusMailService = new StatusMailService({
   claudeService,
   rateLimitService,
 });
+
+// Update watcher (Claude Code release detection + impact analysis via claudeService execution)
+const updateWatcherService = new UpdateWatcherService({ emailService, logStreamer, claudeService });
+statusMailService.onReleaseEmail = (version, subject, rawSource) =>
+  updateWatcherService.handleRelease(version, subject, rawSource);
 
 // Tmp file cleanup (debug logs, old daily logs, term artifacts)
 const cleanupService = new CleanupService(PROJECT_ROOT);
@@ -294,6 +300,11 @@ app.post('/api/insights/capture', async (req, res) => {
     serverLog.error(`[Insights] Unhandled: ${err.message}`);
   });
   res.json({ ok: true, message: 'Insights capture started', sendEmail });
+});
+
+// Update watcher: check last update status
+app.get('/api/update/status', (req, res) => {
+  res.json(updateWatcherService.getLastUpdate());
 });
 
 // Insights: check running status and last result

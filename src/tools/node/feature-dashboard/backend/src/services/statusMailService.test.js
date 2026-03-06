@@ -246,6 +246,133 @@ describe('StatusMailService', () => {
         });
     });
 
+    describe('_isReleaseNotification', () => {
+        let service;
+
+        beforeEach(() => {
+            service = new StatusMailService({
+                configLoader: () => makeConfig(),
+                ...makeMockServices(),
+            });
+        });
+
+        it('detects claude-code release notification', () => {
+            const envelope = {
+                from: [{ address: 'notifications@github.com' }],
+                subject: '[anthropics/claude-code] Release v1.0.29 - v1.0.29',
+            };
+            const result = service._isReleaseNotification(envelope);
+            expect(result).toEqual({ version: 'v1.0.29' });
+        });
+
+        it('rejects non-github sender', () => {
+            const envelope = {
+                from: [{ address: 'someone@example.com' }],
+                subject: '[anthropics/claude-code] Release v1.0.29 - v1.0.29',
+            };
+            expect(service._isReleaseNotification(envelope)).toBeNull();
+        });
+
+        it('rejects non-claude-code release', () => {
+            const envelope = {
+                from: [{ address: 'notifications@github.com' }],
+                subject: '[anthropics/other-repo] Release v1.0.0 - v1.0.0',
+            };
+            expect(service._isReleaseNotification(envelope)).toBeNull();
+        });
+
+        it('rejects non-release notification', () => {
+            const envelope = {
+                from: [{ address: 'notifications@github.com' }],
+                subject: '[anthropics/claude-code] Issue #123: Bug report',
+            };
+            expect(service._isReleaseNotification(envelope)).toBeNull();
+        });
+
+        it('handles missing subject', () => {
+            const envelope = {
+                from: [{ address: 'notifications@github.com' }],
+                subject: null,
+            };
+            expect(service._isReleaseNotification(envelope)).toBeNull();
+        });
+
+        it('handles missing from address', () => {
+            const envelope = {
+                from: [],
+                subject: '[anthropics/claude-code] Release v1.0.29 - v1.0.29',
+            };
+            expect(service._isReleaseNotification(envelope)).toBeNull();
+        });
+    });
+
+    describe('_checkMessages release callback', () => {
+        it('fires onReleaseEmail callback for release notifications', async () => {
+            const mockClient = makeMockImapClient();
+            const releaseMessage = {
+                uid: 10,
+                flags: [],
+                envelope: {
+                    from: [{ address: 'notifications@github.com' }],
+                    subject: '[anthropics/claude-code] Release v1.0.30 - v1.0.30',
+                    messageId: 'msg-release',
+                },
+                source: Buffer.from('From: notifications@github.com\r\nSubject: Release\r\n\r\n## What\'s changed\r\n* Fix\r\n'),
+            };
+            mockClient.fetch.mockReturnValue(makeAsyncIterable([releaseMessage]));
+
+            const onRelease = vi.fn().mockResolvedValue(undefined);
+            const service = new StatusMailService({
+                configLoader: () => makeConfig(),
+                imapClientFactory: () => mockClient,
+                transportFactory: () => ({ sendMail: vi.fn() }),
+                ...makeMockServices(),
+            });
+
+            service._client = mockClient;
+            service._lock = mockClient._mockLock;
+            service.onReleaseEmail = onRelease;
+
+            await service._checkMessages('*');
+
+            expect(onRelease).toHaveBeenCalledWith(
+                'v1.0.30',
+                '[anthropics/claude-code] Release v1.0.30 - v1.0.30',
+                expect.any(Buffer),
+            );
+            expect(mockClient.messageFlagsAdd).toHaveBeenCalledWith(10, ['\\Seen'], { uid: true });
+        });
+
+        it('does not fire callback when onReleaseEmail is null', async () => {
+            const mockClient = makeMockImapClient();
+            const releaseMessage = {
+                uid: 11,
+                flags: [],
+                envelope: {
+                    from: [{ address: 'notifications@github.com' }],
+                    subject: '[anthropics/claude-code] Release v1.0.30 - v1.0.30',
+                    messageId: 'msg-release-2',
+                },
+                source: Buffer.from('From: notifications@github.com\r\n\r\nBody'),
+            };
+            mockClient.fetch.mockReturnValue(makeAsyncIterable([releaseMessage]));
+
+            const service = new StatusMailService({
+                configLoader: () => makeConfig(),
+                imapClientFactory: () => mockClient,
+                ...makeMockServices(),
+            });
+
+            service._client = mockClient;
+            service._lock = mockClient._mockLock;
+            service.onReleaseEmail = null;
+
+            // Should not throw
+            await expect(service._checkMessages('*')).resolves.toBeUndefined();
+            expect(mockClient.messageFlagsAdd).not.toHaveBeenCalled();
+        });
+    });
+
     describe('_buildStatusReport', () => {
         it('includes all sections with data', () => {
             const mockServices = makeMockServices();

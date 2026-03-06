@@ -48,12 +48,14 @@ export class EmailService {
         chainHistory = undefined,
         featureInfo = undefined,
     ) {
-        const cmdUpper = execution.command.toUpperCase();
+        // Normalize resume: prefix for consistent email subjects
+        const command = execution.command.replace(/^resume:/i, '');
+        const cmdUpper = command.toUpperCase();
         const simpleReason = this._simplifyReason(reason);
 
         const subject = execution.featureId
             ? `${cmdUpper} ${execution.featureId} ${simpleReason}`
-            : `${execution.command} ${simpleReason}`;
+            : `${command} ${simpleReason} ${nowJST().slice(11, 16)}`;
 
         const textLines = [];
 
@@ -84,7 +86,9 @@ export class EmailService {
         chainHistory = undefined,
         featureInfo = undefined,
     ) {
-        const cmdUpper = execution.command.toUpperCase();
+        // Normalize resume: prefix for consistent email subjects
+        const command = execution.command.replace(/^resume:/i, '');
+        const cmdUpper = command.toUpperCase();
         // Use the last chain history entry's result (already classified by claudeService)
         // Fall back to exit code for non-chain executions
         const lastHistoryEntry = chainHistory?.[chainHistory.length - 1];
@@ -93,7 +97,7 @@ export class EmailService {
         const subjectResult = this._formatSubjectResult(currentResult, execution);
         const subject = execution.featureId
             ? `${cmdUpper} ${execution.featureId} ${subjectResult}`
-            : `${execution.command} ${subjectResult}`;
+            : `${command} ${subjectResult} ${nowJST().slice(11, 16)}`;
 
         const textLines = [];
 
@@ -247,6 +251,9 @@ export class EmailService {
         if (lower.endsWith('?')) {
             return 'question';
         }
+        if (lower.includes('completed with unanswered')) {
+            return 'unanswered-question';
+        }
 
         // Default: lowercase and truncate to 30 chars
         return lower.substring(0, 30);
@@ -258,7 +265,7 @@ export class EmailService {
             await this.transporter.sendMail({
                 from: this.user,
                 to: this.user,
-                subject,
+                subject: `[ERA] ${subject}`,
                 text,
             });
             this.logger.info(`Email sent: ${subject}`);
@@ -278,7 +285,7 @@ export class EmailService {
             await this.transporter.sendMail({
                 from: this.user,
                 to: this.user,
-                subject,
+                subject: `[ERA] ${subject}`,
                 html,
             });
             this.logger.info(`HTML email sent: ${subject}`);

@@ -509,6 +509,65 @@ describe('ClaudeService', () => {
         });
     });
 
+    describe('_onComplete callback', () => {
+        it('fires _onComplete on execution completion', () => {
+            const { service } = createService();
+            const execution = service._createExecution({ featureId: '100', command: 'fl' });
+            execution.status = 'running';
+            execution.startedAt = new Date().toISOString();
+            execution.lastOutputTime = Date.now();
+            service.executions.set(execution.id, execution);
+
+            const onComplete = vi.fn();
+            execution._onComplete = onComplete;
+
+            service._handleCompletion(execution, 0);
+
+            expect(onComplete).toHaveBeenCalledWith(execution, 0);
+        });
+
+        it('does not crash if _onComplete throws', () => {
+            const { service } = createService();
+            const execution = service._createExecution({ featureId: '100', command: 'fl' });
+            execution.status = 'running';
+            execution.startedAt = new Date().toISOString();
+            execution.lastOutputTime = Date.now();
+            service.executions.set(execution.id, execution);
+
+            execution._onComplete = () => { throw new Error('callback error'); };
+
+            expect(() => service._handleCompletion(execution, 0)).not.toThrow();
+            expect(execution.status).toBe('completed');
+        });
+    });
+
+    describe('executeUpdateAnalysis', () => {
+        it('creates execution with update-analysis command and _debugPrompt', () => {
+            const { service, logStreamer } = createService();
+            vi.spyOn(service, '_startExecution').mockImplementation(() => {});
+
+            const execId = service.executeUpdateAnalysis('test prompt');
+
+            const execution = service.executions.get(execId);
+            expect(execution.command).toBe('update-analysis');
+            expect(execution._debugPrompt).toBe('test prompt');
+            expect(logStreamer.broadcastAll).toHaveBeenCalledWith(
+                expect.objectContaining({ type: 'execution-started', command: 'update-analysis' }),
+            );
+        });
+
+        it('sets _onComplete callback when provided', () => {
+            const { service } = createService();
+            vi.spyOn(service, '_startExecution').mockImplementation(() => {});
+
+            const callback = vi.fn();
+            const execId = service.executeUpdateAnalysis('test prompt', callback);
+
+            const execution = service.executions.get(execId);
+            expect(execution._onComplete).toBe(callback);
+        });
+    });
+
     describe('_pushLog', () => {
         it('does not trim until margin exceeded (MAX_LOG_ENTRIES + 100)', () => {
             const { service } = createService();

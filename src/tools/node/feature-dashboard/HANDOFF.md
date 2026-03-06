@@ -65,6 +65,7 @@ dr button                                   # pm2 restart all
 | Execution TTL | 1h | Keep completed executions in memory |
 | Stuck cleanup | 2h | Force-terminate unresponsive executions |
 | Pending handoff timeout (y/n) | 10s | Fallback terminal handoff if result event never arrives for y/n prompts |
+| Input email delay | 5min | Delayed email for input-wait/askuserquestion; cancelled if user answers in browser |
 | AskUserQuestion | kill+resume | Process killed on tool_use detection; browser answer resumes via `--resume` |
 | Account limit (429) | auto-retry (queue) | 429 detection + auto-recovery. Multiple concurrent 429s queued and drained sequentially (profile switch / timed retry). See [INTERNALS.md](INTERNALS.md) Account Limit (429) Details |
 | Auto-switch (≥80%) | proactive | Proactive profile switch at ≥80% usage. See [INTERNALS.md](INTERNALS.md) Auto-Switch Details |
@@ -74,6 +75,7 @@ dr button                                   # pm2 restart all
 | Stale waiter → Auto-DR | 5min + 10min | Chain waiters older than `CHAIN_WAITER_TIMEOUT_MS` (5min) are cleaned by `_cleanupOldExecutions()` (runs every 10min). On cleanup, `onExecutionComplete()` is called to trigger deferred Auto-DR re-check |
 | Tmp cleanup interval | 6h | Purge old dashboard debug/daily logs (debug-*.log: 3 days, daily logs: 7 days) |
 | Insights capture | ~2min | `/insights` via node-pty ConPTY. Completion: dual detection (report.html mtime change + PTY `"report is ready"` pattern). Emails HTML report via `emailService.sendHtml()`. Scheduler: cron-style `setTimeout` (Monday 07:00 JST). API: `POST /api/insights/capture`, `GET /api/insights/status` |
+| Update analysis | execution | Claude Code release detected via IMAP (GitHub notification) → `claudeService.executeUpdateAnalysis()` runs as `update-analysis` execution (tile, log, terminal resume). Completion: `_onComplete` callback → HTML email with impact badge + changelog. API: `GET /api/update/status` |
 
 Full config: `backend/src/config.js`
 
@@ -102,6 +104,7 @@ Full config: `backend/src/config.js`
 | `/api/health` | GET | Health check |
 | `/api/insights/capture` | POST | Trigger `/insights` capture (fire-and-forget). Body: `{ sendEmail: bool }` (default true). Returns 409 if already running |
 | `/api/insights/status` | GET | Check capture status: `{ running, lastResult }` |
+| `/api/update/status` | GET | Claude Code update watcher status: `{ version, analyzing }` |
 
 ### WebSocket Events
 
@@ -131,6 +134,7 @@ Full config: `backend/src/config.js`
 | `shell-complete` | S→C (all) | Shell command (cs/dr/upd) completed |
 | `auto-dr` | S→C (all) | Backend auto-restarting (file change detected) |
 | `auto-dr-pending` | S→C (all) | Backend restart deferred (executions/chain active) |
+| `claude-code-update` | S→C (all) | Claude Code release detected (version, impact, summary) |
 | `subscribe` | C→S | Subscribe to execution logs |
 | `unsubscribe` | C→S | Unsubscribe from execution logs |
 
@@ -239,6 +243,7 @@ backend/
 │   │   ├── featureService.js    # feature-{ID}.md reading, pendingDeps
 │   │   ├── fileWatcher.js       # chokidar watch, status change detection
 │   │   ├── statusMailService.js # IMAP IDLE status mail (auto-reply to empty emails)
+│   │   ├── updateWatcherService.js # Claude Code release detection + impact analysis
 │   │   ├── emailService.js      # Email notification (handoff/completion)
 │   │   ├── cleanupService.js     # Tmp file cleanup (debug logs, daily logs, artifacts, history JSONL pruning)
 │   │   ├── insightsService.js   # /insights PTY capture + email report (weekly scheduler)

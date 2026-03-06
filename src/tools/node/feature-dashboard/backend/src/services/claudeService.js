@@ -41,6 +41,7 @@ import {
     RATE_LIMIT_SAFE_THRESHOLD,
     MAX_PROFILE_SWITCHES,
     MAX_INCOMPLETE_RETRIES,
+    INPUT_EMAIL_DELAY_MS,
 } from '../config.js';
 
 // Import extracted modules
@@ -802,12 +803,17 @@ export class ClaudeService {
         // Email notification: user input required (browser-first — replaces old handoff email)
         const featureInfo = execution.featureId && this.featureService
             ? this.featureService.getFeature(execution.featureId) : null;
-        this.emailService?.sendHandoffNotification(
-            execution,
-            `Input required: ${description}`,
-            execution.chain?.enabled ? execution.chain.history : undefined,
-            featureInfo,
-        ).catch(() => {});
+        // Delay email — cancel if user answers in browser within INPUT_EMAIL_DELAY_MS
+        if (execution._pendingInputEmailTimeout) clearTimeout(execution._pendingInputEmailTimeout);
+        execution._pendingInputEmailTimeout = setTimeout(() => {
+            execution._pendingInputEmailTimeout = null;
+            this.emailService?.sendHandoffNotification(
+                execution,
+                `Input required: ${description}`,
+                execution.chain?.enabled ? execution.chain.history : undefined,
+                featureInfo,
+            ).catch(() => {});
+        }, INPUT_EMAIL_DELAY_MS);
     }
 
     /** Handoff execution to terminal when user input is required */
@@ -877,6 +883,11 @@ export class ClaudeService {
             execution.featureId && this.featureService
                 ? this.featureService.getFeature(execution.featureId)
                 : null;
+        // Cancel pending delayed email — terminal handoff email replaces it
+        if (execution._pendingInputEmailTimeout) {
+            clearTimeout(execution._pendingInputEmailTimeout);
+            execution._pendingInputEmailTimeout = null;
+        }
         this.emailService
             ?.sendHandoffNotification(
                 execution,
@@ -1063,12 +1074,16 @@ export class ClaudeService {
             ? this.featureService.getFeature(execution.featureId) : null;
         const questionSummary = (execution.inputRequired?.questions || [])
             .map(q => q.question).join('; ');
-        this.emailService?.sendHandoffNotification(
-            execution,
-            `AskUserQuestion: ${questionSummary || 'User input required'}`,
-            execution.chain?.enabled ? execution.chain.history : undefined,
-            featureInfo,
-        ).catch(() => {});
+        if (execution._pendingInputEmailTimeout) clearTimeout(execution._pendingInputEmailTimeout);
+        execution._pendingInputEmailTimeout = setTimeout(() => {
+            execution._pendingInputEmailTimeout = null;
+            this.emailService?.sendHandoffNotification(
+                execution,
+                `AskUserQuestion: ${questionSummary || 'User input required'}`,
+                execution.chain?.enabled ? execution.chain.history : undefined,
+                featureInfo,
+            ).catch(() => {});
+        }, INPUT_EMAIL_DELAY_MS);
     }
 
     /** Handle execution completion */
@@ -1397,15 +1412,18 @@ export class ClaudeService {
                 execution.featureId && this.featureService
                     ? this.featureService.getFeature(execution.featureId)
                     : null;
-            this.emailService
-                ?.sendCompletionNotification(
-                    execution,
-                    execution.status,
-                    exitCode,
-                    finalHistory,
-                    featureInfo,
-                )
-                .catch(() => {});
+            // Only email if no auto-retry scheduled (exhausted scenarios handled by sendRateLimitExhaustedNotification)
+            if (!execution.rateLimitRetryAt && !execution.rateLimitSwitchedTo) {
+                this.emailService
+                    ?.sendCompletionNotification(
+                        execution,
+                        execution.status,
+                        exitCode,
+                        finalHistory,
+                        featureInfo,
+                    )
+                    .catch(() => {});
+            }
 
             // Refresh rate limit after command completion
             if (this.rateLimitService) {
@@ -1592,6 +1610,15 @@ export class ClaudeService {
         // Continue draining rate limit retry queue after successful retry completion
         if (execution._rateLimitQueueContinue && !execution.accountLimitHit) {
             setTimeout(() => this._processNextInQueue(), RETRY_DELAY_MS);
+        }
+
+        // Per-execution completion callback (e.g., update analysis)
+        if (execution._onComplete) {
+            try {
+                execution._onComplete(execution, exitCode);
+            } catch (err) {
+                claudeLog.error(`[ClaudeService] _onComplete callback error: ${err.message}`);
+            }
         }
 
         // Notify listeners (e.g., auto-DR) that an execution finished
@@ -1939,13 +1966,7 @@ export class ClaudeService {
             timestamp: new Date().toISOString(),
         });
 
-        const featureInfo =
-            execution.featureId && this.featureService
-                ? this.featureService.getFeature(execution.featureId)
-                : null;
-        this.emailService
-            ?.sendRateLimitRecoveredNotification(execution, featureInfo)
-            .catch(() => {});
+        // rate-limit-recovered: auto-recovery is normal operation, no email needed
     }
 
     /**
@@ -2464,6 +2485,12 @@ export class ClaudeService {
         }
         execution.pendingHandoff = null;
 
+        // Cancel pending input email (user answered in time)
+        if (execution._pendingInputEmailTimeout) {
+            clearTimeout(execution._pendingInputEmailTimeout);
+            execution._pendingInputEmailTimeout = null;
+        }
+
         // Persist sessionId
         this._saveSessionId(
             execution.id,
@@ -2946,6 +2973,42 @@ export class ClaudeService {
             type: 'execution-started',
             executionId,
             command: 'debug',
+        });
+
+        if (this.runningCount < this.maxConcurrent) {
+            this._startExecution(execution);
+        } else {
+            this.queue.push(executionId);
+            this._pushLog(execution, {
+                line: `Queued (position ${this.queue.length}). Waiting for slot...`,
+                timestamp: new Date().toISOString(),
+                level: 'info',
+            });
+            this._broadcastQueueUpdate();
+        }
+
+        return executionId;
+    }
+
+    /**
+     * Execute an update analysis prompt (used by updateWatcherService).
+     * Similar to executeDebugPrompt but without .debug-enabled gate.
+     * @param {string} prompt - The analysis prompt
+     * @param {Function} [onComplete] - Optional callback(execution, exitCode) on completion
+     * @returns {string} executionId
+     */
+    executeUpdateAnalysis(prompt, onComplete = null) {
+        const execution = this._createExecution({ command: 'update-analysis' });
+        execution._debugPrompt = prompt;
+        if (onComplete) execution._onComplete = onComplete;
+        const executionId = execution.id;
+
+        this.executions.set(executionId, execution);
+
+        this.logStreamer?.broadcastAll({
+            type: 'execution-started',
+            executionId,
+            command: 'update-analysis',
         });
 
         if (this.runningCount < this.maxConcurrent) {

@@ -30,5 +30,41 @@ jobs:
       - name: Check formatting
         run: dotnet format devkit.sln --verify-no-changes --no-restore
 
-      - name: Run tests
+      - name: Run dotnet tests
         run: dotnet test devkit.sln --no-build --configuration Release --verbosity normal --blame-hang-timeout 10s --results-directory _out/test-results
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: src/tools/node/feature-dashboard/package-lock.json
+
+      - name: Install dashboard dependencies
+        run: npm ci
+        working-directory: src/tools/node/feature-dashboard
+
+      - name: Run dashboard tests
+        run: npm test
+        working-directory: src/tools/node/feature-dashboard
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: pip install pytest pyyaml
+
+      - name: Run Python tests
+        run: pytest src/tools/python/tests/ -v
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache-dependency-path: src/tools/go/com-validator/go.sum
+
+      - name: Run Go tests
+        run: go test ./...
+        working-directory: src/tools/go/com-validator

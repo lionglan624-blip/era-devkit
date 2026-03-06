@@ -73,6 +73,7 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 | F827 | [DRAFT] | Phase 23 Planning | F826 | [feature-827.md](feature-827.md) |
 | F844 | [DRAFT] | _UNESCAPE_RULES catch-all regex refactoring | - | [feature-844.md](feature-844.md) |
 | F845 | [DRAFT] | Full AC pattern catalog scan across all features | - | [feature-845.md](feature-845.md) |
+| F846 | [DRAFT] | feature-status.py Active→Recently Completed migration gap | - | [feature-846.md](feature-846.md) |
 
 ### Other
 
@@ -188,4 +189,4 @@ See [kojo-mapper](../../tools/kojo-mapper/) for detailed coverage analysis.
 
 ---
 
-**Next Feature number**: 846
+**Next Feature number**: 847

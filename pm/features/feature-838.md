@@ -586,7 +586,10 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- run-phase-4-completed -->
 | 2026-03-06T04:52 | Phase 8 | feature-reviewer | Quality review (post) | READY (NEEDS_REVISION on [WIP]→invalid, Phase 10 handles) |
 <!-- run-phase-7-completed -->
+| 2026-03-06T05:02 | CodeRabbit | 1 Minor (修正) | F840 stale dep status [WIP]→[DONE] |
 <!-- run-phase-8-completed -->
+<!-- run-phase-9-completed -->
+<!-- run-phase-10-completed -->
 
 ---
 

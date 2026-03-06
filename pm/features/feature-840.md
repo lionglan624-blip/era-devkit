@@ -20,7 +20,7 @@ Add proper test isolation for the affected test classes using `[Collection]` att
 
 | Type | Feature | Status | Description |
 |------|---------|--------|-------------|
-| Related | F838 | [WIP] | Parent feature that created this handoff |
+| Related | F838 | [DONE] | Parent feature that created this handoff |
 | Related | F833 | [DONE] | Original discovery of engine test isolation failures |
 
 ## Links

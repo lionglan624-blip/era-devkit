@@ -33,20 +33,7 @@ jobs:
       - name: Run dotnet tests
         run: dotnet test devkit.sln --no-build --configuration Release --verbosity normal --blame-hang-timeout 10s --results-directory _out/test-results
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'npm'
-          cache-dependency-path: src/tools/node/feature-dashboard/package-lock.json
-
-      - name: Install dashboard dependencies
-        run: npm ci
-        working-directory: src/tools/node/feature-dashboard
-
-      - name: Run dashboard tests
-        run: npm test
-        working-directory: src/tools/node/feature-dashboard
+      # Dashboard tests: moved to C:\Era\dashboard repo
 
       - name: Setup Python
         uses: actions/setup-python@v5

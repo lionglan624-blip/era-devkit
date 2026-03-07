@@ -23,7 +23,7 @@ Audit test quality for the specified target. Collects coverage, mutation scores,
 
 | Keyword | Directories | Type |
 |---------|-------------|------|
-| `dashboard` | `src/tools/node/feature-dashboard/backend/`, `src/tools/node/feature-dashboard/frontend/` | JS |
+| `dashboard` | `C:/Era/dashboard/backend/`, `C:/Era/dashboard/frontend/` | JS |
 | `erb-parser` | `src/tools/dotnet/ErbParser/` + `src/tools/dotnet/ErbParser.Tests/` | C# |
 | `erb-to-yaml` | `src/tools/dotnet/ErbToYaml/` + `src/tools/dotnet/ErbToYaml.Tests/` | C# |
 | `kojo-comparer` | `src/tools/dotnet/KojoComparer/` + `src/tools/dotnet/KojoComparer.Tests/` | C# |
@@ -42,7 +42,7 @@ Audit test quality for the specified target. Collects coverage, mutation scores,
 1. Parse `$ARGUMENTS` to determine targets
 2. If empty, build full target list:
    - **C#**: All `src/tools/dotnet/*Tests/` directories (Glob for `src/tools/dotnet/*Tests/*.csproj`)
-   - **JS**: `src/tools/node/feature-dashboard/backend/`, `src/tools/node/feature-dashboard/frontend/`
+   - **JS**: `C:/Era/dashboard/backend/`, `C:/Era/dashboard/frontend/`
 3. If keyword, use mapping table above
 4. If path, verify directory exists, detect type
 5. Report resolved targets before proceeding
@@ -69,10 +69,10 @@ For each JS project directory:
 
 ```bash
 # Backend
-cd src/tools/node/feature-dashboard/backend && npx vitest run --coverage 2>&1
+cd C:/Era/dashboard/backend && npx vitest run --coverage 2>&1
 
 # Frontend
-cd src/tools/node/feature-dashboard/frontend && npx vitest run --coverage 2>&1
+cd C:/Era/dashboard/frontend && npx vitest run --coverage 2>&1
 ```
 
 **Parse output**: Vitest prints a coverage table to stdout. Extract per-file line/branch/function percentages from the text output.
@@ -84,7 +84,7 @@ cd src/tools/node/feature-dashboard/frontend && npx vitest run --coverage 2>&1
 ### JS Backend (Stryker configured)
 
 ```bash
-cd src/tools/node/feature-dashboard/backend && npx stryker run 2>&1
+cd C:/Era/dashboard/backend && npx stryker run 2>&1
 ```
 
 **Parse output**: Extract mutation score from Stryker clear-text report. Note killed/survived/timeout counts.

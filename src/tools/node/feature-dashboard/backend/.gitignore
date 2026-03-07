@@ -1,5 +1,0 @@
-# Mutation test reports
-reports/
-
-# Email config (contains credentials)
-email.config.json

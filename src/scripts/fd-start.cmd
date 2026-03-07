@@ -6,9 +6,9 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-pushd "%~dp0"
 echo Starting proxy + backend + frontend + lsp-daemon via pm2...
-call pm2 start ..\tools\node\feature-dashboard\ecosystem.config.cjs
+call pm2 start "C:\Era\dashboard\ecosystem.config.cjs"
+pushd "%~dp0"
 call pm2 start ..\..\ecosystem.config.js || call pm2 restart lsp-daemon
 popd
 echo.

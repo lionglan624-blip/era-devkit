@@ -24,7 +24,7 @@ Automatic notifications from the dashboard backend. Subject prefix: `[ERA]`.
 Manual notification via Claude Code agent. Subject prefix: `[Claude Code]`.
 
 ```bash
-node src/tools/node/feature-dashboard/backend/send-email.mjs --subject "[Claude Code] 件名" --body "本文"
+node C:/Era/dashboard/backend/send-email.mjs --subject "[Claude Code] 件名" --body "本文"
 ```
 
 **Rules**:
@@ -35,12 +35,12 @@ node src/tools/node/feature-dashboard/backend/send-email.mjs --subject "[Claude 
 
 ## Setup / Recovery
 
-**Config**: `src/tools/node/feature-dashboard/backend/email.config.json` (Gmail SMTP, gitignored)
+**Config**: `C:\Era\dashboard\backend\email.config.json` (Gmail SMTP, gitignored)
 
 テンプレートからコピーして値を設定:
 
 ```bash
-cp src/tools/node/feature-dashboard/backend/email.config.template.json src/tools/node/feature-dashboard/backend/email.config.json
+cp C:/Era/dashboard/backend/email.config.template.json C:/Era/dashboard/backend/email.config.json
 ```
 
 1. Gmail アプリパスワード生成: https://myaccount.google.com/apppasswords

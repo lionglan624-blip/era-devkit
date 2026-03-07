@@ -58,7 +58,7 @@ src/
   tools/
     dotnet/           # C# tools (ErbParser, KojoComparer, etc. + .Tests each)
     python/           # Python tools (lsp.py, feature-status.py, ac_ops.py, etc.)
-    node/             # Node.js (session-extractor, lsp-daemon-launcher)
+    node/             # Node.js (session-extractor, lsp-daemon-launcher) — dashboard moved to C:\Era\dashboard
     go/               # Go (com-validator)
     kojo-mapper/      # Kojo mapper (standalone Python)
     schemas/          # JSON Schemas for validation
@@ -208,7 +208,7 @@ Type: research  # -> no implementer — investigation/analysis only
 | `docs/reference/ntr-system-map.md` | NTR system reference |
 | `.claude/reference/ssot-update-rules.md` | SSOT update rules |
 | `NOTICE.md` | License |
-| `src/tools/node/feature-dashboard/HANDOFF.md` | Feature Dashboard spec (devkit内、PM2実行パス). **「HANDOFF.md読んで」と言われたら無条件で全文Read（セクション確認不要）** |
+| `C:\Era\dashboard\HANDOFF.md` | Feature Dashboard spec (dashboard repo). **「HANDOFF.md読んで」と言われたら無条件で全文Read（セクション確認不要）** |
 | `src/tools/python/session-search.py` | Session JSONL search — see "Session JSONL Investigation" section for task→flag table |
 | `src/tools/python/pm2_diag.py` | PM2 log diagnostic — see "PM2 Log Investigation" section for task→flag table |
 | `src/tools/python/dashboard_diag.py` | Dashboard execution diagnostic — see "Dashboard Investigation" section for task→flag table |
@@ -463,4 +463,4 @@ The dialogue system loads character speech (COM) from YAML files through a cache
 | game | `C:\Era\game` | Game runtime data (ERB, YAML, CSV) |
 | core | `C:\Era\core` | Era.Core C# runtime library |
 | engine | `C:\Era\engine` | uEmuera game engine (Unity) |
-| dashboard | `C:\Era\dashboard` | Feature dashboard (Node.js). devkit内 `src/tools/node/feature-dashboard/` が開発・PM2実行パス |
+| dashboard | `C:\Era\dashboard` | Feature dashboard (Node.js). 独立リポジトリ、PM2実行パス |

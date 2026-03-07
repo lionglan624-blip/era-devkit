@@ -177,7 +177,7 @@ GlobalStatic.FileSystem = null;            // Teardown (resets to default)
 ### Required Items
 
 - [ ] Use GlobalStatic for service dependencies
-- [ ] Add unit tests in `src/engine.Tests/` for new code
+- [ ] Add unit tests in engine repo (`C:\Era\engine\engine.Tests/`) for new code
 - [ ] Follow existing conventions (PascalCase methods, camelCase locals)
 - [ ] Use nullable annotations (`?`) where appropriate
 - [ ] XML comments for public APIs

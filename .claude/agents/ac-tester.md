@@ -67,7 +67,7 @@ Check AC Target column for test location. tests/debug/ placement is also possibl
 
 | AC Type | Location | Skill Reference |
 |---------|----------|-----------------|
-| `test` | src/engine.Tests/ | [ENGINE.md](../../skills/testing/ENGINE.md) |
+| `test` | engine repo: engine.Tests/ (C:\Era\engine) | [ENGINE.md](../../skills/testing/ENGINE.md) |
 | `output` | tests/debug/feature-{ID}/ | [KOJO.md](../../skills/testing/KOJO.md) |
 | `code` | File in Target column | Static verification with Grep |
 

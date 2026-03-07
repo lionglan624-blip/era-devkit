@@ -9,10 +9,11 @@ C# engine testing-specific reference. See [SKILL.md](SKILL.md) for common inform
 ## C# Unit Tests
 
 ```bash
-dotnet test src/engine.Tests/ --blame-hang-timeout 10s
+# engine.Tests lives in the engine repo (C:\Era\engine)
+MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/engine && /home/siihe/.dotnet/dotnet test engine.Tests/ --blame-hang-timeout 10s'
 ```
 
-**Specific test**: `dotnet test src/engine.Tests/ --blame-hang-timeout 10s --filter "FullyQualifiedName~CommandDispatcher"`
+**Specific test**: `dotnet test engine.Tests/ --blame-hang-timeout 10s --filter "FullyQualifiedName~CommandDispatcher"` (run from engine repo)
 
 ---
 

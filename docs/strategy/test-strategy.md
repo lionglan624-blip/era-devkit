@@ -68,7 +68,7 @@
 - NoWarn suppressed rules tracked in `memory/analyzer-nowarn-debt.md`
 
 ### Mutation Testing:
-- Dashboard backend: Stryker (JS) — `cd src/tools/node/feature-dashboard/backend && npm run test:mutation`
+- Dashboard backend: Stryker (JS) — `cd C:/Era/dashboard/backend && npm run test:mutation`
 - Era.Core: Stryker.NET — `cd Era.Core.Tests && dotnet stryker`
 - Executed at Post-Phase Review (not per-commit — high cost)
 - Scores recorded in Post-Phase Review progress log for trend tracking

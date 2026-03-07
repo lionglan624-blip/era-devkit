@@ -78,6 +78,11 @@ Design technical approach to satisfy Acceptance Criteria. This agent runs during
       - Extract magic strings/values to module-level constants (e.g., `STATIC_AC_TYPES`, `ERROR_CATEGORIES`)
    b. For each data representation choice (dict vs dataclass/NamedTuple), document the choice explicitly in Key Decisions
    c. F845 lesson: 26 Phase3-Maintainability fixes (63% of all FL fixes) were Python design refinements — standalone function extraction, module constants, return types, None guards, enum .name conversion. C# features get type enforcement from the compiler; Python pseudocode requires explicit specification.
+8g. **Domain Label Verification** (MANDATORY when Technical Design enumerates named domain items — route names, phase names, enum members, collection labels):
+   a. For each enumerated list of named items in Approach or Interfaces sections, Grep the cited SSOT source document for the canonical names
+   b. Verify 1:1 match between Technical Design labels and SSOT source labels (exact wording, not paraphrased)
+   c. If any label differs from the source: correct it in Technical Design and log in `### Upstream Issues` if AC Expected values are affected
+   d. F850 lesson: 2 content-correction FL fixes — Route English labels (R0-R6) and Collection Members labels were plausible but didn't match exact terminology in architecture doc
 9. Edit feature-{ID}.md to add Technical Design section
 
 ## Output Format

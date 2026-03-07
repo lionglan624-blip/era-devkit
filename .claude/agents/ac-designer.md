@@ -73,6 +73,7 @@ Design Acceptance Criteria table and details from Philosophy/Goal sections. This
 | **Stub replacement** | (1) not_matches Exception, (2) matches injection, (3) matches actual call in consumer |
 | **Interface extension** | (1) new method ACs, (2) count_equals existing methods preserved |
 | **New file/type** | (1) file exists, (2) SSOT update if ssot-update-rules.md requires |
+| **Shared vocabulary type (Philosophy declares downstream consumers)** | (1) file exists, (2) each public property/method has AC, (3) consumer file references type (F850 lesson: 4 ac-gap fixes for missing IsCorrupted/IsComplete/field ACs on types declared as "shared vocabulary" for successor features) |
 | **DRAFT feature creation** | (1) feature-{ID}.md file exists, (2) index-features.md registration verified (F837 lesson: DRAFT Creation Checklist requires BOTH file existence AND index registration ACs) |
 | **Helper extraction/dedup** | (1) not_matches old private helper, (2) matches new shared call |
 | **Config/flag change** | (1) matches new value, (2) not_matches old value |
@@ -109,7 +110,11 @@ Design Acceptance Criteria table and details from Philosophy/Goal sections. This
    - Grep the target path and count matches
    - Verify current count differs from Expected (ensures AC is testable)
 
-**Rationale**: F782 analysis: 17 matcher fixes during FL. Unverified matchers cause vacuous tests (not_matches that never matched) and false greens (matches that already exist).
+10.5.4. For each `matches` or `not_matches` AC, check if the Expected value contains regex metacharacters (`[]`, `()`, `*`, `+`, `?`, `\d`, `\w`, `|` outside literal context, `^`, `$`).
+   - If Expected is a plain literal string with NO metacharacters → downgrade to `contains` / `not_contains` respectively.
+   - F850 lesson: 3 matcher fixes during FL (gte→exists for file checks, not_matches→not_contains and matches→contains for literal strings).
+
+**Rationale**: F782 analysis: 17 matcher fixes during FL. Unverified matchers cause vacuous tests (not_matches that never matched) and false greens (matches that already exist). F850 analysis: literal strings incorrectly assigned regex matchers.
 
 ### Step 10.6: DI Injection AC Coverage (MANDATORY for engine/erb; also MANDATORY for infra types whose Goal or Files Involved references source code files (.cs, .py, .js, .csproj); OPTIONAL for others)
 

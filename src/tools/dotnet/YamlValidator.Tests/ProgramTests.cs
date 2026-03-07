@@ -202,18 +202,18 @@ public class ProgramTests
         var yamlFiles = Directory.GetFiles(kojoDir, "*.yaml", SearchOption.AllDirectories);
 
         // Act
-        var failures = new List<string>();
-        foreach (var yamlFile in yamlFiles)
+        var failures = new System.Collections.Concurrent.ConcurrentBag<string>();
+        await Parallel.ForEachAsync(yamlFiles, new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount }, async (yamlFile, ct) =>
         {
             var result = await Program.ValidateFile(schema, yamlFile);
             if (result != 0)
             {
                 failures.Add(Path.GetFileName(yamlFile));
             }
-        }
+        });
 
         // Assert
-        Assert.True(failures.Count == 0,
+        Assert.True(failures.IsEmpty,
             $"{failures.Count}/{yamlFiles.Length} files failed validation:\n{string.Join("\n", failures.Take(20))}");
     }
 

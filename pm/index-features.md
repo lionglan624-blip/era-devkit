@@ -75,7 +75,17 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F849 | [DRAFT] | Phase 24 Planning | F848 | [feature-849.md](feature-849.md) |
+
+### Phase 24: NTR Bounded Context
+
+| ID | Status | Name | Depends On | Links |
+|:---|:------:|:-----|:-----------|:------|
+| F850 | [DRAFT] | NTR Ubiquitous Language + Value Objects | F849 | [feature-850.md](feature-850.md) |
+| F851 | [DRAFT] | NtrProgression Aggregate + Domain Events | F850 | [feature-851.md](feature-851.md) |
+| F852 | [DRAFT] | INtrCalculator Domain Service | F851 | [feature-852.md](feature-852.md) |
+| F853 | [DRAFT] | NTR Application Services + Anti-Corruption Layer | F852 | [feature-853.md](feature-853.md) |
+| F854 | [DRAFT] | Post-Phase Review Phase 24 | F853 | [feature-854.md](feature-854.md) |
+| F855 | [DRAFT] | Phase 25 Planning | F854 | [feature-855.md](feature-855.md) |
 
 ### Other
 
@@ -94,12 +104,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 849 | ✅ | Phase 24 Planning | [feature-849.md](feature-849.md) |
 | 848 | ✅ | Post-Phase Review Phase 23 | [feature-848.md](feature-848.md) |
 | 847 | ✅ | Phase 23 NTR Kojo Reference Analysis | [feature-847.md](feature-847.md) |
 | 827 | ✅ | Phase 23 Planning | [feature-827.md](feature-827.md) |
 | 845 | ✅ | Full AC pattern catalog scan across all features | [feature-845.md](feature-845.md) |
 | 844 | ✅ | _UNESCAPE_RULES catch-all regex refactoring | [feature-844.md](feature-844.md) |
-| 846 | ❌ | feature-status.py Active→Recently Completed migration gap | [feature-846.md](feature-846.md) |
 
 ---
 
@@ -190,4 +200,4 @@ See [kojo-mapper](../../tools/kojo-mapper/) for detailed coverage analysis.
 
 ---
 
-**Next Feature number**: 850
+**Next Feature number**: 856

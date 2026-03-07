@@ -645,6 +645,11 @@ Steps must execute sequentially in Phase order. Each sub-feature DRAFT is a prer
 | 2026-03-07T01:12 | REVIEW | feature-reviewer | Quality review (post) | READY |
 <!-- run-phase-8-completed -->
 | 2026-03-07T01:15 | DEVIATION | ac-static-verifier | AC#5,#10 false-FAIL (exit 1) | Tool pipe-escaping issue, manual grep confirms 4/4 PASS each |
+| 2026-03-07T01:18 | FINALIZE | finalizer | [WIP] → [DONE] | READY_TO_COMMIT |
+| 2026-03-07T01:18 | COMMIT | git | d4970ad | CI passed (807 tests) |
+| 2026-03-07T01:18 | CodeRabbit | orchestrator | Skip (research) | - |
+<!-- run-phase-9-completed -->
+<!-- run-phase-10-completed -->
 
 ---
 
@@ -668,6 +673,13 @@ Steps must execute sequentially in Phase order. Each sub-feature DRAFT is a prer
 <!-- Populated by /imp {ID}. Records modification results only (no analysis narrative). -->
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
+
+### /imp 849 (2026-03-07)
+- [applied] ac-designer self-referential AC prohibition rule追加（F643,F786,F814,F849で5+件再発パターン） → `.claude/agents/ac-designer.md`
+- [rejected] ac-designer Goal Coverage transition feature type AC漏れ — F849のみの単発パターン、既存Goal Coverageルールで十分
+- [rejected] feature-reviewer maintainability cross-sub-feature依存検出 — 既存reviewerが正常検出済み、単発パターン
+- [rejected] imp-analyzer共有セッションフィルタリング — F848で同一提案を既にreject済み
+- [rejected] Hook error事前検証 — インフラ問題、ワークフロー改善対象外
 
 ---
 

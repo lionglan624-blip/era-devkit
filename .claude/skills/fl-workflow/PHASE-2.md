@@ -18,13 +18,6 @@
 ```
 iteration += 1
 
-# Persist state to disk (crash recovery — see SKILL.md "FL State File")
-Write("_out/tmp/fl-state-{ID}.json", JSON.stringify({
-    "iteration": iteration,
-    "current_phase": 2,
-    "timestamp": now_iso()
-}))
-
 IF iteration >= MAX_ITERATIONS:
     → Enter Forward-Only Mode (see SKILL.md)
 ```

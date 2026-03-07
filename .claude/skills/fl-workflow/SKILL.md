@@ -566,34 +566,6 @@ If fix is symptom/workaround → Find and fix root cause instead
 | "Retry on timeout" | Fix why timeout occurs |
 | "Document as limitation" | Remove the limitation |
 
-### FL State File (Iteration Persistence)
-
-**Purpose**: Survive context compression and session crashes by persisting iteration state to disk.
-
-**File**: `_out/tmp/fl-state-{ID}.json`
-
-```json
-{"iteration": 3, "current_phase": 4, "timestamp": "2026-03-05T10:30:00Z"}
-```
-
-**Lifecycle**:
-- **Write**: At Phase 2 entry, before `iteration += 1` (see PHASE-2.md)
-- **Read**: At FL start (Phase 1 entry), restore iteration counter if file exists
-- **Delete**: At POST-LOOP completion (successful or context pressure exit)
-
-**FL Start Restore Logic**:
-```
-state_file = "_out/tmp/fl-state-{ID}.json"
-IF file exists:
-    state = JSON.parse(Read(state_file))
-    iteration = state.iteration
-    Log: "Restored FL state: iteration={iteration}, last_phase={state.current_phase}"
-ELSE:
-    iteration = 0
-```
-
-**Note**: This is a crash-recovery mechanism. Normal FL flow always increments iteration in Phase 2. The state file ensures that if context compresses or session crashes mid-iteration, the next `/fl` invocation resumes at the correct iteration count rather than restarting from 0.
-
 ### Early Termination Prohibition
 
 FL loop MUST NOT terminate early except for these conditions:

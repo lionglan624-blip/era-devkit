@@ -74,3 +74,4 @@ StrykerOutput/
 
 # Stale runtime directories
 Game/
+test/configs/unit-test-detection-result.json

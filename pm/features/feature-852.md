@@ -34,6 +34,8 @@ Design and implement `INtrCalculator` interface in `src/Era.Core/NTR/Domain/Serv
 
 **DDD Input Reference**: `pm/reference/ntr-ddd-input.md` — NtrParameters Grounded status (required parameters for calculator TBD during design). The exact parameter set depends on which ERB parameters are mandatory vs optional, as evidenced by cross-character CHK_NTR_SATISFACTORY variance (0 for U_汎用 to 38 for K10).
 
+**F850 Handoff**: NtrParameters satisfaction-state parameter expansion (CHK_NTR_SATISFACTORY optional params). Current F850 design has 2 fields (SlaveLevel, FavLevel); ntr-ddd-input.md suggests satisfaction-state tracking may be needed. INtrCalculator design should evaluate whether NtrParameters needs additional fields for its method signatures.
+
 ### Architecture Task Coverage
 
 <!-- Architecture Task 7: INtrCalculator Domain Service設計 -->

@@ -30,6 +30,8 @@ After Phase 24 implementation sub-features (F850-F853) complete, the architectur
 
 Verify architecture doc Phase 24 section integrity against F850-F853 deliverables. Update Phase Status from TODO to DONE. Check Success Criteria checkboxes. Confirm whether Redux Pattern is needed for any remaining obligations.
 
+**F850 Handoff**: Ubiquitous Language cross-VO terminology consistency validation. AC#17 verifies glossary existence (gte 4) but not cross-VO term consistency. Post-Phase Review should validate that XML doc comments across NtrRoute, NtrPhase, NtrParameters, and Susceptibility use consistent Japanese/English terminology.
+
 ### Architecture Task Coverage
 
 <!-- Architecture Task 10: Post-Phase Review Phase 24 -->

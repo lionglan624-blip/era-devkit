@@ -48,7 +48,7 @@ Implement NtrProgression as AggregateRoot and domain event classes in `src/Era.C
 
 | Type | Feature | Status | Description |
 |------|---------|--------|-------------|
-| Predecessor | F850 | [DRAFT] | NTR UL + Value Objects (required before Aggregate) |
+| Predecessor | F850 | [DONE] | NTR UL + Value Objects (required before Aggregate) |
 
 ---
 

@@ -321,6 +321,38 @@ grep -c DEVIATION pm/features/feature-{ID}.md
 
 ---
 
+## Step 10.5: Push (Post-Phase Review / Planning only)
+
+**Trigger**: Feature name contains "Post-Phase Review" or "Planning" (migration phase transition features).
+
+**Skip**: All other feature types.
+
+**Purpose**: Backup checkpoint at migration phase boundaries. Defined in `full-csharp-architecture.md` Post-Phase Review / Planning 必須タスク.
+
+**Procedure**:
+
+1. Push all 5 repos that have unpushed commits:
+
+```bash
+# Check each repo for unpushed commits and push
+for repo in /c/Era/devkit /c/Era/core /c/Era/engine /c/Era/dashboard /c/Era/game; do
+  cd "$repo"
+  branch=$(git branch --show-current)
+  unpushed=$(git log --oneline @{u}..HEAD 2>/dev/null | wc -l)
+  if [ "$unpushed" -gt 0 ]; then
+    echo "$repo: $unpushed unpushed commits on $branch"
+  fi
+done
+```
+
+2. Push each repo with unpushed commits (determine correct remote per repo).
+
+3. Report push results in Completion output.
+
+> **Note**: engine repo uses `backup` remote (not `origin`). Other repos use `origin`.
+
+---
+
 ## Completion
 
 Report to user:

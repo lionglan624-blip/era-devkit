@@ -80,7 +80,6 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F851 | [DRAFT] | NtrProgression Aggregate + Domain Events | F850 | [feature-851.md](feature-851.md) |
 | F852 | [DRAFT] | INtrCalculator Domain Service | F851 | [feature-852.md](feature-852.md) |
 | F853 | [DRAFT] | NTR Application Services + Anti-Corruption Layer | F852 | [feature-853.md](feature-853.md) |
 | F854 | [DRAFT] | Post-Phase Review Phase 24 | F853 | [feature-854.md](feature-854.md) |
@@ -103,12 +102,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 851 | ✅ | NtrProgression Aggregate + Domain Events | [feature-851.md](feature-851.md) |
 | 850 | ✅ | NTR Ubiquitous Language + Value Objects | [feature-850.md](feature-850.md) |
 | 849 | ✅ | Phase 24 Planning | [feature-849.md](feature-849.md) |
 | 848 | ✅ | Post-Phase Review Phase 23 | [feature-848.md](feature-848.md) |
 | 847 | ✅ | Phase 23 NTR Kojo Reference Analysis | [feature-847.md](feature-847.md) |
 | 827 | ✅ | Phase 23 Planning | [feature-827.md](feature-827.md) |
-| 845 | ✅ | Full AC pattern catalog scan across all features | [feature-845.md](feature-845.md) |
 
 ---
 

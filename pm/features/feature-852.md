@@ -36,6 +36,11 @@ Design and implement `INtrCalculator` interface in `src/Era.Core/NTR/Domain/Serv
 
 **F850 Handoff**: NtrParameters satisfaction-state parameter expansion (CHK_NTR_SATISFACTORY optional params). Current F850 design has 2 fields (SlaveLevel, FavLevel); ntr-ddd-input.md suggests satisfaction-state tracking may be needed. INtrCalculator design should evaluate whether NtrParameters needs additional fields for its method signatures.
 
+**F851 Handoff (3 items)**:
+1. **NtrParameters/Susceptibility mutation methods + events**: NtrProgression aggregate has no methods to update Parameters or CurrentSusceptibility post-creation. Add mutation methods (e.g., `UpdateParameters(NtrParameters)`, `UpdateSusceptibility(Susceptibility)`) with corresponding domain events if runtime state changes are needed.
+2. **ExposureDegree Value Object**: NtrExposureLevelChanged event uses raw `int` for exposure level (C3 constraint: no ExposureDegree VO in F850). Evaluate whether a typed `ExposureDegree` VO should replace the raw int for stronger domain modeling.
+3. **NtrProgressionCreated domain event**: NtrProgression.Create() factory does not raise a creation event (no state transition at initialization). Add NtrProgressionCreated event if event-driven consumers need aggregate creation visibility.
+
 ### Architecture Task Coverage
 
 <!-- Architecture Task 7: INtrCalculator Domain Service設計 -->
@@ -46,7 +51,7 @@ Design and implement `INtrCalculator` interface in `src/Era.Core/NTR/Domain/Serv
 
 | Type | Feature | Status | Description |
 |------|---------|--------|-------------|
-| Predecessor | F851 | [DRAFT] | NtrProgression Aggregate (INtrCalculator operates on Aggregate) |
+| Predecessor | F851 | [DONE] | NtrProgression Aggregate (INtrCalculator operates on Aggregate) |
 
 ---
 

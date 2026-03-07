@@ -122,7 +122,7 @@ function runCapture({ env, cols, rows, timeoutMs }) {
         finish(usageScreen?.getText() || screen.getText());
     }, timeoutMs);
 
-    ptyProcess.onExit(({ exitCode }) => {
+    ptyProcess.onExit(({ exitCode: _exitCode }) => {
         clearTimeout(overallTimeout);
         const exitText = usageScreen?.getText() || screen.getText();
         finish(exitText);

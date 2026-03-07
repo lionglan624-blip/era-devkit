@@ -3,10 +3,6 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  test: {
-    environment: 'jsdom',
-    setupFiles: ['./src/test/setup.js'],
-  },
   server: {
     port: parseInt(process.env.VITE_PORT || '5173'),
     proxy: {
@@ -21,6 +17,7 @@ export default defineConfig({
     globals: false,
     environment: 'jsdom',
     setupFiles: './src/test/setup.js',
+    env: { NODE_ENV: 'development' },
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

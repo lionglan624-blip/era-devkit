@@ -1560,7 +1560,7 @@ export class ClaudeService {
             }
         }
 
-        if (chainContinues && !isLastChainStep && !incompleteRetryExhausted && !execution._resumedAnswer) {
+        if (chainContinues && !isLastChainStep && !incompleteRetryExhausted && (!execution._hadInputWait || execution._resumedAnswer)) {
             this.chainExecutor.registerWaiter(execution);
         }
 
@@ -1619,6 +1619,16 @@ export class ClaudeService {
             } catch (err) {
                 claudeLog.error(`[ClaudeService] _onComplete callback error: ${err.message}`);
             }
+        }
+
+        // Auto-handoff: update-analysis → terminal resume on success
+        if (
+            execution.command === 'update-analysis' &&
+            exitCode === 0 &&
+            execution.sessionId &&
+            execution.status !== 'handed-off'
+        ) {
+            this._handoffToTerminal(execution, 'Update analysis complete — auto-resume');
         }
 
         // Notify listeners (e.g., auto-DR) that an execution finished
@@ -2303,7 +2313,6 @@ export class ClaudeService {
                 clearInterval(exec.stallCheckInterval);
                 exec.stallCheckInterval = null;
             }
-            this.runningCount = Math.max(0, this.runningCount - 1);
             this.logStreamer?.broadcastAll({
                 type: 'status',
                 executionId,
@@ -2541,12 +2550,9 @@ export class ClaudeService {
         execution.waitingInputPattern = null;
         execution.inputRequired = null;
         execution._killedForAskUser = false;
-        // Mark as resumed-answer: completion of this resumed process must NOT
-        // re-register chain waiters (the original completion already did).
+        // Mark as resumed-answer: allows chain waiter registration on completion
+        // (input-wait exit skips registration; _resumedAnswer re-enables it).
         execution._resumedAnswer = true;
-        // Note: chain waiter registration is handled by the close handler of
-        // the resumed process. The original kill (_killedForAskUser) does NOT
-        // register a waiter — it early-returns to keep the execution alive.
         execution.debugLogPath = path.join(this.tmpDir, `debug-${execution.id}-resume.log`);
 
         const claudePath = process.env.CLAUDE_PATH || 'claude';

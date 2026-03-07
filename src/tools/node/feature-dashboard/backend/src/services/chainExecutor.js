@@ -175,9 +175,21 @@ export class ChainExecutor {
         const waiter = this.chainWaiters.get(featureId);
         if (!waiter) return;
 
-        this.chainWaiters.delete(featureId);
         const execution = this.deps.getExecution(waiter.executionId);
-        if (!execution) return;
+        if (!execution) {
+            this.chainWaiters.delete(featureId);
+            return;
+        }
+
+        // Guard against running execution (resumed process still active)
+        if (execution.status === 'running') {
+            claudeLog.info(
+                `[Chain] F${featureId}: ${oldStatus} → ${newStatus}, but exec ${waiter.executionId} still running — deferring to process exit`,
+            );
+            return; // Keep waiter, defer to Path B (registerWaiter on process exit)
+        }
+
+        this.chainWaiters.delete(featureId);
 
         const nextCommand = getNextChainCommand(newStatus);
         if (!nextCommand) {

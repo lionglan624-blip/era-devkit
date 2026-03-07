@@ -234,7 +234,45 @@ describe('ChainExecutor', () => {
             chainExecutor.handleStatusChanged('100', '[DRAFT]', '[PROPOSED]');
 
             expect(mockDeps.executeCommand).not.toHaveBeenCalled();
-            expect(chainExecutor.hasWaiter('100')).toBe(false); // Waiter still deleted
+            expect(chainExecutor.hasWaiter('100')).toBe(false); // Waiter cleaned up
+        });
+
+        it('defers chain trigger when execution is still running', () => {
+            const execution = {
+                id: 'exec-123',
+                featureId: '100',
+                command: 'fc',
+                chainParentId: null,
+                chain: { history: [] },
+                status: 'running',
+            };
+            mockDeps.getExecution.mockReturnValue(execution);
+
+            chainExecutor.handleStatusChanged('100', '[DRAFT]', '[PROPOSED]');
+
+            expect(mockDeps.executeCommand).not.toHaveBeenCalled();
+            expect(chainExecutor.hasWaiter('100')).toBe(true); // Waiter preserved
+        });
+
+        it('triggers chain when execution is completed', () => {
+            const execution = {
+                id: 'exec-123',
+                featureId: '100',
+                command: 'fc',
+                chainParentId: null,
+                chain: { history: [] },
+                status: 'completed',
+            };
+            mockDeps.getExecution.mockReturnValue(execution);
+
+            chainExecutor.handleStatusChanged('100', '[DRAFT]', '[PROPOSED]');
+
+            expect(mockDeps.executeCommand).toHaveBeenCalledWith('100', 'fl', {
+                chain: true,
+                chainParentId: 'exec-123',
+                chainHistory: [{ command: 'fc', result: 'ok' }],
+            });
+            expect(chainExecutor.hasWaiter('100')).toBe(false);
         });
 
         it('triggers imp on [DONE] status', () => {

@@ -304,6 +304,7 @@ Copy these exact headers, column structures, and sub-section names. Do NOT renam
 - Each AC must be independently verifiable
 - Use strict matchers (prefer `equals` over `contains` when possible)
 - Binary judgment only (PASS/FAIL, no confidence levels)
+- **Self-referential AC prohibition**: An AC must NOT verify content in the feature file itself unless checking structural properties (section existence, format). ACs that grep the target feature file for semantic content the feature defines are tautological — always PASS by construction. Verify deliverables (output files, code, index entries), not the planning document. (F643, F786, F814, F849 lesson: 5+ FL fixes for self-referential ACs)
 
 ### Threshold Derivation Rule
 

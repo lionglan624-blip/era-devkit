@@ -772,6 +772,12 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 850 (2026-03-07)
+- [revised] ac-designer Step 6.5.2: 「Shared vocabulary type」カテゴリ追加（downstream consumer AC生成漏れ防止） → `.claude/agents/ac-designer.md`
+- [revised] ac-designer Step 10.5.4: literal-vs-regex判別ルール追加（matches/not_matches→contains/not_contains降格） → `.claude/agents/ac-designer.md`
+- [revised] tech-designer Step 8g: Domain Label Verification追加（列挙型ドメインラベルのSSOT照合） → `.claude/agents/tech-designer.md`
+- [rejected] FC handoff検出の前倒し — FL Phase 3が設計通り機能、重複回避
+
 ---
 
 <!-- fc-phase-6-completed -->

@@ -256,38 +256,22 @@ FOR feature in affected_features:
 TaskUpdate(subject: "Post-loop: pending_user confirmation", status: "completed")
 ```
 
-## Step 5: Skill Update
+## Step 5: Skill Update (Log-Only)
 
-**CRITICAL**: MUST read type-specific skill file. Self-judging without reading is prohibited.
+**Purpose**: Record fix patterns for future `/run` or `/imp` sessions to act on. Actual skill edits happen in `/run` (Phase 8.2) or `/imp`, not here.
 
 ```
 IF target_type == "feature":
     feature_type = read_feature_type(target_path)  # engine, erb, kojo, etc.
-    skill_file = ".claude/skills/feature-quality/{feature_type.upper()}.md"
-
-    # 1. Always read (regardless of fix history presence)
-    Read(skill_file)  # ← Mandatory. Reading enables comparison with existing patterns
-
-    # 2. Read [fix] entries from feature.md Review Notes and compare with existing patterns
     fix_entries = Grep("[fix]", feature.md Review Notes)  # All [fix] tagged lines
-    IF fix_entries is not empty:
-        # Compare fix_entries with read skill_file content
-        # Consider adding new patterns if found
-        FOR fix in fix_entries:
-            IF fix represents a new preventable pattern:
-                append to skill_file:
-                    ### Issue N: {pattern.title}
-                    **Symptom**: {fix.issue}
-                    **Example (Bad)**: {fix.old}
-                    **Example (Good)**: {fix.new}
-                    **Fix**: {one-line summary}
 
-                # Update checklist too
-                append to skill_file checklist:
-                    - [ ] {checklist item corresponding to pattern.title}
+    IF fix_entries is not empty:
+        Log: "Step 5: {len(fix_entries)} fix entries found for {feature_type} type. Patterns deferred to /run or /imp."
+    ELSE:
+        Log: "Step 5: No fix entries. Skipping."
 ```
 
-**Rationale**: Prevents self-judgment of "not a pattern" without reading. Reading enables proper comparison with existing patterns and appropriate decision-making.
+**Rationale**: FL fixes are recorded in Review Notes. Skill file updates require reading + comparison which is better suited to `/run` Phase 8.2 (extensibility review) or `/imp` (cross-feature pattern analysis) where broader context is available.
 
 ## Step 6: Philosophy Gate (Features Only)
 

@@ -70,14 +70,14 @@ From the timeline:
 
 End with **3-5 concrete next actions** prioritized by cross-feature impact.
 
-### CR-4: Opus Review of Cross-Review Proposals
+### CR-4: Review of Cross-Review Proposals (Sonnet-First Escalation)
 
 **MANDATORY: All proposals must be reviewed before finalization.**
 
-Dispatch an opus-model agent to review the CR-2/CR-3 proposals:
+**Escalation Pattern**: Sonnet reviews first. If sonnet finds 0 issues → 1x opus verification before proceeding. If sonnet finds issues → fix without opus (sonnet sufficient for identifying concrete problems).
 
 ```
-Agent(subagent_type: "deep-explorer", model: opus, prompt: """
+sonnet_result = Agent(subagent_type: "general-purpose", model: "sonnet", prompt: """
 Review the /imp cross-review improvement proposals against the actual workflow implementation.
 
 For each proposed action item:
@@ -96,11 +96,23 @@ For each proposed action item:
 Output: JSON array of review verdicts per proposal:
 [{"proposal": "...", "verdict": "accept|revise|reject", "reason": "...", "evidence_checked": "..." (for reject), "revision": "..." (if revise)}]
 """)
+
+# ESCALATION: If sonnet found 0 reject/revise → opus verification
+IF all sonnet_result verdicts are "accept":
+    opus_result = Agent(subagent_type: "deep-explorer", model: "opus", prompt: """
+    Sonnet reviewed all proposals as "accept". Verify this is correct — check for subtle issues sonnet may have missed.
+    Proposals: {proposals}. Sonnet verdicts: {sonnet_result}.
+    Output: JSON array with same format. Only flag genuine issues.
+    """)
+    result = opus_result
+ELSE:
+    result = sonnet_result
+```
 ```
 
-### CR-4.5: Verify Opus Review Results
+### CR-4.5: Verify Review Results
 
-**MANDATORY: Orchestrator must verify Opus review verdicts before presenting to user.**
+**MANDATORY: Orchestrator must verify review verdicts before presenting to user.**
 
 For each verdict from CR-4:
 
@@ -114,7 +126,7 @@ For each verdict from CR-4:
    - If "insufficient evidence" → Verify the feature count claim is accurate
    - If evidence is unverifiable or incorrect → override to `revise` with investigation notes
 
-Present verified results as a table with columns: `#`, `提案`, `Opus判定`, `検証結果`, `最終判定`.
+Present verified results as a table with columns: `#`, `提案`, `レビュー判定`, `検証結果`, `最終判定`.
 
 If any verdict was overridden, explain why.
 
@@ -151,7 +163,7 @@ Using the script's Section 6 (self-analysis metrics) plus the cross-feature data
 #### 1. 提案精度分析 (Proposal Precision)
 
 - applied率 vs rejected率の推移
-- 却下理由の分類 → どのStep（Step 2.5 skill読み込み, Step 5 Opusレビュー）で防げたか
+- 却下理由の分類 → どのStep（Step 2.5 skill読み込み, Step 5 レビュー）で防げたか
 - "Already implemented" 却下を減らすための具体的チェック追加
 
 #### 2. /imp スクリプト改善 (Script Improvements)
@@ -163,7 +175,7 @@ Using the script's Section 6 (self-analysis metrics) plus the cross-feature data
 #### 3. /imp コマンド改善 (Command Improvements)
 
 - Step間のフロー最適化
-- Opusレビュー（Step 5）の精度向上策
+- レビュー（Step 5）の精度向上策
 - 反復パターンの自動検出ルール
 
 #### 4. ワークフロー統合 (Workflow Integration)
@@ -175,14 +187,14 @@ Using the script's Section 6 (self-analysis metrics) plus the cross-feature data
 
 End with **3-5 concrete changes to /imp itself**, each with target file and expected impact.
 
-### SI-5: Opus Review of Self-Improvement Proposals
+### SI-5: Review of Self-Improvement Proposals (Sonnet-First Escalation)
 
 **MANDATORY: All proposals must be reviewed before finalization.**
 
-Dispatch an opus-model agent to review the SI-3/SI-4 proposals:
+**Escalation Pattern**: Sonnet reviews first. If sonnet finds 0 issues → 1x opus verification before proceeding.
 
 ```
-Agent(subagent_type: "deep-explorer", model: opus, prompt: """
+sonnet_result = Agent(subagent_type: "general-purpose", model: "sonnet", prompt: """
 Review the /imp imp self-improvement proposals against the actual implementation.
 
 Context: These proposals target the /imp command itself (.claude/commands/imp.md) and/or
@@ -198,7 +210,7 @@ For each proposed change:
 7. Flag any proposal that:
    - Is based on insufficient data (e.g. only 1-2 /imp runs observed)
    - Would increase /imp execution cost without proportional benefit
-   - Duplicates checks already performed by Opus review in Per-Feature Mode (Step 5)
+   - Duplicates checks already performed by review in Per-Feature Mode (Step 5)
    - Would cause regression in existing modes
 
 Cross-check against the Improvement Log data:
@@ -209,11 +221,23 @@ Cross-check against the Improvement Log data:
 Output: JSON array of review verdicts per proposal:
 [{"proposal": "...", "verdict": "accept|revise|reject", "reason": "...", "evidence_checked": "..." (for reject), "revision": "..." (if revise)}]
 """)
+
+# ESCALATION: If sonnet found 0 reject/revise → opus verification
+IF all sonnet_result verdicts are "accept":
+    opus_result = Agent(subagent_type: "deep-explorer", model: "opus", prompt: """
+    Sonnet reviewed all self-improvement proposals as "accept". Verify this is correct.
+    Proposals: {proposals}. Sonnet verdicts: {sonnet_result}.
+    Output: JSON array with same format. Only flag genuine issues.
+    """)
+    result = opus_result
+ELSE:
+    result = sonnet_result
+```
 ```
 
-### SI-5.5: Verify Opus Review Results
+### SI-5.5: Verify Review Results
 
-**MANDATORY: Orchestrator must verify Opus review verdicts before presenting to user.**
+**MANDATORY: Orchestrator must verify review verdicts before presenting to user.**
 
 For each verdict from SI-5:
 
@@ -227,7 +251,7 @@ For each verdict from SI-5:
    - If "insufficient evidence" → Verify the data claim is accurate
    - If evidence is unverifiable or incorrect → override to `revise` with investigation notes
 
-Present verified results as a table with columns: `#`, `提案`, `Opus判定`, `検証結果`, `最終判定`.
+Present verified results as a table with columns: `#`, `提案`, `レビュー判定`, `検証結果`, `最終判定`.
 
 If any verdict was overridden, explain why.
 
@@ -338,14 +362,14 @@ End with a prioritized list of **3-5 concrete next actions**, each with:
 - Where to implement (file path or skill name)
 - Expected impact (high/medium/low)
 
-### Step 5: Opus Review of Proposed Changes
+### Step 5: Review of Proposed Changes
 
 **MANDATORY: All proposals must be reviewed before finalization.**
 
 Dispatch an opus-model agent to review the Step 3-4 output against the actual workflow files:
 
 ```
-Agent(subagent_type: "deep-explorer", model: opus, prompt: """
+Agent(subagent_type: "deep-explorer", model: "opus", prompt: """
 Review the /imp {ID} improvement proposals against the actual workflow implementation.
 
 For each proposed change:
@@ -370,9 +394,9 @@ Output: JSON array of review verdicts per proposal:
 """)
 ```
 
-### Step 5.5: Verify Opus Review Results
+### Step 5.5: Verify Review Results
 
-**MANDATORY: Orchestrator must verify Opus review verdicts before presenting to user.**
+**MANDATORY: Orchestrator must verify review verdicts before presenting to user.**
 
 For each verdict from Step 5:
 
@@ -386,7 +410,7 @@ For each verdict from Step 5:
    - If "insufficient evidence" → Verify the feature count claim is accurate
    - If evidence is unverifiable or incorrect → override to `revise` with investigation notes
 
-Present verified results as a table with columns: `#`, `提案`, `Opus判定`, `検証結果`, `最終判定`.
+Present verified results as a table with columns: `#`, `提案`, `レビュー判定`, `検証結果`, `最終判定`.
 
 If any verdict was overridden, explain why.
 
@@ -395,7 +419,7 @@ If any verdict was overridden, explain why.
 Present the reviewed action items to the user with a single confirmation prompt:
 
 ```
-AskUserQuestion: "Opusレビュー済みの改善提案を対象ファイルに反映しますか？"
+AskUserQuestion: "レビュー済みの改善提案を対象ファイルに反映しますか？"
 Options: "Yes — apply all accepted/revised proposals", "No — report only"
 ```
 

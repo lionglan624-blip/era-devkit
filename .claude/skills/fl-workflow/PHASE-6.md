@@ -54,7 +54,7 @@ IF target_type == "feature":
 
         planning_val = Task(
           subagent_type: "general-purpose",
-          model: "opus",
+          model: "sonnet",
           prompt: `Read .claude/agents/planning-validator.md and validate Feature {target_id} [mode: {planning_mode}]
 
 OUTPUT RULE: Your ENTIRE response must be a single JSON object. Any text outside the JSON (analysis, reasoning, "Let me", explanations) is a protocol violation.`

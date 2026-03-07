@@ -184,7 +184,7 @@ TaskUpdate(subject: "Iteration {N}/10: Phase {X}", status: "in_progress")
 
 | Target Type | Drift Checker | Reviewer | Maintainability | AC Validator | Feasibility | Planning Validator |
 |-------------|---------------|----------|-----------------|--------------|-------------|-------------------|
-| feature | drift-checker (Phase 1.4.5, if drift_candidates) | feature-reviewer (SEMANTIC=opus, STRUCTURAL=sonnet iter1 only) | feature-reviewer (all types) | ac-validator | feasibility-checker (sonnet) | planning-validator (research only) |
+| feature | drift-checker (Phase 1.4.5, if drift_candidates) | feature-reviewer (SEMANTIC=opus, STRUCTURAL=sonnet iter1 only) | feature-reviewer (all types) | ac-validator | feasibility-checker (sonnet) | planning-validator (sonnet, research only) |
 | command | N/A | doc-reviewer | N/A | N/A | N/A | N/A |
 | agent | N/A | doc-reviewer | N/A | N/A | N/A | N/A |
 | skill | N/A | doc-reviewer | N/A | N/A | N/A | N/A |

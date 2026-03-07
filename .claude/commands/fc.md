@@ -147,7 +147,7 @@ Modifying these files to bypass validation gates is **self-hacking** — the orc
       ```
       **CRITICAL: Do NOT use `run_in_background: true`. All 3 Tasks MUST be synchronous calls in a single message. Background tasks cause premature session exit in `-p` mode (the parent process terminates before background agents complete, losing all results).**
    d. Collect 3 investigation results (each returns structured report as text)
-   e. Task(consensus-synthesizer, model: opus, prompt: "Read .claude/agents/consensus-synthesizer.md. Mode: synthesis. Feature: {ID}. Path: pm/features/feature-{ID}.md.\n\n## Dependency Status (pre-computed — do NOT grep individual feature files for status)\n{deps_result}\n\n## Investigation Result 1\n{result1}\n\n## Investigation Result 2\n{result2}\n\n## Investigation Result 3\n{result3}")
+   e. Task(consensus-synthesizer, model: "sonnet", prompt: "Read .claude/agents/consensus-synthesizer.md. Mode: synthesis. Feature: {ID}. Path: pm/features/feature-{ID}.md.\n\n## Dependency Status (pre-computed — do NOT grep individual feature files for status)\n{deps_result}\n\n## Investigation Result 1\n{result1}\n\n## Investigation Result 2\n{result2}\n\n## Investigation Result 3\n{result3}")
       - Writes `_out/tmp/consensus-synthesis-{ID}.md` (full consensus analysis with agreement matrix)
       - Edits feature-{ID}.md: Background + Root Cause + Feasibility + Dependencies + all investigation sections
       - Adds `<!-- fc-phase-1-completed -->` marker before `## Background`
@@ -258,7 +258,7 @@ Modifying these files to bypass validation gates is **self-hacking** — the orc
 | Agent | Model | Count | Edits feature file | Output Sections | Marker |
 |-------|:-----:|:-----:|:------------------:|-----------------|--------|
 | deep-explorer (Round 1) | opus | ×3 parallel | No | Investigation report (structured text) | - |
-| consensus-synthesizer | opus | ×1 | Yes | Background, Root Cause, Feasibility, Dependencies, Impact, Constraints, Risks | `<!-- fc-phase-1-completed -->` |
+| consensus-synthesizer | sonnet | ×1 | Yes | Background, Root Cause, Feasibility, Dependencies, Impact, Constraints, Risks | `<!-- fc-phase-1-completed -->` |
 | deep-explorer (Round 2) | opus | ×1 | No | GO/NO-GO verdict + rationale | - |
 | consensus-synthesizer (revision) | sonnet | ×0~1 | Yes | Micro-revision of flagged sections | - |
 | Orchestrator | - | - | Yes (marker only) | - | `<!-- fc-phase-2-completed -->` |
@@ -273,7 +273,7 @@ Modifying these files to bypass validation gates is **self-hacking** — the orc
 **Section Structure SSOT**: All agents MUST read `pm/reference/feature-template.md` and follow the section structure defined there. Agent `.md` files contain semantic rules only; structural definitions live in the template.
 
 **Cost Profile**:
-- **Standard (erb/engine/infra/research)**: Phase 1-2 uses 4-5 opus + 0-1 sonnet calls on happy path (Round 2: 1x opus direct verification), up to 6 opus on retry.
+- **Standard (erb/engine/infra/research)**: Phase 1-2 uses 3-4 opus + 1-2 sonnet calls on happy path (Round 2: 1x opus direct verification, synthesizer: sonnet), up to 5 opus on retry.
 - **Kojo**: Phase 1-2 uses **1 opus + 2 sonnet** calls (1x opus explorer + 1x sonnet synthesizer + 1x sonnet reviewer). No retry escalation needed — kojo scope is content-focused.
 - Phase 5b (Upstream Issue Gate) adds 0-1 ac-designer re-dispatch when tech-designer flags upstream issues. Phase 6 (quality-fixer) uses sonnet for semantic depth (haiku insufficient for V2/V3 validation). Phase 7 (feature-validator) uses sonnet for semantic depth. Total wall clock: ~5 sequential steps (Round 1 parallel → synthesis → Round 2 → ac/tech/wbs → quality-fixer → validator), +2 on retry. Investment here reduces FL iterations significantly.
 
@@ -281,7 +281,7 @@ Modifying these files to bypass validation gates is **self-hacking** — the orc
 
 ```
                     ┌─ explorer-1 ─┐                                                                 ┌──────────────┐
-Feature Context   → ├─ explorer-2 ─┤→ synthesizer → explorer(opus) → gate → ac-designer → tech-designer →│Upstream Gate │→ wbs-generator → quality-fixer → validator
+Feature Context   → ├─ explorer-2 ─┤→ synthesizer(sonnet) → explorer(opus) → gate → ac-designer → tech-designer →│Upstream Gate │→ wbs-generator → quality-fixer → validator
 (Deviation/Review)  └─ explorer-3 ─┘    合成+編集      検証投票       判定     完成定義        設計       └──────────────┘   作業分解       品質自動修正      検証
                       Round 1                         Round 2                                    ↓ AC micro-revision
                     (独立調査×3)     (合意形成)     (opus直接×1)   (GO/NOGO) (何を達成)    (ACを満たす方法)  (上流修正)    (どう作業)     (パターン修正)

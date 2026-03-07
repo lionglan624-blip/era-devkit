@@ -308,6 +308,7 @@ Run from project root: `cd /c/Era/devkit && python src/tools/python/session-sear
 | OR search | `--or` | `"POST-LOOP" --or "batch_mode" --or "context_pct"` |
 | Find tool usage | `--tool Name` | `--tool AskUserQuestion --session 37ef` |
 | Filter by content type | `--type` | `--session 37ef "issue" --type text` |
+| User text only | `--type user_text` | `"keyword" --type user_text --after 2026-03-06` |
 | Extract raw JSON | `--line N --raw` | `--session 37ef --line 158 --raw` |
 | Context around match | `-C N` | `"error" --session 37ef -C 3` |
 | Count matches only | `--count` | `"pattern" --count --after 2026-03-01` |
@@ -315,6 +316,9 @@ Run from project root: `cd /c/Era/devkit && python src/tools/python/session-sear
 | Search incl. subagents | `--subagents` | `"pattern" --session 37ef --subagents` |
 | Subagent list | `--trace "*"` | `--session 37ef --trace "*"` |
 | Subagent trace | `--trace PREFIX` | `--session 37ef --trace a396 --tool Bash` |
+| Subagent全文出力 | `--trace . --tool Agent --verbose` | `--session 37ef --trace . --tool Agent --verbose` |
+| Subagent内部trace全文 | `--trace PREFIX --verbose` | `--session 37ef --trace a396 --verbose` |
+| 表示幅制御 | `--width N` / `--no-truncate` | `--session 37ef "pattern" --no-truncate` |
 
 Modifiers (combinable): `--after DATE`, `--before DATE`, `-i` (ignore case), `--verbose`, `--limit N`, `--no-results`, `--strict` (exit 2 on no match)
 
@@ -345,6 +349,8 @@ Run from project root: `cd /c/Era/devkit && python src/tools/python/dashboard_di
 | Find stale execs | `--check-stale` | `python src/tools/python/dashboard_diag.py --check-stale` |
 | List executions | `--list` | `python src/tools/python/dashboard_diag.py --list --after 2026-03-04` |
 | Chain trace | `--chain ID` | `python src/tools/python/dashboard_diag.py --chain fec15530-...` |
+| Debug log tail | `--debug-log ID` | `python src/tools/python/dashboard_diag.py --debug-log fec15530-...` |
+| Debug log (per-exec) | `_out/tmp/dashboard/debug-{execId}.log` | 429検出、CLI内部エラー、レート制限詳細。`--debug-file` で生成、3日ローテーション |
 
 ## Shell Environment
 

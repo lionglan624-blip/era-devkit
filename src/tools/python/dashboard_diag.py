@@ -2,7 +2,9 @@
 """Dashboard diagnostic tool - execution diagnosis via API + logs."""
 
 import argparse
+import glob as globmod
 import json
+import os
 import re
 import sys
 from datetime import datetime
@@ -17,6 +19,14 @@ APP_LOG_RE = re.compile(r'\[(\d{4}-\d{2}-\d{2}T[\d:.+]+)\] \[(\w+)\] \[(\w+)\] (
 BROADCAST_RE = re.compile(r'Broadcast \[(\w+)\] to (\d+) clients for execution (.+)')
 DISCONNECT_RE = re.compile(r'Client (\d+) disconnected \(code: (\d+)\)')
 SUBSCRIBE_RE = re.compile(r'Client (\d+) subscribed to (.+)')
+
+# Debug log patterns (mirrors claudeService.js _scanDebugLogForRateLimit)
+RATE_LIMIT_RE = re.compile(r'rate_limit_error', re.IGNORECASE)
+RATE_LIMIT_429_RE = re.compile(r'429.*rate.?limit', re.IGNORECASE)
+TELEMETRY_RE = re.compile(
+    r'client_data|event.?logging|events? failed to export|datadoghq|OTEL|telemetry',
+    re.IGNORECASE,
+)
 
 
 def api_get(path):
@@ -61,8 +71,108 @@ def parse_app_log_for_exec(log_path, exec_id):
     return events
 
 
-def exec_diagnosis(exec_id, app_log_path):
+def get_default_dashboard_tmp():
+    """Get default dashboard tmp directory (relative to script's project root)."""
+    # Script is at src/tools/python/dashboard_diag.py -> project root is 3 levels up
+    return Path(__file__).resolve().parent.parent.parent.parent / '_out' / 'tmp' / 'dashboard'
+
+
+def _find_debug_log(exec_id, dashboard_tmp):
+    """Find debug log file matching exec_id prefix."""
+    pattern = str(dashboard_tmp / f'debug-{exec_id}*.log')
+    matches = globmod.glob(pattern)
+    return Path(matches[0]) if matches else None
+
+
+def _scan_debug_log(exec_id, dashboard_tmp):
+    """Scan per-execution debug log for 429 and error patterns.
+
+    Returns dict with scan results or None if file not found.
+    """
+    log_path = _find_debug_log(exec_id, dashboard_tmp)
+    if not log_path:
+        return None
+
+    try:
+        size = os.path.getsize(log_path)
+        with open(log_path, 'r', encoding='utf-8', errors='replace') as f:
+            content = f.read()
+    except (OSError, IOError):
+        return None
+
+    lines = content.split('\n')
+
+    # 429 detection (same logic as claudeService.js _scanDebugLogForRateLimit)
+    has_429 = False
+    # Check tail 16KB like claudeService does
+    tail = content[-16384:] if len(content) > 16384 else content
+    if RATE_LIMIT_RE.search(tail):
+        has_429 = True
+    else:
+        for line in tail.split('\n'):
+            if RATE_LIMIT_429_RE.search(line) and not TELEMETRY_RE.search(line):
+                has_429 = True
+                break
+
+    # Error line count (excluding telemetry)
+    error_count = 0
+    for line in lines:
+        if re.search(r'\berror\b', line, re.IGNORECASE) and not TELEMETRY_RE.search(line):
+            error_count += 1
+
+    # Last non-empty lines
+    non_empty = [l for l in lines if l.strip()]
+    tail_lines = non_empty[-10:]
+
+    return {
+        'path': log_path,
+        'size': size,
+        'has_429': has_429,
+        'error_count': error_count,
+        'tail_lines': tail_lines,
+    }
+
+
+def _show_debug_log_tail(exec_id, dashboard_tmp, num_lines=100):
+    """Show last N lines of a debug log file."""
+    log_path = _find_debug_log(exec_id, dashboard_tmp)
+    if not log_path:
+        print(f"Debug log not found for {exec_id} in {dashboard_tmp}")
+        return
+
+    try:
+        with open(log_path, 'r', encoding='utf-8', errors='replace') as f:
+            lines = f.readlines()
+    except (OSError, IOError) as e:
+        print(f"Error reading {log_path}: {e}", file=sys.stderr)
+        return
+
+    size = os.path.getsize(log_path)
+    print(f"\nDebug log: {log_path.name} ({size / 1024:.1f} KB, {len(lines)} lines)")
+    print(f"Showing last {min(num_lines, len(lines))} lines:\n")
+    for line in lines[-num_lines:]:
+        print(line.rstrip('\n'))
+
+
+def _print_debug_scan(scan):
+    """Print debug log scan summary."""
+    if scan:
+        print(f"\n  Debug log: {scan['path'].name} ({scan['size'] / 1024:.1f} KB)")
+        print(f"    429 detected:  {'YES' if scan['has_429'] else 'no'}")
+        print(f"    Error lines:   {scan['error_count']} (excluding telemetry)")
+        if scan['tail_lines']:
+            print(f"    Last {len(scan['tail_lines'])} lines:")
+            for line in scan['tail_lines']:
+                print(f"      {line[:120]}")
+    else:
+        print(f"\n  Debug log: not found")
+
+
+def exec_diagnosis(exec_id, app_log_path, dashboard_tmp=None):
     """Diagnose a specific execution: API + log + JSONL correlation."""
+    tmp_dir = dashboard_tmp or get_default_dashboard_tmp()
+    api_available = False
+
     # 1. API: diag endpoint
     diag = api_get(f'/execution/{exec_id}/diag')
     if not diag:
@@ -71,17 +181,21 @@ def exec_diagnosis(exec_id, app_log_path):
         if history:
             match = [h for h in history if h.get('executionId') == exec_id]
             if match:
+                api_available = True
                 print(f"\nExecution {exec_id} (from history)")
                 h = match[0]
                 for k in ('featureId', 'command', 'status', 'exitCode', 'startedAt', 'completedAt', 'contextPercent'):
                     print(f"  {k}: {h.get(k, '-')}")
             else:
                 print(f"Execution {exec_id} not found in API or history")
+                _print_debug_scan(_scan_debug_log(exec_id, tmp_dir))
                 return
         else:
             print(f"Execution {exec_id} not found (API unreachable?)")
+            _print_debug_scan(_scan_debug_log(exec_id, tmp_dir))
             return
     else:
+        api_available = True
         # Live execution data
         exec_data = diag.get('execution', {})
         subs = diag.get('subscribers', {})
@@ -128,6 +242,9 @@ def exec_diagnosis(exec_id, app_log_path):
         print(f"\n  Log events: {len(log_events)} related entries in app log")
     else:
         print(f"\n  Log events: none found (app log unavailable or no matching entries)")
+
+    # 3. Debug log scan
+    _print_debug_scan(_scan_debug_log(exec_id, tmp_dir))
 
 
 def check_stale(app_log_path):
@@ -257,14 +374,16 @@ def main():
         description='Dashboard diagnostic tool - execution diagnosis via API + logs',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""examples:
-  %(prog)s --exec fec15530-...          Diagnose specific execution
+  %(prog)s --exec fec15530-...          Diagnose specific execution (API + app log + debug log)
+  %(prog)s --debug-log fec15530-...     Show last 100 lines of debug log
   %(prog)s --check-stale                Find stale executions (0-client broadcasts)
   %(prog)s --list --after 2026-03-04    List recent executions
   %(prog)s --chain fec15530-...         Show chain parent-child trace
 
 requires:
-  Dashboard backend running on localhost:3001
-  App log at ~/.pm2/logs/dashboard-backend-out.log (for log analysis)""",
+  Dashboard backend running on localhost:3001 (for --exec, --list, --chain, --check-stale)
+  App log at ~/.pm2/logs/dashboard-backend-out.log (for log analysis)
+  Debug logs at _out/tmp/dashboard/debug-*.log (for 429/error detection)""",
     )
     parser.add_argument('--exec', metavar='ID',
                         help='Diagnose execution by ID (API + logs)')
@@ -276,15 +395,22 @@ requires:
                         help='Filter --list by start date (ISO format)')
     parser.add_argument('--chain', metavar='ID',
                         help='Show chain trace for execution')
+    parser.add_argument('--debug-log', metavar='ID',
+                        help='Show last 100 lines of debug-{ID}.log')
     parser.add_argument('--app-log', metavar='PATH',
                         help='App log path override (default: ~/.pm2/logs/dashboard-backend-out.log)')
+    parser.add_argument('--dashboard-tmp', metavar='PATH',
+                        help='Dashboard tmp dir override (default: _out/tmp/dashboard/)')
 
     args = parser.parse_args()
 
     app_log = Path(args.app_log) if args.app_log else get_default_app_log_path()
+    dashboard_tmp = Path(args.dashboard_tmp) if args.dashboard_tmp else get_default_dashboard_tmp()
 
     if args.exec:
-        exec_diagnosis(args.exec, app_log)
+        exec_diagnosis(args.exec, app_log, dashboard_tmp)
+    elif args.debug_log:
+        _show_debug_log_tail(args.debug_log, dashboard_tmp)
     elif args.check_stale:
         check_stale(app_log)
     elif args.list:

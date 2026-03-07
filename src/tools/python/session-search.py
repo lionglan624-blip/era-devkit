@@ -106,12 +106,20 @@ def format_time(dt: Optional[datetime]) -> str:
 
 # -- match extraction ---------------------------------------------------------
 
+# Module-level display width override (set by --width/--no-truncate flags).
+# None means "not set by user, use per-call default".
+_display_width: int | None = None
+
+
 def _truncate(text: str, width: int = 100) -> str:
     """Truncate string to width, appending ellipsis if needed."""
     text = text.replace("\n", " ").replace("\r", "")
-    if len(text) <= width:
+    effective = width if _display_width is None else _display_width
+    if effective == 0:
         return text
-    return text[:width - 3] + "..."
+    if len(text) <= effective:
+        return text
+    return text[:effective - 3] + "..."
 
 
 def _snippet_around(
@@ -122,6 +130,10 @@ def _snippet_around(
     compiled_re: Optional[re.Pattern] = None,
 ) -> str:
     """Return a snippet of text centered on the first occurrence of pattern."""
+    if _display_width == 0:
+        return text.replace("\n", " ").replace("\r", "")
+    if _display_width is not None:
+        radius = max(radius, _display_width // 2)
     if compiled_re:
         m = compiled_re.search(text)
         if m:
@@ -253,7 +265,7 @@ def _content_to_text(content) -> str:
 
 
 # Virtual content types that filter at the block level, not the record level
-_VIRTUAL_CONTENT_TYPES = {"text", "tool_use", "tool_result"}
+_VIRTUAL_CONTENT_TYPES = {"text", "tool_use", "tool_result", "user_text"}
 
 
 def _extract_match_summary(
@@ -291,9 +303,15 @@ def _extract_match_summary(
         return pattern in haystack
 
     # Content type filter: skip non-matching block types
-    want_text = content_type_filter is None or content_type_filter == "text"
+    # user_text: only user record text blocks (excludes tool_result from user records)
+    is_user_text = content_type_filter == "user_text"
+    want_text = content_type_filter is None or content_type_filter == "text" or is_user_text
     want_tool_use = content_type_filter is None or content_type_filter == "tool_use"
     want_tool_result = content_type_filter is None or content_type_filter == "tool_result"
+
+    # user_text filter: skip assistant records entirely
+    if is_user_text and record_type != "user":
+        return None
 
     # assistant messages: look for tool_use blocks
     if record_type == "assistant" and isinstance(content, list):
@@ -347,7 +365,7 @@ def _extract_match_summary(
                 if tool_filter:
                     continue
                 text = block.get("text", "")
-                if scan_all and content_type_filter == "text":
+                if scan_all and content_type_filter in ("text", "user_text"):
                     if text.strip():
                         return f"user_text - {_truncate(text, 100)}"
                     continue
@@ -493,7 +511,7 @@ def display_lines(
 
                 displayed += 1
                 if raw:
-                    print(json.dumps(obj, indent=2, ensure_ascii=False))
+                    print(json.dumps(obj, indent=2, ensure_ascii=True))
                     if lineno < end:
                         print("---")
                 else:
@@ -1825,6 +1843,36 @@ def scan_trace(
                                 "input": block.get("input", {}),
                                 "timestamp_use": ts,
                             }
+                        elif isinstance(block, dict) and block.get("type") == "text":
+                            text_content = block.get("text", "")
+                            if not text_content.strip():
+                                continue
+                            if tool_filter and "[text]" not in tool_filter:
+                                continue
+                            # Pattern filter
+                            if pattern or compiled_re:
+                                haystack = text_content
+                                if compiled_re:
+                                    if not compiled_re.search(haystack):
+                                        continue
+                                elif ignore_case:
+                                    if pattern not in haystack.lower():
+                                        continue
+                                else:
+                                    if pattern not in haystack:
+                                        continue
+                            text_entry = {
+                                "lineno_use": lineno,
+                                "lineno_result": lineno,
+                                "tool_name": "[text]",
+                                "tool_id": f"text-{lineno}-{len(entries)}",
+                                "input": {},
+                                "output": text_content,
+                                "is_error": False,
+                                "timestamp_use": ts,
+                                "timestamp_result": ts,
+                            }
+                            entries.append(text_entry)
 
                 elif record_type == "user":
                     for block in content:
@@ -1884,7 +1932,26 @@ def print_trace(entries: list[dict], jsonl_path: Path, verbose: bool) -> None:
 
         inp = entry.get("input", {})
         # Tool-specific input formatting
-        if name == "Bash":
+        if name == "[text]":
+            # Text block: display content directly, no input section
+            output = entry.get("output", "")
+            lines = output.split("\n") if output else []
+            total = len(lines)
+            if max_output_lines and total > max_output_lines:
+                print(f"  TEXT ({total} lines, showing {max_output_lines}):")
+                for line in lines[:max_output_lines]:
+                    print(f"    {line}")
+                print(f"    ... ({total - max_output_lines} more lines)")
+            elif lines:
+                suffix = f" ({total} line{'s' if total != 1 else ''})"
+                print(f"  TEXT{suffix}:")
+                for line in lines:
+                    print(f"    {line}")
+            else:
+                print("  TEXT: (empty)")
+            print()
+            continue
+        elif name == "Bash":
             cmd = inp.get("command", "")
             desc = inp.get("description", "")
             print(f"  $ {cmd}")
@@ -1979,6 +2046,7 @@ Examples:
   python session-search.py --session be309 --line 97-104 --raw
   python session-search.py --session be309 "Context at" -C 2
   python session-search.py --session be309 "issue" --type text
+  python session-search.py "keyword" --type user_text  # user text only (no tool_result)
   python session-search.py --session be309 --type tool_use
   python session-search.py --session be309 --autopsy
 
@@ -1990,6 +2058,8 @@ Examples:
   python session-search.py --session be309 --trace a396           # full tool trace of one subagent
   python session-search.py --session be309 --trace a396 --tool Bash  # trace filtered to Bash only
   python session-search.py --session be309 --trace . --tool Agent    # trace parent session's Agent calls
+  python session-search.py --session be309 --trace . --tool Agent --verbose  # full subagent output
+  python session-search.py --session be309 "pattern" --no-truncate           # no text truncation
         """,
     )
     parser.add_argument(
@@ -2051,14 +2121,15 @@ Examples:
         dest="record_type",
         metavar="TYPE",
         help="Filter by record type (user, assistant, progress) or "
-             "content block type (text, tool_use, tool_result)",
+             "content block type (text, tool_use, tool_result, user_text). "
+             "user_text = user text blocks only (excludes tool_result)",
     )
     parser.add_argument(
         "--limit",
         type=int,
         default=None,
         metavar="N",
-        help="Max sessions to display (default: 10, or 3 for --timeline without --session)",
+        help="Max sessions to display (default: 25, or 3 for --timeline without --session)",
     )
     parser.add_argument(
         "-i", "--ignore-case",
@@ -2138,6 +2209,19 @@ Examples:
         help='Trace tool calls in a subagent by ID prefix. '
              'Special values: "." = parent session, "*" = list all subagents. '
              "Requires --session.",
+    )
+    parser.add_argument(
+        "--width",
+        type=int,
+        default=None,
+        metavar="N",
+        help="Display width for truncation (default: 100, 0=unlimited). "
+             "Overrides per-field truncation widths.",
+    )
+    parser.add_argument(
+        "--no-truncate",
+        action="store_true",
+        help="Disable text truncation (alias for --width 0)",
     )
     return parser
 
@@ -2222,6 +2306,13 @@ def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
 
+    # Apply --width / --no-truncate global display width
+    global _display_width
+    if args.no_truncate:
+        _display_width = 0
+    elif args.width is not None:
+        _display_width = args.width
+
     # --agents is shorthand for --tool Agent --subagents
     if args.agents:
         args.subagents = True
@@ -2240,7 +2331,7 @@ def main() -> int:
     elif args.timeline and not args.session:
         effective_limit = 3
     else:
-        effective_limit = 10
+        effective_limit = 25
 
     tool_filter: Optional[set] = (
         {t.strip() for t in args.tool.split(",")} if args.tool else None

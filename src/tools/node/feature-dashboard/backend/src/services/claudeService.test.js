@@ -4288,7 +4288,7 @@ describe('ClaudeService', () => {
             expect(result.status).toBe('launched');
         });
 
-        it('uses restart-backend.vbs for dr command', async () => {
+        it('uses pm2 restart for dr command', async () => {
             vi.useFakeTimers();
             const { service } = createService();
             const { spawn: mockSpawn } = await import('child_process');
@@ -4298,9 +4298,9 @@ describe('ClaudeService', () => {
             vi.advanceTimersByTime(500);
 
             expect(mockSpawn).toHaveBeenCalledWith(
-                'wscript',
-                [expect.stringContaining('restart-backend.vbs')],
-                expect.objectContaining({ stdio: 'ignore', windowsHide: true }),
+                'pm2',
+                ['restart', 'all'],
+                expect.objectContaining({ stdio: 'ignore', shell: true, windowsHide: true }),
             );
             vi.useRealTimers();
         });

@@ -144,7 +144,7 @@ export const MAX_PROFILE_SWITCHES = 2;
 // =============================================================================
 // Auto-DR (Auto Dashboard Restart) Configuration
 // =============================================================================
-// restart-backend.vbs: stop → 3s wait → restart (survives parent process kill)
+// Auto-DR uses pm2 restart directly — EADDRINUSE handled by server.js polling retry
 
 /** Debounce delay for auto-DR file change detection (ms) */
 export const AUTO_DR_DEBOUNCE_MS = 2000;

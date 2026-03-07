@@ -172,14 +172,9 @@ node src/tools/node/feature-dashboard/patch-pm2.js && pm2 kill && cd src/tools/n
 
 **Root cause**: `pm2 restart` sends SIGTERM to the old process and starts a new one **simultaneously**. On Windows, port release lags process death. The new process hits EADDRINUSE because the old one hasn't released port 3001 yet. See `docs/architecture/infrastructure/dr-restart-investigation.md` for the full investigation log.
 
-**Fix (2026-03-03, VBScript delegation)**:
+**Fix (2026-03-03 VBScript delegation → 2026-03-07 pm2 restart直接化)**:
 
-Auto-DR and DR button delegate restart to `restart-backend.vbs` → `restart-backend.cmd`:
-1. `pm2 stop dashboard-backend` — kill old process cleanly
-2. `ping -n 4` — wait ~3s for Windows to release port
-3. `pm2 restart dashboard-backend` — start new process on free port
-
-VBScript (`WScript.Shell.Run`) is used because it spawns cmd.exe in a **new process group**, independent of pm2's process tree. Direct `spawn({detached: true})` does NOT work due to the pm2 ForkMode `detached: false` patch — all pm2 children share the daemon's process group, so `pm2 stop` kills them all.
+Auto-DR and DR button use `pm2 restart` directly. EADDRINUSE is handled by server.js polling retry with adaptive delay (500ms → 2s) and last-resort `cleanupPort()` after 10s.
 
 **Defense layers in `server.js`**:
 1. **Graceful shutdown**: `server.closeAllConnections()` + 1500ms forced exit timeout in SIGINT/SIGTERM handlers

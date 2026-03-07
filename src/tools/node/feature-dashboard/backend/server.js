@@ -152,13 +152,11 @@ function triggerAutoDR() {
     });
     // Persist DR success to shell states so green button survives restart
     claudeService._setShellState('dr', true);
-    // Delegate to VBScript which launches cmd.exe in a NEW process group.
-    // Cannot use pm2 restart (starts new before old dies → EADDRINUSE on Windows).
-    // Cannot spawn detached (pm2 ForkMode detached:false patch → same process group).
-    // WScript.Shell.Run with vbHide(0) + async(False) spawns independently.
+    // pm2 restart — EADDRINUSE handled by server.js polling retry
     setTimeout(() => {
-      spawn('wscript', [path.join(__dirname, 'restart-backend.vbs')], {
+      spawn('pm2', ['restart', 'dashboard-backend'], {
         stdio: 'ignore',
+        shell: true,
         windowsHide: true,
       });
     }, 500);
@@ -207,8 +205,11 @@ claudeService.onExecutionComplete = () => {
 
 // Express app
 const app = express();
+const corsOrigins = process.env.CORS_ORIGINS
+  ? process.env.CORS_ORIGINS.split(',')
+  : ['http://localhost:5173', 'http://localhost:3001', 'http://127.0.0.1:5173', 'http://127.0.0.1:3001'];
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3001', 'http://127.0.0.1:5173', 'http://127.0.0.1:3001'],
+  origin: corsOrigins,
 }));
 app.use(express.json());
 
@@ -231,7 +232,7 @@ app.get('/api/health', async (req, res) => {
   const queueStatus = claudeService.getQueueStatus();
   const proxy = await claudeService.checkProxy();
 
-  // Git dirty check (main repo + engine/)
+  // Git dirty check (5-repo split)
   const gitStatusOpts = { timeout: 5000, encoding: 'utf8', windowsHide: true };
   const countDirty = (cwd) => {
     try {
@@ -240,9 +241,18 @@ app.get('/api/health', async (req, res) => {
       return lines.length;
     } catch { return 0; }
   };
-  const mainCount = countDirty(PROJECT_ROOT);
-  const engineCount = countDirty(path.join(PROJECT_ROOT, 'engine'));
-  const totalCount = mainCount + engineCount;
+  const repoPaths = JSON.parse(process.env.REPO_PATHS || '{}');
+  const defaultPaths = {
+    game: 'C:\\Era\\game', core: 'C:\\Era\\core', engine: 'C:\\Era\\engine',
+    devkit: 'C:\\Era\\devkit', dashboard: 'C:\\Era\\dashboard',
+  };
+  const paths = { ...defaultPaths, ...repoPaths };
+  const counts = {};
+  let totalCount = 0;
+  for (const [name, dir] of Object.entries(paths)) {
+    counts[name] = countDirty(dir);
+    totalCount += counts[name];
+  }
 
   // Trigger fresh rate limit capture if requested (e.g., on browser refresh)
   if (req.query.refresh) {
@@ -264,7 +274,7 @@ app.get('/api/health', async (req, res) => {
     uptime: process.uptime(),
     logDir: LOG_DIR,
     rateLimit: rateLimitService.getCached(),
-    git: { dirty: totalCount > 0, changedCount: totalCount, main: mainCount, engine: engineCount },
+    git: { dirty: totalCount > 0, changedCount: totalCount, ...counts },
     pendingRestart,
     shellStates: claudeService.getShellStates(),
     claudeStatus: claudeStatusService.getCached(),

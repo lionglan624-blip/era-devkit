@@ -2844,16 +2844,14 @@ export class ClaudeService {
                 timestamp: new Date().toISOString(),
             });
             this._setShellState(command, true);
-            // Delegate to external script: stop → wait → start.
-            // Cannot use pm2 restart (starts new before old dies → EADDRINUSE on Windows).
-            // Delegate to VBScript which launches cmd.exe in a NEW process group.
-            // Cannot spawn detached (pm2 ForkMode detached:false patch → same process group).
-            const restartVbs = path.join(__dirname, '..', '..', 'restart-backend.vbs');
+            // pm2 restart all — EADDRINUSE handled by server.js polling retry
             setTimeout(() => {
-                spawn('wscript', [restartVbs], {
+                spawn('pm2', ['restart', 'all'], {
+                    cwd: this.projectRoot,
                     stdio: 'ignore',
+                    shell: true,
                     windowsHide: true,
-                });
+                }).unref();
             }, 500);
         } else if (command === 'upd') {
             // Special handling: 'upd' updates CCS itself with version tracking

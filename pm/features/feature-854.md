@@ -708,6 +708,13 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 854 (2026-03-08)
+- [revised] セクション横断カウント整合性チェック: ac-designer→ac_ops.pyにリターゲット。N16ルール追加（Implementation Contract/Dependencies/Links/Mandatory Handoffs内の数値参照を検出） → `src/tools/python/ac_ops.py`
+- [rejected] Goal-to-AC事前チェック追加 — 既存Step 11 Goal Coverage Verification (MANDATORY)と重複。実行品質の問題であり、ルール欠如ではない
+- [rejected] predecessor context materialization改善(200→400トークン) — RUN/FLは既にmaterialize済み。FCは不要。119回読み込みはF826で調査済み別問題
+- [revised] 自己参照ACパターン衝突検出: Step 10.5.5→既存Line 312の自己参照禁止ルール強化にリターゲット。Execution Logをgrepする正当なACでのパターン衝突サブタイプ追加 → `.claude/agents/ac-designer.md`
+- [rejected] PowerShell hookエラー事前検証 — F854 Review Notesにhookエラー記録なし。F853で既調査、fail-open確認済み
+
 ---
 
 <!-- fc-phase-6-completed -->

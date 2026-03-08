@@ -1165,3 +1165,23 @@ Result<int> GetRelation(CharacterId character, int otherCharacterNo);
 ```
 
 **NullRelationVariables** (`src/Era.Core/Interfaces/NullRelationVariables.cs`): returns `Success(100)` (neutral).
+
+## Phase 24 NTR Bounded Context -- Domain Layer (F850, F851, F852)
+
+Phase 24 introduces the NTR domain model in `src/Era.Core/NTR/Domain/`:
+
+- `ValueObjects/` -- NtrRoute (R0-R6), NtrPhase (0-7), NtrParameters (SlaveLevel, FavLevel), Susceptibility (SubmissionDegree, AffectionLevel). All `readonly record struct` with `Result<T>` factory methods. (F850)
+- `Aggregates/` -- NtrProgression : AggregateRoot<NtrProgressionId>. Domain methods: AdvancePhase(), ChangeRoute(NtrRoute), SetExposureLevel(int), Corrupt(). All return `Result<Unit>` and publish domain events. (F851)
+- `Events/` -- NtrPhaseAdvanced, NtrRouteChanged, NtrExposureLevelChanged, NtrCorrupted. All `record : IDomainEvent`. (F851)
+- `Services/` -- INtrCalculator Domain Service interface. (F852)
+
+### INtrCalculator (F852)
+
+```csharp
+// src/Era.Core/NTR/Domain/Services/INtrCalculator.cs - Domain Service for NTR eligibility evaluation
+bool CanAdvance(NtrProgression progression);
+bool CanChangeRoute(NtrProgression progression, NtrRoute targetRoute);
+// Query semantics (bool return, not Result<T>). Standalone Domain Service pattern.
+// Distinct from INtrQuery (narrow clothing-system query, F819) and INtrEngine (pre-DDD calculation).
+// Phase 24: interface only. Concrete implementation in Phase 25.
+```

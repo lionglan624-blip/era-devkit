@@ -50,7 +50,7 @@ Implement Application Services and Anti-Corruption Layer in `src/Era.Core/NTR/Ap
 
 | Type | Feature | Status | Description |
 |------|---------|--------|-------------|
-| Predecessor | F852 | [DRAFT] | INtrCalculator Domain Service (Application Services invoke Domain Service) |
+| Predecessor | F852 | [DONE] | INtrCalculator Domain Service (Application Services invoke Domain Service) |
 
 ---
 

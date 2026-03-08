@@ -506,6 +506,17 @@ bool CheckNtrFavorably(CharacterId character, int threshold);
 ```
 **Injected into `ClothingSystem`** for CLOTHES_ACCESSORY ring/choker/collar logic. Full implementation deferred to F825.
 
+### INtrCalculator (F852)
+```csharp
+// src/Era.Core/NTR/Domain/Services/INtrCalculator.cs - Domain Service for NTR eligibility evaluation
+bool CanAdvance(NtrProgression progression);
+bool CanChangeRoute(NtrProgression progression, NtrRoute targetRoute);
+// Query semantics (bool return). Operates on NtrProgression aggregate (F851).
+// Standalone Domain Service — not injected into aggregate (Phase 25 integration decision).
+// Distinct from INtrQuery (clothing-system query) and INtrEngine (pre-DDD calculation).
+// Phase 24: interface only. Concrete implementation in Phase 25.
+```
+
 ### IMultipleBirthService (F822)
 ```csharp
 // src/Era.Core/Interfaces/IMultipleBirthService.cs - Multiple birth operations from 多生児パッチ.ERB

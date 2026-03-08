@@ -32,6 +32,8 @@ Verify architecture doc Phase 24 section integrity against F850-F853 deliverable
 
 **F850 Handoff**: Ubiquitous Language cross-VO terminology consistency validation. AC#17 verifies glossary existence (gte 4) but not cross-VO term consistency. Post-Phase Review should validate that XML doc comments across NtrRoute, NtrPhase, NtrParameters, and Susceptibility use consistent Japanese/English terminology.
 
+**F852 Handoff (PRE-EXISTING)**: 26 ComEquivalence test failures in Era.Core.Tests (KissEquivalenceTest, BreastCaressEquivalenceTest, CaressEquivalenceTest, CriticalConfigIntegrationTests, CriticalConfigEquivalenceTests). Root cause: missing game YAML/config files in core repo test fixtures (file-not-found errors for `Game/data/coms/training/touch/*.yaml`, `Game/config/variable_sizes.yaml`, `Game/config/game_base.yaml`). Unrelated to F852 INtrCalculator but observed during F852 /run. Evaluate test fixture setup health.
+
 ### Architecture Task Coverage
 
 <!-- Architecture Task 10: Post-Phase Review Phase 24 -->

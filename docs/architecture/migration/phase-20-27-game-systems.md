@@ -566,7 +566,7 @@ ntr_kojo:
 
 ### Phase 24: NTR Bounded Context設計 (was Phase 23)
 
-**Phase Status**: TODO
+**Phase Status**: DONE
 
 **Goal**: NTRシステムの独立Bounded Context化
 
@@ -652,10 +652,12 @@ src/Era.Core/
     │   ├── Events/
     │   │   ├── NtrPhaseAdvanced.cs
     │   │   ├── NtrRouteChanged.cs
-    │   │   ├── NtrExposureIncreased.cs
+    │   │   ├── NtrExposureLevelChanged.cs
     │   │   └── NtrCorrupted.cs
-    │   └── Services/
-    │       └── INtrCalculator.cs     # ドメインサービス
+    │   ├── Services/
+    │   │   └── INtrCalculator.cs     # ドメインサービス
+    │   └── Repositories/
+    │       └── INtrProgressionRepository.cs
     ├── Application/
     │   ├── Commands/
     │   │   ├── AdvanceNtrPhaseCommand.cs
@@ -667,7 +669,7 @@ src/Era.Core/
     │       └── NtrPhaseAdvancedHandler.cs
     └── Infrastructure/
         ├── NtrProgressionRepository.cs
-        └── AntiCorruptionLayer.cs
+        └── NtrQueryAcl.cs
 ```
 
 **Core Aggregate**:
@@ -683,7 +685,7 @@ public class NtrProgression : AggregateRoot<NtrProgressionId>
     public NtrParameters Parameters { get; private set; }
 
     // ドメインメソッド
-    public Result<Unit> AdvancePhase(INtrCalculator calculator)
+    public Result<Unit> AdvancePhase()
     {
         if (!calculator.CanAdvance(this))
             return Result<Unit>.Fail("Conditions not met for phase advancement");
@@ -756,6 +758,7 @@ public readonly record struct NtrPhase
 | `src/Era.Core/NTR/Domain/ValueObjects/*.cs` | Route, Phase, Parameters等 |
 | `src/Era.Core/NTR/Domain/Events/*.cs` | ドメインイベント |
 | `src/Era.Core/NTR/Domain/Services/INtrCalculator.cs` | 計算ドメインサービス |
+| `src/Era.Core/NTR/Domain/Repositories/INtrProgressionRepository.cs` | リポジトリインターフェース（DIP） |
 | `src/Era.Core/NTR/Application/Commands/*.cs` | アプリケーションコマンド |
 | `src/Era.Core/NTR/Application/Queries/*.cs` | クエリ |
 | `src/Era.Core/NTR/Infrastructure/*.cs` | リポジトリ、ACL |
@@ -769,10 +772,10 @@ dotnet test Era.Core.Tests --filter "Category=NtrDomain"
 ```
 
 **Success Criteria**:
-- [ ] NTR Bounded Context 確立
-- [ ] Aggregate Root パターン確立
-- [ ] Domain Events 発行機能
-- [ ] 全テスト PASS
+- [x] NTR Bounded Context 確立
+- [x] Aggregate Root パターン確立
+- [x] Domain Events 発行機能
+- [x] 全テスト PASS
 
 **Sub-Feature Requirements** (Planning Feature がこのセクションを読んで sub-feature に反映):
 

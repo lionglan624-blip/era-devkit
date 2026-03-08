@@ -32,6 +32,18 @@ Phase 25 requires decomposition planning after Phase 24 completes. The architect
 
 Decompose Phase 25 into implementation sub-features, informed by Phase 24 post-phase review (F854) and architecture doc Phase 25 section.
 
+### Predecessor Obligations (for Mandatory Handoffs)
+
+| Source Feature | Obligation | Category | Status |
+|:--------------:|------------|----------|:------:|
+| F852 | NtrParameters/Susceptibility mutation methods | deferred | pending |
+| F852 | ExposureDegree Value Object | deferred | pending |
+| F852 | NtrProgressionCreated domain event | deferred | pending |
+| F852 | CalculateOrgasmCoefficient method declaration | deferred | pending |
+| F852 | MARK system state integration for CHK_NTR_SATISFACTORY | deferred | pending |
+| F850 | Ubiquitous Language cross-VO terminology consistency — verified consistent; bilingual XML doc pattern applied uniformly across NtrRoute, NtrPhase, NtrParameters, Susceptibility | handoff | resolved |
+| F852 | 26 pre-existing ComEquivalence test failures (missing game YAML/config fixtures); out-of-scope for Phase 24; root cause unrelated to NTR domain | out-of-scope | pending |
+
 ### Architecture Task Coverage
 
 <!-- Architecture Task 11: Phase 25 Planning -->
@@ -42,7 +54,7 @@ Decompose Phase 25 into implementation sub-features, informed by Phase 24 post-p
 
 | Type | Feature | Status | Description |
 |------|---------|--------|-------------|
-| Predecessor | F854 | [DRAFT] | Post-Phase Review Phase 24 must complete before Phase 25 Planning |
+| Predecessor | F854 | [DONE] | Post-Phase Review Phase 24 must complete before Phase 25 Planning |
 
 ---
 

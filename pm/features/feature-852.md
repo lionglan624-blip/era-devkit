@@ -623,6 +623,12 @@ MSYS_NO_PATHCONV=1 wsl -- bash -c 'cd /mnt/c/Era/core && /home/siihe/.dotnet/dot
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 852 (2026-03-08)
+- [applied] ac_ops.py N14: matcher-expected convention check (succeeds/fails/exists/not_exists → Expected '-') → `src/tools/python/ac_ops.py`
+- [revised] wbs-generator predecessor handoff intake warning check (auto-generation→warning-onlyに縮小) → `.claude/agents/wbs-generator.md`
+- [applied] quality-fixer V1p: Task Tags column count validation (4列検証) → `.claude/agents/quality-fixer.md`
+- [revised] imp-analyzer.py --exclude-shared flag + 警告テキスト改善 (汚染率推定→フラグ方式に縮小) → `src/tools/python/imp-analyzer.py`
+
 ---
 
 <!-- fc-phase-6-completed -->

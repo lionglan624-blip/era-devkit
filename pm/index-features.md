@@ -80,7 +80,6 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F854 | [DRAFT] | Post-Phase Review Phase 24 | F853 | [feature-854.md](feature-854.md) |
 | F855 | [DRAFT] | Phase 25 Planning | F854 | [feature-855.md](feature-855.md) |
 
 ### Other
@@ -100,12 +99,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 854 | ✅ | Post-Phase Review Phase 24 | [feature-854.md](feature-854.md) |
 | 853 | ✅ | NTR Application Services + Anti-Corruption Layer | [feature-853.md](feature-853.md) |
 | 852 | ✅ | INtrCalculator Domain Service | [feature-852.md](feature-852.md) |
 | 851 | ✅ | NtrProgression Aggregate + Domain Events | [feature-851.md](feature-851.md) |
 | 850 | ✅ | NTR Ubiquitous Language + Value Objects | [feature-850.md](feature-850.md) |
 | 849 | ✅ | Phase 24 Planning | [feature-849.md](feature-849.md) |
-| 848 | ✅ | Post-Phase Review Phase 23 | [feature-848.md](feature-848.md) |
 
 ---
 

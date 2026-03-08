@@ -854,6 +854,13 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 853 (2026-03-08)
+- [rejected] ac-designer guard-then-mutate behavioral AC行追加 — F851で同種提案却下済み（DDD固有・単一feature観察）
+- [revised] ac_ops.py N15: Type=build/test → succeeds/fails matcher強制チェック → `src/tools/python/ac_ops.py` (対象をac-designerからac_ops.pyに変更)
+- [rejected] ac-designer ACL/Adapter behavioral AC行追加 — DDD固有パターン、単一feature観察
+- [applied] 前任ファイル反復Read — 共有セッション由来のメトリクスノイズ確認（変更不要）
+- [revised] Hook JSON parse limit調査記録 → fail-open確認、大payload(9K-23Kバイト)でparse failure（低優先度調査）
+
 ---
 
 <!-- fc-phase-6-completed -->

@@ -244,6 +244,33 @@ Type: research  # -> no implementer — investigation/analysis only
 
 See `.claude/reference/email-notification.md` (user-requested task completion emails)
 
+## Forbidden Destructive Commands
+
+**Past incident**: `git checkout -- TreeView.jsx` destroyed user's manual changes that were NOT in Claude's file-history-snapshot — **unrecoverable data loss**. The user considers whole-file revert commands unacceptable. A PreToolUse hook (`~/.claude/hooks/guard-bash.sh`) enforces these rules, but respect them regardless of hook presence.
+
+**NEVER execute** (hard block — no workaround, no alternative path):
+
+| Command | Why | Alternative |
+|---------|-----|-------------|
+| `git checkout -- <file>` | Reverts entire file, destroys mixed changes | `Edit` tool to revert specific lines |
+| `git checkout .` | Reverts all files | `Edit` tool per file |
+| `git restore <file>` | Same as checkout -- | `Edit` tool |
+| `git reset --hard` | Destroys all uncommitted changes | `git stash` or `Edit` |
+| `git clean -f` | Deletes untracked files permanently | Manual review |
+| `git stash drop/clear` | Stash data cannot be recovered | Keep stashes |
+| `git push --force` / `-f` | Rewrites remote history | Normal push |
+| `git branch -D` | Force-deletes unmerged branch | `git branch -d` (safe) |
+| `rm` / `rm -rf` | File deletion | Ask user to delete manually |
+
+**Require user confirmation** (ask):
+
+| Command | Why |
+|---------|-----|
+| `git rebase` | Rewrites history |
+| `git branch -d` | Branch deletion (safe but confirm) |
+
+**Do NOT bypass via** `python -c "os.remove(...)"`, `unlink`, or any other indirect deletion method. If a file needs to be deleted, ask the user.
+
 ## Commit Convention
 
 `feat:` / `fix:` / `docs:` / `refactor:` / `test:` -- **Before commit**: `dotnet build` + `dotnet test` (via WSL pre-commit hook)

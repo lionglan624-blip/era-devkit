@@ -433,7 +433,7 @@ core (C:\Era\core)        Era.Core C# runtime library (NuGet: Era.Core 1.0.0)
 engine (C:\Era\engine)    uEmuera game engine (Unity 6000.3.1f1)
 
 [THIS REPO: devkit]
-src/tools/                10+ C# CLI tools with paired test projects
+src/tools/                9 C# CLI tools with paired test projects
   +-- All tools reference Era.Core via NuGet PackageReference
 pm/                       Feature management (275+ features)
 docs/                     Architecture docs, game docs, tool docs

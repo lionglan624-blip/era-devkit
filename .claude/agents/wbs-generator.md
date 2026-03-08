@@ -28,7 +28,8 @@ Generate Tasks table and Implementation Contract from Acceptance Criteria. This 
 5. Generate Tasks table with AC# mapping
 6. Create Implementation Contract with execution steps
 7. Verify AC coverage: every Task has at least one verifying AC (N ACs : 1 Task allowed)
-8. Format as JSON output for orchestrator to append to feature file
+8. **Predecessor Handoff Intake Check**: Read predecessor features' `## Mandatory Handoffs` sections. If any row has a Destination ID matching this feature (F{ID}) or a generic successor reference, log a warning listing deferred items that may need corresponding Mandatory Handoff rows in the current feature. Do NOT auto-generate rows (requires context judgment).
+9. Format as JSON output for orchestrator to append to feature file
 
 ## Output Format
 

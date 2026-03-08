@@ -110,6 +110,7 @@ Verify and auto-fix template compliance. Reference: `.claude/skills/feature-qual
 | V1m | Deviation Context missing required subsections (F829 lesson) | `## Deviation Context` exists but lacks `### Origin` or `### Observable Symptom` subsections | Insert missing subsections. Log warning (not auto-fix) for missing `### Execution Evidence`, `### Files Involved`, `### Attempted Solutions`, `### Parent Session Observations` — these may be legitimately omitted for non-error deviations |
 | V1n | Improvement Log section missing (F832 lesson) | No `## Improvement Log` header between `## Review Notes` and `## Links` | Insert section with template comments from feature-template.md |
 | V1o | Baseline File line missing after Baseline Measurement table (F834 lesson) | `## Baseline Measurement` section exists but no `**Baseline File**:` line follows the table | Insert `**Baseline File**: \`_out/tmp/baseline-{ID}.txt\`` after the Baseline Measurement table |
+| V1p | Task Tags column count mismatch | `### Task Tags` table exists with fewer than 4 columns (template requires: Tag, Meaning, Phase 3, Phase 4) | Restructure columns to match `feature-template.md` Task Tags template. Log warning (column headers may vary slightly across versions) |
 
 ### Step 4: Check Type-Specific Patterns
 

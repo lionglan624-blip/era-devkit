@@ -310,6 +310,7 @@ Copy these exact headers, column structures, and sub-section names. Do NOT renam
 - Use strict matchers (prefer `equals` over `contains` when possible)
 - Binary judgment only (PASS/FAIL, no confidence levels)
 - **Self-referential AC prohibition**: An AC must NOT verify content in the feature file itself unless checking structural properties (section existence, format). ACs that grep the target feature file for semantic content the feature defines are tautological — always PASS by construction. Verify deliverables (output files, code, index entries), not the planning document. (F643, F786, F814, F849 lesson: 5+ FL fixes for self-referential ACs)
+  - **Pattern-collision subtype**: For ACs that grep the feature file for Execution Log content (valid for Post-Phase Review features), verify the Expected pattern does NOT match text in non-Execution-Log sections (Background, Technical Design, AC Details, Key Decisions). If collision exists, make the pattern section-specific (e.g., anchor to Execution Log table row format: `| TASK[0-9]+ |.*Redux.*NOT needed`). (F854, F849, F831, F826, F814 lesson: 5+ features with pattern-collision self-fulfilling ACs)
 
 ### Threshold Derivation Rule
 

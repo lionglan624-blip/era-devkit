@@ -837,6 +837,12 @@ AC for DRAFT creation MUST verify BOTH file existence AND index registration.
 <!-- Format: ### /imp {ID} ({date}) -->
 <!-- - [applied|revised|rejected|proposed] {description} → `{target}` or — {reason} -->
 
+### /imp 851 (2026-03-08)
+- [rejected] tech-designer DDD guard clause checklist — Phase3-Maintainability が正しく検出済み。DDD 固有で単一 feature 観察
+- [revised] ac-designer Step 4 に括弧内列挙 term 抽出ルール追加 → `.claude/agents/ac-designer.md` (Step 11 → Step 4 に変更: 抽出対象の拡張)
+- [applied] quality-fixer V1 に written-by コメント検証追加 → `.claude/skills/feature-quality/SKILL.md`
+- [rejected] tech-designer grep single-line 制約注意 — feature-quality SKILL.md L51/L166 に既存ルールあり
+
 ---
 
 <!-- fc-phase-6-completed -->

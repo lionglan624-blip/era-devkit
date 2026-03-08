@@ -105,6 +105,8 @@ Mechanically verify template compliance without reading content semantics:
 - [ ] Upstream Issues uses table format `| Issue | Upstream Section | Suggested Fix |`
 - [ ] Execution Log uses table format (may be empty but table header required)
 - [ ] No spurious `---` inside sections (only between top-level sections)
+- [ ] `<!-- Written by: ac-designer -->` comment present in Acceptance Criteria section
+- [ ] `<!-- Written by: tech-designer -->` comment present in Technical Design section
 
 ### V2: AC Multi-Perspective Checklist
 

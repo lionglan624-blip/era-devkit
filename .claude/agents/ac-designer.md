@@ -23,7 +23,7 @@ Design Acceptance Criteria table and details from Philosophy/Goal sections. This
 1. Read `pm/reference/feature-template.md` for `## Acceptance Criteria` section structure
 2. Read `Skill(feature-quality)` and type-specific guide (KOJO/ERB/ENGINE/RESEARCH/INFRA) for AC Definition, Philosophy, and Anti-Patterns
 3. Read feature file Philosophy section
-4. Extract absolute claims ("absolutely", "must", "all", "completely", "every") from Philosophy text
+4. Extract absolute claims ("absolutely", "must", "all", "completely", "every") from Philosophy text AND enumerated domain concepts from parenthetical lists (e.g., "invariants (A, B, C, D)" → each of A, B, C, D is a derived requirement)
 5. Derive what tasks SHOULD exist to achieve Philosophy (philosophy derivation pattern)
 
 ### Step 5.5: Read AC Design Constraints (MANDATORY)

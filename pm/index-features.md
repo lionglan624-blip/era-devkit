@@ -80,7 +80,22 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Depends On | Links |
 |:---|:------:|:-----|:-----------|:------|
-| F855 | [DRAFT] | Phase 25 Planning | F854 | [feature-855.md](feature-855.md) |
+
+### Phase 25: AI & Visitor Systems
+
+| ID | Status | Name | Depends On | Links |
+|:---|:------:|:-----|:-----------|:------|
+| F856 | [DRAFT] | NTR Core/Util Foundation | F855 | [feature-856.md](feature-856.md) |
+| F857 | [DRAFT] | NTR Behavioral Systems | F856 | [feature-857.md](feature-857.md) |
+| F858 | [DRAFT] | NTR Master Scenes | F857 | [feature-858.md](feature-858.md) |
+| F859 | [DRAFT] | NTR Extended Systems | F856 | [feature-859.md](feature-859.md) |
+| F860 | [DRAFT] | NTR Message Generator | F856 | [feature-860.md](feature-860.md) |
+| F861 | [DRAFT] | Visitor/Event Core | F860 | [feature-861.md](feature-861.md) |
+| F862 | [DRAFT] | EVENT_MESSAGE_COM Migration | F861 | [feature-862.md](feature-862.md) |
+| F863 | [DRAFT] | Location Extensions Migration | F861 | [feature-863.md](feature-863.md) |
+| F864 | [DRAFT] | AFFAIR_DISCLOSURE Migration | F861 | [feature-864.md](feature-864.md) |
+| F865 | [DRAFT] | Post-Phase Review Phase 25 | F858, F859, F862, F863, F864 | [feature-865.md](feature-865.md) |
+| F866 | [DRAFT] | Phase 26 Planning | F865 | [feature-866.md](feature-866.md) |
 
 ### Other
 
@@ -99,12 +114,12 @@ Short-term execution management. See [content-roadmap.md](content-roadmap.md) fo
 
 | ID | Status | Name | Links |
 |:---|:------:|:-----|:------|
+| 855 | ✅ | Phase 25 Planning | [feature-855.md](feature-855.md) |
 | 854 | ✅ | Post-Phase Review Phase 24 | [feature-854.md](feature-854.md) |
 | 853 | ✅ | NTR Application Services + Anti-Corruption Layer | [feature-853.md](feature-853.md) |
 | 852 | ✅ | INtrCalculator Domain Service | [feature-852.md](feature-852.md) |
 | 851 | ✅ | NtrProgression Aggregate + Domain Events | [feature-851.md](feature-851.md) |
 | 850 | ✅ | NTR Ubiquitous Language + Value Objects | [feature-850.md](feature-850.md) |
-| 849 | ✅ | Phase 24 Planning | [feature-849.md](feature-849.md) |
 
 ---
 
@@ -195,4 +210,4 @@ See [kojo-mapper](../../tools/kojo-mapper/) for detailed coverage analysis.
 
 ---
 
-**Next Feature number**: 856
+**Next Feature number**: 867

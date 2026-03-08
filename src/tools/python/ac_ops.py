@@ -997,6 +997,8 @@ _CHECK_ID_PATTERNS: dict[str, list[str]] = {
     "N10": ["50 hard limit"],
     "N11": ["30 soft limit"],
     "N12": ["matcher but AC Details lacks derivation"],
+    "N14": ["should have Expected '-'"],
+    "N15": ["should use 'succeeds' or 'fails' matcher"],
 }
 
 
@@ -1260,6 +1262,55 @@ def ac_check(fid: str, fix: bool = False, dry_run: bool = False,
             issues.append(
                 f"AC#{ac_id}: Duplicate AC Details header at lines {line_nums}."
             )
+
+    # N14. Matcher-Expected convention: succeeds/fails/exists/not_exists require Expected='-'
+    DASH_EXPECTED_MATCHERS = frozenset({"succeeds", "fails", "exists", "not_exists"})
+    for row in ac_rows:
+        if row.matcher in DASH_EXPECTED_MATCHERS and row.expected and row.expected.strip() != "-":
+            issues.append(
+                f"AC#{row.number}: Uses '{row.matcher}' matcher but Expected is '{row.expected}' — "
+                f"should have Expected '-' per convention."
+            )
+
+    # N15. Type-Matcher convention: build/test types require succeeds or fails matcher
+    BUILD_TEST_TYPES = frozenset({"build", "test"})
+    VALID_BUILD_TEST_MATCHERS = frozenset({"succeeds", "fails"})
+    for row in ac_rows:
+        if row.type_ in BUILD_TEST_TYPES and row.matcher not in VALID_BUILD_TEST_MATCHERS:
+            issues.append(
+                f"AC#{row.number}: Type '{row.type}' should use 'succeeds' or 'fails' matcher, "
+                f"not '{row.matcher}'. F853 lesson: equals/0 → succeeds/- convention."
+            )
+
+    # N16. Cross-section count consistency: numeric references to "N items/obligations/routed"
+    # in Implementation Contract, Dependencies, Links must match actual enumerated counts.
+    # F854 lesson: adding 7th row to F855 additions table left "6 items" in 6 locations,
+    # causing 7 content-correction FL fixes across iters 2-7.
+    count_ref_re = re.compile(
+        r'\b(\d+)\s+(?:routed\s+)?(?:items?|obligations?|routed|additions?|rows?)\b',
+        re.IGNORECASE,
+    )
+    # Sections to scan for count references
+    COUNT_CHECK_SECTIONS = {"## Implementation Contract", "## Dependencies", "## Links",
+                            "## Mandatory Handoffs"}
+    current_h2 = ""
+    for idx, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("## ") and not stripped.startswith("### "):
+            current_h2 = stripped
+            continue
+        if current_h2 not in COUNT_CHECK_SECTIONS:
+            continue
+        # Skip table header/separator rows
+        if stripped.startswith("|") and set(stripped.replace("|", "").strip()) <= {"-", ":"}:
+            continue
+        for m in count_ref_re.finditer(stripped):
+            stated = int(m.group(1))
+            # Only flag suspicious counts (2-99 range, skip 0/1 which are rarely enumerated)
+            if 2 <= stated <= 99:
+                issues.append(
+                    f"Line {idx + 1}: '{m.group(0)}' in {current_h2} — verify count matches actual enumerated list."
+                )
 
     # Filter skipped checks
     if skip:
@@ -2421,11 +2472,12 @@ def main() -> int:
             "Checks: definition/details mismatch, orphan task refs, goal coverage gaps,\n"
             "numbering gaps, stale 'All N ACs' counts, tech design coverage mismatch,\n"
             "invalid matchers (N1), regex errors (N3), column swaps (N4),\n"
-            "unassigned ACs (N7), goal coverage refs (N9), gte derivation (N12).\n"
+            "unassigned ACs (N7), goal coverage refs (N9), gte derivation (N12),\n"
+            "matcher-expected convention (N14), type-matcher convention (N15).\n"
             "AC count limits (N10/N11) are opt-in via --warn-count.\n"
             "\n"
             "With --fix: auto-correct invalid matchers, stale counts, and numbering gaps.\n"
-            "Non-fixable issues (N3, N4, N7, N9, N10, N11, N12) are printed but do not\n"
+            "Non-fixable issues (N3, N4, N7, N9, N10, N11, N12, N14, N15) are printed but do not\n"
             "affect the exit code when --fix is used.\n"
             "\n"
             "Exit code:\n"

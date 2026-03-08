@@ -1087,7 +1087,7 @@ def generate_markdown_report(
                 shared_sessions.append((stype, session_info))
 
     if shared_sessions:
-        lines.append("**⚠ Shared Sessions Detected** — metrics may include cross-feature tool calls:")
+        lines.append("**⚠ Shared Sessions Detected** — metrics may include cross-feature tool calls (use `--exclude-shared` to drop these sessions):")
         lines.append("")
         for stype, sinfo in shared_sessions:
             other_ids = ", ".join(f"F{fid}" for fid in sinfo.shared_features[:5])
@@ -1893,6 +1893,11 @@ Examples:
         dest="self_mode",
         help="Self-improvement analysis for the /imp command itself (use with --cross)",
     )
+    parser.add_argument(
+        "--exclude-shared",
+        action="store_true",
+        help="Exclude shared sessions (sessions referencing multiple features) from metrics",
+    )
     return parser
 
 
@@ -1940,6 +1945,16 @@ def main() -> int:
         f"Found: FC={len(session_map['fc'])} FL={len(session_map['fl'])} RUN={len(session_map['run'])} sessions",
         file=sys.stderr,
     )
+
+    # Filter shared sessions if requested
+    if args.exclude_shared:
+        before = sum(len(v) for v in session_map.values())
+        for stype in list(session_map.keys()):
+            session_map[stype] = [s for s in session_map[stype] if not s.shared_features]
+        after = sum(len(v) for v in session_map.values())
+        excluded = before - after
+        if excluded > 0:
+            print(f"Excluded {excluded} shared session(s) (--exclude-shared).", file=sys.stderr)
 
     # 3. Analyze each session
     all_stats: dict = {}
